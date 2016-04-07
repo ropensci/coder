@@ -1,0 +1,37 @@
+elix_icd10 <- tibble::frame_data(
+  ~group, ~regex,
+ "congestive_heart_failure",        "I099|I1(10|3[02])|I255|I4(2[05-9]|3)|I50|P290",
+ "cardiac_arrhythmias",             "I44[1-3]|I456|I459|I4[7-9]|R00[018]|T821|Z[49]50",
+ "valvular_disease",                "A520|I0[5-8]|I09[18]|I3[4-9]|Q23[0-3]|Z95[2-4]",
+ "pulmonary_circulationd_disorder", "I2([67]|8[089])",
+ "peripheral_vascular_disorder",    "I7([01]|3[189]|71|9[02])|K55[189]|Z95[89]",
+ "hypertension_uncomplicated",      "I10[[:digit:]]",
+ "hypertension_complicated",        "I11[1-5]",
+ "paralysis",                       "G041|G114|G8(0[12]|[12]|3[0-49])",
+ "other_neurological_disorders",    "G1[0-3]|G2[012]|G25[45]|G31[289]|G3[25-7]|G4[01]|G93[14]|R470|R56",
+ "chronic_pulmonary_disease",       "I27[89]|J4[0-7]|J6([0-7]|84)|J70[13]",
+ "diabetes_uncomplicated",          "E1[0-4][019]",
+ "diabetes_complicated",            "E1[0-4][23-8]",
+ "hypothyroidism",                  "E0[0-3]|E890",
+ "renal_failure",                   "I120|I131|N1[89]|N250|Z49[012]|Z940|Z992",
+ "liver_disease",                   "B18|I8(5|64)|I982|K7(0|1[13457]|[234]|6[02-9])|Z944",
+ "peptic_ulcer_disease",            "K2[5-8][79]",
+ "aids_hiv",                        "B2[0124]",
+ "lymphoma",                        "C8[1-58]|C96|C90[02]",
+ "metastatic_cancer",               "C7[7-9]|C80",
+ "solid_tumor",                     "C[01]|C2[0-6]|C3[0-47-9]|C4[0135-9]|C5[0-8]|C6|C7[0-6]|C97",
+ "rheumatoid_arthritis",            "L94[013]|M0[568]|M12[03]|M3(0|1[0-3]|[2-5])|M4(5|6[189])",
+ "coagulopathy",                    "D6[5-8]|D69[13-6]",
+ "obesity",                         "E66",
+ "weight_loss",                     "E4[0-6]|R634|R64",
+ "fluid_electrolyte_disorders",     "E222|E8[67]",
+ "blood_loss_anemia",               "D500",
+ "deficiency_anemia",               "D50[89]|D5[123]",
+ "alcohol_abuse",                   "F10|E52|G621|I426|K292|K70[039]|T51|Z502|Z714|Z721",
+ "drug_abuse",                      "F1[1-689]|Z715|Z722",
+ "psychoses",                       "F2[0-589]|F3([01]2|15)",
+ "depression",                      "F204|F31[345]|F3[23]|F341|F4[13]2"
+) %>%
+icdswe::as.classcodes()
+
+devtools::use_data(elix_icd10, internal = TRUE, overwrite = TRUE)

@@ -1,0 +1,19 @@
+Package: icdswe
+Type: Package
+Title: Handle ICD Codes from Swedish Data Sources
+Version: 0.0.1
+Author: Erik Bulow
+Maintainer: Erik Bulow <eriklgb@gmail.com>
+Description: Compute Elixhauser and Charlson comorbidity index for Swedish
+    patients.
+License: GPL-2
+Imports:
+    dplyr (>= 0.4.3),
+    Kmisc,
+    tibble
+    tidyr,
+Suggests:
+    haven,
+    testthat
+LazyData: TRUE
+RoxygenNote: 5.0.1
