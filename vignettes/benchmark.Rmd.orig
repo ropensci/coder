@@ -61,9 +61,8 @@ Benchmark is performed for corresponding functions from the `icd`, `icdswe` and 
 packages.
 
 ```{r}
-rbenchmark::benchmark(
-
-  icdswe = classify(x),
+microbenchmark::microbenchmark(
+  icdswe = classify(x, "elix_icd10", id = "id"),
 
   icd    = icd_comorbid(
             mutate(x,
@@ -81,15 +80,16 @@ rbenchmark::benchmark(
             cmrbdt.finder_fn = cmrbdt.finder.regex.elixhauser_Quan2005),
 
   # Benchmark settings
-  replications = 1,
-  columns = c("test", "elapsed", "relative")
+  times = 5,
+  unit = "ms"
 ) %>%
+summary() %>% 
 knitr::kable()
 ```
 
-We thus conclude that `icdswe` is more than 400 times faster than its competitors!
+We thus conclude that `icdswe` is faster than its competitors!
 
-This can be partially  explained by choises of underlaying datastructure (matrix versus data.frame
+This can be partially explained by choises of underlaying datastructure (matrix versus data.frame
 where the first is generally much faster than the second).
 
 

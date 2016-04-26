@@ -49,9 +49,16 @@ classify.data.frame <- function(x, by, id = NULL, code = "code", drop = FALSE, .
   if (is.character(by)) by <- get(by)
 
   # Adjust column names of x
-  id <- if (is.null(id) & !is.null(attr(x, "id"))) attr(x, "id") else id
+  id <-
+    if (is.null(id) & !is.null(attr(x, "id"))) attr(x, "id")
+    else if (is.character(id)) id
+    else if (is.null(id) & "id" %in% names(x)) "id"
+    else stop("Argument 'id' must be specified!")
   stopifnot(all(c(id, code) %in% names(x)))
-  x <- dplyr::rename_(x, id = id, code = code)
+  nms <- names(x)
+  nms[nms == id] <- "id"
+  nms[nms == code] <- "code"
+  names(x) <- nms
 
   # Special tratment for codes not belonging to any class (for speed up)
   # Make FALSE matrix for all these cases

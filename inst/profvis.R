@@ -1,7 +1,7 @@
-x <- pardata[2:1e4, ]; x$id <- droplevels(x$id)
+x <- pardata[1:2000, ]; x$id <- droplevels(x$id)
 
 profvis::profvis({
-  apa <- classify(x)
+  apa <- classify(x, "elix_icd10")
 })
 
 

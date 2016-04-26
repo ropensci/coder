@@ -1,7 +1,7 @@
 ---
 title: "Benchmarking"
 author: "Erik Bulow"
-date: "2016-04-13"
+date: "2016-04-26"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -78,7 +78,7 @@ packages.
 ```r
 rbenchmark::benchmark(
 
-  icdswe = classify(x),
+  icdswe = classify(x, "elix_icd10", id = "id"),
 
   icd    = icd_comorbid(
             mutate(x,
@@ -106,13 +106,13 @@ knitr::kable()
 
 |   |test                | elapsed| relative|
 |:--|:-------------------|-------:|--------:|
-|3  |comorbidities.icd10 |    8.83|      883|
-|2  |icd                 |    9.58|      958|
-|1  |icdswe              |    0.01|        1|
+|3  |comorbidities.icd10 |   27.11|  246.455|
+|2  |icd                 |    1.66|   15.091|
+|1  |icdswe              |    0.11|    1.000|
 
-We thus conclude that `icdswe` is more than 400 times faster than its competitors!
+We thus conclude that `icdswe` is faster than its competitors!
 
-This can be partially  explained by choises of underlaying datastructure (matrix versus data.frame
+This can be partially explained by choises of underlaying datastructure (matrix versus data.frame
 where the first is generally much faster than the second).
 
 
