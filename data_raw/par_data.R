@@ -5,12 +5,12 @@ load("Z:\\SHPR\\SZILARD\\Beslutstöd\\Data\\data for calculating the Comorb indi
 
 oppen   <- icdswe::as.pardata(oppen)
 sluten  <- icdswe::as.pardata(sluten)
-pardata <- icdswe::as.icd_data(oppen, sluten) %>%
+pardata <- icdswe::as.codedata(oppen, sluten) %>%
   dplyr::filter(
-    icd_date >= "2001-01-01",
+    date >= "2001-01-01",
     # Remove some codes that doesn't seem to be ICD10
-    grepl("^[[:alpha:]][[:digit:]]{3}$", as.character(icd))) %>%
-  dplyr::mutate(icd = droplevels(icd))
+    grepl("^[[:alpha:]][[:digit:]]{3}$", as.character(code))) %>%
+  dplyr::mutate(code = droplevels(code))
 
 # object.size(pardata) / 2 ^ 20
 

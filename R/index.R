@@ -1,7 +1,7 @@
 #' Calculate index based on classification scheme
 #'
 #' @param x matrix as output from \code{classify}
-#' @param classcodes object of class \code{classcodes}.
+#' @param by object of class \code{classcodes}.
 #' Needed if classes have different weights. \code{NULL} (as by default)
 #' gives index = 1 if element belongs to any class, 0 otherwise.
 #'
@@ -11,16 +11,24 @@
 #' @examples
 #' x <- classify(c("C80", "I20", "XXX"))
 #' index(x)
-index <- function(x, classcodes = NULL) {
+#'
+#' # Find patients with adverse events after hip surgery
+#' distill(ex_people, ex_icd10, id = "name", date = "surgery") %>%
+#' classify("hip_adverse_events_icd10") %>%
+#'   index()
+index <- function(x, by = NULL) {
+
   stopifnot(is.matrix(x))
+
+  id <- if (is.null(by) & !is.null(attr(x, "classcodes"))) attr(x, "classcodes")
+        else id
+
+  if (is.character(by)) by <- get(by)
+
   ans <-
-    if (is.character(classcodes)) {
-      classcodes <- get(classcodes)
-      if ("w" %in% names(classcodes))
-        x %*% classcodes$w
-    } else {
-        as.numeric(apply(x, 1, any))
-    }
+    if ("w" %in% names(by)) x %*% by$w
+    else rowSums(x)
+
   names(ans) <- rownames(x)
   ans
 }

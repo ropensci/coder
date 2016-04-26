@@ -9,11 +9,16 @@ Description: Compute Elixhauser and Charlson comorbidity index for Swedish
 License: GPL-2
 Imports:
     dplyr (>= 0.4.3),
+    fastmatch,
     Kmisc,
-    tibble
-    tidyr,
+    tibble,
+    tidyr
 Suggests:
     haven,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown,
+    R.rsp
 LazyData: TRUE
 RoxygenNote: 5.0.1
+VignetteBuilder: R.rsp

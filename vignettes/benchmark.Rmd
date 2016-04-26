@@ -1,0 +1,120 @@
+---
+title: "Benchmarking"
+author: "Erik Bulow"
+date: "2016-04-13"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Other ICD packages
+
+The `icdswe` package is not the only (nor the first) R package aimed for ICD codes and comorbitity indexes.
+Four additional packages (as listed below) were found as by 2016-04-14.
+
+| Package             | Authour           | CRAN | GitHub                     | ICD versions                     |
+|---------------------|-------------------|------|----------------------------|----------------------------------|
+| icd                 | Jack Wasey        | X    | jackwasey/icd              | ICD9, ICD10, ICD-10-CM           |
+| medicalrisk         | Patrick McCormick | X    | patrickmdnet/medicalrisk   | ICD-9-CM                         |
+| comorbidities.icd10 | Max Gordon        |      | gforge/comorbidities.icd10 | ICD-9, ICD-10 (US/SWE)           |
+| icdcoder            | Wade Cooper       |      | wtcooper/icdcoder          | ICD9, ICD-9-CM, ICD10, ICD-10-CM |
+
+
+# Packages to compare
+
+The `icdswe` package was initilly targeted for Swedish ICD data. Since Sweden (as opposed to USA)  use
+mostly ICD-10 codes (in favour of ICD-9), the `medicalrisk` package is dropped from further comparisons.
+
+The `icdcoder` package is not submitted to CRAN and inspection of the source code
+reveals that the package does not yet seem to be ready for production release (it does for example
+have some problems with its dependency packages). According to GitHub metrics, the development activity
+has been quite limited and we therefore assume that the package is not under active development.
+It is therefore not considered further within this comparison.
+
+
+# Speed comparison
+
+To work with large datasets of ICD-codes (with millions of cases) is not uncommon
+wherefore speed is an important performance meassure. We do however limit the comparison here to
+a data set with 2000 cases:
+
+
+```r
+head(x <- icdswe::pardata[1:2000, ])
+```
+
+```
+## Source: local data frame [6 x 3]
+## 
+##       id       date   code
+##   <fctr>     <date> <fctr>
+## 1 115457 2001-01-01   R339
+## 2 180798 2001-01-01   S819
+## 3  10396 2001-01-01   S519
+## 4 179446 2001-01-01   R539
+## 5 216594 2001-01-01   N180
+## 6 151485 2001-01-01   N459
+```
+
+Calling functions from both `icd` and `comorbidities.icd10` by full reference (e. g. `package::fun`)
+is problematic due to internal use of non standard evaluation. All compared packages are therefore first
+attached (by `library`).
+
+
+
+```r
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(icdswe))
+suppressPackageStartupMessages(library(icd))
+suppressPackageStartupMessages(library(comorbidities.icd10))
+```
+
+Benchmark is performed for corresponding functions from the `icd`, `icdswe` and `comorbidities.icd10`
+packages.
+
+
+```r
+rbenchmark::benchmark(
+
+  icdswe = classify(x),
+
+  icd    = icd_comorbid(
+            mutate(x,
+              id = as.character(id),
+              code = as.character(code)),
+            icd10_map_quan_elix,
+            visit_name = "id",
+            icd_name = "code"),
+
+  comorbidities.icd10 =
+            cmrbdt.calc(x,
+            "id",
+            "code",
+            rep("10", nrow(x)),
+            cmrbdt.finder_fn = cmrbdt.finder.regex.elixhauser_Quan2005),
+
+  # Benchmark settings
+  replications = 1,
+  columns = c("test", "elapsed", "relative")
+) %>%
+knitr::kable()
+```
+
+
+
+|   |test                | elapsed| relative|
+|:--|:-------------------|-------:|--------:|
+|3  |comorbidities.icd10 |    8.83|      883|
+|2  |icd                 |    9.58|      958|
+|1  |icdswe              |    0.01|        1|
+
+We thus conclude that `icdswe` is more than 400 times faster than its competitors!
+
+This can be partially  explained by choises of underlaying datastructure (matrix versus data.frame
+where the first is generally much faster than the second).
+
+
+
+

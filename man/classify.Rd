@@ -6,22 +6,22 @@
 \alias{classify.default}
 \title{Classify elements}
 \usage{
-classify(x, ...)
+classify(x, by, ...)
 
-\method{classify}{default}(x, classcodes = "elix_icd10", ...)
+\method{classify}{default}(x, by, ...)
 
-\method{classify}{data.frame}(x, classcodes = "elix_icd10", code = "icd",
-  by = "lpnr", drop = FALSE, ...)
+\method{classify}{data.frame}(x, by, id = NULL, code = "code",
+  drop = FALSE, ...)
 }
 \arguments{
 \item{x}{object with elements to classify}
 
-\item{classcodes}{classification scheme of type \code{classcodes}}
+\item{by}{classification scheme of type \code{classcodes} to classify by}
+
+\item{id}{name (as character) of variable in \code{x} to
+group id (for example a patient id)}
 
 \item{code}{name (as character) of variable in \code{x} containing codes to classify}
-
-\item{by}{name (as character) of variable in \code{x} to
-group by (for example a patient id)}
 
 \item{drop}{drop cases that does not belong to any class}
 }
@@ -33,7 +33,7 @@ for each class with corresponding class names (according to the
 Note that row order is
 not preserved for \code{classify.data.frame}.
 
-Row names identify origin (as specified by argument \code{by} for
+Row names identify origin (as specified id argument \code{id} for
 \code{classify.data.frame} or simply as \code{x} itself for
 \code{classify.default}.
 }
@@ -41,7 +41,11 @@ Row names identify origin (as specified by argument \code{by} for
 Classify elements
 }
 \examples{
-# Classify patients using Elixhauser based on ICD10-codes
-classify(c("C80", "I20", "XXX"))
+# Classify individual ICD10-codes by Elixhauser
+classify(c("C80", "I20", "XXX"), by = "elix_icd10")
+
+# Classify patients by Charlson
+distill(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
+classify("charlson_icd_10")
 }
 

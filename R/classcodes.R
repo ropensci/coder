@@ -22,7 +22,7 @@
 as.classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),
-    setequal(names(x), c("group", "regex")),
+    all(names(x) %in% c("group", "regex", "w", "condition")),
     !anyNA(x$group),
     !any(x$group == ""),
     !any(duplicated(x$group)),

@@ -4,12 +4,12 @@
 \alias{index}
 \title{Calculate index based on classification scheme}
 \usage{
-index(x, classcodes = NULL)
+index(x, by = NULL)
 }
 \arguments{
 \item{x}{matrix as output from \code{classify}}
 
-\item{classcodes}{object of class \code{classcodes}.
+\item{by}{object of class \code{classcodes}.
 Needed if classes have different weights. \code{NULL} (as by default)
 gives index = 1 if element belongs to any class, 0 otherwise.}
 }
@@ -22,5 +22,10 @@ Calculate index based on classification scheme
 \examples{
 x <- classify(c("C80", "I20", "XXX"))
 index(x)
+
+# Find patients with adverse events after hip surgery
+distill(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
+classify("hip_adverse_events_icd10") \%>\%
+  index()
 }
 
