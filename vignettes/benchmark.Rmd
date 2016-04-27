@@ -1,13 +1,16 @@
 ---
 title: "Benchmarking"
 author: "Erik Bulow"
-date: "2016-04-26"
+date: "2016-04-27"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+
+
 
 # Other ICD packages
 
@@ -36,84 +39,294 @@ It is therefore not considered further within this comparison.
 
 # Speed comparison
 
-To work with large datasets of ICD-codes (with millions of cases) is not uncommon
-wherefore speed is an important performance meassure. We do however limit the comparison here to
-a data set with 2000 cases:
+Calling functions from both `icd` and `comorbidities.icd10` by full reference (e. g. `package::fun`)
+is problematic due to internal use of non standard evaluation. All compared packages are therefore first
+attached (by `library`):
+
 
 
 ```r
-head(x <- icdswe::pardata[1:2000, ])
+library(icdswe)
+suppressPackageStartupMessages(library(icd))
+suppressPackageStartupMessages(library(comorbidities.icd10))
+```
+
+Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the `icd`, `icdswe` and `comorbidities.icd10`
+packages.
+
+First some session info:
+
+
+```r
+si <- devtools::session_info(c("icd", "icdswe", "comorbidities.icd10"))
+si$packages <- 
+  si$packages %>% 
+  filter(package %in% c("icd", "icdswe", "comorbidities.icd10")) %>% 
+  select(-source)
+si
+```
+
+```
+## Session info --------------------------------------------------------------
+```
+
+```
+##  setting  value                       
+##  version  R version 3.2.5 (2016-04-14)
+##  system   x86_64, mingw32             
+##  ui       RStudio (0.99.878)          
+##  language (EN)                        
+##  collate  Swedish_Sweden.1252         
+##  tz       Europe/Berlin               
+##  date     2016-04-27
+```
+
+```
+## Packages ------------------------------------------------------------------
+```
+
+```
+##               package * version       date
+## 1 comorbidities.icd10 *   0.6.1 2016-04-13
+## 2                 icd *   2.0.1 2016-04-27
+## 3              icdswe *   0.0.1 2016-04-27
+```
+
+
+We prepare a function to return a list with unevaluated calls to correspinding functions in specified packages:
+
+
+
+```r
+uneval_list <- function(pkgs = c("icdswe", "icd", "comorbidities.icd10")) {
+  
+  # Initiate a list of expressions to benchmark
+  expr <- list()
+  
+  # Include function "classify" from package "icdswe"
+  if ("icdswe" %in% pkgs) expr$icdswe <- substitute(
+    
+    classify(
+      x, 
+      by = "elix_icd10", 
+      id = "id")
+    )
+  
+  # Include function "icd_comorbid" from package "icd"
+  if ("icd" %in% pkgs) expr$icd <- substitute( 
+    
+    icd_comorbid(
+      dplyr::mutate(
+        x, 
+        id = as.character(id), 
+        code = as.character(code)), 
+      icd10_map_quan_elix, 
+      visit_name = "id", 
+      icd_name = "code")
+    )
+  
+  # Include function "cmrbdt.calc" from package "comorbid.icd10"
+  if ("comorbidities.icd10" %in% pkgs) expr$comorbidities.icd10 <- substitute( 
+    
+    cmrbdt.calc(
+      x, 
+      "id", 
+      "code", 
+      rep("10", nrow(x)), 
+      cmrbdt.finder_fn = cmrbdt.finder.regex.elixhauser_Quan2005)
+    )
+  
+  expr
+}
+```
+
+We make another function to use for benchmarking
+
+
+```r
+bm <- function(pkgs = c("icdswe", "icd", "comorbidities.icd10"), ...) {
+  microbenchmark::microbenchmark(list = uneval_list(pkgs), ...) %>%
+  summary() %>% 
+  knitr::kable(digits = 2)
+}
+```
+
+We will use a randomly generated (totaly "fake"/non personal) dataset of size 10,000. This is of quite moderate size compared to real world data but will be sufficient for now.
+
+
+```r
+head(x <- dplyr::sample_n(icdswe::ex_icd10, 1e4, TRUE))
 ```
 
 ```
 ## Source: local data frame [6 x 3]
 ## 
-##       id       date   code
-##   <fctr>     <date> <fctr>
-## 1 115457 2001-01-01   R339
-## 2 180798 2001-01-01   S819
-## 3  10396 2001-01-01   S519
-## 4 179446 2001-01-01   R539
-## 5 216594 2001-01-01   N180
-## 6 151485 2001-01-01   N459
+##                  id       date   code
+##              <fctr>     <date> <fctr>
+## 1      New, Brandon 2015-06-26   O892
+## 2      Wong, Jaylin 2015-06-29  M069F
+## 3   Bible, Cheyenne 2015-03-21   S599
+## 4     Wright, Edwin 2015-07-08   P389
+## 5 Ruiz-Smith, Angie 2015-10-26   S501
+## 6      Ruder, Emily 2015-05-28   T923
 ```
 
-Calling functions from both `icd` and `comorbidities.icd10` by full reference (e. g. `package::fun`)
-is problematic due to internal use of non standard evaluation. All compared packages are therefore first
-attached (by `library`).
-
+The test data set does contain some codes beginning in "UA", "UB" and/or "UP". These are valid codes in the Swedish ICD 10 (2016) version but will not be recognised as such by `comorbidities.icd10`. They must therefore be excluded in order to proced:
 
 
 ```r
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(icdswe))
-suppressPackageStartupMessages(library(icd))
-suppressPackageStartupMessages(library(comorbidities.icd10))
+x <- dplyr::filter(x, !grepl("U[ABP]", code))
 ```
 
-Benchmark is performed for corresponding functions from the `icd`, `icdswe` and `comorbidities.icd10`
-packages.
+A data set of 9910 is now remaining.
 
+Results in seconds:
 
 ```r
-rbenchmark::benchmark(
-
-  icdswe = classify(x, "elix_icd10", id = "id"),
-
-  icd    = icd_comorbid(
-            mutate(x,
-              id = as.character(id),
-              code = as.character(code)),
-            icd10_map_quan_elix,
-            visit_name = "id",
-            icd_name = "code"),
-
-  comorbidities.icd10 =
-            cmrbdt.calc(x,
-            "id",
-            "code",
-            rep("10", nrow(x)),
-            cmrbdt.finder_fn = cmrbdt.finder.regex.elixhauser_Quan2005),
-
-  # Benchmark settings
-  replications = 1,
-  columns = c("test", "elapsed", "relative")
-) %>%
-knitr::kable()
+bm(times = 5, unit = "s")
 ```
 
 
 
-|   |test                | elapsed| relative|
-|:--|:-------------------|-------:|--------:|
-|3  |comorbidities.icd10 |   27.11|  246.455|
-|2  |icd                 |    1.66|   15.091|
-|1  |icdswe              |    0.11|    1.000|
+|expr                |   min|    lq|  mean| median|    uq|   max| neval|cld |
+|:-------------------|-----:|-----:|-----:|------:|-----:|-----:|-----:|:---|
+|icdswe              |  0.09|  0.09|  0.23|   0.09|  0.10|  0.79|     5|a   |
+|icd                 |  6.33|  6.33|  6.36|   6.34|  6.35|  6.44|     5|b   |
+|comorbidities.icd10 | 44.91| 45.04| 45.13|  45.06| 45.12| 45.51|     5|c   |
+
+Relative speed differences (with the fastest package used as reference):
+
+```r
+bm(times = 5, unit = "relative")
+```
+
+
+
+|expr                |    min|     lq|   mean| median|     uq|    max| neval|cld |
+|:-------------------|------:|------:|------:|------:|------:|------:|-----:|:---|
+|icdswe              |   1.00|   1.00|   1.00|   1.00|   1.00|   1.00|     5|a   |
+|icd                 |  67.06|  67.59|  67.00|  67.12|  66.92|  66.32|     5|b   |
+|comorbidities.icd10 | 480.24| 480.06| 477.44| 475.96| 474.76| 476.30|     5|c   |
 
 We thus conclude that `icdswe` is faster than its competitors!
 
-This can be partially explained by choises of underlaying datastructure (matrix versus data.frame
-where the first is generally much faster than the second).
+
+
+
+
+## Some reasons for speed differences
+
+* Both `icd` and `icdswe` relies on matrices, while `comorbidities.icd10` uses data frames. Matrices are generally faster both due to its simpler structure (in this case logical/boolean while the data frame can have different types of classes for each column) and since matrices can be handled effectively through underlying (sub R) numerical C/C++/Fortran librarys such as LAPACK and BLAS.
+* `icdswe` relies on compact regular expressions for classification. `comorbidities.icd10` can use regular expressions too (as done above) but the format is less compact. `icd` uses "raw" ICD-10 codes and "search for each possible parent of the given code, up to the three digit 'major'" (https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html). (It might however be recorded as a side note that the `icd` package does rely on a (much) faster procedure when used with ICD-9 codes.)
+
+
+
+
+
+## A note on RRO
+
+Comparisons above shows result for the latest (released) R version (details shown above).
+
+Even though we would not present any details here, the same benchamrk was performed also on the latest available version (3.2.4) of Revolution R Open (RRO) with both one and then multiple (4) cores. This was done on an Intel i7 machine (an architecture supposed to take full advantage of the Intel Math Kernel Library used by RRO). 
+
+There were no relevant difference observed between one and 4 kernels. 
+The `icd` package did perform better with RRO while `icdswe` and `comorbidities.icd10` were performing worse. The ranking among the packages were the same as above although the magnitude of the relative differneces were decreased between `icdswe` and `icd`.
+ 
+
+
+
+# Output
+
+It is abviously important also to compare the output of each function.
+The basic output from all functions is a logical "table" with 31 columns (one for every Elixhauser comorbidity class) and one row for every patient.
+
+`icd` and `icdswe` gives this "table" as a logical (boolean) matrix with patient id as row names. 
+Each package does however sort their matrices in different orders by default.
+
+The output from `comorbidities.icd10` is more complex. It is a list wherof one element is a data.frame (not a matrix as stated by the help page) with the desired output. The patient id is found as a factor column within the data frame.
+
+We have to transfer the different outputs before they can be compared:
+
+
+```r
+all_output <- function(...) {
+  
+  # Limit the data
+  x <- head(x, 100)
+  
+  # Calculae results for all functions
+  res <- lapply(uneval_list(...), eval)
+  
+  # Transform results to comparable forms
+  if (!is.null(res$icdswe)) 
+    res$icdswe <-  res$icdswe[order(rownames(res$icdswe)), ]
+  
+  if (!is.null(res$comorbidities.icd10)) {
+    id <- as.character(res$comorbidities.icd10$cmrbdt$id)
+    x <- as.matrix(res$comorbidities.icd10$cmrbdt[, -1])
+    rownames(x) <- id
+    res$comorbidities.icd10 <- x[order(id), ]
+  }
+  res
+}
+```
+
+We first conclude that column order is the same although class names are articulated slightly different (the `icd` package offer possibilities for more descriptive names as well):
+
+
+```r
+res <- all_output()
+
+as.data.frame(lapply(res, colnames)) %>% 
+  knitr::kable()
+```
+
+
+
+|icdswe                          |icd          |comorbidities.icd10 |
+|:-------------------------------|:------------|:-------------------|
+|congestive_heart_failure        |CHF          |CHF                 |
+|cardiac_arrhythmias             |Arrhythmia   |ARRHYTHMIA          |
+|valvular_disease                |Valvular     |VALVE               |
+|pulmonary_circulationd_disorder |PHTN         |PULM.CIRC           |
+|peripheral_vascular_disorder    |PVD          |PVD                 |
+|hypertension_uncomplicated      |HTN          |HTN.UNCOMP          |
+|hypertension_complicated        |HTNcx        |HTN.COMP            |
+|paralysis                       |Paralysis    |PARALYSIS           |
+|other_neurological_disorders    |NeuroOther   |NEURO.OTHER         |
+|chronic_pulmonary_disease       |Pulmonary    |CHRONIC.PULM        |
+|diabetes_uncomplicated          |DM           |DM.UNCOMP           |
+|diabetes_complicated            |DMcx         |DM.COMP             |
+|hypothyroidism                  |Hypothyroid  |HYPOTHYROID         |
+|renal_failure                   |Renal        |RENAL               |
+|liver_disease                   |Liver        |LIVER               |
+|peptic_ulcer_disease            |PUD          |PUD                 |
+|aids_hiv                        |HIV          |HIV                 |
+|lymphoma                        |Lymphoma     |LYMPHOMA            |
+|metastatic_cancer               |Mets         |METS                |
+|solid_tumor                     |Tumor        |SOLID.TUMOR         |
+|rheumatoid_arthritis            |Rheumatic    |RHEUM               |
+|coagulopathy                    |Coagulopathy |COAG                |
+|obesity                         |Obesity      |OBESITY             |
+|weight_loss                     |WeightLoss   |WT.LOSS             |
+|fluid_electrolyte_disorders     |FluidsLytes  |LYTES               |
+|blood_loss_anemia               |BloodLoss    |ANEMIA.LOSS         |
+|deficiency_anemia               |Anemia       |ANEMIA.DEF          |
+|alcohol_abuse                   |Alcohol      |ETOH                |
+|drug_abuse                      |Drugs        |DRUGS               |
+|psychoses                       |Psychoses    |PSYCHOSES           |
+|depression                      |Depression   |DEPRESSION          |
+
+
+We hope to have achieved the same result for each patient and each comorbidity class. 
+
+```r
+different <- res$icdswe != res$icd | res$icd != res$comorbidities.icd10
+```
+Were there any differences observed? `any(different)` says: FALSE (which is intended)!
+
+
+
 
 
 

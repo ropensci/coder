@@ -6,7 +6,7 @@ elix_icd10 <- tibble::frame_data(
  "pulmonary_circulationd_disorder", "I2([67]|8[089])",
  "peripheral_vascular_disorder",    "I7([01]|3[189]|71|9[02])|K55[189]|Z95[89]",
  "hypertension_uncomplicated",      "I10[[:digit:]]",
- "hypertension_complicated",        "I11[1-5]",
+ "hypertension_complicated",        "I1[1-35]",
  "paralysis",                       "G041|G114|G8(0[12]|[12]|3[0-49])",
  "other_neurological_disorders",    "G1[0-3]|G2[012]|G25[45]|G31[289]|G3[25-7]|G4[01]|G93[14]|R470|R56",
  "chronic_pulmonary_disease",       "I27[89]|J4[0-7]|J6([0-7]|84)|J70[13]",

@@ -14,6 +14,21 @@
 
 
 
+#' Classcodes for Elixhauser based on ICD-10 codes
+#'
+#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#' @format A data frame with 31 rows and 2 variables:
+#' \describe{
+#'   \item{group}{comorbidity groups}
+#'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#' }
+#' @source Quan Hude et. al. (2005). Coding algorithms for defining comorbidities
+#' in ICD-9-CM and ICD-10 administrative data. Medical care, 1130-1139.
+#' \url{www.jstor.org/stable/3768193}
+"elix_icd10"
+
+
 
 #' Classcodes for Charlson based on ICD-10 codes
 #'
