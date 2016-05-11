@@ -14,7 +14,7 @@
 #'
 #' # Find patients with adverse events after hip surgery
 #' distill(ex_people, ex_icd10, id = "name", date = "surgery") %>%
-#' classify("hip_adverse_events_icd10") %>%
+#'   codify("hip_adverse_events_icd10") %>%
 #'   index()
 index <- function(x, by = NULL) {
 

@@ -26,7 +26,7 @@
 #' classify(c("C80", "I20", "XXX"), by = "elix_icd10")
 #'
 #' # Classify patients by Charlson
-#' distill(ex_people, ex_icd10, id = "name", date = "surgery") %>%
+#' codify(ex_people, ex_icd10, id = "name", date = "surgery") %>%
 #' classify("charlson_icd_10")
 classify <- function(x, by, ...) UseMethod("classify")
 
@@ -56,19 +56,26 @@ classify.data.frame <- function(x, by, id = NULL, code = "code", drop = FALSE, .
     else stop("Argument 'id' must be specified!")
   stopifnot(all(c(id, code) %in% names(x)))
   nms <- names(x)
-  nms[nms == id] <- "id"
+  nms[nms == id]   <- "id"
   nms[nms == code] <- "code"
   names(x) <- nms
 
   # Special tratment for codes not belonging to any class (for speed up)
   # Make FALSE matrix for all these cases
-  i_nocl           <- !grepl(paste(by$regex, collapse = "|"), x$code)
+  # and for NA cases, which should remain NA
+  i_nocl           <- !is.na(x$code) & !grepl(paste(by$regex, collapse = "|"), x$code)
+  i_na             <- is.na(x$code)
   if (!drop) {
     nocl           <- matrix(FALSE, sum(i_nocl), nrow(by))
     rownames(nocl) <- x$id[i_nocl]
+
+    nacl           <- matrix(NA, sum(i_na), nrow(by))
+    rownames(nacl) <- x$id[i_na]
+
+    nocl           <- rbind(nocl, nacl)
     colnames(nocl) <- by$group
   }
-  x                <- x[!i_nocl, ]
+  x                <- x[!i_nocl & !i_na, ]
 
   # Classify all cases with at least one class
   y                <- classify(x$code, by = by)

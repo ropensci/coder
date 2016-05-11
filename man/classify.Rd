@@ -45,7 +45,7 @@ Classify elements
 classify(c("C80", "I20", "XXX"), by = "elix_icd10")
 
 # Classify patients by Charlson
-distill(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
+codify(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
 classify("charlson_icd_10")
 }
 
