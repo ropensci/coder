@@ -52,7 +52,7 @@ codify <- function(x, from, id = "id", date, years = 1) {
   # Indicate wether a case is within specified time period
   res$in_period <- TRUE
   res$in_period[res$xdate <= res$date | res$xdate > res$date + 365 * years] <- FALSE
-  res$in_period[(is.na(res$date) & is.na(res$code))] <- NA
+  res$in_period[is.na(res$date)] <- NA
 
 
   # Elements from x without codes from the period (or without codes at all)
@@ -65,7 +65,7 @@ codify <- function(x, from, id = "id", date, years = 1) {
     res %>%
     dplyr::filter_(~(!in_period | is.na(in_period))) %>%
     dplyr::anti_join(cases_in_period, "id") %>%
-    dplyr::distinct_(setdiff(names(.), c("date", "code"))) %>%
+    dplyr::distinct_(.dots = setdiff(names(.), c("date", "code"))) %>%
     dplyr::mutate_(date = NA, code = NA)
 
   res <- dplyr::bind_rows(
