@@ -33,3 +33,5 @@ elix_icd10 <- tibble::frame_data(
  "depression",                      "^(F204|F31[345]|F3[23]|F341|F4[13]2)"
 ) %>%
 icdswe::as.classcodes()
+
+devtools::use_data(elix_icd10, overwrite = TRUE)

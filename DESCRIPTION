@@ -14,11 +14,8 @@ Imports:
     tibble,
     tidyr
 Suggests:
-    haven,
-    testthat,
-    knitr,
-    rmarkdown,
-    R.rsp
+    R.rsp,
+    testthat
 LazyData: TRUE
 RoxygenNote: 5.0.1
 VignetteBuilder: R.rsp

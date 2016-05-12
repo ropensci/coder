@@ -4,14 +4,17 @@
 \alias{index}
 \title{Calculate index based on classification scheme}
 \usage{
-index(x, by = NULL)
+index(x, by = NULL, from = NULL)
 }
 \arguments{
 \item{x}{matrix as output from \code{classify}}
 
-\item{by}{object of class \code{classcodes}.
-Needed if classes have different weights. \code{NULL} (as by default)
-gives index = 1 if element belongs to any class, 0 otherwise.}
+\item{by}{name of column with 'weights' from corresponding \code{\link{classcodes}} object.
+Can be omitted if the index is just the count of relevant classes.}
+
+\item{from}{\code{\link{classcodes}} object. Can be omitted if information already
+present as attribute of \code{x} (which is often the case) and/or if index
+calculated without weights.}
 }
 \value{
 Named numeric index vector with names corresponding to \code{rownames(x)}
@@ -20,12 +23,22 @@ Named numeric index vector with names corresponding to \code{rownames(x)}
 Calculate index based on classification scheme
 }
 \examples{
-x <- classify(c("C80", "I20", "XXX"))
-index(x)
+# Calculate Elixhauser comorbidity index
+classify(c("C80", "I20"), "elix_icd10") \%>\%
+  index()
+
+# Calculate Charlson-index using original weights
+classify(c("C80", "I21"), "charlson_icd10") \%>\%
+  index("original")
+
+# Calculate Charlson-index using updated weights
+classify(c("C80", "I21"), "charlson_icd10") \%>\%
+  index("updated")
+
 
 # Find patients with adverse events after hip surgery
-distill(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
-  codify("hip_adverse_events_icd10") \%>\%
+codify(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
+  classify("hip_adverse_events_icd10") \%>\%
   index()
 }
 

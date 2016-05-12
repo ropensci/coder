@@ -33,11 +33,13 @@ classify <- function(x, by, ...) UseMethod("classify")
 #' @export
 #' @rdname classify
 classify.default <- function(x, by, ...) {
-  if (is.character(by)) by <- get(by)
+  .by <- by
+  by <- get_classcodes(by)
   y <- vapply(by$regex, grepl, logical(length(x)), as.character(x))
   if (length(x) == 1) y <- as.matrix(t(y))
   colnames(y) <- by$group
   rownames(y) <- x
+  attr(y, "classcodes") <- .by
   y
 }
 
@@ -46,7 +48,7 @@ classify.default <- function(x, by, ...) {
 classify.data.frame <- function(x, by, id = NULL, code = "code", drop = FALSE, ...) {
 
   .by <- by
-  if (is.character(by)) by <- get(by)
+  by <- get_classcodes(by)
 
   # Adjust column names of x
   id <-
