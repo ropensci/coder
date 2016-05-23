@@ -19,7 +19,7 @@ charlson_icd10 <- tibble::frame_data(
     "malingnacy",                       "^(C[01]|C2[0-6]|C3[0-47-9]|C4[0135-9]|C5[0-8]|C6|C7[0-6]|C8[1-58]|C9[0-7])",             2,       2,
     "moderate_or_severe_liver_disease", "^(I8(5[09]|64)|I982|K7(04|[12]1|29|6[5-7]))",                                            3,       4,
     "matastasic_solid_tumor",           "^(C7[7-9]|C80)",                                                                         6,       6,
-    "adis_hiv",                         "^(B2[0124])",                                                                            6,       4
+    "aids_hiv",                         "^(B2[0124])",                                                                            6,       4
 
 
   ) %>%
