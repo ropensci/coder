@@ -64,3 +64,24 @@
 #'   main diagnosis (variable "hdia")}
 #' }
 "hip_adverse_events_icd10"
+
+
+
+
+#' Classcodes for RxRiskV (original and modified)
+#'
+#' \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#' @format Data frames with 39 rows and 2 variables:
+#' \describe{
+#'   \item{group}{desease group}
+#'   \item{regex}{regular expressions identifying ATC codes of each group}
+#' }
+#' @name rxriskv
+"rxriskv_icd10"
+
+#' @rdname rxriskv
+"rxriskv_modified_icd10"
+
+
+
