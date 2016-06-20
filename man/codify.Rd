@@ -4,7 +4,7 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date, years = 1)
+codify(x, from, id = "id", date, days)
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
@@ -17,8 +17,12 @@ date of interest (column name specified by argument \code{date})}
 
 \item{date}{name of column in \code{x} with date of interest}
 
-\item{years}{number of years before \code{date} during which codes from
-\code{from} are relevant}
+\item{days}{range of days relative to \code{date} for which codes from
+\code{from} are relevant as a numeric vector. (For example
+\code{-365:0} implies a time window of one year prior to \code{date},
+which might be useful for calculating comorbidity indeces, while \code{0:30}
+gives a window of 30 days after \code{date}, which might be used for calculating
+adverse events after a surgical procedure.)}
 }
 \value{
 Object of class \code{tbl_df} with columns corresponding to \code{x}
