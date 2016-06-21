@@ -19,7 +19,6 @@ as.pardata <- function(x) {
                 "bdia5", "bdia6", "bdia7", "bdia8", "bdia9", "bdia10", "bdia11",
                 "bdia12", "bdia13", "bdia14", "bdia15")
   stopifnot(
-    is.data.frame(x),
     varnames %in% names(x)
   )
 

@@ -17,10 +17,11 @@ date of interest (column name specified by argument \code{date})}
 
 \item{date}{name of column in \code{x} with date of interest}
 
-\item{days}{range of days relative to \code{date} for which codes from
-\code{from} are relevant as a numeric vector. (For example
-\code{-365:0} implies a time window of one year prior to \code{date},
-which might be useful for calculating comorbidity indeces, while \code{0:30}
+\item{days}{numeric vector of length two with lower and upper bound of range
+of days relative to \code{date} for which codes from
+\code{from} are relevant. (For example
+\code{c(-365, 0)} implies a time window of one year prior to \code{date},
+which might be useful for calculating comorbidity indeces, while \code{c(0, 30)}
 gives a window of 30 days after \code{date}, which might be used for calculating
 adverse events after a surgical procedure.)}
 }
@@ -34,7 +35,8 @@ and additional columns matched from \code{from}:
   \item \code{in_period}: boolean indicator if the unit (patient) had at least one
   code within the specified period
 }
- Ther output has at one row for each combination of unit and code.
+ The output has at one row for each combination of "id" and code. Note that
+ other columns of \code{x} might be repeated accordingly.
 }
 \description{
 codify elements

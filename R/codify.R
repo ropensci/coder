@@ -7,10 +7,11 @@
 #' @param from object with code data for which \code{\link{is.codedata}} is \code{TRUE}
 #' @param id name of column in \code{x} containing case (patient) identification
 #' @param date name of column in \code{x} with date of interest
-#' @param days range of days relative to \code{date} for which codes from
-#' \code{from} are relevant as a numeric vector. (For example
-#' \code{-365:0} implies a time window of one year prior to \code{date},
-#' which might be useful for calculating comorbidity indeces, while \code{0:30}
+#' @param days numeric vector of length two with lower and upper bound of range
+#' of days relative to \code{date} for which codes from
+#' \code{from} are relevant. (For example
+#' \code{c(-365, 0)} implies a time window of one year prior to \code{date},
+#' which might be useful for calculating comorbidity indeces, while \code{c(0, 30)}
 #' gives a window of 30 days after \code{date}, which might be used for calculating
 #' adverse events after a surgical procedure.)
 #'
@@ -23,7 +24,8 @@
 #'   \item \code{in_period}: boolean indicator if the unit (patient) had at least one
 #'   code within the specified period
 #' }
-#'  Ther output has at one row for each combination of unit and code.
+#'  The output has at one row for each combination of "id" and code. Note that
+#'  other columns of \code{x} might be repeated accordingly.
 #'
 #' @export
 #'
@@ -35,11 +37,9 @@ codify <- function(x, from, id = "id", date, days) {
     is.data.frame(x),
     all(c(id, date) %in% names(x)),
     is.codedata(from),
-    is.numeric(days)
+    is.numeric(days),
+    length(days) == 2
   )
-
-  if (days %in% c(1, 2, 5))
-    warning("It seems like 'days' is actually a year! Please verify that you do not use the old function syntax!")
 
   # Need factor to be compatible for left_join
   x[id] <- as.factor(x[[id]])
@@ -57,7 +57,7 @@ codify <- function(x, from, id = "id", date, days) {
 
   # Indicate wether a case is within specified time period
   res$in_period <- TRUE
-  res$in_period[!(res$xdate %in% res$date + days)] <- FALSE
+  res$in_period[res$xdate < res$date + days[1] | res$xdate > res$date + days[2]] <- FALSE
   res$in_period[is.na(res$date)] <- NA
 
 

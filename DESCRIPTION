@@ -1,8 +1,8 @@
 Package: classifyr
 Type: Package
 Title: Handle ICD Codes from Swedish Data Sources
-Version: 0.0.2
-Date: 2016-06-20
+Version: 0.0.4
+Date: 2016-06-21
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Classify data int distinct categories using classification tables.

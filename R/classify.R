@@ -27,15 +27,32 @@
 #'
 #' # Classify patients by Charlson
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery") %>%
-#' classify("charlson_icd_10")
+#' classify("charlson_icd10")
 classify <- function(x, by, ...) UseMethod("classify")
+
+# Help function to evaluate possible extra conditions from a classcodes object
+# Three posibilites exists
+# 1. The condition is just TRUE or NA => no evaluation needed, should be included
+# 2. Evaluation depends on other variables of x => evaluate
+# 3. dependent variables missing => stop
+eval_condition <- function(cond, x) {
+  if (is.na(cond))
+    !logical(nrow(x))
+  else
+    tryCatch(
+      eval(parse(text = cond), envir = x),
+        error = function(e)
+          stop("Classification is conditioned on variables not found in x!",
+            call. = FALSE)
+    )
+}
 
 #' @export
 #' @rdname classify
 classify.default <- function(x, by, ...) {
   .by <- by
-  by <- get_classcodes(by)
-  y <- vapply(by$regex, grepl, logical(length(x)), as.character(x))
+  by  <- get_classcodes(by)
+  y   <- vapply(by$regex, grepl, logical(length(x)), x = as.character(x))
   if (length(x) == 1) y <- as.matrix(t(y))
   colnames(y) <- by$group
   rownames(y) <- x
@@ -81,6 +98,8 @@ classify.data.frame <- function(x, by, id = NULL, code = "code", drop = FALSE, .
 
   # Classify all cases with at least one class
   y                <- classify(x$code, by = by)
+  if ("condition" %in% names(by))
+    y <- y & vapply(by$condition, eval_condition, logical(nrow(x)), x = x)
   rownames(y)      <- x$id
 
   # Rejoin class cases and no class cases if earlier separated

@@ -16,13 +16,14 @@ is.codedata(x)
 \item{...}{possible additional objects to merge with \code{x}}
 }
 \value{
-\code{as.codedata} returns an object of class \code{tbl_df} with columns:
+\code{as.codedata} returns an object of class \code{tbl_df} with mandatory columns:
 \describe{
 \item{id}{individual id}
 \item{date}{date when code were valid}
 \item{code}{code}
 }
-\code{as.codedata} reuturns \code{TRUE} if these same conditions are met,
+Additional columns might exist (preserved from \code{x})
+\code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
 \code{FALSE} otherwise.
 (Note that \code{codedata} is not a formal class of its own!)
 }

@@ -3,13 +3,14 @@
 #' @param x object
 #' @param ... possible additional objects to merge with \code{x}
 #'
-#' @return \code{as.codedata} returns an object of class \code{tbl_df} with columns:
+#' @return \code{as.codedata} returns an object of class \code{tbl_df} with mandatory columns:
 #' \describe{
 #' \item{id}{individual id}
 #' \item{date}{date when code were valid}
 #' \item{code}{code}
 #' }
-#' \code{as.codedata} reuturns \code{TRUE} if these same conditions are met,
+#' Additional columns might exist (preserved from \code{x})
+#' \code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
 #' \code{FALSE} otherwise.
 #' (Note that \code{codedata} is not a formal class of its own!)
 #' @export
@@ -32,8 +33,7 @@ as.codedata.default <- function(x, ...) {
   names(x) <- tolower(names(x))
   stopifnot(c("id", "date", "code") %in% names(x))
 
-  dplyr::select_(x, "id", "date", "code") %>%
-  dplyr::distinct_( "id", "date", "code") %>%
+  dplyr::distinct_(x) %>%
   # Saving data as factor variable makes the dataset considerably smaller
   dplyr::mutate(
     id   = as.factor(id),
@@ -50,11 +50,13 @@ as.codedata.pardata <- function(x, ...) {
   dia_names <- names(x)[grepl("dia", names(x))]
 
   x %>%
-    tidyr::gather_("tmp", "code", dia_names, na.rm = TRUE) %>%
-    dplyr::rename_(
+    tidyr::gather_("dia", "code", dia_names, na.rm = TRUE) %>%
+    dplyr::transmute_(
       id   = ~lpnr,
-      date = ~indatum) %>%
-    dplyr::select_(~-tmp) %>%
+      date = ~indatum,
+      code = ~code,
+      hdia = ~startsWith(dia, "hdia")
+    ) %>%
     as.codedata()
 }
 
