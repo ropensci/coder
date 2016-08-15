@@ -40,7 +40,7 @@ codify <- function(x, from, id = "id", date, days) {
   )
 
   # id variable must be of same format in both data frames for left_join
-  if (is.factor(from["id"]))
+  if (is.factor(from[["id"]]))
     x[id] <- as.factor(x[[id]])
 
   # Prefilter to increase speed (faster than left_join)
@@ -69,29 +69,31 @@ codify <- function(x, from, id = "id", date, days) {
   cases_not_in_period <-
     res %>%
     dplyr::filter_(~(!in_period | is.na(in_period))) %>%
-    dplyr::anti_join(cases_in_period, "id") %>%
-    dplyr::distinct_(.dots = setdiff(names(.), c("date", "code"))) %>%
+    dplyr::anti_join(cases_in_period, "id")
+  # Needs intermediate assignment to acces names without reference to '.',
+  # which generates note in devtools::check
+  cases_not_in_period <-
+    cases_not_in_period %>%
+    dplyr::distinct_(
+      .dots = setdiff(names(cases_not_in_period), c("date", "code"))) %>%
     dplyr::mutate_(date = NA, code = NA)
 
   # Combine all cases
-  dplyr::bind_rows(
-    cases_not_in_period,
-    res[res$in_period & !is.na(res$in_period), ]
-  ) %>%
+  res <-
+    dplyr::bind_rows(
+      cases_not_in_period,
+      res[res$in_period & !is.na(res$in_period), ]
+    ) %>%
+    # Dates were handled as numerics for speed but should be coerced back to dates
+    dplyr::mutate_(
+      date  = ~as.Date(date,  origin = "1970-01-01"),
+      xdate = ~as.Date(xdate, origin = "1970-01-01")
+    )
 
-  # Dates were handled as numerics for speed but should be coerced back to dates
-  dplyr::mutate_(
-    date  = ~as.Date(date,  origin = "1970-01-01"),
-    xdate = ~as.Date(xdate, origin = "1970-01-01")
-  ) %>%
-
-  # Back to original names
-  dplyr::rename_(
-    id          = "id",
-    "code_date" = ~date,
-    date        = ~xdate
-  ) %>%
+  names(res)[names(res) == "id"]    <- id
+  names(res)[names(res) == "date"]  <- "code_date"
+  names(res)[names(res) == "xdate"] <- "date"
 
   # Add id attribute
-  structure(id = id)
+  structure(res, id = id)
 }
