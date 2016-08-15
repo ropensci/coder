@@ -1,7 +1,7 @@
 ---
 title: "Benchmarking"
 author: "Erik Bulow"
-date: "2016-04-27"
+date: "2016-08-11"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
@@ -10,11 +10,9 @@ vignette: >
 ---
 
 
-
-
 # Other ICD packages
 
-The `icdswe` package is not the only (nor the first) R package aimed for ICD codes and comorbitity indexes.
+The `classifyr` package is not the only (nor the first) R package aimed for ICD codes and comorbitity indexes.
 Four additional packages (as listed below) were found as by 2016-04-14.
 
 | Package             | Authour           | CRAN | GitHub                     | ICD versions                     |
@@ -27,7 +25,7 @@ Four additional packages (as listed below) were found as by 2016-04-14.
 
 # Packages to compare
 
-The `icdswe` package was initilly targeted for Swedish ICD data. Since Sweden (as opposed to USA)  use
+The `classifyr` package was initilly targeted for Swedish ICD data. Since Sweden (as opposed to USA)  use
 mostly ICD-10 codes (in favour of ICD-9), the `medicalrisk` package is dropped from further comparisons.
 
 The `icdcoder` package is not submitted to CRAN and inspection of the source code
@@ -46,22 +44,24 @@ attached (by `library`):
 
 
 ```r
-library(icdswe)
+library(classifyr)
 suppressPackageStartupMessages(library(icd))
 suppressPackageStartupMessages(library(comorbidities.icd10))
+
+library(dplyr) # For data management
 ```
 
-Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the `icd`, `icdswe` and `comorbidities.icd10`
+Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the `icd`, `classifyr` and `comorbidities.icd10`
 packages.
 
 First some session info:
 
 
 ```r
-si <- devtools::session_info(c("icd", "icdswe", "comorbidities.icd10"))
+si <- devtools::session_info(c("icd", "classifyr", "comorbidities.icd10"))
 si$packages <- 
   si$packages %>% 
-  filter(package %in% c("icd", "icdswe", "comorbidities.icd10")) %>% 
+  filter(package %in% c("icd", "classifyr", "comorbidities.icd10")) %>% 
   select(-source)
 si
 ```
@@ -72,13 +72,13 @@ si
 
 ```
 ##  setting  value                       
-##  version  R version 3.2.5 (2016-04-14)
+##  version  R version 3.3.1 (2016-06-21)
 ##  system   x86_64, mingw32             
-##  ui       RStudio (0.99.878)          
+##  ui       RStudio (0.99.1197)         
 ##  language (EN)                        
 ##  collate  Swedish_Sweden.1252         
 ##  tz       Europe/Berlin               
-##  date     2016-04-27
+##  date     2016-08-11
 ```
 
 ```
@@ -86,10 +86,10 @@ si
 ```
 
 ```
-##               package * version       date
-## 1 comorbidities.icd10 *   0.6.1 2016-04-13
-## 2                 icd *   2.0.1 2016-04-27
-## 3              icdswe *   0.0.1 2016-04-27
+##               package *    version       date
+## 1           classifyr *      0.0.5 2016-08-11
+## 2 comorbidities.icd10 *      0.6.2 2016-08-11
+## 3                 icd * 2.0.1.9000 2016-08-11
 ```
 
 
@@ -98,13 +98,13 @@ We prepare a function to return a list with unevaluated calls to correspinding f
 
 
 ```r
-uneval_list <- function(pkgs = c("icdswe", "icd", "comorbidities.icd10")) {
+uneval_list <- function(pkgs = c("classifyr", "icd", "comorbidities.icd10")) {
   
   # Initiate a list of expressions to benchmark
   expr <- list()
   
-  # Include function "classify" from package "icdswe"
-  if ("icdswe" %in% pkgs) expr$icdswe <- substitute(
+  # Include function "classify" from package "classifyr"
+  if ("classifyr" %in% pkgs) expr$classifyr <- substitute(
     
     classify(
       x, 
@@ -144,7 +144,7 @@ We make another function to use for benchmarking
 
 
 ```r
-bm <- function(pkgs = c("icdswe", "icd", "comorbidities.icd10"), ...) {
+bm <- function(pkgs = c("classifyr", "icd", "comorbidities.icd10"), ...) {
   microbenchmark::microbenchmark(list = uneval_list(pkgs), ...) %>%
   summary() %>% 
   knitr::kable(digits = 2)
@@ -155,20 +155,19 @@ We will use a randomly generated (totaly "fake"/non personal) dataset of size 10
 
 
 ```r
-head(x <- dplyr::sample_n(icdswe::ex_icd10, 1e4, TRUE))
+head(x <- dplyr::sample_n(classifyr::ex_icd10, 1e4, TRUE))
 ```
 
 ```
-## Source: local data frame [6 x 3]
-## 
+## # A tibble: 6 x 3
 ##                  id       date   code
 ##              <fctr>     <date> <fctr>
-## 1      New, Brandon 2015-06-26   O892
-## 2      Wong, Jaylin 2015-06-29  M069F
-## 3   Bible, Cheyenne 2015-03-21   S599
-## 4     Wright, Edwin 2015-07-08   P389
-## 5 Ruiz-Smith, Angie 2015-10-26   S501
-## 6      Ruder, Emily 2015-05-28   T923
+## 1       Garvin, Joy 2016-01-07   T257
+## 2  Wolverton, Julia 2015-10-23   B500
+## 3       Tran, Diego 2015-11-26   M711
+## 4       Mills, Jody 2015-12-17   Q447
+## 5    Jackson, Amber 2015-04-19   Q110
+## 6 Ruiz-Smith, Angie 2015-07-13   S935
 ```
 
 The test data set does contain some codes beginning in "UA", "UB" and/or "UP". These are valid codes in the Swedish ICD 10 (2016) version but will not be recognised as such by `comorbidities.icd10`. They must therefore be excluded in order to proced:
@@ -178,7 +177,7 @@ The test data set does contain some codes beginning in "UA", "UB" and/or "UP". T
 x <- dplyr::filter(x, !grepl("U[ABP]", code))
 ```
 
-A data set of 9910 is now remaining.
+A data set of 9934 is now remaining.
 
 Results in seconds:
 
@@ -188,11 +187,11 @@ bm(times = 5, unit = "s")
 
 
 
-|expr                |   min|    lq|  mean| median|    uq|   max| neval|cld |
-|:-------------------|-----:|-----:|-----:|------:|-----:|-----:|-----:|:---|
-|icdswe              |  0.09|  0.09|  0.23|   0.09|  0.10|  0.79|     5|a   |
-|icd                 |  6.33|  6.33|  6.36|   6.34|  6.35|  6.44|     5|b   |
-|comorbidities.icd10 | 44.91| 45.04| 45.13|  45.06| 45.12| 45.51|     5|c   |
+|expr                |   min|    lq|  mean| median|    uq|   max| neval|
+|:-------------------|-----:|-----:|-----:|------:|-----:|-----:|-----:|
+|classifyr           |  0.08|  0.08|  0.08|   0.08|  0.08|  0.08|     5|
+|icd                 |  6.27|  6.27|  6.39|   6.42|  6.46|  6.52|     5|
+|comorbidities.icd10 | 35.56| 35.61| 35.81|  35.63| 35.72| 36.53|     5|
 
 Relative speed differences (with the fastest package used as reference):
 
@@ -202,13 +201,13 @@ bm(times = 5, unit = "relative")
 
 
 
-|expr                |    min|     lq|   mean| median|     uq|    max| neval|cld |
-|:-------------------|------:|------:|------:|------:|------:|------:|-----:|:---|
-|icdswe              |   1.00|   1.00|   1.00|   1.00|   1.00|   1.00|     5|a   |
-|icd                 |  67.06|  67.59|  67.00|  67.12|  66.92|  66.32|     5|b   |
-|comorbidities.icd10 | 480.24| 480.06| 477.44| 475.96| 474.76| 476.30|     5|c   |
+|expr                |    min|     lq|   mean| median|     uq|    max| neval|
+|:-------------------|------:|------:|------:|------:|------:|------:|-----:|
+|classifyr           |   1.00|   1.00|   1.00|   1.00|   1.00|   1.00|     5|
+|icd                 |  83.15|  82.98|  79.82|  79.78|  76.84|  76.89|     5|
+|comorbidities.icd10 | 470.95| 469.82| 453.58| 449.50| 438.02| 442.20|     5|
 
-We thus conclude that `icdswe` is faster than its competitors!
+We thus conclude that `classifyr` is faster than its competitors!
 
 
 
@@ -216,8 +215,8 @@ We thus conclude that `icdswe` is faster than its competitors!
 
 ## Some reasons for speed differences
 
-* Both `icd` and `icdswe` relies on matrices, while `comorbidities.icd10` uses data frames. Matrices are generally faster both due to its simpler structure (in this case logical/boolean while the data frame can have different types of classes for each column) and since matrices can be handled effectively through underlying (sub R) numerical C/C++/Fortran librarys such as LAPACK and BLAS.
-* `icdswe` relies on compact regular expressions for classification. `comorbidities.icd10` can use regular expressions too (as done above) but the format is less compact. `icd` uses "raw" ICD-10 codes and "search for each possible parent of the given code, up to the three digit 'major'" (https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html). (It might however be recorded as a side note that the `icd` package does rely on a (much) faster procedure when used with ICD-9 codes.)
+* Both `icd` and `classifyr` relies on matrices, while `comorbidities.icd10` uses data frames. Matrices are generally faster both due to its simpler structure (in this case logical/boolean while the data frame can have different types of classes for each column) and since matrices can be handled effectively through underlying (sub R) numerical C/C++/Fortran librarys such as LAPACK and BLAS.
+* `classifyr` relies on compact regular expressions for classification. `comorbidities.icd10` can use regular expressions too (as done above) but the format is less compact. `icd` uses "raw" ICD-10 codes and "search for each possible parent of the given code, up to the three digit 'major'" (https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html). (It might however be recorded as a side note that the `icd` package does rely on a (much) faster procedure when used with ICD-9 codes.)
 
 
 
@@ -230,7 +229,7 @@ Comparisons above shows result for the latest (released) R version (details show
 Even though we would not present any details here, the same benchamrk was performed also on the latest available version (3.2.4) of Revolution R Open (RRO) with both one and then multiple (4) cores. This was done on an Intel i7 machine (an architecture supposed to take full advantage of the Intel Math Kernel Library used by RRO). 
 
 There were no relevant difference observed between one and 4 kernels. 
-The `icd` package did perform better with RRO while `icdswe` and `comorbidities.icd10` were performing worse. The ranking among the packages were the same as above although the magnitude of the relative differneces were decreased between `icdswe` and `icd`.
+The `icd` package did perform better with RRO while `classifyr` and `comorbidities.icd10` were performing worse. The ranking among the packages were the same as above although the magnitude of the relative differneces were decreased between `classifyr` and `icd`.
  
 
 
@@ -240,7 +239,7 @@ The `icd` package did perform better with RRO while `icdswe` and `comorbidities.
 It is abviously important also to compare the output of each function.
 The basic output from all functions is a logical "table" with 31 columns (one for every Elixhauser comorbidity class) and one row for every patient.
 
-`icd` and `icdswe` gives this "table" as a logical (boolean) matrix with patient id as row names. 
+`icd` and `classifyr` gives this "table" as a logical (boolean) matrix with patient id as row names. 
 Each package does however sort their matrices in different orders by default.
 
 The output from `comorbidities.icd10` is more complex. It is a list wherof one element is a data.frame (not a matrix as stated by the help page) with the desired output. The patient id is found as a factor column within the data frame.
@@ -258,8 +257,8 @@ all_output <- function(...) {
   res <- lapply(uneval_list(...), eval)
   
   # Transform results to comparable forms
-  if (!is.null(res$icdswe)) 
-    res$icdswe <-  res$icdswe[order(rownames(res$icdswe)), ]
+  if (!is.null(res$classifyr)) 
+    res$classifyr <-  res$classifyr[order(rownames(res$classifyr)), ]
   
   if (!is.null(res$comorbidities.icd10)) {
     id <- as.character(res$comorbidities.icd10$cmrbdt$id)
@@ -283,7 +282,7 @@ as.data.frame(lapply(res, colnames)) %>%
 
 
 
-|icdswe                          |icd          |comorbidities.icd10 |
+|classifyr                       |icd          |comorbidities.icd10 |
 |:-------------------------------|:------------|:-------------------|
 |congestive_heart_failure        |CHF          |CHF                 |
 |cardiac_arrhythmias             |Arrhythmia   |ARRHYTHMIA          |
@@ -321,7 +320,7 @@ as.data.frame(lapply(res, colnames)) %>%
 We hope to have achieved the same result for each patient and each comorbidity class. 
 
 ```r
-different <- res$icdswe != res$icd | res$icd != res$comorbidities.icd10
+different <- res$classifyr != res$icd | res$icd != res$comorbidities.icd10
 ```
 Were there any differences observed? `any(different)` says: FALSE (which is intended)!
 

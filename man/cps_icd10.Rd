@@ -9,12 +9,13 @@
   \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
   "special" for codes beginning with "UA", "UB" and "UP"}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-  \item{w}{index weights, 1 for ordinary and 0 for special}
+  \item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 }}
 \source{
 Stawicki, Stanislaw P., et al.
 "Comorbidity polypharmacy score and its clinical utility: A pragmatic
-practitioner's perspective." Journal of emergencies, trauma, and shock 8.4 (2015): 224.
+practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
+(2015): 224.
 \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 }
 \usage{

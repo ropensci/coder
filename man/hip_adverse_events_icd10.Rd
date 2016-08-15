@@ -8,8 +8,11 @@
 \describe{
   \item{group}{either "vascular desease" or "luxation"}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-  \item{condition}{"vascular desease" is conditioned on ICD-10 code originating from
-  main diagnosis (variable "hdia")}
+  \item{condition}{"vascular desease" is conditioned on ICD-10 code
+    originating from main diagnosis (variable "hdia")}
+  \item{shar}{weights as defined by the Swedish Hip Arthroplasty Register}
+  \item{sos}{weights as defined by
+    The (Swedish) National Board of Health and Welfare "Socialstyrelsen"}
 }}
 \usage{
 hip_adverse_events_icd10

@@ -3,7 +3,8 @@
 #' @param x object
 #' @param ... possible additional objects to merge with \code{x}
 #'
-#' @return \code{as.codedata} returns an object of class \code{tbl_df} with mandatory columns:
+#' @return \code{as.codedata} returns an object of class \code{tbl_df}
+#'   with mandatory columns:
 #' \describe{
 #' \item{id}{individual id}
 #' \item{date}{date when code were valid}
@@ -24,21 +25,23 @@ as.codedata <- function(x, ...) UseMethod("as.codedata", x)
 
 #' @export
 #' @rdname codedata
-is.codedata <- function(x) is.data.frame(x) && all(c("id", "date", "code") %in% names(x))
+is.codedata <- function(x) {
+  is.data.frame(x) && all(c("id", "date", "code") %in% names(x))
+}
 
 
 #' @export
 as.codedata.default <- function(x, ...) {
-  x <- tibble::as_data_frame(x)
+  x <- as.data.frame(x)
   names(x) <- tolower(names(x))
   stopifnot(c("id", "date", "code") %in% names(x))
 
-  dplyr::distinct_(x) %>%
+  dplyr::distinct_(x, .keep_all = TRUE) %>%
   # Saving data as factor variable makes the dataset considerably smaller
-  dplyr::mutate(
-    id   = as.factor(id),
-    date = as.Date(date),
-    code = as.factor(code)
+  dplyr::mutate_(
+    id   = ~as.factor(id),
+    date = ~as.Date(date),
+    code = ~as.factor(code)
   )
 }
 
@@ -59,4 +62,3 @@ as.codedata.pardata <- function(x, ...) {
     ) %>%
     as.codedata()
 }
-

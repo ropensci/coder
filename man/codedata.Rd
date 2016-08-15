@@ -16,7 +16,8 @@ is.codedata(x)
 \item{...}{possible additional objects to merge with \code{x}}
 }
 \value{
-\code{as.codedata} returns an object of class \code{tbl_df} with mandatory columns:
+\code{as.codedata} returns an object of class \code{tbl_df}
+  with mandatory columns:
 \describe{
 \item{id}{individual id}
 \item{date}{date when code were valid}

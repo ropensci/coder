@@ -4,15 +4,36 @@
 \name{charlson_icd10}
 \alias{charlson_icd10}
 \title{Classcodes for Charlson based on ICD-10 codes}
-\format{A data frame with 17 rows and 2 variables:
+\format{A data frame with 17 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
-  \item{regex}{regular expressions identifying ICD-10 codes of each group}
-}}
+  \item{regex}{regular expressions identifying ICD-10 codes of each group as
+  decoded from Quan et al. 2005. Note that this classification was not
+  originally used with all wheights! To simply use this classification table
+  with weights other than \code{quan_original} and \code{quan_updated} might
+  therefore not lead to different results than originally intended for each
+  index.}
+  \item{charlson}{original wweights as suggested by Charlson et al. 1987*}
+  \item{deyo_ramano}{weights suggested by Deyo and Romano*}
+  \item{dhoore}{weights suggested by D'Hoore*}
+  \item{ghali}{weights suggested by Ghali*}
+  \item{quan_original}{weights suggested by Quan 2005}
+  \item{quan_updated}{weights suggested by Quan 2011}
+}
+
+* Weights decoded from Yurkovich et al. 2015.
+
+NOTE! Regular expressisions for leukemia and lymphoma not yet implemented!}
 \source{
-Quan Hude et. al. (2005). Coding algorithms for defining comorbidities
-in ICD-9-CM and ICD-10 administrative data. Medical care, 1130-1139.
+Quan Hude et. al. (2005). Coding algorithms for defining
+  comorbidities in ICD-9-CM and ICD-10 administrative data.
+  Medical care, 1130-1139.
 \url{www.jstor.org/stable/3768193}
+
+Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
+D. (2015). A systematic review identifies valid comorbidity indices derived
+from administrative health data.
+Journal of clinical epidemiology, 68(1), 3-14.
 }
 \usage{
 charlson_icd10

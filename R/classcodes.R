@@ -1,4 +1,3 @@
-
 #' Classcode methods
 #'
 #' "Classcodes" are classifying schemes based on regular expression.
@@ -18,7 +17,7 @@
 #' @export
 #' @name classcodes
 #' @examples
-#' as.classcodes(icdswe:::elix_icd10)
+#' as.classcodes(classifyr::elix_icd10)
 as.classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),

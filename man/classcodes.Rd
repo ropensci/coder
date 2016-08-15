@@ -30,6 +30,6 @@ calculation}
 Note that classes does not have to be disjunct.
 }
 \examples{
-as.classcodes(icdswe:::elix_icd10)
+as.classcodes(classifyr::elix_icd10)
 }
 

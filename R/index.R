@@ -1,13 +1,15 @@
 #' Calculate index based on classification scheme
 #'
 #' @param x matrix as output from \code{classify}
-#' @param by name of column with 'weights' from corresponding \code{\link{classcodes}} object.
-#' Can be omitted if the index is just the count of relevant classes.
-#' @param from \code{\link{classcodes}} object. Can be omitted if information already
-#' present as attribute of \code{x} (which is often the case) and/or if index
-#' calculated without weights.
+#' @param by name of column with 'weights' from corresponding
+#'   \code{\link{classcodes}} object. Can be omitted if the index is just the
+#'   count of relevant classes.
+#' @param from \code{\link{classcodes}} object. Can be omitted if information
+#'   already present as attribute of \code{x} (which is often the case) and/or
+#'   if index calculated without weights.
 #'
-#' @return Named numeric index vector with names corresponding to \code{rownames(x)}
+#' @return Named numeric index vector with names corresponding to
+#'   \code{rownames(x)}
 #' @export
 #'
 #' @examples
@@ -17,15 +19,16 @@
 #'
 #' # Calculate Charlson-index using original weights
 #' classify(c("C80", "I21"), "charlson_icd10") %>%
-#'   index("original")
+#'   index("quan_original")
 #'
 #' # Calculate Charlson-index using updated weights
 #' classify(c("C80", "I21"), "charlson_icd10") %>%
-#'   index("updated")
+#'   index("quan_updated")
 #'
 #'
 #' # Find patients with adverse events after hip surgery
-#' codify(ex_people, ex_icd10, id = "name", date = "surgery") %>%
+#' codify(ex_people, ex_icd10, id = "name",
+#'     date = "surgery", days = c(-365, 0)) %>%
 #'   classify("hip_adverse_events_icd10") %>%
 #'   index()
 index <- function(x, by = NULL, from = NULL) {
@@ -35,14 +38,17 @@ index <- function(x, by = NULL, from = NULL) {
   # Find classcode object (NULL is valid if no weights supplied)
   from <- get_classcodes(from, x)
 
-  # index is either the simple rowsum or made by vector multiplication of weights
+  # index is either the simple rowsum or made by
+  # vector multiplication of weights
   ans <-
     if (is.null(by))
       rowSums(x)
     else if (is.null(from))
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
-      stop(by, " (as given by argument 'by') is not a column of the classcodes object!")
+      stop(by, " (as given by argument 'by') not found in argument 'from'!")
+    else if (by %in% c("charlson", "dhoore")) # Needs further development!
+      warning("Leukemia and lymphona not implemented and therefore ignored!")
     else
       c(x %*% from[[by]])
 

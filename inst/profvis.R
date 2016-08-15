@@ -7,7 +7,7 @@ profvis::profvis({
 
 
 profvis::profvis(
-  distill(icdswe::shpr_operation, icdswe::pardata, "lpnr", "oppdat") %>%
+  distill(classifyr::shpr_operation, classifyr::pardata, "lpnr", "oppdat") %>%
   classify("cps_icd10") %>%
   index()
 )

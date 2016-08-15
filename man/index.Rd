@@ -9,15 +9,17 @@ index(x, by = NULL, from = NULL)
 \arguments{
 \item{x}{matrix as output from \code{classify}}
 
-\item{by}{name of column with 'weights' from corresponding \code{\link{classcodes}} object.
-Can be omitted if the index is just the count of relevant classes.}
+\item{by}{name of column with 'weights' from corresponding
+\code{\link{classcodes}} object. Can be omitted if the index is just the
+count of relevant classes.}
 
-\item{from}{\code{\link{classcodes}} object. Can be omitted if information already
-present as attribute of \code{x} (which is often the case) and/or if index
-calculated without weights.}
+\item{from}{\code{\link{classcodes}} object. Can be omitted if information
+already present as attribute of \code{x} (which is often the case) and/or
+if index calculated without weights.}
 }
 \value{
-Named numeric index vector with names corresponding to \code{rownames(x)}
+Named numeric index vector with names corresponding to
+  \code{rownames(x)}
 }
 \description{
 Calculate index based on classification scheme
@@ -29,15 +31,16 @@ classify(c("C80", "I20"), "elix_icd10") \%>\%
 
 # Calculate Charlson-index using original weights
 classify(c("C80", "I21"), "charlson_icd10") \%>\%
-  index("original")
+  index("quan_original")
 
 # Calculate Charlson-index using updated weights
 classify(c("C80", "I21"), "charlson_icd10") \%>\%
-  index("updated")
+  index("quan_updated")
 
 
 # Find patients with adverse events after hip surgery
-codify(ex_people, ex_icd10, id = "name", date = "surgery") \%>\%
+codify(ex_people, ex_icd10, id = "name",
+    date = "surgery", days = c(-365, 0)) \%>\%
   classify("hip_adverse_events_icd10") \%>\%
   index()
 }

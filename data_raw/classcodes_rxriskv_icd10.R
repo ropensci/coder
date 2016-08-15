@@ -43,6 +43,6 @@ rxriskv_icd10 <- tibble::frame_data(
   "tuberculosis",                              '^J04A[BCK]0[124]'
 
 ) %>%
-icdswe::as.classcodes()
+classifyr::as.classcodes()
 
 devtools::use_data(rxriskv_icd10, overwrite = TRUE)

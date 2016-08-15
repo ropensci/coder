@@ -3,9 +3,9 @@
 library(dplyr)
 load("Z:\\SHPR\\SZILARD\\Beslutstöd\\Data\\data for calculating the Comorb indices_2015-11-03.RData")
 
-oppen   <- icdswe::as.pardata(oppen)
-sluten  <- icdswe::as.pardata(sluten)
-pardata <- icdswe::as.codedata(oppen, sluten) %>%
+oppen   <- classifyr::as.pardata(oppen)
+sluten  <- classifyr::as.pardata(sluten)
+pardata <- classifyr::as.codedata(oppen, sluten) %>%
   dplyr::filter(
     date >= "2001-01-01",
     # Remove some codes that doesn't seem to be ICD10

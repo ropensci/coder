@@ -12,23 +12,20 @@
 #' @name pardata
 as.pardata <- function(x) {
 
-  x <- tibble::as_data_frame(x)
+  x <- as.data.frame(x)
   names(x) <- tolower(names(x))
 
-  varnames <- c("lpnr", "indatum", "hdia", "bdia1", "bdia2", "bdia3", "bdia4",
-                "bdia5", "bdia6", "bdia7", "bdia8", "bdia9", "bdia10", "bdia11",
-                "bdia12", "bdia13", "bdia14", "bdia15")
-  stopifnot(
-    varnames %in% names(x)
-  )
+  varnames <- c(
+    "lpnr", "indatum", "hdia", "bdia1", "bdia2", "bdia3", "bdia4",
+    "bdia5", "bdia6", "bdia7", "bdia8", "bdia9", "bdia10", "bdia11",
+    "bdia12", "bdia13", "bdia14", "bdia15")
+  stopifnot(varnames %in% names(x))
 
   class(x) <- c("pardata", unique(class(x)))
   x
 }
 
 
-
 #' @rdname pardata
 #' @export
 is.pardata <- function(x) inherits(x, "pardata")
-
