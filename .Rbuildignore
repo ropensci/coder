@@ -3,3 +3,4 @@
 ^inst/*.R
 .orig
 ^data_raw$
+^inst/par_data.R$

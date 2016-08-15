@@ -84,7 +84,7 @@ codify <- function(x, from, id = "id", date, days) {
       cases_not_in_period,
       res[res$in_period & !is.na(res$in_period), ]
     ) %>%
-    # Dates were handled as numerics for speed but should be coerced back to dates
+    # Dates were handled as numerics but should be coerced back to dates
     dplyr::mutate_(
       date  = ~as.Date(date,  origin = "1970-01-01"),
       xdate = ~as.Date(xdate, origin = "1970-01-01")
