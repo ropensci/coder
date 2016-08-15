@@ -31,9 +31,4 @@ Additional columns might exist (preserved from \code{x})
 \description{
 Code data
 }
-\examples{
-\dontrun{
-as.codedata(oppen, sluten)
-}
-}
 

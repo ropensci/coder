@@ -4,17 +4,18 @@ Title: Classification of Cases into Deterministic Categories
 Version: 0.1.0
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
-Description: Classify cases into distinct categories using classification tables. Originally developed to classify patient comorbidity based on ICD-10 codes. Includes tables and indices for Charlson, Elixhauser, RxRisk-V and more.
+Description: Classify cases into distinct categories using classification tables.
+  Originally developed to classify patient comorbidity based on ICD-10 codes.
+  Includes tables and indices for Charlson, Elixhauser, RxRisk-V and more.
 License: GPL-2
 Depends: R (>= 2.10)
 Imports:
-    dplyr (>= 0.4.3),
-    fastmatch,
-    Kmisc,
-    tidyr
+  dplyr (>= 0.4.3),
+  fastmatch,
+  Kmisc
 Suggests:
-    R.rsp,
-    testthat
+  R.rsp,
+  testthat
 LazyData: TRUE
 RoxygenNote: 5.0.1
 VignetteBuilder: R.rsp

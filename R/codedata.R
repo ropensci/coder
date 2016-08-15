@@ -17,10 +17,6 @@
 #' @export
 #' @name codedata
 #'
-#' @examples
-#' \dontrun{
-#' as.codedata(oppen, sluten)
-#' }
 as.codedata <- function(x, ...) UseMethod("as.codedata", x)
 
 #' @export
@@ -52,8 +48,11 @@ as.codedata.pardata <- function(x, ...) {
   x <- dplyr::bind_rows(x, ...)
   dia_names <- names(x)[grepl("dia", names(x))]
 
+  x <- stats::reshape(x, times = dia_names, varying = list(dia_names),
+    idvar = "id", ids = "id", direction = "long", timevar = "dia")
+  names(x)[names(x) == "hdia"] <- "code"
+
   x %>%
-    tidyr::gather_("dia", "code", dia_names, na.rm = TRUE) %>%
     dplyr::transmute_(
       id   = ~lpnr,
       date = ~indatum,
