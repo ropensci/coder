@@ -39,8 +39,9 @@ codify <- function(x, from, id = "id", date, days) {
     length(days) == 2
   )
 
-  # Need factor to be compatible for left_join
-  x[id] <- as.factor(x[[id]])
+  # id variable must be of same format in both data frames for left_join
+  if (is.factor(from["id"]))
+    x[id] <- as.factor(x[[id]])
 
   # Prefilter to increase speed (faster than left_join)
   from <- from[fastmatch::fmatch(from$id, x[[id]], 0) > 0, ]
@@ -48,12 +49,12 @@ codify <- function(x, from, id = "id", date, days) {
   res <-
     suppressWarnings(
       dplyr::rename_(x, id = id, xdate = date) %>%
-      dplyr::mutate_(xdate = ~as.Date(xdate)) %>%
+      dplyr::mutate_(xdate = ~as.numeric(xdate)) %>%
       dplyr::left_join(from, by = "id")
     )
 
-
   # Indicate wether a case is within specified time period
+  res$date <- as.numeric(res$date) # faster comparisons for numeric than dates
   res$in_period <- TRUE
   res$in_period[
     res$xdate < res$date + days[1] |
@@ -63,9 +64,7 @@ codify <- function(x, from, id = "id", date, days) {
 
   # Elements from x without codes from the period (or without codes at all)
   # should have codes = NA
-  cases_in_period <-
-    res %>%
-    dplyr::filter_(~in_period)
+  cases_in_period <- dplyr::filter_(res, ~in_period)
 
   cases_not_in_period <-
     res %>%
@@ -74,19 +73,25 @@ codify <- function(x, from, id = "id", date, days) {
     dplyr::distinct_(.dots = setdiff(names(.), c("date", "code"))) %>%
     dplyr::mutate_(date = NA, code = NA)
 
-  res <- dplyr::bind_rows(
+  # Combine all cases
+  dplyr::bind_rows(
     cases_not_in_period,
     res[res$in_period & !is.na(res$in_period), ]
-  )
+  ) %>%
 
+  # Dates were handled as numerics for speed but should be coerced back to dates
+  dplyr::mutate_(
+    date  = ~as.Date(date,  origin = "1970-01-01"),
+    xdate = ~as.Date(xdate, origin = "1970-01-01")
+  ) %>%
 
-  # Get back to original column names of x
-  nr <- names(res)
-  nr[nr == "id"]    <- id
-  nr[nr == "date"]  <- "code_date"
-  nr[nr == "xdate"] <- date
-  names(res) <- nr
+  # Back to original names
+  dplyr::rename_(
+    id          = "id",
+    "code_date" = ~date,
+    date        = ~xdate
+  ) %>%
 
-  attr(res, "id") <- id
-  res
+  # Add id attribute
+  structure(id = id)
 }
