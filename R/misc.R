@@ -1,4 +1,3 @@
-
 #' Get classcodes object
 #'
 #' @param x classcodes specification as either a name or a classcodes object,
@@ -44,7 +43,7 @@ suggest_install <- function(pkg) {
 
 # ifelse if package exists or not
 ifep <- function(pkg, yes, no)
-  if (suggest_install(pkg)) yes else no
+  if (requireNamespace(pkg, quietly = TRUE)) yes else no
 
 
 # to use instead of dplyr::bind_rows if dplyr not available
@@ -68,4 +67,16 @@ rbind.fill <- function(...) {
           ),
     Recall(Recall(dots[[1]]), do.call(Recall, dots[-1]))
   )
+}
+
+
+
+.onAttach <- function(libname, pkgname) {
+  s <- c("dplyr", "Kmisc", "fastmatch")
+  available <- vapply(s, requireNamespace, logical(1), quietly = TRUE)
+  if (!all(available))
+    packageStartupMessage(
+      "Note that functions from package 'classifyr' could work considerably ",
+      "faster if installing suggested packages! Currently missing: ",
+      paste(s[!available], collapse = ", "))
 }

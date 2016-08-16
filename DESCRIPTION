@@ -1,15 +1,20 @@
 Package: classifyr
 Type: Package
 Title: Classification of Cases into Deterministic Categories
-Version: 0.1.1
+Version: 0.2.0
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
-Description: Fast classification of cases into distinct categories using
+Description: Classification of cases into distinct categories using
   classification ('classcodes') tables.
   Includes some tables and functions to classify patients using ICD-10-codes for
   Charlson, Elixhauser, RxRisk-V and more.
   It is also easy to introduce new classification tables to use with arbitrary
   code data.
+  The package works in two implicit versions: a bare bone version without any
+  additional packages required, and  a faster version relying on suggested
+  packages, producing the same results but considerably faster
+  (higly recommended for large data sets).
+  All functions are designed to fit in with 'tidyverse' (aka 'hadleyverse').
 License: GPL-2
 Depends: R (>= 2.10)
 Suggests:

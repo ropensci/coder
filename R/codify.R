@@ -84,7 +84,7 @@ codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
         y <- y[!(y$id %in% cases_in_period$id), ]
         y <- y[, setdiff(names(y), c("date", "code"))]
         y <- unique(y)
-        y$date <- y$code <- NA
+        if (nrow(y)) y$date <- y$code <- NA
         y
       }
     )
