@@ -24,8 +24,12 @@ A classcode object have columns:
 \describe{
 \item{group:}{unique and non empty (NA or "" if character) group name}
 \item{regex:}{unique regular expression defining class membership}
-\item{w (optional):}{wieights for each class used for \code{\link{index}}
-calculation}
+\item{condition (optional):}{a group might have conditions additional to what
+  is expressed by \code{regex}. If so, these should be specified as quoted
+  expressions that can be evaluated within the data frame used by
+  \code{\link{classify}}}
+\item{weights (optional):}{wieights for each class used for \code{\link{index}}
+calculation. Could be more than one and could have arbitrary names.}
 }
 Note that classes does not have to be disjunct.
 }

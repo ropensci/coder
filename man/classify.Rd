@@ -10,8 +10,7 @@ classify(x, by, ...)
 
 \method{classify}{default}(x, by, ...)
 
-\method{classify}{data.frame}(x, by, id = NULL, code = "code",
-  drop = FALSE, ...)
+\method{classify}{data.frame}(x, by, id = NULL, code = "code", ...)
 }
 \arguments{
 \item{x}{object with elements to classify}
@@ -25,8 +24,6 @@ example a patient id)}
 
 \item{code}{name (as character) of variable in \code{x} containing codes to
 classify}
-
-\item{drop}{drop cases that does not belong to any class}
 }
 \value{
 Boolean matrix with one row for each element/row of \code{x} and
@@ -48,8 +45,8 @@ classify(c("C80", "I20", "XXX"), by = "elix_icd10")
 
 # Classify patients by Charlson for comorbidities during
 # one year before surgery
-codify(ex_people, ex_icd10, id = "name",
-  date = "surgery", days = c(-365, 0)) \%>\%
-classify("charlson_icd10")
+x <- codify(ex_people, ex_icd10, id = "name",
+  date = "surgery", days = c(-365, 0))
+classify(x, "charlson_icd10")
 }
 

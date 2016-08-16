@@ -6,7 +6,6 @@
 #'   classify
 #' @param id name (as character) of variable in \code{x} to group id (for
 #'   example a patient id)
-#' @param drop drop cases that does not belong to any class
 #' @param ... used to pass arguments between methods
 #'
 #' @return Boolean matrix with one row for each element/row of \code{x} and
@@ -28,9 +27,9 @@
 #'
 #' # Classify patients by Charlson for comorbidities during
 #' # one year before surgery
-#' codify(ex_people, ex_icd10, id = "name",
-#'   date = "surgery", days = c(-365, 0)) %>%
-#' classify("charlson_icd10")
+#' x <- codify(ex_people, ex_icd10, id = "name",
+#'   date = "surgery", days = c(-365, 0))
+#' classify(x, "charlson_icd10")
 classify <- function(x, by, ...) UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object
@@ -67,7 +66,7 @@ classify.default <- function(x, by, ...) {
 #' @export
 #' @rdname classify
 classify.data.frame <-
-  function(x, by, id = NULL, code = "code", drop = FALSE, ...) {
+  function(x, by, id = NULL, code = "code", ...) {
 
   .by <- by
   by <- get_classcodes(by)
@@ -90,16 +89,14 @@ classify.data.frame <-
   i_nocl           <- !is.na(x$code) &
                       !grepl(paste(by$regex, collapse = "|"), x$code)
   i_na             <- is.na(x$code)
-  if (!drop) {
-    nocl           <- matrix(FALSE, sum(i_nocl), nrow(by))
-    rownames(nocl) <- x$id[i_nocl]
+  nocl             <- matrix(FALSE, sum(i_nocl), nrow(by))
+  rownames(nocl)   <- x$id[i_nocl]
 
-    nacl           <- matrix(NA, sum(i_na), nrow(by))
-    rownames(nacl) <- x$id[i_na]
+  nacl             <- matrix(NA, sum(i_na), nrow(by))
+  rownames(nacl)   <- x$id[i_na]
 
-    nocl           <- rbind(nocl, nacl)
-    colnames(nocl) <- by$group
-  }
+  nocl             <- rbind(nocl, nacl)
+  colnames(nocl)   <- by$group
   x                <- x[!i_nocl & !i_na, ]
 
   # Classify all cases with at least one class
@@ -108,8 +105,8 @@ classify.data.frame <-
     y <- y & vapply(by$condition, eval_condition, logical(nrow(x)), x = x)
   rownames(y)      <- x$id
 
-  # Rejoin class cases and no class cases if earlier separated
-  if (!drop) y     <- rbind(nocl, y)
+  # Rejoin class cases and no class cases
+  y                <- rbind(nocl, y)
 
   # Identify if unit has more than one code
   id               <- rownames(y)
@@ -121,7 +118,8 @@ classify.data.frame <-
 
   # Case for patients with multilpe (ICD) codes (slower but necessary)
   idx              <- as.factor(id[!uni])
-  clm              <- apply(y[!uni, ], 2, Kmisc::tapply_, idx, any)
+  tapplyfun        <- ifep("Kmisc", Kmisc::tapply_, tapply)
+  clm              <- apply(y[!uni, ], 2, tapplyfun, idx, any)
 
   # Combine data from cases with one and more classes
   res <- rbind(clu, clm)

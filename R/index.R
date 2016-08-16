@@ -13,6 +13,10 @@
 #' @export
 #'
 #' @examples
+#'
+#' # Make the pipe operator available
+#' `%>%` <- dplyr::`%>%`
+#'
 #' # Calculate Elixhauser comorbidity index
 #' classify(c("C80", "I20"), "elix_icd10") %>%
 #'   index()
@@ -47,10 +51,15 @@ index <- function(x, by = NULL, from = NULL) {
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
       stop(by, " (as given by argument 'by') not found in argument 'from'!")
-    else if (by %in% c("charlson", "dhoore")) # Needs further development!
-      warning("Leukemia and lymphona not implemented and therefore ignored!")
+    else if (!setequal(colnames(x), from$group))
+      stop("Data non consistent with specified classcodes!")
     else
       c(x %*% from[[by]])
+
+  # Needs further development!
+  if (identical(from, classifyr::charlson_icd10) &&
+      any(by %in% c("charlson", "dhoore")))
+    warning("Leukemia and lymphona not implemented and therefore ignored!")
 
   names(ans) <- rownames(x)
   ans

@@ -7,7 +7,7 @@
 get_classcodes(x, from = NULL)
 }
 \arguments{
-\item{x}{classcodes specification as either a name o a classcodes object,
+\item{x}{classcodes specification as either a name or a classcodes object,
 or a classcodes object itself.}
 
 \item{from}{object that classcodes could be inherited from}

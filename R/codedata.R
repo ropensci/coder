@@ -11,6 +11,7 @@
 #' \item{code}{code}
 #' }
 #' Additional columns might exist (preserved from \code{x})
+#'
 #' \code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
 #' \code{FALSE} otherwise.
 #' (Note that \code{codedata} is not a formal class of its own!)
@@ -32,32 +33,29 @@ as.codedata.default <- function(x, ...) {
   names(x) <- tolower(names(x))
   stopifnot(c("id", "date", "code") %in% names(x))
 
-  dplyr::distinct_(x, .keep_all = TRUE) %>%
-  # Saving data as factor variable makes the dataset considerably smaller
-  dplyr::mutate_(
-    id   = ~as.factor(id),
-    date = ~as.Date(date),
-    code = ~as.factor(code)
-  )
+  x <- ifep("dplyr", dplyr::distinct_(x, .keep_all = TRUE), unique(x))
+
+  x$id   <- as.factor(x$id)
+  x$date <- as.Date(x$date)
+  x$code <- as.factor(x$code)
+  x
 }
 
 
 #' @export
 as.codedata.pardata <- function(x, ...) {
 
-  x <- dplyr::bind_rows(x, ...)
+  x <- ifep("dplyr", dplyr::bind_rows(x, ...), rbind.fill(x, ...))
   dia_names <- names(x)[grepl("dia", names(x))]
 
-  x <- stats::reshape(x, times = dia_names, varying = list(dia_names),
-    idvar = "id", ids = "id", direction = "long", timevar = "dia")
-  names(x)[names(x) == "hdia"] <- "code"
+  x <-
+    ifep("tidyr",
+      tidyr::gather_(x, "dia", "code", dia_names, na.rm = TRUE),
+      stats::reshape(x, times = dia_names, varying = dia_names,
+        idvar = "lpnr", direction = "long", timevar = "dia", v.names = "code"))
 
-  x %>%
-    dplyr::transmute_(
-      id   = ~lpnr,
-      date = ~indatum,
-      code = ~code,
-      hdia = ~startsWith(dia, "hdia")
-    ) %>%
-    as.codedata()
+  x$hdia <- startsWith(x$dia, "hdia")
+  names(x)[names(x) == "lpnr"]    <- "id"
+  names(x)[names(x) == "indatum"] <- "date"
+  as.codedata(x)
 }

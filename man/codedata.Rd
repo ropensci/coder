@@ -24,6 +24,7 @@ is.codedata(x)
 \item{code}{code}
 }
 Additional columns might exist (preserved from \code{x})
+
 \code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
 \code{FALSE} otherwise.
 (Note that \code{codedata} is not a formal class of its own!)

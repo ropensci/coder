@@ -25,6 +25,10 @@ Named numeric index vector with names corresponding to
 Calculate index based on classification scheme
 }
 \examples{
+
+# Make the pipe operator available
+`\%>\%` <- dplyr::`\%>\%`
+
 # Calculate Elixhauser comorbidity index
 classify(c("C80", "I20"), "elix_icd10") \%>\%
   index()

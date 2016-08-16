@@ -4,7 +4,7 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date, days)
+codify(x, from, id = "id", date, days = c(-Inf, Inf))
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
@@ -24,7 +24,7 @@ relevant. (For example \code{c(-365, 0)} implies a time window of one year
 prior to \code{date}, which might be useful for calculating comorbidity
 indeces, while \code{c(0, 30)} gives a window of 30 days after \code{date},
 which might be used for calculating adverse events after a surgical
-procedure.)}
+procedure.) \code{c(-Inf, Inf)} (as default) means no limitation.}
 }
 \value{
 Object of class \code{tbl_df} with columns corresponding to \code{x}
