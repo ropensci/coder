@@ -11,7 +11,8 @@ test_that("classify", {
   expect_is(classify(x, "elix_icd10"), "matrix")
   expect_is(classify(x, "hip_adverse_events_icd10"), "matrix")
   expect_error(
-    classify(subset(x, select = -hdia), "hip_adverse_events_icd10", id = "name"),
+    classify(
+      subset(x, select = -hdia), "hip_adverse_events_icd10", id = "name"),
     "Classification is conditioned on variables not found in the data set!"
   )
 })

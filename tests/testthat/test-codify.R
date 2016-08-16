@@ -1,6 +1,7 @@
 context("codify")
 
-x <- codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
+x <- codify(ex_people, ex_icd10, id = "name",
+            date = "surgery", days = c(-365, 0))
 
 test_that("codify", {
   expect_silent(codify(ex_people, ex_icd10, id = "name",
