@@ -20,8 +20,11 @@ get_classcodes <- function(x, from = NULL) {
     return(get(x, envir = environment()))
   } else if (is.null(x) && is.classcodes(inh))
     inh
-  else if (is.null(x) && is.character(inh))
-    get(inh)
+  else if (is.null(x) &&
+           inh %in% data(package = "classifyr")$results[, "Item"]) {
+    data(list = inh, package = "classifyr", envir = environment())
+    return(get(inh, envir = environment()))
+  }
   else
     stop("No classcode object found!")
 }
