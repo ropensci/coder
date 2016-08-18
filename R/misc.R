@@ -22,7 +22,7 @@ get_classcodes <- function(x, from = NULL) {
 
 # ifelse if package exists or not
 ifep <- function(pkg, yes, no)
-  if (require(pkg, quietly = TRUE)) yes else no
+  if (suppressWarnings(require(pkg, quietly = TRUE))) yes else no
 
 
 # to use instead of dplyr::bind_rows if dplyr not available

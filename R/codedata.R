@@ -26,10 +26,12 @@ is.codedata <- function(x) {
   is.data.frame(x) && all(c("id", "date", "code") %in% names(x))
 }
 
+#' @export
+as.codedata.default <- function(x, ...)
+  as.codedata(as.data.frame(x))
 
 #' @export
-as.codedata.default <- function(x, ...) {
-  x <- as.data.frame(x)
+as.codedata.data.frame <- function(x, ...) {
   names(x) <- tolower(names(x))
   stopifnot(c("id", "date", "code") %in% names(x))
 
@@ -57,5 +59,5 @@ as.codedata.pardata <- function(x, ...) {
   x$hdia <- startsWith(x$dia, "hdia")
   names(x)[names(x) == "lpnr"]    <- "id"
   names(x)[names(x) == "indatum"] <- "date"
-  as.codedata(x)
+  NextMethod()
 }
