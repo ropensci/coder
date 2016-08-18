@@ -16,3 +16,22 @@ test_that("classify", {
     "Classification is conditioned on variables not found in the data set!"
   )
 })
+
+
+################################################################################
+#                                                                              #
+#                       Test without suggested packages                        #
+#                                                                              #
+################################################################################
+
+elix <- classify(x, "elix_icd10")
+adv  <- classify(x, "hip_adverse_events_icd10")
+
+stop_suggests()
+
+test_that("Without suggested packages", {
+  expect_equal(classify(x, "elix_icd10"), elix)
+  expect_equal(classify(x, "hip_adverse_events_icd10"), adv)
+})
+
+start_suggests()

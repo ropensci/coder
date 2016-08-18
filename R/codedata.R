@@ -1,9 +1,10 @@
 #' Code data
 #'
-#' @param x object
+#' @param x data frame with columns "id", "date" and "code" or
+#'   object of class \code{\link{pardata}}.
 #' @param ... possible additional objects to merge with \code{x}
 #'
-#' @return \code{as.codedata} returns an object of class \code{tbl_df}
+#' @return \code{as.codedata} returns a data frame
 #'   with mandatory columns:
 #' \describe{
 #' \item{id}{individual id}
@@ -12,7 +13,7 @@
 #' }
 #' Additional columns might exist (preserved from \code{x})
 #'
-#' \code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
+#' \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 #' \code{FALSE} otherwise.
 #' (Note that \code{codedata} is not a formal class of its own!)
 #' @export
@@ -23,17 +24,19 @@ as.codedata <- function(x, ...) UseMethod("as.codedata", x)
 #' @export
 #' @rdname codedata
 is.codedata <- function(x) {
-  is.data.frame(x) && all(c("id", "date", "code") %in% names(x))
+  is.data.frame(x) &&
+    all(c("id", "date", "code") %in% names(x)) &&
+    inherits(x[["date"]], "Date")
 }
 
 #' @export
 as.codedata.default <- function(x, ...)
-  as.codedata(as.data.frame(x))
+  stop("No method for this class!")
 
 #' @export
 as.codedata.data.frame <- function(x, ...) {
   names(x) <- tolower(names(x))
-  stopifnot(c("id", "date", "code") %in% names(x))
+  stopifnot(is.codedata(x))
 
   x <- ifep("dplyr", dplyr::distinct_(x, .keep_all = TRUE), unique(x))
 
@@ -53,8 +56,20 @@ as.codedata.pardata <- function(x, ...) {
   x <-
     ifep("tidyr",
       tidyr::gather_(x, "dia", "code", dia_names, na.rm = TRUE),
-      stats::reshape(x, times = dia_names, varying = dia_names,
-        idvar = "lpnr", direction = "long", timevar = "dia", v.names = "code"))
+      data.frame(
+        stats::reshape(
+          x,
+          times          = dia_names,
+          varying        = dia_names,
+          idvar          = "lpnr",
+          direction      = "long",
+          timevar        = "dia",
+          v.names        = "code"
+        ),
+        stringsAsFactors = FALSE,
+        row.names        = NULL
+      )
+    )
 
   x$hdia <- startsWith(x$dia, "hdia")
   names(x)[names(x) == "lpnr"]    <- "id"

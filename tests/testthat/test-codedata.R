@@ -1,6 +1,6 @@
 context("codedata")
 
-N <- 10
+N <- 100
 set.seed(1)
 
 # Generate som e fake data to use for testing
@@ -13,5 +13,24 @@ pardata <- as.pardata(cbind(pardata, diadata, stringsAsFactors = FALSE))
 test_that("codedata", {
   expect_is(as.codedata(pardata), "data.frame") %>%
   expect_silent()
-  expect_equal(nrow(as.codedata(pardata)), 160)
+  expect_equal(nrow(as.codedata(pardata)), 1600)
 })
+
+
+
+################################################################################
+#                                                                              #
+#                       Test without suggested packages                        #
+#                                                                              #
+################################################################################
+
+cd <- as.codedata(pardata)
+
+stop_suggests()
+cd2 <- as.codedata(pardata)
+
+test_that("Without suggested packages", {
+  expect_equal(cd, cd2)
+})
+
+start_suggests()

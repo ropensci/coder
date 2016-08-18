@@ -29,3 +29,26 @@ test_that("codify", {
     3
   )
 })
+
+
+
+
+################################################################################
+#                                                                              #
+#                       Test without suggested packages                        #
+#                                                                              #
+################################################################################
+
+x <- codify(ex_people[1, ], ex_icd10, id = "name",
+       date = "surgery", days = c(-Inf, Inf))
+
+stop_suggests()
+
+x2 <- codify(ex_people[1, ], ex_icd10, id = "name",
+            date = "surgery", days = c(-Inf, Inf))
+
+test_that("Without suggested packages", {
+  expect_equal(x, x2)
+})
+
+start_suggests()

@@ -22,7 +22,7 @@ get_classcodes <- function(x, from = NULL) {
 
 # ifelse if package exists or not
 ifep <- function(pkg, yes, no)
-  if (suppressWarnings(require(pkg, quietly = TRUE))) yes else no
+  if (suppressWarnings(requireNamespace(pkg, quietly = TRUE))) yes else no
 
 
 # to use instead of dplyr::bind_rows if dplyr not available
@@ -48,6 +48,20 @@ rbind.fill <- function(...) {
   )
 }
 
+# Functions to aid testing for functionality without suggested packages
+stop_suggests <- function()
+  suppressMessages(
+    trace(
+      "requireNamespace",
+      quote(res <- FALSE),
+      print = FALSE,
+      at = length(body(requireNamespace))
+    )
+)
+
+start_suggests <- function()
+  suppressMessages(untrace("requireNamespace"))
+
 
 
 .onAttach <- function(libname, pkgname) {
@@ -59,3 +73,5 @@ rbind.fill <- function(...) {
       "faster if installing suggested packages! Currently missing: ",
       paste(s[!available], collapse = ", "))
 }
+
+

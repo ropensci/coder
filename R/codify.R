@@ -40,6 +40,8 @@ codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
   )
 
   # id variable must be of same format in both data frames for left_join
+  # but we save the original class to coerce back later
+  x_class <- class(x[[id]])[1]
   if (is.factor(from[["id"]]))
     x[id] <- as.factor(x[[id]])
 
@@ -96,6 +98,10 @@ codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
   # Dates were handled as numerics but should be coerced back to dates
   x$date  <- as.Date(x$date,  origin = "1970-01-01")
   x$xdate <- as.Date(x$xdate, origin = "1970-01-01")
+  if (is.character(x$id)   && x_class == "factor")
+    x$id <- as.factor(x$id)
+  else if (is.factor(x$id) && x_class == "character")
+    x$id <- as.character(x$id)
 
   # Back to original
   names(x)[names(x) == "id"]    <- id

@@ -11,12 +11,13 @@ as.codedata(x, ...)
 is.codedata(x)
 }
 \arguments{
-\item{x}{object}
+\item{x}{data frame with columns "id", "date" and "code" or
+object of class \code{\link{pardata}}.}
 
 \item{...}{possible additional objects to merge with \code{x}}
 }
 \value{
-\code{as.codedata} returns an object of class \code{tbl_df}
+\code{as.codedata} returns a data frame
   with mandatory columns:
 \describe{
 \item{id}{individual id}
@@ -25,7 +26,7 @@ is.codedata(x)
 }
 Additional columns might exist (preserved from \code{x})
 
-\code{is.codedata} reuturns \code{TRUE} if these same conditions are met,
+\code{is.codedata} returns \code{TRUE} if these same conditions are met and
 \code{FALSE} otherwise.
 (Note that \code{codedata} is not a formal class of its own!)
 }
