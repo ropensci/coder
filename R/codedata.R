@@ -31,17 +31,19 @@ is.codedata <- function(x) {
 
 #' @export
 as.codedata.default <- function(x, ...)
-  stop("No method for this class!")
+  stop("'x' must be either a data frame or a 'pardata' object!")
 
 #' @export
 as.codedata.data.frame <- function(x, ...) {
   names(x) <- tolower(names(x))
-  stopifnot(is.codedata(x))
+  if (!all(c("id", "date", "code") %in% names(x)))
+    stop("data frame must contain columns: id, date and code")
+  if (!inherits(x$date, "Date"))
+    stop("Column 'date' is not of format 'Date'!")
 
   x <- ifep("dplyr", dplyr::distinct_(x, .keep_all = TRUE), unique(x))
 
   x$id   <- as.factor(x$id)
-  x$date <- as.Date(x$date)
   x$code <- as.factor(x$code)
   x
 }

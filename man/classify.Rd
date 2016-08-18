@@ -41,7 +41,7 @@ Classify elements
 }
 \examples{
 # Classify individual ICD10-codes by Elixhauser
-classify(c("C80", "I20", "XXX"), by = "elix_icd10")
+classify(c("C80", "I20", "unvalid_code"), by = "elix_icd10")
 
 # Classify patients by Charlson for comorbidities during
 # one year before surgery

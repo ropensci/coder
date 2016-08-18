@@ -14,6 +14,7 @@ test_that("codedata", {
   expect_is(as.codedata(pardata), "data.frame") %>%
   expect_silent()
   expect_equal(nrow(as.codedata(pardata)), 1600)
+  expect_error(as.codedata(1))
 })
 
 
