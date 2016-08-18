@@ -4,3 +4,8 @@
 .orig
 ^data_raw$
 ^inst/par_data.R$
+^README\.Rmd$
+^README-.*\.png$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$

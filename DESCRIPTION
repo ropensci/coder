@@ -4,17 +4,24 @@ Title: Classification of Cases into Deterministic Categories
 Version: 0.2.0
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
-Description: Classification of cases into distinct categories using
-  classification ('classcodes') tables.
-  Includes some tables and functions to classify patients using ICD-10-codes for
-  Charlson, Elixhauser, RxRisk-V and more.
-  It is also easy to introduce new classification tables to use with arbitrary
+Description: Functionality of the package relies on three central objects.
+  1) A data frame with objects (for example patients) to classify.
+  2) A data frame with codes (for example ICD-10-codes) for each object
+  (patient) valid at distinct time points.
+  3) A classification scheme (a 'classcodes' object) defining the
+  classification based on regular expressions.
+  Some 'classcodes' objects are included in the package (for patients
+  based on their ICD-10-codes for Charlson and Elixhauser comorbidity indices,
+  RxRisk-V, adverse events for patients with Total Hip Arthroplasty
+  and more).
+  It is also easy to introduce new classification schemes to use with arbitrary
   code data.
   The package works in two implicit versions: a bare bone version without any
   additional packages required, and  a faster version relying on suggested
   packages, producing the same results but considerably faster
   (higly recommended for large data sets).
-  All functions are designed to fit in with 'tidyverse' (aka 'hadleyverse').
+  All functions are designed to fit nicely within the 'tidyverse'
+  (aka 'hadleyverse').
 License: GPL-2
 Depends: R (>= 2.10)
 Suggests:
@@ -23,7 +30,8 @@ Suggests:
   Kmisc,
   R.rsp,
   testthat,
-  tidyr
+  tidyr,
+    covr
 LazyData: TRUE
 RoxygenNote: 5.0.1
 VignetteBuilder: R.rsp
