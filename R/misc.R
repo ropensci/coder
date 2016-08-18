@@ -20,30 +20,9 @@ get_classcodes <- function(x, from = NULL) {
     get(inh)
 }
 
-# Help function to possibly install suggested packages
-suggest_install <- function(pkg) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    if (interactive()) {
-      cat("The speed of this call can be increased considerably if using the",
-          "suggested (but currently not installed)", pkg, "package.",
-          "Would you like to install this package to increase speed? (y/n)")
-      ans <- readLines(con = stdin(), n = 1)
-      switch(tolower(ans),
-        y = utils::install.packages(pkg),
-        n = message("Using slow method ..."),
-        message("Answer not corresponding to 'y/n'! Using slow method ..."))
-    } else {
-      message("The speed of this function call could be considerably ",
-              "increased if installing suggested package ", pkg)
-    }
-  }
-
-  invisible(requireNamespace(pkg, quietly = TRUE))
-}
-
 # ifelse if package exists or not
 ifep <- function(pkg, yes, no)
-  if (requireNamespace(pkg, quietly = TRUE)) yes else no
+  if (require(pkg, quietly = TRUE)) yes else no
 
 
 # to use instead of dplyr::bind_rows if dplyr not available

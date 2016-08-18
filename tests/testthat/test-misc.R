@@ -17,12 +17,6 @@ test_that("get_classcodes", {
 
 
 
-test_that("suggest_install", {
-  expect_true(suggest_install("base"))
-  expect_silent(suggest_install("base"))
-})
-
-
 test_that("rbind.fill", {
   expect_equal(
     rbind.fill(
