@@ -50,7 +50,7 @@ index <- function(x, by = NULL, from = NULL) {
     else if (is.null(from))
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
-      stop(by, " (as given by argument 'by') not found in argument 'from'!")
+      stop(gettextf("'%s' is not a column of the classcodes object!", by))
     else if (!setequal(colnames(x), from$group))
       stop("Data non consistent with specified classcodes!")
     else

@@ -17,7 +17,7 @@ test_that("index", {
     sum(index(y, "charlson"), na.rm = TRUE),
     sum(index(y, "ghali"),  na.rm = TRUE)
   )
-  expect_error(index(x, "hej"), "not found in argument 'from'")
+  expect_error(index(x, "hej"), "is not a column of the classcodes object!")
   expect_error(index(x, "charlson", "charlson_icd10"),
     "Data non consistent with specified classcodes!")
   expect_warning(index(y, "charlson", "charlson_icd10"),

@@ -1,7 +1,7 @@
 Package: classifyr
 Type: Package
 Title: Classification of Cases into Deterministic Categories
-Version: 0.2.4
+Version: 0.2.5
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Functionality of the package relies on three central objects.
