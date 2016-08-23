@@ -37,7 +37,7 @@ codify <- function(x, from, id = "id", date, days = NULL) {
     stop("'x' must be a data frame!")
   if (!(date %in% names(x)))
       stop(gettextf("No column named %s in %s", date, x_name))
-  if (!inherits(x[[date]], "Date"))
+  if (data.class(x[[date]]) != "Date")
     stop(gettextf("Column %s of %s is not a date!", date, x_name))
   if (!(id %in% names(x)))
       stop(gettextf("No column named %s in %s", id, x_name))

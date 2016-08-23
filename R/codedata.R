@@ -26,7 +26,7 @@ as.codedata <- function(x, ...) UseMethod("as.codedata", x)
 is.codedata <- function(x) {
   is.data.frame(x) &&
     all(c("id", "date", "code") %in% names(x)) &&
-    inherits(x[["date"]], "Date")
+    data.class(x[["date"]]) == "Date"
 }
 
 #' @export
@@ -38,7 +38,7 @@ as.codedata.data.frame <- function(x, ...) {
   names(x) <- tolower(names(x))
   if (!all(c("id", "date", "code") %in% names(x)))
     stop("data frame must contain columns: id, date and code")
-  if (!inherits(x$date, "Date"))
+  if (data.class(x$date) != "Date")
     stop("Column 'date' is not of format 'Date'!")
 
   x <- ifep("dplyr", dplyr::distinct_(x, .keep_all = TRUE), unique(x))
