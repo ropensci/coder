@@ -13,7 +13,8 @@
 #'   prior to \code{date}, which might be useful for calculating comorbidity
 #'   indeces, while \code{c(0, 30)} gives a window of 30 days after \code{date},
 #'   which might be used for calculating adverse events after a surgical
-#'   procedure.) \code{c(-Inf, Inf)} (as default) means no limitation.
+#'   procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
+#'   \code{NULL} means no limitations at all.
 #'
 #' @return Object of class \code{tbl_df} with columns corresponding to \code{x}
 #'   and additional columns matched from \code{from}: \itemize{ \item
@@ -29,15 +30,22 @@
 #'
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
-codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
+codify <- function(x, from, id = "id", date, days = NULL) {
+  x_name <- deparse(substitute(x))
 
-  stopifnot(
-    is.data.frame(x),
-    all(c(id, date) %in% names(x)),
-    is.codedata(from),
-    is.numeric(days),
-    length(days) == 2
-  )
+  if (!is.data.frame(x))
+    stop("'x' must be a data frame!")
+  if (!(date %in% names(x)))
+      stop(gettextf("No column named %s in %s", date, x_name))
+  if (!inherits(x[[date]], "Date"))
+    stop(gettextf("Column %s of %s is not a date!", date, x_name))
+  if (!(id %in% names(x)))
+      stop(gettextf("No column named %s in %s", id, x_name))
+  if (!is.codedata(from))
+    stop("Argument 'from' is not of class 'codedata', see ?as.codedata for info!")
+  if (!(is.null(days) || (is.numeric(days) && length(days) == 2)))
+    stop("'days' must be numeric of length two (or NULL)!")
+
 
   # id variable must be of same format in both data frames for left_join
   # but we save the original class to coerce back later
@@ -59,11 +67,16 @@ codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
 
   # Indicate wether a case is within specified time period
   x$date <- as.numeric(x$date) # faster comparisons for numeric than dates
-  x$in_period <- FALSE
-  x$in_period[
-    x$date >= x$xdate + min(days) &
-    x$date <= x$xdate + max(days)] <- TRUE
-  x$in_period[is.na(x$date)] <- NA
+
+  if (is.null(days)) {
+    x$in_period <- TRUE
+  } else {
+    x$in_period <- FALSE
+    x$in_period[
+      x$date >= x$xdate + min(days) &
+      x$date <= x$xdate + max(days)] <- TRUE
+    x$in_period[is.na(x$date) | is.na(x$xdate)] <- NA
+  }
 
 
   # Elements from x without codes from the period (or without codes at all)
@@ -75,18 +88,18 @@ codify <- function(x, from, id = "id", date, days = c(-Inf, Inf)) {
   cases_not_in_period <-
     ifep("dplyr",
       yes = {
-        y <- dplyr::filter_(x, ~(!in_period | is.na(in_period)))
+        y <- dplyr::filter_(x, ~!in_period)
         y <- dplyr::anti_join(y, cases_in_period, "id")
         y <- dplyr::distinct_(y,
           .dots = setdiff(names(y), c("date", "code")))
-        dplyr::mutate_(y, date = NA, code = NA)
+        dplyr::mutate_(y, date = NA_real_, code = NA_character_)
       },
       no = {
-        y <- x[!x$in_period | is.na(x$in_period), ]
+        y <- x[!x$in_period, ]
         y <- y[!(y$id %in% cases_in_period$id), ]
         y <- y[, setdiff(names(y), c("date", "code"))]
         y <- unique(y)
-        if (nrow(y)) y$date <- y$code <- NA
+        if (nrow(y)) {y$date <- NA_real_; y$code <- NA_character_}
         y
       }
     )
