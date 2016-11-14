@@ -11,6 +11,7 @@
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
 #' \url{www.jstor.org/stable/3768193}
+#' @family default classcodes
 "elix_icd10"
 
 
@@ -49,6 +50,7 @@
 #' D. (2015). A systematic review identifies valid comorbidity indices derived
 #' from administrative health data.
 #' Journal of clinical epidemiology, 68(1), 3-14.
+#' @family default classcodes
 "charlson_icd10"
 
 
@@ -70,6 +72,7 @@
 #' practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
 #' (2015): 224.
 #' \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+#' @family default classcodes
 "cps_icd10"
 
 
@@ -80,19 +83,65 @@
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
-#' @format A data frame with 2 rows and 3 variables:
+#' @format A data frame with 3 rows and 3 variables:
 #' \describe{
-#'   \item{group}{either "vascular desease" or "luxation"}
+#'   \item{group}{Different types of adverse events:
+#'     "vascular desease", "GI" and "others" }
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-#'   \item{condition}{"vascular desease" is conditioned on ICD-10 code
+#'   \item{condition}{"vascular desease" and "GI" is conditioned on ICD-10 code
 #'     originating from main diagnosis (variable "hdia")}
 #'   \item{shar}{weights as defined by the Swedish Hip Arthroplasty Register}
 #'   \item{sos}{weights as defined by
 #'     The (Swedish) National Board of Health and Welfare "Socialstyrelsen"}
 #' }
+#' @family default classcodes
 "hip_adverse_events_icd10"
 
 
+
+#' Classcodes for adverse events after knee arthoplasty based on ICD-10 codes
+#'
+#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#' Note that the original source also
+#'
+#' Group names are prefixed by two letters as given by the reference.
+#' Two groups (DB and DM) are split into two due to different conditions.
+#'
+#' @section Conditions:
+#' Two special conditions are used (see the referense):
+#'
+#' \describe{
+#'  \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
+#'  given as any type of diagnose at first visit after TKA, or as main diagnos
+#'  for later visits, otherwise \code{FALSE}}
+#'  \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
+#'  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
+#' }
+#'
+#' @format A data frame with 6 rows and 3 variables:
+#' \describe{
+#'   \item{group}{Different types of adverse events (see reference section)}
+#'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{condition}{two sepcial conditions are used, se below.}
+#' }
+#'
+#'
+#' @references Codes taken from p. 83 of the annual report 2016 from knee
+#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
+#'
+#' @family default classcodes
+"knee_adverse_events_icd10"
+
+
+
+
+
+################################################################################
+#                                                                              #
+#                              Example data sets                               #
+#                                                                              #
+################################################################################
 
 
 #' Classcodes for RxRiskV (original and modified)
@@ -105,6 +154,7 @@
 #'   \item{regex}{regular expressions identifying ATC codes of each group}
 #' }
 #' @name rxriskv
+#' @family default classcodes
 "rxriskv_icd10"
 
 #' @rdname rxriskv

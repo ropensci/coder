@@ -19,5 +19,11 @@ rxriskv_modified_icd10
 \description{
 \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
+\seealso{
+Other default.classcodes: \code{\link{charlson_icd10}},
+  \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
+  \code{\link{hip_adverse_events_icd10}},
+  \code{\link{knee_adverse_events_icd10}}
+}
 \keyword{datasets}
 

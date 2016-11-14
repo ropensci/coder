@@ -1,7 +1,7 @@
 Package: classifyr
 Type: Package
 Title: Classification of Cases into Deterministic Categories
-Version: 0.2.5
+Version: 0.3.0
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Functionality of the package relies on three central objects.
@@ -20,8 +20,7 @@ Description: Functionality of the package relies on three central objects.
   additional packages required, and  a faster version relying on suggested
   packages, producing the same results but considerably faster
   (higly recommended for large data sets).
-  All functions are designed to fit nicely within the 'tidyverse'
-  (aka 'hadleyverse').
+  All functions are designed to fit nicely within 'tidyverse'.
 License: GPL-2
 Depends: R (>= 2.10)
 Suggests:
@@ -31,7 +30,10 @@ Suggests:
   R.rsp,
   testthat,
   tidyr,
-  covr
+  covr,
+    knitr,
+    rmarkdown
 LazyData: TRUE
 RoxygenNote: 5.0.1
-VignetteBuilder: R.rsp
+VignetteBuilder: 
+  R.rsp

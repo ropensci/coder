@@ -13,7 +13,8 @@ classify(x, by, ...)
 \method{classify}{data.frame}(x, by, id = NULL, code = "code", ...)
 }
 \arguments{
-\item{x}{object with elements to classify}
+\item{x}{object with elements to classify (often the output from
+\code{\link{codify}})}
 
 \item{by}{classification scheme of type \code{classcodes} to classify by}
 
@@ -29,15 +30,23 @@ classify}
 Boolean matrix with one row for each element/row of \code{x} and
   columns for each class with corresponding class names (according to the
   \code{\link{classcodes}} object).
-
-  Note that row order is not preserved for \code{classify.data.frame}.
-
-  Row names identify origin (as specified id argument \code{id} for
-  \code{classify.data.frame} or simply as \code{x} itself for
-  \code{classify.default}.
 }
 \description{
-Classify elements
+This is the main functions of the package, performing the actual
+classification of cases. It is often used with output from
+\code{\link{codify}} as input and is sometimes followed by the
+\code{\link{index}} function. These three functiona could easily be chained
+together if using the margrittr pipe (\code{\%>\%}).
+}
+\details{
+Note that row order is not preserved for \code{classify.data.frame} due to
+ performans reasons (the function is intended to work with large data sets
+ where sorting is computatinaly expensive).
+
+Row names does howeer identify origin (as specified by \code{id} for
+ \code{classify.data.frame} or simply as \code{x} itself for
+ \code{classify.default}. It should therefore be possible to manually
+ reorder the output to maintain original order.
 }
 \examples{
 # Classify individual ICD10-codes by Elixhauser
@@ -47,6 +56,15 @@ classify(c("C80", "I20", "unvalid_code"), by = "elix_icd10")
 # one year before surgery
 x <- codify(ex_people, ex_icd10, id = "name",
   date = "surgery", days = c(-365, 0))
-classify(x, "charlson_icd10")
+(y <- classify(x, "charlson_icd10"))
+
+# It is possible to convert the outpot of classify to a data frame with
+# id column instead of row names
+as.data.frame(y)
+}
+\seealso{
+\code{\link{as.data.frame.classified}} for a convinience function to
+convert the output of \code{classify} to a data frame with id column instead
+of row names.
 }
 

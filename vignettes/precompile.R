@@ -3,4 +3,5 @@
 
 knitr::knit("vignettes/benchmark.Rmd.orig", "vignettes/benchmark.Rmd")
 rmarkdown::render("vignettes/benchmark.Rmd", output_file = "benchmark.html")
-devtools::build_vignettes()
+
+file.copy("vignettes/benchmark.html", "inst/doc/benchmark.html", overwrite = TRUE)

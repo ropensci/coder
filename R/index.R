@@ -1,12 +1,15 @@
 #' Calculate index based on classification scheme
 #'
-#' @param x matrix as output from \code{classify}
+#' @param x output from \code{classify}
+#' (or possibly from \code{\link{as.data.frame.classified}})
 #' @param by name of column with 'weights' from corresponding
 #'   \code{\link{classcodes}} object. Can be omitted if the index is just the
 #'   count of relevant classes.
 #' @param from \code{\link{classcodes}} object. Can be omitted if information
 #'   already present as attribute of \code{x} (which is often the case) and/or
 #'   if index calculated without weights.
+#'
+#' @param ... used internally
 #'
 #' @return Named numeric index vector with names corresponding to
 #'   \code{rownames(x)}
@@ -35,9 +38,22 @@
 #'     date = "surgery", days = c(-365, 0)) %>%
 #'   classify("hip_adverse_events_icd10") %>%
 #'   index()
-index <- function(x, by = NULL, from = NULL) {
+#'
+#' @name index
+index <- function(x, ...) UseMethod("index")
 
-  stopifnot(is.matrix(x))
+#' @export
+#' @rdname index
+index.data.frame <- function(x, ...) {
+  message("column '", names(x)[1], "' used as id!")
+  y <- as.matrix(x[-1])
+  dimnames(y)[1] <- x[1]
+  index(y, from = attr(x, "classcodes"), ...)
+}
+
+#' @rdname index
+#' @export
+index.matrix <- function(x, by = NULL, from = NULL, ...) {
 
   # Find classcode object (NULL is valid if no weights supplied)
   from <- get_classcodes(from, x)

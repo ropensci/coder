@@ -2,12 +2,21 @@
 % Please edit documentation in R/index.R
 \name{index}
 \alias{index}
+\alias{index.data.frame}
+\alias{index.matrix}
 \title{Calculate index based on classification scheme}
 \usage{
-index(x, by = NULL, from = NULL)
+index(x, ...)
+
+\method{index}{data.frame}(x, ...)
+
+\method{index}{matrix}(x, by = NULL, from = NULL, ...)
 }
 \arguments{
-\item{x}{matrix as output from \code{classify}}
+\item{x}{output from \code{classify}
+(or possibly from \code{\link{as.data.frame.classified}})}
+
+\item{...}{used internally}
 
 \item{by}{name of column with 'weights' from corresponding
 \code{\link{classcodes}} object. Can be omitted if the index is just the
@@ -47,5 +56,6 @@ codify(ex_people, ex_icd10, id = "name",
     date = "surgery", days = c(-365, 0)) \%>\%
   classify("hip_adverse_events_icd10") \%>\%
   index()
+
 }
 
