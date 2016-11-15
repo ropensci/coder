@@ -61,9 +61,10 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
   # index is either the simple rowsum or made by
   # vector multiplication of weights
   ans <-
-    if (is.null(by))
+    if (is.null(by)) {
+      message("index calculated as number of relevant categories")
       rowSums(x)
-    else if (is.null(from))
+    } else if (is.null(from))
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
       stop(gettextf("'%s' is not a column of the classcodes object!", by))
