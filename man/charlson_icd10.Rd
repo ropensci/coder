@@ -9,11 +9,11 @@
   \item{group}{comorbidity groups}
   \item{regex}{regular expressions identifying ICD-10 codes of each group as
   decoded from Quan et al. 2005. Note that this classification was not
-  originally used with all wheights! To simply use this classification table
+  originally used with all weights! To simply use this classification table
   with weights other than \code{quan_original} and \code{quan_updated} might
   therefore not lead to different results than originally intended for each
   index.}
-  \item{charlson}{original wweights as suggested by Charlson et al. 1987*}
+  \item{charlson}{original weights as suggested by Charlson et al. 1987*}
   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
   \item{dhoore}{weights suggested by D'Hoore*}
   \item{ghali}{weights suggested by Ghali*}
@@ -23,9 +23,9 @@
 
 * Weights decoded from Yurkovich et al. 2015.
 
-NOTE! Regular expressisions for leukemia and lymphoma not yet implemented!}
+NOTE! Regular expressions for leukemia and lymphoma not yet implemented!}
 \source{
-Quan Hude et. al. (2005). Coding algorithms for defining
+Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
 \url{www.jstor.org/stable/3768193}
@@ -46,7 +46,8 @@ Other default.classcodes: \code{\link{cps_icd10}},
   \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10}},
   \code{\link{knee_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{rxriskv}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

@@ -11,14 +11,14 @@
 #'   of days relative to \code{date} for which codes from \code{from} are
 #'   relevant. (For example \code{c(-365, 0)} implies a time window of one year
 #'   prior to \code{date}, which might be useful for calculating comorbidity
-#'   indeces, while \code{c(0, 30)} gives a window of 30 days after \code{date},
+#'   indices, while \code{c(0, 30)} gives a window of 30 days after \code{date},
 #'   which might be used for calculating adverse events after a surgical
 #'   procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
 #'   \code{NULL} means no limitations at all.
 #'
 #' @return Object of class \code{tbl_df} with columns corresponding to \code{x}
 #'   and additional columns matched from \code{from}: \itemize{ \item
-#'   \code{code}: code as matchaed from \code{from} (\code{NA} if no match
+#'   \code{code}: code as matched from \code{from} (\code{NA} if no match
 #'   within period) \item \code{code_date}: corresponding date for which the
 #'   code was valid (\code{NA} if no match within period) \item
 #'   \code{in_period}: boolean indicator if the unit (patient) had at least one

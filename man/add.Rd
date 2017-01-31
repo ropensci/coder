@@ -28,9 +28,9 @@ data frame with all data from input data frame \code{to} combined
 with added class (and possibly index) data.
 }
 \description{
-This function can be used as a convinient short cut for the otherwise common
+This function can be used as a convenient short cut for the otherwise common
 multi step procedure based on \code{\link{codify}}, \code{\link{classify}},
-\code{\link{index}} and then combining the input data wit hthe new result.
+\code{\link{index}} and then combining the input data with the new result.
 }
 \examples{
 add("elix_icd10", to = ex_people, from = ex_icd10,

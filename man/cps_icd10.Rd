@@ -29,7 +29,8 @@ Other default.classcodes: \code{\link{charlson_icd10}},
   \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10}},
   \code{\link{knee_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{rxriskv}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

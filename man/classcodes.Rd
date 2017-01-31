@@ -4,7 +4,7 @@
 \alias{as.classcodes}
 \alias{classcodes}
 \alias{is.classcodes}
-\title{Classcode methods}
+\title{Classcodes methods}
 \usage{
 as.classcodes(x)
 
@@ -22,18 +22,18 @@ data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and classification scheme.
 }
 \details{
-A classcode object is a data frame with columns:
+A classcodes object is a data frame with columns:
 \describe{
 \item{group:}{unique and non missing class name}
 \item{regex:}{regular expression defining class membership
-(see \code{\link{regex}} for details). Occurences of non unique regular
+(see \code{\link{regex}} for details). Occurrences of non unique regular
 expressions will lead to the same class having multiple names. This is
 accepted but will raise a warning.}
 \item{condition (optional):}{a class might have conditions additional to what
   is expressed by \code{regex}. If so, these should be specified as quoted
   expressions that can be evaluated within the data frame used by
   \code{\link{classify}}}
-\item{weights (optional):}{wieights for each class used for \code{\link{index}}
+\item{weights (optional):}{weights for each class used for \code{\link{index}}
 calculation. Could be more than one and could have arbitrary names.}
 }
 Note that classes does not have to be disjunct.

@@ -8,7 +8,7 @@
 \title{Classcodes for RxRiskV (original and modified)}
 \format{Data frames with 39 rows and 2 variables:
 \describe{
-  \item{group}{desease group}
+  \item{group}{disease group}
   \item{regex}{regular expressions identifying ATC codes of each group}
 }}
 \usage{
@@ -23,7 +23,8 @@ rxriskv_modified_icd10
 Other default.classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10}},
-  \code{\link{knee_adverse_events_icd10}}
+  \code{\link{knee_adverse_events_icd10}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

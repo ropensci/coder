@@ -6,7 +6,7 @@ x <- codify(ex_people, ex_icd10, id = "name",
 test_that("classify", {
   expect_equal(
     elix_icd10$group[which(classify("C80", "elix_icd10"))],
-    "metastatic_cancer"
+    "metastatic cancer"
   )
   expect_is(classify(x, "elix_icd10"), "matrix")
   expect_is(classify(x, "hip_adverse_events_icd10"), "matrix")

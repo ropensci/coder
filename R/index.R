@@ -55,7 +55,7 @@ index.data.frame <- function(x, ...) {
 #' @export
 index.matrix <- function(x, by = NULL, from = NULL, ...) {
 
-  # Find classcode object (NULL is valid if no weights supplied)
+  # Find classcodes object (NULL is valid if no weights supplied)
   from <- get_classcodes(from, x)
 
   # index is either the simple rowsum or made by

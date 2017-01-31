@@ -9,8 +9,8 @@
   \item{id}{Random names corresponding to column \code{name} in dataset
     \code{ex_people}}
   \item{date}{random dates corresponding to registered (comorbidity) codes}
-  \item{code}{(comorbidty) codes as given by ICD-10}
-  \item{hdia}{boolean marker if coresponding code is the main diagnose of
+  \item{code}{(comorbidity) codes as given by ICD-10}
+  \item{hdia}{boolean marker if corresponding code is the main diagnose of
     the hospital visit (randomly assigned to 10 percent of the codes)}
 }}
 \usage{
@@ -18,7 +18,7 @@ ex_icd10
 }
 \description{
 Example data for fictive ICD-10-diagnoses to use for testing and
-in examlpes.
+in examples.
 }
 \seealso{
 ex_people

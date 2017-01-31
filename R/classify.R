@@ -3,14 +3,14 @@
 #' This is the main functions of the package, performing the actual
 #' classification of cases. It is often used with output from
 #' \code{\link{codify}} as input and is sometimes followed by the
-#' \code{\link{index}} function. These three functiona could easily be chained
-#' together if using the margrittr pipe (\code{\%>\%}).
+#' \code{\link{index}} function. These three function could easily be chained
+#' together if using the magrittr pipe (\code{\%>\%}).
 #'
 #'  Note that row order is not preserved for \code{classify.data.frame} due to
-#'  performans reasons (the function is intended to work with large data sets
-#'  where sorting is computatinaly expensive).
+#'  performance reasons (the function is intended to work with large data sets
+#'  where sorting is computationally expensive).
 #'
-#'  Row names does howeer identify origin (as specified by \code{id} for
+#'  Row names does however identify origin (as specified by \code{id} for
 #'  \code{classify.data.frame} or simply as \code{x} itself for
 #'  \code{classify.default}. It should therefore be possible to manually
 #'  reorder the output to maintain original order.
@@ -29,7 +29,7 @@
 #'   columns for each class with corresponding class names (according to the
 #'   \code{\link{classcodes}} object).
 #'
-#' @seealso \code{\link{as.data.frame.classified}} for a convinience function to
+#' @seealso \code{\link{as.data.frame.classified}} for a convenience function to
 #' convert the output of \code{classify} to a data frame with id column instead
 #' of row names.
 #'
@@ -106,9 +106,7 @@ classify.data.frame <-
     stop(code, " should specify codes but is not a column of x!")
 
   # Rename columns in x to standard names
-  nms <- names(x)
-  nms[nms == code] <- "code"
-  names(x) <- nms
+  names(x)[names(x) == code] <- "code"
 
   # Special tratment for codes not belonging to any class (for speed up)
   # Make FALSE matrix for all these cases

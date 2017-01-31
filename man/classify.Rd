@@ -35,15 +35,15 @@ Boolean matrix with one row for each element/row of \code{x} and
 This is the main functions of the package, performing the actual
 classification of cases. It is often used with output from
 \code{\link{codify}} as input and is sometimes followed by the
-\code{\link{index}} function. These three functiona could easily be chained
-together if using the margrittr pipe (\code{\%>\%}).
+\code{\link{index}} function. These three function could easily be chained
+together if using the magrittr pipe (\code{\%>\%}).
 }
 \details{
 Note that row order is not preserved for \code{classify.data.frame} due to
- performans reasons (the function is intended to work with large data sets
- where sorting is computatinaly expensive).
+ performance reasons (the function is intended to work with large data sets
+ where sorting is computationally expensive).
 
-Row names does howeer identify origin (as specified by \code{id} for
+Row names does however identify origin (as specified by \code{id} for
  \code{classify.data.frame} or simply as \code{x} itself for
  \code{classify.default}. It should therefore be possible to manually
  reorder the output to maintain original order.
@@ -63,7 +63,7 @@ x <- codify(ex_people, ex_icd10, id = "name",
 as.data.frame(y)
 }
 \seealso{
-\code{\link{as.data.frame.classified}} for a convinience function to
+\code{\link{as.data.frame.classified}} for a convenience function to
 convert the output of \code{classify} to a data frame with id column instead
 of row names.
 }

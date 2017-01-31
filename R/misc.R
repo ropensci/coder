@@ -26,7 +26,7 @@ get_classcodes <- function(x, from = NULL) {
     return(get(inh, envir = environment()))
   }
   else
-    stop("No classcode object found!")
+    stop("No classcodes object found!")
 }
 
 # ifelse if package exists or not

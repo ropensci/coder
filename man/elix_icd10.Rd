@@ -10,7 +10,7 @@
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 }}
 \source{
-Quan Hude et. al. (2005). Coding algorithms for defining
+Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
 \url{www.jstor.org/stable/3768193}
@@ -26,7 +26,8 @@ Other default.classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}},
   \code{\link{hip_adverse_events_icd10}},
   \code{\link{knee_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{rxriskv}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

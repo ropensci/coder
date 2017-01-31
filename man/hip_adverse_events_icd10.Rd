@@ -3,13 +3,13 @@
 \docType{data}
 \name{hip_adverse_events_icd10}
 \alias{hip_adverse_events_icd10}
-\title{Classcodes for adverse events after hip arthoplasty based on ICD-10 codes}
+\title{Classcodes for adverse events after hip arthroplasty based on ICD-10 codes}
 \format{A data frame with 3 rows and 3 variables:
 \describe{
   \item{group}{Different types of adverse events:
-    "vascular desease", "GI" and "others" }
+    "vascular disease", "GI" and "others" }
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-  \item{condition}{"vascular desease" and "GI" is conditioned on ICD-10 code
+  \item{condition}{"vascular disease" and "GI" is conditioned on ICD-10 code
     originating from main diagnosis (variable "hdia")}
   \item{shar}{weights as defined by the Swedish Hip Arthroplasty Register}
   \item{sos}{weights as defined by
@@ -25,7 +25,8 @@ A \code{\link{classcodes}} object to use with \code{\link{classify}}
 Other default.classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
   \code{\link{knee_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{rxriskv}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

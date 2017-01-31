@@ -3,12 +3,12 @@
 \docType{data}
 \name{knee_adverse_events_icd10}
 \alias{knee_adverse_events_icd10}
-\title{Classcodes for adverse events after knee arthoplasty based on ICD-10 codes}
+\title{Classcodes for adverse events after knee arthroplasty based on ICD-10 codes}
 \format{A data frame with 6 rows and 3 variables:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-  \item{condition}{two sepcial conditions are used, se below.}
+  \item{condition}{two special conditions are used, see below.}
 }}
 \usage{
 knee_adverse_events_icd10
@@ -17,18 +17,16 @@ knee_adverse_events_icd10
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
 \details{
-Note that the original source also
-
 Group names are prefixed by two letters as given by the reference.
 Two groups (DB and DM) are split into two due to different conditions.
 }
 \section{Conditions}{
 
-Two special conditions are used (see the referense):
+Two special conditions are used (see the reference):
 
 \describe{
  \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
- given as any type of diagnose at first visit after TKA, or as main diagnos
+ given as any type of diagnose at first visit after TKA, or as main diagnose
  for later visits, otherwise \code{FALSE}}
  \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
@@ -42,7 +40,8 @@ arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
 Other default.classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{rxriskv}},
+  \code{\link{tha_fracture_ae_icd10}}
 }
 \keyword{datasets}
 

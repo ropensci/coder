@@ -1,10 +1,10 @@
 #' Convert output from classify to data frame
 #'
 #' Output from \code{\link{classify}} is given as a matrix.
-#' It is often convinient co convert this matrix to a data frame with
+#' It is often convenient co convert this matrix to a data frame with
 #' a separate column for id instead of row names since this fits better with
-#' the philospohy of "tidyverse". The data frame format is however less optimal
-#' for working wit hlarge data sets, wherefore matrix output is used as default.
+#' the philosophy of "tidyverse". The data frame format is however less optimal
+#' for working with large data sets, wherefore matrix output is used as default.
 #'
 #' @param x output from \code{\link{classify}}
 #' (technically an object of internal class "classified")

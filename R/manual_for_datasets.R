@@ -7,7 +7,7 @@
 #'   \item{group}{comorbidity groups}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 #' }
-#' @source Quan Hude et. al. (2005). Coding algorithms for defining
+#' @source Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
 #' \url{www.jstor.org/stable/3768193}
@@ -25,11 +25,11 @@
 #'   \item{group}{comorbidity groups}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group as
 #'   decoded from Quan et al. 2005. Note that this classification was not
-#'   originally used with all wheights! To simply use this classification table
+#'   originally used with all weights! To simply use this classification table
 #'   with weights other than \code{quan_original} and \code{quan_updated} might
 #'   therefore not lead to different results than originally intended for each
 #'   index.}
-#'   \item{charlson}{original wweights as suggested by Charlson et al. 1987*}
+#'   \item{charlson}{original weights as suggested by Charlson et al. 1987*}
 #'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
 #'   \item{dhoore}{weights suggested by D'Hoore*}
 #'   \item{ghali}{weights suggested by Ghali*}
@@ -39,9 +39,9 @@
 #'
 #' * Weights decoded from Yurkovich et al. 2015.
 #'
-#' NOTE! Regular expressisions for leukemia and lymphoma not yet implemented!
+#' NOTE! Regular expressions for leukemia and lymphoma not yet implemented!
 #'
-#' @source Quan Hude et. al. (2005). Coding algorithms for defining
+#' @source Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
 #' \url{www.jstor.org/stable/3768193}
@@ -79,16 +79,16 @@
 
 
 
-#' Classcodes for adverse events after hip arthoplasty based on ICD-10 codes
+#' Classcodes for adverse events after hip arthroplasty based on ICD-10 codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
 #' @format A data frame with 3 rows and 3 variables:
 #' \describe{
 #'   \item{group}{Different types of adverse events:
-#'     "vascular desease", "GI" and "others" }
+#'     "vascular disease", "GI" and "others" }
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-#'   \item{condition}{"vascular desease" and "GI" is conditioned on ICD-10 code
+#'   \item{condition}{"vascular disease" and "GI" is conditioned on ICD-10 code
 #'     originating from main diagnosis (variable "hdia")}
 #'   \item{shar}{weights as defined by the Swedish Hip Arthroplasty Register}
 #'   \item{sos}{weights as defined by
@@ -99,21 +99,20 @@
 
 
 
-#' Classcodes for adverse events after knee arthoplasty based on ICD-10 codes
+#' Classcodes for adverse events after knee arthroplasty based on ICD-10 codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
-#' Note that the original source also
 #'
 #' Group names are prefixed by two letters as given by the reference.
 #' Two groups (DB and DM) are split into two due to different conditions.
 #'
 #' @section Conditions:
-#' Two special conditions are used (see the referense):
+#' Two special conditions are used (see the reference):
 #'
 #' \describe{
 #'  \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
-#'  given as any type of diagnose at first visit after TKA, or as main diagnos
+#'  given as any type of diagnose at first visit after TKA, or as main diagnose
 #'  for later visits, otherwise \code{FALSE}}
 #'  \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
 #'  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
@@ -123,7 +122,7 @@
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-#'   \item{condition}{two sepcial conditions are used, se below.}
+#'   \item{condition}{two special conditions are used, see below.}
 #' }
 #'
 #'
@@ -133,6 +132,40 @@
 #' @family default classcodes
 "knee_adverse_events_icd10"
 
+
+#' Classcodes for adverse events after THA after hip fracture
+#' based on ICD-10 codes
+#'
+#' This classcodes object was developed by the Swedish Hip Arthroplasty Register.
+#' The work was initiated for fracture data but the result might be feasible
+#' also for non fracture data.
+#'
+#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#' @section Conditions:
+#' Two special conditions are used (see the reference):
+#'
+#' \describe{
+#'  \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
+#'  given as any type of diagnose at first visit after TKA, or as main diagnose
+#'  for later visits, otherwise \code{FALSE}}
+#'  \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
+#'  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
+#' }
+#'
+#' @format A data frame with 6 rows and 3 variables:
+#' \describe{
+#'   \item{group}{Different types of adverse events (see reference section)}
+#'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{condition}{two special conditions are used, see below.}
+#' }
+#'
+#'
+#' @references Codes partly inspired by p. 83 of the annual report 2016 from knee
+#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
+#'
+#' @family default classcodes
+"tha_fracture_ae_icd10"
 
 
 
@@ -150,7 +183,7 @@
 #'
 #' @format Data frames with 39 rows and 2 variables:
 #' \describe{
-#'   \item{group}{desease group}
+#'   \item{group}{disease group}
 #'   \item{regex}{regular expressions identifying ATC codes of each group}
 #' }
 #' @name rxriskv
@@ -180,15 +213,15 @@
 #' Example data for random codes assigned to random people
 #'
 #' Example data for fictive ICD-10-diagnoses to use for testing and
-#' in examlpes.
+#' in examples.
 #'
 #' @format Data frames with 1,000 rows and 4 variables:
 #' \describe{
 #'   \item{id}{Random names corresponding to column \code{name} in dataset
 #'     \code{ex_people}}
 #'   \item{date}{random dates corresponding to registered (comorbidity) codes}
-#'   \item{code}{(comorbidty) codes as given by ICD-10}
-#'   \item{hdia}{boolean marker if coresponding code is the main diagnose of
+#'   \item{code}{(comorbidity) codes as given by ICD-10}
+#'   \item{hdia}{boolean marker if corresponding code is the main diagnose of
 #'     the hospital visit (randomly assigned to 10 percent of the codes)}
 #' }
 #' @seealso ex_people

@@ -1,8 +1,8 @@
 #' Add classification data to data frame with case data
 #'
-#' This function can be used as a convinient short cut for the otherwise common
+#' This function can be used as a convenient short cut for the otherwise common
 #' multi step procedure based on \code{\link{codify}}, \code{\link{classify}},
-#' \code{\link{index}} and then combining the input data wit hthe new result.
+#' \code{\link{index}} and then combining the input data with the new result.
 #'
 #' @param what to add? classification scheme of type classcodes to classify by
 #' @param to where should it be added? A data frame with at least two columns,
