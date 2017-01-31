@@ -11,7 +11,8 @@ y <-
   classify("charlson_icd10")
 
 test_that("index", {
-  expect_silent(index(x))
+  expect_message(index(x),
+    "index calculated as number of relevant categories")
   expect_is(index(x), "numeric")
   expect_gte(
     sum(index(y, "charlson"), na.rm = TRUE),
