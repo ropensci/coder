@@ -5,3 +5,4 @@
 ^inst/*
 inst/doc
 cache
+**/*.xlsx
