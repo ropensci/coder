@@ -5,11 +5,10 @@
 \alias{tha_fracture_ae_icd10}
 \title{Classcodes for adverse events after THA after hip fracture
 based on ICD-10 codes}
-\format{A data frame with 6 rows and 3 variables:
+\format{A data frame with 1 row and 2 variables:
 \describe{
-  \item{group}{Different types of adverse events (see reference section)}
-  \item{regex}{regular expressions identifying ICD-10 codes of each group}
-  \item{condition}{two special conditions are used, see below.}
+  \item{group}{We only have one group of adverse events}
+  \item{regex}{regular expression identifying ICD-10 codes}
 }}
 \usage{
 tha_fracture_ae_icd10
@@ -21,18 +20,6 @@ also for non fracture data.
 }
 \details{
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
-}
-\section{Conditions}{
-
-Two special conditions are used (see the reference):
-
-\describe{
- \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
- given as any type of diagnose at first visit after TKA, or as main diagnose
- for later visits, otherwise \code{FALSE}}
- \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
- given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
-}
 }
 \references{
 Codes partly inspired by p. 83 of the annual report 2016 from knee

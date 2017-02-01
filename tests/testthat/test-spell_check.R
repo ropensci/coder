@@ -48,6 +48,6 @@ ignored_words <-
   )
 
 test_that("Correct spelling", {
-  skip_on_travis()
+  skip_if_not_installed("hunspell")
   expect_equal(length(devtools::spell_check(ignore = ignored_words)), 0)
 })
