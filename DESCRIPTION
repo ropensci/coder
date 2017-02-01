@@ -25,14 +25,15 @@ License: GPL-2
 Depends: R (>= 2.10)
 Suggests:
   dplyr (>= 0.4.3),
+  devtools,
   fastmatch,
   Kmisc,
   R.rsp,
   testthat,
   tidyr,
   covr,
-    knitr,
-    rmarkdown
+  knitr,
+  rmarkdown
 LazyData: TRUE
 RoxygenNote: 5.0.1
 VignetteBuilder: 

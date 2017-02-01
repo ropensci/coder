@@ -48,7 +48,5 @@ ignored_words <-
   )
 
 test_that("Correct spelling", {
-  skip_on_travis()
-  skip_on_cran()
   expect_equal(length(devtools::spell_check(ignore = ignored_words)), 0)
 })
