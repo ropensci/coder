@@ -48,5 +48,6 @@ ignored_words <-
   )
 
 test_that("Correct spelling", {
+  skip_if_not(Sys.info()[["effective_user"]] == "eribu") # Only test locally
   expect_equal(length(devtools::spell_check(ignore = ignored_words)), 0)
 })
