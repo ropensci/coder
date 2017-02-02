@@ -2,6 +2,8 @@
 % Please edit documentation in R/codedata.R
 \name{codedata}
 \alias{as.codedata}
+\alias{as.codedata.data.frame}
+\alias{as.codedata.pardata}
 \alias{codedata}
 \alias{is.codedata}
 \title{Code data}
@@ -9,12 +11,23 @@
 as.codedata(x, ...)
 
 is.codedata(x)
+
+\method{as.codedata}{data.frame}(x, limits = c(as.Date("1970-01-01"),
+  Sys.Date()), ...)
+
+\method{as.codedata}{pardata}(x, y = NULL, ...)
 }
 \arguments{
 \item{x}{data frame with columns "id", "date" and "code" or
 object of class \code{\link{pardata}}.}
 
-\item{...}{possible additional objects to merge with \code{x}}
+\item{...}{pass arguments between methods}
+
+\item{limits}{ignore (possibly invalid) dates outside this range.
+Set to \code{NULL} for no filtering.}
+
+\item{y}{optional additional \code{\link{pardata}} object to combine with
+the first. Useful for combining data from in- and outpatient healt care.}
 }
 \value{
 \code{as.codedata} returns a data frame
@@ -32,5 +45,16 @@ Additional columns might exist (preserved from \code{x})
 }
 \description{
 Code data
+}
+\examples{
+
+x <- data.frame(id = 1, date = as.Date("2017-02-02"), code = "a")
+as.codedata(x)
+
+# Drop dates outside specified limits
+y <- data.frame(id = 2, date = as.Date("3017-02-02"), code = "b")
+z <- rbind(x, y)
+as.codedata(z)
+
 }
 
