@@ -15,8 +15,9 @@
 #'   is expressed by \code{regex}. If so, these should be specified as quoted
 #'   expressions that can be evaluated within the data frame used by
 #'   \code{\link{classify}}}
-#' \item{weights (optional):}{weights for each class used for \code{\link{index}}
-#' calculation. Could be more than one and could have arbitrary names.}
+#' \item{weights (optional):}{weights for each class used for
+#'   \code{\link{index}} calculation.
+#'   Could be more than one and could have arbitrary names.}
 #' }
 #' Note that classes does not have to be disjunct.
 #'
@@ -26,6 +27,11 @@
 #' @param x data frame with properties as described in the details section
 #'
 #' @return Object of class "classcodes"
+#'
+#' @seealso Regular expressions used in classcodes can often be quite complex
+#' and hard to interpret. Use \code{\link{show}} to visualize classcodes
+#' graphically.
+#'
 #' @export
 #' @name classcodes
 #' @examples
