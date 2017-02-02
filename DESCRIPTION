@@ -33,6 +33,8 @@ Suggests:
   covr,
   knitr,
   rmarkdown
+Imports:
+  data.table
 LazyData: TRUE
 RoxygenNote: 5.0.1
 VignetteBuilder: 

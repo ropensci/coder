@@ -12,8 +12,7 @@ as.codedata(x, ...)
 
 is.codedata(x)
 
-\method{as.codedata}{data.frame}(x, limits = c(as.Date("1970-01-01"),
-  Sys.Date()), ...)
+\method{as.codedata}{data.frame}(x, ...)
 
 \method{as.codedata}{pardata}(x, y = NULL, ...)
 }
@@ -21,10 +20,9 @@ is.codedata(x)
 \item{x}{data frame with columns "id", "date" and "code" or
 object of class \code{\link{pardata}}.}
 
-\item{...}{pass arguments between methods}
-
-\item{limits}{ignore (possibly invalid) dates outside this range.
-Set to \code{NULL} for no filtering.}
+\item{...}{by default, codes for future dates or dates before "1970-01-01"
+are ignored (with a warning). Specify \code{limits}
+(as passed to \code{\link{filter_dates}}) to override.}
 
 \item{y}{optional additional \code{\link{pardata}} object to combine with
 the first. Useful for combining data from in- and outpatient healt care.}

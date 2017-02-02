@@ -4,9 +4,9 @@
 #'   object of class \code{\link{pardata}}.
 #' @param y optional additional \code{\link{pardata}} object to combine with
 #' the first. Useful for combining data from in- and outpatient healt care.
-#' @param limits ignore (possibly invalid) dates outside this range.
-#'   Set to \code{NULL} for no filtering.
-#' @param ... pass arguments between methods
+#' @param ... by default, codes for future dates or dates before "1970-01-01"
+#' are ignored (with a warning). Specify \code{limits}
+#' (as passed to \code{\link{filter_dates}}) to override.
 #'
 #' @return \code{as.codedata} returns a data frame
 #'   with mandatory columns:
@@ -43,14 +43,11 @@ is.codedata <- function(x) {
     data.class(x[["date"]]) == "Date"
 }
 
-#' @export
-as.codedata.default <- function(x, ...)
-  stop("'x' must be either a data frame or a 'pardata' object!")
 
 #' @rdname codedata
 #' @export
-as.codedata.data.frame <-
-  function(x, limits = c(as.Date("1970-01-01"), Sys.Date()), ...) {
+#' @import data.table
+as.codedata.data.frame <- function(x, ...) {
 
     names(x) <- tolower(names(x))
   if (!all(c("id", "date", "code") %in% names(x)))
@@ -58,25 +55,11 @@ as.codedata.data.frame <-
   if (data.class(x$date) != "Date")
     stop("Column 'date' is not of format 'Date'!")
 
-  x <- ifep("dplyr", dplyr::distinct_(x, .keep_all = TRUE), unique(x))
+  x <- filter_dates(x, ...)
 
-  # Drop dates outside limits
-  if (!is.null(limits)) {
-    if (length(limits) != 2 || limits[1] > limits[2]) {
-      stop("limits must be a vector of length two and with its second ",
-           "element larger than its first")
-    }
-    ftr <- x$date < limits[1] | x$date > limits[2]
-    if (any(ftr)) {
-      warning("Dates outside specified limits dropped! ",
-              "(Use argument 'limits' to override!)")
-      x <- ifep("dplyr", dplyr::filter_(x, ~ ftr), x[ftr])
-    }
-  }
-
-  x$id   <- as.factor(x$id)
-  x$code <- as.factor(x$code)
-  x
+  x <- as.data.table(x)
+  setkeyv(x, c("id", "date", "code"))
+  unique(x, by = key(x))
 }
 
 #' @rdname codedata
