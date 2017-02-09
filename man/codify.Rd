@@ -44,4 +44,3 @@ codify elements
 \examples{
 codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 }
-

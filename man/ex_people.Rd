@@ -16,7 +16,6 @@ ex_people
 Example data for fictive people to use for testing and in examples.
 }
 \seealso{
-ex_icd10
+\code{\link{ex_icd10}}, \code{\link{ex_pardata}}
 }
 \keyword{datasets}
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/classify.R
 \name{classify}
 \alias{classify}
-\alias{classify.data.frame}
 \alias{classify.default}
+\alias{classify.data.frame}
 \title{Classify elements}
 \usage{
 classify(x, by, ...)
@@ -67,4 +67,3 @@ as.data.frame(y)
 convert the output of \code{classify} to a data frame with id column instead
 of row names.
 }
-

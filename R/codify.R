@@ -55,7 +55,8 @@ codify <- function(x, from, id = "id", date, days = NULL) {
 
   # Prefilter to increase speed (faster than left_join)
   matchfun <- ifep("fastmatch", fastmatch::fmatch, match)
-  from <- from[matchfun(from$id, x[[id]], 0) > 0, ]
+  i <- matchfun(from$id, x[[id]], 0) > 0
+  from <- from[i, ]
 
   names(x)[names(x) == id]   <- "id"
   names(x)[names(x) == date] <- "xdate"

@@ -2,10 +2,11 @@
 #'
 #' @param x data frame with columns "id", "date" and "code" or
 #'   object of class \code{\link{pardata}}.
-#' @param y optional additional \code{\link{pardata}} object to combine with
-#' the first. Useful for combining data from in- and outpatient healt care.
+#' @param setkeys should keys be set for the data.table object?
+#' To initially set the key for a large data set can be slow
+#' but it could be beneficial for later use of the object.
 #' @param ... by default, codes for future dates or dates before "1970-01-01"
-#' are ignored (with a warning). Specify \code{limits}
+#' are ignored (with a warning). Specify \code{to, from}
 #' (as passed to \code{\link{filter_dates}}) to override.
 #'
 #' @return \code{as.codedata} returns a data frame
@@ -43,54 +44,44 @@ is.codedata <- function(x) {
     data.class(x[["date"]]) == "Date"
 }
 
+# Internal help function. No need to export or document
+#' @import data.table
+#' @export
+as.codedata.data.frame <- function(x, ...) {
+  as.codedata(as.data.table(x), ...)
+}
+
 
 #' @rdname codedata
 #' @export
 #' @import data.table
-as.codedata.data.frame <- function(x, ...) {
+as.codedata.data.table <- function(x, ..., setkeys = FALSE) {
 
-    names(x) <- tolower(names(x))
+  names(x) <- tolower(names(x))
   if (!all(c("id", "date", "code") %in% names(x)))
     stop("data frame must contain columns: id, date and code")
   if (data.class(x$date) != "Date")
     stop("Column 'date' is not of format 'Date'!")
 
-  x <- filter_dates(x, ...)
-
-  x <- as.data.table(x)
-  setkeyv(x, c("id", "date", "code"))
-  unique(x, by = key(x))
+  # limit to specified dates if given
+  x <- x[dates_within(date, ...)]
+  keys <- c("id", "date", "code")
+  if (setkeys) setkeyv(x, keys)
+  unique(x, by = keys)
 }
 
 #' @rdname codedata
 #' @export
-as.codedata.pardata <- function(x, y = NULL, ...) {
-
-  if (!is.null(y)) {
-    x <- ifep("dplyr", dplyr::bind_rows(x, y), rbind.fill(x, y))
-  }
+as.codedata.pardata <- function(x, ...) {
   dia_names <- names(x)[grepl("dia", names(x))]
-
+  dia <- hdia <- NULL # silly workaround to avoid CHECK note
   x <-
-    ifep("tidyr",
-      tidyr::gather_(x, "dia", "code", dia_names, na.rm = TRUE),
-      data.frame(
-        stats::reshape(
-          x,
-          times          = dia_names,
-          varying        = dia_names,
-          idvar          = "lpnr",
-          direction      = "long",
-          timevar        = "dia",
-          v.names        = "code"
-        ),
-        stringsAsFactors = FALSE,
-        row.names        = NULL
-      )
-    )
-
-  x$hdia <- startsWith(x$dia, "hdia")
-  names(x)[names(x) == "lpnr"]    <- "id"
-  names(x)[names(x) == "indatum"] <- "date"
+    melt(
+      x,
+      measure.vars  = dia_names,
+      variable.name = "dia",
+      value.name    = "code"
+    )[, hdia := as.character(dia) == "hdia"]
+  setnames(x, c("lpnr", "indatum"), c("id", "date"))
   NextMethod()
 }

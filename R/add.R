@@ -25,10 +25,12 @@
 #' add("elix_icd10", to = ex_people, from = ex_icd10,
 #'   id = "name", date = "surgery")
 add <- function(what, to, from, id, date, days = NULL, ind = NULL) {
-  cod       <- codify(x = to, from = from, id = id, date = date, days = days)
+
+    cod       <- codify(x = to, from = from, id = id, date = date, days = days)
   cl        <- classify(cod, what)
 
   mergefun  <- ifep("dplyr", dplyr::left_join, merge)
+  ifep("dplyr", to[[id]]  <- as.character(to[[id]]), NULL)
   out       <- mergefun(to, as.data.frame(cl), by = id)
 
   # Add index named ind if ind not FALSE

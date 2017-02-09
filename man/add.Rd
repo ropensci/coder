@@ -36,4 +36,3 @@ multi step procedure based on \code{\link{codify}}, \code{\link{classify}},
 add("elix_icd10", to = ex_people, from = ex_icd10,
   id = "name", date = "surgery")
 }
-

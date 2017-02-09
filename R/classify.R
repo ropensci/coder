@@ -138,13 +138,13 @@ classify.data.frame <-
   uni              <- !ids %in% ids[duplicated(ids)]
 
   # Case for patients with only one code (for speed)
-  clu              <- y[uni, ]
+  clu              <- y[uni, , drop = FALSE]
   rownames(clu)    <- ids[uni]
 
   # Case for patients with multilpe (ICD) codes (slower but necessary)
   idx              <- as.factor(ids[!uni])
   tapplyfun        <- ifep("Kmisc", Kmisc::tapply_, tapply)
-  clm              <- apply(y[!uni, ], 2, tapplyfun, idx, any)
+  clm              <- apply(y[!uni, , drop = FALSE], 2, tapplyfun, idx, any)
 
   # Combine data from cases with one and more classes
   structure(

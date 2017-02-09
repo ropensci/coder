@@ -18,4 +18,3 @@ or a classcodes object itself.}
 \description{
 Get classcodes object
 }
-

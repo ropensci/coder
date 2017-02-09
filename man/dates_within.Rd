@@ -4,12 +4,12 @@
 \alias{dates_within}
 \title{Check if dates are within limits}
 \usage{
-dates_within(x, limits = c(as.Date("1970-01-01"), Sys.Date()))
+dates_within(x, from = "1970-01-01", to = Sys.Date())
 }
 \arguments{
 \item{x}{Date vector}
 
-\item{limits}{date vector of length two with lower and upper limit to check}
+\item{from, to}{first and last date of interval to compare with}
 }
 \value{
 Logical vector with \code{TRUE} if date within limits, \code{FALSE}
@@ -23,9 +23,8 @@ Check if dates are within limits
 #                 valid         future      too early
 x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
 dates_within(x) # TRUE FALSE FALSE
-dates_within(x, as.Date(c("2000-01-01", "2100-01-01"))) #  TRUE  TRUE FALSE
+dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
 }
 \seealso{
 \code{\link{filter_dates}}
 }
-

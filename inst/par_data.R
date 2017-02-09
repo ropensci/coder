@@ -1,7 +1,7 @@
 # Include some par data in correct format
 
 library(dplyr)
-load("Z:\\SHPR\\SZILARD\\Beslutstöd\\Data\\data for calculating the Comorb indices_2015-11-03.RData")
+load("Z:\\SHPR\\SZILARD\\Beslutstöd\\\\Output\\Old\\data for calculating the Comorb indices_2015-11-03.RData")
 
 oppen   <- classifyr::as.pardata(oppen)
 sluten  <- classifyr::as.pardata(sluten)

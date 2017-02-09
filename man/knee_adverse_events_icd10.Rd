@@ -32,16 +32,17 @@ Two special conditions are used (see the reference):
  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
 }
 }
+
 \references{
 Codes taken from p. 83 of the annual report 2016 from knee
 arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
 }
 \seealso{
-Other default.classcodes: \code{\link{charlson_icd10}},
+Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10}},
   \code{\link{rxriskv}},
-  \code{\link{tha_fracture_ae_icd10}}
+  \code{\link{tha_fracture_ae_icd10}},
+  \code{\link{tha_fracture_ae_kva}}
 }
 \keyword{datasets}
-

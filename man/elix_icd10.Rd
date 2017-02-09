@@ -22,12 +22,12 @@ elix_icd10
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
 \seealso{
-Other default.classcodes: \code{\link{charlson_icd10}},
+Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}},
   \code{\link{hip_adverse_events_icd10}},
   \code{\link{knee_adverse_events_icd10}},
   \code{\link{rxriskv}},
-  \code{\link{tha_fracture_ae_icd10}}
+  \code{\link{tha_fracture_ae_icd10}},
+  \code{\link{tha_fracture_ae_kva}}
 }
 \keyword{datasets}
-

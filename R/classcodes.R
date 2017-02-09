@@ -42,9 +42,9 @@ as.classcodes <- function(x) {
     all(c("group", "regex") %in% names(x)),
     !anyNA(x$group),
     !any(x$group == ""),
-    !any(duplicated(x$group)),
-    is.character(x$regex) | is.numeric(x$regex)
+    !any(duplicated(x$group))
   )
+  x$regex <- as.character(x$regex)
   if (any(duplicated(x$regex))) {
     warning("Non unique elements of 'x$regex' implying identical classes with ",
       "multilpe names!")

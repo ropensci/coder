@@ -58,4 +58,3 @@ codify(ex_people, ex_icd10, id = "name",
   index()
 
 }
-

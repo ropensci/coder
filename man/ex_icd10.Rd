@@ -21,7 +21,6 @@ Example data for fictive ICD-10-diagnoses to use for testing and
 in examples.
 }
 \seealso{
-ex_people
+\code{\link{ex_people}}, \code{\link{ex_pardata}}
 }
 \keyword{datasets}
-

@@ -149,6 +149,8 @@
 #'   \item{regex}{regular expression identifying ICD-10 codes}
 #' }
 #'
+#' @seealso Companion codes based on Atgardskoder (KVA codes)
+#' \code{\link{tha_fracture_ae_kva}}.
 #'
 #' @references Codes partly inspired by p. 83 of the annual report 2016 from knee
 #' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
@@ -157,6 +159,26 @@
 "tha_fracture_ae_icd10"
 
 
+#' Classcodes for adverse events after THA after hip fracture
+#' based on Atgardskoder (KVA codes)
+#'
+#' This classcodes object was developed by the Swedish Hip Arthroplasty Register.
+#' The work was initiated for fracture data but the result might be feasible
+#' also for non fracture data.
+#'
+#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#'
+#' @format A data frame with 1 row and 2 variables:
+#' \describe{
+#'   \item{group}{We only have one group of adverse events}
+#'   \item{regex}{regular expression identifying KVA codes}
+#' }
+#'
+#' @seealso Companion codes based on ICD-10 \code{\link{tha_fracture_ae_icd10}}.
+#'
+#' @family default classcodes
+"tha_fracture_ae_kva"
 
 
 ################################################################################
@@ -194,7 +216,7 @@
 #'   \item{surgery}{random dates for performed surgery on each patient}
 #' }
 #'
-#' @seealso ex_icd10
+#' @seealso \code{\link{ex_icd10}}, \code{\link{ex_pardata}}
 "ex_people"
 
 
@@ -213,5 +235,27 @@
 #'   \item{hdia}{boolean marker if corresponding code is the main diagnose of
 #'     the hospital visit (randomly assigned to 10 percent of the codes)}
 #' }
-#' @seealso ex_people
+#' @seealso \code{\link{ex_people}}, \code{\link{ex_pardata}}
 "ex_icd10"
+
+
+
+
+#' Example NPR data with random codes assigned to random people
+#'
+#' Eictive ICD-10-codes in the format as delivered by the
+#' National Patient Register (NPR).
+#'
+#' Note that a real NPR data set would have "bdia" codes filled in order.
+#' The situation with no "bdia1" but with a "bdia2" is therefore not
+#' possible in a real data set.
+#'
+#' @format Data frames with 1,000 rows and 18 columns:
+#' \describe{
+#'   \item{lpnr}{Random names of people}
+#'   \item{date}{random dates for inpatient registration}
+#'   \item{hdia}{main diagnose given by ICD-10}
+#'   \item{bdia(1, ..., 14)}{additional diagnoses for each visit}
+#' }
+#' @seealso \code{\link{ex_people}}, \code{\link{ex_icd10}}
+"ex_pardata"

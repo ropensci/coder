@@ -32,10 +32,10 @@ filter_dates <- function(x, ...) UseMethod("filter_dates", x)
 filter_dates.data.frame <- function(x, ...) {
   stopifnot("date" %in% names(x))
   ftr <- dates_within(x[["date"]], ...)
-  if (any(!ftr)) {
+  if (any(!ftr, na.rm = TRUE)) {
     warning("Dates outside specified limits dropped! ",
             "(Use argument 'limits' to override!)")
-    ifep("dplyr", dplyr::filter_(x, ~ ftr), x[ftr, ])
+    ifep("dplyr", dplyr::filter_(x, ~ ftr | is.na(ftr)), x[ftr | is.na(ftr), ])
   } else {
     x
   }
@@ -54,7 +54,7 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' Check if dates are within limits
 #'
 #' @param x Date vector
-#' @param limits date vector of length two with lower and upper limit to check
+#' @param from,to first and last date of interval to compare with
 #'
 #' @return Logical vector with \code{TRUE} if date within limits, \code{FALSE}
 #'  otherwise.
@@ -66,22 +66,15 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' #                 valid         future      too early
 #' x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
 #' dates_within(x) # TRUE FALSE FALSE
-#' dates_within(x, as.Date(c("2000-01-01", "2100-01-01"))) #  TRUE  TRUE FALSE
-dates_within <- function(x, limits = c(as.Date("1970-01-01"), Sys.Date())) {
+#' dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
+dates_within <- function(x, from = "1970-01-01", to = Sys.Date()) {
+  blank <- function(x)
+    is.null(x) || is.na(x) || is.infinite(x) || as.character(x) == ""
 
-  # Check limits of correct format
-  if (is.null(limits)) {
-    TRUE # Alwyas TRUE if no limits
-  } else {
-    if (!inherits(limits, "Date") ||
-        length(limits) != 2      ||
-        limits[1] > limits[2]) {
-      stop("limits must be a Date vector of length two with its second ",
-           "date after the first!")
-    }
-    # Generally much faster to compare numerics than dates
-    dt  <- as.numeric(x)
-    lmt <- as.numeric(limits)
-    dt >= lmt[1] & dt <= lmt[2]
-  }
+  x  <- as.numeric(x)
+
+  # Set all comparisons to TRUE for non specified limit values
+  lower <- if (blank(from)) TRUE else x >= as.numeric(as.Date(from))
+  upper <- if (blank(to))   TRUE else x <= as.numeric(as.Date(to))
+  lower & upper
 }

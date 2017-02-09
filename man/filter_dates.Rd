@@ -2,8 +2,8 @@
 % Please edit documentation in R/filter_dates.R
 \name{filter_dates}
 \alias{filter_dates}
-\alias{filter_dates.Date}
 \alias{filter_dates.data.frame}
+\alias{filter_dates.Date}
 \title{Filter dates outside specified limits}
 \usage{
 filter_dates(x, ...)
@@ -45,4 +45,3 @@ filter_dates(
 \seealso{
 \code{\link{dates_within}}
 }
-
