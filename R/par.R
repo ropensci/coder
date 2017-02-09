@@ -13,16 +13,40 @@
 #' @name pardata
 as.pardata <- function(x, y = NULL) {
 
-  f <- function(x) {
-    nms <- c("lpnr", "indatum", "hdia", paste0("bdia", 1:15))
-    names(x) <- tolower(names(x))
-    if (!all(nms %in% names(x)))
-      stop("NPR data must have column with names: ", paste0(nms, collapse = ", "))
-    x <- as.data.table(x[, nms])
-  }
+  # Data can contain either diagnose data (ICD) or KVA
+  nms      <- c("lpnr", "indatum")
+  nms_dia  <- c("hdia", paste0("bdia", 1:15))
+  nms_op   <- paste0("op", 1:30)
+  names(x) <- tolower(names(x))
+  if (!is.null(y)) names(y) <- tolower(names(y))
 
-  x <- if (is.null(y)) f(x) else rbind(f(x), f(y))
-  structure(x, class = unique(c("pardata", class(x))))
+  nms_codes <-
+    if (all(c(nms, nms_dia) %in% names(x))) {
+      message("NPR data with diagnose (ICD) codes.")
+      nms_dia
+    } else if (all(c(nms, nms_op) %in% names(x))) {
+      message("NPR data with operation (KVA) codes.")
+      nms_op
+    } else {
+      stop("Mandatory NPR column missing!")
+    }
+
+  x <- as.data.table(x[, c(nms, nms_codes)])
+  if (!is.null(y))
+    x <- rbind(x, as.data.table(y[, c(nms, nms_codes)]))
+
+  # Make as codedata
+  variable <- hdia <- code <-  NULL # silly workaround to avoid CHECK note
+  x <-
+    melt(
+      x,
+      measure.vars  = nms_codes,
+      value.name    = "code"
+    )[variable == "op1" | variable == "hdia" | code != "",
+      hdia := as.character(variable) == "hdia"]
+  setnames(x, c("lpnr", "indatum"), c("id", "date"))
+
+  as.codedata(x)
 }
 
 
