@@ -3,12 +3,10 @@
 #' Functions to check that a data set contains patient data from
 #' the Swedish Patient Register (PAR).
 #'
-#' @param x,y objects to coerce to \code{\link{data.table}} with par-data
-#' (typically in- and outpatient data sets)
+#' @param x,y objects with data from NPR
+#' (possibly one object for in- and one for outpatient data)
 #'
-#' @return \code{as.pardata} returns an object of class "pardata".
-#' \code{is.pardata} returns \code{TRUE} if object is of class "pardata",
-#' \code{FALSE} otherwise.
+#' @return Object as described by \code{\link{as.codedata}}
 #' @export
 #' @name pardata
 as.pardata <- function(x, y = NULL) {
@@ -21,7 +19,9 @@ as.pardata <- function(x, y = NULL) {
   if (!is.null(y)) names(y) <- tolower(names(y))
 
   nms_codes <-
-    if (all(c(nms, nms_dia) %in% names(x))) {
+    if (all(c(nms_dia, nms_op) %in% names(x))) {
+      stop("Data sets contain both ICD and KVA codes!")
+    } else if (all(c(nms, nms_dia) %in% names(x))) {
       message("NPR data with diagnose (ICD) codes.")
       nms_dia
     } else if (all(c(nms, nms_op) %in% names(x))) {
@@ -48,8 +48,3 @@ as.pardata <- function(x, y = NULL) {
 
   as.codedata(x)
 }
-
-
-#' @rdname pardata
-#' @export
-is.pardata <- function(x) inherits(x, "pardata")

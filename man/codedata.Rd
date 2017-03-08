@@ -3,18 +3,15 @@
 \name{codedata}
 \alias{codedata}
 \alias{as.codedata}
-\alias{is.codedata}
 \alias{as.codedata.data.table}
-\alias{as.codedata.pardata}
+\alias{is.codedata}
 \title{Code data}
 \usage{
 as.codedata(x, ...)
 
-is.codedata(x)
-
 \method{as.codedata}{data.table}(x, ..., setkeys = FALSE)
 
-\method{as.codedata}{pardata}(x, ...)
+is.codedata(x)
 }
 \arguments{
 \item{x}{data frame with columns "id", "date" and "code" or
@@ -29,7 +26,7 @@ To initially set the key for a large data set can be slow
 but it could be beneficial for later use of the object.}
 }
 \value{
-\code{as.codedata} returns a data frame
+\code{as.codedata} returns a \code{\link{data.table}} object
   with mandatory columns:
 \describe{
 \item{id}{individual id}

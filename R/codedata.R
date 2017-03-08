@@ -9,7 +9,7 @@
 #' are ignored (with a warning). Specify \code{to, from}
 #' (as passed to \code{\link{filter_dates}}) to override.
 #'
-#' @return \code{as.codedata} returns a data frame
+#' @return \code{as.codedata} returns a \code{\link{data.table}} object
 #'   with mandatory columns:
 #' \describe{
 #' \item{id}{individual id}
@@ -36,18 +36,12 @@
 #'
 as.codedata <- function(x, ...) UseMethod("as.codedata", x)
 
-#' @export
-#' @rdname codedata
-is.codedata <- function(x) {
-  is.data.frame(x) &&
-    all(c("id", "date", "code") %in% names(x)) &&
-    data.class(x[["date"]]) == "Date"
-}
 
 # Internal help function. No need to export or document
 #' @import data.table
 #' @export
 as.codedata.data.frame <- function(x, ...) {
+  check_codedata(x) # too fail early
   as.codedata(as.data.table(x), ...)
 }
 
@@ -58,10 +52,7 @@ as.codedata.data.frame <- function(x, ...) {
 as.codedata.data.table <- function(x, ..., setkeys = FALSE) {
 
   names(x) <- tolower(names(x))
-  if (!all(c("id", "date", "code") %in% names(x)))
-    stop("data frame must contain columns: id, date and code")
-  if (data.class(x$date) != "Date")
-    stop("Column 'date' is not of format 'Date'!")
+  check_codedata(x)
 
   # limit to specified dates if given
   x <- x[dates_within(date, ...)]
@@ -70,18 +61,17 @@ as.codedata.data.table <- function(x, ..., setkeys = FALSE) {
   unique(x, by = keys)
 }
 
-#' @rdname codedata
+
 #' @export
-as.codedata.pardata <- function(x, ...) {
-  dia_names <- names(x)[grepl("dia", names(x))]
-  dia <- hdia <- NULL # silly workaround to avoid CHECK note
-  x <-
-    melt(
-      x,
-      measure.vars  = dia_names,
-      variable.name = "dia",
-      value.name    = "code"
-    )[, hdia := as.character(dia) == "hdia"]
-  setnames(x, c("lpnr", "indatum"), c("id", "date"))
-  NextMethod()
+#' @rdname codedata
+is.codedata <- function(x) {
+  !inherits(tryCatch(check_codedata(x), error = function(e) e), "error")
+}
+
+check_codedata <- function(x) {
+  names(x) <- tolower(names(x))
+  if (!all(c("id", "date", "code") %in% names(x)))
+    stop("data frame must contain columns: id, date and code")
+  if (data.class(x[["date"]]) != "Date")
+    stop("Column 'date' is not of format 'Date'!")
 }

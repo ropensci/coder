@@ -79,8 +79,8 @@ start_suggests <- function()
   if (!all(available))
     packageStartupMessage(
       "Note that functions from package 'classifyr' could work considerably ",
-      "faster if installing suggested packages! Currently missing: ",
-      paste(s[!available], collapse = ", "))
+      "faster if installing suggested packages! Currently missing: \n * ",
+      paste(s[!available], collapse = "\n * "))
 }
 
 

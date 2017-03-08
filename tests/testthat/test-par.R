@@ -10,10 +10,8 @@ colnames(diadata) <- c("hdia", paste0("bdia", 1:15))
 pardata <- cbind(pardata, diadata)
 
 test_that("handle data from PAR", {
-  expect_is(as.pardata(pardata), "pardata")
-  expect_silent(as.pardata(pardata))
-  expect_equal(ncol(as.pardata(pardata)), 18)
+  expect_true(is.codedata(as.pardata(pardata)))
+  expect_message(as.pardata(pardata))
+  expect_equal(ncol(as.pardata(pardata)), 5)
   expect_error(as.pardata(iris))
-  expect_true(is.pardata(as.pardata(pardata)))
-  expect_false(is.pardata(pardata))
 })

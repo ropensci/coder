@@ -3,21 +3,16 @@
 \name{pardata}
 \alias{pardata}
 \alias{as.pardata}
-\alias{is.pardata}
 \title{Data from the Swedish Patient Register (PAR).}
 \usage{
 as.pardata(x, y = NULL)
-
-is.pardata(x)
 }
 \arguments{
-\item{x, y}{objects to coerce to \code{\link{data.table}} with par-data
-(typically in- and outpatient data sets)}
+\item{x, y}{objects with data from NPR
+(possibly one object for in- and one for outpatient data)}
 }
 \value{
-\code{as.pardata} returns an object of class "pardata".
-\code{is.pardata} returns \code{TRUE} if object is of class "pardata",
-\code{FALSE} otherwise.
+Object as described by \code{\link{as.codedata}}
 }
 \description{
 Functions to check that a data set contains patient data from
