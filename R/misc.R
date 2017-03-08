@@ -10,23 +10,23 @@ get_classcodes <- function(x, from = NULL) {
   # Possible inherited classcodes
   inh <- attr(from, "classcodes")
 
-  if      (is.classcodes(x))
+  if      (is.classcodes(x)) {
     x
-  else if (is.character(x) && exists(x, envir = .GlobalEnv))
+  } else if (is.character(x) && exists(x, envir = .GlobalEnv)) {
     get(x)
-  else if (is.character(x) &&
+  } else if (is.character(x) &&
            x %in% utils::data(package = "classifyr")$results[, "Item"]) {
     utils::data(list = x, package = "classifyr", envir = environment())
     return(get(x, envir = environment()))
-  } else if (is.null(x) && is.classcodes(inh))
+  } else if (is.null(x) && is.classcodes(inh)) {
     inh
-  else if (is.null(x) &&
+  } else if (is.null(x) &&
            inh %in% utils::data(package = "classifyr")$results[, "Item"]) {
     utils::data(list = inh, package = "classifyr", envir = environment())
     return(get(inh, envir = environment()))
-  }
-  else
+  } else {
     stop("No classcodes object found!")
+  }
 }
 
 # ifelse if package exists or not
@@ -40,8 +40,8 @@ rbind.fill <- function(...) {
   dots <- list(...)
 
   NAs <- function(a, b) {
-    missing <- setdiff(names(b), names(a))
-    z <- matrix(NA, nrow(a), length(missing))
+    missing     <- setdiff(names(b), names(a))
+    z           <- matrix(NA, nrow(a), length(missing))
     colnames(z) <- missing
     as.data.frame(z, stringsAsFactors = FALSE)
   }
@@ -83,4 +83,6 @@ start_suggests <- function()
       paste(s[!available], collapse = "\n * "))
 }
 
+#' @import data.table
+NULL
 

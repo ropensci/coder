@@ -20,11 +20,11 @@
 #'
 #' @export
 as.data.frame.classified <- function(x, ...) {
-  y <- NextMethod()
-  id <- attr(x, "id")
-  y[[id]] <- row.names(x)
+  y            <- NextMethod()
+  id           <- attr(x, "id")
+  y[[id]]      <- row.names(x)
   row.names(y) <- NULL
-  y <- y[, c(id, setdiff(names(y), id))]
+  y            <- y[, c(id, setdiff(names(y), id))]
   attr(y, "classcodes") <- attr(x, "classcodes")
   y
 }

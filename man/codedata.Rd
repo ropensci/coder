@@ -3,19 +3,19 @@
 \name{codedata}
 \alias{codedata}
 \alias{as.codedata}
-\alias{as.codedata.data.table}
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, ...)
-
-\method{as.codedata}{data.table}(x, ..., setkeys = FALSE)
+as.codedata(x, y = NULL, ..., setkeys = FALSE)
 
 is.codedata(x)
 }
 \arguments{
 \item{x}{data frame with columns "id", "date" and "code" or
-object of class \code{\link{pardata}}.}
+object data in format used by NPR (see below).}
+
+\item{y}{additional (optional) NPR data set if \code{x} contains data
+from NPR data. (see below).}
 
 \item{...}{by default, codes for future dates or dates before "1970-01-01"
 are ignored (with a warning). Specify \code{to, from}
@@ -27,13 +27,10 @@ but it could be beneficial for later use of the object.}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object
-  with mandatory columns:
-\describe{
-\item{id}{individual id}
-\item{date}{date when code were valid}
-\item{code}{code}
-}
-Additional columns might exist (preserved from \code{x})
+  with mandatory columns: "id" (individual id), "code" and
+  "date" (when the code was valid).
+  Possible additional columns from \code{x} are preserved
+  if data is not recognised as coming from NPR.
 
 \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 \code{FALSE} otherwise.
@@ -42,6 +39,20 @@ Additional columns might exist (preserved from \code{x})
 \description{
 Code data
 }
+\section{Data from NPR}{
+
+
+Data from the Swedish Patient Register can be recognised as such if
+argument \code{x} contains columns named \code{lpnr, indatum} AND
+\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}.
+
+If so happens, this data is transformed into the ordinary codedata format
+and returned as such.
+Also, NPR data often comes in the form of two separate data sets, one for
+inpatient and one for outpatient care. It is therefore possible to supply
+an additional data set by argument \code{y}.
+}
+
 \examples{
 
 x <- data.frame(id = 1, date = as.Date("2017-02-02"), code = "a")
