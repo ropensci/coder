@@ -45,14 +45,16 @@
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'
-as.codedata <- function(x, y = NULL, ..., setkeys = FALSE) {
+as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
 
-  if (!is.null(y)) x <- rbind(x, y)
-  names(x) <- tolower(names(x))
   if (!is.data.table(x)) x <- as.data.table(x)
+  if (!is.null(y)) {
+    if (!is.data.table(y)) y <- as.data.table(y)
+    x <- rbind(x, y, fill = TRUE)
+  }
+  setnames(x, names(x), tolower(names(x)))
 
   x <- fix_possible_pardata(x)
-  check_codedata(x)
 
   # limit to specified dates if given
   x <- x[dates_within(date, ...)]
@@ -86,19 +88,30 @@ fix_possible_pardata <- function(x) {
     return(x)
   }
 
-  x <- x[, c(nms, nms_codes), with = FALSE]
+  # Remove columns not needed by referenece
+  x[, setdiff(names(x), c(nms, nms_codes)) := NULL]
 
   # Transform to codedata format
-  variable <- hdia <- code <-  NULL # silly workaround to avoid CHECK note
-  x <-
-    melt(
-      x,
-      measure.vars  = nms_codes,
-      value.name    = "code"
-    )[variable == "op1" | variable == "hdia" | code != "",
-      hdia := as.character(variable) == "hdia"]
-  setnames(x, c("lpnr", "indatum"), c("id", "date"))
-  x
+  # silly workaround to avoid CHECK note
+  variable <- date <- hdia <- code <- indatum <- NULL
+  setnames(x, "lpnr", "id")
+  melt(
+    x,
+    measure.vars  = nms_codes,
+    value.name    = "code",
+    na.rm         = TRUE
+  )[,
+    date          := as.Date(indatum, format = "%Y-%m-%d")
+  ][,
+    indatum       := NULL
+  ][
+    variable      == "op1"  |
+    variable      == "hdia" |
+    code          != "",
+    hdia          := as.character(variable) == "hdia"
+  ][
+    code          != ""
+  ]
 }
 
 

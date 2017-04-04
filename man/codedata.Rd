@@ -6,7 +6,7 @@
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, y = NULL, ..., setkeys = FALSE)
+as.codedata(x, y = NULL, ..., setkeys = TRUE)
 
 is.codedata(x)
 }
