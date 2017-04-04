@@ -89,7 +89,9 @@ fix_possible_pardata <- function(x) {
   }
 
   # Remove columns not needed by referenece
-  x[, setdiff(names(x), c(nms, nms_codes)) := NULL]
+  rem <- setdiff(names(x), c(nms, nms_codes))
+  if (!identical(rem, character(0)))
+    x[, rem := NULL]
 
   # Transform to codedata format
   # silly workaround to avoid CHECK note
