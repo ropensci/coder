@@ -11,8 +11,8 @@ as.codedata(x, y = NULL, ..., setkeys = TRUE)
 is.codedata(x)
 }
 \arguments{
-\item{x}{data frame with columns "id", "date" and "code" or
-object data in format used by NPR (see below).}
+\item{x}{data frame with columns "id", "code_date" and "code" or
+object in format used by NPR (see below).}
 
 \item{y}{additional (optional) NPR data set if \code{x} contains data
 from NPR data. (see below).}
@@ -55,11 +55,15 @@ an additional data set by argument \code{y}.
 
 \examples{
 
-x <- data.frame(id = 1, date = as.Date("2017-02-02"), code = "a")
+x <- data.frame(
+  id = 1,
+  code_date = as.Date("2017-02-02"),
+  code = "a"
+)
 as.codedata(x)
 
 # Drop dates outside specified limits
-y <- data.frame(id = 2, date = as.Date("3017-02-02"), code = "b")
+y <- data.frame(id = 2, code_date = as.Date("3017-02-02"), code = "b")
 z <- rbind(x, y)
 as.codedata(z)
 

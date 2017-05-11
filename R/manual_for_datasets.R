@@ -79,7 +79,7 @@
 
 
 
-#' Classcodes for adverse events after hip arthroplasty based on ICD-10 codes
+#' Old classcodes for adverse events after hip arthroplasty based on ICD-10 codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
@@ -95,14 +95,13 @@
 #'     The (Swedish) National Board of Health and Welfare "Socialstyrelsen"}
 #' }
 #' @family default classcodes
-"hip_adverse_events_icd10"
+"hip_adverse_events_icd10_old"
 
 
 
-#' Classcodes for adverse events after knee arthroplasty based on ICD-10 codes
+#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
-#'
 #'
 #' Group names are prefixed by two letters as given by the reference.
 #' Two groups (DB and DM) are split into two due to different conditions.
@@ -126,11 +125,18 @@
 #' }
 #'
 #'
-#' @references Codes taken from p. 83 of the annual report 2016 from knee
-#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
+#' @references Codes for knee taken from p. 83 of the annual report 2016 from knee
+#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
+#' \code{hip_adverse_events_icd10} is a modified version for hips based on
+#' \code{knee_adverse_events_icd10}.
 #'
+#' @seealso \code{\link{hip_adverse_events_icd10_old}} for a now utdated version
+#' of hip adverse events.
+#'
+#' @aliases hip_adverse_events_icd10
 #' @family default classcodes
 "knee_adverse_events_icd10"
+
 
 
 #' Classcodes for adverse events after THA after hip fracture

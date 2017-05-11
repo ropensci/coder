@@ -5,7 +5,7 @@
 #                                                                              #
 ################################################################################
 
-context("par")
+context("codedata")
 
 N <- 1e3
 set.seed(1)
@@ -21,7 +21,7 @@ suppressMessages(
     expect_true(is.codedata(as.codedata(pardata)))
     expect_message(as.codedata(pardata))
     expect_equal(ncol(as.codedata(pardata)), 5)
-    expect_equal(nrow(as.codedata(pardata)), 15865)
+    expect_equal(nrow(as.codedata(pardata)), 15863)
     expect_error(as.codedata(iris))
   })
 )
@@ -42,3 +42,4 @@ test_that("Without suggested packages", {
 })
 
 start_suggests()
+

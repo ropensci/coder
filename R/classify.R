@@ -23,6 +23,10 @@
 #'   classify
 #' @param id name (as character) of variable in \code{x} to group id (for
 #'   example a patient id)
+#'   @param tech_names should technical column names be used? If \code{FALSE},
+#'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
+#'   these are changed to more technical names avoiding special characters and
+#'   are prefixed by the name of the classification scheme.
 #' @param ... used to pass arguments between methods
 #'
 #' @return Boolean matrix with one row for each element/row of \code{x} and
@@ -89,7 +93,7 @@ classify.default <- function(x, by, ...) {
 #' @export
 #' @rdname classify
 classify.data.frame <-
-  function(x, by, id = NULL, code = "code", ...) {
+  function(x, by, id = NULL, code = "code", tech_names = FALSE, ...) {
 
   .by <- by
   by <- get_classcodes(by)
@@ -146,9 +150,16 @@ classify.data.frame <-
   tapplyfun        <- ifep("Kmisc", Kmisc::tapply_, tapply)
   clm              <- apply(y[!uni, , drop = FALSE], 2, tapplyfun, idx, any)
 
+  # Change to technical colnames if desired
+  out <- rbind(clu, clm)
+  if (tech_names) {
+    colnames(out) <- paste(
+      .by, gsub("\\W", "_", tolower(colnames(out)), perl = TRUE), sep = "_")
+
+  }
   # Combine data from cases with one and more classes
   structure(
-    rbind(clu, clm),
+    out,
     classcodes = .by,
     id         = id,
     class      = c("classified", "matrix")

@@ -1,7 +1,8 @@
-#' Convert output from classify to data frame
+#' Convert output from classify to data frame or data.table
 #'
 #' Output from \code{\link{classify}} is given as a matrix.
-#' It is often convenient co convert this matrix to a data frame with
+#' It is often convenient co convert this matrix to a data frame or data.table
+#'  with
 #' a separate column for id instead of row names since this fits better with
 #' the philosophy of "tidyverse". The data frame format is however less optimal
 #' for working with large data sets, wherefore matrix output is used as default.
@@ -27,4 +28,13 @@ as.data.frame.classified <- function(x, ...) {
   y            <- y[, c(id, setdiff(names(y), id))]
   attr(y, "classcodes") <- attr(x, "classcodes")
   y
+}
+
+#' @export
+#' @rdname as.data.frame.classified
+as.data.table.classified <- function(x, ...) {
+  structure(
+    as.data.table(as.data.frame(x, ...)),
+    classcodes = attr(x, "classcodes")
+  )
 }

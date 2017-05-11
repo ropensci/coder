@@ -3,7 +3,8 @@
 \docType{data}
 \name{knee_adverse_events_icd10}
 \alias{knee_adverse_events_icd10}
-\title{Classcodes for adverse events after knee arthroplasty based on ICD-10 codes}
+\alias{hip_adverse_events_icd10}
+\title{Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 codes}
 \format{A data frame with 6 rows and 3 variables:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
@@ -34,13 +35,18 @@ Two special conditions are used (see the reference):
 }
 
 \references{
-Codes taken from p. 83 of the annual report 2016 from knee
-arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
+Codes for knee taken from p. 83 of the annual report 2016 from knee
+arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
+\code{hip_adverse_events_icd10} is a modified version for hips based on
+\code{knee_adverse_events_icd10}.
 }
 \seealso{
+\code{\link{hip_adverse_events_icd10_old}} for a now utdated version
+of hip adverse events.
+
 Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
-  \code{\link{hip_adverse_events_icd10}},
+  \code{\link{hip_adverse_events_icd10_old}},
   \code{\link{rxriskv}},
   \code{\link{tha_fracture_ae_icd10}},
   \code{\link{tha_fracture_ae_kva}}

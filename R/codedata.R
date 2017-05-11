@@ -1,7 +1,7 @@
 #' Code data
 #'
-#' @param x data frame with columns "id", "date" and "code" or
-#'   object data in format used by NPR (see below).
+#' @param x data frame with columns "id", "code_date" and "code" or
+#'   object in format used by NPR (see below).
 #' @param y additional (optional) NPR data set if \code{x} contains data
 #'  from NPR data. (see below).
 #' @param setkeys should keys be set for the data.table object?
@@ -37,28 +37,40 @@
 #'
 #' @examples
 #'
-#' x <- data.frame(id = 1, date = as.Date("2017-02-02"), code = "a")
+#' x <- data.frame(
+#'   id = 1,
+#'   code_date = as.Date("2017-02-02"),
+#'   code = "a"
+#' )
 #' as.codedata(x)
 #'
 #' # Drop dates outside specified limits
-#' y <- data.frame(id = 2, date = as.Date("3017-02-02"), code = "b")
+#' y <- data.frame(id = 2, code_date = as.Date("3017-02-02"), code = "b")
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'
 as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
+  code_date <- INDATUM <- NULL # Fix for R Check
 
-  if (!is.data.table(x)) x <- as.data.table(x)
+  if (!is.data.table(x)) {
+    x <- as.data.table(x)
+  }
+  # If data from PAR, use INDATUM as code_date
+  if ("INDATUM" %in% names(x)) {
+    setnames(x, "INDATUM", "code_date")
+  }
+  x <- x[dates_within(code_date, ...)]
   if (!is.null(y)) {
+    # Assume we have NPR-data
     if (!is.data.table(y)) y <- as.data.table(y)
-    x <- rbind(x, y, fill = TRUE)
+    x <- rbind(x, y[dates_within(INDATUM, ...)], fill = TRUE)
+    y <- NULL # don't need it any more. Save space
   }
   setnames(x, names(x), tolower(names(x)))
 
   x <- fix_possible_pardata(x)
 
-  # limit to specified dates if given
-  x <- x[dates_within(date, ...)]
-  keys <- c("id", "date", "code")
+  keys <- c("id", "code_date", "code")
   if (setkeys) setkeyv(x, keys)
   unique(x, by = keys)
 }
@@ -91,11 +103,11 @@ fix_possible_pardata <- function(x) {
   # Remove columns not needed by referenece
   rem <- setdiff(names(x), c(nms, nms_codes))
   if (!identical(rem, character(0)))
-    x[, rem := NULL]
+    x[, (rem) := NULL]
 
   # Transform to codedata format
   # silly workaround to avoid CHECK note
-  variable <- date <- hdia <- code <- indatum <- NULL
+  variable <- code_date <- hdia <- code <- indatum <- NULL
   setnames(x, "lpnr", "id")
   melt(
     x,
@@ -103,7 +115,7 @@ fix_possible_pardata <- function(x) {
     value.name    = "code",
     na.rm         = TRUE
   )[,
-    date          := as.Date(indatum, format = "%Y-%m-%d")
+    code_date          := as.Date(indatum, format = "%Y-%m-%d")
   ][,
     indatum       := NULL
   ][
@@ -120,10 +132,10 @@ fix_possible_pardata <- function(x) {
 
 check_codedata <- function(x) {
   names(x) <- tolower(names(x))
-  if (!all(c("id", "date", "code") %in% names(x)))
-    stop("data frame must contain columns: id, date and code")
-  if (data.class(x[["date"]]) != "Date")
-    stop("Column 'date' is not of format 'Date'!")
+  if (!all(c("id", "code_date", "code") %in% names(x)))
+    stop("data frame must contain columns: id, code_date and code")
+  if (data.class(x[["code_date"]]) != "Date")
+    stop("Column 'code_date' is not of format 'Date'!")
 }
 
 

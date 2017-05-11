@@ -9,10 +9,9 @@ test_that("classify", {
     "metastatic cancer"
   )
   expect_is(classify(x, "elix_icd10"), "matrix")
-  expect_is(classify(x, "hip_adverse_events_icd10"), "matrix")
+  expect_is(classify(x, "hip_adverse_events_icd10_old"), "matrix")
   expect_error(
-    classify(
-      subset(x, select = -hdia), "hip_adverse_events_icd10", id = "name"),
+    classify(x, "hip_adverse_events_icd10", id = "name"),
     "Classification is conditioned on variables not found in the data set!"
   )
 })
@@ -25,13 +24,13 @@ test_that("classify", {
 ################################################################################
 
 elix <- classify(x, "elix_icd10")
-adv  <- classify(x, "hip_adverse_events_icd10")
+adv  <- classify(x, "hip_adverse_events_icd10_old")
 
 stop_suggests()
 
 test_that("Without suggested packages", {
   expect_equal(classify(x, "elix_icd10"), elix)
-  expect_equal(classify(x, "hip_adverse_events_icd10"), adv)
+  expect_equal(classify(x, "hip_adverse_events_icd10_old"), adv)
 })
 
 start_suggests()

@@ -3,7 +3,7 @@ context("index")
 x <-
   codify(ex_people, ex_icd10, id = "name",
     date = "surgery", days = c(-365, 0)) %>%
-  classify("hip_adverse_events_icd10")
+  classify("hip_adverse_events_icd10_old")
 
 y <-
   codify(ex_people, ex_icd10, id = "name",
@@ -24,3 +24,4 @@ test_that("index", {
   expect_warning(index(y, "charlson", "charlson_icd10"),
     "Leukemia and lymphona not implemented and therefore ignored!")
 })
+

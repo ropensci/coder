@@ -2,9 +2,12 @@
 % Please edit documentation in R/as.data.frame.classified.R
 \name{as.data.frame.classified}
 \alias{as.data.frame.classified}
-\title{Convert output from classify to data frame}
+\alias{as.data.table.classified}
+\title{Convert output from classify to data frame or data.table}
 \usage{
 \method{as.data.frame}{classified}(x, ...)
+
+\method{as.data.table}{classified}(x, ...)
 }
 \arguments{
 \item{x}{output from \code{\link{classify}}
@@ -23,7 +26,8 @@ data frame with:
 }
 \description{
 Output from \code{\link{classify}} is given as a matrix.
-It is often convenient co convert this matrix to a data frame with
+It is often convenient co convert this matrix to a data frame or data.table
+ with
 a separate column for id instead of row names since this fits better with
 the philosophy of "tidyverse". The data frame format is however less optimal
 for working with large data sets, wherefore matrix output is used as default.

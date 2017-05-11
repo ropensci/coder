@@ -10,7 +10,8 @@ classify(x, by, ...)
 
 \method{classify}{default}(x, by, ...)
 
-\method{classify}{data.frame}(x, by, id = NULL, code = "code", ...)
+\method{classify}{data.frame}(x, by, id = NULL, code = "code",
+  tech_names = FALSE, ...)
 }
 \arguments{
 \item{x}{object with elements to classify (often the output from
@@ -21,7 +22,11 @@ classify(x, by, ...)
 \item{...}{used to pass arguments between methods}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
-example a patient id)}
+example a patient id)
+@param tech_names should technical column names be used? If \code{FALSE},
+colnames are taken directly from group names of \code{by}, if \code{TRUE},
+these are changed to more technical names avoiding special characters and
+are prefixed by the name of the classification scheme.}
 
 \item{code}{name (as character) of variable in \code{x} containing codes to
 classify}

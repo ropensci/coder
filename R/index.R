@@ -36,7 +36,7 @@
 #' # Find patients with adverse events after hip surgery
 #' codify(ex_people, ex_icd10, id = "name",
 #'     date = "surgery", days = c(-365, 0)) %>%
-#'   classify("hip_adverse_events_icd10") %>%
+#'   classify("hip_adverse_events_icd10_old") %>%
 #'   index()
 #'
 #' @name index
@@ -58,6 +58,10 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
   # Find classcodes object (NULL is valid if no weights supplied)
   from <- get_classcodes(from, x)
 
+  # clean text to compare colnames if tech_names used
+  regularize <- function(x) {
+    gsub("\\W", "_", tolower(x), perl = TRUE)
+  }
   # index is either the simple rowsum or made by
   # vector multiplication of weights
   ans <-
@@ -68,7 +72,9 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
       stop(gettextf("'%s' is not a column of the classcodes object!", by))
-    else if (!setequal(colnames(x), from$group))
+    else if (
+      !all(mapply(grepl, regularize(from$group), regularize(colnames(x)))))
+      #!setequal(colnames(x), from$group))
       stop("Data non consistent with specified classcodes!")
     else
       c(x %*% from[[by]])

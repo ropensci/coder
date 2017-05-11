@@ -31,6 +31,47 @@
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 codify <- function(x, from, id = "id", date, days = NULL) {
+  if (!is.data.table(x))
+    x <- data.table(x)
+  setnames(x, date, "date")
+  if (!is.codedata(from))
+    from <- as.codedata(from)
+
+  # Silly work around to avoid check notes
+  in_period <- code_date <- NULL
+  x_id_date <- x[, c(id, "date"), with = FALSE] # To avoid unique on all data
+  out <-
+    merge(x_id_date, from, by.x = id, by.y = "id", all.x = TRUE, allow.cartesian = TRUE)[,
+      in_period :=
+        if (is.null(days)) TRUE
+        else
+          between(
+            as.numeric(code_date),
+            as.numeric(date) + min(days),
+            as.numeric(date) + max(days)
+          )
+    ][
+      (!in_period),
+      `:=`(
+        code      = NA,
+        code_date = NA
+      )
+    ][
+      ,
+      # If there are some codes within the period, keep them all
+      # If there are no codes within the period,
+      # keep only the first as a marker
+      if (any(in_period, na.rm = TRUE)) .SD[in_period] else head(.SD, 1),
+      by = c(id, "date")
+    ]
+  out <- merge(unique(out), x, by = c(id, "date")) # to get back all data
+  setnames(x, "date", date)
+  structure(out, id = id)
+}
+
+#' @export
+#' @rdname codify
+codify2 <- function(x, from, id = "id", date, days = NULL) {
   x_name <- deparse(substitute(x))
 
   if (!is.data.frame(x))

@@ -4,7 +4,7 @@
 \alias{add}
 \title{Add classification data to data frame with case data}
 \usage{
-add(what, to, from, id, date, days = NULL, ind = NULL)
+add(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE)
 }
 \arguments{
 \item{what}{to add? classification scheme of type classcodes to classify by}
