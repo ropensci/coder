@@ -74,7 +74,7 @@ start_suggests <- function()
 
 
 .onAttach <- function(libname, pkgname) {
-  s <- c("dplyr", "Kmisc", "fastmatch")
+  s <- c("dplyr", "Kmisc")
   available <- vapply(s, requireNamespace, logical(1), quietly = TRUE)
   if (!all(available))
     packageStartupMessage(

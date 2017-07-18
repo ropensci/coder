@@ -2,12 +2,9 @@
 % Please edit documentation in R/codify.R
 \name{codify}
 \alias{codify}
-\alias{codify2}
 \title{codify elements}
 \usage{
 codify(x, from, id = "id", date, days = NULL)
-
-codify2(x, from, id = "id", date, days = NULL)
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
