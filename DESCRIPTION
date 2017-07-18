@@ -29,7 +29,6 @@ Suggests:
   Kmisc,
   R.rsp,
   testthat,
-  tidyr,
   covr,
   knitr,
   rmarkdown
