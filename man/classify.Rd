@@ -22,14 +22,15 @@ classify(x, by, ...)
 \item{...}{used to pass arguments between methods}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
-example a patient id)
-@param tech_names should technical column names be used? If \code{FALSE},
-colnames are taken directly from group names of \code{by}, if \code{TRUE},
-these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.}
+example a patient id)}
 
 \item{code}{name (as character) of variable in \code{x} containing codes to
 classify}
+
+\item{tech_names}{should technical column names be used? If \code{FALSE},
+colnames are taken directly from group names of \code{by}, if \code{TRUE},
+these are changed to more technical names avoiding special characters and
+are prefixed by the name of the classification scheme.}
 }
 \value{
 Boolean matrix with one row for each element/row of \code{x} and

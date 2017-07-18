@@ -38,6 +38,7 @@ add <- function(what, to, from, id, date, days = NULL, ind = NULL, tech_names = 
 
   to$id_chr <- as.character(to[[id]]) # To be able to merge
   out       <- merge(to, as.data.table(cl), by.x = "id_chr", by.y = id)
+  id_chr <- NULL # to avoid check note
   to[, id_chr := NULL] # Don't need it any more
 
   # Add index named ind if ind not FALSE
@@ -55,5 +56,5 @@ add <- function(what, to, from, id, date, days = NULL, ind = NULL, tech_names = 
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = "id_chr", by.y = id)
   }
-  out[, id_chr := NULL]
+  out[, id_chr := NULL][]
 }

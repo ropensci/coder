@@ -37,11 +37,18 @@ codify <- function(x, from, id = "id", date, days = NULL) {
   if (!is.codedata(from))
     from <- as.codedata(from)
 
+  # id column must be character to merge with columkn from codedata
+  if (!is.character(x[[id]]) && !is.factor(x[[id]])) {
+    x[[id]] <- as.character(x[[id]])
+    warning(id, " coerced to character!")
+  }
+
   # Silly work around to avoid check notes
   in_period <- code_date <- NULL
   x_id_date <- x[, c(id, "date"), with = FALSE] # To avoid unique on all data
   out <-
-    merge(x_id_date, from, by.x = id, by.y = "id", all.x = TRUE, allow.cartesian = TRUE)[,
+    merge(x_id_date, from, by.x = id, by.y = "id",
+          all.x = TRUE, allow.cartesian = TRUE)[,
       in_period :=
         if (is.null(days)) TRUE
         else
@@ -61,13 +68,19 @@ codify <- function(x, from, id = "id", date, days = NULL) {
       # If there are some codes within the period, keep them all
       # If there are no codes within the period,
       # keep only the first as a marker
-      if (any(in_period, na.rm = TRUE)) .SD[in_period] else head(.SD, 1),
+      if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
       by = c(id, "date")
     ]
   out <- merge(unique(out), x, by = c(id, "date")) # to get back all data
   setnames(x, "date", date)
   structure(out, id = id)
 }
+
+
+
+
+
+
 
 #' @export
 #' @rdname codify

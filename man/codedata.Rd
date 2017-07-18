@@ -27,7 +27,8 @@ but it could be beneficial for later use of the object.}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object
-  with mandatory columns: "id" (individual id), "code" and
+  with mandatory columns: "id" (individual id coerced to character),
+  "code" and
   "date" (when the code was valid).
   Possible additional columns from \code{x} are preserved
   if data is not recognised as coming from NPR.

@@ -23,7 +23,7 @@
 #'   classify
 #' @param id name (as character) of variable in \code{x} to group id (for
 #'   example a patient id)
-#'   @param tech_names should technical column names be used? If \code{FALSE},
+#' @param tech_names should technical column names be used? If \code{FALSE},
 #'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
 #'   these are changed to more technical names avoiding special characters and
 #'   are prefixed by the name of the classification scheme.
@@ -149,6 +149,11 @@ classify.data.frame <-
   idx              <- as.factor(ids[!uni])
   tapplyfun        <- ifep("Kmisc", Kmisc::tapply_, tapply)
   clm              <- apply(y[!uni, , drop = FALSE], 2, tapplyfun, idx, any)
+  # apply returns a vector in casae we have only one patient.
+  # We then lose the rowname and have to turn it back
+  if (is.vector(clm)) {
+    clm <- matrix(clm, 1, dimnames = list(idx[1]))
+  }
 
   # Change to technical colnames if desired
   out <- rbind(clu, clm)

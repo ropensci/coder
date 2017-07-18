@@ -22,6 +22,11 @@ Object with code data for which \code{\link{is.codedata}} is \code{TRUE}}
 no index should be calculated, otherwise a value passed to argument \code{by}
 in function \code{\link{index}}. It is here also possible to include several
 indices as a character vector.}
+
+\item{tech_names}{should technical column names be used? If \code{FALSE},
+colnames are taken directly from group names of \code{by}, if \code{TRUE},
+these are changed to more technical names avoiding special characters and
+are prefixed by the name of the classification scheme.}
 }
 \value{
 data frame with all data from input data frame \code{to} combined

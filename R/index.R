@@ -72,9 +72,7 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
       stop("Argument 'from' is missing!")
     else if (!(by %in% names(from)))
       stop(gettextf("'%s' is not a column of the classcodes object!", by))
-    else if (
-      !all(mapply(grepl, regularize(from$group), regularize(colnames(x)))))
-      #!setequal(colnames(x), from$group))
+    else if (!setequal(regularize(from$group), regularize(colnames(x))))
       stop("Data non consistent with specified classcodes!")
     else
       c(x %*% from[[by]])
