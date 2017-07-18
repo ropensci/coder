@@ -147,8 +147,9 @@ classify.data.frame <-
 
   # Case for patients with multilpe (ICD) codes (slower but necessary)
   idx              <- as.factor(ids[!uni])
-  tapplyfun        <- ifep("Kmisc", Kmisc::tapply_, tapply)
-  clm              <- apply(y[!uni, , drop = FALSE], 2, tapplyfun, idx, any)
+  # tply is a simplified and therefore faster version of tapply
+  tply             <- function(X) unlist(lapply(split(X, idx), any))
+  clm              <- apply(y[!uni, , drop = FALSE], 2, tply)
   # apply returns a vector in casae we have only one patient.
   # We then lose the rowname and have to turn it back
   if (is.vector(clm)) {
