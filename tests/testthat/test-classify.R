@@ -25,12 +25,3 @@ test_that("classify", {
 
 elix <- classify(x, "elix_icd10")
 adv  <- classify(x, "hip_adverse_events_icd10_old")
-
-stop_suggests()
-
-test_that("Without suggested packages", {
-  expect_equal(classify(x, "elix_icd10"), elix)
-  expect_equal(classify(x, "hip_adverse_events_icd10_old"), adv)
-})
-
-start_suggests()

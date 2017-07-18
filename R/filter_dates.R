@@ -35,7 +35,7 @@ filter_dates.data.frame <- function(x, ...) {
   if (any(!ftr, na.rm = TRUE)) {
     warning("Dates outside specified limits dropped! ",
             "(Use argument 'limits' to override!)")
-    ifep("dplyr", dplyr::filter_(x, ~ ftr | is.na(ftr)), x[ftr | is.na(ftr), ])
+    x[(ftr) | is.na(ftr), ]
   } else {
     x
   }

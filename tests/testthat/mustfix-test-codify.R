@@ -61,30 +61,3 @@ ex_icd10 <- classifyr::ex_icd10
 
 x <- codify(ex_people[1, ], ex_icd10, id = "name",
        date = "surgery", days = c(-Inf, Inf))
-
-stop_suggests()
-
-x2 <- codify(ex_people[1, ], ex_icd10, id = "name",
-            date = "surgery", days = c(-Inf, Inf))
-
-test_that("Without suggested packages", {
-  expect_equal(x, x2)
-
-
-  # still works with no cases outside period
-  expect_equal(
-    nrow(
-      codify(
-        data.frame(id = 1, date = as.Date("2016-08-23")),
-        as.codedata(
-          data.frame(id = 1, date = as.Date("2016-01-01"), code = "hej")
-        ),
-        date = "date",
-        days = c(-1, 0)
-      )
-    ),
-    1
-  )
-})
-
-start_suggests()

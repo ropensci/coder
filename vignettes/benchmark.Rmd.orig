@@ -38,8 +38,8 @@ It is therefore not considered further within this comparison.
 # Speed comparison
 
 Calling functions from both `icd` and `comorbidities.icd10` by full reference (e. g. `package::fun`)
-is problematic due to internal use of non standard evaluation. All compared packages are therefore first
-attached (by `library`):
+is problematic due to internal use of non standard evaluation. All compared packages are therefore
+attached:
 
 
 ```{r}

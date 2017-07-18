@@ -35,26 +35,23 @@ Calculate index based on classification scheme
 }
 \examples{
 
-# Make the pipe operator available
-`\%>\%` <- dplyr::`\%>\%`
-
 # Calculate Elixhauser comorbidity index
-classify(c("C80", "I20"), "elix_icd10") \%>\%
-  index()
+cl <- classify(c("C80", "I20"), "elix_icd10")
+index(cl)
 
 # Calculate Charlson-index using original weights
-classify(c("C80", "I21"), "charlson_icd10") \%>\%
-  index("quan_original")
+cl <- classify(c("C80", "I21"), "charlson_icd10")
+index(cl, "quan_original")
 
 # Calculate Charlson-index using updated weights
-classify(c("C80", "I21"), "charlson_icd10") \%>\%
-  index("quan_updated")
+cl <- classify(c("C80", "I21"), "charlson_icd10")
+index(cl, "quan_updated")
 
 
 # Find patients with adverse events after hip surgery
-codify(ex_people, ex_icd10, id = "name",
-    date = "surgery", days = c(-365, 0)) \%>\%
-  classify("hip_adverse_events_icd10_old") \%>\%
-  index()
+co <- codify(ex_people, ex_icd10, id = "name",
+    date = "surgery", days = c(-365, 0))
+cl <- classify(co, "hip_adverse_events_icd10_old")
+index(cl)
 
 }

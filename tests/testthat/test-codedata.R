@@ -1,4 +1,3 @@
-
 ################################################################################
 #                                                                              #
 #                               Testing NPR data                               #
@@ -25,21 +24,3 @@ suppressMessages(
     expect_error(as.codedata(iris))
   })
 )
-
-################################################################################
-#                                                                              #
-#                       Test without suggested packages                        #
-#                                                                              #
-################################################################################
-
-cd <- as.codedata(pardata)
-
-stop_suggests()
-cd2 <- as.codedata(pardata)
-
-test_that("Without suggested packages", {
-  expect_equal(dim(cd), dim(cd2))
-})
-
-start_suggests()
-

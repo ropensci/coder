@@ -1,7 +1,7 @@
 Package: classifyr
 Type: Package
 Title: Classification of Cases into Deterministic Categories
-Version: 0.3.4
+Version: 0.4.0
 Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Functionality of the package relies on three central objects.
@@ -14,22 +14,14 @@ Description: Functionality of the package relies on three central objects.
   based on their ICD-10-codes for Charlson and Elixhauser comorbidity indices,
   RxRisk-V, adverse events for patients with Total Hip Arthroplasty
   and more).
-  It is also easy to introduce new classification schemes to use with arbitrary
+  It is easy to introduce new classification schemes to use with arbitrary
   code data.
-  The package works in two implicit versions: a bare bone version without any
-  additional packages required, and  a faster version relying on suggested
-  packages, producing the same results but considerably faster
-  (highly recommended for large data sets).
-  All functions are designed to fit nicely within 'tidyverse'.
 License: GPL-2
 Depends: R (>= 2.10)
 Suggests:
-  dplyr (>= 0.4.3),
-  R.rsp,
-  testthat,
   covr,
-  knitr,
-  rmarkdown
+  R.rsp,
+  testthat
 Imports:
   data.table
 LazyData: TRUE
