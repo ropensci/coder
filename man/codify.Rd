@@ -4,7 +4,7 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date, days = NULL)
+codify(x, from, id = "id", date, days = NULL, .copy = NA)
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
@@ -26,6 +26,13 @@ indices, while \code{c(0, 30)} gives a window of 30 days after \code{date},
 which might be used for calculating adverse events after a surgical
 procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
 \code{NULL} means no limitations at all.}
+
+\item{.copy}{Should the object be copied internally by \code{\link{copy}}?
+\code{NA} (by default) means that objects smaller than 1 Gb are copied.
+If the size is larger, the argument must be set explicitly. Set \code{TRUE}
+to make copies regardless of object size. This is recomended if enough RAM
+is available. If set to \code{FALSE}, calculations might be carried out
+but the object will be changed by reference.}
 }
 \value{
 Object of class \code{tbl_df} with columns corresponding to \code{x}

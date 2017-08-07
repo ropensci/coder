@@ -65,14 +65,16 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
     if (is.null(by)) {
       message("index calculated as number of relevant categories")
       rowSums(x)
-    } else if (is.null(from))
+    } else if (is.null(from)) {
       stop("Argument 'from' is missing!")
-    else if (!(by %in% names(from)))
+    } else if (!(by %in% names(from))) {
       stop(gettextf("'%s' is not a column of the classcodes object!", by))
-    else if (!setequal(regularize(from$group), regularize(colnames(x))))
+    } else if (!all(vapply(regularize(from$group),
+      function(y) any(grepl(y, regularize(colnames(x)))), logical(1)))) {
       stop("Data non consistent with specified classcodes!")
-    else
+    } else {
       c(x %*% from[[by]])
+    }
 
   # Needs further development!
   if (identical(from, classifyr::charlson_icd10) &&

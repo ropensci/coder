@@ -6,7 +6,7 @@
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, y = NULL, ..., setkeys = TRUE)
+as.codedata(x, y = NULL, ..., .setkeys = TRUE, .copy = NA)
 
 is.codedata(x)
 }
@@ -21,9 +21,16 @@ from NPR data. (see below).}
 are ignored (with a warning). Specify \code{to, from}
 (as passed to \code{\link{filter_dates}}) to override.}
 
-\item{setkeys}{should keys be set for the data.table object?
+\item{.setkeys}{should keys be set for the data.table object?
 To initially set the key for a large data set can be slow
 but it could be beneficial for later use of the object.}
+
+\item{.copy}{Should the object be copied internally by \code{\link{copy}}?
+\code{NA} (by default) means that objects smaller than 1 Gb are copied.
+If the size is larger, the argument must be set explicitly. Set \code{TRUE}
+to make copies regardless of object size. This is recomended if enough RAM
+is available. If set to \code{FALSE}, calculations might be carried out
+but the object will be changed by reference.}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object

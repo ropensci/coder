@@ -26,9 +26,6 @@
 #'   id = "name", date = "surgery")
 add <- function(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE) {
 
-  # Save name of object for later use
-  .what <- gsub("\"", "", deparse(substitute(what)))
-
   if (!is.data.table(to)) {
     to <- as.data.table(to)
   }
@@ -51,7 +48,7 @@ add <- function(what, to, from, id, date, days = NULL, ind = NULL, tech_names = 
     ind_names   <- if (identical(ind, list(NULL))) "index" else ind
     if (tech_names) {
       ind_names <- paste0(
-        .what, "_index_", gsub("\\W", "_", tolower(ind_names), perl = TRUE))
+        attr(cl, "classcodes"), "_index_", gsub("\\W", "_", tolower(ind_names), perl = TRUE))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = "id_chr", by.y = id)

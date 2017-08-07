@@ -1,10 +1,11 @@
 #' Code data
 #'
+#' @inheritParams copybig
 #' @param x data frame with columns "id", "code_date" and "code" or
 #'   object in format used by NPR (see below).
 #' @param y additional (optional) NPR data set if \code{x} contains data
 #'  from NPR data. (see below).
-#' @param setkeys should keys be set for the data.table object?
+#' @param .setkeys should keys be set for the data.table object?
 #' To initially set the key for a large data set can be slow
 #' but it could be beneficial for later use of the object.
 #' @param ... by default, codes for future dates or dates before "1970-01-01"
@@ -50,7 +51,7 @@
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'
-as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
+as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
   code_date <- indatum <- NULL # Fix for R Check
 
   if (!is.data.table(x)) {
@@ -64,7 +65,7 @@ as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
     y <- NULL # don't need it any more. Delete to Save space
   }
 
-  x <- fix_possible_pardata(x)
+  x <- fix_possible_pardata(x, .copy)
   x <- x[dates_within(code_date, ...)]
 
 
@@ -75,7 +76,7 @@ as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
   }
 
   keys <- c("id", "code_date", "code")
-  if (setkeys) setkeyv(x, keys)
+  if (.setkeys) setkeyv(x, keys)
   unique(x, by = keys)
 }
 
@@ -83,7 +84,9 @@ as.codedata <- function(x, y = NULL, ..., setkeys = TRUE) {
 
 # transform possible NPR data if reconised as such,
 # otherwise return as is
-fix_possible_pardata <- function(x) {
+fix_possible_pardata <- function(x, .copy = NA) {
+
+  x <- copybig(x, .copy)
 
   names(x) <- tolower(names(x))
   all_names <- function(xnm) all(xnm %in% names(x))
@@ -112,25 +115,35 @@ fix_possible_pardata <- function(x) {
 
   # Transform to codedata format
   # silly workaround to avoid CHECK note
-  variable <- code_date <- hdia <- code <- indatum <- NULL
+  variable <- code_date <- hdia <- code <- indatum <- utdatum <- NULL
   setnames(x, "lpnr", "id")
-  melt(
-    x,
-    measure.vars  = nms_codes,
-    value.name    = "code",
-    na.rm         = TRUE
-  )[,
-    code_date          := as.Date(indatum, format = "%Y-%m-%d")
-  ][,
-    indatum       := NULL
-  ][
-    variable      == "op1"  |
-    variable      == "hdia" |
-    code          != "",
-    hdia          := as.character(variable) == "hdia"
-  ][
-    code          != ""
-  ]
+
+  # Will get warning if utdatum does not exist, but we don't need to see it
+  suppressWarnings(
+    melt(
+      x,
+      measure.vars  = nms_codes,
+      value.name    = "code",
+      na.rm         = TRUE
+    )[,
+      code_date     :=
+        as.Date(
+          # For out-patient data, use 'indatum' (since it is the only one that exist),
+          # for in-patient-data use 'utdatum' (since it is more relevant)
+          if (!is.null(utdatum)) utdatum else indatum,
+          format = "%Y-%m-%d"
+        )
+    ][,
+      c("indatum", "utdatum") := NULL
+    ][
+      variable      == "op1"  |
+      variable      == "hdia" |
+      code          != "",
+      hdia          := as.character(variable) == "hdia"
+    ][
+      code          != ""
+    ]
+  )
 }
 
 

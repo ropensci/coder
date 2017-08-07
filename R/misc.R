@@ -33,3 +33,28 @@ get_classcodes <- function(x, from = NULL) {
 #' @import data.table
 NULL
 
+
+#' Decide if large objects should be copied
+#'
+#' @param x object (potentially of large size)
+#' @param .copy Should the object be copied internally by \code{\link{copy}}?
+#' \code{NA} (by default) means that objects smaller than 1 Gb are copied.
+#' If the size is larger, the argument must be set explicitly. Set \code{TRUE}
+#' to make copies regardless of object size. This is recomended if enough RAM
+#' is available. If set to \code{FALSE}, calculations might be carried out
+#' but the object will be changed by reference.
+#'
+#' @return Either \code{x} unchanged, or a fresh copy of \code{x}.
+copybig <- function(x, .copy = NA) {
+  # Copy x if < 1 Gb
+  # Require explicit specification for large objects
+  big_x <- utils::object.size(x) > 2 ^ 30
+  if (isTRUE(.copy) || (is.na(.copy) && !big_x)) {
+    x <- data.table::copy(x)
+    setnames(x, names(x), copy(names(x)))
+  } else if (is.na(.copy) && big_x) {
+    stop("Object is > 1 Gb. Set argument 'copy' to TRUE' or FALSE ",
+         "to declare wether it should be copied or changed by reference!")
+  }
+  x
+}

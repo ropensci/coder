@@ -1,5 +1,5 @@
 #' codify elements
-#'
+#' @inheritParams copybig
 #' @param x data.frame with at least two columns, one with case (patient)
 #'   identification (column name specified by argument \code{id}) and one with a
 #'   date of interest (column name specified by argument \code{date})
@@ -30,12 +30,15 @@
 #'
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
-codify <- function(x, from, id = "id", date, days = NULL) {
-  if (!is.data.table(x))
+codify <- function(x, from, id = "id", date, days = NULL, .copy = NA) {
+  if (!is.data.table(x)) {
     x <- data.table(x)
+  }
+  x <- copybig(x, .copy)
   setnames(x, date, "date")
-  if (!is.codedata(from))
-    from <- as.codedata(from)
+  if (!is.codedata(from)) {
+    from <- as.codedata(from, .copy = .copy)
+  }
 
   # id column must be character to merge with columkn from codedata
   if (!is.character(x[[id]]) && !is.factor(x[[id]])) {
