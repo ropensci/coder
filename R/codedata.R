@@ -15,14 +15,25 @@
 #' @section Data from NPR:
 #'
 #' Data from the Swedish Patient Register can be recognised as such if
-#' argument \code{x} contains columns named \code{lpnr, indatum} AND
-#' \code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}.
+#' argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
+#' (\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
 #'
-#' If so happens, this data is transformed into the ordinary codedata format
+#' Note that the name should be \code{indatuma/utdatuma} (with letter s
+#' suffixed). This is to distinguish the character date format \code{\%Y\%m\%d}
+#' from the SPSS date format sometimes stored in \code{indatum/utdatum}.
+#' If the SPSS date is the only one available, the help function
+#' \code{\link{spss2date}} can be used for transformation, but this must be done
+#' before using \code{as.codedata}.
+#'
+#' If the data set is of this format, it is transformed to the codedata format
 #' and returned as such.
 #' Also, NPR data often comes in the form of two separate data sets, one for
 #' inpatient and one for outpatient care. It is therefore possible to supply
-#' an additional data set by argument \code{y}.
+#' an additional data set by argument \code{y}. It is assumed that data from
+#' outpatient care has relevant dates stored as \code{utdatuma} and in-patient
+#' data has relevant dates named \code{utdatuma}. This is however not tested
+#' formally. If \code{utdatuma} is missing from the out-patient data,
+#' \code{indatuma} is used without warning.
 #'
 #' @return \code{as.codedata} returns a \code{\link{data.table}} object
 #'   with mandatory columns: "id" (individual id coerced to character),
@@ -52,7 +63,7 @@
 #' as.codedata(z)
 #'
 as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
-  code_date <- indatum <- NULL # Fix for R Check
+  code_date <- NULL # Fix for R Check
 
   if (!is.data.table(x)) {
     x <- as.data.table(x)
@@ -85,37 +96,49 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
 # transform possible NPR data if reconised as such,
 # otherwise return as is
 fix_possible_pardata <- function(x, .copy = NA) {
-
   x <- copybig(x, .copy)
 
   names(x) <- tolower(names(x))
   all_names <- function(xnm) all(xnm %in% names(x))
 
   # Data can contain either diagnose data (ICD) or KVA
-  nms      <- c("lpnr", "indatum")
-  nms_dia  <- c("hdia", paste0("bdia", 1:15))
+  nms_dia  <- c("hdia", paste0("bdia", 1:21))
   nms_op   <- paste0("op", 1:30)
 
   if (all_names(c(nms_dia, nms_op))) {
-    stop("Data looks like NPR data but contains both ICD and KVA codes!")
-  } else if (all_names(c(nms, nms_dia))) {
-    message("NPR data with diagnose (ICD) codes.")
-    nms_codes <- nms_dia
-  } else if (all_names(c(nms, nms_op))) {
-    message("NPR data with operation (KVA) codes.")
-    nms_codes <- nms_op
+    stop("NPR data contains both ICD and KVA codes!")
+
+    # Check if code columns recognized
   } else {
-    return(x)
+    if (all_names(nms_dia)) {
+      code      <- "diagnose (ICD)"
+      nms_codes <- nms_dia
+    } else if (all_names(nms_op)) {
+      code      <- "operation (KVA)"
+      nms_codes <- nms_op
+    }
+    # If lpnr and code columns exist, inform and proceed, otherwise break
+    if ("lpnr" %in% names(x) && exists("code")) {
+      message("Data recognized as NPR data with ", code, " codes.")
+    } else {
+      return(x)
+    }
+  }
+
+  # Simplified coalesce function from dplyr
+  coalesce <- function(x, y) {
+    x[is.na(x)] <- y[is.na(x)]
+    x
   }
 
   # Remove columns not needed by referenece
-  rem <- setdiff(names(x), c(nms, nms_codes))
+  rem <- setdiff(names(x), c("lpnr", "indatuma", "utdatuma", nms_codes))
   if (!identical(rem, character(0)))
     x[, (rem) := NULL]
 
   # Transform to codedata format
   # silly workaround to avoid CHECK note
-  variable <- code_date <- hdia <- code <- indatum <- utdatum <- NULL
+  variable <- code_date <- hdia <- code <- indatuma <- utdatuma <- NULL
   setnames(x, "lpnr", "id")
 
   # Will get warning if utdatum does not exist, but we don't need to see it
@@ -125,23 +148,22 @@ fix_possible_pardata <- function(x, .copy = NA) {
       measure.vars  = nms_codes,
       value.name    = "code",
       na.rm         = TRUE
-    )[,
-      code_date     :=
-        as.Date(
-          # For out-patient data, use 'indatum' (since it is the only one that exist),
-          # for in-patient-data use 'utdatum' (since it is more relevant)
-          if (!is.null(utdatum)) utdatum else indatum,
-          format = "%Y-%m-%d"
-        )
+    )[
+      code != "       " # Fixed character length, even if empty
     ][,
-      c("indatum", "utdatum") := NULL
-    ][
-      variable      == "op1"  |
-      variable      == "hdia" |
-      code          != "",
-      hdia          := as.character(variable) == "hdia"
-    ][
-      code          != ""
+      # For out-patient data, use 'indatuma' (since it is the only one that exist),
+      # for in-patient-data use 'utdatuma' (since it is more relevant)
+      # Use versions with suffix a since these are in better format
+      `:=`(
+        code_date =
+          as.Date(
+            if (is.null(utdatuma)) indatuma else coalesce(utdatuma, indatuma),
+            format = "%Y%m%d"
+          ),
+        hdia = variable == "hdia"
+      )
+    ][,
+      c("indatuma", "utdatuma") := NULL
     ]
   )
 }

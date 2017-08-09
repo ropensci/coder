@@ -50,11 +50,25 @@ copybig <- function(x, .copy = NA) {
   # Require explicit specification for large objects
   big_x <- utils::object.size(x) > 2 ^ 30
   if (isTRUE(.copy) || (is.na(.copy) && !big_x)) {
-    x <- data.table::copy(x)
-    setnames(x, names(x), copy(names(x)))
+    x2 <- data.table::copy(x)
+    setnames(x2, names(x), copy(names(x)))
+    return(x2)
   } else if (is.na(.copy) && big_x) {
     stop("Object is > 1 Gb. Set argument 'copy' to TRUE' or FALSE ",
          "to declare wether it should be copied or changed by reference!")
+  } else {
+    return(x)
   }
-  x
+}
+
+#' Convert SPSS date to valid date
+#'
+#' Dates from SPSS are stored as seconds from 1582-10-14.
+#' We convert to days from 1970-01-01
+#'
+#' @param x SPSS date
+#' @return Date
+#' @export
+spss2date <- function(x) {
+  as.Date(x / 86400, origin = "1582-10-14")
 }

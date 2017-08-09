@@ -51,14 +51,25 @@ Code data
 
 
 Data from the Swedish Patient Register can be recognised as such if
-argument \code{x} contains columns named \code{lpnr, indatum} AND
-\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}.
+argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
+(\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
 
-If so happens, this data is transformed into the ordinary codedata format
+Note that the name should be \code{indatuma/utdatuma} (with letter s
+suffixed). This is to distinguish the character date format \code{\%Y\%m\%d}
+from the SPSS date format sometimes stored in \code{indatum/utdatum}.
+If the SPSS date is the only one available, the help function
+\code{\link{spss2date}} can be used for transformation, but this must be done
+before using \code{as.codedata}.
+
+If the data set is of this format, it is transformed to the codedata format
 and returned as such.
 Also, NPR data often comes in the form of two separate data sets, one for
 inpatient and one for outpatient care. It is therefore possible to supply
-an additional data set by argument \code{y}.
+an additional data set by argument \code{y}. It is assumed that data from
+outpatient care has relevant dates stored as \code{utdatuma} and in-patient
+data has relevant dates named \code{utdatuma}. This is however not tested
+formally. If \code{utdatuma} is missing from the out-patient data,
+\code{indatuma} is used without warning.
 }
 
 \examples{
