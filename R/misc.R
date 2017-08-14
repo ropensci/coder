@@ -48,8 +48,9 @@ NULL
 copybig <- function(x, .copy = NA) {
   # Copy x if < 1 Gb
   # Require explicit specification for large objects
-  big_x <- utils::object.size(x) > 2 ^ 30
-  if (isTRUE(.copy) || (is.na(.copy) && !big_x)) {
+  # To calculate object size is slow and therefor only done if needed
+  if (isTRUE(.copy) ||
+    (is.na(.copy) && !(big_x <- utils::object.size(x) > 2 ^ 30))) {
     x2 <- data.table::copy(x)
     setnames(x2, names(x), copy(names(x)))
     return(x2)

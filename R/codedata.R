@@ -82,9 +82,10 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
 
   # Always save id as character. Even though it might be numeric,
   # it is easier if we always know its type.
-  if (!is.character(x$id)) {
-    x$id <- as.character(x$id)
-  }
+  x[, id := as.character(id)]
+  # if (!is.character(x$id)) {
+  #   x$id <- as.character(x$id)
+  # }
 
   keys <- c("id", "code_date", "code")
   if (.setkeys) setkeyv(x, keys)
@@ -98,11 +99,11 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
 fix_possible_pardata <- function(x, .copy = NA) {
   x <- copybig(x, .copy)
 
-  names(x) <- tolower(names(x))
+  setnames(x, names(x), tolower(names(x)))
   all_names <- function(xnm) all(xnm %in% names(x))
 
   # Data can contain either diagnose data (ICD) or KVA
-  nms_dia  <- c("hdia", paste0("bdia", 1:21))
+  nms_dia  <- c("hdia", paste0("bdia", 1:15))
   nms_op   <- paste0("op", 1:30)
 
   if (all_names(c(nms_dia, nms_op))) {
@@ -112,10 +113,14 @@ fix_possible_pardata <- function(x, .copy = NA) {
   } else {
     if (all_names(nms_dia)) {
       code      <- "diagnose (ICD)"
-      nms_codes <- nms_dia
+      # Both in- and outpatient data have at least 15 bdia but outpatient can
+      # have as many as 21, we identify this by regex.
+      nms_codes <- names(x)[grepl("[hb]dia", names(x))]
+      blanks    <- "       " # Missing codes
     } else if (all_names(nms_op)) {
       code      <- "operation (KVA)"
       nms_codes <- nms_op
+      blanks    <- "     "   # Missing codes
     }
     # If lpnr and code columns exist, inform and proceed, otherwise break
     if ("lpnr" %in% names(x) && exists("code")) {
@@ -136,6 +141,14 @@ fix_possible_pardata <- function(x, .copy = NA) {
   if (!identical(rem, character(0)))
     x[, (rem) := NULL]
 
+  # Cells without codes are populated with empty strings (of different lengths
+  # depending on type of code). Change to NA in order to remove automaticaly
+  # by melt below
+  x[, (nms_codes) :=
+    lapply(.SD, function(x) {x[x == blanks] <- NA_character_; x}),
+    .SDcols = nms_codes
+  ]
+
   # Transform to codedata format
   # silly workaround to avoid CHECK note
   variable <- code_date <- hdia <- code <- indatuma <- utdatuma <- NULL
@@ -148,9 +161,7 @@ fix_possible_pardata <- function(x, .copy = NA) {
       measure.vars  = nms_codes,
       value.name    = "code",
       na.rm         = TRUE
-    )[
-      code != "       " # Fixed character length, even if empty
-    ][,
+    )[,
       # For out-patient data, use 'indatuma' (since it is the only one that exist),
       # for in-patient-data use 'utdatuma' (since it is more relevant)
       # Use versions with suffix a since these are in better format
