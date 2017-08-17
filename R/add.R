@@ -15,6 +15,7 @@
 #' no index should be calculated, otherwise a value passed to argument \code{by}
 #' in function \code{\link{index}}. It is here also possible to include several
 #' indices as a character vector.
+#' @param sort logical. Should the result be sorted by the 'id' column?
 #'
 #' @return data frame with all data from input data frame \code{to} combined
 #' with added class (and possibly index) data.
@@ -25,7 +26,7 @@
 #' add("elix_icd10", to = ex_people, from = ex_icd10,
 #'   id = "name", date = "surgery")
 add <- function(
-  what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE) {
+  what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE, sort = TRUE) {
 
   if (!is.data.table(to)) {
     to <- as.data.table(to)
@@ -36,7 +37,7 @@ add <- function(
 
   to$id_chr <- as.character(to[[id]]) # To be able to merge
   out       <- merge(to, as.data.table(cl),
-                     by.x = "id_chr", by.y = id, sort = FALSE)
+                     by.x = "id_chr", by.y = id, sort = sort)
   id_chr <- NULL # to avoid check note
   to[, id_chr := NULL] # Don't need it any more
 
@@ -54,7 +55,7 @@ add <- function(
         gsub("\\W", "_", tolower(ind_names), perl = TRUE))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
-    out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = FALSE)
+    out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
   }
   out[, id_chr := NULL][]
 }

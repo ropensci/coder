@@ -63,7 +63,7 @@
 #' as.codedata(z)
 #'
 as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
-  code_date <- NULL # Fix for R Check
+  code_date <- id <- NULL # Fix for R Check
 
   if (!is.data.table(x)) {
     x <- as.data.table(x)

@@ -4,7 +4,8 @@
 \alias{add}
 \title{Add classification data to data frame with case data}
 \usage{
-add(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE)
+add(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE,
+  sort = TRUE)
 }
 \arguments{
 \item{what}{to add? classification scheme of type classcodes to classify by}
@@ -27,6 +28,8 @@ indices as a character vector.}
 colnames are taken directly from group names of \code{by}, if \code{TRUE},
 these are changed to more technical names avoiding special characters and
 are prefixed by the name of the classification scheme.}
+
+\item{sort}{logical. Should the result be sorted by the 'id' column?}
 }
 \value{
 data frame with all data from input data frame \code{to} combined
