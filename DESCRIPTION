@@ -22,5 +22,6 @@ Imports:
   data.table
 LazyData: TRUE
 RoxygenNote: 6.0.1
-VignetteBuilder: 
-  R.rsp
+VignetteBuilder: R.rsp
+URL: https://github.com/eribul/coder
+BugReports: https://github.com/eribul/coder/issues

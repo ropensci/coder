@@ -162,7 +162,7 @@ fix_possible_pardata <- function(x, .copy = NA) {
       value.name    = "code",
       na.rm         = TRUE
     )[,
-      # For out-patient data, use 'indatuma' (since it is the only one that exist),
+      # For out-patient data, use 'indatuma' (since only that one exist),
       # for in-patient-data use 'utdatuma' (since it is more relevant)
       # Use versions with suffix a since these are in better format
       `:=`(

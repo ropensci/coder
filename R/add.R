@@ -26,7 +26,8 @@
 #' add("elix_icd10", to = ex_people, from = ex_icd10,
 #'   id = "name", date = "surgery")
 add <- function(
-  what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE, sort = TRUE) {
+  what, to, from, id, date,
+  days = NULL, ind = NULL, tech_names = FALSE, sort = TRUE) {
 
   if (!is.data.table(to)) {
     to <- as.data.table(to)
