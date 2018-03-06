@@ -5,6 +5,6 @@ cps_icd10 <- tibble::frame_data(
   "special",  "^U[ABP][[:digit:]]{2,4}$",                                   0
 
 ) %>%
-classifyr::as.classcodes()
+coder::as.classcodes()
 
 devtools::use_data(cps_icd10, overwrite = TRUE)

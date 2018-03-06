@@ -15,14 +15,14 @@ get_classcodes <- function(x, from = NULL) {
   } else if (is.character(x) && exists(x, envir = .GlobalEnv)) {
     get(x)
   } else if (is.character(x) &&
-           x %in% utils::data(package = "classifyr")$results[, "Item"]) {
-    utils::data(list = x, package = "classifyr", envir = environment())
+           x %in% utils::data(package = "coder")$results[, "Item"]) {
+    utils::data(list = x, package = "coder", envir = environment())
     return(get(x, envir = environment()))
   } else if (is.null(x) && is.classcodes(inh)) {
     inh
   } else if (is.null(x) &&
-           inh %in% utils::data(package = "classifyr")$results[, "Item"]) {
-    utils::data(list = inh, package = "classifyr", envir = environment())
+           inh %in% utils::data(package = "coder")$results[, "Item"]) {
+    utils::data(list = inh, package = "coder", envir = environment())
     return(get(inh, envir = environment()))
   } else {
     stop("No classcodes object found!")

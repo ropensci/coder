@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -12,7 +12,7 @@
 
 <meta name="author" content="Erik Bulow" />
 
-<meta name="date" content="2016-08-11" />
+<meta name="date" content="2018-03-06" />
 
 <title>Benchmarking</title>
 
@@ -70,13 +70,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Benchmarking</h1>
 <h4 class="author"><em>Erik Bulow</em></h4>
-<h4 class="date"><em>2016-08-11</em></h4>
+<h4 class="date"><em>2018-03-06</em></h4>
 
 
 
 <div id="other-icd-packages" class="section level1">
 <h1>Other ICD packages</h1>
-<p>The <code>classifyr</code> package is not the only (nor the first) R package aimed for ICD codes and comorbitity indexes. Four additional packages (as listed below) were found as by 2016-04-14.</p>
+<p>The <code>coder</code> package is not the only (nor the first) R package aimed for ICD codes and comorbitity indexes. Four additional packages (as listed below) were found as by 2016-04-14.</p>
 <table>
 <colgroup>
 <col width="19%"></col>
@@ -128,47 +128,60 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="packages-to-compare" class="section level1">
 <h1>Packages to compare</h1>
-<p>The <code>classifyr</code> package was initilly targeted for Swedish ICD data. Since Sweden (as opposed to USA) use mostly ICD-10 codes (in favour of ICD-9), the <code>medicalrisk</code> package is dropped from further comparisons.</p>
+<p>The <code>coder</code> package was initilly targeted for Swedish ICD data. Since Sweden (as opposed to USA) use mostly ICD-10 codes (in favour of ICD-9), the <code>medicalrisk</code> package is dropped from further comparisons.</p>
 <p>The <code>icdcoder</code> package is not submitted to CRAN and inspection of the source code reveals that the package does not yet seem to be ready for production release (it does for example have some problems with its dependency packages). According to GitHub metrics, the development activity has been quite limited and we therefore assume that the package is not under active development. It is therefore not considered further within this comparison.</p>
 </div>
 <div id="speed-comparison" class="section level1">
 <h1>Speed comparison</h1>
-<p>Calling functions from both <code>icd</code> and <code>comorbidities.icd10</code> by full reference (e. g. <code>package::fun</code>) is problematic due to internal use of non standard evaluation. All compared packages are therefore first attached (by <code>library</code>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(classifyr)
-<span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(icd))
+<p>Calling functions from both <code>icd</code> and <code>comorbidities.icd10</code> by full reference (e. g. <code>package::fun</code>) is problematic due to internal use of non standard evaluation. All compared packages are therefore attached:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(coder)</code></pre></div>
+<pre><code>## 
+## Attaching package: 'coder'</code></pre>
+<pre><code>## The following object is masked from 'package:methods':
+## 
+##     show</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(icd))
 <span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(comorbidities.icd10))
 
 <span class="kw">library</span>(dplyr) <span class="co"># For data management</span></code></pre></div>
-<p>Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the <code>icd</code>, <code>classifyr</code> and <code>comorbidities.icd10</code> packages.</p>
+<pre><code>## 
+## Attaching package: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<p>Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the <code>icd</code>, <code>coder</code> and <code>comorbidities.icd10</code> packages.</p>
 <p>First some session info:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">si &lt;-<span class="st"> </span>devtools::<span class="kw">session_info</span>(<span class="kw">c</span>(<span class="st">&quot;icd&quot;</span>, <span class="st">&quot;classifyr&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">si &lt;-<span class="st"> </span>devtools::<span class="kw">session_info</span>(<span class="kw">c</span>(<span class="st">&quot;icd&quot;</span>, <span class="st">&quot;coder&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>))
 si$packages &lt;-<span class="st"> </span>
 <span class="st">  </span>si$packages %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(package %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;icd&quot;</span>, <span class="st">&quot;classifyr&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(package %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;icd&quot;</span>, <span class="st">&quot;coder&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(-source)
 si</code></pre></div>
-<pre><code>## Session info --------------------------------------------------------------</code></pre>
+<pre><code>## Session info -------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
-##  version  R version 3.3.1 (2016-06-21)
+##  version  R version 3.4.3 (2017-11-30)
 ##  system   x86_64, mingw32             
-##  ui       RStudio (0.99.1197)         
+##  ui       RStudio (1.0.136)           
 ##  language (EN)                        
 ##  collate  Swedish_Sweden.1252         
 ##  tz       Europe/Berlin               
-##  date     2016-08-11</code></pre>
-<pre><code>## Packages ------------------------------------------------------------------</code></pre>
-<pre><code>##               package *    version       date
-## 1           classifyr *      0.0.5 2016-08-11
-## 2 comorbidities.icd10 *      0.6.2 2016-08-11
-## 3                 icd * 2.0.1.9000 2016-08-11</code></pre>
+##  date     2018-03-06</code></pre>
+<pre><code>## Packages -----------------------------------------------------------------</code></pre>
+<pre><code>##               package * version       date
+## 1           coder *   0.4.3 2017-08-17
+## 2 comorbidities.icd10 *   0.6.2 2016-08-11
+## 3                 icd *   2.3.1 2017-10-12</code></pre>
 <p>We prepare a function to return a list with unevaluated calls to correspinding functions in specified packages:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uneval_list &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">&quot;classifyr&quot;</span>, <span class="st">&quot;icd&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uneval_list &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">&quot;coder&quot;</span>, <span class="st">&quot;icd&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>)) {
   
   <span class="co"># Initiate a list of expressions to benchmark</span>
   expr &lt;-<span class="st"> </span><span class="kw">list</span>()
   
-  <span class="co"># Include function &quot;classify&quot; from package &quot;classifyr&quot;</span>
-  if (<span class="st">&quot;classifyr&quot;</span> %in%<span class="st"> </span>pkgs) expr$classifyr &lt;-<span class="st"> </span><span class="kw">substitute</span>(
+  <span class="co"># Include function &quot;classify&quot; from package &quot;coder&quot;</span>
+  if (<span class="st">&quot;coder&quot;</span> %in%<span class="st"> </span>pkgs) expr$coder &lt;-<span class="st"> </span><span class="kw">substitute</span>(
     
     <span class="kw">classify</span>(
       x, 
@@ -203,25 +216,23 @@ si</code></pre></div>
   expr
 }</code></pre></div>
 <p>We make another function to use for benchmarking</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bm &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">&quot;classifyr&quot;</span>, <span class="st">&quot;icd&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>), ...) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bm &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">&quot;coder&quot;</span>, <span class="st">&quot;icd&quot;</span>, <span class="st">&quot;comorbidities.icd10&quot;</span>), ...) {
   microbenchmark::<span class="kw">microbenchmark</span>(<span class="dt">list =</span> <span class="kw">uneval_list</span>(pkgs), ...) %&gt;%
 <span class="st">  </span><span class="kw">summary</span>() %&gt;%<span class="st"> </span>
 <span class="st">  </span>knitr::<span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">2</span>)
 }</code></pre></div>
-<p>We will use a randomly generated (totaly “fake”/non personal) dataset of size 10,000. This is of quite moderate size compared to real world data but will be sufficient for now.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x &lt;-<span class="st"> </span>dplyr::<span class="kw">sample_n</span>(classifyr::ex_icd10, <span class="fl">1e4</span>, <span class="ot">TRUE</span>))</code></pre></div>
-<pre><code>## # A tibble: 6 x 3
-##                  id       date   code
-##              &lt;fctr&gt;     &lt;date&gt; &lt;fctr&gt;
-## 1       Garvin, Joy 2016-01-07   T257
-## 2  Wolverton, Julia 2015-10-23   B500
-## 3       Tran, Diego 2015-11-26   M711
-## 4       Mills, Jody 2015-12-17   Q447
-## 5    Jackson, Amber 2015-04-19   Q110
-## 6 Ruiz-Smith, Angie 2015-07-13   S935</code></pre>
-<p>The test data set does contain some codes beginning in “UA”, “UB” and/or “UP”. These are valid codes in the Swedish ICD 10 (2016) version but will not be recognised as such by <code>comorbidities.icd10</code>. They must therefore be excluded in order to proced:</p>
+<p>We will use a randomly generated (totaly ???fake???/non personal) dataset of size 10,000. This is of quite moderate size compared to real world data but will be sufficient for now.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x &lt;-<span class="st"> </span>dplyr::<span class="kw">sample_n</span>(coder::ex_icd10, <span class="fl">1e4</span>, <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##                       id  code_date  code  hdia
+## 1: el-Kaba, Abdul Maalik 2016-06-11  A191 FALSE
+## 2:           Duin, River 2016-10-11  S822 FALSE
+## 3:        Alvarez, Jacob 2016-05-14  N055 FALSE
+## 4:   Linear, Christopher 2016-05-27 L309F FALSE
+## 5:     Campbell, Kesnick 2016-02-20  M202 FALSE
+## 6:         Smith, Ruasha 2016-05-05  N410 FALSE</code></pre>
+<p>The test data set does contain some codes beginning in ???UA???, ???UB??? and/or ???UP???. These are valid codes in the Swedish ICD 10 (2016) version but will not be recognised as such by <code>comorbidities.icd10</code>. They must therefore be excluded in order to proced:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(x, !<span class="kw">grepl</span>(<span class="st">&quot;U[ABP]&quot;</span>, code))</code></pre></div>
-<p>A data set of 9934 is now remaining.</p>
+<p>A data set of 9788 is now remaining.</p>
 <p>Results in seconds:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bm</span>(<span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">unit =</span> <span class="st">&quot;s&quot;</span>)</code></pre></div>
 <table>
@@ -235,38 +246,42 @@ si</code></pre></div>
 <th align="right">uq</th>
 <th align="right">max</th>
 <th align="right">neval</th>
+<th align="left">cld</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">classifyr</td>
-<td align="right">0.08</td>
-<td align="right">0.08</td>
-<td align="right">0.08</td>
-<td align="right">0.08</td>
-<td align="right">0.08</td>
-<td align="right">0.08</td>
+<td align="left">coder</td>
+<td align="right">0.07</td>
+<td align="right">0.09</td>
+<td align="right">0.12</td>
+<td align="right">0.13</td>
+<td align="right">0.13</td>
+<td align="right">0.18</td>
 <td align="right">5</td>
+<td align="left">a</td>
 </tr>
 <tr class="even">
 <td align="left">icd</td>
-<td align="right">6.27</td>
-<td align="right">6.27</td>
-<td align="right">6.39</td>
-<td align="right">6.42</td>
-<td align="right">6.46</td>
-<td align="right">6.52</td>
+<td align="right">0.44</td>
+<td align="right">0.45</td>
+<td align="right">0.48</td>
+<td align="right">0.45</td>
+<td align="right">0.52</td>
+<td align="right">0.54</td>
 <td align="right">5</td>
+<td align="left">b</td>
 </tr>
 <tr class="odd">
 <td align="left">comorbidities.icd10</td>
-<td align="right">35.56</td>
-<td align="right">35.61</td>
-<td align="right">35.81</td>
-<td align="right">35.63</td>
-<td align="right">35.72</td>
-<td align="right">36.53</td>
+<td align="right">13.15</td>
+<td align="right">13.17</td>
+<td align="right">13.22</td>
+<td align="right">13.20</td>
+<td align="right">13.28</td>
+<td align="right">13.30</td>
 <td align="right">5</td>
+<td align="left">c</td>
 </tr>
 </tbody>
 </table>
@@ -283,11 +298,12 @@ si</code></pre></div>
 <th align="right">uq</th>
 <th align="right">max</th>
 <th align="right">neval</th>
+<th align="left">cld</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">classifyr</td>
+<td align="left">coder</td>
 <td align="right">1.00</td>
 <td align="right">1.00</td>
 <td align="right">1.00</td>
@@ -295,48 +311,51 @@ si</code></pre></div>
 <td align="right">1.00</td>
 <td align="right">1.00</td>
 <td align="right">5</td>
+<td align="left">a</td>
 </tr>
 <tr class="even">
 <td align="left">icd</td>
-<td align="right">83.15</td>
-<td align="right">82.98</td>
-<td align="right">79.82</td>
-<td align="right">79.78</td>
-<td align="right">76.84</td>
-<td align="right">76.89</td>
+<td align="right">6.26</td>
+<td align="right">6.19</td>
+<td align="right">6.21</td>
+<td align="right">6.39</td>
+<td align="right">6.16</td>
+<td align="right">6.09</td>
 <td align="right">5</td>
+<td align="left">b</td>
 </tr>
 <tr class="odd">
 <td align="left">comorbidities.icd10</td>
-<td align="right">470.95</td>
-<td align="right">469.82</td>
-<td align="right">453.58</td>
-<td align="right">449.50</td>
-<td align="right">438.02</td>
-<td align="right">442.20</td>
+<td align="right">186.21</td>
+<td align="right">184.76</td>
+<td align="right">174.84</td>
+<td align="right">183.07</td>
+<td align="right">179.92</td>
+<td align="right">147.97</td>
 <td align="right">5</td>
+<td align="left">c</td>
 </tr>
 </tbody>
 </table>
-<p>We thus conclude that <code>classifyr</code> is faster than its competitors!</p>
+<p>We thus conclude that <code>coder</code> is faster than its competitors!</p>
 <div id="some-reasons-for-speed-differences" class="section level2">
 <h2>Some reasons for speed differences</h2>
 <ul>
-<li>Both <code>icd</code> and <code>classifyr</code> relies on matrices, while <code>comorbidities.icd10</code> uses data frames. Matrices are generally faster both due to its simpler structure (in this case logical/boolean while the data frame can have different types of classes for each column) and since matrices can be handled effectively through underlying (sub R) numerical C/C++/Fortran librarys such as LAPACK and BLAS.</li>
-<li><code>classifyr</code> relies on compact regular expressions for classification. <code>comorbidities.icd10</code> can use regular expressions too (as done above) but the format is less compact. <code>icd</code> uses “raw” ICD-10 codes and “search for each possible parent of the given code, up to the three digit ‘major’” (<a href="https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html" class="uri">https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html</a>). (It might however be recorded as a side note that the <code>icd</code> package does rely on a (much) faster procedure when used with ICD-9 codes.)</li>
+<li>Both <code>icd</code> and <code>coder</code> relies on matrices, while <code>comorbidities.icd10</code> uses data frames. Matrices are generally faster both due to its simpler structure (in this case logical/boolean while the data frame can have different types of classes for each column) and since matrices can be handled effectively through underlying (sub R) numerical C/C++/Fortran librarys such as LAPACK and BLAS.</li>
+<li><code>coder</code> relies on compact regular expressions for classification. <code>comorbidities.icd10</code> can use regular expressions too (as done above) but the format is less compact. <code>icd</code> uses ???raw??? ICD-10 codes and ???search for each possible parent of the given code, up to the three digit ???major?????? (<a href="https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html" class="uri">https://cran.r-project.org/web/packages/icd/vignettes/icd-10.html</a>). (It might however be recorded as a side note that the <code>icd</code> package does rely on a (much) faster procedure when used with ICD-9 codes.)</li>
 </ul>
 </div>
 <div id="a-note-on-rro" class="section level2">
 <h2>A note on RRO</h2>
 <p>Comparisons above shows result for the latest (released) R version (details shown above).</p>
 <p>Even though we would not present any details here, the same benchamrk was performed also on the latest available version (3.2.4) of Revolution R Open (RRO) with both one and then multiple (4) cores. This was done on an Intel i7 machine (an architecture supposed to take full advantage of the Intel Math Kernel Library used by RRO).</p>
-<p>There were no relevant difference observed between one and 4 kernels. The <code>icd</code> package did perform better with RRO while <code>classifyr</code> and <code>comorbidities.icd10</code> were performing worse. The ranking among the packages were the same as above although the magnitude of the relative differneces were decreased between <code>classifyr</code> and <code>icd</code>.</p>
+<p>There were no relevant difference observed between one and 4 kernels. The <code>icd</code> package did perform better with RRO while <code>coder</code> and <code>comorbidities.icd10</code> were performing worse. The ranking among the packages were the same as above although the magnitude of the relative differneces were decreased between <code>coder</code> and <code>icd</code>.</p>
 </div>
 </div>
 <div id="output" class="section level1">
 <h1>Output</h1>
-<p>It is abviously important also to compare the output of each function. The basic output from all functions is a logical “table” with 31 columns (one for every Elixhauser comorbidity class) and one row for every patient.</p>
-<p><code>icd</code> and <code>classifyr</code> gives this “table” as a logical (boolean) matrix with patient id as row names. Each package does however sort their matrices in different orders by default.</p>
+<p>It is abviously important also to compare the output of each function. The basic output from all functions is a logical ???table??? with 31 columns (one for every Elixhauser comorbidity class) and one row for every patient.</p>
+<p><code>icd</code> and <code>coder</code> gives this ???table??? as a logical (boolean) matrix with patient id as row names. Each package does however sort their matrices in different orders by default.</p>
 <p>The output from <code>comorbidities.icd10</code> is more complex. It is a list wherof one element is a data.frame (not a matrix as stated by the help page) with the desired output. The patient id is found as a factor column within the data frame.</p>
 <p>We have to transfer the different outputs before they can be compared:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_output &lt;-<span class="st"> </span>function(...) {
@@ -348,8 +367,8 @@ si</code></pre></div>
   res &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">uneval_list</span>(...), eval)
   
   <span class="co"># Transform results to comparable forms</span>
-  if (!<span class="kw">is.null</span>(res$classifyr)) 
-    res$classifyr &lt;-<span class="st">  </span>res$classifyr[<span class="kw">order</span>(<span class="kw">rownames</span>(res$classifyr)), ]
+  if (!<span class="kw">is.null</span>(res$coder)) 
+    res$coder &lt;-<span class="st">  </span>res$coder[<span class="kw">order</span>(<span class="kw">rownames</span>(res$coder)), ]
   
   if (!<span class="kw">is.null</span>(res$comorbidities.icd10)) {
     id &lt;-<span class="st"> </span><span class="kw">as.character</span>(res$comorbidities.icd10$cmrbdt$id)
@@ -367,44 +386,44 @@ si</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="left">classifyr</th>
+<th align="left">coder</th>
 <th align="left">icd</th>
 <th align="left">comorbidities.icd10</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">congestive_heart_failure</td>
+<td align="left">congestive heart failure</td>
 <td align="left">CHF</td>
 <td align="left">CHF</td>
 </tr>
 <tr class="even">
-<td align="left">cardiac_arrhythmias</td>
+<td align="left">cardiac arrhythmias</td>
 <td align="left">Arrhythmia</td>
 <td align="left">ARRHYTHMIA</td>
 </tr>
 <tr class="odd">
-<td align="left">valvular_disease</td>
+<td align="left">valvular disease</td>
 <td align="left">Valvular</td>
 <td align="left">VALVE</td>
 </tr>
 <tr class="even">
-<td align="left">pulmonary_circulationd_disorder</td>
+<td align="left">pulmonary circulation disorder</td>
 <td align="left">PHTN</td>
 <td align="left">PULM.CIRC</td>
 </tr>
 <tr class="odd">
-<td align="left">peripheral_vascular_disorder</td>
+<td align="left">peripheral vascular disorder</td>
 <td align="left">PVD</td>
 <td align="left">PVD</td>
 </tr>
 <tr class="even">
-<td align="left">hypertension_uncomplicated</td>
+<td align="left">hypertension uncomplicated</td>
 <td align="left">HTN</td>
 <td align="left">HTN.UNCOMP</td>
 </tr>
 <tr class="odd">
-<td align="left">hypertension_complicated</td>
+<td align="left">hypertension complicated</td>
 <td align="left">HTNcx</td>
 <td align="left">HTN.COMP</td>
 </tr>
@@ -414,22 +433,22 @@ si</code></pre></div>
 <td align="left">PARALYSIS</td>
 </tr>
 <tr class="odd">
-<td align="left">other_neurological_disorders</td>
+<td align="left">other neurological disorders</td>
 <td align="left">NeuroOther</td>
 <td align="left">NEURO.OTHER</td>
 </tr>
 <tr class="even">
-<td align="left">chronic_pulmonary_disease</td>
+<td align="left">chronic pulmonary disease</td>
 <td align="left">Pulmonary</td>
 <td align="left">CHRONIC.PULM</td>
 </tr>
 <tr class="odd">
-<td align="left">diabetes_uncomplicated</td>
+<td align="left">diabetes uncomplicated</td>
 <td align="left">DM</td>
 <td align="left">DM.UNCOMP</td>
 </tr>
 <tr class="even">
-<td align="left">diabetes_complicated</td>
+<td align="left">diabetes complicated</td>
 <td align="left">DMcx</td>
 <td align="left">DM.COMP</td>
 </tr>
@@ -439,22 +458,22 @@ si</code></pre></div>
 <td align="left">HYPOTHYROID</td>
 </tr>
 <tr class="even">
-<td align="left">renal_failure</td>
+<td align="left">renal failure</td>
 <td align="left">Renal</td>
 <td align="left">RENAL</td>
 </tr>
 <tr class="odd">
-<td align="left">liver_disease</td>
+<td align="left">liver disease</td>
 <td align="left">Liver</td>
 <td align="left">LIVER</td>
 </tr>
 <tr class="even">
-<td align="left">peptic_ulcer_disease</td>
+<td align="left">peptic ulcer disease</td>
 <td align="left">PUD</td>
 <td align="left">PUD</td>
 </tr>
 <tr class="odd">
-<td align="left">aids_hiv</td>
+<td align="left">AIDS/HIV</td>
 <td align="left">HIV</td>
 <td align="left">HIV</td>
 </tr>
@@ -464,17 +483,17 @@ si</code></pre></div>
 <td align="left">LYMPHOMA</td>
 </tr>
 <tr class="odd">
-<td align="left">metastatic_cancer</td>
+<td align="left">metastatic cancer</td>
 <td align="left">Mets</td>
 <td align="left">METS</td>
 </tr>
 <tr class="even">
-<td align="left">solid_tumor</td>
+<td align="left">solid tumor</td>
 <td align="left">Tumor</td>
 <td align="left">SOLID.TUMOR</td>
 </tr>
 <tr class="odd">
-<td align="left">rheumatoid_arthritis</td>
+<td align="left">rheumatoid arthritis</td>
 <td align="left">Rheumatic</td>
 <td align="left">RHEUM</td>
 </tr>
@@ -489,32 +508,32 @@ si</code></pre></div>
 <td align="left">OBESITY</td>
 </tr>
 <tr class="even">
-<td align="left">weight_loss</td>
+<td align="left">weight loss</td>
 <td align="left">WeightLoss</td>
 <td align="left">WT.LOSS</td>
 </tr>
 <tr class="odd">
-<td align="left">fluid_electrolyte_disorders</td>
+<td align="left">fluid electrolyte disorders</td>
 <td align="left">FluidsLytes</td>
 <td align="left">LYTES</td>
 </tr>
 <tr class="even">
-<td align="left">blood_loss_anemia</td>
+<td align="left">blood loss anemia</td>
 <td align="left">BloodLoss</td>
 <td align="left">ANEMIA.LOSS</td>
 </tr>
 <tr class="odd">
-<td align="left">deficiency_anemia</td>
+<td align="left">deficiency anemia</td>
 <td align="left">Anemia</td>
 <td align="left">ANEMIA.DEF</td>
 </tr>
 <tr class="even">
-<td align="left">alcohol_abuse</td>
+<td align="left">alcohol abuse</td>
 <td align="left">Alcohol</td>
 <td align="left">ETOH</td>
 </tr>
 <tr class="odd">
-<td align="left">drug_abuse</td>
+<td align="left">drug abuse</td>
 <td align="left">Drugs</td>
 <td align="left">DRUGS</td>
 </tr>
@@ -531,7 +550,7 @@ si</code></pre></div>
 </tbody>
 </table>
 <p>We hope to have achieved the same result for each patient and each comorbidity class.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">different &lt;-<span class="st"> </span>res$classifyr !=<span class="st"> </span>res$icd |<span class="st"> </span>res$icd !=<span class="st"> </span>res$comorbidities.icd10</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">different &lt;-<span class="st"> </span>res$coder !=<span class="st"> </span>res$icd |<span class="st"> </span>res$icd !=<span class="st"> </span>res$comorbidities.icd10</code></pre></div>
 <p>Were there any differences observed? <code>any(different)</code> says: FALSE (which is intended)!</p>
 </div>
 
@@ -542,7 +561,7 @@ si</code></pre></div>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

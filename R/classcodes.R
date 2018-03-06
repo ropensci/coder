@@ -22,7 +22,7 @@
 #' Note that classes does not have to be disjunct.
 #'
 #' The package have several default classcodes included listed on its index page
-#' `help(package = "classifyr")`
+#' `help(package = "coder")`
 #'
 #' @param x data frame with properties as described in the details section
 #'
@@ -35,7 +35,7 @@
 #' @export
 #' @name classcodes
 #' @examples
-#' as.classcodes(classifyr::elix_icd10)
+#' as.classcodes(coder::elix_icd10)
 as.classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),

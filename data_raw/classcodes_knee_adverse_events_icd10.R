@@ -10,6 +10,6 @@ knee_adverse_events_icd10 <- tibble::frame_data(
   "DM2 other"      ,           "^((J2[0-2][[:alnum:]]*)|(K((590)|(29[[:alnum:]]*)))|(N991))$",                                                                "late_hdia"
 
 ) %>%
-  classifyr::as.classcodes()
+  coder::as.classcodes()
 
 devtools::use_data(knee_adverse_events_icd10, overwrite = TRUE)

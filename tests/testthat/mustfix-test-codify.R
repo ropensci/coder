@@ -56,8 +56,8 @@ test_that("missing dates", {
 #                                                                              #
 ################################################################################
 
-ex_people <- classifyr::ex_people
-ex_icd10 <- classifyr::ex_icd10
+ex_people <- coder::ex_people
+ex_icd10 <- coder::ex_icd10
 
 x <- codify(ex_people[1, ], ex_icd10, id = "name",
        date = "surgery", days = c(-Inf, Inf))

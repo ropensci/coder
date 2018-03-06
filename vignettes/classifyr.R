@@ -1,11 +1,11 @@
 
 # Installera och ladda
-# devtools::install_github("eribul/classifyr")
-library(classifyr)
+# devtools::install_github("eribul/coder")
+library(coder)
 
 # Läs på
-help(package = "classifyr")
-browseVignettes("classifyr")
+help(package = "coder")
+browseVignettes("coder")
 
 ex_people; ?ex_people
 ex_icd10; ?ex_icd10

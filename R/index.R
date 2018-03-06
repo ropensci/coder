@@ -77,7 +77,7 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
     }
 
   # Needs further development!
-  if (identical(from, classifyr::charlson_icd10) &&
+  if (identical(from, coder::charlson_icd10) &&
       any(by %in% c("charlson", "dhoore")))
     warning("Leukemia and lymphona not implemented and therefore ignored!")
 

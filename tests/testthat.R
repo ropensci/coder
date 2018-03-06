@@ -1,4 +1,4 @@
 library(testthat)
-library(classifyr)
+library(coder)
 
-test_check("classifyr")
+test_check("coder")

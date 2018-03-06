@@ -1,6 +1,6 @@
 
 tha_fracture_ae_kva <-
-  classifyr::as.classcodes(
+  coder::as.classcodes(
     data.frame(
       group = "hip fracture ae kva",
       regex =

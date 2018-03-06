@@ -21,6 +21,6 @@ ex_icd10 <-
     code = sample(decoder:::icd10$key, N, TRUE),
     hdia = sample(c(TRUE, FALSE), N, TRUE, c(.1, .9))
   ) %>%
-  classifyr::as.codedata()
+  coder::as.codedata()
 
 devtools::use_data(ex_people, ex_icd10, overwrite = TRUE)

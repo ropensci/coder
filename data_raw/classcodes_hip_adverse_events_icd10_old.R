@@ -6,6 +6,6 @@ hip_adverse_events_icd10_old <- tibble::frame_data(
     "others"           , "^((T((8((1[034])|4[05]))|933))|L899|S730|M24[34]|I(803|269))",  NA,               1,       1
 
     ) %>%
-  classifyr::as.classcodes()
+  coder::as.classcodes()
 
 devtools::use_data(hip_adverse_events_icd10_old, overwrite = TRUE)

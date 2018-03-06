@@ -1,4 +1,4 @@
-Package: classifyr
+Package: coder
 Type: Package
 Title: Classification of Cases into Deterministic Categories
 Version: 0.4.4
@@ -6,16 +6,12 @@ Author: Erik Bulow
 Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Functionality of the package relies on three central objects.
   1) A data frame with objects (for example patients) to classify.
-  2) A data frame with codes (for example ICD-10-codes) for each object
+  2) A data frame with codes (for example 'ICD'-10-codes) for each object
   (patient) valid at distinct time points.
   3) A classification scheme (a 'classcodes' object) defining the
   classification based on regular expressions.
-  Some 'classcodes' objects are included in the package (for patients
-  based on their ICD-10-codes for Charlson and Elixhauser comorbidity indices,
-  RxRisk-V, adverse events for patients with Total Hip Arthroplasty
-  and more).
   It is easy to introduce new classification schemes to use with arbitrary
-  code data.
+  code data and some default 'classcodes' objects are included in the package.
 License: GPL-2
 Depends: R (>= 2.10)
 Suggests:

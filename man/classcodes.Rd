@@ -40,10 +40,10 @@ accepted but will raise a warning.}
 Note that classes does not have to be disjunct.
 
 The package have several default classcodes included listed on its index page
-`help(package = "classifyr")`
+`help(package = "coder")`
 }
 \examples{
-as.classcodes(classifyr::elix_icd10)
+as.classcodes(coder::elix_icd10)
 }
 \seealso{
 Regular expressions used in classcodes can often be quite complex
