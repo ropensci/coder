@@ -6,8 +6,8 @@
 \alias{categorise}
 \title{Categorize cases based on external data and classification scheme}
 \usage{
-add(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE,
-  sort = TRUE)
+add(what, to, from, id, date = NULL, days = NULL, ind = NULL,
+  tech_names = FALSE, sort = TRUE)
 
 categorize(.data, from, what, id, date, ...)
 
@@ -19,10 +19,9 @@ categorise(.data, from, what, id, date, ...)
 based on individual code groups.}
 
 \item{to, .data}{To which data set should the categories be added?
-A data frame with at least two columns,
-one with case (patient) identification (column name specified by argument
-id) and one with a date of interest (column name specified by argument
-date)}
+A data frame with at least one column with case (patient) identification
+(column name specified by argument id). A column with a date of interest
+(column name specified by argument date) is mandatory if days != NULL.}
 
 \item{from}{where do we find the class codes? \code{\link{codedata}}}
 

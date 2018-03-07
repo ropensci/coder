@@ -51,9 +51,10 @@ test_that("missing dates", {
   )
 
   # Include all cases, no mather the date
+  expect_warning(codify(pe, icd, id = "name", date = "surgery", days = NULL))
+  expect_silent(codify(pe, icd, id = "name"))
   expect_equal(
-    nrow(codify(pe, icd, id = "name",
-                date = "surgery", days = NULL)),
+    nrow(codify(pe, icd, id = "name", date = "surgery", days = NULL)),
     11
   )
 })

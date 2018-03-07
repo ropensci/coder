@@ -9,10 +9,9 @@
 #' (\code{\link{classcodes}} classcode object) specifying categories to add
 #' based on individual code groups.
 #' @param to,.data To which data set should the categories be added?
-#'   A data frame with at least two columns,
-#'   one with case (patient) identification (column name specified by argument
-#'   id) and one with a date of interest (column name specified by argument
-#'   date)
+#'   A data frame with at least one column with case (patient) identification
+#'   (column name specified by argument id). A column with a date of interest
+#'   (column name specified by argument date) is mandatory if days != NULL.
 #' @param from where do we find the class codes? \code{\link{codedata}}
 #' @param id,date,days arguments passed to \code{\link{codify}}
 #' @param ind control possible inclusion of index vector. Set to \code{FALSE} if
@@ -77,7 +76,7 @@
 #'   tech_names = TRUE
 #')
 add <- function(
-  what, to, from, id, date,
+  what, to, from, id, date = NULL,
   days = NULL, ind = NULL, tech_names = FALSE, sort = TRUE) {
 
   if (!is.data.table(to)) {

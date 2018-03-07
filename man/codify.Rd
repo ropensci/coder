@@ -4,7 +4,7 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date, days = NULL, .copy = NA)
+codify(x, from, id = "id", date = NULL, days = NULL, .copy = NA)
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
@@ -16,16 +16,18 @@ date of interest (column name specified by argument \code{date})}
 
 \item{id}{name of column in \code{x} containing case (patient) identification}
 
-\item{date}{name of column in \code{x} with date of interest}
+\item{date}{name of column in \code{x} with possible date of interest
+(\code{NULL} by default but must be specified if argument 'days' is
+used).}
 
 \item{days}{numeric vector of length two with lower and upper bound of range
 of days relative to \code{date} for which codes from \code{from} are
-relevant. (For example \code{c(-365, 0)} implies a time window of one year
+relevant. (For example \code{c(-365, -1)} implies a time window of one year
 prior to \code{date}, which might be useful for calculating comorbidity
-indices, while \code{c(0, 30)} gives a window of 30 days after \code{date},
+indices, while \code{c(1, 30)} gives a window of 30 days after \code{date},
 which might be used for calculating adverse events after a surgical
 procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
-\code{NULL} means no limitations at all.}
+\code{NULL} means no time limitation at all.}
 
 \item{.copy}{Should the object be copied internally by \code{\link{copy}}?
 \code{NA} (by default) means that objects smaller than 1 Gb are copied.
@@ -35,7 +37,7 @@ is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
 }
 \value{
-Object of class \code{tbl_df} with columns corresponding to \code{x}
+Data frame (\code{data.table}) with columns corresponding to \code{x}
   and additional columns matched from \code{from}: \itemize{ \item
   \code{code}: code as matched from \code{from} (\code{NA} if no match
   within period) \item \code{code_date}: corresponding date for which the

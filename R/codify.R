@@ -6,17 +6,19 @@
 #' @param from object with code data for which \code{\link{is.codedata}} is
 #'   \code{TRUE}
 #' @param id name of column in \code{x} containing case (patient) identification
-#' @param date name of column in \code{x} with date of interest
+#' @param date name of column in \code{x} with possible date of interest
+#'   (\code{NULL} by default but must be specified if argument 'days' is
+#'   used).
 #' @param days numeric vector of length two with lower and upper bound of range
 #'   of days relative to \code{date} for which codes from \code{from} are
-#'   relevant. (For example \code{c(-365, 0)} implies a time window of one year
+#'   relevant. (For example \code{c(-365, -1)} implies a time window of one year
 #'   prior to \code{date}, which might be useful for calculating comorbidity
-#'   indices, while \code{c(0, 30)} gives a window of 30 days after \code{date},
+#'   indices, while \code{c(1, 30)} gives a window of 30 days after \code{date},
 #'   which might be used for calculating adverse events after a surgical
 #'   procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
-#'   \code{NULL} means no limitations at all.
+#'   \code{NULL} means no time limitation at all.
 #'
-#' @return Object of class \code{tbl_df} with columns corresponding to \code{x}
+#' @return Data frame (\code{data.table}) with columns corresponding to \code{x}
 #'   and additional columns matched from \code{from}: \itemize{ \item
 #'   \code{code}: code as matched from \code{from} (\code{NA} if no match
 #'   within period) \item \code{code_date}: corresponding date for which the
@@ -30,12 +32,23 @@
 #'
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
-codify <- function(x, from, id = "id", date, days = NULL, .copy = NA) {
+codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA) {
+
+  # Determine if coding should be limited by time period
+  usedate <- !is.null(days)
+  idcols  <- c(id, if (usedate) "date")
+  if (usedate && is.null(date)) {
+    stop("Argument 'date' must be specified if 'days' is not NULL!")
+  } else if (!usedate && !is.null(date)) {
+    warning("Date column ignored since days = NULL!")
+  }
+
+
   if (!is.data.table(x)) {
     x <- data.table(x)
   }
   x2 <- copybig(x, .copy) # New name to avoid copy complications
-  setnames(x2, date, "date")
+  if (usedate) setnames(x2, date, "date")
   if (!is.codedata(from)) {
     from <- as.codedata(from, .copy = .copy)
   }
@@ -48,12 +61,14 @@ codify <- function(x, from, id = "id", date, days = NULL, .copy = NA) {
 
   # Silly work around to avoid check notes
   in_period <- code_date <- NULL
-  x2_id_date <- x2[, c(id, "date"), with = FALSE] # To avoid unique on all data
+  # To avoid unique on all data
+  x2_id_date <- x2[, idcols, with = FALSE]
+
   out <-
     merge(x2_id_date, from, by.x = id, by.y = "id",
           all.x = TRUE, allow.cartesian = TRUE)[,
       in_period :=
-        if (is.null(days)) TRUE
+        if (!usedate) TRUE
         else
           between(
             as.numeric(code_date),
@@ -72,9 +87,9 @@ codify <- function(x, from, id = "id", date, days = NULL, .copy = NA) {
       # If there are no codes within the period,
       # keep only the first as a marker
       if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
-      by = c(id, "date")
+      by = idcols
     ]
-  out <- merge(unique(out), x2, by = c(id, "date")) # to get back all data
-  setnames(x2, "date", date)
+  out <- merge(unique(out), x2, by = idcols) # to get back all data
+  if (usedate) setnames(x2, "date", date)
   structure(out, id = id)
 }

@@ -36,15 +36,16 @@
 #' \code{indatuma} is used without warning.
 #'
 #' @return \code{as.codedata} returns a \code{\link{data.table}} object
-#'   with mandatory columns: "id" (individual id coerced to character),
-#'   "code" and
-#'   "date" (when the code was valid).
+#'   with mandatory columns: "id" (individual id coerced to character) and
+#'   "code". It has an optional column
+#'   "code_date" (when the code was valid) if there was such a column in
+#'   \code{x} or if the data is recognised from NPR.
 #'   Possible additional columns from \code{x} are preserved
 #'   if data is not recognised as coming from NPR.
 #'
 #' \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 #' \code{FALSE} otherwise.
-#' (Note that \code{codedata} is not a formal class of its own!)
+#' (Note that \code{codedata} is not a formal R class of its own!)
 #' @export
 #' @name codedata
 #'
@@ -77,17 +78,16 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
   }
 
   x <- fix_possible_pardata(x, .copy)
-  x <- x[dates_within(code_date, ...)]
-
+  hasdates <- "code_date" %in% names(x)
+  if (hasdates) {
+    x <- x[dates_within(code_date, ...)]
+  }
 
   # Always save id as character. Even though it might be numeric,
   # it is easier if we always know its type.
   x[, id := as.character(id)]
-  # if (!is.character(x$id)) {
-  #   x$id <- as.character(x$id)
-  # }
 
-  keys <- c("id", "code_date", "code")
+  keys <- c("id", if (hasdates) "code_date", "code")
   if (.setkeys) setkeyv(x, keys)
   unique(x, by = keys)
 }
@@ -183,9 +183,9 @@ fix_possible_pardata <- function(x, .copy = NA) {
 
 check_codedata <- function(x) {
   names(x) <- tolower(names(x))
-  if (!all(c("id", "code_date", "code") %in% names(x)))
-    stop("data frame must contain columns: id, code_date and code")
-  if (data.class(x[["code_date"]]) != "Date")
+  if (!all(c("id", "code") %in% names(x)))
+    stop("data frame must contain columns: id and code")
+  if ("code_data" %in% names(x) && data.class(x[["code_date"]]) != "Date")
     stop("Column 'code_date' is not of format 'Date'!")
   if (!is.character(x[["id"]]))
     stop("Column 'id' must be character!")

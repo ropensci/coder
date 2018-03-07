@@ -34,15 +34,16 @@ but the object will be changed by reference.}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object
-  with mandatory columns: "id" (individual id coerced to character),
-  "code" and
-  "date" (when the code was valid).
+  with mandatory columns: "id" (individual id coerced to character) and
+  "code". It has an optional column
+  "code_date" (when the code was valid) if there was such a column in
+  \code{x} or if the data is recognised from NPR.
   Possible additional columns from \code{x} are preserved
   if data is not recognised as coming from NPR.
 
 \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 \code{FALSE} otherwise.
-(Note that \code{codedata} is not a formal class of its own!)
+(Note that \code{codedata} is not a formal R class of its own!)
 }
 \description{
 Code data
