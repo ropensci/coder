@@ -11,6 +11,10 @@
 #' @param ... by default, codes for future dates or dates before "1970-01-01"
 #' are ignored (with a warning). Specify \code{to, from}
 #' (as passed to \code{\link{filter_dates}}) to override.
+#' @param nprdate If \code{x} is recognised as a data set from the Swedish
+#' National Patient Register, which date variable should be reconised as code
+#' date for out patients? Could be either "indatuma" or "utdatuma".
+#' (Note that in patients only have one date.)
 #'
 #' @section Data from NPR:
 #'
@@ -63,7 +67,9 @@
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'
-as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
+as.codedata <- function(
+    x, y = NULL, ..., .setkeys = TRUE, .copy = NA, nprdate = "utdatuma") {
+
   code_date <- id <- NULL # Fix for R Check
 
   if (!is.data.table(x)) {
@@ -77,7 +83,7 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
     y <- NULL # don't need it any more. Delete to Save space
   }
 
-  x <- fix_possible_pardata(x, .copy)
+  x <- fix_possible_pardata(x, nprdate = nprdate, .copy)
   hasdates <- "code_date" %in% names(x)
   if (hasdates) {
     x <- x[dates_within(code_date, ...)]
@@ -96,7 +102,9 @@ as.codedata <- function(x, y = NULL, ..., .setkeys = TRUE, .copy = NA) {
 
 # transform possible NPR data if reconised as such,
 # otherwise return as is
-fix_possible_pardata <- function(x, .copy = NA) {
+fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
+
+  stopifnot(nprdate %in% c("indatuma", "utdatuma"))
   x <- copybig(x, .copy)
 
   setnames(x, names(x), tolower(names(x)))
@@ -168,7 +176,7 @@ fix_possible_pardata <- function(x, .copy = NA) {
       `:=`(
         code_date =
           as.Date(
-            if (is.null(utdatuma)) indatuma else coalesce(utdatuma, indatuma),
+            if (!exists(nprdate, inherits = FALSE)) indatuma else coalesce(nprdate, indatuma),
             format = "%Y%m%d"
           ),
         hdia = variable == "hdia"

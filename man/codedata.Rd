@@ -6,7 +6,8 @@
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, y = NULL, ..., .setkeys = TRUE, .copy = NA)
+as.codedata(x, y = NULL, ..., .setkeys = TRUE, .copy = NA,
+  nprdate = "utdatuma")
 
 is.codedata(x)
 }
@@ -31,6 +32,11 @@ If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recomended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
+
+\item{nprdate}{If \code{x} is recognised as a data set from the Swedish
+National Patient Register, which date variable should be reconised as code
+date for out patients? Could be either "indatuma" or "utdatuma".
+(Note that in patients only have one date.)}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object

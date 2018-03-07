@@ -1,16 +1,10 @@
-################################################################################
-#                                                                              #
-#                               Testing NPR data                               #
-#                                                                              #
-################################################################################
-
 context("codedata")
 
 N <- 1e3
 set.seed(1)
 
 # Generate som e fake data to use for testing
-pardata <- data.frame(lpnr = seq_len(N), indatuma = Sys.Date())
+pardata <- data.frame(lpnr = seq_len(N), indatuma = as.Date("2018-03-07"))
 diadata <- matrix(sample(ex_icd10$code, 22 * N, replace = TRUE), N)
 colnames(diadata) <- c("hdia", paste0("bdia", 1:21))
 pardata <- cbind(pardata, diadata)
