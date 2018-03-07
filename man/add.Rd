@@ -2,45 +2,111 @@
 % Please edit documentation in R/add.R
 \name{add}
 \alias{add}
-\title{Add classification data to data frame with case data}
+\alias{categorize}
+\alias{categorise}
+\title{Categorize cases based on external data and classification scheme}
 \usage{
 add(what, to, from, id, date, days = NULL, ind = NULL, tech_names = FALSE,
   sort = TRUE)
+
+categorize(.data, from, what, id, date, ...)
+
+categorise(.data, from, what, id, date, ...)
 }
 \arguments{
-\item{what}{to add? classification scheme of type classcodes to classify by}
+\item{what}{What to add? Specify classification scheme
+(\code{\link{classcodes}} classcode object) specifying categories to add
+based on individual code groups.}
 
-\item{to}{where should it be added? A data frame with at least two columns,
-one with case (patient) identification (column name specified by argument id)
-and one with a date of interest (column name specified by argument date)}
+\item{to, .data}{To which data set should the categories be added?
+A data frame with at least two columns,
+one with case (patient) identification (column name specified by argument
+id) and one with a date of interest (column name specified by argument
+date)}
 
-\item{from}{where do we find the class codes?
-Object with code data for which \code{\link{is.codedata}} is \code{TRUE}}
+\item{from}{where do we find the class codes? \code{\link{codedata}}}
 
 \item{id, date, days}{arguments passed to \code{\link{codify}}}
 
 \item{ind}{control possible inclusion of index vector. Set to \code{FALSE} if
-no index should be calculated, otherwise a value passed to argument \code{by}
-in function \code{\link{index}}. It is here also possible to include several
-indices as a character vector.}
+no index should be calculated, otherwise a value passed to argument
+\code{by} in function \code{\link{index}}. It is possible to
+include several indices as a character vector.}
 
 \item{tech_names}{should technical column names be used? If \code{FALSE},
 colnames are taken directly from group names of \code{by}, if \code{TRUE},
 these are changed to more technical names avoiding special characters and
 are prefixed by the name of the classification scheme.}
 
-\item{sort}{logical. Should the result be sorted by the 'id' column?}
+\item{sort}{logical. Should output be sorted by the 'id' column?
+(This could effect computational speed for large data sets.)
+Data is sorted by 'id' internally. It is therefore faster to keep the output
+sorted this way, but this might be inconvinient if the original
+order was intended. Set to \code{FALSE} in order to not shuffle the
+input data.}
+
+\item{...}{used to pass arguments between methods}
 }
 \value{
-data frame with all data from input data frame \code{to} combined
-with added class (and possibly index) data.
+data frame ('data.table' object) with all data from
+the input data set \code{to/.data} combined with logical columns indicating
+membership of categories identified by the classcode object.
+Indices are also included if so specified by the 'ind' argument.
 }
 \description{
-This function can be used as a convenient short cut for the otherwise common
-multi step procedure based on \code{\link{codify}}, \code{\link{classify}},
-\code{\link{index}} and then combining the input data with the new result.
+\code{add} and \code{categorize/categorise} are the main functions
+of the package. They are basically synonyms but use a differnt order of
+arguments (see "When to use each funtion" for details).
 }
+\section{When to use each funtion}{
+
+
+Both \code{add} and \code{categorize/categorise} are used as a single step
+function to categorize cases (for example patients) using external code data
+(for example privious hospital records with ICD10-codes) based on a
+classification scheme (for example a comorbidity index). It involves a
+couple of intermediate steps that are abstracted away for convenience.
+
+\describe{
+
+  \item{\code{add}}{The order of arguments in the \code{add} function is
+  ment to maximize readability and understanding of the task performed.
+  It should be relatively easy to read the function call (with its argument)
+  as a full sentence.}
+
+  \item{\code{categorize/categorise}}{Although \code{add} might be easier
+  to use and read alone, it is not well suited for chained
+  expression using the magrittr pipe (\code{\%>\%}).
+  \code{categorize/categorise} on the other hand, use \code{.data} as a first
+  argument and is therefore natural in this context.}
+
+  \item{\code{\link{codify}}, \code{\link{classify}}, \code{\link{index}}}{
+  \code{add/categorize/categorise} combine several steps and add new data
+  to an existing data frame. Use \code{\link{codify}}, \code{\link{classify}}
+  and \code{\link{index}} as individual smaller steps for more fine grained
+  control over different types od in- and output data.}
+}
+}
+
 \examples{
+# Add Elixhauser based on all registered ICD10-codes
 add("elix_icd10", to = ex_people, from = ex_icd10,
   id = "name", date = "surgery")
+
+# Add Charlson categorias and two versions of a calculated index.
+# Only include recent hospital visits within 30 days before surgery,
+# and use technical variable names to clearly identify the new columns.
+
+add("charlson_icd10", to = ex_people, from = ex_icd10,
+  id = "name", date = "surgery", days = c(-30, -1),
+  ind = c("quan_original", "quan_updated"),
+  tech_names = TRUE
+)
+
+\dontrun{
+# Use 'categorize' to chain with magrittr pipe:
+ex_people \%>\%
+  categorize(ex_icd10, "elix_icd10",
+  id = "name", date = "surgery")
+}
 }
