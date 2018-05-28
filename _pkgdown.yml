@@ -1,0 +1,37 @@
+url: eribul.github.io/coder
+
+authors:
+  Erik Bulow:
+    href: https://github.org/eribul
+
+reference:
+- title: Classify data
+  desc: Functions used for classifying data
+  contents:
+  - add
+  - classify
+  - codify
+  - index
+- title: Help functions for classcode data
+  desc: Functions used for classifying data
+  contents:
+  - get_classcodes
+  - show
+  - as.data.frame.classified
+  - classcodes
+  - codedata
+- title: Classification schemes
+  desc: Default classification schemes for comorbidity and adverse events
+  contents:
+  - contains("icd10")
+  - contains("kva")
+  - contains("rxriskv")
+- title: Example data
+  desc:
+  contents:
+  - starts_with("ex_")
+- title: Minor help functions
+  desc:
+  contents:
+  - copybig
+  - contains("date")

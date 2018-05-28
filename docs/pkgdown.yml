@@ -1,0 +1,9 @@
+pandoc: '2.2'
+pkgdown: 1.0.0
+pkgdown_sha: ~
+articles:
+  benchmark: benchmark.html
+urls:
+  reference: eribul.github.io/coder/reference
+  article: eribul.github.io/coder/articles
+

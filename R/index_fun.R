@@ -13,7 +13,6 @@
 #'
 #' @return Named numeric index vector with names corresponding to
 #'   \code{rownames(x)}
-#' @export
 #'
 #' @examples
 #'
@@ -36,11 +35,16 @@
 #' cl <- classify(co, "hip_adverse_events_icd10_old")
 #' index(cl)
 #'
-#' @name index
+#' @name index_fun
+NULL
+
+# Use strange names to avoid name collision with index.html used by pkgdown!
+#' @rdname index_fun
+#' @export
 index <- function(x, ...) UseMethod("index")
 
 #' @export
-#' @rdname index
+#' @rdname index_fun
 index.data.frame <- function(x, ...) {
   message("column '", names(x)[1], "' used as id!")
   y <- as.matrix(x[-1])
@@ -48,7 +52,7 @@ index.data.frame <- function(x, ...) {
   index(y, from = attr(x, "classcodes"), ...)
 }
 
-#' @rdname index
+#' @rdname index_fun
 #' @export
 index.matrix <- function(x, by = NULL, from = NULL, ...) {
 
