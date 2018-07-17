@@ -122,7 +122,7 @@ add <- function(
 #'   id = "name", date = "surgery")
 #' }
 categorize <- function(.data, from, what, id, date, ...)
-  add(what = what, to = .data, from = from, id, date)
+  add(what = what, to = .data, from = from, id = id, date = date, ...)
 
 #' @rdname add
 #' @export

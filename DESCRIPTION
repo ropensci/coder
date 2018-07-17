@@ -5,7 +5,6 @@ Version: 0.5.1
 Authors@R: person("Erik", "Bulow", email = "eriklgb@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-9973-456X"))
-Maintainer: Erik Bulow <eriklgb@gmail.com>
 Description: Identify items and classify them into categories by coded data.
   Functionality of the package relies on three central objects.
   1) A data frame ('data.table') with item data (for example patients) to classify.

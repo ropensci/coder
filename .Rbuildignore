@@ -9,3 +9,6 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
+pkgdown.yml
+^docs/*
+^misc/*
