@@ -1,0 +1,34 @@
+Gbg, 2018-07-19
+
+
+
+
+
+
+
+
+Forskningskontrakt för R-paketet "coder"
+-----------------------------------------
+
+
+Ett av mina delarbeten för planerad avhandling avser utveckling av R-paket. 
+Tanken är att paketet också beskrivs i vetenskaplig artikel.
+Behovet av paketet har uppstått till följd av bearbetning av SHPR-data.
+Dock används ingten data för utvecklng av själva paketet.
+
+Jag har ändå fyllt i ett forskningskontrakt ifall projektet bör registreras etc 
+(men har inte fyllt i ngn datauttagsansökan).
+
+Szilard tyckte jag skulle stå ensam på denna artikel. Därför skrev jag bara mitt namn på ansökan.
+Vet inte om detta är korrekt?
+
+
+
+
+MVH
+
+
+
+................
+Erik B
+Gbg, som ovan 

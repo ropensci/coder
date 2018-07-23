@@ -13,7 +13,7 @@ suppressMessages(
   test_that("handle data from PAR", {
     expect_true(is.codedata(as.codedata(pardata)))
     expect_message(as.codedata(pardata))
-    expect_equal(ncol(as.codedata(pardata)), 5)
+    expect_equal(ncol(as.codedata(pardata)), 4)
     expect_equal(nrow(as.codedata(pardata)), 21734)
     expect_error(as.codedata(iris))
   })

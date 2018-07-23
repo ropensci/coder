@@ -104,34 +104,56 @@ as.codedata <- function(
 # otherwise return as is
 fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
 
+  # silly workaround to avoid CHECK note
+  variable <- code_date <- hdia <- code <- indatuma <- utdatuma <- diagnos <-
+    op <- id <- NULL
+
   stopifnot(nprdate %in% c("indatuma", "utdatuma"))
   x <- copybig(x, .copy)
 
   setnames(x, names(x), tolower(names(x)))
-  all_names <- function(xnm) all(xnm %in% names(x))
+  if ("lopnr" %in% names(x)) setnames(x, "lopnr", "id")
+  if ("lpnr"  %in% names(x)) setnames(x, "lpnr", "id")
 
-  # Data can contain either diagnose data (ICD) or KVA
-  nms_dia  <- c("hdia", paste0("bdia", 1:15))
-  nms_op   <- paste0("op", 1:30)
+  # New format of NPR data from NBHW can have all dia codes in one column
+  # So far only implemented for dia-codes.
+  # Should be considered for OP codes as well.
+  if (!any(startsWith(names(x), "bdia")) &&
+      !any(startsWith(names(x), "op"))   &&
+      "diagnos" %in% names(x)) {
+    # Don't know how many columns it will be (how many codes there are)
+    spl <- tstrsplit(x$diagnos, " ")
+    x[
+      , hdia := NULL][
+      , c("hdia", paste0("bdia", seq_len(length(spl) - 1))) := spl
+    ]
+  } else if ("op" %in% names(x) & !"op1" %in% names(x)) {
+    spl <- tstrsplit(x$op, " ")
+    x[
+      , op := NULL][
+      , c(paste0("op", seq_along(spl))) := spl
+    ]
+  }
 
-  if (all_names(c(nms_dia, nms_op))) {
+
+  if ("hdia" %in% names(x) && "op" %in% names(x)) {
     stop("NPR data contains both ICD and KVA codes!")
 
     # Check if code columns recognized
   } else {
-    if (all_names(nms_dia)) {
+    if ("hdia" %in% names(x)) {
       code      <- "diagnose (ICD)"
       # Both in- and outpatient data have at least 15 bdia but outpatient can
       # have as many as 21, we identify this by regex.
       nms_codes <- names(x)[grepl("[hb]dia", names(x))]
       blanks    <- "       " # Missing codes
-    } else if (all_names(nms_op)) {
+    } else if ("op1" %in% names(x)) {
       code      <- "operation (KVA)"
-      nms_codes <- nms_op
+      nms_codes <- names(x)[startsWith(names(x), "op")]
       blanks    <- "     "   # Missing codes
     }
-    # If lpnr and code columns exist, inform and proceed, otherwise break
-    if ("lpnr" %in% names(x) && exists("code")) {
+    # If id and code columns exist, inform and proceed, otherwise break
+    if ("id" %in% names(x) && exists("code")) {
       message("Data recognized as NPR data with ", code, " codes.")
     } else {
       return(x)
@@ -145,7 +167,7 @@ fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
   }
 
   # Remove columns not needed by referenece
-  rem <- setdiff(names(x), c("lpnr", "indatuma", "utdatuma", nms_codes))
+  rem <- setdiff(names(x), c("id", "indatuma", "utdatuma", nms_codes))
   if (!identical(rem, character(0)))
     x[, (rem) := NULL]
 
@@ -157,34 +179,28 @@ fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
     .SDcols = nms_codes
   ]
 
-  # Transform to codedata format
-  # silly workaround to avoid CHECK note
-  variable <- code_date <- hdia <- code <- indatuma <- utdatuma <- NULL
-  setnames(x, "lpnr", "id")
-
-  # Will get warning if utdatum does not exist, but we don't need to see it
-  suppressWarnings(
+  x <-
     melt(
       x,
       measure.vars  = nms_codes,
       value.name    = "code",
       na.rm         = TRUE
-    )[,
-      # For out-patient data, use 'indatuma' (since only that one exist),
-      # for in-patient-data use 'utdatuma' (since it is more relevant)
-      # Use versions with suffix a since these are in better format
-      `:=`(
-        code_date =
-          as.Date(
-            if (!exists(nprdate, inherits = FALSE)) indatuma else coalesce(nprdate, indatuma),
-            format = "%Y%m%d"
-          ),
-        hdia = variable == "hdia"
-      )
-    ][,
-      c("indatuma", "utdatuma") := NULL
-    ]
-  )
+    )
+
+  # If utdatuma should be used for inpatients, indatum must still be used for
+  # outpatients. Then st
+  if (nprdate == "utdatuma") {
+    x[is.na(utdatuma), utdatuma := indatuma]
+    setnames(x, "utdatuma", "indatuma")
+  }
+  x[, code_date := as.Date(indatuma, format = "%Y%m%d")]
+
+
+  if (code == "diagnose (ICD)") {
+    x[, .(id, code, code_date, hdia = variable == "hdia")]
+  } else {
+    x[, .(id, code, code_date)]
+  }
 }
 
 
