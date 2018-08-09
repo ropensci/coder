@@ -10,7 +10,6 @@
 #' if data frame (with one column named "date"), the same data frame but only
 #' with rows with dates within limits.
 #' @export
-#' @seealso \code{\link{dates_within}}
 #'
 #' @examples
 #' #                 valid         future      too early
@@ -24,6 +23,7 @@
 #'     foo  = 1:3
 #'   )
 #' )
+#' @family helper
 filter_dates <- function(x, ...) UseMethod("filter_dates", x)
 
 
@@ -59,14 +59,13 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' @return Logical vector with \code{TRUE} if date within limits, \code{FALSE}
 #'  otherwise.
 #' @export
-#' @seealso \code{\link{filter_dates}}
-#'
 #' @examples
 #'
 #' #                 valid         future      too early
 #' x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
 #' dates_within(x) # TRUE FALSE FALSE
 #' dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
+#' @family helper
 dates_within <- function(x, from = "1970-01-01", to = Sys.Date()) {
   blank <- function(x)
     is.null(x) || is.na(x) || is.infinite(x) || as.character(x) == ""

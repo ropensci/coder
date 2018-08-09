@@ -35,4 +35,5 @@ Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{knee_adverse_events_icd10}},
   \code{\link{rxriskv}}, \code{\link{tha_fracture_ae_kva}}
 }
+\concept{default classcodes}
 \keyword{datasets}

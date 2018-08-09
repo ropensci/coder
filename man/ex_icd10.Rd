@@ -22,5 +22,9 @@ in examples.
 }
 \seealso{
 \code{\link{ex_people}}, \code{\link{ex_pardata}}
+
+Other example data: \code{\link{ex_pardata}},
+  \code{\link{ex_people}}
 }
+\concept{example data}
 \keyword{datasets}

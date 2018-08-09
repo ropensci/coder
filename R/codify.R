@@ -32,6 +32,7 @@
 #'
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
+#' @family verbs
 codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA) {
 
   # Determine if coding should be limited by time period

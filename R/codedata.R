@@ -67,6 +67,7 @@
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'
+#' @family codedata
 as.codedata <- function(
     x, y = NULL, ..., .setkeys = TRUE, .copy = NA, nprdate = "utdatuma") {
 
@@ -95,7 +96,7 @@ as.codedata <- function(
 
   keys <- c("id", if (hasdates) "code_date", "code")
   if (.setkeys) setkeyv(x, keys)
-  unique(x, by = keys)
+  unique(x, by = keys)[]
 }
 
 
@@ -153,7 +154,7 @@ fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
       blanks    <- "     "   # Missing codes
     }
     # If id and code columns exist, inform and proceed, otherwise break
-    if ("id" %in% names(x) && exists("code")) {
+    if ("id" %in% names(x) && !is.null(code)) {
       message("Data recognized as NPR data with ", code, " codes.")
     } else {
       return(x)
@@ -197,9 +198,9 @@ fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
 
 
   if (code == "diagnose (ICD)") {
-    x[, .(id, code, code_date, hdia = variable == "hdia")]
+    x[, list(id, code, code_date, hdia = variable == "hdia")]
   } else {
-    x[, .(id, code, code_date)]
+    x[, list(id, code, code_date)]
   }
 }
 

@@ -14,7 +14,7 @@ Description: Identify items and classify them into categories by coded data.
   classification based on regular expressions.
   It is easy to introduce new classification schemes to use with arbitrary
   code data and some default 'classcodes' objects are included in the package.
-License: GPL-2
+License: MIT + file LICENSE
 Depends: R (>= 2.10)
 Suggests:
   covr,
@@ -23,7 +23,8 @@ Suggests:
 Imports:
   data.table
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0.9000
 VignetteBuilder: R.rsp
 URL: https://github.com/eribul/coder
 BugReports: https://github.com/eribul/coder/issues
+Encoding: UTF-8

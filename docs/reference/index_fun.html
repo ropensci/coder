@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Calculate index based on classification scheme" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -117,13 +120,13 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='index.html'>index</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for matrix</span>
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>x</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>index</span>(<span class='no'>x</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,27 +159,32 @@ if index calculated without weights.</p></td>
     <p>Named numeric index vector with names corresponding to
   <code>rownames(x)</code></p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other verbs: <code><a href='add.html'>add</a></code>, <code><a href='classify.html'>classify</a></code>,
+  <code><a href='codify.html'>codify</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Calculate Elixhauser comorbidity index</span>
 <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'>c</span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>), <span class='st'>"elix_icd10"</span>)
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; C80 I20 
+<span class='fu'>index</span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; C80 I20 
 #&gt;   1   0 </div><div class='input'>
 <span class='co'># Calculate Charlson-index using original weights</span>
 <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'>c</span>(<span class='st'>"C80"</span>, <span class='st'>"I21"</span>), <span class='st'>"charlson_icd10"</span>)
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>cl</span>, <span class='st'>"quan_original"</span>)</div><div class='output co'>#&gt; C80 I21 
+<span class='fu'>index</span>(<span class='no'>cl</span>, <span class='st'>"quan_original"</span>)</div><div class='output co'>#&gt; C80 I21 
 #&gt;   6   1 </div><div class='input'>
 <span class='co'># Calculate Charlson-index using updated weights</span>
 <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'>c</span>(<span class='st'>"C80"</span>, <span class='st'>"I21"</span>), <span class='st'>"charlson_icd10"</span>)
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>cl</span>, <span class='st'>"quan_updated"</span>)</div><div class='output co'>#&gt; C80 I21 
+<span class='fu'>index</span>(<span class='no'>cl</span>, <span class='st'>"quan_updated"</span>)</div><div class='output co'>#&gt; C80 I21 
 #&gt;   6   0 </div><div class='input'>
 
 <span class='co'># Find patients with adverse events after hip surgery</span>
 <span class='no'>co</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
     <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
 <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='no'>co</span>, <span class='st'>"hip_adverse_events_icd10_old"</span>)
-<span class='fu'><a href='index.html'>index</a></span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;           Alexis, Dayveon            Bauder, Taylor          Beasley, Michael 
+<span class='fu'>index</span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;           Alexis, Dayveon            Bauder, Taylor          Beasley, Michael 
 #&gt;                         0                         0                         0 
 #&gt;         Deshazor, Kordell         Henricks, Donovan       Marquez, Jacqueline 
 #&gt;                         0                         0                         0 
@@ -252,6 +260,8 @@ if index calculated without weights.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

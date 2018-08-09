@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -34,8 +36,9 @@
 classification of cases. It is often used with output from
 codify as input and is sometimes followed by the
 index function. These three function could easily be chained
-together if using the magrittr pipe (%&gt;%)." />
+together if using the magrittr pipe (%&amp;gt;%)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -62,7 +65,7 @@ together if using the magrittr pipe (%&gt;%)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -120,7 +123,7 @@ together if using the magrittr pipe (%&gt;%)." />
     <p>This is the main functions of the package, performing the actual
 classification of cases. It is often used with output from
 <code><a href='codify.html'>codify</a></code> as input and is sometimes followed by the
-<code><a href='index.html'>index</a></code> function. These three function could easily be chained
+<code><a href='index_fun.html'>index</a></code> function. These three function could easily be chained
 together if using the magrittr pipe (<code>%&gt;%</code>).</p>
     
     </div>
@@ -189,7 +192,9 @@ are prefixed by the name of the classification scheme.</p></td>
 
     <div class='dont-index'><p><code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code> for a convenience function to
 convert the output of <code>classify</code> to a data frame with id column instead
-of row names.</p></div>
+of row names.</p>
+<p>Other verbs: <code><a href='add.html'>add</a></code>, <code><a href='codify.html'>codify</a></code>,
+  <code><a href='index_fun.html'>index_fun</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -293,6 +298,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                            FALSE                    FALSE
 #&gt; Her, Lia                                  FALSE                    FALSE
 #&gt; Hicks, Camren                             FALSE                    FALSE
+#&gt; Hoang, Elijah                             FALSE                    FALSE
+#&gt; Jiles-Wright, Bralynd                     FALSE                    FALSE
+#&gt; Jung, Derek                               FALSE                    FALSE
+#&gt; Kane, Chapin                              FALSE                    FALSE
+#&gt; Kim, Alisa                                FALSE                    FALSE
+#&gt; King, Hali                                FALSE                    FALSE
+#&gt; Laulu, Kajtshiab                          FALSE                    FALSE
+#&gt; Lopez, Chiara                             FALSE                    FALSE
+#&gt; Maestas, Lilibeth                         FALSE                    FALSE
+#&gt; Mamet, A D                                FALSE                    FALSE
+#&gt; Martin, Elizario                          FALSE                    FALSE
+#&gt; Martinez, Jessica                         FALSE                    FALSE
+#&gt; Martinez, Juan                            FALSE                    FALSE
+#&gt; Martinez, Nelson                          FALSE                    FALSE
+#&gt; Mcginnis, Adunola                         FALSE                    FALSE
+#&gt; Mcknight, Jaymes                          FALSE                    FALSE
+#&gt; Miller, Darshay                           FALSE                    FALSE
+#&gt; Moktader, Sameer                          FALSE                    FALSE
+#&gt; Mosely, Jereek                            FALSE                    FALSE
+#&gt; Nam, John                                 FALSE                    FALSE
+#&gt; Nelson, Phillip                           FALSE                    FALSE
+#&gt; Okoye, Vanessa                            FALSE                    FALSE
+#&gt; Parker, Pharo                             FALSE                    FALSE
+#&gt; Perez, Kimberly                           FALSE                    FALSE
+#&gt; Pham, Kyle                                FALSE                    FALSE
+#&gt; Pronteau, Colton                          FALSE                    FALSE
+#&gt; Rodriguez, Alma                           FALSE                    FALSE
+#&gt; Rowley Booneel, Hailee                    FALSE                    FALSE
+#&gt; Sanburg, Cassandra                        FALSE                    FALSE
+#&gt; Sanchez, Dominique                        FALSE                    FALSE
+#&gt; Santee, Holly                             FALSE                    FALSE
+#&gt; Schell, Jack                              FALSE                    FALSE
+#&gt; Schubert, Patrick                         FALSE                    FALSE
+#&gt; Smith, John                               FALSE                    FALSE
+#&gt; Smith, Ruasha                             FALSE                    FALSE
+#&gt; Spoerl, John                              FALSE                    FALSE
+#&gt; Stephan, Scott                            FALSE                    FALSE
+#&gt; Suriwong, Sarah                           FALSE                    FALSE
+#&gt; Thompson, Stephen                         FALSE                    FALSE
+#&gt; Thwaites, Travis                          FALSE                    FALSE
+#&gt; Todacheene, Erminio                       FALSE                     TRUE
+#&gt; Tomlinson, Amanda                         FALSE                    FALSE
+#&gt; Tuitele-Britton, Janet                    FALSE                    FALSE
+#&gt; Valencia, Johnny                          FALSE                    FALSE
+#&gt; Vallie, Mitchelle                         FALSE                    FALSE
+#&gt; Vigo, Shi Hyung                           FALSE                    FALSE
+#&gt; Wilkerson, Teesa                          FALSE                    FALSE
+#&gt; Wood, Elijah                              FALSE                    FALSE
 #&gt;                           peripheral vascular disease cerebrovascular disease
 #&gt; Alexis, Dayveon                                 FALSE                   FALSE
 #&gt; Bauder, Taylor                                  FALSE                   FALSE
@@ -346,6 +399,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                                  FALSE                   FALSE
 #&gt; Her, Lia                                        FALSE                   FALSE
 #&gt; Hicks, Camren                                   FALSE                   FALSE
+#&gt; Hoang, Elijah                                   FALSE                   FALSE
+#&gt; Jiles-Wright, Bralynd                            TRUE                   FALSE
+#&gt; Jung, Derek                                     FALSE                   FALSE
+#&gt; Kane, Chapin                                    FALSE                   FALSE
+#&gt; Kim, Alisa                                      FALSE                   FALSE
+#&gt; King, Hali                                      FALSE                   FALSE
+#&gt; Laulu, Kajtshiab                                FALSE                   FALSE
+#&gt; Lopez, Chiara                                   FALSE                   FALSE
+#&gt; Maestas, Lilibeth                               FALSE                   FALSE
+#&gt; Mamet, A D                                      FALSE                   FALSE
+#&gt; Martin, Elizario                                FALSE                   FALSE
+#&gt; Martinez, Jessica                               FALSE                   FALSE
+#&gt; Martinez, Juan                                  FALSE                   FALSE
+#&gt; Martinez, Nelson                                FALSE                   FALSE
+#&gt; Mcginnis, Adunola                               FALSE                   FALSE
+#&gt; Mcknight, Jaymes                                FALSE                   FALSE
+#&gt; Miller, Darshay                                 FALSE                   FALSE
+#&gt; Moktader, Sameer                                FALSE                   FALSE
+#&gt; Mosely, Jereek                                  FALSE                   FALSE
+#&gt; Nam, John                                       FALSE                   FALSE
+#&gt; Nelson, Phillip                                 FALSE                   FALSE
+#&gt; Okoye, Vanessa                                  FALSE                   FALSE
+#&gt; Parker, Pharo                                   FALSE                   FALSE
+#&gt; Perez, Kimberly                                 FALSE                   FALSE
+#&gt; Pham, Kyle                                      FALSE                   FALSE
+#&gt; Pronteau, Colton                                FALSE                   FALSE
+#&gt; Rodriguez, Alma                                 FALSE                   FALSE
+#&gt; Rowley Booneel, Hailee                          FALSE                   FALSE
+#&gt; Sanburg, Cassandra                              FALSE                   FALSE
+#&gt; Sanchez, Dominique                              FALSE                   FALSE
+#&gt; Santee, Holly                                   FALSE                   FALSE
+#&gt; Schell, Jack                                    FALSE                   FALSE
+#&gt; Schubert, Patrick                               FALSE                   FALSE
+#&gt; Smith, John                                     FALSE                   FALSE
+#&gt; Smith, Ruasha                                   FALSE                   FALSE
+#&gt; Spoerl, John                                    FALSE                   FALSE
+#&gt; Stephan, Scott                                  FALSE                   FALSE
+#&gt; Suriwong, Sarah                                 FALSE                    TRUE
+#&gt; Thompson, Stephen                               FALSE                   FALSE
+#&gt; Thwaites, Travis                                FALSE                   FALSE
+#&gt; Todacheene, Erminio                             FALSE                   FALSE
+#&gt; Tomlinson, Amanda                               FALSE                   FALSE
+#&gt; Tuitele-Britton, Janet                          FALSE                   FALSE
+#&gt; Valencia, Johnny                                FALSE                   FALSE
+#&gt; Vallie, Mitchelle                               FALSE                   FALSE
+#&gt; Vigo, Shi Hyung                                 FALSE                   FALSE
+#&gt; Wilkerson, Teesa                                FALSE                   FALSE
+#&gt; Wood, Elijah                                    FALSE                   FALSE
 #&gt;                           dementia chronic pulmonary disease rheumatic disease
 #&gt; Alexis, Dayveon              FALSE                     FALSE             FALSE
 #&gt; Bauder, Taylor               FALSE                     FALSE             FALSE
@@ -399,6 +500,54 @@ of row names.</p></div>
 #&gt; Headden, Devon               FALSE                     FALSE             FALSE
 #&gt; Her, Lia                     FALSE                     FALSE             FALSE
 #&gt; Hicks, Camren                FALSE                     FALSE             FALSE
+#&gt; Hoang, Elijah                FALSE                     FALSE             FALSE
+#&gt; Jiles-Wright, Bralynd        FALSE                     FALSE             FALSE
+#&gt; Jung, Derek                  FALSE                     FALSE             FALSE
+#&gt; Kane, Chapin                 FALSE                     FALSE             FALSE
+#&gt; Kim, Alisa                   FALSE                     FALSE             FALSE
+#&gt; King, Hali                   FALSE                     FALSE             FALSE
+#&gt; Laulu, Kajtshiab             FALSE                     FALSE             FALSE
+#&gt; Lopez, Chiara                FALSE                     FALSE             FALSE
+#&gt; Maestas, Lilibeth            FALSE                     FALSE             FALSE
+#&gt; Mamet, A D                   FALSE                     FALSE             FALSE
+#&gt; Martin, Elizario             FALSE                     FALSE             FALSE
+#&gt; Martinez, Jessica            FALSE                     FALSE             FALSE
+#&gt; Martinez, Juan               FALSE                     FALSE             FALSE
+#&gt; Martinez, Nelson             FALSE                     FALSE             FALSE
+#&gt; Mcginnis, Adunola            FALSE                     FALSE             FALSE
+#&gt; Mcknight, Jaymes             FALSE                     FALSE             FALSE
+#&gt; Miller, Darshay              FALSE                     FALSE             FALSE
+#&gt; Moktader, Sameer             FALSE                     FALSE             FALSE
+#&gt; Mosely, Jereek               FALSE                     FALSE             FALSE
+#&gt; Nam, John                    FALSE                     FALSE             FALSE
+#&gt; Nelson, Phillip              FALSE                     FALSE             FALSE
+#&gt; Okoye, Vanessa               FALSE                     FALSE             FALSE
+#&gt; Parker, Pharo                FALSE                     FALSE             FALSE
+#&gt; Perez, Kimberly              FALSE                     FALSE             FALSE
+#&gt; Pham, Kyle                   FALSE                     FALSE             FALSE
+#&gt; Pronteau, Colton             FALSE                     FALSE             FALSE
+#&gt; Rodriguez, Alma              FALSE                     FALSE             FALSE
+#&gt; Rowley Booneel, Hailee       FALSE                     FALSE             FALSE
+#&gt; Sanburg, Cassandra           FALSE                     FALSE             FALSE
+#&gt; Sanchez, Dominique           FALSE                     FALSE             FALSE
+#&gt; Santee, Holly                FALSE                     FALSE             FALSE
+#&gt; Schell, Jack                 FALSE                     FALSE             FALSE
+#&gt; Schubert, Patrick            FALSE                     FALSE             FALSE
+#&gt; Smith, John                  FALSE                     FALSE             FALSE
+#&gt; Smith, Ruasha                FALSE                     FALSE             FALSE
+#&gt; Spoerl, John                 FALSE                     FALSE             FALSE
+#&gt; Stephan, Scott               FALSE                     FALSE             FALSE
+#&gt; Suriwong, Sarah              FALSE                     FALSE             FALSE
+#&gt; Thompson, Stephen            FALSE                     FALSE             FALSE
+#&gt; Thwaites, Travis             FALSE                     FALSE             FALSE
+#&gt; Todacheene, Erminio          FALSE                     FALSE             FALSE
+#&gt; Tomlinson, Amanda            FALSE                     FALSE             FALSE
+#&gt; Tuitele-Britton, Janet       FALSE                     FALSE             FALSE
+#&gt; Valencia, Johnny             FALSE                     FALSE             FALSE
+#&gt; Vallie, Mitchelle            FALSE                      TRUE             FALSE
+#&gt; Vigo, Shi Hyung              FALSE                     FALSE             FALSE
+#&gt; Wilkerson, Teesa             FALSE                     FALSE             FALSE
+#&gt; Wood, Elijah                 FALSE                     FALSE             FALSE
 #&gt;                           peptic ulcer disease mild liver disease
 #&gt; Alexis, Dayveon                          FALSE              FALSE
 #&gt; Bauder, Taylor                           FALSE              FALSE
@@ -452,6 +601,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                           FALSE              FALSE
 #&gt; Her, Lia                                 FALSE              FALSE
 #&gt; Hicks, Camren                            FALSE              FALSE
+#&gt; Hoang, Elijah                            FALSE              FALSE
+#&gt; Jiles-Wright, Bralynd                    FALSE              FALSE
+#&gt; Jung, Derek                              FALSE              FALSE
+#&gt; Kane, Chapin                             FALSE              FALSE
+#&gt; Kim, Alisa                               FALSE              FALSE
+#&gt; King, Hali                               FALSE              FALSE
+#&gt; Laulu, Kajtshiab                         FALSE              FALSE
+#&gt; Lopez, Chiara                            FALSE              FALSE
+#&gt; Maestas, Lilibeth                        FALSE              FALSE
+#&gt; Mamet, A D                               FALSE              FALSE
+#&gt; Martin, Elizario                         FALSE              FALSE
+#&gt; Martinez, Jessica                        FALSE              FALSE
+#&gt; Martinez, Juan                           FALSE              FALSE
+#&gt; Martinez, Nelson                         FALSE              FALSE
+#&gt; Mcginnis, Adunola                        FALSE              FALSE
+#&gt; Mcknight, Jaymes                         FALSE              FALSE
+#&gt; Miller, Darshay                          FALSE              FALSE
+#&gt; Moktader, Sameer                         FALSE              FALSE
+#&gt; Mosely, Jereek                           FALSE              FALSE
+#&gt; Nam, John                                FALSE              FALSE
+#&gt; Nelson, Phillip                          FALSE              FALSE
+#&gt; Okoye, Vanessa                           FALSE              FALSE
+#&gt; Parker, Pharo                            FALSE              FALSE
+#&gt; Perez, Kimberly                          FALSE              FALSE
+#&gt; Pham, Kyle                               FALSE              FALSE
+#&gt; Pronteau, Colton                         FALSE              FALSE
+#&gt; Rodriguez, Alma                          FALSE              FALSE
+#&gt; Rowley Booneel, Hailee                   FALSE              FALSE
+#&gt; Sanburg, Cassandra                       FALSE              FALSE
+#&gt; Sanchez, Dominique                       FALSE              FALSE
+#&gt; Santee, Holly                            FALSE              FALSE
+#&gt; Schell, Jack                             FALSE              FALSE
+#&gt; Schubert, Patrick                        FALSE              FALSE
+#&gt; Smith, John                              FALSE              FALSE
+#&gt; Smith, Ruasha                            FALSE              FALSE
+#&gt; Spoerl, John                             FALSE              FALSE
+#&gt; Stephan, Scott                           FALSE              FALSE
+#&gt; Suriwong, Sarah                          FALSE              FALSE
+#&gt; Thompson, Stephen                        FALSE              FALSE
+#&gt; Thwaites, Travis                         FALSE              FALSE
+#&gt; Todacheene, Erminio                      FALSE              FALSE
+#&gt; Tomlinson, Amanda                        FALSE              FALSE
+#&gt; Tuitele-Britton, Janet                   FALSE              FALSE
+#&gt; Valencia, Johnny                         FALSE              FALSE
+#&gt; Vallie, Mitchelle                        FALSE              FALSE
+#&gt; Vigo, Shi Hyung                          FALSE              FALSE
+#&gt; Wilkerson, Teesa                         FALSE              FALSE
+#&gt; Wood, Elijah                             FALSE              FALSE
 #&gt;                           diabetes without complication
 #&gt; Alexis, Dayveon                                   FALSE
 #&gt; Bauder, Taylor                                    FALSE
@@ -505,6 +702,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                                    FALSE
 #&gt; Her, Lia                                          FALSE
 #&gt; Hicks, Camren                                     FALSE
+#&gt; Hoang, Elijah                                     FALSE
+#&gt; Jiles-Wright, Bralynd                             FALSE
+#&gt; Jung, Derek                                       FALSE
+#&gt; Kane, Chapin                                      FALSE
+#&gt; Kim, Alisa                                        FALSE
+#&gt; King, Hali                                        FALSE
+#&gt; Laulu, Kajtshiab                                  FALSE
+#&gt; Lopez, Chiara                                     FALSE
+#&gt; Maestas, Lilibeth                                 FALSE
+#&gt; Mamet, A D                                        FALSE
+#&gt; Martin, Elizario                                  FALSE
+#&gt; Martinez, Jessica                                 FALSE
+#&gt; Martinez, Juan                                    FALSE
+#&gt; Martinez, Nelson                                  FALSE
+#&gt; Mcginnis, Adunola                                 FALSE
+#&gt; Mcknight, Jaymes                                  FALSE
+#&gt; Miller, Darshay                                   FALSE
+#&gt; Moktader, Sameer                                  FALSE
+#&gt; Mosely, Jereek                                    FALSE
+#&gt; Nam, John                                         FALSE
+#&gt; Nelson, Phillip                                   FALSE
+#&gt; Okoye, Vanessa                                    FALSE
+#&gt; Parker, Pharo                                     FALSE
+#&gt; Perez, Kimberly                                   FALSE
+#&gt; Pham, Kyle                                        FALSE
+#&gt; Pronteau, Colton                                  FALSE
+#&gt; Rodriguez, Alma                                   FALSE
+#&gt; Rowley Booneel, Hailee                            FALSE
+#&gt; Sanburg, Cassandra                                FALSE
+#&gt; Sanchez, Dominique                                FALSE
+#&gt; Santee, Holly                                     FALSE
+#&gt; Schell, Jack                                      FALSE
+#&gt; Schubert, Patrick                                 FALSE
+#&gt; Smith, John                                       FALSE
+#&gt; Smith, Ruasha                                     FALSE
+#&gt; Spoerl, John                                      FALSE
+#&gt; Stephan, Scott                                    FALSE
+#&gt; Suriwong, Sarah                                   FALSE
+#&gt; Thompson, Stephen                                 FALSE
+#&gt; Thwaites, Travis                                  FALSE
+#&gt; Todacheene, Erminio                               FALSE
+#&gt; Tomlinson, Amanda                                 FALSE
+#&gt; Tuitele-Britton, Janet                            FALSE
+#&gt; Valencia, Johnny                                  FALSE
+#&gt; Vallie, Mitchelle                                 FALSE
+#&gt; Vigo, Shi Hyung                                   FALSE
+#&gt; Wilkerson, Teesa                                  FALSE
+#&gt; Wood, Elijah                                      FALSE
 #&gt;                           hemiplegia or paraplegia renal disease
 #&gt; Alexis, Dayveon                              FALSE         FALSE
 #&gt; Bauder, Taylor                               FALSE         FALSE
@@ -558,6 +803,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                               FALSE         FALSE
 #&gt; Her, Lia                                     FALSE         FALSE
 #&gt; Hicks, Camren                                FALSE         FALSE
+#&gt; Hoang, Elijah                                FALSE         FALSE
+#&gt; Jiles-Wright, Bralynd                        FALSE         FALSE
+#&gt; Jung, Derek                                  FALSE         FALSE
+#&gt; Kane, Chapin                                 FALSE         FALSE
+#&gt; Kim, Alisa                                   FALSE         FALSE
+#&gt; King, Hali                                   FALSE         FALSE
+#&gt; Laulu, Kajtshiab                             FALSE         FALSE
+#&gt; Lopez, Chiara                                FALSE         FALSE
+#&gt; Maestas, Lilibeth                            FALSE         FALSE
+#&gt; Mamet, A D                                   FALSE         FALSE
+#&gt; Martin, Elizario                             FALSE         FALSE
+#&gt; Martinez, Jessica                            FALSE         FALSE
+#&gt; Martinez, Juan                               FALSE         FALSE
+#&gt; Martinez, Nelson                             FALSE         FALSE
+#&gt; Mcginnis, Adunola                            FALSE         FALSE
+#&gt; Mcknight, Jaymes                             FALSE         FALSE
+#&gt; Miller, Darshay                              FALSE         FALSE
+#&gt; Moktader, Sameer                             FALSE         FALSE
+#&gt; Mosely, Jereek                               FALSE         FALSE
+#&gt; Nam, John                                    FALSE         FALSE
+#&gt; Nelson, Phillip                              FALSE         FALSE
+#&gt; Okoye, Vanessa                               FALSE         FALSE
+#&gt; Parker, Pharo                                FALSE         FALSE
+#&gt; Perez, Kimberly                              FALSE          TRUE
+#&gt; Pham, Kyle                                   FALSE         FALSE
+#&gt; Pronteau, Colton                             FALSE         FALSE
+#&gt; Rodriguez, Alma                              FALSE         FALSE
+#&gt; Rowley Booneel, Hailee                       FALSE         FALSE
+#&gt; Sanburg, Cassandra                           FALSE         FALSE
+#&gt; Sanchez, Dominique                           FALSE         FALSE
+#&gt; Santee, Holly                                FALSE         FALSE
+#&gt; Schell, Jack                                  TRUE         FALSE
+#&gt; Schubert, Patrick                            FALSE         FALSE
+#&gt; Smith, John                                  FALSE         FALSE
+#&gt; Smith, Ruasha                                FALSE         FALSE
+#&gt; Spoerl, John                                 FALSE         FALSE
+#&gt; Stephan, Scott                                TRUE         FALSE
+#&gt; Suriwong, Sarah                              FALSE         FALSE
+#&gt; Thompson, Stephen                            FALSE         FALSE
+#&gt; Thwaites, Travis                             FALSE         FALSE
+#&gt; Todacheene, Erminio                          FALSE         FALSE
+#&gt; Tomlinson, Amanda                            FALSE         FALSE
+#&gt; Tuitele-Britton, Janet                       FALSE         FALSE
+#&gt; Valencia, Johnny                             FALSE         FALSE
+#&gt; Vallie, Mitchelle                            FALSE         FALSE
+#&gt; Vigo, Shi Hyung                              FALSE         FALSE
+#&gt; Wilkerson, Teesa                             FALSE         FALSE
+#&gt; Wood, Elijah                                 FALSE         FALSE
 #&gt;                           diabetes complication malingnancy leukemia lymphoma
 #&gt; Alexis, Dayveon                           FALSE       FALSE    FALSE    FALSE
 #&gt; Bauder, Taylor                            FALSE       FALSE    FALSE    FALSE
@@ -611,6 +904,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                            FALSE       FALSE    FALSE    FALSE
 #&gt; Her, Lia                                  FALSE       FALSE    FALSE    FALSE
 #&gt; Hicks, Camren                             FALSE       FALSE    FALSE    FALSE
+#&gt; Hoang, Elijah                             FALSE       FALSE    FALSE    FALSE
+#&gt; Jiles-Wright, Bralynd                     FALSE       FALSE    FALSE    FALSE
+#&gt; Jung, Derek                               FALSE       FALSE    FALSE    FALSE
+#&gt; Kane, Chapin                              FALSE       FALSE    FALSE    FALSE
+#&gt; Kim, Alisa                                FALSE       FALSE    FALSE    FALSE
+#&gt; King, Hali                                FALSE       FALSE    FALSE    FALSE
+#&gt; Laulu, Kajtshiab                          FALSE        TRUE    FALSE    FALSE
+#&gt; Lopez, Chiara                             FALSE        TRUE    FALSE    FALSE
+#&gt; Maestas, Lilibeth                         FALSE        TRUE    FALSE    FALSE
+#&gt; Mamet, A D                                FALSE       FALSE    FALSE    FALSE
+#&gt; Martin, Elizario                          FALSE       FALSE    FALSE    FALSE
+#&gt; Martinez, Jessica                         FALSE       FALSE    FALSE    FALSE
+#&gt; Martinez, Juan                            FALSE       FALSE    FALSE    FALSE
+#&gt; Martinez, Nelson                          FALSE       FALSE    FALSE    FALSE
+#&gt; Mcginnis, Adunola                         FALSE       FALSE    FALSE    FALSE
+#&gt; Mcknight, Jaymes                          FALSE       FALSE    FALSE    FALSE
+#&gt; Miller, Darshay                           FALSE       FALSE    FALSE    FALSE
+#&gt; Moktader, Sameer                          FALSE       FALSE    FALSE    FALSE
+#&gt; Mosely, Jereek                            FALSE       FALSE    FALSE    FALSE
+#&gt; Nam, John                                 FALSE       FALSE    FALSE    FALSE
+#&gt; Nelson, Phillip                           FALSE       FALSE    FALSE    FALSE
+#&gt; Okoye, Vanessa                            FALSE       FALSE    FALSE    FALSE
+#&gt; Parker, Pharo                             FALSE       FALSE    FALSE    FALSE
+#&gt; Perez, Kimberly                           FALSE       FALSE    FALSE    FALSE
+#&gt; Pham, Kyle                                FALSE       FALSE    FALSE    FALSE
+#&gt; Pronteau, Colton                          FALSE       FALSE    FALSE    FALSE
+#&gt; Rodriguez, Alma                           FALSE       FALSE    FALSE    FALSE
+#&gt; Rowley Booneel, Hailee                    FALSE       FALSE    FALSE    FALSE
+#&gt; Sanburg, Cassandra                        FALSE       FALSE    FALSE    FALSE
+#&gt; Sanchez, Dominique                        FALSE       FALSE    FALSE    FALSE
+#&gt; Santee, Holly                             FALSE       FALSE    FALSE    FALSE
+#&gt; Schell, Jack                              FALSE       FALSE    FALSE    FALSE
+#&gt; Schubert, Patrick                         FALSE       FALSE    FALSE    FALSE
+#&gt; Smith, John                               FALSE       FALSE    FALSE    FALSE
+#&gt; Smith, Ruasha                             FALSE       FALSE    FALSE    FALSE
+#&gt; Spoerl, John                              FALSE        TRUE    FALSE    FALSE
+#&gt; Stephan, Scott                            FALSE       FALSE    FALSE    FALSE
+#&gt; Suriwong, Sarah                           FALSE       FALSE    FALSE    FALSE
+#&gt; Thompson, Stephen                         FALSE       FALSE    FALSE    FALSE
+#&gt; Thwaites, Travis                          FALSE       FALSE    FALSE    FALSE
+#&gt; Todacheene, Erminio                       FALSE       FALSE    FALSE    FALSE
+#&gt; Tomlinson, Amanda                         FALSE       FALSE    FALSE    FALSE
+#&gt; Tuitele-Britton, Janet                    FALSE       FALSE    FALSE    FALSE
+#&gt; Valencia, Johnny                          FALSE        TRUE    FALSE    FALSE
+#&gt; Vallie, Mitchelle                         FALSE       FALSE    FALSE    FALSE
+#&gt; Vigo, Shi Hyung                           FALSE        TRUE    FALSE    FALSE
+#&gt; Wilkerson, Teesa                          FALSE       FALSE    FALSE    FALSE
+#&gt; Wood, Elijah                              FALSE       FALSE    FALSE    FALSE
 #&gt;                           moderate or severe liver disease
 #&gt; Alexis, Dayveon                                      FALSE
 #&gt; Bauder, Taylor                                       FALSE
@@ -664,6 +1005,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                                       FALSE
 #&gt; Her, Lia                                             FALSE
 #&gt; Hicks, Camren                                        FALSE
+#&gt; Hoang, Elijah                                        FALSE
+#&gt; Jiles-Wright, Bralynd                                FALSE
+#&gt; Jung, Derek                                          FALSE
+#&gt; Kane, Chapin                                         FALSE
+#&gt; Kim, Alisa                                           FALSE
+#&gt; King, Hali                                           FALSE
+#&gt; Laulu, Kajtshiab                                     FALSE
+#&gt; Lopez, Chiara                                        FALSE
+#&gt; Maestas, Lilibeth                                    FALSE
+#&gt; Mamet, A D                                           FALSE
+#&gt; Martin, Elizario                                     FALSE
+#&gt; Martinez, Jessica                                    FALSE
+#&gt; Martinez, Juan                                       FALSE
+#&gt; Martinez, Nelson                                     FALSE
+#&gt; Mcginnis, Adunola                                    FALSE
+#&gt; Mcknight, Jaymes                                     FALSE
+#&gt; Miller, Darshay                                      FALSE
+#&gt; Moktader, Sameer                                     FALSE
+#&gt; Mosely, Jereek                                       FALSE
+#&gt; Nam, John                                            FALSE
+#&gt; Nelson, Phillip                                      FALSE
+#&gt; Okoye, Vanessa                                       FALSE
+#&gt; Parker, Pharo                                        FALSE
+#&gt; Perez, Kimberly                                      FALSE
+#&gt; Pham, Kyle                                           FALSE
+#&gt; Pronteau, Colton                                     FALSE
+#&gt; Rodriguez, Alma                                      FALSE
+#&gt; Rowley Booneel, Hailee                               FALSE
+#&gt; Sanburg, Cassandra                                   FALSE
+#&gt; Sanchez, Dominique                                   FALSE
+#&gt; Santee, Holly                                        FALSE
+#&gt; Schell, Jack                                         FALSE
+#&gt; Schubert, Patrick                                    FALSE
+#&gt; Smith, John                                          FALSE
+#&gt; Smith, Ruasha                                        FALSE
+#&gt; Spoerl, John                                         FALSE
+#&gt; Stephan, Scott                                       FALSE
+#&gt; Suriwong, Sarah                                      FALSE
+#&gt; Thompson, Stephen                                    FALSE
+#&gt; Thwaites, Travis                                     FALSE
+#&gt; Todacheene, Erminio                                  FALSE
+#&gt; Tomlinson, Amanda                                    FALSE
+#&gt; Tuitele-Britton, Janet                               FALSE
+#&gt; Valencia, Johnny                                     FALSE
+#&gt; Vallie, Mitchelle                                    FALSE
+#&gt; Vigo, Shi Hyung                                      FALSE
+#&gt; Wilkerson, Teesa                                     FALSE
+#&gt; Wood, Elijah                                         FALSE
 #&gt;                           metastatic solid tumor AIDS/HIV
 #&gt; Alexis, Dayveon                            FALSE    FALSE
 #&gt; Bauder, Taylor                             FALSE    FALSE
@@ -717,7 +1106,54 @@ of row names.</p></div>
 #&gt; Headden, Devon                             FALSE    FALSE
 #&gt; Her, Lia                                   FALSE    FALSE
 #&gt; Hicks, Camren                              FALSE    FALSE
-#&gt;  [ reached getOption("max.print") -- omitted 48 rows ]
+#&gt; Hoang, Elijah                              FALSE    FALSE
+#&gt; Jiles-Wright, Bralynd                      FALSE    FALSE
+#&gt; Jung, Derek                                FALSE    FALSE
+#&gt; Kane, Chapin                               FALSE    FALSE
+#&gt; Kim, Alisa                                 FALSE    FALSE
+#&gt; King, Hali                                 FALSE    FALSE
+#&gt; Laulu, Kajtshiab                            TRUE    FALSE
+#&gt; Lopez, Chiara                              FALSE    FALSE
+#&gt; Maestas, Lilibeth                          FALSE    FALSE
+#&gt; Mamet, A D                                 FALSE    FALSE
+#&gt; Martin, Elizario                           FALSE    FALSE
+#&gt; Martinez, Jessica                          FALSE    FALSE
+#&gt; Martinez, Juan                             FALSE    FALSE
+#&gt; Martinez, Nelson                           FALSE    FALSE
+#&gt; Mcginnis, Adunola                          FALSE    FALSE
+#&gt; Mcknight, Jaymes                           FALSE    FALSE
+#&gt; Miller, Darshay                            FALSE    FALSE
+#&gt; Moktader, Sameer                           FALSE    FALSE
+#&gt; Mosely, Jereek                             FALSE    FALSE
+#&gt; Nam, John                                  FALSE    FALSE
+#&gt; Nelson, Phillip                            FALSE    FALSE
+#&gt; Okoye, Vanessa                             FALSE    FALSE
+#&gt; Parker, Pharo                              FALSE    FALSE
+#&gt; Perez, Kimberly                            FALSE    FALSE
+#&gt; Pham, Kyle                                 FALSE    FALSE
+#&gt; Pronteau, Colton                           FALSE    FALSE
+#&gt; Rodriguez, Alma                            FALSE    FALSE
+#&gt; Rowley Booneel, Hailee                     FALSE    FALSE
+#&gt; Sanburg, Cassandra                         FALSE    FALSE
+#&gt; Sanchez, Dominique                         FALSE    FALSE
+#&gt; Santee, Holly                              FALSE    FALSE
+#&gt; Schell, Jack                               FALSE    FALSE
+#&gt; Schubert, Patrick                          FALSE    FALSE
+#&gt; Smith, John                                FALSE    FALSE
+#&gt; Smith, Ruasha                              FALSE    FALSE
+#&gt; Spoerl, John                               FALSE    FALSE
+#&gt; Stephan, Scott                             FALSE    FALSE
+#&gt; Suriwong, Sarah                            FALSE    FALSE
+#&gt; Thompson, Stephen                          FALSE    FALSE
+#&gt; Thwaites, Travis                           FALSE    FALSE
+#&gt; Todacheene, Erminio                        FALSE    FALSE
+#&gt; Tomlinson, Amanda                          FALSE    FALSE
+#&gt; Tuitele-Britton, Janet                     FALSE    FALSE
+#&gt; Valencia, Johnny                           FALSE    FALSE
+#&gt; Vallie, Mitchelle                          FALSE    FALSE
+#&gt; Vigo, Shi Hyung                            FALSE    FALSE
+#&gt; Wilkerson, Teesa                           FALSE    FALSE
+#&gt; Wood, Elijah                               FALSE    FALSE
 #&gt; attr(,"classcodes")
 #&gt; [1] "charlson_icd10"
 #&gt; attr(,"id")
@@ -777,6 +1213,56 @@ of row names.</p></div>
 #&gt; 48              Hall, Samorra                 FALSE                    FALSE
 #&gt; 49             Hayes, Kylihah                 FALSE                    FALSE
 #&gt; 50             Headden, Devon                 FALSE                    FALSE
+#&gt; 51                   Her, Lia                 FALSE                    FALSE
+#&gt; 52              Hicks, Camren                 FALSE                    FALSE
+#&gt; 53              Hoang, Elijah                 FALSE                    FALSE
+#&gt; 54      Jiles-Wright, Bralynd                 FALSE                    FALSE
+#&gt; 55                Jung, Derek                 FALSE                    FALSE
+#&gt; 56               Kane, Chapin                 FALSE                    FALSE
+#&gt; 57                 Kim, Alisa                 FALSE                    FALSE
+#&gt; 58                 King, Hali                 FALSE                    FALSE
+#&gt; 59           Laulu, Kajtshiab                 FALSE                    FALSE
+#&gt; 60              Lopez, Chiara                 FALSE                    FALSE
+#&gt; 61          Maestas, Lilibeth                 FALSE                    FALSE
+#&gt; 62                 Mamet, A D                 FALSE                    FALSE
+#&gt; 63           Martin, Elizario                 FALSE                    FALSE
+#&gt; 64          Martinez, Jessica                 FALSE                    FALSE
+#&gt; 65             Martinez, Juan                 FALSE                    FALSE
+#&gt; 66           Martinez, Nelson                 FALSE                    FALSE
+#&gt; 67          Mcginnis, Adunola                 FALSE                    FALSE
+#&gt; 68           Mcknight, Jaymes                 FALSE                    FALSE
+#&gt; 69            Miller, Darshay                 FALSE                    FALSE
+#&gt; 70           Moktader, Sameer                 FALSE                    FALSE
+#&gt; 71             Mosely, Jereek                 FALSE                    FALSE
+#&gt; 72                  Nam, John                 FALSE                    FALSE
+#&gt; 73            Nelson, Phillip                 FALSE                    FALSE
+#&gt; 74             Okoye, Vanessa                 FALSE                    FALSE
+#&gt; 75              Parker, Pharo                 FALSE                    FALSE
+#&gt; 76            Perez, Kimberly                 FALSE                    FALSE
+#&gt; 77                 Pham, Kyle                 FALSE                    FALSE
+#&gt; 78           Pronteau, Colton                 FALSE                    FALSE
+#&gt; 79            Rodriguez, Alma                 FALSE                    FALSE
+#&gt; 80     Rowley Booneel, Hailee                 FALSE                    FALSE
+#&gt; 81         Sanburg, Cassandra                 FALSE                    FALSE
+#&gt; 82         Sanchez, Dominique                 FALSE                    FALSE
+#&gt; 83              Santee, Holly                 FALSE                    FALSE
+#&gt; 84               Schell, Jack                 FALSE                    FALSE
+#&gt; 85          Schubert, Patrick                 FALSE                    FALSE
+#&gt; 86                Smith, John                 FALSE                    FALSE
+#&gt; 87              Smith, Ruasha                 FALSE                    FALSE
+#&gt; 88               Spoerl, John                 FALSE                    FALSE
+#&gt; 89             Stephan, Scott                 FALSE                    FALSE
+#&gt; 90            Suriwong, Sarah                 FALSE                    FALSE
+#&gt; 91          Thompson, Stephen                 FALSE                    FALSE
+#&gt; 92           Thwaites, Travis                 FALSE                    FALSE
+#&gt; 93        Todacheene, Erminio                 FALSE                     TRUE
+#&gt; 94          Tomlinson, Amanda                 FALSE                    FALSE
+#&gt; 95     Tuitele-Britton, Janet                 FALSE                    FALSE
+#&gt; 96           Valencia, Johnny                 FALSE                    FALSE
+#&gt; 97          Vallie, Mitchelle                 FALSE                    FALSE
+#&gt; 98            Vigo, Shi Hyung                 FALSE                    FALSE
+#&gt; 99           Wilkerson, Teesa                 FALSE                    FALSE
+#&gt; 100              Wood, Elijah                 FALSE                    FALSE
 #&gt;     peripheral vascular disease cerebrovascular disease dementia
 #&gt; 1                         FALSE                   FALSE    FALSE
 #&gt; 2                         FALSE                   FALSE    FALSE
@@ -828,6 +1314,56 @@ of row names.</p></div>
 #&gt; 48                        FALSE                   FALSE    FALSE
 #&gt; 49                        FALSE                   FALSE    FALSE
 #&gt; 50                        FALSE                   FALSE    FALSE
+#&gt; 51                        FALSE                   FALSE    FALSE
+#&gt; 52                        FALSE                   FALSE    FALSE
+#&gt; 53                        FALSE                   FALSE    FALSE
+#&gt; 54                         TRUE                   FALSE    FALSE
+#&gt; 55                        FALSE                   FALSE    FALSE
+#&gt; 56                        FALSE                   FALSE    FALSE
+#&gt; 57                        FALSE                   FALSE    FALSE
+#&gt; 58                        FALSE                   FALSE    FALSE
+#&gt; 59                        FALSE                   FALSE    FALSE
+#&gt; 60                        FALSE                   FALSE    FALSE
+#&gt; 61                        FALSE                   FALSE    FALSE
+#&gt; 62                        FALSE                   FALSE    FALSE
+#&gt; 63                        FALSE                   FALSE    FALSE
+#&gt; 64                        FALSE                   FALSE    FALSE
+#&gt; 65                        FALSE                   FALSE    FALSE
+#&gt; 66                        FALSE                   FALSE    FALSE
+#&gt; 67                        FALSE                   FALSE    FALSE
+#&gt; 68                        FALSE                   FALSE    FALSE
+#&gt; 69                        FALSE                   FALSE    FALSE
+#&gt; 70                        FALSE                   FALSE    FALSE
+#&gt; 71                        FALSE                   FALSE    FALSE
+#&gt; 72                        FALSE                   FALSE    FALSE
+#&gt; 73                        FALSE                   FALSE    FALSE
+#&gt; 74                        FALSE                   FALSE    FALSE
+#&gt; 75                        FALSE                   FALSE    FALSE
+#&gt; 76                        FALSE                   FALSE    FALSE
+#&gt; 77                        FALSE                   FALSE    FALSE
+#&gt; 78                        FALSE                   FALSE    FALSE
+#&gt; 79                        FALSE                   FALSE    FALSE
+#&gt; 80                        FALSE                   FALSE    FALSE
+#&gt; 81                        FALSE                   FALSE    FALSE
+#&gt; 82                        FALSE                   FALSE    FALSE
+#&gt; 83                        FALSE                   FALSE    FALSE
+#&gt; 84                        FALSE                   FALSE    FALSE
+#&gt; 85                        FALSE                   FALSE    FALSE
+#&gt; 86                        FALSE                   FALSE    FALSE
+#&gt; 87                        FALSE                   FALSE    FALSE
+#&gt; 88                        FALSE                   FALSE    FALSE
+#&gt; 89                        FALSE                   FALSE    FALSE
+#&gt; 90                        FALSE                    TRUE    FALSE
+#&gt; 91                        FALSE                   FALSE    FALSE
+#&gt; 92                        FALSE                   FALSE    FALSE
+#&gt; 93                        FALSE                   FALSE    FALSE
+#&gt; 94                        FALSE                   FALSE    FALSE
+#&gt; 95                        FALSE                   FALSE    FALSE
+#&gt; 96                        FALSE                   FALSE    FALSE
+#&gt; 97                        FALSE                   FALSE    FALSE
+#&gt; 98                        FALSE                   FALSE    FALSE
+#&gt; 99                        FALSE                   FALSE    FALSE
+#&gt; 100                       FALSE                   FALSE    FALSE
 #&gt;     chronic pulmonary disease rheumatic disease peptic ulcer disease
 #&gt; 1                       FALSE             FALSE                FALSE
 #&gt; 2                       FALSE             FALSE                FALSE
@@ -879,6 +1415,56 @@ of row names.</p></div>
 #&gt; 48                      FALSE             FALSE                FALSE
 #&gt; 49                      FALSE             FALSE                FALSE
 #&gt; 50                      FALSE             FALSE                FALSE
+#&gt; 51                      FALSE             FALSE                FALSE
+#&gt; 52                      FALSE             FALSE                FALSE
+#&gt; 53                      FALSE             FALSE                FALSE
+#&gt; 54                      FALSE             FALSE                FALSE
+#&gt; 55                      FALSE             FALSE                FALSE
+#&gt; 56                      FALSE             FALSE                FALSE
+#&gt; 57                      FALSE             FALSE                FALSE
+#&gt; 58                      FALSE             FALSE                FALSE
+#&gt; 59                      FALSE             FALSE                FALSE
+#&gt; 60                      FALSE             FALSE                FALSE
+#&gt; 61                      FALSE             FALSE                FALSE
+#&gt; 62                      FALSE             FALSE                FALSE
+#&gt; 63                      FALSE             FALSE                FALSE
+#&gt; 64                      FALSE             FALSE                FALSE
+#&gt; 65                      FALSE             FALSE                FALSE
+#&gt; 66                      FALSE             FALSE                FALSE
+#&gt; 67                      FALSE             FALSE                FALSE
+#&gt; 68                      FALSE             FALSE                FALSE
+#&gt; 69                      FALSE             FALSE                FALSE
+#&gt; 70                      FALSE             FALSE                FALSE
+#&gt; 71                      FALSE             FALSE                FALSE
+#&gt; 72                      FALSE             FALSE                FALSE
+#&gt; 73                      FALSE             FALSE                FALSE
+#&gt; 74                      FALSE             FALSE                FALSE
+#&gt; 75                      FALSE             FALSE                FALSE
+#&gt; 76                      FALSE             FALSE                FALSE
+#&gt; 77                      FALSE             FALSE                FALSE
+#&gt; 78                      FALSE             FALSE                FALSE
+#&gt; 79                      FALSE             FALSE                FALSE
+#&gt; 80                      FALSE             FALSE                FALSE
+#&gt; 81                      FALSE             FALSE                FALSE
+#&gt; 82                      FALSE             FALSE                FALSE
+#&gt; 83                      FALSE             FALSE                FALSE
+#&gt; 84                      FALSE             FALSE                FALSE
+#&gt; 85                      FALSE             FALSE                FALSE
+#&gt; 86                      FALSE             FALSE                FALSE
+#&gt; 87                      FALSE             FALSE                FALSE
+#&gt; 88                      FALSE             FALSE                FALSE
+#&gt; 89                      FALSE             FALSE                FALSE
+#&gt; 90                      FALSE             FALSE                FALSE
+#&gt; 91                      FALSE             FALSE                FALSE
+#&gt; 92                      FALSE             FALSE                FALSE
+#&gt; 93                      FALSE             FALSE                FALSE
+#&gt; 94                      FALSE             FALSE                FALSE
+#&gt; 95                      FALSE             FALSE                FALSE
+#&gt; 96                      FALSE             FALSE                FALSE
+#&gt; 97                       TRUE             FALSE                FALSE
+#&gt; 98                      FALSE             FALSE                FALSE
+#&gt; 99                      FALSE             FALSE                FALSE
+#&gt; 100                     FALSE             FALSE                FALSE
 #&gt;     mild liver disease diabetes without complication hemiplegia or paraplegia
 #&gt; 1                FALSE                         FALSE                    FALSE
 #&gt; 2                FALSE                         FALSE                    FALSE
@@ -930,6 +1516,56 @@ of row names.</p></div>
 #&gt; 48               FALSE                         FALSE                    FALSE
 #&gt; 49               FALSE                         FALSE                    FALSE
 #&gt; 50               FALSE                         FALSE                    FALSE
+#&gt; 51               FALSE                         FALSE                    FALSE
+#&gt; 52               FALSE                         FALSE                    FALSE
+#&gt; 53               FALSE                         FALSE                    FALSE
+#&gt; 54               FALSE                         FALSE                    FALSE
+#&gt; 55               FALSE                         FALSE                    FALSE
+#&gt; 56               FALSE                         FALSE                    FALSE
+#&gt; 57               FALSE                         FALSE                    FALSE
+#&gt; 58               FALSE                         FALSE                    FALSE
+#&gt; 59               FALSE                         FALSE                    FALSE
+#&gt; 60               FALSE                         FALSE                    FALSE
+#&gt; 61               FALSE                         FALSE                    FALSE
+#&gt; 62               FALSE                         FALSE                    FALSE
+#&gt; 63               FALSE                         FALSE                    FALSE
+#&gt; 64               FALSE                         FALSE                    FALSE
+#&gt; 65               FALSE                         FALSE                    FALSE
+#&gt; 66               FALSE                         FALSE                    FALSE
+#&gt; 67               FALSE                         FALSE                    FALSE
+#&gt; 68               FALSE                         FALSE                    FALSE
+#&gt; 69               FALSE                         FALSE                    FALSE
+#&gt; 70               FALSE                         FALSE                    FALSE
+#&gt; 71               FALSE                         FALSE                    FALSE
+#&gt; 72               FALSE                         FALSE                    FALSE
+#&gt; 73               FALSE                         FALSE                    FALSE
+#&gt; 74               FALSE                         FALSE                    FALSE
+#&gt; 75               FALSE                         FALSE                    FALSE
+#&gt; 76               FALSE                         FALSE                    FALSE
+#&gt; 77               FALSE                         FALSE                    FALSE
+#&gt; 78               FALSE                         FALSE                    FALSE
+#&gt; 79               FALSE                         FALSE                    FALSE
+#&gt; 80               FALSE                         FALSE                    FALSE
+#&gt; 81               FALSE                         FALSE                    FALSE
+#&gt; 82               FALSE                         FALSE                    FALSE
+#&gt; 83               FALSE                         FALSE                    FALSE
+#&gt; 84               FALSE                         FALSE                     TRUE
+#&gt; 85               FALSE                         FALSE                    FALSE
+#&gt; 86               FALSE                         FALSE                    FALSE
+#&gt; 87               FALSE                         FALSE                    FALSE
+#&gt; 88               FALSE                         FALSE                    FALSE
+#&gt; 89               FALSE                         FALSE                     TRUE
+#&gt; 90               FALSE                         FALSE                    FALSE
+#&gt; 91               FALSE                         FALSE                    FALSE
+#&gt; 92               FALSE                         FALSE                    FALSE
+#&gt; 93               FALSE                         FALSE                    FALSE
+#&gt; 94               FALSE                         FALSE                    FALSE
+#&gt; 95               FALSE                         FALSE                    FALSE
+#&gt; 96               FALSE                         FALSE                    FALSE
+#&gt; 97               FALSE                         FALSE                    FALSE
+#&gt; 98               FALSE                         FALSE                    FALSE
+#&gt; 99               FALSE                         FALSE                    FALSE
+#&gt; 100              FALSE                         FALSE                    FALSE
 #&gt;     renal disease diabetes complication malingnancy leukemia lymphoma
 #&gt; 1           FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 2           FALSE                 FALSE       FALSE    FALSE    FALSE
@@ -981,6 +1617,56 @@ of row names.</p></div>
 #&gt; 48          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 49          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 50          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 51          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 52          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 53          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 54          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 55          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 56          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 57          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 58          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 59          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 60          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 61          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 62          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 63          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 64          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 65          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 66          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 67          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 68          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 69          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 70          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 71          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 72          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 73          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 74          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 75          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 76           TRUE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 77          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 78          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 79          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 80          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 81          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 82          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 83          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 84          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 85          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 86          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 87          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 88          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 89          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 90          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 91          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 92          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 93          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 94          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 95          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 96          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 97          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 98          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 99          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 100         FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt;     moderate or severe liver disease metastatic solid tumor AIDS/HIV
 #&gt; 1                              FALSE                  FALSE    FALSE
 #&gt; 2                              FALSE                  FALSE    FALSE
@@ -1032,7 +1718,56 @@ of row names.</p></div>
 #&gt; 48                             FALSE                  FALSE    FALSE
 #&gt; 49                             FALSE                  FALSE    FALSE
 #&gt; 50                             FALSE                  FALSE    FALSE
-#&gt;  [ reached getOption("max.print") -- omitted 50 rows ]</div></pre>
+#&gt; 51                             FALSE                  FALSE    FALSE
+#&gt; 52                             FALSE                  FALSE    FALSE
+#&gt; 53                             FALSE                  FALSE    FALSE
+#&gt; 54                             FALSE                  FALSE    FALSE
+#&gt; 55                             FALSE                  FALSE    FALSE
+#&gt; 56                             FALSE                  FALSE    FALSE
+#&gt; 57                             FALSE                  FALSE    FALSE
+#&gt; 58                             FALSE                  FALSE    FALSE
+#&gt; 59                             FALSE                   TRUE    FALSE
+#&gt; 60                             FALSE                  FALSE    FALSE
+#&gt; 61                             FALSE                  FALSE    FALSE
+#&gt; 62                             FALSE                  FALSE    FALSE
+#&gt; 63                             FALSE                  FALSE    FALSE
+#&gt; 64                             FALSE                  FALSE    FALSE
+#&gt; 65                             FALSE                  FALSE    FALSE
+#&gt; 66                             FALSE                  FALSE    FALSE
+#&gt; 67                             FALSE                  FALSE    FALSE
+#&gt; 68                             FALSE                  FALSE    FALSE
+#&gt; 69                             FALSE                  FALSE    FALSE
+#&gt; 70                             FALSE                  FALSE    FALSE
+#&gt; 71                             FALSE                  FALSE    FALSE
+#&gt; 72                             FALSE                  FALSE    FALSE
+#&gt; 73                             FALSE                  FALSE    FALSE
+#&gt; 74                             FALSE                  FALSE    FALSE
+#&gt; 75                             FALSE                  FALSE    FALSE
+#&gt; 76                             FALSE                  FALSE    FALSE
+#&gt; 77                             FALSE                  FALSE    FALSE
+#&gt; 78                             FALSE                  FALSE    FALSE
+#&gt; 79                             FALSE                  FALSE    FALSE
+#&gt; 80                             FALSE                  FALSE    FALSE
+#&gt; 81                             FALSE                  FALSE    FALSE
+#&gt; 82                             FALSE                  FALSE    FALSE
+#&gt; 83                             FALSE                  FALSE    FALSE
+#&gt; 84                             FALSE                  FALSE    FALSE
+#&gt; 85                             FALSE                  FALSE    FALSE
+#&gt; 86                             FALSE                  FALSE    FALSE
+#&gt; 87                             FALSE                  FALSE    FALSE
+#&gt; 88                             FALSE                  FALSE    FALSE
+#&gt; 89                             FALSE                  FALSE    FALSE
+#&gt; 90                             FALSE                  FALSE    FALSE
+#&gt; 91                             FALSE                  FALSE    FALSE
+#&gt; 92                             FALSE                  FALSE    FALSE
+#&gt; 93                             FALSE                  FALSE    FALSE
+#&gt; 94                             FALSE                  FALSE    FALSE
+#&gt; 95                             FALSE                  FALSE    FALSE
+#&gt; 96                             FALSE                  FALSE    FALSE
+#&gt; 97                             FALSE                  FALSE    FALSE
+#&gt; 98                             FALSE                  FALSE    FALSE
+#&gt; 99                             FALSE                  FALSE    FALSE
+#&gt; 100                            FALSE                  FALSE    FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

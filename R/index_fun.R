@@ -41,6 +41,7 @@ NULL
 # Use strange names to avoid name collision with index.html used by pkgdown!
 #' @rdname index_fun
 #' @export
+#' @family verbs
 index <- function(x, ...) UseMethod("index")
 
 #' @export

@@ -43,5 +43,7 @@ filter_dates(
 )
 }
 \seealso{
-\code{\link{dates_within}}
+Other helper: \code{\link{dates_within}},
+  \code{\link{spss2date}}
 }
+\concept{helper}

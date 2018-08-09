@@ -49,4 +49,11 @@ as.classcodes(coder::elix_icd10)
 Regular expressions used in classcodes can often be quite complex
 and hard to interpret. Use \code{\link{show}} to visualize classcodes
 graphically.
+
+Other classcodes: \code{\link{as.data.frame.classified}},
+  \code{\link{get_classcodes}}, \code{\link{visualize}}
+
+Other classcodes: \code{\link{as.data.frame.classified}},
+  \code{\link{get_classcodes}}, \code{\link{visualize}}
 }
+\concept{classcodes}

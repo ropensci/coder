@@ -18,3 +18,9 @@ or a classcodes object itself.}
 \description{
 Get classcodes object
 }
+\seealso{
+Other classcodes: \code{\link{as.data.frame.classified}},
+  \code{\link{classcodes}}, \code{\link{visualize}}
+}
+\concept{classcodes}
+\keyword{internal}

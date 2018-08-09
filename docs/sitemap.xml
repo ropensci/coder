@@ -22,6 +22,9 @@
     <loc>eribul.github.io/coder/reference/codedata.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/reference/coder-package.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/reference/codify.html</loc>
   </url>
   <url>
@@ -64,9 +67,6 @@
     <loc>eribul.github.io/coder/reference/rxriskv.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/show.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/spss2date.html</loc>
   </url>
   <url>
@@ -74,6 +74,9 @@
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/tha_fracture_ae_kva.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/visualize.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/articles/benchmark.html</loc>

@@ -32,3 +32,8 @@ a separate column for id instead of row names since this fits better with
 the philosophy of "tidyverse". The data frame format is however less optimal
 for working with large data sets, wherefore matrix output is used as default.
 }
+\seealso{
+Other classcodes: \code{\link{classcodes}},
+  \code{\link{get_classcodes}}, \code{\link{visualize}}
+}
+\concept{classcodes}

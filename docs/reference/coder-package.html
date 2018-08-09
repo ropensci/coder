@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes) — tha_fracture_ae_kva • coder</title>
+<title>coder: Classification of Items into Categories Based on External Code Data — coder-package • coder</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,12 +30,17 @@ based on Atgardskoder (KVA codes) — tha_fracture_ae_kva • coder</title>
 
 
 
-<meta property="og:title" content="Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes) — tha_fracture_ae_kva" />
+<meta property="og:title" content="coder: Classification of Items into Categories Based on External Code Data — coder-package" />
 
-<meta property="og:description" content="This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-The work was initiated for fracture data but the result might be feasible
-also for non fracture data." />
+<meta property="og:description" content="Identify items and classify them into categories by coded data.
+  Functionality of the package relies on three central objects.
+  1) A data frame ('data.table') with item data (for example patients) to classify.
+  2) A data frame ('data.table') with codes (for example 'ICD' 10-codes) for each item
+  valid at distinct time points.
+  3) A classification scheme (a 'classcodes' object) defining the
+  classification based on regular expressions.
+  It is easy to introduce new classification schemes to use with arbitrary
+  code data and some default 'classcodes' objects are included in the package." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,42 +117,32 @@ also for non fracture data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>tha_fracture_ae_kva.Rd</code></div>
+    <h1>coder: Classification of Items into Categories Based on External Code Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/coder-package.R'><code>R/coder-package.R</code></a></small>
+    <div class="hidden name"><code>coder-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-The work was initiated for fracture data but the result might be feasible
-also for non fracture data.</p>
+    <p>Identify items and classify them into categories by coded data.
+  Functionality of the package relies on three central objects.
+  1) A data frame ('data.table') with item data (for example patients) to classify.
+  2) A data frame ('data.table') with codes (for example 'ICD' 10-codes) for each item
+  valid at distinct time points.
+  3) A classification scheme (a 'classcodes' object) defining the
+  classification based on regular expressions.
+  It is easy to introduce new classification schemes to use with arbitrary
+  code data and some default 'classcodes' objects are included in the package.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>tha_fracture_ae_kva</span></pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 1 row and 2 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>We only have one group of adverse events</p></dd>
-  <dt>regex</dt><dd><p>regular expression identifying KVA codes</p></dd>
-</dl>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Companion codes based on ICD-10 <code><a href='tha_fracture_ae_icd10.html'>tha_fracture_ae_icd10</a></code>.</p>
-<p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
-  <code><a href='hip_adverse_events_icd10_old.html'>hip_adverse_events_icd10_old</a></code>,
-  <code><a href='knee_adverse_events_icd10.html'>knee_adverse_events_icd10</a></code>,
-  <code><a href='rxriskv.html'>rxriskv</a></code>,
-  <code><a href='tha_fracture_ae_icd10.html'>tha_fracture_ae_icd10</a></code></p></div>
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://github.com/eribul/coder'>https://github.com/eribul/coder</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/eribul/coder/issues'>https://github.com/eribul/coder/issues</a></p></li>
+</ul></div>
     
 
   </div>
@@ -156,12 +150,13 @@ also for non fracture data.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
           </ul>
+
+    <h2>Author</h2>
+    
+<strong>Maintainer</strong>: Erik Bulow <a href='mailto:eriklgb@gmail.com'>eriklgb@gmail.com</a> (0000-0002-9973-456X)
+
 
   </div>
 </div>

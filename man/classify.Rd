@@ -72,4 +72,8 @@ as.data.frame(y)
 \code{\link{as.data.frame.classified}} for a convenience function to
 convert the output of \code{classify} to a data frame with id column instead
 of row names.
+
+Other verbs: \code{\link{add}}, \code{\link{codify}},
+  \code{\link{index_fun}}
 }
+\concept{verbs}

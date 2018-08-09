@@ -53,6 +53,7 @@
 #' # It is possible to convert the outpot of classify to a data frame with
 #' # id column instead of row names
 #' as.data.frame(y)
+#' @family verbs
 classify <- function(x, by, ...) UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object

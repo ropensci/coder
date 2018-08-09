@@ -22,3 +22,4 @@ Either \code{x} unchanged, or a fresh copy of \code{x}.
 \description{
 Decide if large objects should be copied
 }
+\keyword{internal}

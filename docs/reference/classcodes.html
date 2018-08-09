@@ -21,19 +21,22 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Classcodes methods — classcodes" />
 
-<meta property="og:description" content=""Classcodes" are classifying schemes based on regular expression stored in
+<meta property="og:description" content="&quot;Classcodes&quot; are classifying schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and classification scheme." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -60,7 +63,7 @@ part of the triad of case data, code data and classification scheme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -151,7 +154,7 @@ accepted but will raise a warning.</p></dd>
   expressions that can be evaluated within the data frame used by
   <code><a href='classify.html'>classify</a></code></p></dd>
 <dt>weights (optional):</dt><dd><p>weights for each class used for
-  <code><a href='index.html'>index</a></code> calculation.
+  <code><a href='index_fun.html'>index</a></code> calculation.
   Could be more than one and could have arbitrary names.</p></dd>
 </dl><p>Note that classes does not have to be disjunct.</p>
 <p>The package have several default classcodes included listed on its index page
@@ -160,24 +163,28 @@ accepted but will raise a warning.</p></dd>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use <code><a href='show.html'>show</a></code> to visualize classcodes
-graphically.</p></div>
+and hard to interpret. Use <code>show</code> to visualize classcodes
+graphically.</p>
+<p>Other classcodes: <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>,
+  <code><a href='get_classcodes.html'>get_classcodes</a></code>, <code><a href='visualize.html'>visualize</a></code></p>
+<p>Other classcodes: <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>,
+  <code><a href='get_classcodes.html'>get_classcodes</a></code>, <code><a href='visualize.html'>visualize</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/coder/topics/elix_icd10'>elix_icd10</a></span>)</div><div class='output co'>#&gt; # A tibble: 31 x 2
-#&gt;    group                          regex                                        
-#&gt;  * &lt;chr&gt;                          &lt;chr&gt;                                        
-#&gt;  1 congestive heart failure       ^(I099|I1(10|3[02])|I255|I4(2[05-9]|3)|I50|P~
-#&gt;  2 cardiac arrhythmias            ^(I44[1-3]|I456|I459|I4[7-9]|R00[018]|T821|Z~
-#&gt;  3 valvular disease               ^(A520|I0[5-8]|I09[18]|I3[4-9]|Q23[0-3]|Z95[~
-#&gt;  4 pulmonary circulation disorder ^(I2([67]|8[089]))                           
-#&gt;  5 peripheral vascular disorder   ^(I7([01]|3[189]|71|9[02])|K55[189]|Z95[89]) 
-#&gt;  6 hypertension uncomplicated     ^(I10[[:digit:]])                            
-#&gt;  7 hypertension complicated       ^(I1[1-35])                                  
-#&gt;  8 paralysis                      ^(G041|G114|G8(0[12]|[12]|3[0-49]))          
-#&gt;  9 other neurological disorders   ^(G1[0-3]|G2[012]|G25[45]|G31[289]|G3[25-7]|~
-#&gt; 10 chronic pulmonary disease      ^(I27[89]|J4[0-7]|J6([0-7]|84)|J70[13])      
+#&gt;    group                    regex                                              
+#&gt;  * &lt;chr&gt;                    &lt;chr&gt;                                              
+#&gt;  1 congestive heart failure ^(I099|I1(10|3[02])|I255|I4(2[05-9]|3)|I50|P290)   
+#&gt;  2 cardiac arrhythmias      ^(I44[1-3]|I456|I459|I4[7-9]|R00[018]|T821|Z[49]50)
+#&gt;  3 valvular disease         ^(A520|I0[5-8]|I09[18]|I3[4-9]|Q23[0-3]|Z95[2-4])  
+#&gt;  4 pulmonary circulation d~ ^(I2([67]|8[089]))                                 
+#&gt;  5 peripheral vascular dis~ ^(I7([01]|3[189]|71|9[02])|K55[189]|Z95[89])       
+#&gt;  6 hypertension uncomplica~ ^(I10[[:digit:]])                                  
+#&gt;  7 hypertension complicated ^(I1[1-35])                                        
+#&gt;  8 paralysis                ^(G041|G114|G8(0[12]|[12]|3[0-49]))                
+#&gt;  9 other neurological diso~ ^(G1[0-3]|G2[012]|G25[45]|G31[289]|G3[25-7]|G4[01]~
+#&gt; 10 chronic pulmonary disea~ ^(I27[89]|J4[0-7]|J6([0-7]|84)|J70[13])            
 #&gt; # ... with 21 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

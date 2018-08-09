@@ -31,4 +31,5 @@ Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{rxriskv}},
   \code{\link{tha_fracture_ae_icd10}}
 }
+\concept{default classcodes}
 \keyword{datasets}

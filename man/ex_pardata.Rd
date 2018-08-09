@@ -25,5 +25,9 @@ possible in a real data set.
 }
 \seealso{
 \code{\link{ex_people}}, \code{\link{ex_icd10}}
+
+Other example data: \code{\link{ex_icd10}},
+  \code{\link{ex_people}}
 }
+\concept{example data}
 \keyword{datasets}

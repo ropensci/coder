@@ -1,0 +1,111 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
+  "@type": "SoftwareSourceCode",
+  "identifier": "coder",
+  "description": "Identify items and classify them into categories by coded data.\n  Functionality of the package relies on three central objects.\n  1) A data frame ('data.table') with item data (for example patients) to classify.\n  2) A data frame ('data.table') with codes (for example 'ICD' 10-codes) for each item\n  valid at distinct time points.\n  3) A classification scheme (a 'classcodes' object) defining the\n  classification based on regular expressions.\n  It is easy to introduce new classification schemes to use with arbitrary\n  code data and some default 'classcodes' objects are included in the package.",
+  "name": "coder: Classification of Items into Categories Based on External Code Data",
+  "codeRepository": "https://github.com/eribul/coder",
+  "issueTracker": "https://github.com/eribul/coder/issues",
+  "license": "https://spdx.org/licenses/GPL-2.0",
+  "version": "0.5.2",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.5.1",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Erik",
+      "familyName": "Bulow",
+      "email": "eriklgb@gmail.com",
+      "@id": "https://orcid.org/0000-0002-9973-456X"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Erik",
+      "familyName": "Bulow",
+      "email": "eriklgb@gmail.com",
+      "@id": "https://orcid.org/0000-0002-9973-456X"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=covr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R.rsp",
+      "name": "R.rsp",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=R.rsp"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 2.10"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "data.table",
+      "name": "data.table",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=data.table"
+    }
+  ],
+  "readme": "https://github.com/eribul/coder/blob/master/README.md",
+  "fileSize": "80.844KB",
+  "contIntegration": [
+    "https://travis-ci.org/eribul/coder",
+    "https://ci.appveyor.com/project/eribul/coder",
+    "https://codecov.io/gh/eribul/coder"
+  ],
+  "keywords": [
+    "r",
+    "package",
+    "r-package",
+    "classification",
+    "icd-10"
+  ]
+}

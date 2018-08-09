@@ -109,3 +109,8 @@ ex_people \%>\%
   id = "name", date = "surgery")
 }
 }
+\seealso{
+Other verbs: \code{\link{classify}}, \code{\link{codify}},
+  \code{\link{index_fun}}
+}
+\concept{verbs}

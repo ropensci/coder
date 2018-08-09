@@ -94,3 +94,4 @@ z <- rbind(x, y)
 as.codedata(z)
 
 }
+\concept{codedata}

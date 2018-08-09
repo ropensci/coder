@@ -12,3 +12,6 @@
 pkgdown.yml
 ^docs/*
 ^misc/*
+paper/*
+^codemeta\.json$
+MAKE.R

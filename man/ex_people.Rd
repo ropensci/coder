@@ -17,5 +17,9 @@ Example data for fictive people to use for testing and in examples.
 }
 \seealso{
 \code{\link{ex_icd10}}, \code{\link{ex_pardata}}
+
+Other example data: \code{\link{ex_icd10}},
+  \code{\link{ex_pardata}}
 }
+\concept{example data}
 \keyword{datasets}

@@ -20,6 +20,7 @@
 #' }
 #'
 #' @export
+#' @family classcodes
 as.data.frame.classified <- function(x, ...) {
   y            <- NextMethod()
   id           <- attr(x, "id")

@@ -19,20 +19,21 @@
 #' \dontrun{
 #'
 #'  # How is depression classified according to Elixhauser?
-#'  show("elix_icd10", "depression")
+#'  visualize("elix_icd10", "depression")
 #'
 #'  # Compare the two diabetes groups according to Charlson
-#'  show("charlson_icd10",
+#'  visualize("charlson_icd10",
 #'    c("diabetes without complication", "diabetes complication"))
 #'
 #'  # Show all groups from Charlson
-#'  show("charlson_icd10")
+#'  visualize("charlson_icd10")
 #'
 #'  # Get URL for later visualisation
-#'  (show("tha_fracture_ae_icd10", show = FALSE))
+#'  (visualize("tha_fracture_ae_icd10", show = FALSE))
 #'
 #' }
-show <- function(x, group = NULL, show = TRUE) {
+#' @family classcodes
+visualize <- function(x, group = NULL, show = TRUE) {
   x <- get_classcodes(x)
 
   if (!is.null(group))
@@ -44,5 +45,9 @@ show <- function(x, group = NULL, show = TRUE) {
   invisible(u)
 }
 
+
+#' @rdname visualize
+#' @export
+visualise <- visualize
 
 

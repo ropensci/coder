@@ -223,6 +223,7 @@
 #' }
 #'
 #' @seealso \code{\link{ex_icd10}}, \code{\link{ex_pardata}}
+#' @family example data
 "ex_people"
 
 
@@ -242,6 +243,7 @@
 #'     the hospital visit (randomly assigned to 10 percent of the codes)}
 #' }
 #' @seealso \code{\link{ex_people}}, \code{\link{ex_pardata}}
+#' @family example data
 "ex_icd10"
 
 
@@ -264,4 +266,5 @@
 #'   \item{bdia(1, ..., 14)}{additional diagnoses for each visit}
 #' }
 #' @seealso \code{\link{ex_people}}, \code{\link{ex_icd10}}
+#' @family example data
 "ex_pardata"

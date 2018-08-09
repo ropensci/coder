@@ -53,3 +53,8 @@ codify elements
 \examples{
 codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 }
+\seealso{
+Other verbs: \code{\link{add}}, \code{\link{classify}},
+  \code{\link{index_fun}}
+}
+\concept{verbs}

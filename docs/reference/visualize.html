@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes) — tha_fracture_ae_kva • coder</title>
+<title>Visualise classification scheme in web browser — visualize • coder</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,12 +30,12 @@ based on Atgardskoder (KVA codes) — tha_fracture_ae_kva • coder</title>
 
 
 
-<meta property="og:title" content="Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes) — tha_fracture_ae_kva" />
+<meta property="og:title" content="Visualise classification scheme in web browser — visualize" />
 
-<meta property="og:description" content="This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-The work was initiated for fracture data but the result might be feasible
-also for non fracture data." />
+<meta property="og:description" content="Classes are visualised by their regular expressions in a web browser.
+The visualisation does not give any details on group names, conditions or
+weights but might be useful both for understanding of a clasification scheme
+in use, and during the creation and debugging of such." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,55 +112,82 @@ also for non fracture data." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>tha_fracture_ae_kva.Rd</code></div>
+    <h1>Visualise classification scheme in web browser</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/visualize.R'><code>R/visualize.R</code></a></small>
+    <div class="hidden name"><code>visualize.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-The work was initiated for fracture data but the result might be feasible
-also for non fracture data.</p>
+    <p>Classes are visualised by their regular expressions in a web browser.
+The visualisation does not give any details on group names, conditions or
+weights but might be useful both for understanding of a clasification scheme
+in use, and during the creation and debugging of such.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>tha_fracture_ae_kva</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>visualize</span>(<span class='no'>x</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-    <p>A data frame with 1 row and 2 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>We only have one group of adverse events</p></dd>
-  <dt>regex</dt><dd><p>regular expression identifying KVA codes</p></dd>
-</dl>
+<span class='fu'>visualise</span>(<span class='no'>x</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>classcodes specification as either a name or a classcodes object,
+or a classcodes object itself.</p></td>
+    </tr>
+    <tr>
+      <th>group</th>
+      <td><p>names (as character vector) of groups to visualise
+(all groups if <code>NULL</code>)</p></td>
+    </tr>
+    <tr>
+      <th>show</th>
+      <td><p>should a visualisation be shown in a web browser.
+Set to <code>FALSE</code> to just retrieve a URL for later use.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p>URL to website with visualisation (invisible)</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Companion codes based on ICD-10 <code><a href='tha_fracture_ae_icd10.html'>tha_fracture_ae_icd10</a></code>.</p>
-<p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
-  <code><a href='hip_adverse_events_icd10_old.html'>hip_adverse_events_icd10_old</a></code>,
-  <code><a href='knee_adverse_events_icd10.html'>knee_adverse_events_icd10</a></code>,
-  <code><a href='rxriskv.html'>rxriskv</a></code>,
-  <code><a href='tha_fracture_ae_icd10.html'>tha_fracture_ae_icd10</a></code></p></div>
+    <div class='dont-index'><p>Other classcodes: <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>,
+  <code><a href='classcodes.html'>classcodes</a></code>, <code><a href='get_classcodes.html'>get_classcodes</a></code></p></div>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+ <span class='co'># How is depression classified according to Elixhauser?</span>
+ <span class='fu'>visualize</span>(<span class='st'>"elix_icd10"</span>, <span class='st'>"depression"</span>)
+
+ <span class='co'># Compare the two diabetes groups according to Charlson</span>
+ <span class='fu'>visualize</span>(<span class='st'>"charlson_icd10"</span>,
+   <span class='fu'>c</span>(<span class='st'>"diabetes without complication"</span>, <span class='st'>"diabetes complication"</span>))
+
+ <span class='co'># Show all groups from Charlson</span>
+ <span class='fu'>visualize</span>(<span class='st'>"charlson_icd10"</span>)
+
+ <span class='co'># Get URL for later visualisation</span>
+ (<span class='fu'>visualize</span>(<span class='st'>"tha_fracture_ae_icd10"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))
+
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

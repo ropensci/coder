@@ -36,6 +36,7 @@
 #' @name classcodes
 #' @examples
 #' as.classcodes(coder::elix_icd10)
+#' @family classcodes
 as.classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),
@@ -54,4 +55,5 @@ as.classcodes <- function(x) {
 
 #' @export
 #' @rdname classcodes
+#' @family classcodes
 is.classcodes <- function(x) inherits(x, "classcodes")

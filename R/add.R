@@ -58,7 +58,7 @@
 #'   and \code{\link{index}} as individual smaller steps for more fine grained
 #'   control over different types od in- and output data.}
 #' }
-
+#'
 #' @export
 #'
 #' @examples
@@ -75,6 +75,7 @@
 #'   ind = c("quan_original", "quan_updated"),
 #'   tech_names = TRUE
 #')
+#' @family verbs
 add <- function(
   what, to, from, id, date = NULL,
   days = NULL, ind = NULL, tech_names = FALSE, sort = TRUE) {

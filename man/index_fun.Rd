@@ -56,3 +56,8 @@ cl <- classify(co, "hip_adverse_events_icd10_old")
 index(cl)
 
 }
+\seealso{
+Other verbs: \code{\link{add}}, \code{\link{classify}},
+  \code{\link{codify}}
+}
+\concept{verbs}

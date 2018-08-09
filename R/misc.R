@@ -5,6 +5,8 @@
 #' @param from object that classcodes could be inherited from
 #'
 #' @return \code{\link{classcodes}} object or \code{NULL} if no object found.
+#' @family classcodes
+#' @keywords internal
 get_classcodes <- function(x, from = NULL) {
 
   # Possible inherited classcodes
@@ -45,6 +47,7 @@ NULL
 #' but the object will be changed by reference.
 #'
 #' @return Either \code{x} unchanged, or a fresh copy of \code{x}.
+#' @keywords internal
 copybig <- function(x, .copy = NA) {
   # Copy x if < 1 Gb
   # Require explicit specification for large objects
@@ -70,6 +73,7 @@ copybig <- function(x, .copy = NA) {
 #' @param x SPSS date
 #' @return Date
 #' @export
+#' @family helper
 spss2date <- function(x) {
   as.Date(x / 86400, origin = "1582-10-14")
 }

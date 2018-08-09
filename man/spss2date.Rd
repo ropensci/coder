@@ -16,3 +16,8 @@ Date
 Dates from SPSS are stored as seconds from 1582-10-14.
 We convert to days from 1970-01-01
 }
+\seealso{
+Other helper: \code{\link{dates_within}},
+  \code{\link{filter_dates}}
+}
+\concept{helper}
