@@ -187,13 +187,6 @@
 "tha_fracture_ae_kva"
 
 
-################################################################################
-#                                                                              #
-#                              Example data sets                               #
-#                                                                              #
-################################################################################
-
-
 #' Classcodes for RxRiskV (original and modified)
 #'
 #' \code{\link{classcodes}} object to use with \code{\link{classify}}
@@ -205,10 +198,18 @@
 #' }
 #' @name rxriskv
 #' @family default classcodes
-"rxriskv_icd10"
+"rxriskv_atc"
 
 #' @rdname rxriskv
-"rxriskv_modified_icd10"
+"rxriskv_modified_atc"
+
+
+
+################################################################################
+#                                                                              #
+#                              Example data sets                               #
+#                                                                              #
+################################################################################
 
 
 

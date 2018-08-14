@@ -3,8 +3,8 @@
 \docType{data}
 \name{rxriskv}
 \alias{rxriskv}
-\alias{rxriskv_icd10}
-\alias{rxriskv_modified_icd10}
+\alias{rxriskv_atc}
+\alias{rxriskv_modified_atc}
 \title{Classcodes for RxRiskV (original and modified)}
 \format{Data frames with 39 rows and 2 variables:
 \describe{
@@ -12,9 +12,9 @@
   \item{regex}{regular expressions identifying ATC codes of each group}
 }}
 \usage{
-rxriskv_icd10
+rxriskv_atc
 
-rxriskv_modified_icd10
+rxriskv_modified_atc
 }
 \description{
 \code{\link{classcodes}} object to use with \code{\link{classify}}

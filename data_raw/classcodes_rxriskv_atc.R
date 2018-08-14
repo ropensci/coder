@@ -1,4 +1,4 @@
-rxriskv_icd10 <- tibble::frame_data(
+rxriskv_atc <- tibble::frame_data(
 
   ~group,                                      ~regex,
 
@@ -43,6 +43,6 @@ rxriskv_icd10 <- tibble::frame_data(
   "tuberculosis",                              '^J04A[BCK]0[124]'
 
 ) %>%
-coder::as.classcodes()
+coder::as.classcodes(coding = "atc")
 
-devtools::use_data(rxriskv_icd10, overwrite = TRUE)
+devtools::use_data(rxriskv_atc, overwrite = TRUE)

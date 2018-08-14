@@ -11,7 +11,8 @@ tha_fracture_ae_kva <-
           $"
         ),
       stringsAsFactors = FALSE
-    )
+    ),
+    coding = "kva"
   )
 
 

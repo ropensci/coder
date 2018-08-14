@@ -6,15 +6,20 @@
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x)
+as.classcodes(x, coding = NULL)
 
 is.classcodes(x)
 }
 \arguments{
 \item{x}{data frame with properties as described in the details section}
+
+\item{coding}{Coding used for the classification
+(character vector of length one). Used by \code{\link{summary.classcodes}}.}
 }
 \value{
-Object of class "classcodes"
+Object of class "classcodes" (data frame) with attribute \code{code}
+specifying the coding used (for example "icd10", or "ATC").
+Could be \code{NULL} for unknown or arbitrary coding.
 }
 \description{
 "Classcodes" are classifying schemes based on regular expression stored in
@@ -47,13 +52,16 @@ as.classcodes(coder::elix_icd10)
 }
 \seealso{
 Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use \code{\link{show}} to visualize classcodes
-graphically.
+and hard to interpret. Use \code{\link{visualize}} to visualize classcodes
+graphically or \code{\link{summary.classcodes}} to
+list all codes individually.
 
 Other classcodes: \code{\link{as.data.frame.classified}},
-  \code{\link{get_classcodes}}, \code{\link{visualize}}
+  \code{\link{get_classcodes}},
+  \code{\link{summary.classcodes}}, \code{\link{visualize}}
 
 Other classcodes: \code{\link{as.data.frame.classified}},
-  \code{\link{get_classcodes}}, \code{\link{visualize}}
+  \code{\link{get_classcodes}},
+  \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }
 \concept{classcodes}

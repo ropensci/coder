@@ -1,3 +1,5 @@
+^docs$
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^inst/*.R
@@ -15,3 +17,4 @@ pkgdown.yml
 paper/*
 ^codemeta\.json$
 MAKE.R
+^CODE_OF_CONDUCT\.md$

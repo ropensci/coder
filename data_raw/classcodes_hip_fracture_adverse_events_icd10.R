@@ -66,7 +66,8 @@ tha_fracture_ae_icd10 <-
       group = "hip fracture ae",
       regex = paste0("^", paste(gsub("\\s", "", x), collapse = "|"), "$"),
       stringsAsFactors = FALSE
-    )
+    ),
+    coding = "icd10"
   )
 
 devtools::use_data(tha_fracture_ae_icd10, overwrite = TRUE)

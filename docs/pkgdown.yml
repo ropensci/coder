@@ -1,6 +1,6 @@
-pandoc: '2.2'
-pkgdown: 1.1.0
-pkgdown_sha: ~
+pandoc: 1.16.0.2
+pkgdown: 1.1.0.9000
+pkgdown_sha: b2798656f04ce282edea3e12734ba5588c6acd6e
 articles:
   benchmark: benchmark.html
 urls:

@@ -20,7 +20,8 @@ Get classcodes object
 }
 \seealso{
 Other classcodes: \code{\link{as.data.frame.classified}},
-  \code{\link{classcodes}}, \code{\link{visualize}}
+  \code{\link{classcodes}},
+  \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }
 \concept{classcodes}
 \keyword{internal}

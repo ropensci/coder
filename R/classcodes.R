@@ -25,19 +25,24 @@
 #' `help(package = "coder")`
 #'
 #' @param x data frame with properties as described in the details section
+#' @param coding Coding used for the classification
+#'   (character vector of length one). Used by \code{\link{summary.classcodes}}.
 #'
-#' @return Object of class "classcodes"
+#' @return Object of class "classcodes" (data frame) with attribute \code{code}
+#' specifying the coding used (for example "icd10", or "ATC").
+#' Could be \code{NULL} for unknown or arbitrary coding.
 #'
 #' @seealso Regular expressions used in classcodes can often be quite complex
-#' and hard to interpret. Use \code{\link{show}} to visualize classcodes
-#' graphically.
+#' and hard to interpret. Use \code{\link{visualize}} to visualize classcodes
+#' graphically or \code{\link{summary.classcodes}} to
+#' list all codes individually.
 #'
 #' @export
 #' @name classcodes
 #' @examples
 #' as.classcodes(coder::elix_icd10)
 #' @family classcodes
-as.classcodes <- function(x) {
+as.classcodes <- function(x, coding = NULL) {
   stopifnot(
     is.data.frame(x),
     all(c("group", "regex") %in% names(x)),
@@ -50,7 +55,11 @@ as.classcodes <- function(x) {
     warning("Non unique elements of 'x$regex' implying identical classes with ",
       "multilpe names!")
   }
-  structure(x, class = unique(c("classcodes", class(x))))
+  structure(
+    x,
+    class  = unique(c("classcodes", class(x))),
+    coding = coding
+  )
 }
 
 #' @export

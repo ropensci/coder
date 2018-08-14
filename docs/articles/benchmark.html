@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
       </span>
     </div>
 
@@ -55,6 +55,9 @@
       <a href="../articles/benchmark.html">Benchmarking</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -96,45 +99,45 @@
 <colgroup>
 <col width="19%">
 <col width="17%">
-<col width="5%">
+<col width="6%">
 <col width="25%">
-<col width="31%">
+<col width="30%">
 </colgroup>
 <thead><tr class="header">
-<th>Package</th>
-<th>Authour</th>
-<th>CRAN</th>
-<th>GitHub</th>
-<th>ICD versions</th>
+<th align="left">Package</th>
+<th align="left">Authour</th>
+<th align="left">CRAN</th>
+<th align="left">GitHub</th>
+<th align="left">ICD versions</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>icd</td>
-<td>Jack Wasey</td>
-<td>X</td>
-<td>jackwasey/icd</td>
-<td>ICD9, ICD10, ICD-10-CM</td>
+<td align="left">icd</td>
+<td align="left">Jack Wasey</td>
+<td align="left">X</td>
+<td align="left">jackwasey/icd</td>
+<td align="left">ICD9, ICD10, ICD-10-CM</td>
 </tr>
 <tr class="even">
-<td>medicalrisk</td>
-<td>Patrick McCormick</td>
-<td>X</td>
-<td>patrickmdnet/medicalrisk</td>
-<td>ICD-9-CM</td>
+<td align="left">medicalrisk</td>
+<td align="left">Patrick McCormick</td>
+<td align="left">X</td>
+<td align="left">patrickmdnet/medicalrisk</td>
+<td align="left">ICD-9-CM</td>
 </tr>
 <tr class="odd">
-<td>comorbidities.icd10</td>
-<td>Max Gordon</td>
-<td></td>
-<td>gforge/comorbidities.icd10</td>
-<td>ICD-9, ICD-10 (US/SWE)</td>
+<td align="left">comorbidities.icd10</td>
+<td align="left">Max Gordon</td>
+<td align="left"></td>
+<td align="left">gforge/comorbidities.icd10</td>
+<td align="left">ICD-9, ICD-10 (US/SWE)</td>
 </tr>
 <tr class="even">
-<td>icdcoder</td>
-<td>Wade Cooper</td>
-<td></td>
-<td>wtcooper/icdcoder</td>
-<td>ICD9, ICD-9-CM, ICD10, ICD-10-CM</td>
+<td align="left">icdcoder</td>
+<td align="left">Wade Cooper</td>
+<td align="left"></td>
+<td align="left">wtcooper/icdcoder</td>
+<td align="left">ICD9, ICD-9-CM, ICD10, ICD-10-CM</td>
 </tr>
 </tbody>
 </table>
@@ -149,16 +152,16 @@
 <h1 class="hasAnchor">
 <a href="#speed-comparison" class="anchor"></a>Speed comparison</h1>
 <p>Calling functions from both <code>icd</code> and <code>comorbidities.icd10</code> by full reference (e. g. <code>package::fun</code>) is problematic due to internal use of non standard evaluation. All compared packages are therefore attached:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(coder)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(coder)</code></pre></div>
 <pre><code>## 
 ## Attaching package: 'coder'</code></pre>
 <pre><code>## The following object is masked from 'package:methods':
 ## 
 ##     show</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(icd))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(comorbidities.icd10))</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">library</span>(dplyr) <span class="co"># For data management</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(icd))
+<span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(comorbidities.icd10))
+
+<span class="kw">library</span>(dplyr) <span class="co"># For data management</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -169,12 +172,12 @@
 ##     intersect, setdiff, setequal, union</code></pre>
 <p>Benchmarking will be performed by calculating Elixhauser comorbidity classes based on ICD-10 codes by corresponding functions from the <code>icd</code>, <code>coder</code> and <code>comorbidities.icd10</code> packages.</p>
 <p>First some session info:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">si &lt;-<span class="st"> </span>devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/session_info">session_info</a></span>(<span class="kw">c</span>(<span class="st">"icd"</span>, <span class="st">"coder"</span>, <span class="st">"comorbidities.icd10"</span>))</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">si<span class="op">$</span>packages &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span>si<span class="op">$</span>packages <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(package <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"icd"</span>, <span class="st">"coder"</span>, <span class="st">"comorbidities.icd10"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>source)</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">si</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">si &lt;-<span class="st"> </span>devtools::<span class="kw">session_info</span>(<span class="kw">c</span>(<span class="st">"icd"</span>, <span class="st">"coder"</span>, <span class="st">"comorbidities.icd10"</span>))
+si$packages &lt;-<span class="st"> </span>
+<span class="st">  </span>si$packages %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(package %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">"icd"</span>, <span class="st">"coder"</span>, <span class="st">"comorbidities.icd10"</span>)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(-source)
+si</code></pre></div>
 <pre><code>## Session info -------------------------------------------------------------</code></pre>
 <pre><code>##  setting  value                       
 ##  version  R version 3.4.3 (2017-11-30)
@@ -190,54 +193,54 @@
 ## 2 comorbidities.icd10 *   0.6.2 2016-08-11
 ## 3                 icd *   2.3.1 2017-10-12</code></pre>
 <p>We prepare a function to return a list with unevaluated calls to correspinding functions in specified packages:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">uneval_list &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">"coder"</span>, <span class="st">"icd"</span>, <span class="st">"comorbidities.icd10"</span>)) {</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">  </a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="co"># Initiate a list of expressions to benchmark</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">  expr &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">  <span class="co"># Include function "classify" from package "coder"</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">  <span class="cf">if</span> (<span class="st">"coder"</span> <span class="op">%in%</span><span class="st"> </span>pkgs) expr<span class="op">$</span>coder &lt;-<span class="st"> </span><span class="kw">substitute</span>(</a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">    </a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">    <span class="kw"><a href="../reference/classify.html">classify</a></span>(</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">      x, </a>
-<a class="sourceLine" id="cb13-11" data-line-number="11">      <span class="dt">by =</span> <span class="st">"elix_icd10"</span>, </a>
-<a class="sourceLine" id="cb13-12" data-line-number="12">      <span class="dt">id =</span> <span class="st">"id"</span>)</a>
-<a class="sourceLine" id="cb13-13" data-line-number="13">    )</a>
-<a class="sourceLine" id="cb13-14" data-line-number="14">  </a>
-<a class="sourceLine" id="cb13-15" data-line-number="15">  <span class="co"># Include function "icd_comorbid" from package "icd"</span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16">  <span class="cf">if</span> (<span class="st">"icd"</span> <span class="op">%in%</span><span class="st"> </span>pkgs) expr<span class="op">$</span>icd &lt;-<span class="st"> </span><span class="kw">substitute</span>( </a>
-<a class="sourceLine" id="cb13-17" data-line-number="17">    </a>
-<a class="sourceLine" id="cb13-18" data-line-number="18">    <span class="kw">icd_comorbid</span>(</a>
-<a class="sourceLine" id="cb13-19" data-line-number="19">      dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(</a>
-<a class="sourceLine" id="cb13-20" data-line-number="20">        x, </a>
-<a class="sourceLine" id="cb13-21" data-line-number="21">        <span class="dt">id =</span> <span class="kw">as.character</span>(id), </a>
-<a class="sourceLine" id="cb13-22" data-line-number="22">        <span class="dt">code =</span> <span class="kw">as.character</span>(code)), </a>
-<a class="sourceLine" id="cb13-23" data-line-number="23">      icd10_map_quan_elix, </a>
-<a class="sourceLine" id="cb13-24" data-line-number="24">      <span class="dt">visit_name =</span> <span class="st">"id"</span>, </a>
-<a class="sourceLine" id="cb13-25" data-line-number="25">      <span class="dt">icd_name =</span> <span class="st">"code"</span>)</a>
-<a class="sourceLine" id="cb13-26" data-line-number="26">    )</a>
-<a class="sourceLine" id="cb13-27" data-line-number="27">  </a>
-<a class="sourceLine" id="cb13-28" data-line-number="28">  <span class="co"># Include function "cmrbdt.calc" from package "comorbid.icd10"</span></a>
-<a class="sourceLine" id="cb13-29" data-line-number="29">  <span class="cf">if</span> (<span class="st">"comorbidities.icd10"</span> <span class="op">%in%</span><span class="st"> </span>pkgs) expr<span class="op">$</span>comorbidities.icd10 &lt;-<span class="st"> </span><span class="kw">substitute</span>( </a>
-<a class="sourceLine" id="cb13-30" data-line-number="30">    </a>
-<a class="sourceLine" id="cb13-31" data-line-number="31">    <span class="kw">cmrbdt.calc</span>(</a>
-<a class="sourceLine" id="cb13-32" data-line-number="32">      x, </a>
-<a class="sourceLine" id="cb13-33" data-line-number="33">      <span class="st">"id"</span>, </a>
-<a class="sourceLine" id="cb13-34" data-line-number="34">      <span class="st">"code"</span>, </a>
-<a class="sourceLine" id="cb13-35" data-line-number="35">      <span class="kw">rep</span>(<span class="st">"10"</span>, <span class="kw">nrow</span>(x)), </a>
-<a class="sourceLine" id="cb13-36" data-line-number="36">      <span class="dt">cmrbdt.finder_fn =</span> cmrbdt.finder.regex.elixhauser_Quan2005)</a>
-<a class="sourceLine" id="cb13-37" data-line-number="37">    )</a>
-<a class="sourceLine" id="cb13-38" data-line-number="38">  </a>
-<a class="sourceLine" id="cb13-39" data-line-number="39">  expr</a>
-<a class="sourceLine" id="cb13-40" data-line-number="40">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uneval_list &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">"coder"</span>, <span class="st">"icd"</span>, <span class="st">"comorbidities.icd10"</span>)) {
+  
+  <span class="co"># Initiate a list of expressions to benchmark</span>
+  expr &lt;-<span class="st"> </span><span class="kw">list</span>()
+  
+  <span class="co"># Include function "classify" from package "coder"</span>
+  if (<span class="st">"coder"</span> %in%<span class="st"> </span>pkgs) expr$coder &lt;-<span class="st"> </span><span class="kw">substitute</span>(
+    
+    <span class="kw"><a href="../reference/classify.html">classify</a></span>(
+      x, 
+      <span class="dt">by =</span> <span class="st">"elix_icd10"</span>, 
+      <span class="dt">id =</span> <span class="st">"id"</span>)
+    )
+  
+  <span class="co"># Include function "icd_comorbid" from package "icd"</span>
+  if (<span class="st">"icd"</span> %in%<span class="st"> </span>pkgs) expr$icd &lt;-<span class="st"> </span><span class="kw">substitute</span>( 
+    
+    <span class="kw">icd_comorbid</span>(
+      dplyr::<span class="kw">mutate</span>(
+        x, 
+        <span class="dt">id =</span> <span class="kw">as.character</span>(id), 
+        <span class="dt">code =</span> <span class="kw">as.character</span>(code)), 
+      icd10_map_quan_elix, 
+      <span class="dt">visit_name =</span> <span class="st">"id"</span>, 
+      <span class="dt">icd_name =</span> <span class="st">"code"</span>)
+    )
+  
+  <span class="co"># Include function "cmrbdt.calc" from package "comorbid.icd10"</span>
+  if (<span class="st">"comorbidities.icd10"</span> %in%<span class="st"> </span>pkgs) expr$comorbidities.icd10 &lt;-<span class="st"> </span><span class="kw">substitute</span>( 
+    
+    <span class="kw">cmrbdt.calc</span>(
+      x, 
+      <span class="st">"id"</span>, 
+      <span class="st">"code"</span>, 
+      <span class="kw">rep</span>(<span class="st">"10"</span>, <span class="kw">nrow</span>(x)), 
+      <span class="dt">cmrbdt.finder_fn =</span> cmrbdt.finder.regex.elixhauser_Quan2005)
+    )
+  
+  expr
+}</code></pre></div>
 <p>We make another function to use for benchmarking</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">bm &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">"coder"</span>, <span class="st">"icd"</span>, <span class="st">"comorbidities.icd10"</span>), ...) {</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">  microbenchmark<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(<span class="dt">list =</span> <span class="kw">uneval_list</span>(pkgs), ...) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">digits =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bm &lt;-<span class="st"> </span>function(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">"coder"</span>, <span class="st">"icd"</span>, <span class="st">"comorbidities.icd10"</span>), ...) {
+  microbenchmark::<span class="kw">microbenchmark</span>(<span class="dt">list =</span> <span class="kw">uneval_list</span>(pkgs), ...) %&gt;%
+<span class="st">  </span><span class="kw">summary</span>() %&gt;%<span class="st"> </span>
+<span class="st">  </span>knitr::<span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">2</span>)
+}</code></pre></div>
 <p>We will use a randomly generated (totaly “fake”/non personal) dataset of size 10,000. This is of quite moderate size compared to real world data but will be sufficient for now.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">head</span>(x &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/sample.html">sample_n</a></span>(coder<span class="op">::</span>ex_icd10, <span class="fl">1e4</span>, <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(x &lt;-<span class="st"> </span>dplyr::<span class="kw">sample_n</span>(coder::ex_icd10, <span class="fl">1e4</span>, <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##                       id  code_date  code  hdia
 ## 1: el-Kaba, Abdul Maalik 2016-06-11  A191 FALSE
 ## 2:           Duin, River 2016-10-11  S822 FALSE
@@ -246,10 +249,10 @@
 ## 5:     Campbell, Kesnick 2016-02-20  M202 FALSE
 ## 6:         Smith, Ruasha 2016-05-05  N410 FALSE</code></pre>
 <p>The test data set does contain some codes beginning in “UA”, “UB” and/or “UP”. These are valid codes in the Swedish ICD 10 (2016) version but will not be recognised as such by <code>comorbidities.icd10</code>. They must therefore be excluded in order to proced:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">x &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(x, <span class="op">!</span><span class="kw">grepl</span>(<span class="st">"U[ABP]"</span>, code))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(x, !<span class="kw">grepl</span>(<span class="st">"U[ABP]"</span>, code))</code></pre></div>
 <p>A data set of 9788 is now remaining.</p>
 <p>Results in seconds:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">bm</span>(<span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">unit =</span> <span class="st">"s"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bm</span>(<span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">unit =</span> <span class="st">"s"</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">expr</th>
@@ -299,7 +302,7 @@
 </tbody>
 </table>
 <p>Relative speed differences (with the fastest package used as reference):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">bm</span>(<span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">unit =</span> <span class="st">"relative"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bm</span>(<span class="dt">times =</span> <span class="dv">5</span>, <span class="dt">unit =</span> <span class="st">"relative"</span>)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">expr</th>
@@ -373,31 +376,31 @@
 <p><code>icd</code> and <code>coder</code> gives this “table” as a logical (boolean) matrix with patient id as row names. Each package does however sort their matrices in different orders by default.</p>
 <p>The output from <code>comorbidities.icd10</code> is more complex. It is a list wherof one element is a data.frame (not a matrix as stated by the help page) with the desired output. The patient id is found as a factor column within the data frame.</p>
 <p>We have to transfer the different outputs before they can be compared:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">all_output &lt;-<span class="st"> </span><span class="cf">function</span>(...) {</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">  </a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">  <span class="co"># Limit the data</span></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">  x &lt;-<span class="st"> </span><span class="kw">head</span>(x, <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">  </a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">  <span class="co"># Calculae results for all functions</span></a>
-<a class="sourceLine" id="cb20-7" data-line-number="7">  res &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">uneval_list</span>(...), eval)</a>
-<a class="sourceLine" id="cb20-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb20-9" data-line-number="9">  <span class="co"># Transform results to comparable forms</span></a>
-<a class="sourceLine" id="cb20-10" data-line-number="10">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(res<span class="op">$</span>coder)) </a>
-<a class="sourceLine" id="cb20-11" data-line-number="11">    res<span class="op">$</span>coder &lt;-<span class="st">  </span>res<span class="op">$</span>coder[<span class="kw">order</span>(<span class="kw">rownames</span>(res<span class="op">$</span>coder)), ]</a>
-<a class="sourceLine" id="cb20-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb20-13" data-line-number="13">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(res<span class="op">$</span>comorbidities.icd10)) {</a>
-<a class="sourceLine" id="cb20-14" data-line-number="14">    id &lt;-<span class="st"> </span><span class="kw">as.character</span>(res<span class="op">$</span>comorbidities.icd10<span class="op">$</span>cmrbdt<span class="op">$</span>id)</a>
-<a class="sourceLine" id="cb20-15" data-line-number="15">    x &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(res<span class="op">$</span>comorbidities.icd10<span class="op">$</span>cmrbdt[, <span class="dv">-1</span>])</a>
-<a class="sourceLine" id="cb20-16" data-line-number="16">    <span class="kw">rownames</span>(x) &lt;-<span class="st"> </span>id</a>
-<a class="sourceLine" id="cb20-17" data-line-number="17">    res<span class="op">$</span>comorbidities.icd10 &lt;-<span class="st"> </span>x[<span class="kw">order</span>(id), ]</a>
-<a class="sourceLine" id="cb20-18" data-line-number="18">  }</a>
-<a class="sourceLine" id="cb20-19" data-line-number="19">  res</a>
-<a class="sourceLine" id="cb20-20" data-line-number="20">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">all_output &lt;-<span class="st"> </span>function(...) {
+  
+  <span class="co"># Limit the data</span>
+  x &lt;-<span class="st"> </span><span class="kw">head</span>(x, <span class="dv">100</span>)
+  
+  <span class="co"># Calculae results for all functions</span>
+  res &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="kw">uneval_list</span>(...), eval)
+  
+  <span class="co"># Transform results to comparable forms</span>
+  if (!<span class="kw">is.null</span>(res$coder)) 
+    res$coder &lt;-<span class="st">  </span>res$coder[<span class="kw">order</span>(<span class="kw">rownames</span>(res$coder)), ]
+  
+  if (!<span class="kw">is.null</span>(res$comorbidities.icd10)) {
+    id &lt;-<span class="st"> </span><span class="kw">as.character</span>(res$comorbidities.icd10$cmrbdt$id)
+    x &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(res$comorbidities.icd10$cmrbdt[, -<span class="dv">1</span>])
+    <span class="kw">rownames</span>(x) &lt;-<span class="st"> </span>id
+    res$comorbidities.icd10 &lt;-<span class="st"> </span>x[<span class="kw">order</span>(id), ]
+  }
+  res
+}</code></pre></div>
 <p>We first conclude that column order is the same although class names are articulated slightly different (the <code>icd</code> package offer possibilities for more descriptive names as well):</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw">all_output</span>()</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw">as.data.frame</span>(<span class="kw">lapply</span>(res, colnames)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw">all_output</span>()
+
+<span class="kw">as.data.frame</span>(<span class="kw">lapply</span>(res, colnames)) %&gt;%<span class="st"> </span>
+<span class="st">  </span>knitr::<span class="kw">kable</span>()</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">coder</th>
@@ -563,7 +566,7 @@
 </tbody>
 </table>
 <p>We hope to have achieved the same result for each patient and each comorbidity class.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">different &lt;-<span class="st"> </span>res<span class="op">$</span>coder <span class="op">!=</span><span class="st"> </span>res<span class="op">$</span>icd <span class="op">|</span><span class="st"> </span>res<span class="op">$</span>icd <span class="op">!=</span><span class="st"> </span>res<span class="op">$</span>comorbidities.icd10</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">different &lt;-<span class="st"> </span>res$coder !=<span class="st"> </span>res$icd |<span class="st"> </span>res$icd !=<span class="st"> </span>res$comorbidities.icd10</code></pre></div>
 <p>Were there any differences observed? <code>any(different)</code> says: FALSE (which is intended)!</p>
 </div>
   </div>
@@ -590,7 +593,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://github.org/eribul">Erik Bulow</a>.</p>
+  <p>Developed by <a href="https://github.com/eribul">Erik Bulow</a>.</p>
 </div>
 
 <div class="pkgdown">
