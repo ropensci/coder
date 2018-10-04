@@ -7,7 +7,7 @@
 \title{Code data}
 \usage{
 as.codedata(x, y = NULL, ..., .setkeys = TRUE, .copy = NA,
-  nprdate = "utdatuma")
+  npr = FALSE, nprdate = "utdatuma")
 
 is.codedata(x)
 }
@@ -32,6 +32,9 @@ If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recomended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
+
+\item{npr}{Is data from the Swedish patient register?
+If so, the format might be recognised automatically (no guarantee).}
 
 \item{nprdate}{If \code{x} is recognised as a data set from the Swedish
 National Patient Register, which date variable should be reconised as code

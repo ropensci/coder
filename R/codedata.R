@@ -11,6 +11,8 @@
 #' @param ... by default, codes for future dates or dates before "1970-01-01"
 #' are ignored (with a warning). Specify \code{to, from}
 #' (as passed to \code{\link{filter_dates}}) to override.
+#' @param npr Is data from the Swedish patient register?
+#'   If so, the format might be recognised automatically (no guarantee).
 #' @param nprdate If \code{x} is recognised as a data set from the Swedish
 #' National Patient Register, which date variable should be reconised as code
 #' date for out patients? Could be either "indatuma" or "utdatuma".
@@ -69,7 +71,7 @@
 #'
 #' @family codedata
 as.codedata <- function(
-    x, y = NULL, ..., .setkeys = TRUE, .copy = NA, nprdate = "utdatuma") {
+    x, y = NULL, ..., .setkeys = TRUE, .copy = NA, npr = FALSE, nprdate = "utdatuma") {
 
   code_date <- id <- NULL # Fix for R Check
 
@@ -84,7 +86,9 @@ as.codedata <- function(
     y <- NULL # don't need it any more. Delete to Save space
   }
 
-  x <- fix_possible_pardata(x, nprdate = nprdate, .copy)
+  if (npr) {
+    x <- fix_possible_pardata(x, nprdate = nprdate, .copy)
+  }
   hasdates <- "code_date" %in% names(x)
   if (hasdates) {
     x <- x[dates_within(code_date, ...)]

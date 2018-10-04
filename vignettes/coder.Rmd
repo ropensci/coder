@@ -1,0 +1,136 @@
+---
+title: "coder"
+author: "Erik Bulow"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{coder}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Trivial example of car ownership
+
+Let's assume we have a list of people, as well as dates for their driving license:
+
+```{r}
+
+library(coder)
+
+people <- 
+  data.frame(
+    name = c(
+      "Gavin, Christopher",
+      "Albrecht, Lauren",
+      "Aziz, Emily",
+      "Svenne Petsson"
+    ),
+    license = as.Date(c(
+      "1949-05-23",
+      "2016-02-04",
+      "2014-12-18",
+      "1985-05-04"
+    ))
+  )
+knitr::kable(people)
+```
+
+We then have a car registry with car ownership for 1,000 cars (where `code_date` specifies when the car was bought):
+
+```{r}
+knitr::kable(head(ex_cars))
+```
+
+We are no car freaks and therefore not interested in individual brand names of each car.
+We just want to know who owns a car made by a specific company.
+We can specify a classification scheme of brands related to each company (a `classcodes` object).
+Note that not all models are classified since some brands were produced by companies that do no longer exist.
+The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.
+
+
+```{r}
+knitr::kable(ex_carbrands)
+```
+
+
+# Categorize 
+
+We now want to know if anyone owns a car that is still produced.
+
+We use the three objects from above:
+
+* `people`: the people we are interested in,
+* `ex_cars`: the centralised car registry and
+* `ex_carbrands`: our classification of car makers. 
+
+Here we go:
+
+```{r}
+x <- categorize(people, ex_cars, ex_carbrands, id = "name")
+knitr::kable(x)
+```
+
+# Interpretation
+
+We can see that:
+
+* Emily Aziz is a happy owner of a Mazda. 
+* Lauren Albrecht owns both a Mercedes and a Toyota.
+* Christopher Gavin might in fact own a car, but none of the important ones identified by our classification scheme.
+* Svenne Petsson is a Swede and does not exist in our American car register.
+
+The `index` column is just the sum of identified cars owned by each person.
+
+Note that each column identifies if a person owns **at least one** car from the relevant company.
+
+
+# Cars owned before license
+
+We can use the date columns to check if anyone owned a car already before they got their drivers license.
+We then need to specify that the relevant date column for this was the one called `license`.
+The `days` argument specifies that we are interested in cars bought before this date.
+
+```{r}
+x <- categorize(people, ex_cars, ex_carbrands, id = "name", date = "license", days = c(-Inf, -1))
+knitr::kable(x)
+```
+
+Oh, indeed, one of Lauren's car was actually bought before he could drive it himself. 
+
+
+# Car rating
+
+We are now not only interested in the number of cars owned by each individual. 
+We would also like to rate the cars based on the manufacturer. Let's assign some points to each company.
+We then specifies that the index should be calculated based on the new column named "points".
+
+```{r}
+ex_carbrands <- 
+  as.classcodes(
+    data.frame(
+      ex_carbrands, 
+      points = c(10, 1, 2, 1, 1, 1, 1, 2, 2, 5)
+    )
+  )
+
+knitr::kable(ex_carbrands)
+
+x <- categorize(people, ex_cars, ex_carbrands, id = "name", ind = "points")
+knitr::kable(x)
+```
+
+It seems like, even though Emily owns just half as many cars as Albrecht, she actually gets more than twice the points when ranking the brands.
+
+
+# Concluding remark
+
+This vignette illustrates a simple example where the data sets are small, and the codnig schemes are simple. 
+If that is the case, it might be equally good to just join or merge the data sets manually. 
+A more realistic example of when the package might come handy is presented in the vignette called "Comorbidity".

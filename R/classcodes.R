@@ -27,6 +27,8 @@
 #' @param x data frame with properties as described in the details section
 #' @param coding Coding used for the classification
 #'   (character vector of length one). Used by \code{\link{summary.classcodes}}.
+#' @param description description of the classcodes object
+#'   (used by \code{\link{summary.classcodes}})
 #'
 #' @return Object of class "classcodes" (data frame) with attribute \code{code}
 #' specifying the coding used (for example "icd10", or "ATC").
@@ -42,7 +44,7 @@
 #' @examples
 #' as.classcodes(coder::elix_icd10)
 #' @family classcodes
-as.classcodes <- function(x, coding = NULL) {
+as.classcodes <- function(x, coding = NULL, description = NULL) {
   stopifnot(
     is.data.frame(x),
     all(c("group", "regex") %in% names(x)),
@@ -57,8 +59,10 @@ as.classcodes <- function(x, coding = NULL) {
   }
   structure(
     x,
-    class  = unique(c("classcodes", class(x))),
-    coding = coding
+    class       = unique(c("classcodes", class(x))),
+    coding      = coding,
+    description = description,
+    indices     = setdiff(colnames(x), c("group", "regex"))
   )
 }
 

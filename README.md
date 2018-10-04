@@ -1,30 +1,28 @@
----
-output: github_document
----
 
-[![Build Status](https://travis-ci.org/eribul/coder.svg?branch=master)](https://travis-ci.org/eribul/coder)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/eribul/coder?branch=master&svg=true)](https://ci.appveyor.com/project/eribul/coder)
+[![Build
+Status](https://travis-ci.org/eribul/coder.svg?branch=master)](https://travis-ci.org/eribul/coder)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/eribul/coder?branch=master&svg=true)](https://ci.appveyor.com/project/eribul/coder)
 [![codecov](https://codecov.io/gh/eribul/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/eribul/coder)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
 # coder
 
-The goal of coder is to classify items from one dataset, using code data from a secondary source. It was first developed for medical comorbidity data based on hospital visits recorded in a national patient register. Medical conditions were registered using standardized codes (ICD-10) and individual codes were summarized by weighting all individual comorbidities for each patient (the Charlson and Elixhauser comorbidity indices). Only hospital visits recorded within a specified time frame, compared to individual reference dates from the primary data source, were recognized as relevant.
-
-The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naïve approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster  than those.
-
-The package does not only include classification schemes for comorbidity data. It incorporates a general framework for any case where items can be classified using standardized codes. It might therefore be relevant for many tasks involving data management in official statistics using big data. 
+The goal of `coder` is to classify items from one dataset, using codes
+from a secondary source. Please se vigtnettes with introductionary
+examples\!
 
 ## Installation
 
-You can install the released version of coder from [CRAN](https://CRAN.R-project.org) with:
+You can (soon) install the released version of coder from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("coder")
+# install.packages("coder") # Not yet!
 ```
 
 And the development version from [GitHub](https://github.com/) with:
@@ -34,89 +32,39 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("eribul/coder")
 ```
 
-## Example
+## Classification schemes
 
-This is a basic example how to categorize patients by Elixhauser comorbidity:
+Classification schemes are used to classify items. These schemas are
+constructed by regular expressions for computational speed, but their
+content can be summarized and visualized for clarity.
 
+The package includes several default classification schemes (so called
+`classcodes` objects). Most of these are related to medical patient data
+(for classification of comorbidity and adverse events).
 
-```r
-library(coder)
+Arbitrary `classcodes` objects can be specified by the
+user.
 
-# A group of patients ...
-head(ex_people)
-#>                 name    surgery
-#> 1    Beaver, Tristin 2016-09-11
-#> 2  Maestas, Lilibeth 2016-10-23
-#> 3        Jung, Derek 2017-02-20
-#> 4     Hayes, Kylihah 2016-12-31
-#> 5     el-Riaz, Aadam 2016-04-19
-#> 6 Sanchez, Dominique 2017-02-25
+### Default classcodes
 
-# ... with a group of comorbidies ...
-head(ex_icd10)
-#>                id  code_date   code  hdia
-#> 1: Abzari, Joseph 2016-04-15  C430C FALSE
-#> 2: Abzari, Joseph 2016-05-02  L818A FALSE
-#> 3: Abzari, Joseph 2016-06-06   O630 FALSE
-#> 4: Abzari, Joseph 2016-09-01   P558 FALSE
-#> 5: Abzari, Joseph 2016-10-02 UA3290 FALSE
-#> 6: Abzari, Joseph 2016-12-18  S6260 FALSE
+| clascodes                        | description                                                            | coding      | indices                                                              | no\_categories | no\_codes |
+| :------------------------------- | :--------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------- | -------------: | --------: |
+| charlson\_icd10                  | Comorbidity based on Charlson                                          | icd10       | charlson, deyo\_ramano, dhoore, ghali, quan\_original, quan\_updated |             19 |      1167 |
+| cps\_icd10                       | comorbidity-polypharmacy score (CPS)                                   | icd10       | only\_ordinary                                                       |              2 |     12406 |
+| elix\_icd10                      | Comorbidity based on Elixhauser                                        | icd10       |                                                                      |             31 |      1517 |
+| ex\_carbrands                    | Example data of car brand names and their producers.                   | ex\_allcars |                                                                      |             10 |        27 |
+| hip\_adverse\_events\_icd10      | Adverse events after hip arthroplasty                                  | icd10       | condition                                                            |              6 |       306 |
+| hip\_adverse\_events\_icd10\_old | Adverse events after hip arthroplasty                                  | icd10       | condition, sos, shar                                                 |              3 |       523 |
+| hip\_fracture\_ae\_icd10         | Adverse events after hip arthroplasty                                  | icd10       |                                                                      |              1 |       749 |
+| hip\_fracture\_ae\_kva           | Adverse events after hip arthroplasty                                  | kva         |                                                                      |              1 |       143 |
+| knee\_adverse\_events\_icd10     | Adverse events after knee arthroplasty                                 | icd10       | condition                                                            |              6 |       278 |
+| rxriskv\_atc                     | Comorbidity index ‘RxRiskV’                                            | atc         |                                                                      |             39 |        NA |
+| rxriskv\_modified\_atc           | Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland). | ATC         |                                                                      |             42 |        NA |
 
-# ... can be categorized by the Elixhauser commorbidity index:
-df <- 
-  categorize(
-    ex_people, 
-    ex_icd10, 
-    "elix_icd10", 
-    id = "name", 
-    date = "surgery"
-  )
-#> Warning in codify(x = to, from = from, id = id, date = date, days = days):
-#> Date column ignored since days = NULL!
-#> index calculated as number of relevant categories
+# Contribution
 
-# Tabulate the Elixhauser index
-table(df$index)
-#> 
-#>  0  1  2  3 
-#> 55 37  4  3
-
-# Count how many patients have each comorbidity identified by Elixhauser
-colSums(df[,3:32], na.rm = TRUE)
-#>       congestive heart failure            cardiac arrhythmias 
-#>                              2                              1 
-#>               valvular disease pulmonary circulation disorder 
-#>                              2                              0 
-#>   peripheral vascular disorder     hypertension uncomplicated 
-#>                              2                              0 
-#>       hypertension complicated                      paralysis 
-#>                              2                              3 
-#>   other neurological disorders      chronic pulmonary disease 
-#>                              3                              2 
-#>         diabetes uncomplicated           diabetes complicated 
-#>                              0                              3 
-#>                 hypothyroidism                  renal failure 
-#>                              1                              1 
-#>                  liver disease           peptic ulcer disease 
-#>                              0                              0 
-#>                       AIDS/HIV                       lymphoma 
-#>                              0                              4 
-#>              metastatic cancer                    solid tumor 
-#>                              2                             11 
-#>           rheumatoid arthritis                   coagulopathy 
-#>                              6                              0 
-#>                        obesity                    weight loss 
-#>                              0                              2 
-#>    fluid electrolyte disorders              blood loss anemia 
-#>                              2                              0 
-#>              deficiency anemia                  alcohol abuse 
-#>                              1                              1 
-#>                     drug abuse                      psychoses 
-#>                              1                              2
-```
-
-# Code of conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-By participating in this project you agree to abide by its terms.
-
+Contributions to this package are welcome. The preferred method of
+contribution is through a github pull request. Feel free to contact me
+by creating an issue. Please note that this project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in
+this project you agree to abide by its terms.

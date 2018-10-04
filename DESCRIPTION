@@ -18,13 +18,15 @@ License: MIT + file LICENSE
 Depends: R (>= 2.10)
 Suggests:
   covr,
-  R.rsp,
-  testthat
+  testthat,
+  knitr,
+  rmarkdown
 Imports:
   data.table
 LazyData: TRUE
 RoxygenNote: 6.1.0.9000
-VignetteBuilder: R.rsp
+VignetteBuilder: 
+  knitr
 URL: https://github.com/eribul/coder
 BugReports: https://github.com/eribul/coder/issues
 Encoding: UTF-8

@@ -28,6 +28,9 @@ charlson_icd10 <- tibble::frame_data(
     quan_original = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 0, 0, 3, 6, 6),
     quan_updated  = c(0, 2, 0, 0, 2, 1, 1, 0, 2, 0, 2, 1, 1, 2, 0, 0, 4, 6, 4)
   ) %>%
- # coder::as.classcodes(coding = "icd10")
+ coder::as.classcodes(
+   coding = "icd10",
+   description = "Comorbidity based on Charlson"
+  )
 
 devtools::use_data(charlson_icd10, overwrite = TRUE)

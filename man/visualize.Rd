@@ -47,7 +47,8 @@ in use, and during the creation and debugging of such.
 }
 }
 \seealso{
-Other classcodes: \code{\link{as.data.frame.classified}},
+Other classcodes: \code{\link{all_classcodes}},
+  \code{\link{as.data.frame.classified}},
   \code{\link{classcodes}}, \code{\link{get_classcodes}},
   \code{\link{summary.classcodes}}
 }

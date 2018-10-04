@@ -156,13 +156,13 @@
 #' }
 #'
 #' @seealso Companion codes based on Atgardskoder (KVA codes)
-#' \code{\link{tha_fracture_ae_kva}}.
+#' \code{\link{hip_fracture_ae_kva}}.
 #'
 #' @references Codes partly inspired by p. 83 of the annual report 2016 from knee
 #' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
 #'
 #' @family default classcodes
-"tha_fracture_ae_icd10"
+"hip_fracture_ae_icd10"
 
 
 #' Classcodes for adverse events after THA after hip fracture
@@ -181,10 +181,10 @@
 #'   \item{regex}{regular expression identifying KVA codes}
 #' }
 #'
-#' @seealso Companion codes based on ICD-10 \code{\link{tha_fracture_ae_icd10}}.
+#' @seealso Companion codes based on ICD-10 \code{\link{hip_fracture_ae_icd10}}.
 #'
 #' @family default classcodes
-"tha_fracture_ae_kva"
+"hip_fracture_ae_kva"
 
 
 #' Classcodes for RxRiskV (original and modified)
@@ -212,6 +212,34 @@
 ################################################################################
 
 
+#' Example data for can registry
+#'
+#' Example data for fictive people and their car ownership.
+#'
+#' @format Data frames with 1,000 rows and 3 variables:
+#' \describe{
+#'   \item{id}{random person names}
+#'   \item{code}{random car models}
+#'   \item{code_date}{random dates for car ownership}
+#' }
+#'
+#' @family example data
+"ex_cars"
+
+
+#' Example classcodes object for classification of car brands by their producer
+#'
+#' @format Data frames with 11 rows and 2 variables:
+#' \describe{
+#'   \item{group}{Car makers}
+#'   \item{regex}{Regular expressions identifying car brands}
+#' }
+#'
+#' @family example data
+"ex_carbrands"
+
+
+
 
 #' Example data for random people
 #'
@@ -223,7 +251,6 @@
 #'   \item{surgery}{random dates for performed surgery on each patient}
 #' }
 #'
-#' @seealso \code{\link{ex_icd10}}, \code{\link{ex_pardata}}
 #' @family example data
 "ex_people"
 
@@ -243,29 +270,5 @@
 #'   \item{hdia}{boolean marker if corresponding code is the main diagnose of
 #'     the hospital visit (randomly assigned to 10 percent of the codes)}
 #' }
-#' @seealso \code{\link{ex_people}}, \code{\link{ex_pardata}}
 #' @family example data
 "ex_icd10"
-
-
-
-
-#' Example NPR data with random codes assigned to random people
-#'
-#' Eictive ICD-10-codes in the format as delivered by the
-#' National Patient Register (NPR).
-#'
-#' Note that a real NPR data set would have "bdia" codes filled in order.
-#' The situation with no "bdia1" but with a "bdia2" is therefore not
-#' possible in a real data set.
-#'
-#' @format Data frames with 1,000 rows and 18 columns:
-#' \describe{
-#'   \item{lpnr}{Random names of people}
-#'   \item{date}{random dates for inpatient registration}
-#'   \item{hdia}{main diagnose given by ICD-10}
-#'   \item{bdia(1, ..., 14)}{additional diagnoses for each visit}
-#' }
-#' @seealso \code{\link{ex_people}}, \code{\link{ex_icd10}}
-#' @family example data
-"ex_pardata"

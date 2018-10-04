@@ -57,7 +57,7 @@ index(cl)
 
 }
 \seealso{
-Other verbs: \code{\link{add}}, \code{\link{classify}},
-  \code{\link{codify}}
+Other verbs: \code{\link{categorize}},
+  \code{\link{classify}}, \code{\link{codify}}
 }
 \concept{verbs}

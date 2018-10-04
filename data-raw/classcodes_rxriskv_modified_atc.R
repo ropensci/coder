@@ -46,6 +46,9 @@ rxriskv_modified_atc <- tibble::frame_data(
   "tuberculosis",                          'J04A[A-CKM]0[12456]'
 
 ) %>%
-coder::as.classcodes(coding = "ATC")
+coder::as.classcodes(
+  coding = "ATC",
+  description = "Comorbidity index 'RxRiskV' (unofficial modification by Anne Garland)."
+)
 
 devtools::use_data(rxriskv_modified_atc, overwrite = TRUE)

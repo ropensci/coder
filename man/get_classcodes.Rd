@@ -19,7 +19,8 @@ or a classcodes object itself.}
 Get classcodes object
 }
 \seealso{
-Other classcodes: \code{\link{as.data.frame.classified}},
+Other classcodes: \code{\link{all_classcodes}},
+  \code{\link{as.data.frame.classified}},
   \code{\link{classcodes}},
   \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }

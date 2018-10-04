@@ -20,18 +20,15 @@ knitr::opts_chunk$set(
 ```
 # coder
 
-The goal of coder is to classify items from one dataset, using code data from a secondary source. It was first developed for medical comorbidity data based on hospital visits recorded in a national patient register. Medical conditions were registered using standardized codes (ICD-10) and individual codes were summarized by weighting all individual comorbidities for each patient (the Charlson and Elixhauser comorbidity indices). Only hospital visits recorded within a specified time frame, compared to individual reference dates from the primary data source, were recognized as relevant.
-
-The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naïve approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster  than those.
-
-The package does not only include classification schemes for comorbidity data. It incorporates a general framework for any case where items can be classified using standardized codes. It might therefore be relevant for many tasks involving data management in official statistics using big data. 
+The goal of `coder` is to classify items from one dataset, using codes from a secondary source. 
+Please se vigtnettes with introductionary examples! 
 
 ## Installation
 
-You can install the released version of coder from [CRAN](https://CRAN.R-project.org) with:
+You can (soon) install the released version of coder from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("coder")
+# install.packages("coder") # Not yet!
 ```
 
 And the development version from [GitHub](https://github.com/) with:
@@ -41,38 +38,26 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("eribul/coder")
 ```
 
-## Example
 
-This is a basic example how to categorize patients by Elixhauser comorbidity:
+## Classification schemes
 
-```{r example}
-library(coder)
+Classification schemes are used to classify items. 
+These schemas are constructed by regular expressions for computational speed, 
+but their content can be summarized and visualized for clarity.
 
-# A group of patients ...
-head(ex_people)
+The package includes several default classification schemes (so called `classcodes` objects).
+Most of these are related to medical patient data (for classification of comorbidity and adverse events).
 
-# ... with a group of comorbidies ...
-head(ex_icd10)
+Arbitrary `classcodes` objects can be specified by the user. 
 
-# ... can be categorized by the Elixhauser commorbidity index:
-df <- 
-  categorize(
-    ex_people, 
-    ex_icd10, 
-    "elix_icd10", 
-    id = "name", 
-    date = "surgery"
-  )
+### Default classcodes
 
-# Tabulate the Elixhauser index
-table(df$index)
-
-# Count how many patients have each comorbidity identified by Elixhauser
-colSums(df[,3:32], na.rm = TRUE)
+```{r, echo = FALSE}
+knitr::kable(coder::all_classcodes())
 ```
 
-# Code of conduct
+# Contribution
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions to this package are welcome. The preferred method of contribution is through a github pull request. Feel free to contact me by creating an issue. Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 

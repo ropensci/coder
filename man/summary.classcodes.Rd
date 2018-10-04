@@ -12,7 +12,7 @@
 \item{...}{ignored}
 }
 \value{
-Data frame with columns:
+Data frame (nivisable) with columns:
 \describe{
   \item{group}{Groups identified by \code{object}.}
   \item{n}{The number oif codes to be recognized for each group.}
@@ -26,15 +26,14 @@ grasp. Use this function to present all individual codes identified for each
 group in the classification.
 }
 \examples{
-# List all groups with at most 10 codes
-x <- summary(elix_icd10)
-x[x$n < 10, ]
+summary(ex_carbrands)
 }
 \seealso{
 \code{\link{visualize}} for a graphical representation of the
   classcodes objects.
 
-Other classcodes: \code{\link{as.data.frame.classified}},
+Other classcodes: \code{\link{all_classcodes}},
+  \code{\link{as.data.frame.classified}},
   \code{\link{classcodes}}, \code{\link{get_classcodes}},
   \code{\link{visualize}}
 }

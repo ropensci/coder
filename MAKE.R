@@ -1,26 +1,26 @@
 # Make package
 
 # New version number
-fledge::bump_version() # create development version
-fledge::finalize_version()
+# fledge::bump_version() # create development version
+# fledge::finalize_version()
 
+# Rebuild data sets
+unlink("data", TRUE)
+dir.create("data")
+file.remove("R/sysdata.rda")
+library(tidyverse)
+for (file in dir("data-raw", pattern = ".R")) source(file.path("data-raw", file))
 
-# Make sure it works with latest packages on CRAN
-update.packages()
-
-# Update package metadata
-codemetar::write_codemeta(".")
-
-# Update README
+# Rebuild documentation
+unlink("man", TRUE)
+file.remove("NAMESPACE")
+devtools::document()
 knitr::knit("README.Rmd")
-
-
-# Rebuild website
+codemetar::write_codemeta(".")
 pkgdown::build_site()
 
-
-# Update precompiled vignette(s)
-source("vignettes/precompile.R")
+# Make sure it works with latest packages on CRAN
+update.packages(ask = FALSE)
 
 # Checks
 goodpractice::goodpractice()

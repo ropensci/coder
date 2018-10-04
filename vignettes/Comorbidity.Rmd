@@ -1,0 +1,56 @@
+---
+title: "Comorbidity"
+author: "Erik Bulow"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Comorbidity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# Patient comorbidity
+
+Let's assume that we want to identify comorbidity for patients operated with hip arthroplasty. 
+
+
+## Patients
+
+
+The data set `ex_people` is contained in the package and holds some example data for a set of people.
+Column 'surgery' gives the date of when a hip replacement was inserted.
+
+```{r}
+library(coder)
+knitr::kable(head(ex_people))
+```
+
+
+# Medical records
+
+The data set `ex_icd10` is another example data set included in the package.
+It is a long list with patient data from earlier hospital visits with the following columns:
+
+* id: Name of the patients.
+* code_date: A date of a hospital visit (each patient can have more than one visit)
+* code: A medical code (based on ICD-10) that was relevant for the hospital visit.
+* hdia: Identifies if the "code" is the immidiate couse (TRUE) or an underlying couse (FALSE) for the hospital visit.
+```{r}
+knitr::kable(head(ex_icd10))
+```
+
+
+# Notes
+
+Medical conditions were registered using standardized codes (ICD-10) and individual codes were summarized by weighting all individual comorbidities for each patient (the Charlson and Elixhauser comorbidity indices). Only hospital visits recorded within a specified time frame, compared to individual reference dates from the primary data source, were recognized as relevant.
+
+The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naïve approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster  than those.

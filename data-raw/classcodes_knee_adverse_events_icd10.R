@@ -10,6 +10,9 @@ knee_adverse_events_icd10 <- tibble::frame_data(
   "DM2 other"      ,           "^((J2[0-2][[:alnum:]]*)|(K((590)|(29[[:alnum:]]*)))|(N991))$",                                                                "late_hdia"
 
 ) %>%
-  coder::as.classcodes(coding = "icd10")
+  coder::as.classcodes(
+    coding = "icd10",
+    description = "Adverse events after knee arthroplasty"
+  )
 
 devtools::use_data(knee_adverse_events_icd10, overwrite = TRUE)

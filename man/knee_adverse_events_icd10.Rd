@@ -47,9 +47,8 @@ of hip adverse events.
 Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
   \code{\link{hip_adverse_events_icd10_old}},
-  \code{\link{rxriskv}},
-  \code{\link{tha_fracture_ae_icd10}},
-  \code{\link{tha_fracture_ae_kva}}
+  \code{\link{hip_fracture_ae_icd10}},
+  \code{\link{hip_fracture_ae_kva}}, \code{\link{rxriskv}}
 }
 \concept{default classcodes}
 \keyword{datasets}

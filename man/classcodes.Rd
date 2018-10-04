@@ -6,7 +6,7 @@
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x, coding = NULL)
+as.classcodes(x, coding = NULL, description = NULL)
 
 is.classcodes(x)
 }
@@ -15,6 +15,9 @@ is.classcodes(x)
 
 \item{coding}{Coding used for the classification
 (character vector of length one). Used by \code{\link{summary.classcodes}}.}
+
+\item{description}{description of the classcodes object
+(used by \code{\link{summary.classcodes}})}
 }
 \value{
 Object of class "classcodes" (data frame) with attribute \code{code}
@@ -56,11 +59,13 @@ and hard to interpret. Use \code{\link{visualize}} to visualize classcodes
 graphically or \code{\link{summary.classcodes}} to
 list all codes individually.
 
-Other classcodes: \code{\link{as.data.frame.classified}},
+Other classcodes: \code{\link{all_classcodes}},
+  \code{\link{as.data.frame.classified}},
   \code{\link{get_classcodes}},
   \code{\link{summary.classcodes}}, \code{\link{visualize}}
 
-Other classcodes: \code{\link{as.data.frame.classified}},
+Other classcodes: \code{\link{all_classcodes}},
+  \code{\link{as.data.frame.classified}},
   \code{\link{get_classcodes}},
   \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }

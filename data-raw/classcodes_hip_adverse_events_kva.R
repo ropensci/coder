@@ -1,5 +1,5 @@
 
-tha_fracture_ae_kva <-
+hip_fracture_ae_kva <-
   coder::as.classcodes(
     data.frame(
       group = "hip fracture ae kva",
@@ -12,8 +12,9 @@ tha_fracture_ae_kva <-
         ),
       stringsAsFactors = FALSE
     ),
-    coding = "kva"
+    coding = "kva",
+    description = "Adverse events after hip arthroplasty"
   )
 
 
-devtools::use_data(tha_fracture_ae_kva, overwrite = TRUE)
+devtools::use_data(hip_fracture_ae_kva, overwrite = TRUE)

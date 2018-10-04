@@ -60,15 +60,16 @@ x <-
     )"
   )
 
-tha_fracture_ae_icd10 <-
+hip_fracture_ae_icd10 <-
   as.classcodes(
     data.frame(
       group = "hip fracture ae",
       regex = paste0("^", paste(gsub("\\s", "", x), collapse = "|"), "$"),
       stringsAsFactors = FALSE
     ),
-    coding = "icd10"
+    coding = "icd10",
+    description = "Adverse events after hip arthroplasty"
   )
 
-devtools::use_data(tha_fracture_ae_icd10, overwrite = TRUE)
+devtools::use_data(hip_fracture_ae_icd10, overwrite = TRUE)
 
