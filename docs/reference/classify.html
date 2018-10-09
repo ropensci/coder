@@ -65,7 +65,7 @@ together if using the magrittr pipe (%&amp;gt;%)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3.9000</span>
       </span>
     </div>
 
@@ -78,6 +78,9 @@ together if using the magrittr pipe (%&amp;gt;%)." />
   </a>
 </li>
 <li>
+  <a href="../articles/coder.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -88,7 +91,7 @@ together if using the magrittr pipe (%&amp;gt;%)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/benchmark.html">Benchmarking</a>
+      <a href="../articles/Comorbidity.html">Comorbidity</a>
     </li>
   </ul>
 </li>
@@ -196,8 +199,8 @@ are prefixed by the name of the classification scheme.</p></td>
     <div class='dont-index'><p><code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code> for a convenience function to
 convert the output of <code>classify</code> to a data frame with id column instead
 of row names.</p>
-<p>Other verbs: <code><a href='add.html'>add</a></code>, <code><a href='codify.html'>codify</a></code>,
-  <code><a href='index_fun.html'>index_fun</a></code></p></div>
+<p>Other verbs: <code><a href='categorize.html'>categorize</a></code>,
+  <code><a href='codify.html'>codify</a></code>, <code><a href='index_fun.html'>index_fun</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -248,915 +251,915 @@ of row names.</p>
 <span class='co'># one year before surgery</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
-(<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson_icd10"</span>))</div><div class='output co'>#&gt;                           myocardial infarction congestive heart failure
-#&gt; Alexis, Dayveon                           FALSE                    FALSE
-#&gt; Bauder, Taylor                            FALSE                    FALSE
-#&gt; Beasley, Michael                          FALSE                    FALSE
-#&gt; Deshazor, Kordell                         FALSE                    FALSE
-#&gt; Henricks, Donovan                         FALSE                    FALSE
-#&gt; Marquez, Jacqueline                       FALSE                    FALSE
-#&gt; Martinez, David                           FALSE                    FALSE
-#&gt; Mccarthy, Gabriel                         FALSE                    FALSE
-#&gt; Simpson, King                             FALSE                    FALSE
-#&gt; Gallegos, Diana                              NA                       NA
-#&gt; Perez Jr, Hannah                             NA                       NA
-#&gt; Reyes, Sylvia                                NA                       NA
-#&gt; Rusnak, Kyle                                 NA                       NA
-#&gt; Ward, Harrison                               NA                       NA
-#&gt; al-Kassem, Humaidaan                         NA                       NA
-#&gt; el-Nagi, Waddaah                             NA                       NA
-#&gt; Abzari, Joseph                            FALSE                    FALSE
-#&gt; al-Abid, Asad                             FALSE                    FALSE
-#&gt; al-Ahsan, Umar                            FALSE                    FALSE
-#&gt; al-Eid, Abdus Samad                       FALSE                    FALSE
-#&gt; al-Mansur, Kawkab                         FALSE                    FALSE
-#&gt; Anderson, Laquesh                         FALSE                    FALSE
-#&gt; Armijo Jr, Kalynne                        FALSE                    FALSE
-#&gt; Babcock, Landon                           FALSE                    FALSE
-#&gt; Barela, Marco                             FALSE                    FALSE
-#&gt; Barger, Willanna                          FALSE                    FALSE
-#&gt; Barnes, Amos                              FALSE                    FALSE
-#&gt; Beaver, Tristin                           FALSE                    FALSE
-#&gt; Bille, Cheyenne                           FALSE                    FALSE
-#&gt; Boffill, Jordan                           FALSE                    FALSE
-#&gt; Bradshaw, Noah                            FALSE                    FALSE
-#&gt; Breshears, Kayla                          FALSE                    FALSE
-#&gt; Bruce, Bryan                              FALSE                    FALSE
-#&gt; Bruno, Jorge                              FALSE                    FALSE
-#&gt; Burton, Danyalle                          FALSE                    FALSE
-#&gt; Charlie, Mareno                           FALSE                    FALSE
-#&gt; Dominguez Enriquez, David                 FALSE                    FALSE
-#&gt; Edmondson, Christian                      FALSE                    FALSE
-#&gt; el-Assad, Jubair                          FALSE                    FALSE
-#&gt; el-Bina, Muntaha                          FALSE                    FALSE
-#&gt; el-Kazi, Najeeba                          FALSE                    FALSE
-#&gt; el-Masood, Nasreen                        FALSE                    FALSE
-#&gt; el-Riaz, Aadam                            FALSE                    FALSE
-#&gt; el-Wakim, Nuha                            FALSE                    FALSE
-#&gt; el-Zakaria, Saajid                        FALSE                    FALSE
-#&gt; Elder, Kevyn                              FALSE                    FALSE
-#&gt; Ghimire, Chelsea                          FALSE                    FALSE
-#&gt; Hall, Samorra                             FALSE                    FALSE
-#&gt; Hayes, Kylihah                            FALSE                    FALSE
-#&gt; Headden, Devon                            FALSE                    FALSE
-#&gt; Her, Lia                                  FALSE                    FALSE
-#&gt; Hicks, Camren                             FALSE                    FALSE
-#&gt; Hoang, Elijah                             FALSE                    FALSE
-#&gt; Jiles-Wright, Bralynd                     FALSE                    FALSE
-#&gt; Jung, Derek                               FALSE                    FALSE
-#&gt; Kane, Chapin                              FALSE                    FALSE
-#&gt; Kim, Alisa                                FALSE                    FALSE
-#&gt; King, Hali                                FALSE                    FALSE
-#&gt; Laulu, Kajtshiab                          FALSE                    FALSE
-#&gt; Lopez, Chiara                             FALSE                    FALSE
-#&gt; Maestas, Lilibeth                         FALSE                    FALSE
-#&gt; Mamet, A D                                FALSE                    FALSE
-#&gt; Martin, Elizario                          FALSE                    FALSE
-#&gt; Martinez, Jessica                         FALSE                    FALSE
-#&gt; Martinez, Juan                            FALSE                    FALSE
-#&gt; Martinez, Nelson                          FALSE                    FALSE
-#&gt; Mcginnis, Adunola                         FALSE                    FALSE
-#&gt; Mcknight, Jaymes                          FALSE                    FALSE
-#&gt; Miller, Darshay                           FALSE                    FALSE
-#&gt; Moktader, Sameer                          FALSE                    FALSE
-#&gt; Mosely, Jereek                            FALSE                    FALSE
-#&gt; Nam, John                                 FALSE                    FALSE
-#&gt; Nelson, Phillip                           FALSE                    FALSE
-#&gt; Okoye, Vanessa                            FALSE                    FALSE
-#&gt; Parker, Pharo                             FALSE                    FALSE
-#&gt; Perez, Kimberly                           FALSE                    FALSE
-#&gt; Pham, Kyle                                FALSE                    FALSE
-#&gt; Pronteau, Colton                          FALSE                    FALSE
-#&gt; Rodriguez, Alma                           FALSE                    FALSE
-#&gt; Rowley Booneel, Hailee                    FALSE                    FALSE
-#&gt; Sanburg, Cassandra                        FALSE                    FALSE
-#&gt; Sanchez, Dominique                        FALSE                    FALSE
-#&gt; Santee, Holly                             FALSE                    FALSE
-#&gt; Schell, Jack                              FALSE                    FALSE
-#&gt; Schubert, Patrick                         FALSE                    FALSE
-#&gt; Smith, John                               FALSE                    FALSE
-#&gt; Smith, Ruasha                             FALSE                    FALSE
-#&gt; Spoerl, John                              FALSE                    FALSE
-#&gt; Stephan, Scott                            FALSE                    FALSE
-#&gt; Suriwong, Sarah                           FALSE                    FALSE
-#&gt; Thompson, Stephen                         FALSE                    FALSE
-#&gt; Thwaites, Travis                          FALSE                    FALSE
-#&gt; Todacheene, Erminio                       FALSE                     TRUE
-#&gt; Tomlinson, Amanda                         FALSE                    FALSE
-#&gt; Tuitele-Britton, Janet                    FALSE                    FALSE
-#&gt; Valencia, Johnny                          FALSE                    FALSE
-#&gt; Vallie, Mitchelle                         FALSE                    FALSE
-#&gt; Vigo, Shi Hyung                           FALSE                    FALSE
-#&gt; Wilkerson, Teesa                          FALSE                    FALSE
-#&gt; Wood, Elijah                              FALSE                    FALSE
-#&gt;                           peripheral vascular disease cerebrovascular disease
-#&gt; Alexis, Dayveon                                 FALSE                   FALSE
-#&gt; Bauder, Taylor                                  FALSE                   FALSE
-#&gt; Beasley, Michael                                FALSE                   FALSE
-#&gt; Deshazor, Kordell                               FALSE                   FALSE
-#&gt; Henricks, Donovan                               FALSE                   FALSE
-#&gt; Marquez, Jacqueline                             FALSE                   FALSE
-#&gt; Martinez, David                                 FALSE                   FALSE
-#&gt; Mccarthy, Gabriel                               FALSE                   FALSE
-#&gt; Simpson, King                                   FALSE                   FALSE
-#&gt; Gallegos, Diana                                    NA                      NA
-#&gt; Perez Jr, Hannah                                   NA                      NA
-#&gt; Reyes, Sylvia                                      NA                      NA
-#&gt; Rusnak, Kyle                                       NA                      NA
-#&gt; Ward, Harrison                                     NA                      NA
-#&gt; al-Kassem, Humaidaan                               NA                      NA
-#&gt; el-Nagi, Waddaah                                   NA                      NA
-#&gt; Abzari, Joseph                                  FALSE                   FALSE
-#&gt; al-Abid, Asad                                   FALSE                   FALSE
-#&gt; al-Ahsan, Umar                                  FALSE                   FALSE
-#&gt; al-Eid, Abdus Samad                             FALSE                   FALSE
-#&gt; al-Mansur, Kawkab                               FALSE                   FALSE
-#&gt; Anderson, Laquesh                               FALSE                   FALSE
-#&gt; Armijo Jr, Kalynne                              FALSE                   FALSE
-#&gt; Babcock, Landon                                 FALSE                   FALSE
-#&gt; Barela, Marco                                   FALSE                   FALSE
-#&gt; Barger, Willanna                                FALSE                   FALSE
-#&gt; Barnes, Amos                                    FALSE                   FALSE
-#&gt; Beaver, Tristin                                 FALSE                   FALSE
-#&gt; Bille, Cheyenne                                 FALSE                   FALSE
-#&gt; Boffill, Jordan                                 FALSE                   FALSE
-#&gt; Bradshaw, Noah                                  FALSE                   FALSE
-#&gt; Breshears, Kayla                                FALSE                   FALSE
-#&gt; Bruce, Bryan                                    FALSE                   FALSE
-#&gt; Bruno, Jorge                                    FALSE                    TRUE
-#&gt; Burton, Danyalle                                FALSE                   FALSE
-#&gt; Charlie, Mareno                                 FALSE                   FALSE
-#&gt; Dominguez Enriquez, David                       FALSE                   FALSE
-#&gt; Edmondson, Christian                            FALSE                   FALSE
-#&gt; el-Assad, Jubair                                FALSE                   FALSE
-#&gt; el-Bina, Muntaha                                FALSE                   FALSE
-#&gt; el-Kazi, Najeeba                                FALSE                   FALSE
-#&gt; el-Masood, Nasreen                              FALSE                   FALSE
-#&gt; el-Riaz, Aadam                                  FALSE                   FALSE
-#&gt; el-Wakim, Nuha                                  FALSE                   FALSE
-#&gt; el-Zakaria, Saajid                              FALSE                   FALSE
-#&gt; Elder, Kevyn                                    FALSE                   FALSE
-#&gt; Ghimire, Chelsea                                FALSE                   FALSE
-#&gt; Hall, Samorra                                   FALSE                   FALSE
-#&gt; Hayes, Kylihah                                  FALSE                   FALSE
-#&gt; Headden, Devon                                  FALSE                   FALSE
-#&gt; Her, Lia                                        FALSE                   FALSE
-#&gt; Hicks, Camren                                   FALSE                   FALSE
-#&gt; Hoang, Elijah                                   FALSE                   FALSE
-#&gt; Jiles-Wright, Bralynd                            TRUE                   FALSE
-#&gt; Jung, Derek                                     FALSE                   FALSE
-#&gt; Kane, Chapin                                    FALSE                   FALSE
-#&gt; Kim, Alisa                                      FALSE                   FALSE
-#&gt; King, Hali                                      FALSE                   FALSE
-#&gt; Laulu, Kajtshiab                                FALSE                   FALSE
-#&gt; Lopez, Chiara                                   FALSE                   FALSE
-#&gt; Maestas, Lilibeth                               FALSE                   FALSE
-#&gt; Mamet, A D                                      FALSE                   FALSE
-#&gt; Martin, Elizario                                FALSE                   FALSE
-#&gt; Martinez, Jessica                               FALSE                   FALSE
-#&gt; Martinez, Juan                                  FALSE                   FALSE
-#&gt; Martinez, Nelson                                FALSE                   FALSE
-#&gt; Mcginnis, Adunola                               FALSE                   FALSE
-#&gt; Mcknight, Jaymes                                FALSE                   FALSE
-#&gt; Miller, Darshay                                 FALSE                   FALSE
-#&gt; Moktader, Sameer                                FALSE                   FALSE
-#&gt; Mosely, Jereek                                  FALSE                   FALSE
-#&gt; Nam, John                                       FALSE                   FALSE
-#&gt; Nelson, Phillip                                 FALSE                   FALSE
-#&gt; Okoye, Vanessa                                  FALSE                   FALSE
-#&gt; Parker, Pharo                                   FALSE                   FALSE
-#&gt; Perez, Kimberly                                 FALSE                   FALSE
-#&gt; Pham, Kyle                                      FALSE                   FALSE
-#&gt; Pronteau, Colton                                FALSE                   FALSE
-#&gt; Rodriguez, Alma                                 FALSE                   FALSE
-#&gt; Rowley Booneel, Hailee                          FALSE                   FALSE
-#&gt; Sanburg, Cassandra                              FALSE                   FALSE
-#&gt; Sanchez, Dominique                              FALSE                   FALSE
-#&gt; Santee, Holly                                   FALSE                   FALSE
-#&gt; Schell, Jack                                    FALSE                   FALSE
-#&gt; Schubert, Patrick                               FALSE                   FALSE
-#&gt; Smith, John                                     FALSE                   FALSE
-#&gt; Smith, Ruasha                                   FALSE                   FALSE
-#&gt; Spoerl, John                                    FALSE                   FALSE
-#&gt; Stephan, Scott                                  FALSE                   FALSE
-#&gt; Suriwong, Sarah                                 FALSE                    TRUE
-#&gt; Thompson, Stephen                               FALSE                   FALSE
-#&gt; Thwaites, Travis                                FALSE                   FALSE
-#&gt; Todacheene, Erminio                             FALSE                   FALSE
-#&gt; Tomlinson, Amanda                               FALSE                   FALSE
-#&gt; Tuitele-Britton, Janet                          FALSE                   FALSE
-#&gt; Valencia, Johnny                                FALSE                   FALSE
-#&gt; Vallie, Mitchelle                               FALSE                   FALSE
-#&gt; Vigo, Shi Hyung                                 FALSE                   FALSE
-#&gt; Wilkerson, Teesa                                FALSE                   FALSE
-#&gt; Wood, Elijah                                    FALSE                   FALSE
-#&gt;                           dementia chronic pulmonary disease rheumatic disease
-#&gt; Alexis, Dayveon              FALSE                     FALSE             FALSE
-#&gt; Bauder, Taylor               FALSE                     FALSE             FALSE
-#&gt; Beasley, Michael             FALSE                     FALSE             FALSE
-#&gt; Deshazor, Kordell            FALSE                     FALSE             FALSE
-#&gt; Henricks, Donovan            FALSE                     FALSE             FALSE
-#&gt; Marquez, Jacqueline          FALSE                     FALSE             FALSE
-#&gt; Martinez, David              FALSE                     FALSE             FALSE
-#&gt; Mccarthy, Gabriel            FALSE                     FALSE             FALSE
-#&gt; Simpson, King                FALSE                     FALSE             FALSE
-#&gt; Gallegos, Diana                 NA                        NA                NA
-#&gt; Perez Jr, Hannah                NA                        NA                NA
-#&gt; Reyes, Sylvia                   NA                        NA                NA
-#&gt; Rusnak, Kyle                    NA                        NA                NA
-#&gt; Ward, Harrison                  NA                        NA                NA
-#&gt; al-Kassem, Humaidaan            NA                        NA                NA
-#&gt; el-Nagi, Waddaah                NA                        NA                NA
-#&gt; Abzari, Joseph               FALSE                     FALSE             FALSE
-#&gt; al-Abid, Asad                FALSE                     FALSE             FALSE
-#&gt; al-Ahsan, Umar               FALSE                     FALSE             FALSE
-#&gt; al-Eid, Abdus Samad          FALSE                     FALSE             FALSE
-#&gt; al-Mansur, Kawkab            FALSE                     FALSE             FALSE
-#&gt; Anderson, Laquesh            FALSE                     FALSE             FALSE
-#&gt; Armijo Jr, Kalynne           FALSE                     FALSE             FALSE
-#&gt; Babcock, Landon              FALSE                     FALSE             FALSE
-#&gt; Barela, Marco                FALSE                     FALSE             FALSE
-#&gt; Barger, Willanna             FALSE                     FALSE             FALSE
-#&gt; Barnes, Amos                 FALSE                     FALSE             FALSE
-#&gt; Beaver, Tristin              FALSE                     FALSE             FALSE
-#&gt; Bille, Cheyenne              FALSE                     FALSE             FALSE
-#&gt; Boffill, Jordan              FALSE                     FALSE             FALSE
-#&gt; Bradshaw, Noah               FALSE                     FALSE             FALSE
-#&gt; Breshears, Kayla             FALSE                     FALSE             FALSE
-#&gt; Bruce, Bryan                 FALSE                     FALSE             FALSE
-#&gt; Bruno, Jorge                 FALSE                     FALSE             FALSE
-#&gt; Burton, Danyalle             FALSE                     FALSE             FALSE
-#&gt; Charlie, Mareno              FALSE                     FALSE             FALSE
-#&gt; Dominguez Enriquez, David    FALSE                     FALSE             FALSE
-#&gt; Edmondson, Christian         FALSE                     FALSE             FALSE
-#&gt; el-Assad, Jubair             FALSE                     FALSE             FALSE
-#&gt; el-Bina, Muntaha             FALSE                     FALSE             FALSE
-#&gt; el-Kazi, Najeeba             FALSE                     FALSE             FALSE
-#&gt; el-Masood, Nasreen           FALSE                     FALSE             FALSE
-#&gt; el-Riaz, Aadam               FALSE                     FALSE             FALSE
-#&gt; el-Wakim, Nuha               FALSE                     FALSE             FALSE
-#&gt; el-Zakaria, Saajid           FALSE                     FALSE             FALSE
-#&gt; Elder, Kevyn                 FALSE                     FALSE             FALSE
-#&gt; Ghimire, Chelsea             FALSE                     FALSE             FALSE
-#&gt; Hall, Samorra                FALSE                     FALSE             FALSE
-#&gt; Hayes, Kylihah               FALSE                     FALSE             FALSE
-#&gt; Headden, Devon               FALSE                     FALSE             FALSE
-#&gt; Her, Lia                     FALSE                     FALSE             FALSE
-#&gt; Hicks, Camren                FALSE                     FALSE             FALSE
-#&gt; Hoang, Elijah                FALSE                     FALSE             FALSE
-#&gt; Jiles-Wright, Bralynd        FALSE                     FALSE             FALSE
-#&gt; Jung, Derek                  FALSE                     FALSE             FALSE
-#&gt; Kane, Chapin                 FALSE                     FALSE             FALSE
-#&gt; Kim, Alisa                   FALSE                     FALSE             FALSE
-#&gt; King, Hali                   FALSE                     FALSE             FALSE
-#&gt; Laulu, Kajtshiab             FALSE                     FALSE             FALSE
-#&gt; Lopez, Chiara                FALSE                     FALSE             FALSE
-#&gt; Maestas, Lilibeth            FALSE                     FALSE             FALSE
-#&gt; Mamet, A D                   FALSE                     FALSE             FALSE
-#&gt; Martin, Elizario             FALSE                     FALSE             FALSE
-#&gt; Martinez, Jessica            FALSE                     FALSE             FALSE
-#&gt; Martinez, Juan               FALSE                     FALSE             FALSE
-#&gt; Martinez, Nelson             FALSE                     FALSE             FALSE
-#&gt; Mcginnis, Adunola            FALSE                     FALSE             FALSE
-#&gt; Mcknight, Jaymes             FALSE                     FALSE             FALSE
-#&gt; Miller, Darshay              FALSE                     FALSE             FALSE
-#&gt; Moktader, Sameer             FALSE                     FALSE             FALSE
-#&gt; Mosely, Jereek               FALSE                     FALSE             FALSE
-#&gt; Nam, John                    FALSE                     FALSE             FALSE
-#&gt; Nelson, Phillip              FALSE                     FALSE             FALSE
-#&gt; Okoye, Vanessa               FALSE                     FALSE             FALSE
-#&gt; Parker, Pharo                FALSE                     FALSE             FALSE
-#&gt; Perez, Kimberly              FALSE                     FALSE             FALSE
-#&gt; Pham, Kyle                   FALSE                     FALSE             FALSE
-#&gt; Pronteau, Colton             FALSE                     FALSE             FALSE
-#&gt; Rodriguez, Alma              FALSE                     FALSE             FALSE
-#&gt; Rowley Booneel, Hailee       FALSE                     FALSE             FALSE
-#&gt; Sanburg, Cassandra           FALSE                     FALSE             FALSE
-#&gt; Sanchez, Dominique           FALSE                     FALSE             FALSE
-#&gt; Santee, Holly                FALSE                     FALSE             FALSE
-#&gt; Schell, Jack                 FALSE                     FALSE             FALSE
-#&gt; Schubert, Patrick            FALSE                     FALSE             FALSE
-#&gt; Smith, John                  FALSE                     FALSE             FALSE
-#&gt; Smith, Ruasha                FALSE                     FALSE             FALSE
-#&gt; Spoerl, John                 FALSE                     FALSE             FALSE
-#&gt; Stephan, Scott               FALSE                     FALSE             FALSE
-#&gt; Suriwong, Sarah              FALSE                     FALSE             FALSE
-#&gt; Thompson, Stephen            FALSE                     FALSE             FALSE
-#&gt; Thwaites, Travis             FALSE                     FALSE             FALSE
-#&gt; Todacheene, Erminio          FALSE                     FALSE             FALSE
-#&gt; Tomlinson, Amanda            FALSE                     FALSE             FALSE
-#&gt; Tuitele-Britton, Janet       FALSE                     FALSE             FALSE
-#&gt; Valencia, Johnny             FALSE                     FALSE             FALSE
-#&gt; Vallie, Mitchelle            FALSE                      TRUE             FALSE
-#&gt; Vigo, Shi Hyung              FALSE                     FALSE             FALSE
-#&gt; Wilkerson, Teesa             FALSE                     FALSE             FALSE
-#&gt; Wood, Elijah                 FALSE                     FALSE             FALSE
-#&gt;                           peptic ulcer disease mild liver disease
-#&gt; Alexis, Dayveon                          FALSE              FALSE
-#&gt; Bauder, Taylor                           FALSE              FALSE
-#&gt; Beasley, Michael                         FALSE              FALSE
-#&gt; Deshazor, Kordell                        FALSE              FALSE
-#&gt; Henricks, Donovan                        FALSE              FALSE
-#&gt; Marquez, Jacqueline                      FALSE              FALSE
-#&gt; Martinez, David                          FALSE              FALSE
-#&gt; Mccarthy, Gabriel                        FALSE              FALSE
-#&gt; Simpson, King                            FALSE              FALSE
-#&gt; Gallegos, Diana                             NA                 NA
-#&gt; Perez Jr, Hannah                            NA                 NA
-#&gt; Reyes, Sylvia                               NA                 NA
-#&gt; Rusnak, Kyle                                NA                 NA
-#&gt; Ward, Harrison                              NA                 NA
-#&gt; al-Kassem, Humaidaan                        NA                 NA
-#&gt; el-Nagi, Waddaah                            NA                 NA
-#&gt; Abzari, Joseph                           FALSE              FALSE
-#&gt; al-Abid, Asad                            FALSE              FALSE
-#&gt; al-Ahsan, Umar                           FALSE              FALSE
-#&gt; al-Eid, Abdus Samad                      FALSE              FALSE
-#&gt; al-Mansur, Kawkab                        FALSE              FALSE
-#&gt; Anderson, Laquesh                        FALSE              FALSE
-#&gt; Armijo Jr, Kalynne                       FALSE              FALSE
-#&gt; Babcock, Landon                          FALSE              FALSE
-#&gt; Barela, Marco                            FALSE              FALSE
-#&gt; Barger, Willanna                         FALSE              FALSE
-#&gt; Barnes, Amos                             FALSE              FALSE
-#&gt; Beaver, Tristin                          FALSE              FALSE
-#&gt; Bille, Cheyenne                          FALSE              FALSE
-#&gt; Boffill, Jordan                          FALSE              FALSE
-#&gt; Bradshaw, Noah                           FALSE              FALSE
-#&gt; Breshears, Kayla                         FALSE              FALSE
-#&gt; Bruce, Bryan                             FALSE              FALSE
-#&gt; Bruno, Jorge                             FALSE              FALSE
-#&gt; Burton, Danyalle                         FALSE              FALSE
-#&gt; Charlie, Mareno                          FALSE              FALSE
-#&gt; Dominguez Enriquez, David                FALSE              FALSE
-#&gt; Edmondson, Christian                     FALSE              FALSE
-#&gt; el-Assad, Jubair                         FALSE              FALSE
-#&gt; el-Bina, Muntaha                         FALSE              FALSE
-#&gt; el-Kazi, Najeeba                         FALSE              FALSE
-#&gt; el-Masood, Nasreen                       FALSE              FALSE
-#&gt; el-Riaz, Aadam                           FALSE              FALSE
-#&gt; el-Wakim, Nuha                           FALSE              FALSE
-#&gt; el-Zakaria, Saajid                       FALSE              FALSE
-#&gt; Elder, Kevyn                             FALSE              FALSE
-#&gt; Ghimire, Chelsea                         FALSE              FALSE
-#&gt; Hall, Samorra                            FALSE              FALSE
-#&gt; Hayes, Kylihah                           FALSE              FALSE
-#&gt; Headden, Devon                           FALSE              FALSE
-#&gt; Her, Lia                                 FALSE              FALSE
-#&gt; Hicks, Camren                            FALSE              FALSE
-#&gt; Hoang, Elijah                            FALSE              FALSE
-#&gt; Jiles-Wright, Bralynd                    FALSE              FALSE
-#&gt; Jung, Derek                              FALSE              FALSE
-#&gt; Kane, Chapin                             FALSE              FALSE
-#&gt; Kim, Alisa                               FALSE              FALSE
-#&gt; King, Hali                               FALSE              FALSE
-#&gt; Laulu, Kajtshiab                         FALSE              FALSE
-#&gt; Lopez, Chiara                            FALSE              FALSE
-#&gt; Maestas, Lilibeth                        FALSE              FALSE
-#&gt; Mamet, A D                               FALSE              FALSE
-#&gt; Martin, Elizario                         FALSE              FALSE
-#&gt; Martinez, Jessica                        FALSE              FALSE
-#&gt; Martinez, Juan                           FALSE              FALSE
-#&gt; Martinez, Nelson                         FALSE              FALSE
-#&gt; Mcginnis, Adunola                        FALSE              FALSE
-#&gt; Mcknight, Jaymes                         FALSE              FALSE
-#&gt; Miller, Darshay                          FALSE              FALSE
-#&gt; Moktader, Sameer                         FALSE              FALSE
-#&gt; Mosely, Jereek                           FALSE              FALSE
-#&gt; Nam, John                                FALSE              FALSE
-#&gt; Nelson, Phillip                          FALSE              FALSE
-#&gt; Okoye, Vanessa                           FALSE              FALSE
-#&gt; Parker, Pharo                            FALSE              FALSE
-#&gt; Perez, Kimberly                          FALSE              FALSE
-#&gt; Pham, Kyle                               FALSE              FALSE
-#&gt; Pronteau, Colton                         FALSE              FALSE
-#&gt; Rodriguez, Alma                          FALSE              FALSE
-#&gt; Rowley Booneel, Hailee                   FALSE              FALSE
-#&gt; Sanburg, Cassandra                       FALSE              FALSE
-#&gt; Sanchez, Dominique                       FALSE              FALSE
-#&gt; Santee, Holly                            FALSE              FALSE
-#&gt; Schell, Jack                             FALSE              FALSE
-#&gt; Schubert, Patrick                        FALSE              FALSE
-#&gt; Smith, John                              FALSE              FALSE
-#&gt; Smith, Ruasha                            FALSE              FALSE
-#&gt; Spoerl, John                             FALSE              FALSE
-#&gt; Stephan, Scott                           FALSE              FALSE
-#&gt; Suriwong, Sarah                          FALSE              FALSE
-#&gt; Thompson, Stephen                        FALSE              FALSE
-#&gt; Thwaites, Travis                         FALSE              FALSE
-#&gt; Todacheene, Erminio                      FALSE              FALSE
-#&gt; Tomlinson, Amanda                        FALSE              FALSE
-#&gt; Tuitele-Britton, Janet                   FALSE              FALSE
-#&gt; Valencia, Johnny                         FALSE              FALSE
-#&gt; Vallie, Mitchelle                        FALSE              FALSE
-#&gt; Vigo, Shi Hyung                          FALSE              FALSE
-#&gt; Wilkerson, Teesa                         FALSE              FALSE
-#&gt; Wood, Elijah                             FALSE              FALSE
-#&gt;                           diabetes without complication
-#&gt; Alexis, Dayveon                                   FALSE
-#&gt; Bauder, Taylor                                    FALSE
-#&gt; Beasley, Michael                                  FALSE
-#&gt; Deshazor, Kordell                                 FALSE
-#&gt; Henricks, Donovan                                 FALSE
-#&gt; Marquez, Jacqueline                               FALSE
-#&gt; Martinez, David                                   FALSE
-#&gt; Mccarthy, Gabriel                                 FALSE
-#&gt; Simpson, King                                     FALSE
-#&gt; Gallegos, Diana                                      NA
-#&gt; Perez Jr, Hannah                                     NA
-#&gt; Reyes, Sylvia                                        NA
-#&gt; Rusnak, Kyle                                         NA
-#&gt; Ward, Harrison                                       NA
-#&gt; al-Kassem, Humaidaan                                 NA
-#&gt; el-Nagi, Waddaah                                     NA
-#&gt; Abzari, Joseph                                    FALSE
-#&gt; al-Abid, Asad                                     FALSE
-#&gt; al-Ahsan, Umar                                    FALSE
-#&gt; al-Eid, Abdus Samad                               FALSE
-#&gt; al-Mansur, Kawkab                                 FALSE
-#&gt; Anderson, Laquesh                                 FALSE
-#&gt; Armijo Jr, Kalynne                                FALSE
-#&gt; Babcock, Landon                                   FALSE
-#&gt; Barela, Marco                                     FALSE
-#&gt; Barger, Willanna                                  FALSE
-#&gt; Barnes, Amos                                      FALSE
-#&gt; Beaver, Tristin                                   FALSE
-#&gt; Bille, Cheyenne                                   FALSE
-#&gt; Boffill, Jordan                                   FALSE
-#&gt; Bradshaw, Noah                                    FALSE
-#&gt; Breshears, Kayla                                  FALSE
-#&gt; Bruce, Bryan                                      FALSE
-#&gt; Bruno, Jorge                                      FALSE
-#&gt; Burton, Danyalle                                  FALSE
-#&gt; Charlie, Mareno                                   FALSE
-#&gt; Dominguez Enriquez, David                         FALSE
-#&gt; Edmondson, Christian                              FALSE
-#&gt; el-Assad, Jubair                                  FALSE
-#&gt; el-Bina, Muntaha                                  FALSE
-#&gt; el-Kazi, Najeeba                                  FALSE
-#&gt; el-Masood, Nasreen                                FALSE
-#&gt; el-Riaz, Aadam                                    FALSE
-#&gt; el-Wakim, Nuha                                    FALSE
-#&gt; el-Zakaria, Saajid                                FALSE
-#&gt; Elder, Kevyn                                       TRUE
-#&gt; Ghimire, Chelsea                                  FALSE
-#&gt; Hall, Samorra                                     FALSE
-#&gt; Hayes, Kylihah                                    FALSE
-#&gt; Headden, Devon                                    FALSE
-#&gt; Her, Lia                                          FALSE
-#&gt; Hicks, Camren                                     FALSE
-#&gt; Hoang, Elijah                                     FALSE
-#&gt; Jiles-Wright, Bralynd                             FALSE
-#&gt; Jung, Derek                                       FALSE
-#&gt; Kane, Chapin                                      FALSE
-#&gt; Kim, Alisa                                        FALSE
-#&gt; King, Hali                                        FALSE
-#&gt; Laulu, Kajtshiab                                  FALSE
-#&gt; Lopez, Chiara                                     FALSE
-#&gt; Maestas, Lilibeth                                 FALSE
-#&gt; Mamet, A D                                        FALSE
-#&gt; Martin, Elizario                                  FALSE
-#&gt; Martinez, Jessica                                 FALSE
-#&gt; Martinez, Juan                                    FALSE
-#&gt; Martinez, Nelson                                  FALSE
-#&gt; Mcginnis, Adunola                                 FALSE
-#&gt; Mcknight, Jaymes                                  FALSE
-#&gt; Miller, Darshay                                   FALSE
-#&gt; Moktader, Sameer                                  FALSE
-#&gt; Mosely, Jereek                                    FALSE
-#&gt; Nam, John                                         FALSE
-#&gt; Nelson, Phillip                                   FALSE
-#&gt; Okoye, Vanessa                                    FALSE
-#&gt; Parker, Pharo                                     FALSE
-#&gt; Perez, Kimberly                                   FALSE
-#&gt; Pham, Kyle                                        FALSE
-#&gt; Pronteau, Colton                                  FALSE
-#&gt; Rodriguez, Alma                                   FALSE
-#&gt; Rowley Booneel, Hailee                            FALSE
-#&gt; Sanburg, Cassandra                                FALSE
-#&gt; Sanchez, Dominique                                FALSE
-#&gt; Santee, Holly                                     FALSE
-#&gt; Schell, Jack                                      FALSE
-#&gt; Schubert, Patrick                                 FALSE
-#&gt; Smith, John                                       FALSE
-#&gt; Smith, Ruasha                                     FALSE
-#&gt; Spoerl, John                                      FALSE
-#&gt; Stephan, Scott                                    FALSE
-#&gt; Suriwong, Sarah                                   FALSE
-#&gt; Thompson, Stephen                                 FALSE
-#&gt; Thwaites, Travis                                  FALSE
-#&gt; Todacheene, Erminio                               FALSE
-#&gt; Tomlinson, Amanda                                 FALSE
-#&gt; Tuitele-Britton, Janet                            FALSE
-#&gt; Valencia, Johnny                                  FALSE
-#&gt; Vallie, Mitchelle                                 FALSE
-#&gt; Vigo, Shi Hyung                                   FALSE
-#&gt; Wilkerson, Teesa                                  FALSE
-#&gt; Wood, Elijah                                      FALSE
-#&gt;                           hemiplegia or paraplegia renal disease
-#&gt; Alexis, Dayveon                              FALSE         FALSE
-#&gt; Bauder, Taylor                               FALSE         FALSE
-#&gt; Beasley, Michael                             FALSE         FALSE
-#&gt; Deshazor, Kordell                            FALSE         FALSE
-#&gt; Henricks, Donovan                            FALSE         FALSE
-#&gt; Marquez, Jacqueline                          FALSE         FALSE
-#&gt; Martinez, David                              FALSE         FALSE
-#&gt; Mccarthy, Gabriel                            FALSE         FALSE
-#&gt; Simpson, King                                FALSE         FALSE
-#&gt; Gallegos, Diana                                 NA            NA
-#&gt; Perez Jr, Hannah                                NA            NA
-#&gt; Reyes, Sylvia                                   NA            NA
-#&gt; Rusnak, Kyle                                    NA            NA
-#&gt; Ward, Harrison                                  NA            NA
-#&gt; al-Kassem, Humaidaan                            NA            NA
-#&gt; el-Nagi, Waddaah                                NA            NA
-#&gt; Abzari, Joseph                               FALSE         FALSE
-#&gt; al-Abid, Asad                                FALSE         FALSE
-#&gt; al-Ahsan, Umar                               FALSE         FALSE
-#&gt; al-Eid, Abdus Samad                          FALSE         FALSE
-#&gt; al-Mansur, Kawkab                             TRUE         FALSE
-#&gt; Anderson, Laquesh                            FALSE         FALSE
-#&gt; Armijo Jr, Kalynne                           FALSE         FALSE
-#&gt; Babcock, Landon                              FALSE         FALSE
-#&gt; Barela, Marco                                FALSE         FALSE
-#&gt; Barger, Willanna                             FALSE         FALSE
-#&gt; Barnes, Amos                                 FALSE         FALSE
-#&gt; Beaver, Tristin                              FALSE         FALSE
-#&gt; Bille, Cheyenne                              FALSE         FALSE
-#&gt; Boffill, Jordan                              FALSE         FALSE
-#&gt; Bradshaw, Noah                               FALSE         FALSE
-#&gt; Breshears, Kayla                             FALSE         FALSE
-#&gt; Bruce, Bryan                                 FALSE         FALSE
-#&gt; Bruno, Jorge                                 FALSE         FALSE
-#&gt; Burton, Danyalle                             FALSE         FALSE
-#&gt; Charlie, Mareno                              FALSE         FALSE
-#&gt; Dominguez Enriquez, David                    FALSE         FALSE
-#&gt; Edmondson, Christian                         FALSE         FALSE
-#&gt; el-Assad, Jubair                             FALSE         FALSE
-#&gt; el-Bina, Muntaha                             FALSE         FALSE
-#&gt; el-Kazi, Najeeba                             FALSE         FALSE
-#&gt; el-Masood, Nasreen                           FALSE         FALSE
-#&gt; el-Riaz, Aadam                               FALSE         FALSE
-#&gt; el-Wakim, Nuha                               FALSE         FALSE
-#&gt; el-Zakaria, Saajid                           FALSE         FALSE
-#&gt; Elder, Kevyn                                 FALSE         FALSE
-#&gt; Ghimire, Chelsea                             FALSE         FALSE
-#&gt; Hall, Samorra                                FALSE         FALSE
-#&gt; Hayes, Kylihah                               FALSE         FALSE
-#&gt; Headden, Devon                               FALSE         FALSE
-#&gt; Her, Lia                                     FALSE         FALSE
-#&gt; Hicks, Camren                                FALSE         FALSE
-#&gt; Hoang, Elijah                                FALSE         FALSE
-#&gt; Jiles-Wright, Bralynd                        FALSE         FALSE
-#&gt; Jung, Derek                                  FALSE         FALSE
-#&gt; Kane, Chapin                                 FALSE         FALSE
-#&gt; Kim, Alisa                                   FALSE         FALSE
-#&gt; King, Hali                                   FALSE         FALSE
-#&gt; Laulu, Kajtshiab                             FALSE         FALSE
-#&gt; Lopez, Chiara                                FALSE         FALSE
-#&gt; Maestas, Lilibeth                            FALSE         FALSE
-#&gt; Mamet, A D                                   FALSE         FALSE
-#&gt; Martin, Elizario                             FALSE         FALSE
-#&gt; Martinez, Jessica                            FALSE         FALSE
-#&gt; Martinez, Juan                               FALSE         FALSE
-#&gt; Martinez, Nelson                             FALSE         FALSE
-#&gt; Mcginnis, Adunola                            FALSE         FALSE
-#&gt; Mcknight, Jaymes                             FALSE         FALSE
-#&gt; Miller, Darshay                              FALSE         FALSE
-#&gt; Moktader, Sameer                             FALSE         FALSE
-#&gt; Mosely, Jereek                               FALSE         FALSE
-#&gt; Nam, John                                    FALSE         FALSE
-#&gt; Nelson, Phillip                              FALSE         FALSE
-#&gt; Okoye, Vanessa                               FALSE         FALSE
-#&gt; Parker, Pharo                                FALSE         FALSE
-#&gt; Perez, Kimberly                              FALSE          TRUE
-#&gt; Pham, Kyle                                   FALSE         FALSE
-#&gt; Pronteau, Colton                             FALSE         FALSE
-#&gt; Rodriguez, Alma                              FALSE         FALSE
-#&gt; Rowley Booneel, Hailee                       FALSE         FALSE
-#&gt; Sanburg, Cassandra                           FALSE         FALSE
-#&gt; Sanchez, Dominique                           FALSE         FALSE
-#&gt; Santee, Holly                                FALSE         FALSE
-#&gt; Schell, Jack                                  TRUE         FALSE
-#&gt; Schubert, Patrick                            FALSE         FALSE
-#&gt; Smith, John                                  FALSE         FALSE
-#&gt; Smith, Ruasha                                FALSE         FALSE
-#&gt; Spoerl, John                                 FALSE         FALSE
-#&gt; Stephan, Scott                                TRUE         FALSE
-#&gt; Suriwong, Sarah                              FALSE         FALSE
-#&gt; Thompson, Stephen                            FALSE         FALSE
-#&gt; Thwaites, Travis                             FALSE         FALSE
-#&gt; Todacheene, Erminio                          FALSE         FALSE
-#&gt; Tomlinson, Amanda                            FALSE         FALSE
-#&gt; Tuitele-Britton, Janet                       FALSE         FALSE
-#&gt; Valencia, Johnny                             FALSE         FALSE
-#&gt; Vallie, Mitchelle                            FALSE         FALSE
-#&gt; Vigo, Shi Hyung                              FALSE         FALSE
-#&gt; Wilkerson, Teesa                             FALSE         FALSE
-#&gt; Wood, Elijah                                 FALSE         FALSE
-#&gt;                           diabetes complication malingnancy leukemia lymphoma
-#&gt; Alexis, Dayveon                           FALSE       FALSE    FALSE    FALSE
-#&gt; Bauder, Taylor                            FALSE       FALSE    FALSE    FALSE
-#&gt; Beasley, Michael                          FALSE       FALSE    FALSE    FALSE
-#&gt; Deshazor, Kordell                         FALSE       FALSE    FALSE    FALSE
-#&gt; Henricks, Donovan                         FALSE       FALSE    FALSE    FALSE
-#&gt; Marquez, Jacqueline                       FALSE       FALSE    FALSE    FALSE
-#&gt; Martinez, David                           FALSE       FALSE    FALSE    FALSE
-#&gt; Mccarthy, Gabriel                         FALSE       FALSE    FALSE    FALSE
-#&gt; Simpson, King                             FALSE       FALSE    FALSE    FALSE
-#&gt; Gallegos, Diana                              NA          NA       NA       NA
-#&gt; Perez Jr, Hannah                             NA          NA       NA       NA
-#&gt; Reyes, Sylvia                                NA          NA       NA       NA
-#&gt; Rusnak, Kyle                                 NA          NA       NA       NA
-#&gt; Ward, Harrison                               NA          NA       NA       NA
-#&gt; al-Kassem, Humaidaan                         NA          NA       NA       NA
-#&gt; el-Nagi, Waddaah                             NA          NA       NA       NA
-#&gt; Abzari, Joseph                            FALSE        TRUE    FALSE    FALSE
-#&gt; al-Abid, Asad                             FALSE       FALSE    FALSE    FALSE
-#&gt; al-Ahsan, Umar                            FALSE       FALSE    FALSE    FALSE
-#&gt; al-Eid, Abdus Samad                       FALSE        TRUE    FALSE    FALSE
-#&gt; al-Mansur, Kawkab                         FALSE       FALSE    FALSE    FALSE
-#&gt; Anderson, Laquesh                          TRUE       FALSE    FALSE    FALSE
-#&gt; Armijo Jr, Kalynne                        FALSE       FALSE    FALSE    FALSE
-#&gt; Babcock, Landon                           FALSE        TRUE    FALSE    FALSE
-#&gt; Barela, Marco                             FALSE       FALSE    FALSE    FALSE
-#&gt; Barger, Willanna                          FALSE       FALSE    FALSE    FALSE
-#&gt; Barnes, Amos                              FALSE       FALSE    FALSE    FALSE
-#&gt; Beaver, Tristin                           FALSE       FALSE    FALSE    FALSE
-#&gt; Bille, Cheyenne                           FALSE       FALSE    FALSE    FALSE
-#&gt; Boffill, Jordan                           FALSE       FALSE    FALSE    FALSE
-#&gt; Bradshaw, Noah                            FALSE       FALSE    FALSE    FALSE
-#&gt; Breshears, Kayla                          FALSE       FALSE    FALSE    FALSE
-#&gt; Bruce, Bryan                              FALSE       FALSE    FALSE    FALSE
-#&gt; Bruno, Jorge                              FALSE        TRUE    FALSE    FALSE
-#&gt; Burton, Danyalle                          FALSE       FALSE    FALSE    FALSE
-#&gt; Charlie, Mareno                           FALSE       FALSE    FALSE    FALSE
-#&gt; Dominguez Enriquez, David                 FALSE       FALSE    FALSE    FALSE
-#&gt; Edmondson, Christian                      FALSE        TRUE    FALSE    FALSE
-#&gt; el-Assad, Jubair                          FALSE       FALSE    FALSE    FALSE
-#&gt; el-Bina, Muntaha                          FALSE        TRUE    FALSE    FALSE
-#&gt; el-Kazi, Najeeba                          FALSE       FALSE    FALSE    FALSE
-#&gt; el-Masood, Nasreen                        FALSE       FALSE    FALSE    FALSE
-#&gt; el-Riaz, Aadam                            FALSE       FALSE    FALSE    FALSE
-#&gt; el-Wakim, Nuha                            FALSE       FALSE    FALSE    FALSE
-#&gt; el-Zakaria, Saajid                        FALSE        TRUE    FALSE    FALSE
-#&gt; Elder, Kevyn                              FALSE       FALSE    FALSE    FALSE
-#&gt; Ghimire, Chelsea                          FALSE       FALSE    FALSE    FALSE
-#&gt; Hall, Samorra                             FALSE       FALSE    FALSE    FALSE
-#&gt; Hayes, Kylihah                            FALSE       FALSE    FALSE    FALSE
-#&gt; Headden, Devon                            FALSE       FALSE    FALSE    FALSE
-#&gt; Her, Lia                                  FALSE       FALSE    FALSE    FALSE
-#&gt; Hicks, Camren                             FALSE       FALSE    FALSE    FALSE
-#&gt; Hoang, Elijah                             FALSE       FALSE    FALSE    FALSE
-#&gt; Jiles-Wright, Bralynd                     FALSE       FALSE    FALSE    FALSE
-#&gt; Jung, Derek                               FALSE       FALSE    FALSE    FALSE
-#&gt; Kane, Chapin                              FALSE       FALSE    FALSE    FALSE
-#&gt; Kim, Alisa                                FALSE       FALSE    FALSE    FALSE
-#&gt; King, Hali                                FALSE       FALSE    FALSE    FALSE
-#&gt; Laulu, Kajtshiab                          FALSE        TRUE    FALSE    FALSE
-#&gt; Lopez, Chiara                             FALSE        TRUE    FALSE    FALSE
-#&gt; Maestas, Lilibeth                         FALSE        TRUE    FALSE    FALSE
-#&gt; Mamet, A D                                FALSE       FALSE    FALSE    FALSE
-#&gt; Martin, Elizario                          FALSE       FALSE    FALSE    FALSE
-#&gt; Martinez, Jessica                         FALSE       FALSE    FALSE    FALSE
-#&gt; Martinez, Juan                            FALSE       FALSE    FALSE    FALSE
-#&gt; Martinez, Nelson                          FALSE       FALSE    FALSE    FALSE
-#&gt; Mcginnis, Adunola                         FALSE       FALSE    FALSE    FALSE
-#&gt; Mcknight, Jaymes                          FALSE       FALSE    FALSE    FALSE
-#&gt; Miller, Darshay                           FALSE       FALSE    FALSE    FALSE
-#&gt; Moktader, Sameer                          FALSE       FALSE    FALSE    FALSE
-#&gt; Mosely, Jereek                            FALSE       FALSE    FALSE    FALSE
-#&gt; Nam, John                                 FALSE       FALSE    FALSE    FALSE
-#&gt; Nelson, Phillip                           FALSE       FALSE    FALSE    FALSE
-#&gt; Okoye, Vanessa                            FALSE       FALSE    FALSE    FALSE
-#&gt; Parker, Pharo                             FALSE       FALSE    FALSE    FALSE
-#&gt; Perez, Kimberly                           FALSE       FALSE    FALSE    FALSE
-#&gt; Pham, Kyle                                FALSE       FALSE    FALSE    FALSE
-#&gt; Pronteau, Colton                          FALSE       FALSE    FALSE    FALSE
-#&gt; Rodriguez, Alma                           FALSE       FALSE    FALSE    FALSE
-#&gt; Rowley Booneel, Hailee                    FALSE       FALSE    FALSE    FALSE
-#&gt; Sanburg, Cassandra                        FALSE       FALSE    FALSE    FALSE
-#&gt; Sanchez, Dominique                        FALSE       FALSE    FALSE    FALSE
-#&gt; Santee, Holly                             FALSE       FALSE    FALSE    FALSE
-#&gt; Schell, Jack                              FALSE       FALSE    FALSE    FALSE
-#&gt; Schubert, Patrick                         FALSE       FALSE    FALSE    FALSE
-#&gt; Smith, John                               FALSE       FALSE    FALSE    FALSE
-#&gt; Smith, Ruasha                             FALSE       FALSE    FALSE    FALSE
-#&gt; Spoerl, John                              FALSE        TRUE    FALSE    FALSE
-#&gt; Stephan, Scott                            FALSE       FALSE    FALSE    FALSE
-#&gt; Suriwong, Sarah                           FALSE       FALSE    FALSE    FALSE
-#&gt; Thompson, Stephen                         FALSE       FALSE    FALSE    FALSE
-#&gt; Thwaites, Travis                          FALSE       FALSE    FALSE    FALSE
-#&gt; Todacheene, Erminio                       FALSE       FALSE    FALSE    FALSE
-#&gt; Tomlinson, Amanda                         FALSE       FALSE    FALSE    FALSE
-#&gt; Tuitele-Britton, Janet                    FALSE       FALSE    FALSE    FALSE
-#&gt; Valencia, Johnny                          FALSE        TRUE    FALSE    FALSE
-#&gt; Vallie, Mitchelle                         FALSE       FALSE    FALSE    FALSE
-#&gt; Vigo, Shi Hyung                           FALSE        TRUE    FALSE    FALSE
-#&gt; Wilkerson, Teesa                          FALSE       FALSE    FALSE    FALSE
-#&gt; Wood, Elijah                              FALSE       FALSE    FALSE    FALSE
-#&gt;                           moderate or severe liver disease
-#&gt; Alexis, Dayveon                                      FALSE
-#&gt; Bauder, Taylor                                       FALSE
-#&gt; Beasley, Michael                                     FALSE
-#&gt; Deshazor, Kordell                                    FALSE
-#&gt; Henricks, Donovan                                    FALSE
-#&gt; Marquez, Jacqueline                                  FALSE
-#&gt; Martinez, David                                      FALSE
-#&gt; Mccarthy, Gabriel                                    FALSE
-#&gt; Simpson, King                                        FALSE
-#&gt; Gallegos, Diana                                         NA
-#&gt; Perez Jr, Hannah                                        NA
-#&gt; Reyes, Sylvia                                           NA
-#&gt; Rusnak, Kyle                                            NA
-#&gt; Ward, Harrison                                          NA
-#&gt; al-Kassem, Humaidaan                                    NA
-#&gt; el-Nagi, Waddaah                                        NA
-#&gt; Abzari, Joseph                                       FALSE
-#&gt; al-Abid, Asad                                        FALSE
-#&gt; al-Ahsan, Umar                                       FALSE
-#&gt; al-Eid, Abdus Samad                                  FALSE
-#&gt; al-Mansur, Kawkab                                    FALSE
-#&gt; Anderson, Laquesh                                    FALSE
-#&gt; Armijo Jr, Kalynne                                   FALSE
-#&gt; Babcock, Landon                                      FALSE
-#&gt; Barela, Marco                                        FALSE
-#&gt; Barger, Willanna                                     FALSE
-#&gt; Barnes, Amos                                         FALSE
-#&gt; Beaver, Tristin                                      FALSE
-#&gt; Bille, Cheyenne                                      FALSE
-#&gt; Boffill, Jordan                                      FALSE
-#&gt; Bradshaw, Noah                                       FALSE
-#&gt; Breshears, Kayla                                     FALSE
-#&gt; Bruce, Bryan                                         FALSE
-#&gt; Bruno, Jorge                                         FALSE
-#&gt; Burton, Danyalle                                     FALSE
-#&gt; Charlie, Mareno                                      FALSE
-#&gt; Dominguez Enriquez, David                            FALSE
-#&gt; Edmondson, Christian                                 FALSE
-#&gt; el-Assad, Jubair                                     FALSE
-#&gt; el-Bina, Muntaha                                     FALSE
-#&gt; el-Kazi, Najeeba                                     FALSE
-#&gt; el-Masood, Nasreen                                   FALSE
-#&gt; el-Riaz, Aadam                                       FALSE
-#&gt; el-Wakim, Nuha                                       FALSE
-#&gt; el-Zakaria, Saajid                                   FALSE
-#&gt; Elder, Kevyn                                         FALSE
-#&gt; Ghimire, Chelsea                                     FALSE
-#&gt; Hall, Samorra                                        FALSE
-#&gt; Hayes, Kylihah                                       FALSE
-#&gt; Headden, Devon                                       FALSE
-#&gt; Her, Lia                                             FALSE
-#&gt; Hicks, Camren                                        FALSE
-#&gt; Hoang, Elijah                                        FALSE
-#&gt; Jiles-Wright, Bralynd                                FALSE
-#&gt; Jung, Derek                                          FALSE
-#&gt; Kane, Chapin                                         FALSE
-#&gt; Kim, Alisa                                           FALSE
-#&gt; King, Hali                                           FALSE
-#&gt; Laulu, Kajtshiab                                     FALSE
-#&gt; Lopez, Chiara                                        FALSE
-#&gt; Maestas, Lilibeth                                    FALSE
-#&gt; Mamet, A D                                           FALSE
-#&gt; Martin, Elizario                                     FALSE
-#&gt; Martinez, Jessica                                    FALSE
-#&gt; Martinez, Juan                                       FALSE
-#&gt; Martinez, Nelson                                     FALSE
-#&gt; Mcginnis, Adunola                                    FALSE
-#&gt; Mcknight, Jaymes                                     FALSE
-#&gt; Miller, Darshay                                      FALSE
-#&gt; Moktader, Sameer                                     FALSE
-#&gt; Mosely, Jereek                                       FALSE
-#&gt; Nam, John                                            FALSE
-#&gt; Nelson, Phillip                                      FALSE
-#&gt; Okoye, Vanessa                                       FALSE
-#&gt; Parker, Pharo                                        FALSE
-#&gt; Perez, Kimberly                                      FALSE
-#&gt; Pham, Kyle                                           FALSE
-#&gt; Pronteau, Colton                                     FALSE
-#&gt; Rodriguez, Alma                                      FALSE
-#&gt; Rowley Booneel, Hailee                               FALSE
-#&gt; Sanburg, Cassandra                                   FALSE
-#&gt; Sanchez, Dominique                                   FALSE
-#&gt; Santee, Holly                                        FALSE
-#&gt; Schell, Jack                                         FALSE
-#&gt; Schubert, Patrick                                    FALSE
-#&gt; Smith, John                                          FALSE
-#&gt; Smith, Ruasha                                        FALSE
-#&gt; Spoerl, John                                         FALSE
-#&gt; Stephan, Scott                                       FALSE
-#&gt; Suriwong, Sarah                                      FALSE
-#&gt; Thompson, Stephen                                    FALSE
-#&gt; Thwaites, Travis                                     FALSE
-#&gt; Todacheene, Erminio                                  FALSE
-#&gt; Tomlinson, Amanda                                    FALSE
-#&gt; Tuitele-Britton, Janet                               FALSE
-#&gt; Valencia, Johnny                                     FALSE
-#&gt; Vallie, Mitchelle                                    FALSE
-#&gt; Vigo, Shi Hyung                                      FALSE
-#&gt; Wilkerson, Teesa                                     FALSE
-#&gt; Wood, Elijah                                         FALSE
-#&gt;                           metastatic solid tumor AIDS/HIV
-#&gt; Alexis, Dayveon                            FALSE    FALSE
-#&gt; Bauder, Taylor                             FALSE    FALSE
-#&gt; Beasley, Michael                           FALSE    FALSE
-#&gt; Deshazor, Kordell                          FALSE    FALSE
-#&gt; Henricks, Donovan                          FALSE    FALSE
-#&gt; Marquez, Jacqueline                        FALSE    FALSE
-#&gt; Martinez, David                            FALSE    FALSE
-#&gt; Mccarthy, Gabriel                          FALSE    FALSE
-#&gt; Simpson, King                              FALSE    FALSE
-#&gt; Gallegos, Diana                               NA       NA
-#&gt; Perez Jr, Hannah                              NA       NA
-#&gt; Reyes, Sylvia                                 NA       NA
-#&gt; Rusnak, Kyle                                  NA       NA
-#&gt; Ward, Harrison                                NA       NA
-#&gt; al-Kassem, Humaidaan                          NA       NA
-#&gt; el-Nagi, Waddaah                              NA       NA
-#&gt; Abzari, Joseph                             FALSE    FALSE
-#&gt; al-Abid, Asad                              FALSE    FALSE
-#&gt; al-Ahsan, Umar                             FALSE    FALSE
-#&gt; al-Eid, Abdus Samad                        FALSE    FALSE
-#&gt; al-Mansur, Kawkab                          FALSE    FALSE
-#&gt; Anderson, Laquesh                          FALSE    FALSE
-#&gt; Armijo Jr, Kalynne                         FALSE    FALSE
-#&gt; Babcock, Landon                            FALSE    FALSE
-#&gt; Barela, Marco                              FALSE    FALSE
-#&gt; Barger, Willanna                           FALSE    FALSE
-#&gt; Barnes, Amos                               FALSE    FALSE
-#&gt; Beaver, Tristin                            FALSE    FALSE
-#&gt; Bille, Cheyenne                            FALSE    FALSE
-#&gt; Boffill, Jordan                            FALSE    FALSE
-#&gt; Bradshaw, Noah                             FALSE    FALSE
-#&gt; Breshears, Kayla                           FALSE    FALSE
-#&gt; Bruce, Bryan                               FALSE    FALSE
-#&gt; Bruno, Jorge                               FALSE    FALSE
-#&gt; Burton, Danyalle                           FALSE    FALSE
-#&gt; Charlie, Mareno                            FALSE    FALSE
-#&gt; Dominguez Enriquez, David                  FALSE    FALSE
-#&gt; Edmondson, Christian                       FALSE    FALSE
-#&gt; el-Assad, Jubair                           FALSE    FALSE
-#&gt; el-Bina, Muntaha                           FALSE    FALSE
-#&gt; el-Kazi, Najeeba                           FALSE    FALSE
-#&gt; el-Masood, Nasreen                         FALSE    FALSE
-#&gt; el-Riaz, Aadam                             FALSE    FALSE
-#&gt; el-Wakim, Nuha                             FALSE    FALSE
-#&gt; el-Zakaria, Saajid                         FALSE    FALSE
-#&gt; Elder, Kevyn                               FALSE    FALSE
-#&gt; Ghimire, Chelsea                           FALSE    FALSE
-#&gt; Hall, Samorra                              FALSE    FALSE
-#&gt; Hayes, Kylihah                             FALSE    FALSE
-#&gt; Headden, Devon                             FALSE    FALSE
-#&gt; Her, Lia                                   FALSE    FALSE
-#&gt; Hicks, Camren                              FALSE    FALSE
-#&gt; Hoang, Elijah                              FALSE    FALSE
-#&gt; Jiles-Wright, Bralynd                      FALSE    FALSE
-#&gt; Jung, Derek                                FALSE    FALSE
-#&gt; Kane, Chapin                               FALSE    FALSE
-#&gt; Kim, Alisa                                 FALSE    FALSE
-#&gt; King, Hali                                 FALSE    FALSE
-#&gt; Laulu, Kajtshiab                            TRUE    FALSE
-#&gt; Lopez, Chiara                              FALSE    FALSE
-#&gt; Maestas, Lilibeth                          FALSE    FALSE
-#&gt; Mamet, A D                                 FALSE    FALSE
-#&gt; Martin, Elizario                           FALSE    FALSE
-#&gt; Martinez, Jessica                          FALSE    FALSE
-#&gt; Martinez, Juan                             FALSE    FALSE
-#&gt; Martinez, Nelson                           FALSE    FALSE
-#&gt; Mcginnis, Adunola                          FALSE    FALSE
-#&gt; Mcknight, Jaymes                           FALSE    FALSE
-#&gt; Miller, Darshay                            FALSE    FALSE
-#&gt; Moktader, Sameer                           FALSE    FALSE
-#&gt; Mosely, Jereek                             FALSE    FALSE
-#&gt; Nam, John                                  FALSE    FALSE
-#&gt; Nelson, Phillip                            FALSE    FALSE
-#&gt; Okoye, Vanessa                             FALSE    FALSE
-#&gt; Parker, Pharo                              FALSE    FALSE
-#&gt; Perez, Kimberly                            FALSE    FALSE
-#&gt; Pham, Kyle                                 FALSE    FALSE
-#&gt; Pronteau, Colton                           FALSE    FALSE
-#&gt; Rodriguez, Alma                            FALSE    FALSE
-#&gt; Rowley Booneel, Hailee                     FALSE    FALSE
-#&gt; Sanburg, Cassandra                         FALSE    FALSE
-#&gt; Sanchez, Dominique                         FALSE    FALSE
-#&gt; Santee, Holly                              FALSE    FALSE
-#&gt; Schell, Jack                               FALSE    FALSE
-#&gt; Schubert, Patrick                          FALSE    FALSE
-#&gt; Smith, John                                FALSE    FALSE
-#&gt; Smith, Ruasha                              FALSE    FALSE
-#&gt; Spoerl, John                               FALSE    FALSE
-#&gt; Stephan, Scott                             FALSE    FALSE
-#&gt; Suriwong, Sarah                            FALSE    FALSE
-#&gt; Thompson, Stephen                          FALSE    FALSE
-#&gt; Thwaites, Travis                           FALSE    FALSE
-#&gt; Todacheene, Erminio                        FALSE    FALSE
-#&gt; Tomlinson, Amanda                          FALSE    FALSE
-#&gt; Tuitele-Britton, Janet                     FALSE    FALSE
-#&gt; Valencia, Johnny                           FALSE    FALSE
-#&gt; Vallie, Mitchelle                          FALSE    FALSE
-#&gt; Vigo, Shi Hyung                            FALSE    FALSE
-#&gt; Wilkerson, Teesa                           FALSE    FALSE
-#&gt; Wood, Elijah                               FALSE    FALSE
+(<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson_icd10"</span>))</div><div class='output co'>#&gt;                             myocardial infarction congestive heart failure
+#&gt; Clements, Joshua                            FALSE                    FALSE
+#&gt; Mo, Kawaileolani                            FALSE                    FALSE
+#&gt; Rivera, Elideth                             FALSE                    FALSE
+#&gt; Sublette, Phung                             FALSE                    FALSE
+#&gt; Tran, Michael                               FALSE                    FALSE
+#&gt; Trujillo, Kayla                             FALSE                    FALSE
+#&gt; Weinstein, Shawnia                          FALSE                    FALSE
+#&gt; al-Shahan, Jalaal                           FALSE                    FALSE
+#&gt; el-Sabet, Mahdhoodha                        FALSE                    FALSE
+#&gt; Butcher, Mariah                                NA                       NA
+#&gt; Jackson, Noah                                  NA                       NA
+#&gt; Nandih, Aaron                                  NA                       NA
+#&gt; Quintana, Carmen                               NA                       NA
+#&gt; Sivisay, Emily                                 NA                       NA
+#&gt; Suits, Drayton                                 NA                       NA
+#&gt; el-Barakat, Jasra                              NA                       NA
+#&gt; Adams, Jaimin                               FALSE                    FALSE
+#&gt; al-Kaleel, Najlaa                           FALSE                    FALSE
+#&gt; al-Sham, Jumaima                            FALSE                    FALSE
+#&gt; al-Vaziri, Jamaal                           FALSE                    FALSE
+#&gt; Anderson, Arianna                           FALSE                    FALSE
+#&gt; Arellano, Francisca                         FALSE                    FALSE
+#&gt; Baldino, Ahanabah                           FALSE                    FALSE
+#&gt; Banks, Dylan                                FALSE                    FALSE
+#&gt; Beasley, Shamira                            FALSE                    FALSE
+#&gt; Bennett, Christina                          FALSE                    FALSE
+#&gt; Bennett, Nicholas                           FALSE                    FALSE
+#&gt; Caro, Luis                                  FALSE                    FALSE
+#&gt; Chamberlain, Olivia                         FALSE                    FALSE
+#&gt; Church, Marlon                              FALSE                    FALSE
+#&gt; Clark, Jenifer                              FALSE                    FALSE
+#&gt; Clayton, Blake                              FALSE                    FALSE
+#&gt; Clos, Naomi                                 FALSE                    FALSE
+#&gt; Crews, Bryce                                FALSE                    FALSE
+#&gt; De La Riva Luevano, Mary Lu                 FALSE                    FALSE
+#&gt; Dintaman, Nicholas                          FALSE                    FALSE
+#&gt; Do, Khrishan                                FALSE                    FALSE
+#&gt; Dolbeare, Kenneth                           FALSE                    FALSE
+#&gt; el-Adel, Fat'hi                             FALSE                    FALSE
+#&gt; el-Aly, Ibtisaama                           FALSE                    FALSE
+#&gt; el-Arafat, Laaiqa                           FALSE                    FALSE
+#&gt; el-Basa, Sawada                             FALSE                    FALSE
+#&gt; el-Ismail, Qais                             FALSE                    FALSE
+#&gt; el-Kader, Hakam                             FALSE                    FALSE
+#&gt; el-Majeed, Fuaad                            FALSE                    FALSE
+#&gt; el-Mattar, Miqdaam                          FALSE                    FALSE
+#&gt; el-Ramin, Sahheeda                          FALSE                    FALSE
+#&gt; el-Sadri, Mawzoona                          FALSE                    FALSE
+#&gt; el-Zadeh,  Muzna                            FALSE                    FALSE
+#&gt; Emanuel, Jataesha                           FALSE                    FALSE
+#&gt; Eriacho, Summer                             FALSE                    FALSE
+#&gt; Fifita, Nicole                              FALSE                    FALSE
+#&gt; Fuller, Morgan                              FALSE                    FALSE
+#&gt; Gaines, Eli                                 FALSE                    FALSE
+#&gt; Gallegos, Aliyah                            FALSE                    FALSE
+#&gt; Gallegos, Juanito                           FALSE                    FALSE
+#&gt; Galvan, Angelica                            FALSE                    FALSE
+#&gt; Garcia, Tyler                               FALSE                    FALSE
+#&gt; Gaskin, Graciela                            FALSE                    FALSE
+#&gt; Gillespie, Jasmine                          FALSE                    FALSE
+#&gt; Ha, Esther                                  FALSE                    FALSE
+#&gt; Hall, Alexsondro                            FALSE                    FALSE
+#&gt; Hamm, George                                FALSE                    FALSE
+#&gt; Hauptli, Adam                               FALSE                    FALSE
+#&gt; Heaton, Maren                               FALSE                    FALSE
+#&gt; Heilman, Chau                               FALSE                    FALSE
+#&gt; Jeffords, Yasmin                            FALSE                    FALSE
+#&gt; Jennings, Danielle                          FALSE                    FALSE
+#&gt; Jensen, Duncan                              FALSE                    FALSE
+#&gt; Kalam, Sydney                               FALSE                    FALSE
+#&gt; Kirbow, Jakob                               FALSE                    FALSE
+#&gt; Kirby, Samantha                             FALSE                    FALSE
+#&gt; Le, Austin                                  FALSE                    FALSE
+#&gt; Lee, Jazmine                                FALSE                    FALSE
+#&gt; Lilly, Lance                                FALSE                    FALSE
+#&gt; Lor, Sweta                                  FALSE                    FALSE
+#&gt; Manwaring, Navid                            FALSE                    FALSE
+#&gt; Mcdermott Rivera, Mckenzie                  FALSE                    FALSE
+#&gt; Metzler, John                               FALSE                    FALSE
+#&gt; Michaels, Brianna                           FALSE                    FALSE
+#&gt; Minor, Cody                                 FALSE                    FALSE
+#&gt; Moline, Elijah                              FALSE                    FALSE
+#&gt; Morales, Connor                             FALSE                    FALSE
+#&gt; Morrow, Christopher                         FALSE                    FALSE
+#&gt; Murphy, Izell                               FALSE                    FALSE
+#&gt; Nedd, Daerius                               FALSE                    FALSE
+#&gt; Nguyen, Connor                              FALSE                    FALSE
+#&gt; Palomino, Kristin                           FALSE                    FALSE
+#&gt; Phung, Nathan                               FALSE                    FALSE
+#&gt; Roberts, Sarah                              FALSE                    FALSE
+#&gt; Robinson, Casey                             FALSE                    FALSE
+#&gt; Ross, Syanne                                FALSE                    FALSE
+#&gt; Salas, Abdul                                FALSE                    FALSE
+#&gt; Shepherd, Jessalyn                          FALSE                    FALSE
+#&gt; Tran, Hamid                                 FALSE                    FALSE
+#&gt; Vara, Gerardo                               FALSE                    FALSE
+#&gt; Vasquez, Cristal                            FALSE                    FALSE
+#&gt; Widaa, Audrina                              FALSE                    FALSE
+#&gt; Wilson, Kayla                               FALSE                    FALSE
+#&gt; Zebulun, Alyson                             FALSE                    FALSE
+#&gt;                             peripheral vascular disease cerebrovascular disease
+#&gt; Clements, Joshua                                  FALSE                   FALSE
+#&gt; Mo, Kawaileolani                                  FALSE                   FALSE
+#&gt; Rivera, Elideth                                   FALSE                   FALSE
+#&gt; Sublette, Phung                                   FALSE                   FALSE
+#&gt; Tran, Michael                                     FALSE                   FALSE
+#&gt; Trujillo, Kayla                                   FALSE                   FALSE
+#&gt; Weinstein, Shawnia                                FALSE                   FALSE
+#&gt; al-Shahan, Jalaal                                 FALSE                   FALSE
+#&gt; el-Sabet, Mahdhoodha                              FALSE                   FALSE
+#&gt; Butcher, Mariah                                      NA                      NA
+#&gt; Jackson, Noah                                        NA                      NA
+#&gt; Nandih, Aaron                                        NA                      NA
+#&gt; Quintana, Carmen                                     NA                      NA
+#&gt; Sivisay, Emily                                       NA                      NA
+#&gt; Suits, Drayton                                       NA                      NA
+#&gt; el-Barakat, Jasra                                    NA                      NA
+#&gt; Adams, Jaimin                                     FALSE                   FALSE
+#&gt; al-Kaleel, Najlaa                                 FALSE                   FALSE
+#&gt; al-Sham, Jumaima                                  FALSE                   FALSE
+#&gt; al-Vaziri, Jamaal                                 FALSE                   FALSE
+#&gt; Anderson, Arianna                                 FALSE                   FALSE
+#&gt; Arellano, Francisca                               FALSE                   FALSE
+#&gt; Baldino, Ahanabah                                 FALSE                   FALSE
+#&gt; Banks, Dylan                                      FALSE                   FALSE
+#&gt; Beasley, Shamira                                  FALSE                   FALSE
+#&gt; Bennett, Christina                                FALSE                   FALSE
+#&gt; Bennett, Nicholas                                 FALSE                   FALSE
+#&gt; Caro, Luis                                        FALSE                   FALSE
+#&gt; Chamberlain, Olivia                               FALSE                   FALSE
+#&gt; Church, Marlon                                    FALSE                   FALSE
+#&gt; Clark, Jenifer                                    FALSE                   FALSE
+#&gt; Clayton, Blake                                    FALSE                   FALSE
+#&gt; Clos, Naomi                                       FALSE                   FALSE
+#&gt; Crews, Bryce                                      FALSE                   FALSE
+#&gt; De La Riva Luevano, Mary Lu                       FALSE                   FALSE
+#&gt; Dintaman, Nicholas                                FALSE                   FALSE
+#&gt; Do, Khrishan                                      FALSE                   FALSE
+#&gt; Dolbeare, Kenneth                                 FALSE                   FALSE
+#&gt; el-Adel, Fat'hi                                   FALSE                   FALSE
+#&gt; el-Aly, Ibtisaama                                 FALSE                   FALSE
+#&gt; el-Arafat, Laaiqa                                 FALSE                   FALSE
+#&gt; el-Basa, Sawada                                   FALSE                   FALSE
+#&gt; el-Ismail, Qais                                   FALSE                   FALSE
+#&gt; el-Kader, Hakam                                   FALSE                   FALSE
+#&gt; el-Majeed, Fuaad                                  FALSE                   FALSE
+#&gt; el-Mattar, Miqdaam                                FALSE                   FALSE
+#&gt; el-Ramin, Sahheeda                                FALSE                   FALSE
+#&gt; el-Sadri, Mawzoona                                FALSE                   FALSE
+#&gt; el-Zadeh,  Muzna                                  FALSE                   FALSE
+#&gt; Emanuel, Jataesha                                 FALSE                   FALSE
+#&gt; Eriacho, Summer                                   FALSE                   FALSE
+#&gt; Fifita, Nicole                                    FALSE                   FALSE
+#&gt; Fuller, Morgan                                    FALSE                   FALSE
+#&gt; Gaines, Eli                                       FALSE                   FALSE
+#&gt; Gallegos, Aliyah                                  FALSE                   FALSE
+#&gt; Gallegos, Juanito                                 FALSE                   FALSE
+#&gt; Galvan, Angelica                                  FALSE                   FALSE
+#&gt; Garcia, Tyler                                     FALSE                   FALSE
+#&gt; Gaskin, Graciela                                  FALSE                   FALSE
+#&gt; Gillespie, Jasmine                                FALSE                   FALSE
+#&gt; Ha, Esther                                        FALSE                   FALSE
+#&gt; Hall, Alexsondro                                  FALSE                   FALSE
+#&gt; Hamm, George                                      FALSE                   FALSE
+#&gt; Hauptli, Adam                                     FALSE                   FALSE
+#&gt; Heaton, Maren                                     FALSE                   FALSE
+#&gt; Heilman, Chau                                     FALSE                   FALSE
+#&gt; Jeffords, Yasmin                                  FALSE                   FALSE
+#&gt; Jennings, Danielle                                FALSE                   FALSE
+#&gt; Jensen, Duncan                                    FALSE                   FALSE
+#&gt; Kalam, Sydney                                     FALSE                   FALSE
+#&gt; Kirbow, Jakob                                     FALSE                   FALSE
+#&gt; Kirby, Samantha                                   FALSE                   FALSE
+#&gt; Le, Austin                                        FALSE                   FALSE
+#&gt; Lee, Jazmine                                      FALSE                   FALSE
+#&gt; Lilly, Lance                                      FALSE                   FALSE
+#&gt; Lor, Sweta                                        FALSE                   FALSE
+#&gt; Manwaring, Navid                                  FALSE                   FALSE
+#&gt; Mcdermott Rivera, Mckenzie                        FALSE                   FALSE
+#&gt; Metzler, John                                     FALSE                   FALSE
+#&gt; Michaels, Brianna                                 FALSE                   FALSE
+#&gt; Minor, Cody                                       FALSE                   FALSE
+#&gt; Moline, Elijah                                    FALSE                   FALSE
+#&gt; Morales, Connor                                   FALSE                   FALSE
+#&gt; Morrow, Christopher                               FALSE                   FALSE
+#&gt; Murphy, Izell                                     FALSE                   FALSE
+#&gt; Nedd, Daerius                                     FALSE                   FALSE
+#&gt; Nguyen, Connor                                    FALSE                   FALSE
+#&gt; Palomino, Kristin                                 FALSE                   FALSE
+#&gt; Phung, Nathan                                     FALSE                   FALSE
+#&gt; Roberts, Sarah                                    FALSE                   FALSE
+#&gt; Robinson, Casey                                   FALSE                   FALSE
+#&gt; Ross, Syanne                                      FALSE                   FALSE
+#&gt; Salas, Abdul                                      FALSE                   FALSE
+#&gt; Shepherd, Jessalyn                                FALSE                   FALSE
+#&gt; Tran, Hamid                                       FALSE                   FALSE
+#&gt; Vara, Gerardo                                     FALSE                   FALSE
+#&gt; Vasquez, Cristal                                  FALSE                   FALSE
+#&gt; Widaa, Audrina                                    FALSE                   FALSE
+#&gt; Wilson, Kayla                                     FALSE                   FALSE
+#&gt; Zebulun, Alyson                                    TRUE                   FALSE
+#&gt;                             dementia chronic pulmonary disease
+#&gt; Clements, Joshua               FALSE                     FALSE
+#&gt; Mo, Kawaileolani               FALSE                     FALSE
+#&gt; Rivera, Elideth                FALSE                     FALSE
+#&gt; Sublette, Phung                FALSE                     FALSE
+#&gt; Tran, Michael                  FALSE                     FALSE
+#&gt; Trujillo, Kayla                FALSE                     FALSE
+#&gt; Weinstein, Shawnia             FALSE                     FALSE
+#&gt; al-Shahan, Jalaal              FALSE                     FALSE
+#&gt; el-Sabet, Mahdhoodha           FALSE                     FALSE
+#&gt; Butcher, Mariah                   NA                        NA
+#&gt; Jackson, Noah                     NA                        NA
+#&gt; Nandih, Aaron                     NA                        NA
+#&gt; Quintana, Carmen                  NA                        NA
+#&gt; Sivisay, Emily                    NA                        NA
+#&gt; Suits, Drayton                    NA                        NA
+#&gt; el-Barakat, Jasra                 NA                        NA
+#&gt; Adams, Jaimin                  FALSE                     FALSE
+#&gt; al-Kaleel, Najlaa              FALSE                     FALSE
+#&gt; al-Sham, Jumaima               FALSE                     FALSE
+#&gt; al-Vaziri, Jamaal              FALSE                     FALSE
+#&gt; Anderson, Arianna              FALSE                     FALSE
+#&gt; Arellano, Francisca            FALSE                     FALSE
+#&gt; Baldino, Ahanabah              FALSE                     FALSE
+#&gt; Banks, Dylan                   FALSE                     FALSE
+#&gt; Beasley, Shamira               FALSE                     FALSE
+#&gt; Bennett, Christina             FALSE                     FALSE
+#&gt; Bennett, Nicholas              FALSE                     FALSE
+#&gt; Caro, Luis                     FALSE                     FALSE
+#&gt; Chamberlain, Olivia            FALSE                     FALSE
+#&gt; Church, Marlon                 FALSE                     FALSE
+#&gt; Clark, Jenifer                 FALSE                     FALSE
+#&gt; Clayton, Blake                 FALSE                     FALSE
+#&gt; Clos, Naomi                    FALSE                     FALSE
+#&gt; Crews, Bryce                   FALSE                     FALSE
+#&gt; De La Riva Luevano, Mary Lu    FALSE                     FALSE
+#&gt; Dintaman, Nicholas             FALSE                     FALSE
+#&gt; Do, Khrishan                   FALSE                     FALSE
+#&gt; Dolbeare, Kenneth              FALSE                     FALSE
+#&gt; el-Adel, Fat'hi                FALSE                     FALSE
+#&gt; el-Aly, Ibtisaama              FALSE                     FALSE
+#&gt; el-Arafat, Laaiqa              FALSE                     FALSE
+#&gt; el-Basa, Sawada                FALSE                     FALSE
+#&gt; el-Ismail, Qais                FALSE                     FALSE
+#&gt; el-Kader, Hakam                FALSE                     FALSE
+#&gt; el-Majeed, Fuaad               FALSE                     FALSE
+#&gt; el-Mattar, Miqdaam             FALSE                     FALSE
+#&gt; el-Ramin, Sahheeda             FALSE                     FALSE
+#&gt; el-Sadri, Mawzoona             FALSE                     FALSE
+#&gt; el-Zadeh,  Muzna               FALSE                     FALSE
+#&gt; Emanuel, Jataesha              FALSE                     FALSE
+#&gt; Eriacho, Summer                FALSE                     FALSE
+#&gt; Fifita, Nicole                 FALSE                     FALSE
+#&gt; Fuller, Morgan                 FALSE                     FALSE
+#&gt; Gaines, Eli                    FALSE                     FALSE
+#&gt; Gallegos, Aliyah               FALSE                     FALSE
+#&gt; Gallegos, Juanito              FALSE                     FALSE
+#&gt; Galvan, Angelica               FALSE                     FALSE
+#&gt; Garcia, Tyler                  FALSE                     FALSE
+#&gt; Gaskin, Graciela               FALSE                     FALSE
+#&gt; Gillespie, Jasmine             FALSE                     FALSE
+#&gt; Ha, Esther                     FALSE                     FALSE
+#&gt; Hall, Alexsondro               FALSE                     FALSE
+#&gt; Hamm, George                   FALSE                     FALSE
+#&gt; Hauptli, Adam                  FALSE                     FALSE
+#&gt; Heaton, Maren                  FALSE                     FALSE
+#&gt; Heilman, Chau                  FALSE                      TRUE
+#&gt; Jeffords, Yasmin               FALSE                     FALSE
+#&gt; Jennings, Danielle             FALSE                     FALSE
+#&gt; Jensen, Duncan                 FALSE                     FALSE
+#&gt; Kalam, Sydney                  FALSE                     FALSE
+#&gt; Kirbow, Jakob                  FALSE                     FALSE
+#&gt; Kirby, Samantha                FALSE                     FALSE
+#&gt; Le, Austin                     FALSE                     FALSE
+#&gt; Lee, Jazmine                   FALSE                     FALSE
+#&gt; Lilly, Lance                   FALSE                     FALSE
+#&gt; Lor, Sweta                     FALSE                     FALSE
+#&gt; Manwaring, Navid               FALSE                     FALSE
+#&gt; Mcdermott Rivera, Mckenzie     FALSE                     FALSE
+#&gt; Metzler, John                  FALSE                     FALSE
+#&gt; Michaels, Brianna              FALSE                     FALSE
+#&gt; Minor, Cody                    FALSE                     FALSE
+#&gt; Moline, Elijah                 FALSE                     FALSE
+#&gt; Morales, Connor                FALSE                     FALSE
+#&gt; Morrow, Christopher            FALSE                     FALSE
+#&gt; Murphy, Izell                  FALSE                     FALSE
+#&gt; Nedd, Daerius                  FALSE                     FALSE
+#&gt; Nguyen, Connor                 FALSE                     FALSE
+#&gt; Palomino, Kristin              FALSE                     FALSE
+#&gt; Phung, Nathan                  FALSE                     FALSE
+#&gt; Roberts, Sarah                 FALSE                     FALSE
+#&gt; Robinson, Casey                FALSE                     FALSE
+#&gt; Ross, Syanne                   FALSE                     FALSE
+#&gt; Salas, Abdul                   FALSE                     FALSE
+#&gt; Shepherd, Jessalyn             FALSE                     FALSE
+#&gt; Tran, Hamid                    FALSE                     FALSE
+#&gt; Vara, Gerardo                  FALSE                     FALSE
+#&gt; Vasquez, Cristal               FALSE                     FALSE
+#&gt; Widaa, Audrina                 FALSE                     FALSE
+#&gt; Wilson, Kayla                  FALSE                     FALSE
+#&gt; Zebulun, Alyson                FALSE                     FALSE
+#&gt;                             rheumatic disease peptic ulcer disease
+#&gt; Clements, Joshua                        FALSE                FALSE
+#&gt; Mo, Kawaileolani                        FALSE                FALSE
+#&gt; Rivera, Elideth                         FALSE                FALSE
+#&gt; Sublette, Phung                         FALSE                FALSE
+#&gt; Tran, Michael                           FALSE                FALSE
+#&gt; Trujillo, Kayla                         FALSE                FALSE
+#&gt; Weinstein, Shawnia                      FALSE                FALSE
+#&gt; al-Shahan, Jalaal                       FALSE                FALSE
+#&gt; el-Sabet, Mahdhoodha                    FALSE                FALSE
+#&gt; Butcher, Mariah                            NA                   NA
+#&gt; Jackson, Noah                              NA                   NA
+#&gt; Nandih, Aaron                              NA                   NA
+#&gt; Quintana, Carmen                           NA                   NA
+#&gt; Sivisay, Emily                             NA                   NA
+#&gt; Suits, Drayton                             NA                   NA
+#&gt; el-Barakat, Jasra                          NA                   NA
+#&gt; Adams, Jaimin                           FALSE                 TRUE
+#&gt; al-Kaleel, Najlaa                       FALSE                FALSE
+#&gt; al-Sham, Jumaima                        FALSE                FALSE
+#&gt; al-Vaziri, Jamaal                       FALSE                FALSE
+#&gt; Anderson, Arianna                       FALSE                FALSE
+#&gt; Arellano, Francisca                     FALSE                FALSE
+#&gt; Baldino, Ahanabah                       FALSE                FALSE
+#&gt; Banks, Dylan                            FALSE                FALSE
+#&gt; Beasley, Shamira                        FALSE                FALSE
+#&gt; Bennett, Christina                      FALSE                FALSE
+#&gt; Bennett, Nicholas                       FALSE                FALSE
+#&gt; Caro, Luis                              FALSE                FALSE
+#&gt; Chamberlain, Olivia                     FALSE                FALSE
+#&gt; Church, Marlon                          FALSE                FALSE
+#&gt; Clark, Jenifer                          FALSE                FALSE
+#&gt; Clayton, Blake                          FALSE                FALSE
+#&gt; Clos, Naomi                             FALSE                FALSE
+#&gt; Crews, Bryce                            FALSE                FALSE
+#&gt; De La Riva Luevano, Mary Lu             FALSE                FALSE
+#&gt; Dintaman, Nicholas                      FALSE                FALSE
+#&gt; Do, Khrishan                            FALSE                FALSE
+#&gt; Dolbeare, Kenneth                       FALSE                FALSE
+#&gt; el-Adel, Fat'hi                         FALSE                FALSE
+#&gt; el-Aly, Ibtisaama                       FALSE                FALSE
+#&gt; el-Arafat, Laaiqa                       FALSE                FALSE
+#&gt; el-Basa, Sawada                         FALSE                FALSE
+#&gt; el-Ismail, Qais                         FALSE                FALSE
+#&gt; el-Kader, Hakam                         FALSE                FALSE
+#&gt; el-Majeed, Fuaad                        FALSE                FALSE
+#&gt; el-Mattar, Miqdaam                      FALSE                FALSE
+#&gt; el-Ramin, Sahheeda                      FALSE                FALSE
+#&gt; el-Sadri, Mawzoona                      FALSE                FALSE
+#&gt; el-Zadeh,  Muzna                        FALSE                FALSE
+#&gt; Emanuel, Jataesha                       FALSE                FALSE
+#&gt; Eriacho, Summer                         FALSE                FALSE
+#&gt; Fifita, Nicole                          FALSE                FALSE
+#&gt; Fuller, Morgan                           TRUE                FALSE
+#&gt; Gaines, Eli                             FALSE                FALSE
+#&gt; Gallegos, Aliyah                        FALSE                FALSE
+#&gt; Gallegos, Juanito                       FALSE                FALSE
+#&gt; Galvan, Angelica                        FALSE                FALSE
+#&gt; Garcia, Tyler                           FALSE                FALSE
+#&gt; Gaskin, Graciela                        FALSE                FALSE
+#&gt; Gillespie, Jasmine                      FALSE                FALSE
+#&gt; Ha, Esther                              FALSE                FALSE
+#&gt; Hall, Alexsondro                        FALSE                FALSE
+#&gt; Hamm, George                             TRUE                FALSE
+#&gt; Hauptli, Adam                           FALSE                FALSE
+#&gt; Heaton, Maren                           FALSE                FALSE
+#&gt; Heilman, Chau                           FALSE                FALSE
+#&gt; Jeffords, Yasmin                        FALSE                FALSE
+#&gt; Jennings, Danielle                      FALSE                FALSE
+#&gt; Jensen, Duncan                          FALSE                FALSE
+#&gt; Kalam, Sydney                           FALSE                FALSE
+#&gt; Kirbow, Jakob                           FALSE                FALSE
+#&gt; Kirby, Samantha                         FALSE                FALSE
+#&gt; Le, Austin                              FALSE                FALSE
+#&gt; Lee, Jazmine                            FALSE                FALSE
+#&gt; Lilly, Lance                            FALSE                FALSE
+#&gt; Lor, Sweta                              FALSE                FALSE
+#&gt; Manwaring, Navid                        FALSE                FALSE
+#&gt; Mcdermott Rivera, Mckenzie              FALSE                FALSE
+#&gt; Metzler, John                           FALSE                FALSE
+#&gt; Michaels, Brianna                       FALSE                FALSE
+#&gt; Minor, Cody                             FALSE                FALSE
+#&gt; Moline, Elijah                          FALSE                FALSE
+#&gt; Morales, Connor                          TRUE                FALSE
+#&gt; Morrow, Christopher                     FALSE                FALSE
+#&gt; Murphy, Izell                           FALSE                FALSE
+#&gt; Nedd, Daerius                           FALSE                FALSE
+#&gt; Nguyen, Connor                          FALSE                FALSE
+#&gt; Palomino, Kristin                       FALSE                FALSE
+#&gt; Phung, Nathan                           FALSE                FALSE
+#&gt; Roberts, Sarah                          FALSE                FALSE
+#&gt; Robinson, Casey                         FALSE                FALSE
+#&gt; Ross, Syanne                            FALSE                FALSE
+#&gt; Salas, Abdul                            FALSE                FALSE
+#&gt; Shepherd, Jessalyn                      FALSE                FALSE
+#&gt; Tran, Hamid                             FALSE                FALSE
+#&gt; Vara, Gerardo                           FALSE                FALSE
+#&gt; Vasquez, Cristal                        FALSE                FALSE
+#&gt; Widaa, Audrina                          FALSE                FALSE
+#&gt; Wilson, Kayla                           FALSE                FALSE
+#&gt; Zebulun, Alyson                         FALSE                FALSE
+#&gt;                             mild liver disease diabetes without complication
+#&gt; Clements, Joshua                         FALSE                         FALSE
+#&gt; Mo, Kawaileolani                         FALSE                         FALSE
+#&gt; Rivera, Elideth                          FALSE                         FALSE
+#&gt; Sublette, Phung                          FALSE                         FALSE
+#&gt; Tran, Michael                            FALSE                         FALSE
+#&gt; Trujillo, Kayla                          FALSE                         FALSE
+#&gt; Weinstein, Shawnia                       FALSE                         FALSE
+#&gt; al-Shahan, Jalaal                        FALSE                         FALSE
+#&gt; el-Sabet, Mahdhoodha                     FALSE                         FALSE
+#&gt; Butcher, Mariah                             NA                            NA
+#&gt; Jackson, Noah                               NA                            NA
+#&gt; Nandih, Aaron                               NA                            NA
+#&gt; Quintana, Carmen                            NA                            NA
+#&gt; Sivisay, Emily                              NA                            NA
+#&gt; Suits, Drayton                              NA                            NA
+#&gt; el-Barakat, Jasra                           NA                            NA
+#&gt; Adams, Jaimin                            FALSE                         FALSE
+#&gt; al-Kaleel, Najlaa                        FALSE                         FALSE
+#&gt; al-Sham, Jumaima                         FALSE                         FALSE
+#&gt; al-Vaziri, Jamaal                        FALSE                         FALSE
+#&gt; Anderson, Arianna                        FALSE                         FALSE
+#&gt; Arellano, Francisca                      FALSE                         FALSE
+#&gt; Baldino, Ahanabah                        FALSE                         FALSE
+#&gt; Banks, Dylan                             FALSE                         FALSE
+#&gt; Beasley, Shamira                         FALSE                         FALSE
+#&gt; Bennett, Christina                       FALSE                         FALSE
+#&gt; Bennett, Nicholas                        FALSE                         FALSE
+#&gt; Caro, Luis                               FALSE                         FALSE
+#&gt; Chamberlain, Olivia                      FALSE                         FALSE
+#&gt; Church, Marlon                           FALSE                         FALSE
+#&gt; Clark, Jenifer                           FALSE                         FALSE
+#&gt; Clayton, Blake                           FALSE                         FALSE
+#&gt; Clos, Naomi                              FALSE                         FALSE
+#&gt; Crews, Bryce                             FALSE                         FALSE
+#&gt; De La Riva Luevano, Mary Lu              FALSE                         FALSE
+#&gt; Dintaman, Nicholas                       FALSE                         FALSE
+#&gt; Do, Khrishan                             FALSE                         FALSE
+#&gt; Dolbeare, Kenneth                        FALSE                         FALSE
+#&gt; el-Adel, Fat'hi                          FALSE                         FALSE
+#&gt; el-Aly, Ibtisaama                        FALSE                         FALSE
+#&gt; el-Arafat, Laaiqa                        FALSE                         FALSE
+#&gt; el-Basa, Sawada                          FALSE                         FALSE
+#&gt; el-Ismail, Qais                          FALSE                         FALSE
+#&gt; el-Kader, Hakam                          FALSE                         FALSE
+#&gt; el-Majeed, Fuaad                         FALSE                         FALSE
+#&gt; el-Mattar, Miqdaam                       FALSE                         FALSE
+#&gt; el-Ramin, Sahheeda                       FALSE                         FALSE
+#&gt; el-Sadri, Mawzoona                       FALSE                          TRUE
+#&gt; el-Zadeh,  Muzna                         FALSE                         FALSE
+#&gt; Emanuel, Jataesha                        FALSE                         FALSE
+#&gt; Eriacho, Summer                          FALSE                         FALSE
+#&gt; Fifita, Nicole                           FALSE                         FALSE
+#&gt; Fuller, Morgan                           FALSE                         FALSE
+#&gt; Gaines, Eli                              FALSE                         FALSE
+#&gt; Gallegos, Aliyah                         FALSE                         FALSE
+#&gt; Gallegos, Juanito                        FALSE                         FALSE
+#&gt; Galvan, Angelica                         FALSE                         FALSE
+#&gt; Garcia, Tyler                            FALSE                         FALSE
+#&gt; Gaskin, Graciela                         FALSE                         FALSE
+#&gt; Gillespie, Jasmine                       FALSE                         FALSE
+#&gt; Ha, Esther                               FALSE                         FALSE
+#&gt; Hall, Alexsondro                          TRUE                         FALSE
+#&gt; Hamm, George                             FALSE                         FALSE
+#&gt; Hauptli, Adam                            FALSE                         FALSE
+#&gt; Heaton, Maren                            FALSE                         FALSE
+#&gt; Heilman, Chau                            FALSE                         FALSE
+#&gt; Jeffords, Yasmin                         FALSE                         FALSE
+#&gt; Jennings, Danielle                       FALSE                         FALSE
+#&gt; Jensen, Duncan                           FALSE                         FALSE
+#&gt; Kalam, Sydney                            FALSE                         FALSE
+#&gt; Kirbow, Jakob                            FALSE                         FALSE
+#&gt; Kirby, Samantha                          FALSE                         FALSE
+#&gt; Le, Austin                               FALSE                         FALSE
+#&gt; Lee, Jazmine                             FALSE                         FALSE
+#&gt; Lilly, Lance                             FALSE                         FALSE
+#&gt; Lor, Sweta                               FALSE                         FALSE
+#&gt; Manwaring, Navid                         FALSE                         FALSE
+#&gt; Mcdermott Rivera, Mckenzie               FALSE                         FALSE
+#&gt; Metzler, John                            FALSE                         FALSE
+#&gt; Michaels, Brianna                        FALSE                         FALSE
+#&gt; Minor, Cody                              FALSE                         FALSE
+#&gt; Moline, Elijah                           FALSE                         FALSE
+#&gt; Morales, Connor                          FALSE                         FALSE
+#&gt; Morrow, Christopher                      FALSE                         FALSE
+#&gt; Murphy, Izell                            FALSE                         FALSE
+#&gt; Nedd, Daerius                            FALSE                         FALSE
+#&gt; Nguyen, Connor                           FALSE                         FALSE
+#&gt; Palomino, Kristin                        FALSE                         FALSE
+#&gt; Phung, Nathan                            FALSE                         FALSE
+#&gt; Roberts, Sarah                           FALSE                         FALSE
+#&gt; Robinson, Casey                          FALSE                         FALSE
+#&gt; Ross, Syanne                             FALSE                         FALSE
+#&gt; Salas, Abdul                             FALSE                         FALSE
+#&gt; Shepherd, Jessalyn                       FALSE                         FALSE
+#&gt; Tran, Hamid                              FALSE                         FALSE
+#&gt; Vara, Gerardo                            FALSE                         FALSE
+#&gt; Vasquez, Cristal                         FALSE                         FALSE
+#&gt; Widaa, Audrina                           FALSE                         FALSE
+#&gt; Wilson, Kayla                            FALSE                         FALSE
+#&gt; Zebulun, Alyson                          FALSE                         FALSE
+#&gt;                             hemiplegia or paraplegia renal disease
+#&gt; Clements, Joshua                               FALSE         FALSE
+#&gt; Mo, Kawaileolani                               FALSE         FALSE
+#&gt; Rivera, Elideth                                FALSE         FALSE
+#&gt; Sublette, Phung                                FALSE         FALSE
+#&gt; Tran, Michael                                  FALSE         FALSE
+#&gt; Trujillo, Kayla                                FALSE         FALSE
+#&gt; Weinstein, Shawnia                             FALSE         FALSE
+#&gt; al-Shahan, Jalaal                              FALSE         FALSE
+#&gt; el-Sabet, Mahdhoodha                           FALSE         FALSE
+#&gt; Butcher, Mariah                                   NA            NA
+#&gt; Jackson, Noah                                     NA            NA
+#&gt; Nandih, Aaron                                     NA            NA
+#&gt; Quintana, Carmen                                  NA            NA
+#&gt; Sivisay, Emily                                    NA            NA
+#&gt; Suits, Drayton                                    NA            NA
+#&gt; el-Barakat, Jasra                                 NA            NA
+#&gt; Adams, Jaimin                                  FALSE         FALSE
+#&gt; al-Kaleel, Najlaa                              FALSE         FALSE
+#&gt; al-Sham, Jumaima                               FALSE         FALSE
+#&gt; al-Vaziri, Jamaal                              FALSE         FALSE
+#&gt; Anderson, Arianna                              FALSE         FALSE
+#&gt; Arellano, Francisca                            FALSE         FALSE
+#&gt; Baldino, Ahanabah                              FALSE         FALSE
+#&gt; Banks, Dylan                                   FALSE         FALSE
+#&gt; Beasley, Shamira                               FALSE         FALSE
+#&gt; Bennett, Christina                             FALSE         FALSE
+#&gt; Bennett, Nicholas                              FALSE         FALSE
+#&gt; Caro, Luis                                     FALSE         FALSE
+#&gt; Chamberlain, Olivia                            FALSE         FALSE
+#&gt; Church, Marlon                                 FALSE         FALSE
+#&gt; Clark, Jenifer                                 FALSE         FALSE
+#&gt; Clayton, Blake                                 FALSE         FALSE
+#&gt; Clos, Naomi                                    FALSE         FALSE
+#&gt; Crews, Bryce                                   FALSE         FALSE
+#&gt; De La Riva Luevano, Mary Lu                    FALSE         FALSE
+#&gt; Dintaman, Nicholas                             FALSE         FALSE
+#&gt; Do, Khrishan                                   FALSE         FALSE
+#&gt; Dolbeare, Kenneth                              FALSE         FALSE
+#&gt; el-Adel, Fat'hi                                FALSE         FALSE
+#&gt; el-Aly, Ibtisaama                              FALSE         FALSE
+#&gt; el-Arafat, Laaiqa                              FALSE         FALSE
+#&gt; el-Basa, Sawada                                FALSE         FALSE
+#&gt; el-Ismail, Qais                                FALSE         FALSE
+#&gt; el-Kader, Hakam                                FALSE         FALSE
+#&gt; el-Majeed, Fuaad                               FALSE         FALSE
+#&gt; el-Mattar, Miqdaam                             FALSE         FALSE
+#&gt; el-Ramin, Sahheeda                             FALSE         FALSE
+#&gt; el-Sadri, Mawzoona                             FALSE         FALSE
+#&gt; el-Zadeh,  Muzna                               FALSE         FALSE
+#&gt; Emanuel, Jataesha                              FALSE         FALSE
+#&gt; Eriacho, Summer                                FALSE         FALSE
+#&gt; Fifita, Nicole                                 FALSE         FALSE
+#&gt; Fuller, Morgan                                 FALSE         FALSE
+#&gt; Gaines, Eli                                    FALSE         FALSE
+#&gt; Gallegos, Aliyah                               FALSE         FALSE
+#&gt; Gallegos, Juanito                              FALSE         FALSE
+#&gt; Galvan, Angelica                               FALSE         FALSE
+#&gt; Garcia, Tyler                                  FALSE         FALSE
+#&gt; Gaskin, Graciela                               FALSE         FALSE
+#&gt; Gillespie, Jasmine                             FALSE         FALSE
+#&gt; Ha, Esther                                     FALSE         FALSE
+#&gt; Hall, Alexsondro                               FALSE         FALSE
+#&gt; Hamm, George                                   FALSE         FALSE
+#&gt; Hauptli, Adam                                  FALSE         FALSE
+#&gt; Heaton, Maren                                  FALSE         FALSE
+#&gt; Heilman, Chau                                  FALSE         FALSE
+#&gt; Jeffords, Yasmin                                TRUE         FALSE
+#&gt; Jennings, Danielle                             FALSE         FALSE
+#&gt; Jensen, Duncan                                 FALSE         FALSE
+#&gt; Kalam, Sydney                                  FALSE         FALSE
+#&gt; Kirbow, Jakob                                  FALSE         FALSE
+#&gt; Kirby, Samantha                                FALSE         FALSE
+#&gt; Le, Austin                                     FALSE         FALSE
+#&gt; Lee, Jazmine                                   FALSE         FALSE
+#&gt; Lilly, Lance                                   FALSE         FALSE
+#&gt; Lor, Sweta                                     FALSE         FALSE
+#&gt; Manwaring, Navid                               FALSE         FALSE
+#&gt; Mcdermott Rivera, Mckenzie                     FALSE         FALSE
+#&gt; Metzler, John                                  FALSE         FALSE
+#&gt; Michaels, Brianna                              FALSE         FALSE
+#&gt; Minor, Cody                                    FALSE         FALSE
+#&gt; Moline, Elijah                                 FALSE         FALSE
+#&gt; Morales, Connor                                FALSE         FALSE
+#&gt; Morrow, Christopher                            FALSE         FALSE
+#&gt; Murphy, Izell                                  FALSE         FALSE
+#&gt; Nedd, Daerius                                  FALSE         FALSE
+#&gt; Nguyen, Connor                                 FALSE         FALSE
+#&gt; Palomino, Kristin                              FALSE         FALSE
+#&gt; Phung, Nathan                                  FALSE         FALSE
+#&gt; Roberts, Sarah                                 FALSE         FALSE
+#&gt; Robinson, Casey                                FALSE         FALSE
+#&gt; Ross, Syanne                                   FALSE         FALSE
+#&gt; Salas, Abdul                                    TRUE         FALSE
+#&gt; Shepherd, Jessalyn                             FALSE         FALSE
+#&gt; Tran, Hamid                                    FALSE         FALSE
+#&gt; Vara, Gerardo                                  FALSE         FALSE
+#&gt; Vasquez, Cristal                               FALSE         FALSE
+#&gt; Widaa, Audrina                                 FALSE         FALSE
+#&gt; Wilson, Kayla                                  FALSE         FALSE
+#&gt; Zebulun, Alyson                                FALSE         FALSE
+#&gt;                             diabetes complication malingnancy leukemia lymphoma
+#&gt; Clements, Joshua                            FALSE       FALSE    FALSE    FALSE
+#&gt; Mo, Kawaileolani                            FALSE       FALSE    FALSE    FALSE
+#&gt; Rivera, Elideth                             FALSE       FALSE    FALSE    FALSE
+#&gt; Sublette, Phung                             FALSE       FALSE    FALSE    FALSE
+#&gt; Tran, Michael                               FALSE       FALSE    FALSE    FALSE
+#&gt; Trujillo, Kayla                             FALSE       FALSE    FALSE    FALSE
+#&gt; Weinstein, Shawnia                          FALSE       FALSE    FALSE    FALSE
+#&gt; al-Shahan, Jalaal                           FALSE       FALSE    FALSE    FALSE
+#&gt; el-Sabet, Mahdhoodha                        FALSE       FALSE    FALSE    FALSE
+#&gt; Butcher, Mariah                                NA          NA       NA       NA
+#&gt; Jackson, Noah                                  NA          NA       NA       NA
+#&gt; Nandih, Aaron                                  NA          NA       NA       NA
+#&gt; Quintana, Carmen                               NA          NA       NA       NA
+#&gt; Sivisay, Emily                                 NA          NA       NA       NA
+#&gt; Suits, Drayton                                 NA          NA       NA       NA
+#&gt; el-Barakat, Jasra                              NA          NA       NA       NA
+#&gt; Adams, Jaimin                               FALSE       FALSE    FALSE    FALSE
+#&gt; al-Kaleel, Najlaa                           FALSE       FALSE    FALSE    FALSE
+#&gt; al-Sham, Jumaima                            FALSE       FALSE    FALSE    FALSE
+#&gt; al-Vaziri, Jamaal                           FALSE        TRUE    FALSE    FALSE
+#&gt; Anderson, Arianna                           FALSE       FALSE    FALSE    FALSE
+#&gt; Arellano, Francisca                         FALSE        TRUE    FALSE    FALSE
+#&gt; Baldino, Ahanabah                           FALSE       FALSE    FALSE    FALSE
+#&gt; Banks, Dylan                                FALSE       FALSE    FALSE    FALSE
+#&gt; Beasley, Shamira                            FALSE       FALSE    FALSE    FALSE
+#&gt; Bennett, Christina                          FALSE       FALSE    FALSE    FALSE
+#&gt; Bennett, Nicholas                           FALSE       FALSE    FALSE    FALSE
+#&gt; Caro, Luis                                  FALSE       FALSE    FALSE    FALSE
+#&gt; Chamberlain, Olivia                         FALSE       FALSE    FALSE    FALSE
+#&gt; Church, Marlon                              FALSE       FALSE    FALSE    FALSE
+#&gt; Clark, Jenifer                              FALSE       FALSE    FALSE    FALSE
+#&gt; Clayton, Blake                              FALSE       FALSE    FALSE    FALSE
+#&gt; Clos, Naomi                                 FALSE       FALSE    FALSE    FALSE
+#&gt; Crews, Bryce                                FALSE       FALSE    FALSE    FALSE
+#&gt; De La Riva Luevano, Mary Lu                 FALSE       FALSE    FALSE    FALSE
+#&gt; Dintaman, Nicholas                          FALSE       FALSE    FALSE    FALSE
+#&gt; Do, Khrishan                                FALSE       FALSE    FALSE    FALSE
+#&gt; Dolbeare, Kenneth                           FALSE       FALSE    FALSE    FALSE
+#&gt; el-Adel, Fat'hi                             FALSE       FALSE    FALSE    FALSE
+#&gt; el-Aly, Ibtisaama                           FALSE       FALSE    FALSE    FALSE
+#&gt; el-Arafat, Laaiqa                           FALSE       FALSE    FALSE    FALSE
+#&gt; el-Basa, Sawada                             FALSE       FALSE    FALSE    FALSE
+#&gt; el-Ismail, Qais                             FALSE        TRUE    FALSE    FALSE
+#&gt; el-Kader, Hakam                             FALSE       FALSE    FALSE    FALSE
+#&gt; el-Majeed, Fuaad                            FALSE        TRUE    FALSE    FALSE
+#&gt; el-Mattar, Miqdaam                          FALSE       FALSE    FALSE    FALSE
+#&gt; el-Ramin, Sahheeda                          FALSE        TRUE    FALSE    FALSE
+#&gt; el-Sadri, Mawzoona                          FALSE       FALSE    FALSE    FALSE
+#&gt; el-Zadeh,  Muzna                            FALSE        TRUE    FALSE    FALSE
+#&gt; Emanuel, Jataesha                           FALSE       FALSE    FALSE    FALSE
+#&gt; Eriacho, Summer                             FALSE       FALSE    FALSE    FALSE
+#&gt; Fifita, Nicole                              FALSE       FALSE    FALSE    FALSE
+#&gt; Fuller, Morgan                              FALSE       FALSE    FALSE    FALSE
+#&gt; Gaines, Eli                                 FALSE       FALSE    FALSE    FALSE
+#&gt; Gallegos, Aliyah                             TRUE        TRUE    FALSE    FALSE
+#&gt; Gallegos, Juanito                           FALSE       FALSE    FALSE    FALSE
+#&gt; Galvan, Angelica                            FALSE       FALSE    FALSE    FALSE
+#&gt; Garcia, Tyler                               FALSE        TRUE    FALSE    FALSE
+#&gt; Gaskin, Graciela                            FALSE        TRUE    FALSE    FALSE
+#&gt; Gillespie, Jasmine                          FALSE        TRUE    FALSE    FALSE
+#&gt; Ha, Esther                                  FALSE       FALSE    FALSE    FALSE
+#&gt; Hall, Alexsondro                            FALSE        TRUE    FALSE    FALSE
+#&gt; Hamm, George                                FALSE       FALSE    FALSE    FALSE
+#&gt; Hauptli, Adam                               FALSE       FALSE    FALSE    FALSE
+#&gt; Heaton, Maren                               FALSE       FALSE    FALSE    FALSE
+#&gt; Heilman, Chau                               FALSE       FALSE    FALSE    FALSE
+#&gt; Jeffords, Yasmin                            FALSE       FALSE    FALSE    FALSE
+#&gt; Jennings, Danielle                          FALSE       FALSE    FALSE    FALSE
+#&gt; Jensen, Duncan                              FALSE       FALSE    FALSE    FALSE
+#&gt; Kalam, Sydney                               FALSE       FALSE    FALSE    FALSE
+#&gt; Kirbow, Jakob                               FALSE       FALSE    FALSE    FALSE
+#&gt; Kirby, Samantha                             FALSE       FALSE    FALSE    FALSE
+#&gt; Le, Austin                                  FALSE       FALSE    FALSE    FALSE
+#&gt; Lee, Jazmine                                 TRUE       FALSE    FALSE    FALSE
+#&gt; Lilly, Lance                                FALSE       FALSE    FALSE    FALSE
+#&gt; Lor, Sweta                                  FALSE       FALSE    FALSE    FALSE
+#&gt; Manwaring, Navid                            FALSE       FALSE    FALSE    FALSE
+#&gt; Mcdermott Rivera, Mckenzie                  FALSE       FALSE    FALSE    FALSE
+#&gt; Metzler, John                               FALSE       FALSE    FALSE    FALSE
+#&gt; Michaels, Brianna                           FALSE       FALSE    FALSE    FALSE
+#&gt; Minor, Cody                                 FALSE       FALSE    FALSE    FALSE
+#&gt; Moline, Elijah                              FALSE       FALSE    FALSE    FALSE
+#&gt; Morales, Connor                             FALSE       FALSE    FALSE    FALSE
+#&gt; Morrow, Christopher                         FALSE       FALSE    FALSE    FALSE
+#&gt; Murphy, Izell                               FALSE       FALSE    FALSE    FALSE
+#&gt; Nedd, Daerius                               FALSE       FALSE    FALSE    FALSE
+#&gt; Nguyen, Connor                              FALSE       FALSE    FALSE    FALSE
+#&gt; Palomino, Kristin                           FALSE       FALSE    FALSE    FALSE
+#&gt; Phung, Nathan                               FALSE       FALSE    FALSE    FALSE
+#&gt; Roberts, Sarah                              FALSE       FALSE    FALSE    FALSE
+#&gt; Robinson, Casey                             FALSE       FALSE    FALSE    FALSE
+#&gt; Ross, Syanne                                FALSE       FALSE    FALSE    FALSE
+#&gt; Salas, Abdul                                FALSE        TRUE    FALSE    FALSE
+#&gt; Shepherd, Jessalyn                          FALSE       FALSE    FALSE    FALSE
+#&gt; Tran, Hamid                                 FALSE       FALSE    FALSE    FALSE
+#&gt; Vara, Gerardo                               FALSE       FALSE    FALSE    FALSE
+#&gt; Vasquez, Cristal                            FALSE       FALSE    FALSE    FALSE
+#&gt; Widaa, Audrina                              FALSE       FALSE    FALSE    FALSE
+#&gt; Wilson, Kayla                               FALSE       FALSE    FALSE    FALSE
+#&gt; Zebulun, Alyson                             FALSE       FALSE    FALSE    FALSE
+#&gt;                             moderate or severe liver disease
+#&gt; Clements, Joshua                                       FALSE
+#&gt; Mo, Kawaileolani                                       FALSE
+#&gt; Rivera, Elideth                                        FALSE
+#&gt; Sublette, Phung                                        FALSE
+#&gt; Tran, Michael                                          FALSE
+#&gt; Trujillo, Kayla                                        FALSE
+#&gt; Weinstein, Shawnia                                     FALSE
+#&gt; al-Shahan, Jalaal                                      FALSE
+#&gt; el-Sabet, Mahdhoodha                                   FALSE
+#&gt; Butcher, Mariah                                           NA
+#&gt; Jackson, Noah                                             NA
+#&gt; Nandih, Aaron                                             NA
+#&gt; Quintana, Carmen                                          NA
+#&gt; Sivisay, Emily                                            NA
+#&gt; Suits, Drayton                                            NA
+#&gt; el-Barakat, Jasra                                         NA
+#&gt; Adams, Jaimin                                          FALSE
+#&gt; al-Kaleel, Najlaa                                      FALSE
+#&gt; al-Sham, Jumaima                                       FALSE
+#&gt; al-Vaziri, Jamaal                                      FALSE
+#&gt; Anderson, Arianna                                      FALSE
+#&gt; Arellano, Francisca                                    FALSE
+#&gt; Baldino, Ahanabah                                      FALSE
+#&gt; Banks, Dylan                                           FALSE
+#&gt; Beasley, Shamira                                       FALSE
+#&gt; Bennett, Christina                                     FALSE
+#&gt; Bennett, Nicholas                                      FALSE
+#&gt; Caro, Luis                                             FALSE
+#&gt; Chamberlain, Olivia                                    FALSE
+#&gt; Church, Marlon                                         FALSE
+#&gt; Clark, Jenifer                                         FALSE
+#&gt; Clayton, Blake                                         FALSE
+#&gt; Clos, Naomi                                            FALSE
+#&gt; Crews, Bryce                                           FALSE
+#&gt; De La Riva Luevano, Mary Lu                            FALSE
+#&gt; Dintaman, Nicholas                                     FALSE
+#&gt; Do, Khrishan                                           FALSE
+#&gt; Dolbeare, Kenneth                                      FALSE
+#&gt; el-Adel, Fat'hi                                        FALSE
+#&gt; el-Aly, Ibtisaama                                      FALSE
+#&gt; el-Arafat, Laaiqa                                      FALSE
+#&gt; el-Basa, Sawada                                        FALSE
+#&gt; el-Ismail, Qais                                        FALSE
+#&gt; el-Kader, Hakam                                        FALSE
+#&gt; el-Majeed, Fuaad                                       FALSE
+#&gt; el-Mattar, Miqdaam                                     FALSE
+#&gt; el-Ramin, Sahheeda                                     FALSE
+#&gt; el-Sadri, Mawzoona                                     FALSE
+#&gt; el-Zadeh,  Muzna                                       FALSE
+#&gt; Emanuel, Jataesha                                      FALSE
+#&gt; Eriacho, Summer                                        FALSE
+#&gt; Fifita, Nicole                                         FALSE
+#&gt; Fuller, Morgan                                         FALSE
+#&gt; Gaines, Eli                                            FALSE
+#&gt; Gallegos, Aliyah                                       FALSE
+#&gt; Gallegos, Juanito                                      FALSE
+#&gt; Galvan, Angelica                                       FALSE
+#&gt; Garcia, Tyler                                          FALSE
+#&gt; Gaskin, Graciela                                       FALSE
+#&gt; Gillespie, Jasmine                                     FALSE
+#&gt; Ha, Esther                                              TRUE
+#&gt; Hall, Alexsondro                                       FALSE
+#&gt; Hamm, George                                           FALSE
+#&gt; Hauptli, Adam                                          FALSE
+#&gt; Heaton, Maren                                          FALSE
+#&gt; Heilman, Chau                                          FALSE
+#&gt; Jeffords, Yasmin                                       FALSE
+#&gt; Jennings, Danielle                                     FALSE
+#&gt; Jensen, Duncan                                         FALSE
+#&gt; Kalam, Sydney                                          FALSE
+#&gt; Kirbow, Jakob                                          FALSE
+#&gt; Kirby, Samantha                                        FALSE
+#&gt; Le, Austin                                             FALSE
+#&gt; Lee, Jazmine                                           FALSE
+#&gt; Lilly, Lance                                           FALSE
+#&gt; Lor, Sweta                                             FALSE
+#&gt; Manwaring, Navid                                       FALSE
+#&gt; Mcdermott Rivera, Mckenzie                             FALSE
+#&gt; Metzler, John                                          FALSE
+#&gt; Michaels, Brianna                                      FALSE
+#&gt; Minor, Cody                                            FALSE
+#&gt; Moline, Elijah                                         FALSE
+#&gt; Morales, Connor                                        FALSE
+#&gt; Morrow, Christopher                                    FALSE
+#&gt; Murphy, Izell                                          FALSE
+#&gt; Nedd, Daerius                                          FALSE
+#&gt; Nguyen, Connor                                         FALSE
+#&gt; Palomino, Kristin                                      FALSE
+#&gt; Phung, Nathan                                          FALSE
+#&gt; Roberts, Sarah                                         FALSE
+#&gt; Robinson, Casey                                        FALSE
+#&gt; Ross, Syanne                                           FALSE
+#&gt; Salas, Abdul                                           FALSE
+#&gt; Shepherd, Jessalyn                                     FALSE
+#&gt; Tran, Hamid                                            FALSE
+#&gt; Vara, Gerardo                                          FALSE
+#&gt; Vasquez, Cristal                                       FALSE
+#&gt; Widaa, Audrina                                         FALSE
+#&gt; Wilson, Kayla                                          FALSE
+#&gt; Zebulun, Alyson                                        FALSE
+#&gt;                             metastatic solid tumor AIDS/HIV
+#&gt; Clements, Joshua                             FALSE    FALSE
+#&gt; Mo, Kawaileolani                             FALSE    FALSE
+#&gt; Rivera, Elideth                              FALSE    FALSE
+#&gt; Sublette, Phung                              FALSE    FALSE
+#&gt; Tran, Michael                                FALSE    FALSE
+#&gt; Trujillo, Kayla                              FALSE    FALSE
+#&gt; Weinstein, Shawnia                           FALSE    FALSE
+#&gt; al-Shahan, Jalaal                            FALSE    FALSE
+#&gt; el-Sabet, Mahdhoodha                         FALSE    FALSE
+#&gt; Butcher, Mariah                                 NA       NA
+#&gt; Jackson, Noah                                   NA       NA
+#&gt; Nandih, Aaron                                   NA       NA
+#&gt; Quintana, Carmen                                NA       NA
+#&gt; Sivisay, Emily                                  NA       NA
+#&gt; Suits, Drayton                                  NA       NA
+#&gt; el-Barakat, Jasra                               NA       NA
+#&gt; Adams, Jaimin                                FALSE    FALSE
+#&gt; al-Kaleel, Najlaa                            FALSE    FALSE
+#&gt; al-Sham, Jumaima                             FALSE    FALSE
+#&gt; al-Vaziri, Jamaal                            FALSE    FALSE
+#&gt; Anderson, Arianna                            FALSE    FALSE
+#&gt; Arellano, Francisca                          FALSE    FALSE
+#&gt; Baldino, Ahanabah                            FALSE    FALSE
+#&gt; Banks, Dylan                                 FALSE    FALSE
+#&gt; Beasley, Shamira                             FALSE    FALSE
+#&gt; Bennett, Christina                           FALSE    FALSE
+#&gt; Bennett, Nicholas                            FALSE    FALSE
+#&gt; Caro, Luis                                   FALSE    FALSE
+#&gt; Chamberlain, Olivia                          FALSE    FALSE
+#&gt; Church, Marlon                               FALSE    FALSE
+#&gt; Clark, Jenifer                               FALSE    FALSE
+#&gt; Clayton, Blake                               FALSE    FALSE
+#&gt; Clos, Naomi                                  FALSE    FALSE
+#&gt; Crews, Bryce                                 FALSE    FALSE
+#&gt; De La Riva Luevano, Mary Lu                  FALSE    FALSE
+#&gt; Dintaman, Nicholas                           FALSE    FALSE
+#&gt; Do, Khrishan                                 FALSE    FALSE
+#&gt; Dolbeare, Kenneth                            FALSE    FALSE
+#&gt; el-Adel, Fat'hi                              FALSE    FALSE
+#&gt; el-Aly, Ibtisaama                            FALSE    FALSE
+#&gt; el-Arafat, Laaiqa                            FALSE    FALSE
+#&gt; el-Basa, Sawada                              FALSE    FALSE
+#&gt; el-Ismail, Qais                              FALSE    FALSE
+#&gt; el-Kader, Hakam                              FALSE    FALSE
+#&gt; el-Majeed, Fuaad                             FALSE    FALSE
+#&gt; el-Mattar, Miqdaam                           FALSE    FALSE
+#&gt; el-Ramin, Sahheeda                           FALSE    FALSE
+#&gt; el-Sadri, Mawzoona                           FALSE    FALSE
+#&gt; el-Zadeh,  Muzna                             FALSE    FALSE
+#&gt; Emanuel, Jataesha                            FALSE    FALSE
+#&gt; Eriacho, Summer                              FALSE    FALSE
+#&gt; Fifita, Nicole                               FALSE    FALSE
+#&gt; Fuller, Morgan                               FALSE    FALSE
+#&gt; Gaines, Eli                                  FALSE    FALSE
+#&gt; Gallegos, Aliyah                             FALSE    FALSE
+#&gt; Gallegos, Juanito                            FALSE    FALSE
+#&gt; Galvan, Angelica                             FALSE    FALSE
+#&gt; Garcia, Tyler                                FALSE    FALSE
+#&gt; Gaskin, Graciela                             FALSE    FALSE
+#&gt; Gillespie, Jasmine                           FALSE    FALSE
+#&gt; Ha, Esther                                   FALSE    FALSE
+#&gt; Hall, Alexsondro                             FALSE    FALSE
+#&gt; Hamm, George                                 FALSE    FALSE
+#&gt; Hauptli, Adam                                FALSE    FALSE
+#&gt; Heaton, Maren                                FALSE    FALSE
+#&gt; Heilman, Chau                                FALSE    FALSE
+#&gt; Jeffords, Yasmin                             FALSE    FALSE
+#&gt; Jennings, Danielle                           FALSE    FALSE
+#&gt; Jensen, Duncan                               FALSE    FALSE
+#&gt; Kalam, Sydney                                FALSE    FALSE
+#&gt; Kirbow, Jakob                                FALSE    FALSE
+#&gt; Kirby, Samantha                              FALSE    FALSE
+#&gt; Le, Austin                                   FALSE    FALSE
+#&gt; Lee, Jazmine                                 FALSE    FALSE
+#&gt; Lilly, Lance                                 FALSE    FALSE
+#&gt; Lor, Sweta                                   FALSE    FALSE
+#&gt; Manwaring, Navid                             FALSE    FALSE
+#&gt; Mcdermott Rivera, Mckenzie                   FALSE    FALSE
+#&gt; Metzler, John                                FALSE    FALSE
+#&gt; Michaels, Brianna                             TRUE    FALSE
+#&gt; Minor, Cody                                  FALSE    FALSE
+#&gt; Moline, Elijah                               FALSE    FALSE
+#&gt; Morales, Connor                              FALSE    FALSE
+#&gt; Morrow, Christopher                          FALSE    FALSE
+#&gt; Murphy, Izell                                FALSE    FALSE
+#&gt; Nedd, Daerius                                FALSE    FALSE
+#&gt; Nguyen, Connor                               FALSE    FALSE
+#&gt; Palomino, Kristin                            FALSE    FALSE
+#&gt; Phung, Nathan                                FALSE    FALSE
+#&gt; Roberts, Sarah                               FALSE    FALSE
+#&gt; Robinson, Casey                              FALSE    FALSE
+#&gt; Ross, Syanne                                 FALSE    FALSE
+#&gt; Salas, Abdul                                 FALSE    FALSE
+#&gt; Shepherd, Jessalyn                           FALSE    FALSE
+#&gt; Tran, Hamid                                  FALSE    FALSE
+#&gt; Vara, Gerardo                                FALSE    FALSE
+#&gt; Vasquez, Cristal                             FALSE    FALSE
+#&gt; Widaa, Audrina                               FALSE    FALSE
+#&gt; Wilson, Kayla                                FALSE    FALSE
+#&gt; Zebulun, Alyson                              FALSE    FALSE
 #&gt; attr(,"classcodes")
 #&gt; [1] "charlson_icd10"
 #&gt; attr(,"id")
@@ -1165,107 +1168,107 @@ of row names.</p>
 #&gt; [1] "classified" "matrix"    </div><div class='input'>
 <span class='co'># It is possible to convert the outpot of classify to a data frame with</span>
 <span class='co'># id column instead of row names</span>
-<span class='fu'>as.data.frame</span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name myocardial infarction congestive heart failure
-#&gt; 1             Alexis, Dayveon                 FALSE                    FALSE
-#&gt; 2              Bauder, Taylor                 FALSE                    FALSE
-#&gt; 3            Beasley, Michael                 FALSE                    FALSE
-#&gt; 4           Deshazor, Kordell                 FALSE                    FALSE
-#&gt; 5           Henricks, Donovan                 FALSE                    FALSE
-#&gt; 6         Marquez, Jacqueline                 FALSE                    FALSE
-#&gt; 7             Martinez, David                 FALSE                    FALSE
-#&gt; 8           Mccarthy, Gabriel                 FALSE                    FALSE
-#&gt; 9               Simpson, King                 FALSE                    FALSE
-#&gt; 10            Gallegos, Diana                    NA                       NA
-#&gt; 11           Perez Jr, Hannah                    NA                       NA
-#&gt; 12              Reyes, Sylvia                    NA                       NA
-#&gt; 13               Rusnak, Kyle                    NA                       NA
-#&gt; 14             Ward, Harrison                    NA                       NA
-#&gt; 15       al-Kassem, Humaidaan                    NA                       NA
-#&gt; 16           el-Nagi, Waddaah                    NA                       NA
-#&gt; 17             Abzari, Joseph                 FALSE                    FALSE
-#&gt; 18              al-Abid, Asad                 FALSE                    FALSE
-#&gt; 19             al-Ahsan, Umar                 FALSE                    FALSE
-#&gt; 20        al-Eid, Abdus Samad                 FALSE                    FALSE
-#&gt; 21          al-Mansur, Kawkab                 FALSE                    FALSE
-#&gt; 22          Anderson, Laquesh                 FALSE                    FALSE
-#&gt; 23         Armijo Jr, Kalynne                 FALSE                    FALSE
-#&gt; 24            Babcock, Landon                 FALSE                    FALSE
-#&gt; 25              Barela, Marco                 FALSE                    FALSE
-#&gt; 26           Barger, Willanna                 FALSE                    FALSE
-#&gt; 27               Barnes, Amos                 FALSE                    FALSE
-#&gt; 28            Beaver, Tristin                 FALSE                    FALSE
-#&gt; 29            Bille, Cheyenne                 FALSE                    FALSE
-#&gt; 30            Boffill, Jordan                 FALSE                    FALSE
-#&gt; 31             Bradshaw, Noah                 FALSE                    FALSE
-#&gt; 32           Breshears, Kayla                 FALSE                    FALSE
-#&gt; 33               Bruce, Bryan                 FALSE                    FALSE
-#&gt; 34               Bruno, Jorge                 FALSE                    FALSE
-#&gt; 35           Burton, Danyalle                 FALSE                    FALSE
-#&gt; 36            Charlie, Mareno                 FALSE                    FALSE
-#&gt; 37  Dominguez Enriquez, David                 FALSE                    FALSE
-#&gt; 38       Edmondson, Christian                 FALSE                    FALSE
-#&gt; 39           el-Assad, Jubair                 FALSE                    FALSE
-#&gt; 40           el-Bina, Muntaha                 FALSE                    FALSE
-#&gt; 41           el-Kazi, Najeeba                 FALSE                    FALSE
-#&gt; 42         el-Masood, Nasreen                 FALSE                    FALSE
-#&gt; 43             el-Riaz, Aadam                 FALSE                    FALSE
-#&gt; 44             el-Wakim, Nuha                 FALSE                    FALSE
-#&gt; 45         el-Zakaria, Saajid                 FALSE                    FALSE
-#&gt; 46               Elder, Kevyn                 FALSE                    FALSE
-#&gt; 47           Ghimire, Chelsea                 FALSE                    FALSE
-#&gt; 48              Hall, Samorra                 FALSE                    FALSE
-#&gt; 49             Hayes, Kylihah                 FALSE                    FALSE
-#&gt; 50             Headden, Devon                 FALSE                    FALSE
-#&gt; 51                   Her, Lia                 FALSE                    FALSE
-#&gt; 52              Hicks, Camren                 FALSE                    FALSE
-#&gt; 53              Hoang, Elijah                 FALSE                    FALSE
-#&gt; 54      Jiles-Wright, Bralynd                 FALSE                    FALSE
-#&gt; 55                Jung, Derek                 FALSE                    FALSE
-#&gt; 56               Kane, Chapin                 FALSE                    FALSE
-#&gt; 57                 Kim, Alisa                 FALSE                    FALSE
-#&gt; 58                 King, Hali                 FALSE                    FALSE
-#&gt; 59           Laulu, Kajtshiab                 FALSE                    FALSE
-#&gt; 60              Lopez, Chiara                 FALSE                    FALSE
-#&gt; 61          Maestas, Lilibeth                 FALSE                    FALSE
-#&gt; 62                 Mamet, A D                 FALSE                    FALSE
-#&gt; 63           Martin, Elizario                 FALSE                    FALSE
-#&gt; 64          Martinez, Jessica                 FALSE                    FALSE
-#&gt; 65             Martinez, Juan                 FALSE                    FALSE
-#&gt; 66           Martinez, Nelson                 FALSE                    FALSE
-#&gt; 67          Mcginnis, Adunola                 FALSE                    FALSE
-#&gt; 68           Mcknight, Jaymes                 FALSE                    FALSE
-#&gt; 69            Miller, Darshay                 FALSE                    FALSE
-#&gt; 70           Moktader, Sameer                 FALSE                    FALSE
-#&gt; 71             Mosely, Jereek                 FALSE                    FALSE
-#&gt; 72                  Nam, John                 FALSE                    FALSE
-#&gt; 73            Nelson, Phillip                 FALSE                    FALSE
-#&gt; 74             Okoye, Vanessa                 FALSE                    FALSE
-#&gt; 75              Parker, Pharo                 FALSE                    FALSE
-#&gt; 76            Perez, Kimberly                 FALSE                    FALSE
-#&gt; 77                 Pham, Kyle                 FALSE                    FALSE
-#&gt; 78           Pronteau, Colton                 FALSE                    FALSE
-#&gt; 79            Rodriguez, Alma                 FALSE                    FALSE
-#&gt; 80     Rowley Booneel, Hailee                 FALSE                    FALSE
-#&gt; 81         Sanburg, Cassandra                 FALSE                    FALSE
-#&gt; 82         Sanchez, Dominique                 FALSE                    FALSE
-#&gt; 83              Santee, Holly                 FALSE                    FALSE
-#&gt; 84               Schell, Jack                 FALSE                    FALSE
-#&gt; 85          Schubert, Patrick                 FALSE                    FALSE
-#&gt; 86                Smith, John                 FALSE                    FALSE
-#&gt; 87              Smith, Ruasha                 FALSE                    FALSE
-#&gt; 88               Spoerl, John                 FALSE                    FALSE
-#&gt; 89             Stephan, Scott                 FALSE                    FALSE
-#&gt; 90            Suriwong, Sarah                 FALSE                    FALSE
-#&gt; 91          Thompson, Stephen                 FALSE                    FALSE
-#&gt; 92           Thwaites, Travis                 FALSE                    FALSE
-#&gt; 93        Todacheene, Erminio                 FALSE                     TRUE
-#&gt; 94          Tomlinson, Amanda                 FALSE                    FALSE
-#&gt; 95     Tuitele-Britton, Janet                 FALSE                    FALSE
-#&gt; 96           Valencia, Johnny                 FALSE                    FALSE
-#&gt; 97          Vallie, Mitchelle                 FALSE                    FALSE
-#&gt; 98            Vigo, Shi Hyung                 FALSE                    FALSE
-#&gt; 99           Wilkerson, Teesa                 FALSE                    FALSE
-#&gt; 100              Wood, Elijah                 FALSE                    FALSE
+<span class='fu'>as.data.frame</span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                            name myocardial infarction congestive heart failure
+#&gt; 1              Clements, Joshua                 FALSE                    FALSE
+#&gt; 2              Mo, Kawaileolani                 FALSE                    FALSE
+#&gt; 3               Rivera, Elideth                 FALSE                    FALSE
+#&gt; 4               Sublette, Phung                 FALSE                    FALSE
+#&gt; 5                 Tran, Michael                 FALSE                    FALSE
+#&gt; 6               Trujillo, Kayla                 FALSE                    FALSE
+#&gt; 7            Weinstein, Shawnia                 FALSE                    FALSE
+#&gt; 8             al-Shahan, Jalaal                 FALSE                    FALSE
+#&gt; 9          el-Sabet, Mahdhoodha                 FALSE                    FALSE
+#&gt; 10              Butcher, Mariah                    NA                       NA
+#&gt; 11                Jackson, Noah                    NA                       NA
+#&gt; 12                Nandih, Aaron                    NA                       NA
+#&gt; 13             Quintana, Carmen                    NA                       NA
+#&gt; 14               Sivisay, Emily                    NA                       NA
+#&gt; 15               Suits, Drayton                    NA                       NA
+#&gt; 16            el-Barakat, Jasra                    NA                       NA
+#&gt; 17                Adams, Jaimin                 FALSE                    FALSE
+#&gt; 18            al-Kaleel, Najlaa                 FALSE                    FALSE
+#&gt; 19             al-Sham, Jumaima                 FALSE                    FALSE
+#&gt; 20            al-Vaziri, Jamaal                 FALSE                    FALSE
+#&gt; 21            Anderson, Arianna                 FALSE                    FALSE
+#&gt; 22          Arellano, Francisca                 FALSE                    FALSE
+#&gt; 23            Baldino, Ahanabah                 FALSE                    FALSE
+#&gt; 24                 Banks, Dylan                 FALSE                    FALSE
+#&gt; 25             Beasley, Shamira                 FALSE                    FALSE
+#&gt; 26           Bennett, Christina                 FALSE                    FALSE
+#&gt; 27            Bennett, Nicholas                 FALSE                    FALSE
+#&gt; 28                   Caro, Luis                 FALSE                    FALSE
+#&gt; 29          Chamberlain, Olivia                 FALSE                    FALSE
+#&gt; 30               Church, Marlon                 FALSE                    FALSE
+#&gt; 31               Clark, Jenifer                 FALSE                    FALSE
+#&gt; 32               Clayton, Blake                 FALSE                    FALSE
+#&gt; 33                  Clos, Naomi                 FALSE                    FALSE
+#&gt; 34                 Crews, Bryce                 FALSE                    FALSE
+#&gt; 35  De La Riva Luevano, Mary Lu                 FALSE                    FALSE
+#&gt; 36           Dintaman, Nicholas                 FALSE                    FALSE
+#&gt; 37                 Do, Khrishan                 FALSE                    FALSE
+#&gt; 38            Dolbeare, Kenneth                 FALSE                    FALSE
+#&gt; 39              el-Adel, Fat'hi                 FALSE                    FALSE
+#&gt; 40            el-Aly, Ibtisaama                 FALSE                    FALSE
+#&gt; 41            el-Arafat, Laaiqa                 FALSE                    FALSE
+#&gt; 42              el-Basa, Sawada                 FALSE                    FALSE
+#&gt; 43              el-Ismail, Qais                 FALSE                    FALSE
+#&gt; 44              el-Kader, Hakam                 FALSE                    FALSE
+#&gt; 45             el-Majeed, Fuaad                 FALSE                    FALSE
+#&gt; 46           el-Mattar, Miqdaam                 FALSE                    FALSE
+#&gt; 47           el-Ramin, Sahheeda                 FALSE                    FALSE
+#&gt; 48           el-Sadri, Mawzoona                 FALSE                    FALSE
+#&gt; 49             el-Zadeh,  Muzna                 FALSE                    FALSE
+#&gt; 50            Emanuel, Jataesha                 FALSE                    FALSE
+#&gt; 51              Eriacho, Summer                 FALSE                    FALSE
+#&gt; 52               Fifita, Nicole                 FALSE                    FALSE
+#&gt; 53               Fuller, Morgan                 FALSE                    FALSE
+#&gt; 54                  Gaines, Eli                 FALSE                    FALSE
+#&gt; 55             Gallegos, Aliyah                 FALSE                    FALSE
+#&gt; 56            Gallegos, Juanito                 FALSE                    FALSE
+#&gt; 57             Galvan, Angelica                 FALSE                    FALSE
+#&gt; 58                Garcia, Tyler                 FALSE                    FALSE
+#&gt; 59             Gaskin, Graciela                 FALSE                    FALSE
+#&gt; 60           Gillespie, Jasmine                 FALSE                    FALSE
+#&gt; 61                   Ha, Esther                 FALSE                    FALSE
+#&gt; 62             Hall, Alexsondro                 FALSE                    FALSE
+#&gt; 63                 Hamm, George                 FALSE                    FALSE
+#&gt; 64                Hauptli, Adam                 FALSE                    FALSE
+#&gt; 65                Heaton, Maren                 FALSE                    FALSE
+#&gt; 66                Heilman, Chau                 FALSE                    FALSE
+#&gt; 67             Jeffords, Yasmin                 FALSE                    FALSE
+#&gt; 68           Jennings, Danielle                 FALSE                    FALSE
+#&gt; 69               Jensen, Duncan                 FALSE                    FALSE
+#&gt; 70                Kalam, Sydney                 FALSE                    FALSE
+#&gt; 71                Kirbow, Jakob                 FALSE                    FALSE
+#&gt; 72              Kirby, Samantha                 FALSE                    FALSE
+#&gt; 73                   Le, Austin                 FALSE                    FALSE
+#&gt; 74                 Lee, Jazmine                 FALSE                    FALSE
+#&gt; 75                 Lilly, Lance                 FALSE                    FALSE
+#&gt; 76                   Lor, Sweta                 FALSE                    FALSE
+#&gt; 77             Manwaring, Navid                 FALSE                    FALSE
+#&gt; 78   Mcdermott Rivera, Mckenzie                 FALSE                    FALSE
+#&gt; 79                Metzler, John                 FALSE                    FALSE
+#&gt; 80            Michaels, Brianna                 FALSE                    FALSE
+#&gt; 81                  Minor, Cody                 FALSE                    FALSE
+#&gt; 82               Moline, Elijah                 FALSE                    FALSE
+#&gt; 83              Morales, Connor                 FALSE                    FALSE
+#&gt; 84          Morrow, Christopher                 FALSE                    FALSE
+#&gt; 85                Murphy, Izell                 FALSE                    FALSE
+#&gt; 86                Nedd, Daerius                 FALSE                    FALSE
+#&gt; 87               Nguyen, Connor                 FALSE                    FALSE
+#&gt; 88            Palomino, Kristin                 FALSE                    FALSE
+#&gt; 89                Phung, Nathan                 FALSE                    FALSE
+#&gt; 90               Roberts, Sarah                 FALSE                    FALSE
+#&gt; 91              Robinson, Casey                 FALSE                    FALSE
+#&gt; 92                 Ross, Syanne                 FALSE                    FALSE
+#&gt; 93                 Salas, Abdul                 FALSE                    FALSE
+#&gt; 94           Shepherd, Jessalyn                 FALSE                    FALSE
+#&gt; 95                  Tran, Hamid                 FALSE                    FALSE
+#&gt; 96                Vara, Gerardo                 FALSE                    FALSE
+#&gt; 97             Vasquez, Cristal                 FALSE                    FALSE
+#&gt; 98               Widaa, Audrina                 FALSE                    FALSE
+#&gt; 99                Wilson, Kayla                 FALSE                    FALSE
+#&gt; 100             Zebulun, Alyson                 FALSE                    FALSE
 #&gt;     peripheral vascular disease cerebrovascular disease dementia
 #&gt; 1                         FALSE                   FALSE    FALSE
 #&gt; 2                         FALSE                   FALSE    FALSE
@@ -1300,7 +1303,7 @@ of row names.</p>
 #&gt; 31                        FALSE                   FALSE    FALSE
 #&gt; 32                        FALSE                   FALSE    FALSE
 #&gt; 33                        FALSE                   FALSE    FALSE
-#&gt; 34                        FALSE                    TRUE    FALSE
+#&gt; 34                        FALSE                   FALSE    FALSE
 #&gt; 35                        FALSE                   FALSE    FALSE
 #&gt; 36                        FALSE                   FALSE    FALSE
 #&gt; 37                        FALSE                   FALSE    FALSE
@@ -1320,7 +1323,7 @@ of row names.</p>
 #&gt; 51                        FALSE                   FALSE    FALSE
 #&gt; 52                        FALSE                   FALSE    FALSE
 #&gt; 53                        FALSE                   FALSE    FALSE
-#&gt; 54                         TRUE                   FALSE    FALSE
+#&gt; 54                        FALSE                   FALSE    FALSE
 #&gt; 55                        FALSE                   FALSE    FALSE
 #&gt; 56                        FALSE                   FALSE    FALSE
 #&gt; 57                        FALSE                   FALSE    FALSE
@@ -1356,7 +1359,7 @@ of row names.</p>
 #&gt; 87                        FALSE                   FALSE    FALSE
 #&gt; 88                        FALSE                   FALSE    FALSE
 #&gt; 89                        FALSE                   FALSE    FALSE
-#&gt; 90                        FALSE                    TRUE    FALSE
+#&gt; 90                        FALSE                   FALSE    FALSE
 #&gt; 91                        FALSE                   FALSE    FALSE
 #&gt; 92                        FALSE                   FALSE    FALSE
 #&gt; 93                        FALSE                   FALSE    FALSE
@@ -1366,7 +1369,7 @@ of row names.</p>
 #&gt; 97                        FALSE                   FALSE    FALSE
 #&gt; 98                        FALSE                   FALSE    FALSE
 #&gt; 99                        FALSE                   FALSE    FALSE
-#&gt; 100                       FALSE                   FALSE    FALSE
+#&gt; 100                        TRUE                   FALSE    FALSE
 #&gt;     chronic pulmonary disease rheumatic disease peptic ulcer disease
 #&gt; 1                       FALSE             FALSE                FALSE
 #&gt; 2                       FALSE             FALSE                FALSE
@@ -1384,7 +1387,7 @@ of row names.</p>
 #&gt; 14                         NA                NA                   NA
 #&gt; 15                         NA                NA                   NA
 #&gt; 16                         NA                NA                   NA
-#&gt; 17                      FALSE             FALSE                FALSE
+#&gt; 17                      FALSE             FALSE                 TRUE
 #&gt; 18                      FALSE             FALSE                FALSE
 #&gt; 19                      FALSE             FALSE                FALSE
 #&gt; 20                      FALSE             FALSE                FALSE
@@ -1420,7 +1423,7 @@ of row names.</p>
 #&gt; 50                      FALSE             FALSE                FALSE
 #&gt; 51                      FALSE             FALSE                FALSE
 #&gt; 52                      FALSE             FALSE                FALSE
-#&gt; 53                      FALSE             FALSE                FALSE
+#&gt; 53                      FALSE              TRUE                FALSE
 #&gt; 54                      FALSE             FALSE                FALSE
 #&gt; 55                      FALSE             FALSE                FALSE
 #&gt; 56                      FALSE             FALSE                FALSE
@@ -1430,10 +1433,10 @@ of row names.</p>
 #&gt; 60                      FALSE             FALSE                FALSE
 #&gt; 61                      FALSE             FALSE                FALSE
 #&gt; 62                      FALSE             FALSE                FALSE
-#&gt; 63                      FALSE             FALSE                FALSE
+#&gt; 63                      FALSE              TRUE                FALSE
 #&gt; 64                      FALSE             FALSE                FALSE
 #&gt; 65                      FALSE             FALSE                FALSE
-#&gt; 66                      FALSE             FALSE                FALSE
+#&gt; 66                       TRUE             FALSE                FALSE
 #&gt; 67                      FALSE             FALSE                FALSE
 #&gt; 68                      FALSE             FALSE                FALSE
 #&gt; 69                      FALSE             FALSE                FALSE
@@ -1450,7 +1453,7 @@ of row names.</p>
 #&gt; 80                      FALSE             FALSE                FALSE
 #&gt; 81                      FALSE             FALSE                FALSE
 #&gt; 82                      FALSE             FALSE                FALSE
-#&gt; 83                      FALSE             FALSE                FALSE
+#&gt; 83                      FALSE              TRUE                FALSE
 #&gt; 84                      FALSE             FALSE                FALSE
 #&gt; 85                      FALSE             FALSE                FALSE
 #&gt; 86                      FALSE             FALSE                FALSE
@@ -1464,7 +1467,7 @@ of row names.</p>
 #&gt; 94                      FALSE             FALSE                FALSE
 #&gt; 95                      FALSE             FALSE                FALSE
 #&gt; 96                      FALSE             FALSE                FALSE
-#&gt; 97                       TRUE             FALSE                FALSE
+#&gt; 97                      FALSE             FALSE                FALSE
 #&gt; 98                      FALSE             FALSE                FALSE
 #&gt; 99                      FALSE             FALSE                FALSE
 #&gt; 100                     FALSE             FALSE                FALSE
@@ -1489,7 +1492,7 @@ of row names.</p>
 #&gt; 18               FALSE                         FALSE                    FALSE
 #&gt; 19               FALSE                         FALSE                    FALSE
 #&gt; 20               FALSE                         FALSE                    FALSE
-#&gt; 21               FALSE                         FALSE                     TRUE
+#&gt; 21               FALSE                         FALSE                    FALSE
 #&gt; 22               FALSE                         FALSE                    FALSE
 #&gt; 23               FALSE                         FALSE                    FALSE
 #&gt; 24               FALSE                         FALSE                    FALSE
@@ -1514,9 +1517,9 @@ of row names.</p>
 #&gt; 43               FALSE                         FALSE                    FALSE
 #&gt; 44               FALSE                         FALSE                    FALSE
 #&gt; 45               FALSE                         FALSE                    FALSE
-#&gt; 46               FALSE                          TRUE                    FALSE
+#&gt; 46               FALSE                         FALSE                    FALSE
 #&gt; 47               FALSE                         FALSE                    FALSE
-#&gt; 48               FALSE                         FALSE                    FALSE
+#&gt; 48               FALSE                          TRUE                    FALSE
 #&gt; 49               FALSE                         FALSE                    FALSE
 #&gt; 50               FALSE                         FALSE                    FALSE
 #&gt; 51               FALSE                         FALSE                    FALSE
@@ -1530,12 +1533,12 @@ of row names.</p>
 #&gt; 59               FALSE                         FALSE                    FALSE
 #&gt; 60               FALSE                         FALSE                    FALSE
 #&gt; 61               FALSE                         FALSE                    FALSE
-#&gt; 62               FALSE                         FALSE                    FALSE
+#&gt; 62                TRUE                         FALSE                    FALSE
 #&gt; 63               FALSE                         FALSE                    FALSE
 #&gt; 64               FALSE                         FALSE                    FALSE
 #&gt; 65               FALSE                         FALSE                    FALSE
 #&gt; 66               FALSE                         FALSE                    FALSE
-#&gt; 67               FALSE                         FALSE                    FALSE
+#&gt; 67               FALSE                         FALSE                     TRUE
 #&gt; 68               FALSE                         FALSE                    FALSE
 #&gt; 69               FALSE                         FALSE                    FALSE
 #&gt; 70               FALSE                         FALSE                    FALSE
@@ -1552,16 +1555,16 @@ of row names.</p>
 #&gt; 81               FALSE                         FALSE                    FALSE
 #&gt; 82               FALSE                         FALSE                    FALSE
 #&gt; 83               FALSE                         FALSE                    FALSE
-#&gt; 84               FALSE                         FALSE                     TRUE
+#&gt; 84               FALSE                         FALSE                    FALSE
 #&gt; 85               FALSE                         FALSE                    FALSE
 #&gt; 86               FALSE                         FALSE                    FALSE
 #&gt; 87               FALSE                         FALSE                    FALSE
 #&gt; 88               FALSE                         FALSE                    FALSE
-#&gt; 89               FALSE                         FALSE                     TRUE
+#&gt; 89               FALSE                         FALSE                    FALSE
 #&gt; 90               FALSE                         FALSE                    FALSE
 #&gt; 91               FALSE                         FALSE                    FALSE
 #&gt; 92               FALSE                         FALSE                    FALSE
-#&gt; 93               FALSE                         FALSE                    FALSE
+#&gt; 93               FALSE                         FALSE                     TRUE
 #&gt; 94               FALSE                         FALSE                    FALSE
 #&gt; 95               FALSE                         FALSE                    FALSE
 #&gt; 96               FALSE                         FALSE                    FALSE
@@ -1586,14 +1589,14 @@ of row names.</p>
 #&gt; 14             NA                    NA          NA       NA       NA
 #&gt; 15             NA                    NA          NA       NA       NA
 #&gt; 16             NA                    NA          NA       NA       NA
-#&gt; 17          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 17          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 18          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 19          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 20          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 21          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 22          FALSE                  TRUE       FALSE    FALSE    FALSE
+#&gt; 22          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 23          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 24          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 24          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 25          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 26          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 27          FALSE                 FALSE       FALSE    FALSE    FALSE
@@ -1603,35 +1606,35 @@ of row names.</p>
 #&gt; 31          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 32          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 33          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 34          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 34          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 35          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 36          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 37          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 38          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 38          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 39          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 40          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 40          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 41          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 42          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 43          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 43          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 44          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 45          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 46          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 47          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 47          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 48          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 49          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 49          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 50          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 51          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 52          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 53          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 54          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 55          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 55          FALSE                  TRUE        TRUE    FALSE    FALSE
 #&gt; 56          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 57          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 58          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 58          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 59          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 60          FALSE                 FALSE        TRUE    FALSE    FALSE
-#&gt; 61          FALSE                 FALSE        TRUE    FALSE    FALSE
-#&gt; 62          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 61          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 62          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 63          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 64          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 65          FALSE                 FALSE       FALSE    FALSE    FALSE
@@ -1643,9 +1646,9 @@ of row names.</p>
 #&gt; 71          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 72          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 73          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 74          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 74          FALSE                  TRUE       FALSE    FALSE    FALSE
 #&gt; 75          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 76           TRUE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 76          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 77          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 78          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 79          FALSE                 FALSE       FALSE    FALSE    FALSE
@@ -1657,17 +1660,17 @@ of row names.</p>
 #&gt; 85          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 86          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 87          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 88          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 88          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 89          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 90          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 91          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 92          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 93          FALSE                 FALSE       FALSE    FALSE    FALSE
+#&gt; 93          FALSE                 FALSE        TRUE    FALSE    FALSE
 #&gt; 94          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 95          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 96          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 96          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 97          FALSE                 FALSE       FALSE    FALSE    FALSE
-#&gt; 98          FALSE                 FALSE        TRUE    FALSE    FALSE
+#&gt; 98          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 99          FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt; 100         FALSE                 FALSE       FALSE    FALSE    FALSE
 #&gt;     moderate or severe liver disease metastatic solid tumor AIDS/HIV
@@ -1729,9 +1732,9 @@ of row names.</p>
 #&gt; 56                             FALSE                  FALSE    FALSE
 #&gt; 57                             FALSE                  FALSE    FALSE
 #&gt; 58                             FALSE                  FALSE    FALSE
-#&gt; 59                             FALSE                   TRUE    FALSE
+#&gt; 59                             FALSE                  FALSE    FALSE
 #&gt; 60                             FALSE                  FALSE    FALSE
-#&gt; 61                             FALSE                  FALSE    FALSE
+#&gt; 61                              TRUE                  FALSE    FALSE
 #&gt; 62                             FALSE                  FALSE    FALSE
 #&gt; 63                             FALSE                  FALSE    FALSE
 #&gt; 64                             FALSE                  FALSE    FALSE
@@ -1750,7 +1753,7 @@ of row names.</p>
 #&gt; 77                             FALSE                  FALSE    FALSE
 #&gt; 78                             FALSE                  FALSE    FALSE
 #&gt; 79                             FALSE                  FALSE    FALSE
-#&gt; 80                             FALSE                  FALSE    FALSE
+#&gt; 80                             FALSE                   TRUE    FALSE
 #&gt; 81                             FALSE                  FALSE    FALSE
 #&gt; 82                             FALSE                  FALSE    FALSE
 #&gt; 83                             FALSE                  FALSE    FALSE

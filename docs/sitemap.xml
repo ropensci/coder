@@ -4,10 +4,13 @@
     <loc>eribul.github.io/coder/index.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/add.html</loc>
+    <loc>eribul.github.io/coder/reference/all_classcodes.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/as.data.frame.classified.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/categorize.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/charlson_icd10.html</loc>
@@ -40,10 +43,13 @@
     <loc>eribul.github.io/coder/reference/elix_icd10.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/ex_icd10.html</loc>
+    <loc>eribul.github.io/coder/reference/ex_carbrands.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/ex_pardata.html</loc>
+    <loc>eribul.github.io/coder/reference/ex_cars.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/ex_icd10.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/ex_people.html</loc>
@@ -58,10 +64,19 @@
     <loc>eribul.github.io/coder/reference/hip_adverse_events_icd10_old.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/reference/hip_fracture_ae_icd10.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/hip_fracture_ae_kva.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/reference/index_fun.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/knee_adverse_events_icd10.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/print.summary.classcodes.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/rxriskv.html</loc>
@@ -73,15 +88,12 @@
     <loc>eribul.github.io/coder/reference/summary.classcodes.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/tha_fracture_ae_icd10.html</loc>
-  </url>
-  <url>
-    <loc>eribul.github.io/coder/reference/tha_fracture_ae_kva.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/visualize.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/articles/benchmark.html</loc>
+    <loc>eribul.github.io/coder/articles/coder.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/articles/Comorbidity.html</loc>
   </url>
 </urlset>

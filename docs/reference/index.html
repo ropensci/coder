@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3.9000</span>
       </span>
     </div>
 
@@ -71,6 +71,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/coder.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -81,7 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/benchmark.html">Benchmarking</a>
+      <a href="../articles/Comorbidity.html">Comorbidity</a>
     </li>
   </ul>
 </li>
@@ -130,7 +133,7 @@
       <tr>
         
         <td>
-          <p><code><a href="add.html">add()</a></code> <code><a href="add.html">categorize()</a></code> <code><a href="add.html">categorise()</a></code> </p>
+          <p><code><a href="categorize.html">categorize()</a></code> <code><a href="categorize.html">categorise()</a></code> </p>
         </td>
         <td><p>Categorize cases based on external data and classification scheme</p></td>
       </tr><tr>
@@ -186,6 +189,20 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="hip_fracture_ae_icd10.html">hip_fracture_ae_icd10</a></code> </p>
+        </td>
+        <td><p>Classcodes for adverse events after THA after hip fracture
+based on ICD-10 codes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="hip_fracture_ae_kva.html">hip_fracture_ae_kva</a></code> </p>
+        </td>
+        <td><p>Classcodes for adverse events after THA after hip fracture
+based on Atgardskoder (KVA codes)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="knee_adverse_events_icd10.html">knee_adverse_events_icd10</a></code> </p>
         </td>
         <td><p>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 codes</p></td>
@@ -195,20 +212,6 @@
           <p><code><a href="rxriskv.html">rxriskv_atc</a></code> <code><a href="rxriskv.html">rxriskv_modified_atc</a></code> </p>
         </td>
         <td><p>Classcodes for RxRiskV (original and modified)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tha_fracture_ae_icd10.html">tha_fracture_ae_icd10</a></code> </p>
-        </td>
-        <td><p>Classcodes for adverse events after THA after hip fracture
-based on ICD-10 codes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tha_fracture_ae_kva.html">tha_fracture_ae_kva</a></code> </p>
-        </td>
-        <td><p>Classcodes for adverse events after THA after hip fracture
-based on Atgardskoder (KVA codes)</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -234,15 +237,21 @@ based on Atgardskoder (KVA codes)</p></td>
       <tr>
         
         <td>
-          <p><code><a href="ex_icd10.html">ex_icd10</a></code> </p>
+          <p><code><a href="ex_carbrands.html">ex_carbrands</a></code> </p>
         </td>
-        <td><p>Example data for random codes assigned to random people</p></td>
+        <td><p>Example classcodes object for classification of car brands by their producer</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="ex_pardata.html">ex_pardata</a></code> </p>
+          <p><code><a href="ex_cars.html">ex_cars</a></code> </p>
         </td>
-        <td><p>Example NPR data with random codes assigned to random people</p></td>
+        <td><p>Example data for can registry</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ex_icd10.html">ex_icd10</a></code> </p>
+        </td>
+        <td><p>Example data for random codes assigned to random people</p></td>
       </tr><tr>
         
         <td>
@@ -260,7 +269,13 @@ based on Atgardskoder (KVA codes)</p></td>
       <tr>
         
         <td>
-          <p><code><a href="as.data.frame.classified.html">as.data.frame(<i>&lt;classified&gt;</i>)</a></code> <code><a href="as.data.frame.classified.html">as.data.table(<i>&lt;classified&gt;</i>)</a></code> </p>
+          <p><code><a href="all_classcodes.html">all_classcodes()</a></code> </p>
+        </td>
+        <td><p>Summary data for all default classcodes object in the package</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as.data.frame.classified.html">as.data.frame(<i>&lt;classified&gt;</i>)</a></code> <code><a href="as.data.frame.classified.html">as.data.table.classified()</a></code> </p>
         </td>
         <td><p>Convert output from classify to data frame or data.table</p></td>
       </tr><tr>

@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3.9000</span>
       </span>
     </div>
 
@@ -50,6 +50,9 @@
   </a>
 </li>
 <li>
+  <a href="articles/coder.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -60,7 +63,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/benchmark.html">Benchmarking</a>
+      <a href="articles/Comorbidity.html">Comorbidity</a>
     </li>
   </ul>
 </li>
@@ -95,101 +98,132 @@
 <div id="coder" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#coder" class="anchor"></a>coder</h1></div>
-<p>The goal of coder is to classify items from one dataset, using code data from a secondary source. It was first developed for medical comorbidity data based on hospital visits recorded in a national patient register. Medical conditions were registered using standardized codes (ICD-10) and individual codes were summarized by weighting all individual comorbidities for each patient (the Charlson and Elixhauser comorbidity indices). Only hospital visits recorded within a specified time frame, compared to individual reference dates from the primary data source, were recognized as relevant.</p>
-<p>The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naïve approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster than those.</p>
-<p>The package does not only include classification schemes for comorbidity data. It incorporates a general framework for any case where items can be classified using standardized codes. It might therefore be relevant for many tasks involving data management in official statistics using big data.</p>
+<p>The goal of <code>coder</code> is to classify items from one dataset, using codes from a secondary source. Please se vigtnettes with introductionary examples!</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of coder from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"coder"</span>)</code></pre></div>
+<p>You can (soon) install the released version of coder from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("coder") # Not yet!</span></a></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"eribul/coder"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"eribul/coder"</span>)</a></code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="classification-schemes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example how to categorize patients by Elixhauser comorbidity:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(coder)
-
-<span class="co"># A group of patients ...</span>
-<span class="kw">head</span>(ex_people)
-<span class="co">#&gt;                 name    surgery</span>
-<span class="co">#&gt; 1    Beaver, Tristin 2016-09-11</span>
-<span class="co">#&gt; 2  Maestas, Lilibeth 2016-10-23</span>
-<span class="co">#&gt; 3        Jung, Derek 2017-02-20</span>
-<span class="co">#&gt; 4     Hayes, Kylihah 2016-12-31</span>
-<span class="co">#&gt; 5     el-Riaz, Aadam 2016-04-19</span>
-<span class="co">#&gt; 6 Sanchez, Dominique 2017-02-25</span>
-
-<span class="co"># ... with a group of comorbidies ...</span>
-<span class="kw">head</span>(ex_icd10)
-<span class="co">#&gt;                id  code_date   code  hdia</span>
-<span class="co">#&gt; 1: Abzari, Joseph 2016-04-15  C430C FALSE</span>
-<span class="co">#&gt; 2: Abzari, Joseph 2016-05-02  L818A FALSE</span>
-<span class="co">#&gt; 3: Abzari, Joseph 2016-06-06   O630 FALSE</span>
-<span class="co">#&gt; 4: Abzari, Joseph 2016-09-01   P558 FALSE</span>
-<span class="co">#&gt; 5: Abzari, Joseph 2016-10-02 UA3290 FALSE</span>
-<span class="co">#&gt; 6: Abzari, Joseph 2016-12-18  S6260 FALSE</span>
-
-<span class="co"># ... can be categorized by the Elixhauser commorbidity index:</span>
-df &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="reference/add.html">categorize</a></span>(
-    ex_people, 
-    ex_icd10, 
-    <span class="st">"elix_icd10"</span>, 
-    <span class="dt">id =</span> <span class="st">"name"</span>, 
-    <span class="dt">date =</span> <span class="st">"surgery"</span>
-  )
-<span class="co">#&gt; Warning in codify(x = to, from = from, id = id, date = date, days = days):</span>
-<span class="co">#&gt; Date column ignored since days = NULL!</span>
-<span class="co">#&gt; index calculated as number of relevant categories</span>
-
-<span class="co"># Tabulate the Elixhauser index</span>
-<span class="kw">table</span>(df$index)
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  0  1  2  3 </span>
-<span class="co">#&gt; 55 37  4  3</span>
-
-<span class="co"># Count how many patients have each comorbidity identified by Elixhauser</span>
-<span class="kw">colSums</span>(df[,<span class="dv">3</span>:<span class="dv">32</span>], <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt;       congestive heart failure            cardiac arrhythmias </span>
-<span class="co">#&gt;                              2                              1 </span>
-<span class="co">#&gt;               valvular disease pulmonary circulation disorder </span>
-<span class="co">#&gt;                              2                              0 </span>
-<span class="co">#&gt;   peripheral vascular disorder     hypertension uncomplicated </span>
-<span class="co">#&gt;                              2                              0 </span>
-<span class="co">#&gt;       hypertension complicated                      paralysis </span>
-<span class="co">#&gt;                              2                              3 </span>
-<span class="co">#&gt;   other neurological disorders      chronic pulmonary disease </span>
-<span class="co">#&gt;                              3                              2 </span>
-<span class="co">#&gt;         diabetes uncomplicated           diabetes complicated </span>
-<span class="co">#&gt;                              0                              3 </span>
-<span class="co">#&gt;                 hypothyroidism                  renal failure </span>
-<span class="co">#&gt;                              1                              1 </span>
-<span class="co">#&gt;                  liver disease           peptic ulcer disease </span>
-<span class="co">#&gt;                              0                              0 </span>
-<span class="co">#&gt;                       AIDS/HIV                       lymphoma </span>
-<span class="co">#&gt;                              0                              4 </span>
-<span class="co">#&gt;              metastatic cancer                    solid tumor </span>
-<span class="co">#&gt;                              2                             11 </span>
-<span class="co">#&gt;           rheumatoid arthritis                   coagulopathy </span>
-<span class="co">#&gt;                              6                              0 </span>
-<span class="co">#&gt;                        obesity                    weight loss </span>
-<span class="co">#&gt;                              0                              2 </span>
-<span class="co">#&gt;    fluid electrolyte disorders              blood loss anemia </span>
-<span class="co">#&gt;                              2                              0 </span>
-<span class="co">#&gt;              deficiency anemia                  alcohol abuse </span>
-<span class="co">#&gt;                              1                              1 </span>
-<span class="co">#&gt;                     drug abuse                      psychoses </span>
-<span class="co">#&gt;                              1                              2</span></code></pre></div>
+<a href="#classification-schemes" class="anchor"></a>Classification schemes</h2>
+<p>Classification schemes are used to classify items. These schemas are constructed by regular expressions for computational speed, but their content can be summarized and visualized for clarity.</p>
+<p>The package includes several default classification schemes (so called <code>classcodes</code> objects). Most of these are related to medical patient data (for classification of comorbidity and adverse events).</p>
+<p>Arbitrary <code>classcodes</code> objects can be specified by the user.</p>
+<div id="default-classcodes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#default-classcodes" class="anchor"></a>Default classcodes</h3>
+<table class="table">
+<thead><tr class="header">
+<th align="left">clascodes</th>
+<th align="left">description</th>
+<th align="left">coding</th>
+<th align="left">indices</th>
+<th align="right">no_categories</th>
+<th align="right">no_codes</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">charlson_icd10</td>
+<td align="left">Comorbidity based on Charlson</td>
+<td align="left">icd10</td>
+<td align="left">charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated</td>
+<td align="right">19</td>
+<td align="right">1167</td>
+</tr>
+<tr class="even">
+<td align="left">cps_icd10</td>
+<td align="left">comorbidity-polypharmacy score (CPS)</td>
+<td align="left">icd10</td>
+<td align="left">only_ordinary</td>
+<td align="right">2</td>
+<td align="right">12406</td>
+</tr>
+<tr class="odd">
+<td align="left">elix_icd10</td>
+<td align="left">Comorbidity based on Elixhauser</td>
+<td align="left">icd10</td>
+<td align="left"></td>
+<td align="right">31</td>
+<td align="right">1517</td>
+</tr>
+<tr class="even">
+<td align="left">ex_carbrands</td>
+<td align="left">Example data of car brand names and their producers.</td>
+<td align="left">ex_allcars</td>
+<td align="left"></td>
+<td align="right">10</td>
+<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="left">hip_adverse_events_icd10</td>
+<td align="left">Adverse events after hip arthroplasty</td>
+<td align="left">icd10</td>
+<td align="left">condition</td>
+<td align="right">6</td>
+<td align="right">306</td>
+</tr>
+<tr class="even">
+<td align="left">hip_adverse_events_icd10_old</td>
+<td align="left">Adverse events after hip arthroplasty</td>
+<td align="left">icd10</td>
+<td align="left">condition, sos, shar</td>
+<td align="right">3</td>
+<td align="right">523</td>
+</tr>
+<tr class="odd">
+<td align="left">hip_fracture_ae_icd10</td>
+<td align="left">Adverse events after hip arthroplasty</td>
+<td align="left">icd10</td>
+<td align="left"></td>
+<td align="right">1</td>
+<td align="right">749</td>
+</tr>
+<tr class="even">
+<td align="left">hip_fracture_ae_kva</td>
+<td align="left">Adverse events after hip arthroplasty</td>
+<td align="left">kva</td>
+<td align="left"></td>
+<td align="right">1</td>
+<td align="right">143</td>
+</tr>
+<tr class="odd">
+<td align="left">knee_adverse_events_icd10</td>
+<td align="left">Adverse events after knee arthroplasty</td>
+<td align="left">icd10</td>
+<td align="left">condition</td>
+<td align="right">6</td>
+<td align="right">278</td>
+</tr>
+<tr class="even">
+<td align="left">rxriskv_atc</td>
+<td align="left">Comorbidity index ‘RxRiskV’</td>
+<td align="left">atc</td>
+<td align="left"></td>
+<td align="right">39</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">rxriskv_modified_atc</td>
+<td align="left">Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland).</td>
+<td align="left">ATC</td>
+<td align="left"></td>
+<td align="right">42</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="code-of-conduct" class="section level1">
+</div>
+<div id="contribution" class="section level1">
 <h1 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of conduct</h1>
-<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<a href="#contribution" class="anchor"></a>Contribution</h1>
+<p>Contributions to this package are welcome. The preferred method of contribution is through a github pull request. Feel free to contact me by creating an issue. Please note that this project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
   </div>
 

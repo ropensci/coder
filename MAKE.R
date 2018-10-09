@@ -4,6 +4,9 @@
 # fledge::bump_version() # create development version
 # fledge::finalize_version()
 
+# Make sure it works with latest packages on CRAN
+update.packages(ask = FALSE)
+
 # Rebuild data sets
 unlink("data", TRUE)
 dir.create("data")
@@ -17,10 +20,7 @@ file.remove("NAMESPACE")
 devtools::document()
 knitr::knit("README.Rmd")
 codemetar::write_codemeta(".")
-pkgdown::build_site()
-
-# Make sure it works with latest packages on CRAN
-update.packages(ask = FALSE)
+pkgdown::build_site() # Must run from RGui
 
 # Checks
 goodpractice::goodpractice()

@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3.9000</span>
       </span>
     </div>
 
@@ -74,6 +74,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/coder.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -84,7 +87,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/benchmark.html">Benchmarking</a>
+      <a href="../articles/Comorbidity.html">Comorbidity</a>
     </li>
   </ul>
 </li>
@@ -187,23 +190,23 @@ but the object will be changed by reference.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other verbs: <code><a href='add.html'>add</a></code>, <code><a href='classify.html'>classify</a></code>,
-  <code><a href='index_fun.html'>index_fun</a></code></p></div>
+    <div class='dont-index'><p>Other verbs: <code><a href='categorize.html'>categorize</a></code>,
+  <code><a href='classify.html'>classify</a></code>, <code><a href='index_fun.html'>index_fun</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                    name       date  code_date  code  hdia in_period
-#&gt;   1:     Abzari, Joseph 2016-07-29 2016-04-15 C430C FALSE      TRUE
-#&gt;   2:     Abzari, Joseph 2016-07-29 2016-05-02 L818A FALSE      TRUE
-#&gt;   3:     Abzari, Joseph 2016-07-29 2016-06-06  O630 FALSE      TRUE
-#&gt;   4:    Alexis, Dayveon 2016-12-17 2016-05-19  S780 FALSE      TRUE
-#&gt;   5:  Anderson, Laquesh 2017-01-10 2016-06-20  Z233 FALSE      TRUE
-#&gt;  ---                                                               
-#&gt; 342: el-Zakaria, Saajid 2016-04-22 2016-02-02  H663 FALSE      TRUE
-#&gt; 343: el-Zakaria, Saajid 2016-04-22 2016-03-16 H351F FALSE      TRUE
-#&gt; 344: el-Zakaria, Saajid 2016-04-22 2016-03-19  L518 FALSE      TRUE
-#&gt; 345: el-Zakaria, Saajid 2016-04-22 2016-04-01  C312 FALSE      TRUE
-#&gt; 346: el-Zakaria, Saajid 2016-04-22 2016-04-15  Q700 FALSE      TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                  name       date  code_date  code  hdia in_period
+#&gt;   1:    Adams, Jaimin 2018-08-11 2017-10-13  E835 FALSE      TRUE
+#&gt;   2:    Adams, Jaimin 2018-08-11 2017-11-30  N179 FALSE      TRUE
+#&gt;   3:    Adams, Jaimin 2018-08-11 2018-01-28  M713 FALSE      TRUE
+#&gt;   4:    Adams, Jaimin 2018-08-11 2018-02-03 M861F FALSE      TRUE
+#&gt;   5:    Adams, Jaimin 2018-08-11 2018-03-28  T323 FALSE      TRUE
+#&gt;  ---                                                             
+#&gt; 354: el-Zadeh,  Muzna 2018-02-24 2017-08-08  Q753 FALSE      TRUE
+#&gt; 355: el-Zadeh,  Muzna 2018-02-24 2018-01-23 M000G FALSE      TRUE
+#&gt; 356: el-Zadeh,  Muzna 2018-02-24 2018-01-30  T589 FALSE      TRUE
+#&gt; 357: el-Zadeh,  Muzna 2018-02-24 2018-02-06  C946 FALSE      TRUE
+#&gt; 358: el-Zadeh,  Muzna 2018-02-24 2018-02-15  J011 FALSE      TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

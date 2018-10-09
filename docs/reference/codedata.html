@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.3.9000</span>
       </span>
     </div>
 
@@ -74,6 +74,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/coder.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -84,7 +87,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/benchmark.html">Benchmarking</a>
+      <a href="../articles/Comorbidity.html">Comorbidity</a>
     </li>
   </ul>
 </li>
@@ -124,7 +127,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>as.codedata</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>.setkeys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>nprdate</span> <span class='kw'>=</span> <span class='st'>"utdatuma"</span>)
+  <span class='kw'>npr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nprdate</span> <span class='kw'>=</span> <span class='st'>"utdatuma"</span>)
 
 <span class='fu'>is.codedata</span>(<span class='no'>x</span>)</pre>
     
@@ -161,6 +164,11 @@ If the size is larger, the argument must be set explicitly. Set <code>TRUE</code
 to make copies regardless of object size. This is recomended if enough RAM
 is available. If set to <code>FALSE</code>, calculations might be carried out
 but the object will be changed by reference.</p></td>
+    </tr>
+    <tr>
+      <th>npr</th>
+      <td><p>Is data from the Swedish patient register?
+If so, the format might be recognised automatically (no guarantee).</p></td>
     </tr>
     <tr>
       <th>nprdate</th>

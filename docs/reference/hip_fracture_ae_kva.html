@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example data for random people — ex_people • coder</title>
+<title>Classcodes for adverse events after THA after hip fracture
+based on Atgardskoder (KVA codes) — hip_fracture_ae_kva • coder</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +31,12 @@
 
 
 
-<meta property="og:title" content="Example data for random people — ex_people" />
+<meta property="og:title" content="Classcodes for adverse events after THA after hip fracture
+based on Atgardskoder (KVA codes) — hip_fracture_ae_kva" />
 
-<meta property="og:description" content="Example data for fictive people to use for testing and in examples." />
+<meta property="og:description" content="This classcodes object was developed by the Swedish Hip Arthroplasty Register.
+The work was initiated for fracture data but the result might be feasible
+also for non fracture data." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -115,30 +119,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example data for random people</h1>
+    <h1>Classcodes for adverse events after THA after hip fracture
+based on Atgardskoder (KVA codes)</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>ex_people.Rd</code></div>
+    <div class="hidden name"><code>hip_fracture_ae_kva.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Example data for fictive people to use for testing and in examples.</p>
+    <p>This classcodes object was developed by the Swedish Hip Arthroplasty Register.
+The work was initiated for fracture data but the result might be feasible
+also for non fracture data.</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>ex_people</span></pre>
+    <pre class="usage"><span class='no'>hip_fracture_ae_kva</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Data frames with 100 rows and 2 variables:</p><dl class='dl-horizontal'>
-  <dt>name</dt><dd><p>random person names</p></dd>
-  <dt>surgery</dt><dd><p>random dates for performed surgery on each patient</p></dd>
+    <p>A data frame with 1 row and 2 variables:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>We only have one group of adverse events</p></dd>
+  <dt>regex</dt><dd><p>regular expression identifying KVA codes</p></dd>
 </dl>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other example data: <code><a href='ex_carbrands.html'>ex_carbrands</a></code>,
-  <code><a href='ex_cars.html'>ex_cars</a></code>, <code><a href='ex_icd10.html'>ex_icd10</a></code></p></div>
+    <div class='dont-index'><p>Companion codes based on ICD-10 <code><a href='hip_fracture_ae_icd10.html'>hip_fracture_ae_icd10</a></code>.</p>
+<p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
+  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
+  <code><a href='hip_adverse_events_icd10_old.html'>hip_adverse_events_icd10_old</a></code>,
+  <code><a href='hip_fracture_ae_icd10.html'>hip_fracture_ae_icd10</a></code>,
+  <code><a href='knee_adverse_events_icd10.html'>knee_adverse_events_icd10</a></code>,
+  <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
     
 
   </div>
@@ -147,6 +163,8 @@
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>
