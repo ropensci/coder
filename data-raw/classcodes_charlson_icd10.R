@@ -1,7 +1,7 @@
 charlson_icd10 <- tibble::frame_data(
    ~group,                             ~regex,
     "myocardial infarction",            "^(I2([12]|52))",
-    "congestive heart failure",         "^(I099|I1(10|3[02])|I255, I4(2[05-9]|3)|I50|P290)",
+    "congestive heart failure",         "^(I099|I1(10|3[02])|I255|I4(2[05-9]|3)|I50|P290)",
     "peripheral vascular disease",      "^(I7([01]|3[189]|71|9[02])|K55[189]|Z95[89])",
     "cerebrovascular disease",           "^(G4[56]|H340|I6)",
     "dementia",                         "^(F0([0-3]|51)|G3(0|11))",
