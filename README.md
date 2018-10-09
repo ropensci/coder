@@ -49,7 +49,7 @@ user.
 
 | clascodes                        | description                                                            | coding      | indices                                                              | no\_categories | no\_codes |
 | :------------------------------- | :--------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------- | -------------: | --------: |
-| charlson\_icd10                  | Comorbidity based on Charlson                                          | icd10       | charlson, deyo\_ramano, dhoore, ghali, quan\_original, quan\_updated |             19 |      1167 |
+| charlson\_icd10                  | Comorbidity based on Charlson                                          | icd10       | charlson, deyo\_ramano, dhoore, ghali, quan\_original, quan\_updated |             19 |      1178 |
 | cps\_icd10                       | comorbidity-polypharmacy score (CPS)                                   | icd10       | only\_ordinary                                                       |              2 |     12406 |
 | elix\_icd10                      | Comorbidity based on Elixhauser                                        | icd10       |                                                                      |             31 |      1517 |
 | ex\_carbrands                    | Example data of car brand names and their producers.                   | ex\_allcars |                                                                      |             10 |        27 |
@@ -58,8 +58,8 @@ user.
 | hip\_fracture\_ae\_icd10         | Adverse events after hip arthroplasty                                  | icd10       |                                                                      |              1 |       749 |
 | hip\_fracture\_ae\_kva           | Adverse events after hip arthroplasty                                  | kva         |                                                                      |              1 |       143 |
 | knee\_adverse\_events\_icd10     | Adverse events after knee arthroplasty                                 | icd10       | condition                                                            |              6 |       278 |
-| rxriskv\_atc                     | Comorbidity index ‘RxRiskV’                                            | atc         |                                                                      |             39 |        NA |
-| rxriskv\_modified\_atc           | Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland). | ATC         |                                                                      |             42 |        NA |
+| rxriskv\_atc                     | Comorbidity index ‘RxRiskV’                                            | atc         |                                                                      |             39 |      1170 |
+| rxriskv\_modified\_atc           | Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland). | ATC         |                                                                      |             42 |      1391 |
 
 # Contribution
 

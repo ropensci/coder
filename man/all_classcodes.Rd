@@ -18,6 +18,7 @@ all_classcodes()
 \seealso{
 Other classcodes: \code{\link{as.data.frame.classified}},
   \code{\link{classcodes}}, \code{\link{get_classcodes}},
+  \code{\link{print.summary.classcodes}},
   \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }
 \concept{classcodes}

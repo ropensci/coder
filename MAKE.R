@@ -18,9 +18,10 @@ for (file in dir("data-raw", pattern = ".R")) source(file.path("data-raw", file)
 unlink("man", TRUE)
 file.remove("NAMESPACE")
 devtools::document()
+devtools::install()
 knitr::knit("README.Rmd")
-codemetar::write_codemeta(".")
-pkgdown::build_site() # Must run from RGui
+# codemetar::write_codemeta(".")
+pkgdown::build_site()
 
 # Checks
 goodpractice::goodpractice()

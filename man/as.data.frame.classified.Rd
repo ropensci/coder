@@ -35,6 +35,7 @@ for working with large data sets, wherefore matrix output is used as default.
 \seealso{
 Other classcodes: \code{\link{all_classcodes}},
   \code{\link{classcodes}}, \code{\link{get_classcodes}},
+  \code{\link{print.summary.classcodes}},
   \code{\link{summary.classcodes}}, \code{\link{visualize}}
 }
 \concept{classcodes}

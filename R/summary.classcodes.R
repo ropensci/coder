@@ -69,7 +69,7 @@ summary.classcodes <- function(object, ...) {
 #'
 #' @return Nothing. This function is called for its side effects
 #' @export
-#'
+#' @family classcodes
 #' @examples
 #' print(summary(ex_carbrands))
 print.summary.classcodes <- function(x, ...) {
