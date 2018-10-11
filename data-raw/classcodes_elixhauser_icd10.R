@@ -32,6 +32,7 @@ elix_icd10 <- tibble::frame_data(
  "psychoses",                       "^(F2[0-589]|F3([01]2|15))",                                                    0,
  "depression",                      "^(F204|F31[345]|F3[23]|F341|F4[13]2)",                                        -3
 ) %>%
+mutate(sum_all = 1) %>% # Simple sum index
 coder::as.classcodes(
   coding = "icd10",
   description = "Comorbidity based on Elixhauser"

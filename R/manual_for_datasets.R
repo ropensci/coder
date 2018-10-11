@@ -6,6 +6,8 @@
 #' \describe{
 #'   \item{group}{comorbidity groups}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{sum_all}{all weights = 1. This is included for convenience when
+#'   calculating several indices simultainisly}
 #'   \item{walraven}{weights suggested by Walraven et al ()}
 #' }
 #' @source
