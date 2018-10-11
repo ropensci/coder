@@ -6,11 +6,20 @@
 #' \describe{
 #'   \item{group}{comorbidity groups}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{walraven}{weights suggested by Walraven et al ()}
 #' }
-#' @source Quan Hude et al. (2005). Coding algorithms for defining
+#' @source
+#'
+#' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
-#' \url{www.jstor.org/stable/3768193}
+#'   \url{www.jstor.org/stable/3768193}
+#'
+#' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
+#'   C. Van, … Jennings, A. (2009).
+#'   A Modification of the Elixhauser Comorbidity Measures Into a Point System
+#'   for Hospital Death Using Administrative Data. Medical Care, 47(6), 626–633.
+#'
 #' @family default classcodes
 "elix_icd10"
 
@@ -27,7 +36,7 @@
 #'   decoded from Quan et al. 2005. Note that this classification was not
 #'   originally used with all weights! To simply use this classification table
 #'   with weights other than \code{quan_original} and \code{quan_updated} might
-#'   therefore not lead to different results than originally intended for each
+#'   therefore lead to different results than originally intended for each
 #'   index.}
 #'   \item{charlson}{original weights as suggested by Charlson et al. 1987*}
 #'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
@@ -41,15 +50,18 @@
 #'
 #' NOTE! Regular expressions for leukemia and lymphoma not yet implemented!
 #'
-#' @source Quan Hude et al. (2005). Coding algorithms for defining
+#' @source
+#'
+#' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
 #' \url{www.jstor.org/stable/3768193}
 #'
 #' Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
-#' D. (2015). A systematic review identifies valid comorbidity indices derived
-#' from administrative health data.
-#' Journal of clinical epidemiology, 68(1), 3-14.
+#'   D. (2015). A systematic review identifies valid comorbidity indices derived
+#'   from administrative health data.
+#'   Journal of clinical epidemiology, 68(1), 3-14.
+#'
 #' @family default classcodes
 "charlson_icd10"
 

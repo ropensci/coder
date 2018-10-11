@@ -11,7 +11,7 @@
   decoded from Quan et al. 2005. Note that this classification was not
   originally used with all weights! To simply use this classification table
   with weights other than \code{quan_original} and \code{quan_updated} might
-  therefore not lead to different results than originally intended for each
+  therefore lead to different results than originally intended for each
   index.}
   \item{charlson}{original weights as suggested by Charlson et al. 1987*}
   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
@@ -31,9 +31,9 @@ Quan Hude et al. (2005). Coding algorithms for defining
 \url{www.jstor.org/stable/3768193}
 
 Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
-D. (2015). A systematic review identifies valid comorbidity indices derived
-from administrative health data.
-Journal of clinical epidemiology, 68(1), 3-14.
+  D. (2015). A systematic review identifies valid comorbidity indices derived
+  from administrative health data.
+  Journal of clinical epidemiology, 68(1), 3-14.
 }
 \usage{
 charlson_icd10

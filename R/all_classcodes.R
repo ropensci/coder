@@ -9,7 +9,7 @@
 all_classcodes <- function() {
 
   # Get all classcodes object from the package
-  names  <- data(package = "coder")$results[, "Item"]
+  names  <- utils::data(package = "coder")$results[, "Item"]
   cl <- lapply(names, get_classcodes)
   is.cl <- vapply(cl, is.classcodes, NA)
   names  <- names[is.cl]

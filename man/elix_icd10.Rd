@@ -8,12 +8,18 @@
 \describe{
   \item{group}{comorbidity groups}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+  \item{walraven}{weights suggested by Walraven et al ()}
 }}
 \source{
 Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
-\url{www.jstor.org/stable/3768193}
+  \url{www.jstor.org/stable/3768193}
+
+Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
+  C. Van, … Jennings, A. (2009).
+  A Modification of the Elixhauser Comorbidity Measures Into a Point System
+  for Hospital Death Using Administrative Data. Medical Care, 47(6), 626–633.
 }
 \usage{
 elix_icd10
