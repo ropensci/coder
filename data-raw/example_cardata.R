@@ -13,24 +13,24 @@ ex_carbrands <-
   as.classcodes(data.frame(
     group = c(
       "Mazda",
-      "Renault - Nissan",
-      "Mercedes-Benz",
-      "GM",
+      #"Renault",
+      "Mer-Ben",
+      # "GM",
       "Ford",
       "Fiat",
-      "Honda",
+      #"Honda",
       "Toyota",
-      "Volkswagen",
+      "Volksw",
       "Geely"
     ),
     regex = c(
       "Mazda",
-      "Datsun",
+      #"Datsun",
       "Merc",
-      "Cadillac|Camaro|Pontiac",
+      #"Cadillac|Camaro|Pontiac",
       "Ford|Lincoln",
       "Chrysler|Fiat|Dodge|Ferrari|Maserati",
-      "Honda",
+      #"Honda",
       "Toyota",
       "Porsche",
       "Volvo|Lotus"
