@@ -17,6 +17,7 @@ file.remove("NAMESPACE")
 devtools::document()
 devtools::install()
 knitr::knit("README.Rmd")
+devtools::build_manual()
 pkgdown::build_site()
 
 # Checks

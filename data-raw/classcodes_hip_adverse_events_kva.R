@@ -17,4 +17,4 @@ hip_fracture_ae_kva <-
   )
 
 
-devtools::use_data(hip_fracture_ae_kva, overwrite = TRUE)
+usethis::use_data(hip_fracture_ae_kva, overwrite = TRUE)

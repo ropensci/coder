@@ -10,4 +10,4 @@ coder::as.classcodes(
   description = "comorbidity-polypharmacy score (CPS)"
 )
 
-devtools::use_data(cps_icd10, overwrite = TRUE)
+usethis::use_data(cps_icd10, overwrite = TRUE)

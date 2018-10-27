@@ -41,4 +41,4 @@ ex_carbrands <-
 )
 
 
-devtools::use_data(ex_cars, ex_carbrands, overwrite = TRUE)
+usethis::use_data(ex_cars, ex_carbrands, overwrite = TRUE)

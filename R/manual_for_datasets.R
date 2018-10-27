@@ -34,25 +34,32 @@
 #' @format A data frame with 17 rows and 8 variables:
 #' \describe{
 #'   \item{group}{comorbidity groups}
+#'   \item{description}{Verbal description of codes as described by
+#'     Deyo et al. (1992).}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group as
 #'   decoded from Quan et al. 2005. Note that this classification was not
 #'   originally used with all weights! To simply use this classification table
 #'   with weights other than \code{quan_original} and \code{quan_updated} might
 #'   therefore lead to different results than originally intended for each
 #'   index.}
-#'   \item{charlson}{original weights as suggested by Charlson et al. 1987*}
+#'   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
 #'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
 #'   \item{dhoore}{weights suggested by D'Hoore*}
 #'   \item{ghali}{weights suggested by Ghali*}
-#'   \item{quan_original}{weights suggested by Quan 2005}
-#'   \item{quan_updated}{weights suggested by Quan 2011}
+#'   \item{quan_original}{weights suggested by Quan (2005)}
+#'   \item{quan_updated}{weights suggested by Quan (2011)}
 #' }
 #'
-#' * Weights decoded from Yurkovich et al. 2015.
+#' * Weights decoded from Yurkovich et al. (2015).
 #'
-#' NOTE! Regular expressions for leukemia and lymphoma not yet implemented!
 #'
 #' @source
+#'
+#'  Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
+#'    Adapting a clinical comorbidity index for use with ICD-9-CM
+#'    administrative databases.
+#'    Journal of Clinical Epidemiology, 45(6), 613–619.
+#'    \url{https://doi.org/10.1016/0895-4356(92)90133-8}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.

@@ -46,19 +46,19 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 
-|clascodes                    |description                                                            |coding     |indices                                                           | no_categories| no_codes|
-|:----------------------------|:----------------------------------------------------------------------|:----------|:-----------------------------------------------------------------|-------------:|--------:|
-|charlson_icd10               |Comorbidity based on Charlson                                          |icd10      |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated |            19|     1178|
-|cps_icd10                    |comorbidity-polypharmacy score (CPS)                                   |icd10      |only_ordinary                                                     |             2|    12406|
-|elix_icd10                   |Comorbidity based on Elixhauser                                        |icd10      |walraven, sum_all                                                 |            31|     1517|
-|ex_carbrands                 |Example data of car brand names and their producers.                   |ex_allcars |                                                                  |            10|       27|
-|hip_adverse_events_icd10     |Adverse events after hip arthroplasty                                  |icd10      |condition                                                         |             6|      306|
-|hip_adverse_events_icd10_old |Adverse events after hip arthroplasty                                  |icd10      |condition, sos, shar                                              |             3|      523|
-|hip_fracture_ae_icd10        |Adverse events after hip arthroplasty                                  |icd10      |                                                                  |             1|      749|
-|hip_fracture_ae_kva          |Adverse events after hip arthroplasty                                  |kva        |                                                                  |             1|      143|
-|knee_adverse_events_icd10    |Adverse events after knee arthroplasty                                 |icd10      |condition                                                         |             6|      278|
-|rxriskv_atc                  |Comorbidity index 'RxRiskV'                                            |atc        |                                                                  |            39|     1170|
-|rxriskv_modified_atc         |Comorbidity index 'RxRiskV' (unofficial modification by Anne Garland). |ATC        |                                                                  |            42|     1391|
+|clascodes                    |description                                                            |coding     |indices                                                           |  N|     n|
+|:----------------------------|:----------------------------------------------------------------------|:----------|:-----------------------------------------------------------------|--:|-----:|
+|charlson_icd10               |Comorbidity based on Charlson                                          |icd10      |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated | 17|  1178|
+|cps_icd10                    |comorbidity-polypharmacy score (CPS)                                   |icd10      |only_ordinary                                                     |  2| 12406|
+|elix_icd10                   |Comorbidity based on Elixhauser                                        |icd10      |walraven, sum_all                                                 | 31|  1517|
+|ex_carbrands                 |Example data of car brand names and their producers.                   |ex_allcars |                                                                  |  7|    22|
+|hip_adverse_events_icd10     |Adverse events after hip arthroplasty                                  |icd10      |                                                                  |  6|   306|
+|hip_adverse_events_icd10_old |Adverse events after hip arthroplasty                                  |icd10      |sos, shar                                                         |  3|   523|
+|hip_fracture_ae_icd10        |Adverse events after hip arthroplasty                                  |icd10      |                                                                  |  1|   749|
+|hip_fracture_ae_kva          |Adverse events after hip arthroplasty                                  |kva        |                                                                  |  1|   143|
+|knee_adverse_events_icd10    |Adverse events after knee arthroplasty                                 |icd10      |                                                                  |  6|   278|
+|rxriskv_atc                  |Comorbidity index 'RxRiskV'                                            |atc        |                                                                  | 39|  1170|
+|rxriskv_modified_atc         |Comorbidity index 'RxRiskV' (unofficial modification by Anne Garland). |atc        |                                                                  | 42|  1391|
 
 # Contribution
 

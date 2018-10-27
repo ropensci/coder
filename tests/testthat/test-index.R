@@ -23,7 +23,6 @@ test_that("index", {
   expect_error(index(x, "hej"), "is not a column of the classcodes object!")
   expect_error(index(x, "charlson", "charlson_icd10"),
     "Data non consistent with specified classcodes!")
-  expect_warning(index(y, "charlson", "charlson_icd10"),
-    "Leukemia and lymphona not implemented and therefore ignored!")
+
 })
 

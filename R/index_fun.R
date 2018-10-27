@@ -81,11 +81,6 @@ index.matrix <- function(x, by = NULL, from = NULL, ...) {
       c(x %*% from[[by]])
     }
 
-  # Needs further development!
-  if (identical(from, coder::charlson_icd10) &&
-      any(by %in% c("charlson", "dhoore")))
-    warning("Leukemia and lymphona not implemented and therefore ignored!")
-
   names(ans) <- rownames(x)
   ans
 }

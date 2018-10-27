@@ -71,5 +71,5 @@ hip_fracture_ae_icd10 <-
     description = "Adverse events after hip arthroplasty"
   )
 
-devtools::use_data(hip_fracture_ae_icd10, overwrite = TRUE)
+usethis::use_data(hip_fracture_ae_icd10, overwrite = TRUE)
 

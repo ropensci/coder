@@ -23,4 +23,4 @@ ex_icd10 <-
   ) %>%
   coder::as.codedata()
 
-devtools::use_data(ex_people, ex_icd10, overwrite = TRUE)
+usethis::use_data(ex_people, ex_icd10, overwrite = TRUE)

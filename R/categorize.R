@@ -33,7 +33,7 @@
 #'
 #' @examples
 #' # Add Elixhauser based on all registered ICD10-codes
-#' categorize(ex_people, ex_icd10, "elix_icd10", id = "name", date = "surgery")
+#' categorize(ex_people, ex_icd10, "elix_icd10", id = "name")
 #'
 #' # Add Charlson categorias and two versions of a calculated index.
 #' # Only include recent hospital visits within 30 days before surgery,

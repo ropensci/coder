@@ -48,4 +48,4 @@ coder::as.classcodes(
   description = "Comorbidity index 'RxRiskV'"
 )
 
-devtools::use_data(rxriskv_atc, overwrite = TRUE)
+usethis::use_data(rxriskv_atc, overwrite = TRUE)

@@ -15,4 +15,4 @@ knee_adverse_events_icd10 <- tibble::frame_data(
     description = "Adverse events after knee arthroplasty"
   )
 
-devtools::use_data(knee_adverse_events_icd10, overwrite = TRUE)
+usethis::use_data(knee_adverse_events_icd10, overwrite = TRUE)

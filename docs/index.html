@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.7</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("coder") # Not yet!</span></a></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"eribul/coder"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"eribul/coder"</span>)</a></code></pre></div>
 </div>
 <div id="classification-schemes" class="section level2">
 <h2 class="hasAnchor">
@@ -123,8 +123,8 @@
 <th align="left">description</th>
 <th align="left">coding</th>
 <th align="left">indices</th>
-<th align="right">no_categories</th>
-<th align="right">no_codes</th>
+<th align="right">N</th>
+<th align="right">n</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -132,7 +132,7 @@
 <td align="left">Comorbidity based on Charlson</td>
 <td align="left">icd10</td>
 <td align="left">charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated</td>
-<td align="right">19</td>
+<td align="right">17</td>
 <td align="right">1178</td>
 </tr>
 <tr class="even">
@@ -156,14 +156,14 @@
 <td align="left">Example data of car brand names and their producers.</td>
 <td align="left">ex_allcars</td>
 <td align="left"></td>
-<td align="right">10</td>
-<td align="right">27</td>
+<td align="right">7</td>
+<td align="right">22</td>
 </tr>
 <tr class="odd">
 <td align="left">hip_adverse_events_icd10</td>
 <td align="left">Adverse events after hip arthroplasty</td>
 <td align="left">icd10</td>
-<td align="left">condition</td>
+<td align="left"></td>
 <td align="right">6</td>
 <td align="right">306</td>
 </tr>
@@ -171,7 +171,7 @@
 <td align="left">hip_adverse_events_icd10_old</td>
 <td align="left">Adverse events after hip arthroplasty</td>
 <td align="left">icd10</td>
-<td align="left">condition, sos, shar</td>
+<td align="left">sos, shar</td>
 <td align="right">3</td>
 <td align="right">523</td>
 </tr>
@@ -195,7 +195,7 @@
 <td align="left">knee_adverse_events_icd10</td>
 <td align="left">Adverse events after knee arthroplasty</td>
 <td align="left">icd10</td>
-<td align="left">condition</td>
+<td align="left"></td>
 <td align="right">6</td>
 <td align="right">278</td>
 </tr>
@@ -210,7 +210,7 @@
 <tr class="odd">
 <td align="left">rxriskv_modified_atc</td>
 <td align="left">Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland).</td>
-<td align="left">ATC</td>
+<td align="left">atc</td>
 <td align="left"></td>
 <td align="right">42</td>
 <td align="right">1391</td>

@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.7</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2018-10-11</h4>
+            <h4 class="date">2018-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -94,9 +94,10 @@
 
     
     
-<div id="trivial-example-of-car-ownership" class="section level1">
+<p>This vignette will demonstrate the core functionality of the “coder” package by a trivial example.</p>
+<div id="car-ownership" class="section level1">
 <h1 class="hasAnchor">
-<a href="#trivial-example-of-car-ownership" class="anchor"></a>Trivial example of car ownership</h1>
+<a href="#car-ownership" class="anchor"></a>Car ownership</h1>
 <p>Let’s assume we have a list of people, as well as dates for their driving license:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(coder)</a>
@@ -104,139 +105,37 @@
 <a class="sourceLine" id="cb1-4" data-line-number="4">people &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="st">  </span><span class="kw">data.frame</span>(</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">name =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="st">"Gavin, Christopher"</span>,</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">      <span class="st">"Albrecht, Lauren"</span>,</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">      <span class="st">"Aziz, Emily"</span>,</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">      <span class="st">"Svenne Petsson"</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">    ),</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">    <span class="dt">license =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">      <span class="st">"1949-05-23"</span>,</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">      <span class="st">"2016-02-04"</span>,</a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">      <span class="st">"2014-12-18"</span>,</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">      <span class="st">"1985-05-04"</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">    ))</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18">  )</a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(people)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">license</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Gavin, Christopher</td>
-<td align="left">1949-05-23</td>
-</tr>
-<tr class="even">
-<td align="left">Albrecht, Lauren</td>
-<td align="left">2016-02-04</td>
-</tr>
-<tr class="odd">
-<td align="left">Aziz, Emily</td>
-<td align="left">2014-12-18</td>
-</tr>
-<tr class="even">
-<td align="left">Svenne Petsson</td>
-<td align="left">1985-05-04</td>
-</tr>
-</tbody>
-</table>
-<p>We then have a car registry with car ownership for 1,000 cars (where <code>code_date</code> specifies when the car was bought):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(ex_cars))</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">id</th>
-<th align="left">code</th>
-<th align="left">code_date</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Schneiders, Lakyn</td>
-<td align="left">Merc 240D</td>
-<td align="left">2017-07-27</td>
-</tr>
-<tr class="even">
-<td align="left">al-Bacho, Uqbah</td>
-<td align="left">Volvo 142E</td>
-<td align="left">2017-09-09</td>
-</tr>
-<tr class="odd">
-<td align="left">Mirandapinedo, Christian</td>
-<td align="left">AMC Javelin</td>
-<td align="left">2017-10-05</td>
-</tr>
-<tr class="even">
-<td align="left">Alfaro-Nunez, Brandon</td>
-<td align="left">Toyota Corona</td>
-<td align="left">2017-05-01</td>
-</tr>
-<tr class="odd">
-<td align="left">Wynne, Stephanie</td>
-<td align="left">Merc 240D</td>
-<td align="left">2018-07-29</td>
-</tr>
-<tr class="even">
-<td align="left">Lott, Daryl</td>
-<td align="left">Datsun 710</td>
-<td align="left">2016-10-27</td>
-</tr>
-</tbody>
-</table>
-<p>We are no car freaks and therefore not interested in individual brand names of each car. We just want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified since some brands were produced by companies that do no longer exist. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ex_carbrands)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">group</th>
-<th align="left">regex</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Mazda</td>
-<td align="left">Mazda</td>
-</tr>
-<tr class="even">
-<td align="left">Renault - Nissan</td>
-<td align="left">Datsun</td>
-</tr>
-<tr class="odd">
-<td align="left">Mercedes-Benz</td>
-<td align="left">Merc</td>
-</tr>
-<tr class="even">
-<td align="left">GM</td>
-<td align="left">Cadillac|Camaro|Pontiac</td>
-</tr>
-<tr class="odd">
-<td align="left">Ford</td>
-<td align="left">Ford|Lincoln</td>
-</tr>
-<tr class="even">
-<td align="left">Fiat</td>
-<td align="left">Chrysler|Fiat|Dodge|Ferrari|Maserati</td>
-</tr>
-<tr class="odd">
-<td align="left">Honda</td>
-<td align="left">Honda</td>
-</tr>
-<tr class="even">
-<td align="left">Toyota</td>
-<td align="left">Toyota</td>
-</tr>
-<tr class="odd">
-<td align="left">Volkswagen</td>
-<td align="left">Porsche</td>
-</tr>
-<tr class="even">
-<td align="left">Geely</td>
-<td align="left">Volvo|Lotus</td>
-</tr>
-</tbody>
-</table>
+<a class="sourceLine" id="cb1-7" data-line-number="7">      <span class="st">"Gavin, Christopher"</span>, <span class="st">"Albrecht, Lauren"</span>,</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">      <span class="st">"Aziz, Emily"</span>, <span class="st">"Svenne Petsson"</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    ),</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    <span class="dt">license =</span> <span class="kw">as.Date</span>(<span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">      <span class="st">"1949-05-23"</span>, <span class="st">"2016-03-04"</span>, <span class="st">"2014-12-18"</span>, <span class="st">"1985-05-04"</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    ))</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">  )</a></code></pre></div>
+<p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(ex_cars)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;                         id          code  code_date</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2017-08-12</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2017-09-25</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2017-10-21</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-05-17</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2018-08-14</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2016-11-12</span></a></code></pre></div>
+<p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ex_carbrands</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;     group                                regex</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 1   Mazda                                Mazda</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2 Mer-Ben                                 Merc</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3    Ford                         Ford|Lincoln</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 5  Toyota                               Toyota</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 6  Volksw                              Porsche</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 7   Geely                          Volvo|Lotus</span></a></code></pre></div>
 </div>
 <div id="categorize" class="section level1">
 <h1 class="hasAnchor">
 <a href="#categorize" class="anchor"></a>Categorize</h1>
-<p>We now want to know if anyone owns a car that is still produced.</p>
+<p>We want to know if anyone owns a car frmo a company that we are interested in.</p>
 <p>We use the three objects from above:</p>
 <ul>
 <li>
@@ -244,353 +143,84 @@
 <li>
 <code>ex_cars</code>: the centralised car registry and</li>
 <li>
-<code>ex_carbrands</code>: our classification of car makers.</li>
+<code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
-<p>Here we go:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(x)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">license</th>
-<th align="left">Mazda</th>
-<th align="left">Renault - Nissan</th>
-<th align="left">Mercedes-Benz</th>
-<th align="left">GM</th>
-<th align="left">Ford</th>
-<th align="left">Fiat</th>
-<th align="left">Honda</th>
-<th align="left">Toyota</th>
-<th align="left">Volkswagen</th>
-<th align="left">Geely</th>
-<th align="right">index</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Albrecht, Lauren</td>
-<td align="left">2016-02-04</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Aziz, Emily</td>
-<td align="left">2014-12-18</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Gavin, Christopher</td>
-<td align="left">1949-05-23</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">Svenne Petsson</td>
-<td align="left">1985-05-04</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE    TRUE FALSE FALSE   TRUE  FALSE</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18  TRUE   FALSE FALSE FALSE  FALSE  FALSE</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23 FALSE   FALSE FALSE FALSE  FALSE  FALSE</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;    Geely index</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 1: FALSE     2</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; 2: FALSE     1</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 3: FALSE     0</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 4:    NA    NA</span></a></code></pre></div>
 </div>
 <div id="interpretation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#interpretation" class="anchor"></a>Interpretation</h1>
 <p>We can see that:</p>
 <ul>
-<li>Emily Aziz is a happy owner of a Mazda.</li>
+<li>Emily Aziz owns a Mazda.</li>
 <li>Lauren Albrecht owns both a Mercedes and a Toyota.</li>
-<li>Christopher Gavin might in fact own a car, but none of the important ones identified by our classification scheme.</li>
-<li>Svenne Petsson is a Swede and does not exist in our American car register.</li>
+<li>Christopher Gavin might in fact own a car, but none of the ones we are interested in.</li>
+<li>Svenne Petsson is a Swede and is not found in our American car register.</li>
 </ul>
-<p>The <code>index</code> column is just the sum of identified cars owned by each person.</p>
+<p>The <code>index</code> column is here the sum of identified cars owned by each person.</p>
 <p>Note that each column identifies if a person owns <strong>at least one</strong> car from the relevant company.</p>
 </div>
 <div id="cars-owned-before-license" class="section level1">
 <h1 class="hasAnchor">
 <a href="#cars-owned-before-license" class="anchor"></a>Cars owned before license</h1>
-<p>We can use the date columns to check if anyone owned a car already before they got their drivers license. We then need to specify that the relevant date column for this was the one called <code>license</code>. The <code>days</code> argument specifies that we are interested in cars bought before this date.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">date =</span> <span class="st">"license"</span>, <span class="dt">days =</span> <span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>))</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(x)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">license</th>
-<th align="left">Mazda</th>
-<th align="left">Renault - Nissan</th>
-<th align="left">Mercedes-Benz</th>
-<th align="left">GM</th>
-<th align="left">Ford</th>
-<th align="left">Fiat</th>
-<th align="left">Honda</th>
-<th align="left">Toyota</th>
-<th align="left">Volkswagen</th>
-<th align="left">Geely</th>
-<th align="right">index</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Albrecht, Lauren</td>
-<td align="left">2016-02-04</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Aziz, Emily</td>
-<td align="left">2014-12-18</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">Gavin, Christopher</td>
-<td align="left">1949-05-23</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Svenne Petsson</td>
-<td align="left">1985-05-04</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
-<p>Oh, indeed, one of Lauren’s car was actually bought before he could drive it himself.</p>
+<p>We can use the date columns to check if anyone owned a car already before they got their drivers license. We need to specify that the date column is called <code>license</code>. The <code>days</code> argument specifies that we are interested in cars bought before this date.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">(x &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">   </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">     people, </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">     ex_cars, </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">     ex_carbrands, </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">     <span class="dt">id =</span> <span class="st">"name"</span>, </a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">     <span class="dt">date =</span> <span class="st">"license"</span>, </a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">     <span class="dt">days =</span> <span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE   FALSE FALSE FALSE   TRUE  FALSE</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;    Geely index</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 1: FALSE     1</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 2:    NA    NA</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 3:    NA    NA</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 4:    NA    NA</span></a></code></pre></div>
+<p>Indeed, Lauren bought a car before he were alowed to drive it himself.</p>
 </div>
 <div id="car-rating" class="section level1">
 <h1 class="hasAnchor">
 <a href="#car-rating" class="anchor"></a>Car rating</h1>
-<p>We are now not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let’s assign some points to each company. We then specifies that the index should be calculated based on the new column named “points”.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ex_carbrands &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/classcodes.html">as.classcodes</a></span>(</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">    <span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">      ex_carbrands, </a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">      <span class="dt">points =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">    )</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">  )</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(ex_carbrands)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">group</th>
-<th align="left">regex</th>
-<th align="right">points</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Mazda</td>
-<td align="left">Mazda</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">Renault - Nissan</td>
-<td align="left">Datsun</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Mercedes-Benz</td>
-<td align="left">Merc</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">GM</td>
-<td align="left">Cadillac|Camaro|Pontiac</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Ford</td>
-<td align="left">Ford|Lincoln</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Fiat</td>
-<td align="left">Chrysler|Fiat|Dodge|Ferrari|Maserati</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Honda</td>
-<td align="left">Honda</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Toyota</td>
-<td align="left">Toyota</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Volkswagen</td>
-<td align="left">Porsche</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Geely</td>
-<td align="left">Volvo|Lotus</td>
-<td align="right">5</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"points"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(x)</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">license</th>
-<th align="left">Mazda</th>
-<th align="left">Renault - Nissan</th>
-<th align="left">Mercedes-Benz</th>
-<th align="left">GM</th>
-<th align="left">Ford</th>
-<th align="left">Fiat</th>
-<th align="left">Honda</th>
-<th align="left">Toyota</th>
-<th align="left">Volkswagen</th>
-<th align="left">Geely</th>
-<th align="right">points</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Albrecht, Lauren</td>
-<td align="left">2016-02-04</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Aziz, Emily</td>
-<td align="left">2014-12-18</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="left">Gavin, Christopher</td>
-<td align="left">1949-05-23</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">Svenne Petsson</td>
-<td align="left">1985-05-04</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-</tr>
-</tbody>
-</table>
-<p>It seems like, even though Emily owns just half as many cars as Albrecht, she actually gets more than twice the points when ranking the brands.</p>
+<p>We are not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let us assign some score to each company. We then specifies that the index should be calculated based on the new column named “score”.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ex_carbrands<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">37</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE    TRUE FALSE FALSE   TRUE  FALSE</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18  TRUE   FALSE FALSE FALSE  FALSE  FALSE</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23 FALSE   FALSE FALSE FALSE  FALSE  FALSE</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;    Geely score</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 1: FALSE     2</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 2: FALSE    10</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 3: FALSE     0</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 4:    NA    NA</span></a></code></pre></div>
+<p>Even though Emily owns half as many cars as Albrecht, she gets a higher score.</p>
 </div>
 <div id="concluding-remark" class="section level1">
 <h1 class="hasAnchor">
 <a href="#concluding-remark" class="anchor"></a>Concluding remark</h1>
-<p>This vignette illustrates a simple example where the data sets are small, and the codnig schemes are simple. If that is the case, it might be equally good to just join or merge the data sets manually. A more realistic example of when the package might come handy is presented in the vignette called “Comorbidity”.</p>
+<p>This vignette illustrates a simple example where the data sets are small, and the codnig schemes are trivial. If that is the case, it might be equally good to just join or merge the data sets manually. A more realistic example of when the package might come handy is presented in the vignette called “Comorbidity”.</p>
 </div>
   </div>
 
@@ -599,7 +229,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#trivial-example-of-car-ownership">Trivial example of car ownership</a></li>
+<li><a href="#car-ownership">Car ownership</a></li>
       <li><a href="#categorize">Categorize</a></li>
       <li><a href="#interpretation">Interpretation</a></li>
       <li><a href="#cars-owned-before-license">Cars owned before license</a></li>

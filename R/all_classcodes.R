@@ -24,18 +24,15 @@ all_classcodes <- function() {
   }
 
   data.frame(
-    clascodes = names,
+    clascodes   = names,
     description = vapply(cl, function(.) attr(., "description"), ""),
-    coding = vapply(cl, function(.) attr(., "coding"), ""),
-    indices =
-      vapply(
-        lapply(cl, function(.) attr(., "indices")),
-        paste,
-        "",
-        collapse = ", "
-      ),
-    no_categories = vapply(cl, function(.) nrow(.), NA_integer_),
-    no_codes = vapply(cl, no_codes, NA_integer_),
+    coding      = vapply(cl, function(.) attr(., "coding"), ""),
+    indices     = vapply(
+                    lapply(cl, function(.) attr(., "indices")),
+                    paste, "", collapse  = ", "
+                  ),
+    N           = vapply(cl, function(.) nrow(.), NA_integer_),
+    n           = vapply(cl, no_codes, NA_integer_),
     stringsAsFactors = FALSE
   )
 }

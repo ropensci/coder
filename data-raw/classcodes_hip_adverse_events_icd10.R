@@ -15,4 +15,4 @@ hip_adverse_events_icd10 <- tibble::frame_data(
     description = "Adverse events after hip arthroplasty"
   )
 
-devtools::use_data(hip_adverse_events_icd10, overwrite = TRUE)
+usethis::use_data(hip_adverse_events_icd10, overwrite = TRUE)

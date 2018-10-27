@@ -11,6 +11,7 @@
 #' (see \code{\link{regex}} for details). Occurrences of non unique regular
 #' expressions will lead to the same class having multiple names. This is
 #' accepted but will raise a warning.}
+#' \item{description (optional):}{description of each category}
 #' \item{condition (optional):}{a class might have conditions additional to what
 #'   is expressed by \code{regex}. If so, these should be specified as quoted
 #'   expressions that can be evaluated within the data frame used by
@@ -62,7 +63,8 @@ as.classcodes <- function(x, coding = NULL, description = NULL) {
     class       = unique(c("classcodes", class(x))),
     coding      = coding,
     description = description,
-    indices     = setdiff(colnames(x), c("group", "regex"))
+    indices     = setdiff(colnames(x),
+                          c("group", "regex", "condition", "description"))
   )
 }
 
