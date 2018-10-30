@@ -8,6 +8,7 @@ unlink("data", TRUE)
 dir.create("data")
 file.remove("R/sysdata.rda")
 library(tidyverse)
+library(data.table)
 devtools::load_all()
 for (file in dir("data-raw", pattern = ".R")) source(file.path("data-raw", file))
 

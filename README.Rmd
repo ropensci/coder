@@ -38,7 +38,6 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("eribul/coder")
 ```
 
-
 ## Classification schemes
 
 Classification schemes are used to classify items. 

@@ -2,8 +2,10 @@ pandoc: '2.2'
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
-  coder: coder.html
-  Comorbidity: Comorbidity.html
+  coder: ../../../../../../../../Z:/SHPR/Forskningsprojekt/Projekt 211-220/Projekt
+    217/coder/vignettes/coder.html
+  Comorbidity: ../../../../../../../../Z:/SHPR/Forskningsprojekt/Projekt 211-220/Projekt
+    217/coder/vignettes/Comorbidity.html
 urls:
   reference: eribul.github.io/coder/reference
   article: eribul.github.io/coder/articles

@@ -1,0 +1,6 @@
+name	user	system	elapsed
+all_classcodes	0.42	0.02	0.64	
+categorize	 0.79	 0.15	18.89	
+classcodes	0.14	0.00	1.48	
+classify	0.76	0.02	3.08	
+codedata	0.07	0.02	4.31	

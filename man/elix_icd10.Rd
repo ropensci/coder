@@ -10,7 +10,11 @@
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
   \item{sum_all}{all weights = 1. This is included for convenience when
   calculating several indices simultainisly}
-  \item{walraven}{weights suggested by Walraven et al ()}
+  \item{walraven}{weights suggested by Walraven et al (2009)}
+  \item{sid29}{weights suggested by Thompson et al. (2015)
+    based on all conditions except cardian arryrtmias}
+  \item{sid30}{weights suggested by Thompson et al. (2015)
+    based on all conditions}
 }}
 \source{
 Quan Hude et al. (2005). Coding algorithms for defining
@@ -22,6 +26,12 @@ Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
   C. Van, … Jennings, A. (2009).
   A Modification of the Elixhauser Comorbidity Measures Into a Point System
   for Hospital Death Using Administrative Data. Medical Care, 47(6), 626–633.
+
+Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
+  Vadera, S., & Griffith, S. D. (2015).
+  A new Elixhauser-based comorbidity summary measure to predict in-hospital
+  mortality. Med Care, 53(4), 374–379.
+  http://doi.org/10.1097/MLR.0000000000000326
 }
 \usage{
 elix_icd10

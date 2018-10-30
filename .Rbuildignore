@@ -4,7 +4,7 @@
 ^\.Rproj\.user$
 ^inst/*.R
 .orig
-^data-raw$
+^data-raw
 ^inst/par_data.R$
 ^README\.Rmd$
 ^README-.*\.png$

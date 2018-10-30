@@ -63,7 +63,7 @@ part of the triad of case data, code data and classification scheme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.7</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.8</span>
       </span>
     </div>
 
@@ -198,19 +198,19 @@ list all codes individually.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/coder/topics/elix_icd10'>elix_icd10</a></span>)</div><div class='output co'>#&gt; # A tibble: 31 x 4
-#&gt;    group               regex                                   walraven sum_all
-#&gt;  * &lt;chr&gt;               &lt;chr&gt;                                      &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 congestive heart f~ ^(I(099|1(10|3[02])|255|4(2[05-9]|3)|5~        7       1
-#&gt;  2 cardiac arrhythmias ^(I(44[1-3]|456|459|4[7-9])|R00[018]|T~        5       1
-#&gt;  3 valvular disease    ^(A520|I(0[5-8]|09[18]|3[4-9])|Q23[0-3~       -1       1
-#&gt;  4 pulmonary circulat~ ^I(2([67]|8[089]))                             4       1
-#&gt;  5 peripheral vascula~ ^(I7([01]|3[189]|71|9[02])|K55[189]|Z9~        2       1
-#&gt;  6 hypertension uncom~ ^I10[0-9]                                      0       1
-#&gt;  7 hypertension compl~ ^I1[1-35]                                      0       1
-#&gt;  8 paralysis           ^G(041|114|8(0[12]|[12]|3[0-49]))              7       1
-#&gt;  9 other neurological~ ^(G(1[0-3]|2([012]|5[45])|3(1[289]|[25~        6       1
-#&gt; 10 chronic pulmonary ~ ^((I27[89])|(J(4[0-7]|6([0-7]|84)|70[1~        3       1
+    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/coder/topics/elix_icd10'>elix_icd10</a></span>)</div><div class='output co'>#&gt; # A tibble: 31 x 6
+#&gt;    group            regex                          sum_all walraven sid29 sid30
+#&gt;  * &lt;chr&gt;            &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 congestive hear~ ^(I(099|1(10|3[02])|255|4(2[0~       1        7     9     9
+#&gt;  2 cardiac arrhyth~ ^(I(44[1-3]|456|459|4[7-9])|R~       1        5     8     0
+#&gt;  3 valvular disease ^(A520|I(0[5-8]|09[18]|3[4-9]~       1       -1     0     0
+#&gt;  4 pulmonary circu~ I(2([67]|8[089]))                    1        4     5     5
+#&gt;  5 peripheral vasc~ ^(I7([01]|3[189]|71|9[02])|K5~       1        2     4     4
+#&gt;  6 hypertension un~ ^I10[0-9]                            1        0    -2    -1
+#&gt;  7 hypertension co~ ^I1[1-35]                            1        0    -2    -1
+#&gt;  8 paralysis        ^G(041|114|8(0[12]|[12]|3[0-4~       1        7     4     3
+#&gt;  9 other neurologi~ ^(G(1[0-3]|2([012]|5[45])|3(1~       1        6     5     4
+#&gt; 10 chronic pulmona~ ^((I27[89])|(J(4[0-7]|6([0-7]~       1        3     3     3
 #&gt; # ... with 21 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

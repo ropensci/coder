@@ -1,8 +1,8 @@
 cps_icd10 <- tibble::frame_data(
 
-  ~group,              ~regex,                                             ~only_ordinary,
-  "ordinary", "^[[:upper:]][[:digit:]]{2}.?[[:digit:]]{0,2}[[:upper:]]?$",  1,
-  "special",  "^U[ABP][[:digit:]]{2,4}$",                                   0
+  ~group,              ~regex,                                 ~only_ordinary,
+  "ordinary", "^[[:upper:]][0-9]{2}.?[0-9]{0,2}[[:upper:]]?$",              1,
+  "special",  "^U[ABP][0-9]{2,4}$",                                         0
 
 ) %>%
 coder::as.classcodes(
