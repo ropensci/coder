@@ -52,7 +52,7 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 ```{r, echo = FALSE}
-knitr::kable(coder::all_classcodes())
+knitr::kable(coder::all_classcodes()) 
 ```
 
 # Contribution

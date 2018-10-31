@@ -52,6 +52,11 @@
 #'   with weights other than \code{quan_original} and \code{quan_updated} might
 #'   therefore lead to different results than originally intended for each
 #'   index.}
+#'   \item{regex_rcs}{Alternative codes seggested by Armitage (2010).
+#'     Note that Peptic ulcer disease is not included.
+#'     All liver diseases (including mild) are included in
+#'     "moderate or severe liver disease".
+#'     All diabetes is included in "diabetes complication"}
 #'   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
 #'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
 #'   \item{dhoore}{weights suggested by D'Hoore*}
@@ -64,6 +69,11 @@
 #'
 #'
 #' @source
+#'  Armitage, J. N., & van der Meulen, J. H. (2010).
+#'    Identifying co-morbidity in surgical patients using administrative data
+#'    with the Royal College of Surgeons Charlson Score.
+#'    British Journal of Surgery, 97(5), 772–781.
+#'    \url{http://doi.org/10.1002/bjs.6930}
 #'
 #'  Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
 #'    Adapting a clinical comorbidity index for use with ICD-9-CM
