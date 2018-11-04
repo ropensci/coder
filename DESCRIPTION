@@ -1,7 +1,7 @@
 Package: coder
 Type: Package
 Title: Classification of Items into Categories Based on External Code Data
-Version: 0.5.9
+Version: 0.5.10
 Authors@R: person("Erik", "Bulow", email = "eriklgb@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-9973-456X"))

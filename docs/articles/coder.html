@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.9</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.10</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2018-10-31</h4>
+            <h4 class="date">2018-11-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -115,12 +115,12 @@
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(ex_cars)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;                         id          code  code_date</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2017-08-15</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2017-09-28</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2017-10-24</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-05-20</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2018-08-17</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2016-11-15</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2017-08-20</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2017-10-03</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2017-10-29</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-05-25</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2018-08-22</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2016-11-20</span></a></code></pre></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ex_carbrands</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;     group                                regex</span></a>
@@ -186,13 +186,13 @@
 <a class="sourceLine" id="cb5-9" data-line-number="9">  )</a>
 <a class="sourceLine" id="cb5-10" data-line-number="10">)</a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE   FALSE FALSE FALSE   TRUE  FALSE</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18    NA      NA    NA    NA     NA     NA</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23    NA      NA    NA    NA     NA     NA</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA    NA    NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                  name    license Mazda Mer-Ben Ford Fiat Toyota Volksw</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04    NA      NA   NA   NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18    NA      NA   NA   NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23    NA      NA   NA   NA     NA     NA</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA   NA   NA     NA     NA</span></a>
 <a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;    Geely index</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 1: FALSE     1</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 1:    NA    NA</span></a>
 <a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 2:    NA    NA</span></a>
 <a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 3:    NA    NA</span></a>
 <a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 4:    NA    NA</span></a></code></pre></div>

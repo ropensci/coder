@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# coder
+# coder 
 
 The goal of `coder` is to classify items from one dataset, using codes from a secondary source. 
 Please se vigtnettes with introductionary examples! 
