@@ -96,6 +96,11 @@ classify.default <- function(x, by, ...) {
 classify.data.frame <-
   function(x, by, id = NULL, code = "code", tech_names = FALSE, ...) {
 
+  # Stop early
+  if (tech_names && is.object(by)) {
+    stop("classcodes object must be refferred by name if 'tech_names = TRUE'!")
+  }
+
   .by <- by
   by <- get_classcodes(by)
 
