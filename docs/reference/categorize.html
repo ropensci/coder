@@ -62,7 +62,7 @@ categorise is used as an additional alias." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.10</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.11</span>
       </span>
     </div>
 
@@ -199,106 +199,106 @@ Indices are also included if so specified by the 'ind' argument.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Add Elixhauser based on all registered ICD10-codes</span>
 <span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elix_icd10"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                             name    surgery congestive heart failure
-#&gt;   1:               Adams, Jaimin 2018-09-06                    FALSE
-#&gt;   2:           Anderson, Arianna 2017-12-12                    FALSE
-#&gt;   3:         Arellano, Francisca 2018-04-15                    FALSE
-#&gt;   4:           Baldino, Ahanabah 2018-06-27                    FALSE
-#&gt;   5:                Banks, Dylan 2017-11-19                    FALSE
-#&gt;   6:            Beasley, Shamira 2018-10-16                    FALSE
-#&gt;   7:          Bennett, Christina 2018-06-05                    FALSE
-#&gt;   8:           Bennett, Nicholas 2018-06-13                    FALSE
-#&gt;   9:             Butcher, Mariah 2018-02-17                    FALSE
-#&gt;  10:                  Caro, Luis 2018-09-02                    FALSE
-#&gt;  11:         Chamberlain, Olivia 2018-04-25                    FALSE
-#&gt;  12:              Church, Marlon 2018-04-29                    FALSE
-#&gt;  13:              Clark, Jenifer 2018-08-02                    FALSE
-#&gt;  14:              Clayton, Blake 2018-02-25                    FALSE
-#&gt;  15:            Clements, Joshua 2017-12-24                    FALSE
-#&gt;  16:                 Clos, Naomi 2018-01-30                    FALSE
-#&gt;  17:                Crews, Bryce 2018-05-18                    FALSE
-#&gt;  18: De La Riva Luevano, Mary Lu 2018-02-26                    FALSE
-#&gt;  19:          Dintaman, Nicholas 2017-12-05                    FALSE
-#&gt;  20:                Do, Khrishan 2018-10-12                    FALSE
-#&gt;  21:           Dolbeare, Kenneth 2018-03-04                    FALSE
-#&gt;  22:           Emanuel, Jataesha 2018-07-10                    FALSE
-#&gt;  23:             Eriacho, Summer 2018-10-11                    FALSE
-#&gt;  24:              Fifita, Nicole 2018-09-24                    FALSE
-#&gt;  25:              Fuller, Morgan 2018-09-01                    FALSE
-#&gt;  26:                 Gaines, Eli 2018-03-07                    FALSE
-#&gt;  27:            Gallegos, Aliyah 2018-03-23                    FALSE
-#&gt;  28:           Gallegos, Juanito 2018-04-11                    FALSE
-#&gt;  29:            Galvan, Angelica 2018-08-25                    FALSE
-#&gt;  30:               Garcia, Tyler 2018-06-11                    FALSE
-#&gt;  31:            Gaskin, Graciela 2017-11-21                    FALSE
-#&gt;  32:          Gillespie, Jasmine 2018-02-11                    FALSE
-#&gt;  33:                  Ha, Esther 2018-09-11                    FALSE
-#&gt;  34:            Hall, Alexsondro 2018-08-30                    FALSE
-#&gt;  35:                Hamm, George 2018-04-07                    FALSE
-#&gt;  36:               Hauptli, Adam 2018-03-03                    FALSE
-#&gt;  37:               Heaton, Maren 2018-05-13                    FALSE
-#&gt;  38:               Heilman, Chau 2017-12-29                    FALSE
-#&gt;  39:               Jackson, Noah 2017-12-09                    FALSE
-#&gt;  40:            Jeffords, Yasmin 2018-06-04                    FALSE
-#&gt;  41:          Jennings, Danielle 2017-11-06                    FALSE
-#&gt;  42:              Jensen, Duncan 2018-05-13                    FALSE
-#&gt;  43:               Kalam, Sydney 2018-06-25                    FALSE
-#&gt;  44:               Kirbow, Jakob 2018-08-11                    FALSE
-#&gt;  45:             Kirby, Samantha 2018-02-19                    FALSE
-#&gt;  46:                  Le, Austin 2018-07-03                    FALSE
-#&gt;  47:                Lee, Jazmine 2018-07-23                    FALSE
-#&gt;  48:                Lilly, Lance 2018-01-22                    FALSE
-#&gt;  49:                  Lor, Sweta 2018-08-28                    FALSE
-#&gt;  50:            Manwaring, Navid 2017-11-24                    FALSE
-#&gt;  51:  Mcdermott Rivera, Mckenzie 2018-10-14                    FALSE
-#&gt;  52:               Metzler, John 2018-06-13                    FALSE
-#&gt;  53:           Michaels, Brianna 2018-07-07                    FALSE
-#&gt;  54:                 Minor, Cody 2018-03-01                    FALSE
-#&gt;  55:            Mo, Kawaileolani 2017-11-25                    FALSE
-#&gt;  56:              Moline, Elijah 2018-06-05                    FALSE
-#&gt;  57:             Morales, Connor 2017-11-17                    FALSE
-#&gt;  58:         Morrow, Christopher 2017-12-13                    FALSE
-#&gt;  59:               Murphy, Izell 2018-01-23                    FALSE
-#&gt;  60:               Nandih, Aaron 2018-04-24                       NA
-#&gt;  61:               Nedd, Daerius 2017-11-10                    FALSE
-#&gt;  62:              Nguyen, Connor 2018-07-25                    FALSE
-#&gt;  63:           Palomino, Kristin 2018-02-25                    FALSE
-#&gt;  64:               Phung, Nathan 2018-01-15                    FALSE
-#&gt;  65:            Quintana, Carmen 2018-03-30                       NA
-#&gt;  66:             Rivera, Elideth 2018-05-11                    FALSE
-#&gt;  67:              Roberts, Sarah 2018-11-04                    FALSE
-#&gt;  68:             Robinson, Casey 2018-01-02                    FALSE
-#&gt;  69:                Ross, Syanne 2018-02-11                    FALSE
-#&gt;  70:                Salas, Abdul 2018-01-10                    FALSE
-#&gt;  71:          Shepherd, Jessalyn 2018-10-03                    FALSE
-#&gt;  72:              Sivisay, Emily 2018-10-10                    FALSE
-#&gt;  73:             Sublette, Phung 2018-01-22                    FALSE
-#&gt;  74:              Suits, Drayton 2018-02-26                       NA
-#&gt;  75:                 Tran, Hamid 2018-04-05                    FALSE
-#&gt;  76:               Tran, Michael 2017-12-27                    FALSE
-#&gt;  77:             Trujillo, Kayla 2018-02-25                    FALSE
-#&gt;  78:               Vara, Gerardo 2018-10-09                    FALSE
-#&gt;  79:            Vasquez, Cristal 2018-01-29                    FALSE
-#&gt;  80:          Weinstein, Shawnia 2018-08-30                    FALSE
-#&gt;  81:              Widaa, Audrina 2017-12-08                    FALSE
-#&gt;  82:               Wilson, Kayla 2018-10-26                    FALSE
-#&gt;  83:             Zebulun, Alyson 2018-08-10                    FALSE
-#&gt;  84:           al-Kaleel, Najlaa 2018-08-19                    FALSE
-#&gt;  85:           al-Shahan, Jalaal 2018-08-03                    FALSE
-#&gt;  86:            al-Sham, Jumaima 2018-07-31                    FALSE
-#&gt;  87:           al-Vaziri, Jamaal 2018-05-12                    FALSE
-#&gt;  88:             el-Adel, Fat'hi 2018-01-13                    FALSE
-#&gt;  89:           el-Aly, Ibtisaama 2018-10-12                    FALSE
-#&gt;  90:           el-Arafat, Laaiqa 2018-07-23                    FALSE
-#&gt;  91:           el-Barakat, Jasra 2018-05-31                       NA
-#&gt;  92:             el-Basa, Sawada 2018-06-25                    FALSE
-#&gt;  93:             el-Ismail, Qais 2018-06-06                    FALSE
-#&gt;  94:             el-Kader, Hakam 2018-07-04                    FALSE
-#&gt;  95:            el-Majeed, Fuaad 2018-10-10                    FALSE
-#&gt;  96:          el-Mattar, Miqdaam 2018-03-18                    FALSE
-#&gt;  97:          el-Ramin, Sahheeda 2018-10-04                    FALSE
-#&gt;  98:        el-Sabet, Mahdhoodha 2018-09-11                    FALSE
-#&gt;  99:          el-Sadri, Mawzoona 2018-06-27                    FALSE
-#&gt; 100:            el-Zadeh,  Muzna 2018-03-22                    FALSE
+#&gt;   1:               Adams, Jaimin 2018-09-16                    FALSE
+#&gt;   2:           Anderson, Arianna 2017-12-22                    FALSE
+#&gt;   3:         Arellano, Francisca 2018-04-25                    FALSE
+#&gt;   4:           Baldino, Ahanabah 2018-07-07                    FALSE
+#&gt;   5:                Banks, Dylan 2017-11-29                    FALSE
+#&gt;   6:            Beasley, Shamira 2018-10-26                    FALSE
+#&gt;   7:          Bennett, Christina 2018-06-15                    FALSE
+#&gt;   8:           Bennett, Nicholas 2018-06-23                    FALSE
+#&gt;   9:             Butcher, Mariah 2018-02-27                    FALSE
+#&gt;  10:                  Caro, Luis 2018-09-12                    FALSE
+#&gt;  11:         Chamberlain, Olivia 2018-05-05                    FALSE
+#&gt;  12:              Church, Marlon 2018-05-09                    FALSE
+#&gt;  13:              Clark, Jenifer 2018-08-12                    FALSE
+#&gt;  14:              Clayton, Blake 2018-03-07                    FALSE
+#&gt;  15:            Clements, Joshua 2018-01-03                    FALSE
+#&gt;  16:                 Clos, Naomi 2018-02-09                    FALSE
+#&gt;  17:                Crews, Bryce 2018-05-28                    FALSE
+#&gt;  18: De La Riva Luevano, Mary Lu 2018-03-08                    FALSE
+#&gt;  19:          Dintaman, Nicholas 2017-12-15                    FALSE
+#&gt;  20:                Do, Khrishan 2018-10-22                    FALSE
+#&gt;  21:           Dolbeare, Kenneth 2018-03-14                    FALSE
+#&gt;  22:           Emanuel, Jataesha 2018-07-20                    FALSE
+#&gt;  23:             Eriacho, Summer 2018-10-21                    FALSE
+#&gt;  24:              Fifita, Nicole 2018-10-04                    FALSE
+#&gt;  25:              Fuller, Morgan 2018-09-11                    FALSE
+#&gt;  26:                 Gaines, Eli 2018-03-17                    FALSE
+#&gt;  27:            Gallegos, Aliyah 2018-04-02                    FALSE
+#&gt;  28:           Gallegos, Juanito 2018-04-21                    FALSE
+#&gt;  29:            Galvan, Angelica 2018-09-04                    FALSE
+#&gt;  30:               Garcia, Tyler 2018-06-21                    FALSE
+#&gt;  31:            Gaskin, Graciela 2017-12-01                    FALSE
+#&gt;  32:          Gillespie, Jasmine 2018-02-21                    FALSE
+#&gt;  33:                  Ha, Esther 2018-09-21                    FALSE
+#&gt;  34:            Hall, Alexsondro 2018-09-09                    FALSE
+#&gt;  35:                Hamm, George 2018-04-17                    FALSE
+#&gt;  36:               Hauptli, Adam 2018-03-13                    FALSE
+#&gt;  37:               Heaton, Maren 2018-05-23                    FALSE
+#&gt;  38:               Heilman, Chau 2018-01-08                    FALSE
+#&gt;  39:               Jackson, Noah 2017-12-19                    FALSE
+#&gt;  40:            Jeffords, Yasmin 2018-06-14                    FALSE
+#&gt;  41:          Jennings, Danielle 2017-11-16                    FALSE
+#&gt;  42:              Jensen, Duncan 2018-05-23                    FALSE
+#&gt;  43:               Kalam, Sydney 2018-07-05                    FALSE
+#&gt;  44:               Kirbow, Jakob 2018-08-21                    FALSE
+#&gt;  45:             Kirby, Samantha 2018-03-01                    FALSE
+#&gt;  46:                  Le, Austin 2018-07-13                    FALSE
+#&gt;  47:                Lee, Jazmine 2018-08-02                    FALSE
+#&gt;  48:                Lilly, Lance 2018-02-01                    FALSE
+#&gt;  49:                  Lor, Sweta 2018-09-07                    FALSE
+#&gt;  50:            Manwaring, Navid 2017-12-04                    FALSE
+#&gt;  51:  Mcdermott Rivera, Mckenzie 2018-10-24                    FALSE
+#&gt;  52:               Metzler, John 2018-06-23                    FALSE
+#&gt;  53:           Michaels, Brianna 2018-07-17                    FALSE
+#&gt;  54:                 Minor, Cody 2018-03-11                    FALSE
+#&gt;  55:            Mo, Kawaileolani 2017-12-05                    FALSE
+#&gt;  56:              Moline, Elijah 2018-06-15                    FALSE
+#&gt;  57:             Morales, Connor 2017-11-27                    FALSE
+#&gt;  58:         Morrow, Christopher 2017-12-23                    FALSE
+#&gt;  59:               Murphy, Izell 2018-02-02                    FALSE
+#&gt;  60:               Nandih, Aaron 2018-05-04                       NA
+#&gt;  61:               Nedd, Daerius 2017-11-20                    FALSE
+#&gt;  62:              Nguyen, Connor 2018-08-04                    FALSE
+#&gt;  63:           Palomino, Kristin 2018-03-07                    FALSE
+#&gt;  64:               Phung, Nathan 2018-01-25                    FALSE
+#&gt;  65:            Quintana, Carmen 2018-04-09                       NA
+#&gt;  66:             Rivera, Elideth 2018-05-21                    FALSE
+#&gt;  67:              Roberts, Sarah 2018-11-14                    FALSE
+#&gt;  68:             Robinson, Casey 2018-01-12                    FALSE
+#&gt;  69:                Ross, Syanne 2018-02-21                    FALSE
+#&gt;  70:                Salas, Abdul 2018-01-20                    FALSE
+#&gt;  71:          Shepherd, Jessalyn 2018-10-13                    FALSE
+#&gt;  72:              Sivisay, Emily 2018-10-20                    FALSE
+#&gt;  73:             Sublette, Phung 2018-02-01                    FALSE
+#&gt;  74:              Suits, Drayton 2018-03-08                       NA
+#&gt;  75:                 Tran, Hamid 2018-04-15                    FALSE
+#&gt;  76:               Tran, Michael 2018-01-06                    FALSE
+#&gt;  77:             Trujillo, Kayla 2018-03-07                    FALSE
+#&gt;  78:               Vara, Gerardo 2018-10-19                    FALSE
+#&gt;  79:            Vasquez, Cristal 2018-02-08                    FALSE
+#&gt;  80:          Weinstein, Shawnia 2018-09-09                    FALSE
+#&gt;  81:              Widaa, Audrina 2017-12-18                    FALSE
+#&gt;  82:               Wilson, Kayla 2018-11-05                    FALSE
+#&gt;  83:             Zebulun, Alyson 2018-08-20                    FALSE
+#&gt;  84:           al-Kaleel, Najlaa 2018-08-29                    FALSE
+#&gt;  85:           al-Shahan, Jalaal 2018-08-13                    FALSE
+#&gt;  86:            al-Sham, Jumaima 2018-08-10                    FALSE
+#&gt;  87:           al-Vaziri, Jamaal 2018-05-22                    FALSE
+#&gt;  88:             el-Adel, Fat'hi 2018-01-23                    FALSE
+#&gt;  89:           el-Aly, Ibtisaama 2018-10-22                    FALSE
+#&gt;  90:           el-Arafat, Laaiqa 2018-08-02                    FALSE
+#&gt;  91:           el-Barakat, Jasra 2018-06-10                       NA
+#&gt;  92:             el-Basa, Sawada 2018-07-05                    FALSE
+#&gt;  93:             el-Ismail, Qais 2018-06-16                    FALSE
+#&gt;  94:             el-Kader, Hakam 2018-07-14                    FALSE
+#&gt;  95:            el-Majeed, Fuaad 2018-10-20                    FALSE
+#&gt;  96:          el-Mattar, Miqdaam 2018-03-28                    FALSE
+#&gt;  97:          el-Ramin, Sahheeda 2018-10-14                    FALSE
+#&gt;  98:        el-Sabet, Mahdhoodha 2018-09-21                    FALSE
+#&gt;  99:          el-Sadri, Mawzoona 2018-07-07                    FALSE
+#&gt; 100:            el-Zadeh,  Muzna 2018-04-01                    FALSE
 #&gt;                             name    surgery congestive heart failure
 #&gt;      cardiac arrhythmias valvular disease pulmonary circulation disorder
 #&gt;   1:               FALSE             TRUE                          FALSE
@@ -1124,106 +1124,106 @@ Indices are also included if so specified by the 'ind' argument.</p>
   <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"quan_original"</span>, <span class='st'>"quan_updated"</span>),
   <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt;                             name    surgery
-#&gt;   1:               Adams, Jaimin 2018-09-06
-#&gt;   2:           Anderson, Arianna 2017-12-12
-#&gt;   3:         Arellano, Francisca 2018-04-15
-#&gt;   4:           Baldino, Ahanabah 2018-06-27
-#&gt;   5:                Banks, Dylan 2017-11-19
-#&gt;   6:            Beasley, Shamira 2018-10-16
-#&gt;   7:          Bennett, Christina 2018-06-05
-#&gt;   8:           Bennett, Nicholas 2018-06-13
-#&gt;   9:             Butcher, Mariah 2018-02-17
-#&gt;  10:                  Caro, Luis 2018-09-02
-#&gt;  11:         Chamberlain, Olivia 2018-04-25
-#&gt;  12:              Church, Marlon 2018-04-29
-#&gt;  13:              Clark, Jenifer 2018-08-02
-#&gt;  14:              Clayton, Blake 2018-02-25
-#&gt;  15:            Clements, Joshua 2017-12-24
-#&gt;  16:                 Clos, Naomi 2018-01-30
-#&gt;  17:                Crews, Bryce 2018-05-18
-#&gt;  18: De La Riva Luevano, Mary Lu 2018-02-26
-#&gt;  19:          Dintaman, Nicholas 2017-12-05
-#&gt;  20:                Do, Khrishan 2018-10-12
-#&gt;  21:           Dolbeare, Kenneth 2018-03-04
-#&gt;  22:           Emanuel, Jataesha 2018-07-10
-#&gt;  23:             Eriacho, Summer 2018-10-11
-#&gt;  24:              Fifita, Nicole 2018-09-24
-#&gt;  25:              Fuller, Morgan 2018-09-01
-#&gt;  26:                 Gaines, Eli 2018-03-07
-#&gt;  27:            Gallegos, Aliyah 2018-03-23
-#&gt;  28:           Gallegos, Juanito 2018-04-11
-#&gt;  29:            Galvan, Angelica 2018-08-25
-#&gt;  30:               Garcia, Tyler 2018-06-11
-#&gt;  31:            Gaskin, Graciela 2017-11-21
-#&gt;  32:          Gillespie, Jasmine 2018-02-11
-#&gt;  33:                  Ha, Esther 2018-09-11
-#&gt;  34:            Hall, Alexsondro 2018-08-30
-#&gt;  35:                Hamm, George 2018-04-07
-#&gt;  36:               Hauptli, Adam 2018-03-03
-#&gt;  37:               Heaton, Maren 2018-05-13
-#&gt;  38:               Heilman, Chau 2017-12-29
-#&gt;  39:               Jackson, Noah 2017-12-09
-#&gt;  40:            Jeffords, Yasmin 2018-06-04
-#&gt;  41:          Jennings, Danielle 2017-11-06
-#&gt;  42:              Jensen, Duncan 2018-05-13
-#&gt;  43:               Kalam, Sydney 2018-06-25
-#&gt;  44:               Kirbow, Jakob 2018-08-11
-#&gt;  45:             Kirby, Samantha 2018-02-19
-#&gt;  46:                  Le, Austin 2018-07-03
-#&gt;  47:                Lee, Jazmine 2018-07-23
-#&gt;  48:                Lilly, Lance 2018-01-22
-#&gt;  49:                  Lor, Sweta 2018-08-28
-#&gt;  50:            Manwaring, Navid 2017-11-24
-#&gt;  51:  Mcdermott Rivera, Mckenzie 2018-10-14
-#&gt;  52:               Metzler, John 2018-06-13
-#&gt;  53:           Michaels, Brianna 2018-07-07
-#&gt;  54:                 Minor, Cody 2018-03-01
-#&gt;  55:            Mo, Kawaileolani 2017-11-25
-#&gt;  56:              Moline, Elijah 2018-06-05
-#&gt;  57:             Morales, Connor 2017-11-17
-#&gt;  58:         Morrow, Christopher 2017-12-13
-#&gt;  59:               Murphy, Izell 2018-01-23
-#&gt;  60:               Nandih, Aaron 2018-04-24
-#&gt;  61:               Nedd, Daerius 2017-11-10
-#&gt;  62:              Nguyen, Connor 2018-07-25
-#&gt;  63:           Palomino, Kristin 2018-02-25
-#&gt;  64:               Phung, Nathan 2018-01-15
-#&gt;  65:            Quintana, Carmen 2018-03-30
-#&gt;  66:             Rivera, Elideth 2018-05-11
-#&gt;  67:              Roberts, Sarah 2018-11-04
-#&gt;  68:             Robinson, Casey 2018-01-02
-#&gt;  69:                Ross, Syanne 2018-02-11
-#&gt;  70:                Salas, Abdul 2018-01-10
-#&gt;  71:          Shepherd, Jessalyn 2018-10-03
-#&gt;  72:              Sivisay, Emily 2018-10-10
-#&gt;  73:             Sublette, Phung 2018-01-22
-#&gt;  74:              Suits, Drayton 2018-02-26
-#&gt;  75:                 Tran, Hamid 2018-04-05
-#&gt;  76:               Tran, Michael 2017-12-27
-#&gt;  77:             Trujillo, Kayla 2018-02-25
-#&gt;  78:               Vara, Gerardo 2018-10-09
-#&gt;  79:            Vasquez, Cristal 2018-01-29
-#&gt;  80:          Weinstein, Shawnia 2018-08-30
-#&gt;  81:              Widaa, Audrina 2017-12-08
-#&gt;  82:               Wilson, Kayla 2018-10-26
-#&gt;  83:             Zebulun, Alyson 2018-08-10
-#&gt;  84:           al-Kaleel, Najlaa 2018-08-19
-#&gt;  85:           al-Shahan, Jalaal 2018-08-03
-#&gt;  86:            al-Sham, Jumaima 2018-07-31
-#&gt;  87:           al-Vaziri, Jamaal 2018-05-12
-#&gt;  88:             el-Adel, Fat'hi 2018-01-13
-#&gt;  89:           el-Aly, Ibtisaama 2018-10-12
-#&gt;  90:           el-Arafat, Laaiqa 2018-07-23
-#&gt;  91:           el-Barakat, Jasra 2018-05-31
-#&gt;  92:             el-Basa, Sawada 2018-06-25
-#&gt;  93:             el-Ismail, Qais 2018-06-06
-#&gt;  94:             el-Kader, Hakam 2018-07-04
-#&gt;  95:            el-Majeed, Fuaad 2018-10-10
-#&gt;  96:          el-Mattar, Miqdaam 2018-03-18
-#&gt;  97:          el-Ramin, Sahheeda 2018-10-04
-#&gt;  98:        el-Sabet, Mahdhoodha 2018-09-11
-#&gt;  99:          el-Sadri, Mawzoona 2018-06-27
-#&gt; 100:            el-Zadeh,  Muzna 2018-03-22
+#&gt;   1:               Adams, Jaimin 2018-09-16
+#&gt;   2:           Anderson, Arianna 2017-12-22
+#&gt;   3:         Arellano, Francisca 2018-04-25
+#&gt;   4:           Baldino, Ahanabah 2018-07-07
+#&gt;   5:                Banks, Dylan 2017-11-29
+#&gt;   6:            Beasley, Shamira 2018-10-26
+#&gt;   7:          Bennett, Christina 2018-06-15
+#&gt;   8:           Bennett, Nicholas 2018-06-23
+#&gt;   9:             Butcher, Mariah 2018-02-27
+#&gt;  10:                  Caro, Luis 2018-09-12
+#&gt;  11:         Chamberlain, Olivia 2018-05-05
+#&gt;  12:              Church, Marlon 2018-05-09
+#&gt;  13:              Clark, Jenifer 2018-08-12
+#&gt;  14:              Clayton, Blake 2018-03-07
+#&gt;  15:            Clements, Joshua 2018-01-03
+#&gt;  16:                 Clos, Naomi 2018-02-09
+#&gt;  17:                Crews, Bryce 2018-05-28
+#&gt;  18: De La Riva Luevano, Mary Lu 2018-03-08
+#&gt;  19:          Dintaman, Nicholas 2017-12-15
+#&gt;  20:                Do, Khrishan 2018-10-22
+#&gt;  21:           Dolbeare, Kenneth 2018-03-14
+#&gt;  22:           Emanuel, Jataesha 2018-07-20
+#&gt;  23:             Eriacho, Summer 2018-10-21
+#&gt;  24:              Fifita, Nicole 2018-10-04
+#&gt;  25:              Fuller, Morgan 2018-09-11
+#&gt;  26:                 Gaines, Eli 2018-03-17
+#&gt;  27:            Gallegos, Aliyah 2018-04-02
+#&gt;  28:           Gallegos, Juanito 2018-04-21
+#&gt;  29:            Galvan, Angelica 2018-09-04
+#&gt;  30:               Garcia, Tyler 2018-06-21
+#&gt;  31:            Gaskin, Graciela 2017-12-01
+#&gt;  32:          Gillespie, Jasmine 2018-02-21
+#&gt;  33:                  Ha, Esther 2018-09-21
+#&gt;  34:            Hall, Alexsondro 2018-09-09
+#&gt;  35:                Hamm, George 2018-04-17
+#&gt;  36:               Hauptli, Adam 2018-03-13
+#&gt;  37:               Heaton, Maren 2018-05-23
+#&gt;  38:               Heilman, Chau 2018-01-08
+#&gt;  39:               Jackson, Noah 2017-12-19
+#&gt;  40:            Jeffords, Yasmin 2018-06-14
+#&gt;  41:          Jennings, Danielle 2017-11-16
+#&gt;  42:              Jensen, Duncan 2018-05-23
+#&gt;  43:               Kalam, Sydney 2018-07-05
+#&gt;  44:               Kirbow, Jakob 2018-08-21
+#&gt;  45:             Kirby, Samantha 2018-03-01
+#&gt;  46:                  Le, Austin 2018-07-13
+#&gt;  47:                Lee, Jazmine 2018-08-02
+#&gt;  48:                Lilly, Lance 2018-02-01
+#&gt;  49:                  Lor, Sweta 2018-09-07
+#&gt;  50:            Manwaring, Navid 2017-12-04
+#&gt;  51:  Mcdermott Rivera, Mckenzie 2018-10-24
+#&gt;  52:               Metzler, John 2018-06-23
+#&gt;  53:           Michaels, Brianna 2018-07-17
+#&gt;  54:                 Minor, Cody 2018-03-11
+#&gt;  55:            Mo, Kawaileolani 2017-12-05
+#&gt;  56:              Moline, Elijah 2018-06-15
+#&gt;  57:             Morales, Connor 2017-11-27
+#&gt;  58:         Morrow, Christopher 2017-12-23
+#&gt;  59:               Murphy, Izell 2018-02-02
+#&gt;  60:               Nandih, Aaron 2018-05-04
+#&gt;  61:               Nedd, Daerius 2017-11-20
+#&gt;  62:              Nguyen, Connor 2018-08-04
+#&gt;  63:           Palomino, Kristin 2018-03-07
+#&gt;  64:               Phung, Nathan 2018-01-25
+#&gt;  65:            Quintana, Carmen 2018-04-09
+#&gt;  66:             Rivera, Elideth 2018-05-21
+#&gt;  67:              Roberts, Sarah 2018-11-14
+#&gt;  68:             Robinson, Casey 2018-01-12
+#&gt;  69:                Ross, Syanne 2018-02-21
+#&gt;  70:                Salas, Abdul 2018-01-20
+#&gt;  71:          Shepherd, Jessalyn 2018-10-13
+#&gt;  72:              Sivisay, Emily 2018-10-20
+#&gt;  73:             Sublette, Phung 2018-02-01
+#&gt;  74:              Suits, Drayton 2018-03-08
+#&gt;  75:                 Tran, Hamid 2018-04-15
+#&gt;  76:               Tran, Michael 2018-01-06
+#&gt;  77:             Trujillo, Kayla 2018-03-07
+#&gt;  78:               Vara, Gerardo 2018-10-19
+#&gt;  79:            Vasquez, Cristal 2018-02-08
+#&gt;  80:          Weinstein, Shawnia 2018-09-09
+#&gt;  81:              Widaa, Audrina 2017-12-18
+#&gt;  82:               Wilson, Kayla 2018-11-05
+#&gt;  83:             Zebulun, Alyson 2018-08-20
+#&gt;  84:           al-Kaleel, Najlaa 2018-08-29
+#&gt;  85:           al-Shahan, Jalaal 2018-08-13
+#&gt;  86:            al-Sham, Jumaima 2018-08-10
+#&gt;  87:           al-Vaziri, Jamaal 2018-05-22
+#&gt;  88:             el-Adel, Fat'hi 2018-01-23
+#&gt;  89:           el-Aly, Ibtisaama 2018-10-22
+#&gt;  90:           el-Arafat, Laaiqa 2018-08-02
+#&gt;  91:           el-Barakat, Jasra 2018-06-10
+#&gt;  92:             el-Basa, Sawada 2018-07-05
+#&gt;  93:             el-Ismail, Qais 2018-06-16
+#&gt;  94:             el-Kader, Hakam 2018-07-14
+#&gt;  95:            el-Majeed, Fuaad 2018-10-20
+#&gt;  96:          el-Mattar, Miqdaam 2018-03-28
+#&gt;  97:          el-Ramin, Sahheeda 2018-10-14
+#&gt;  98:        el-Sabet, Mahdhoodha 2018-09-21
+#&gt;  99:          el-Sadri, Mawzoona 2018-07-07
+#&gt; 100:            el-Zadeh,  Muzna 2018-04-01
 #&gt;                             name    surgery
 #&gt;      charlson_icd10_myocardial_infarction
 #&gt;   1:                                   NA

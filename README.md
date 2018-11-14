@@ -1,6 +1,6 @@
 ---
 output: github_document
----
+--- 
 
 [![Build Status](https://travis-ci.org/eribul/coder.svg?branch=master)](https://travis-ci.org/eribul/coder)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/eribul/coder?branch=master&svg=true)](https://ci.appveyor.com/project/eribul/coder)
@@ -11,7 +11,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-# coder
+# coder 
 
 The goal of `coder` is to classify items from one dataset, using codes from a secondary source. 
 Please se vigtnettes with introductionary examples! 
