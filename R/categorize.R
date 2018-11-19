@@ -52,6 +52,10 @@ categorize <- function(
     .data <- as.data.table(.data)
   }
 
+  # Use id as key and check that it is unique!
+  if (sort & !haskey(.data)) setkeyv(.data, id)
+  if (anyDuplicated(.data[[id]])) stop("Non-unique ids!")
+
   cod       <- codify(x = .data, from = from, id = id, date = date, days = days)
   cl        <- classify(cod, what, tech_names = tech_names)
 
