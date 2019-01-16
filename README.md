@@ -1,6 +1,6 @@
 ---
 output: github_document
---- 
+---
 
 [![Build Status](https://travis-ci.org/eribul/coder.svg?branch=master)](https://travis-ci.org/eribul/coder)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/eribul/coder?branch=master&svg=true)](https://ci.appveyor.com/project/eribul/coder)
@@ -8,7 +8,7 @@ output: github_document
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file --> 
 
 
 # coder 
@@ -49,7 +49,7 @@ Arbitrary `classcodes` objects can be specified by the user.
 |:----------------------------|:----------------------------------------------------------------------|:----------|:----------------------------------------------------------------------------|--:|-----:|
 |charlson_icd10               |Comorbidity based on charlson                                          |icd10      |regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated | 17|  1178|
 |cps_icd10                    |comorbidity-polypharmacy score (CPS)                                   |icd10      |only_ordinary                                                                |  2| 12406|
-|elix_icd10                   |Comorbidity based on elix                                              |icd10      |sum_all, walraven, sid29, sid30                                              | 31|  1517|
+|elix_icd10                   |Comorbidity based on elix                                              |icd10      |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm         | 31|  1517|
 |ex_carbrands                 |Example data of car brand names and their producers.                   |ex_allcars |                                                                             |  7|    22|
 |hip_adverse_events_icd10     |Adverse events after hip arthroplasty                                  |icd10      |                                                                             |  6|   306|
 |hip_adverse_events_icd10_old |Adverse events after hip arthroplasty                                  |icd10      |sos, shar                                                                    |  3|   523|

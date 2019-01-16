@@ -4,17 +4,22 @@
 \name{elix_icd10}
 \alias{elix_icd10}
 \title{Classcodes for Elixhauser based on ICD-10 codes}
-\format{A data frame with 31 rows and 2 variables:
+\format{A data frame with 31 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
   \item{sum_all}{all weights = 1. This is included for convenience when
   calculating several indices simultainisly}
+  \item{sum_all_ahrq} as \code{sum_all} exluding "cardiac arrythmias"
   \item{walraven}{weights suggested by Walraven et al (2009)}
   \item{sid29}{weights suggested by Thompson et al. (2015)
     based on all conditions except cardian arryrtmias}
   \item{sid30}{weights suggested by Thompson et al. (2015)
     based on all conditions}
+ \item{ahrq_mort}{weights for in-hospital mortality suggested by
+   Moore et al. (2017)}
+ \item{ahrq_mort}{weights for readmissions suggested by
+   Moore et al. (2017)}
 }}
 \source{
 Quan Hude et al. (2005). Coding algorithms for defining
@@ -32,6 +37,11 @@ Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
   A new Elixhauser-based comorbidity summary measure to predict in-hospital
   mortality. Med Care, 53(4), 374–379.
   http://doi.org/10.1097/MLR.0000000000000326
+
+Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
+  Identifying Increased Risk of Readmission and In-hospital Mortality Using
+  Hospital Administrative Data.
+  Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
 }
 \usage{
 elix_icd10
