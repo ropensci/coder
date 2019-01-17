@@ -8,7 +8,7 @@
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 #'   \item{sum_all}{all weights = 1. This is included for convenience when
 #'   calculating several indices simultainisly}
-#'   \item{sum_all_ahrq} as \code{sum_all} exluding "cardiac arrythmias"
+#'   \item{sum_all_ahrq}{as \code{sum_all} exluding "cardiac arrythmias"}
 #'   \item{walraven}{weights suggested by Walraven et al (2009)}
 #'   \item{sid29}{weights suggested by Thompson et al. (2015)
 #'     based on all conditions except cardian arryrtmias}
@@ -16,7 +16,7 @@
 #'     based on all conditions}
 #'  \item{ahrq_mort}{weights for in-hospital mortality suggested by
 #'    Moore et al. (2017)}
-#'  \item{ahrq_mort}{weights for readmissions suggested by
+#'  \item{ahrq_readm}{weights for readmissions suggested by
 #'    Moore et al. (2017)}
 #' }
 #' @source
