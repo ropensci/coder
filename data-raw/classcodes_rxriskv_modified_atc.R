@@ -1,4 +1,4 @@
-rxriskv_modified_atc <- tibble::frame_data(
+rxriskv_modified_atc <- tibble::tribble(
 
   ~group,                                  ~regex,
 

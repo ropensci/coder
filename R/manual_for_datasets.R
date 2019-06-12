@@ -77,7 +77,6 @@
 #'
 #' * Weights decoded from Yurkovich et al. (2015).
 #'
-#'
 #' @source
 #'  Armitage, J. N., & van der Meulen, J. H. (2010).
 #'    Identifying co-morbidity in surgical patients using administrative data
@@ -127,66 +126,42 @@
 "cps_icd10"
 
 
-
-
-
-#' Old classcodes for adverse events after hip arthroplasty based on ICD-10 codes
+#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 and KVA codes
 #'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
-#'
-#' @format A data frame with 3 rows and 3 variables:
-#' \describe{
-#'   \item{group}{Different types of adverse events:
-#'     "vascular disease", "GI" and "others" }
-#'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-#'   \item{condition}{"vascular disease" and "GI" is conditioned on ICD-10 code
-#'     originating from main diagnosis (variable "hdia")}
-#'   \item{shar}{weights as defined by the Swedish Hip Arthroplasty Register}
-#'   \item{sos}{weights as defined by
-#'     The (Swedish) National Board of Health and Welfare "Socialstyrelsen"}
-#' }
-#' @family default classcodes
-"hip_adverse_events_icd10_old"
-
-
-
-#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 codes
-#'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#' \code{\link{classcodes}} objects to use with \code{\link{classify}}
 #'
 #' Group names are prefixed by two letters as given by the reference.
 #' Two groups (DB and DM) are split into two due to different conditions.
 #'
 #' @section Conditions:
-#' Two special conditions are used (see the reference):
+#' Special conditions are used (see the reference):
 #'
 #' \describe{
-#'  \item{hbdia1_hdia}{a boolean variable with value \code{TRUE} if the code was
-#'  given as any type of diagnose at first visit after TKA, or as main diagnose
+#'  \item{hbdia1_hdia}{\code{TRUE} if the code was
+#'  given as any type of diagnose at first visit after TKA/THA, or as main diagnose
 #'  for later visits, otherwise \code{FALSE}}
-#'  \item{late_hdia}{a boolean variable with value \code{TRUE} if the code was
-#'  given as main diagnose at a later visit after TKA, otherwise \code{FALSE}}
+#'  \item{late_hdia}{\code{TRUE} if the code was
+#'  given as main diagnose at a later visit after TKA/THA, otherwise \code{FALSE}}
+#'  \item{post_op}{\code{TRUE} if the code was
+#'  given at a later visit after TKA/THA, otherwise \code{FALSE}}
 #' }
 #'
-#' @format A data frame with 6 rows and 3 variables:
+#' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 #'   \item{condition}{two special conditions are used, see below.}
 #' }
 #'
-#'
 #' @references Codes for knee taken from p. 83 of the annual report 2016 from knee
 #' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
-#' \code{hip_adverse_events_icd10} is a modified version for hips based on
-#' \code{knee_adverse_events_icd10}.
+#' \code{hip.ae_icd10} is a modified version for hips based on
+#' \code{knee.ae_icd10}.
 #'
-#' @seealso \code{\link{hip_adverse_events_icd10_old}} for a now utdated version
-#' of hip adverse events.
-#'
-#' @aliases hip_adverse_events_icd10
+#' @aliases hip.ae_icd10 hip.ae_kva knee.ae_kva
 #' @family default classcodes
-"knee_adverse_events_icd10"
+"knee.ae_icd10"
+
 
 
 

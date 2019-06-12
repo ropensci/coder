@@ -48,13 +48,6 @@ index(cl, "quan_original")
 cl <- classify(c("C80", "I21"), "charlson_icd10")
 index(cl, "quan_updated")
 
-
-# Find patients with adverse events after hip surgery
-co <- codify(ex_people, ex_icd10, id = "name",
-    date = "surgery", days = c(-365, 0))
-cl <- classify(co, "hip_adverse_events_icd10_old")
-index(cl)
-
 }
 \seealso{
 Other verbs: \code{\link{categorize}},

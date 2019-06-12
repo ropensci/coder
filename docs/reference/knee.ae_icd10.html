@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for Elixhauser based on ICD-10 codes — elix_icd10 • coder</title>
+<title>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 and KVA codes — knee.ae_icd10 • coder</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Classcodes for Elixhauser based on ICD-10 codes — elix_icd10" />
+<meta property="og:title" content="Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 and KVA codes — knee.ae_icd10" />
 
-<meta property="og:description" content="A classcodes object to use with classify" />
+<meta property="og:description" content="classcodes objects to use with classify" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,65 +117,59 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for Elixhauser based on ICD-10 codes</h1>
+    <h1>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 and KVA codes</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>elix_icd10.Rd</code></div>
+    <div class="hidden name"><code>knee.ae_icd10.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p><code><a href='classcodes.html'>classcodes</a></code> objects to use with <code><a href='classify.html'>classify</a></code></p>
     
     </div>
 
-    <pre class="usage"><span class='no'>elix_icd10</span></pre>
+    <pre class="usage"><span class='no'>knee.ae_icd10</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 31 rows and 8 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>comorbidity groups</p></dd>
+    <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
   <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes of each group</p></dd>
-  <dt>sum_all</dt><dd><p>all weights = 1. This is included for convenience when
-  calculating several indices simultainisly</p></dd>
-  <dt>sum_all_ahrq</dt><dd><p>as <code>sum_all</code> exluding "cardiac arrythmias"</p></dd>
-  <dt>walraven</dt><dd><p>weights suggested by Walraven et al (2009)</p></dd>
-  <dt>sid29</dt><dd><p>weights suggested by Thompson et al. (2015)
-    based on all conditions except cardian arryrtmias</p></dd>
-  <dt>sid30</dt><dd><p>weights suggested by Thompson et al. (2015)
-    based on all conditions</p></dd>
- <dt>ahrq_mort</dt><dd><p>weights for in-hospital mortality suggested by
-   Moore et al. (2017)</p></dd>
- <dt>ahrq_readm</dt><dd><p>weights for readmissions suggested by
-   Moore et al. (2017)</p></dd>
+  <dt>condition</dt><dd><p>two special conditions are used, see below.</p></dd>
 </dl>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Quan Hude et al. (2005). Coding algorithms for defining
-  comorbidities in ICD-9-CM and ICD-10 administrative data.
-  Medical care, 1130-1139.
-  <a href='www.jstor.org/stable/3768193'>www.jstor.org/stable/3768193</a></p>
-<p>Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
-  C. Van, … Jennings, A. (2009).
-  A Modification of the Elixhauser Comorbidity Measures Into a Point System
-  for Hospital Death Using Administrative Data. Medical Care, 47(6), 626–633.</p>
-<p>Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
-  Vadera, S., &amp; Griffith, S. D. (2015).
-  A new Elixhauser-based comorbidity summary measure to predict in-hospital
-  mortality. Med Care, 53(4), 374–379.
-  http://doi.org/10.1097/MLR.0000000000000326</p>
-<p>Moore, B. J., White, S., Washington, R., Coenen, N., &amp; Elixhauser, A. (2017).
-  Identifying Increased Risk of Readmission and In-hospital Mortality Using
-  Hospital Administrative Data.
-  Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735</p>
+    <p>Group names are prefixed by two letters as given by the reference.
+Two groups (DB and DM) are split into two due to different conditions.</p>
+    
+    <h2 class="hasAnchor" id="conditions"><a class="anchor" href="#conditions"></a>Conditions</h2>
+
+    
+    <p>Special conditions are used (see the reference):</p>
+<dl class='dl-horizontal'>
+ <dt>hbdia1_hdia</dt><dd><p><code>TRUE</code> if the code was
+ given as any type of diagnose at first visit after TKA/THA, or as main diagnose
+ for later visits, otherwise <code>FALSE</code></p></dd>
+ <dt>late_hdia</dt><dd><p><code>TRUE</code> if the code was
+ given as main diagnose at a later visit after TKA/THA, otherwise <code>FALSE</code></p></dd>
+ <dt>post_op</dt><dd><p><code>TRUE</code> if the code was
+ given at a later visit after TKA/THA, otherwise <code>FALSE</code></p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Codes for knee taken from p. 83 of the annual report 2016 from knee
+arthroplasty register <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
+<code>hip.ae_icd10</code> is a modified version for hips based on
+<code>knee.ae_icd10</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-  <code><a href='cps_icd10.html'>cps_icd10</a></code>,
+  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
   <code><a href='hip_fracture_ae_icd10.html'>hip_fracture_ae_icd10</a></code>,
-  <code><a href='hip_fracture_ae_kva.html'>hip_fracture_ae_kva</a></code>,
-  <code><a href='knee.ae_icd10.html'>knee.ae_icd10</a></code>, <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
+  <code><a href='hip_fracture_ae_kva.html'>hip_fracture_ae_kva</a></code>, <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
     
 
   </div>
@@ -185,7 +179,11 @@
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#source">Source</a></li>
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#conditions">Conditions</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

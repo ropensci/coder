@@ -1,4 +1,4 @@
-cps_icd10 <- tibble::frame_data(
+cps_icd10 <- tibble::tribble(
 
   ~group,              ~regex,                                 ~only_ordinary,
   "ordinary", "^[[:upper:]][0-9]{2}.?[0-9]{0,2}[[:upper:]]?$",              1,

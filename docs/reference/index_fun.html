@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -187,111 +187,6 @@ if index calculated without weights.</p></td>
 <span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I21"</span>), <span class='st'>"charlson_icd10"</span>)
 <span class='fu'>index</span>(<span class='no'>cl</span>, <span class='st'>"quan_updated"</span>)</div><div class='output co'>#&gt; C80 I21 
 #&gt;   6   0 </div><div class='input'>
-
-<span class='co'># Find patients with adverse events after hip surgery</span>
-<span class='no'>co</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
-    <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
-<span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='no'>co</span>, <span class='st'>"hip_adverse_events_icd10_old"</span>)
-<span class='fu'>index</span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;            Clements, Joshua            Mo, Kawaileolani 
-#&gt;                           0                           0 
-#&gt;             Rivera, Elideth             Sublette, Phung 
-#&gt;                           0                           0 
-#&gt;               Tran, Michael             Trujillo, Kayla 
-#&gt;                           0                           0 
-#&gt;          Weinstein, Shawnia           al-Shahan, Jalaal 
-#&gt;                           0                           0 
-#&gt;        el-Sabet, Mahdhoodha             Butcher, Mariah 
-#&gt;                           0                          NA 
-#&gt;               Jackson, Noah               Nandih, Aaron 
-#&gt;                          NA                          NA 
-#&gt;            Quintana, Carmen              Sivisay, Emily 
-#&gt;                          NA                          NA 
-#&gt;              Suits, Drayton           el-Barakat, Jasra 
-#&gt;                          NA                          NA 
-#&gt;               Adams, Jaimin           al-Kaleel, Najlaa 
-#&gt;                           0                           0 
-#&gt;            al-Sham, Jumaima           al-Vaziri, Jamaal 
-#&gt;                           0                           0 
-#&gt;           Anderson, Arianna         Arellano, Francisca 
-#&gt;                           0                           0 
-#&gt;           Baldino, Ahanabah                Banks, Dylan 
-#&gt;                           0                           0 
-#&gt;            Beasley, Shamira          Bennett, Christina 
-#&gt;                           0                           0 
-#&gt;           Bennett, Nicholas                  Caro, Luis 
-#&gt;                           0                           0 
-#&gt;         Chamberlain, Olivia              Church, Marlon 
-#&gt;                           0                           0 
-#&gt;              Clark, Jenifer              Clayton, Blake 
-#&gt;                           0                           0 
-#&gt;                 Clos, Naomi                Crews, Bryce 
-#&gt;                           0                           0 
-#&gt; De La Riva Luevano, Mary Lu          Dintaman, Nicholas 
-#&gt;                           0                           0 
-#&gt;                Do, Khrishan           Dolbeare, Kenneth 
-#&gt;                           0                           0 
-#&gt;             el-Adel, Fat'hi           el-Aly, Ibtisaama 
-#&gt;                           0                           0 
-#&gt;           el-Arafat, Laaiqa             el-Basa, Sawada 
-#&gt;                           1                           0 
-#&gt;             el-Ismail, Qais             el-Kader, Hakam 
-#&gt;                           0                           0 
-#&gt;            el-Majeed, Fuaad          el-Mattar, Miqdaam 
-#&gt;                           0                           0 
-#&gt;          el-Ramin, Sahheeda          el-Sadri, Mawzoona 
-#&gt;                           0                           0 
-#&gt;            el-Zadeh,  Muzna           Emanuel, Jataesha 
-#&gt;                           0                           0 
-#&gt;             Eriacho, Summer              Fifita, Nicole 
-#&gt;                           0                           0 
-#&gt;              Fuller, Morgan                 Gaines, Eli 
-#&gt;                           0                           0 
-#&gt;            Gallegos, Aliyah           Gallegos, Juanito 
-#&gt;                           0                           0 
-#&gt;            Galvan, Angelica               Garcia, Tyler 
-#&gt;                           0                           0 
-#&gt;            Gaskin, Graciela          Gillespie, Jasmine 
-#&gt;                           0                           0 
-#&gt;                  Ha, Esther            Hall, Alexsondro 
-#&gt;                           0                           0 
-#&gt;                Hamm, George               Hauptli, Adam 
-#&gt;                           0                           0 
-#&gt;               Heaton, Maren               Heilman, Chau 
-#&gt;                           0                           0 
-#&gt;            Jeffords, Yasmin          Jennings, Danielle 
-#&gt;                           0                           0 
-#&gt;              Jensen, Duncan               Kalam, Sydney 
-#&gt;                           0                           0 
-#&gt;               Kirbow, Jakob             Kirby, Samantha 
-#&gt;                           0                           0 
-#&gt;                  Le, Austin                Lee, Jazmine 
-#&gt;                           0                           0 
-#&gt;                Lilly, Lance                  Lor, Sweta 
-#&gt;                           0                           0 
-#&gt;            Manwaring, Navid  Mcdermott Rivera, Mckenzie 
-#&gt;                           0                           0 
-#&gt;               Metzler, John           Michaels, Brianna 
-#&gt;                           0                           0 
-#&gt;                 Minor, Cody              Moline, Elijah 
-#&gt;                           0                           0 
-#&gt;             Morales, Connor         Morrow, Christopher 
-#&gt;                           0                           0 
-#&gt;               Murphy, Izell               Nedd, Daerius 
-#&gt;                           0                           0 
-#&gt;              Nguyen, Connor           Palomino, Kristin 
-#&gt;                           0                           0 
-#&gt;               Phung, Nathan              Roberts, Sarah 
-#&gt;                           0                           0 
-#&gt;             Robinson, Casey                Ross, Syanne 
-#&gt;                           0                           0 
-#&gt;                Salas, Abdul          Shepherd, Jessalyn 
-#&gt;                           0                           0 
-#&gt;                 Tran, Hamid               Vara, Gerardo 
-#&gt;                           0                           0 
-#&gt;            Vasquez, Cristal              Widaa, Audrina 
-#&gt;                           0                           0 
-#&gt;               Wilson, Kayla             Zebulun, Alyson 
-#&gt;                           0                           0 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

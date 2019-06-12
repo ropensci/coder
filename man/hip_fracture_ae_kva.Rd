@@ -26,10 +26,8 @@ Companion codes based on ICD-10 \code{\link{hip_fracture_ae_icd10}}.
 
 Other default classcodes: \code{\link{charlson_icd10}},
   \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
-  \code{\link{hip_adverse_events_icd10_old}},
   \code{\link{hip_fracture_ae_icd10}},
-  \code{\link{knee_adverse_events_icd10}},
-  \code{\link{rxriskv}}
+  \code{\link{knee.ae_icd10}}, \code{\link{rxriskv}}
 }
 \concept{default classcodes}
 \keyword{datasets}

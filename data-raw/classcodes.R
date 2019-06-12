@@ -9,7 +9,7 @@ tibble::tibble(
   mutate(
     data  = map(names, ~ readxl::read_excel(xl_path, .))
   ) %>%
-  separate(names, c("name", "coding")) %>%
+  separate(names, c("name", "coding"), sep = "_") %>%
   mutate(
     description = paste("Comorbidity based on", name),
     classcode = pmap(list(data, coding, description),
@@ -22,5 +22,9 @@ tibble::tibble(
 usethis::use_data(
   charlson_icd10,
   elix_icd10,
+  hip.ae_icd10,
+  hip.ae_kva,
+  knee.ae_icd10,
+  knee.ae_kva,
   overwrite = TRUE
 )

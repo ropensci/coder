@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2019-01-16</h4>
+            <h4 class="date">2019-06-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -116,12 +116,12 @@
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_cars)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;                         id          code  code_date</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2017-11-01</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2017-12-15</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2018-01-10</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-08-06</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2018-11-03</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2017-02-01</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2018-03-27</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2018-05-10</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2018-06-05</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-12-30</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2019-03-29</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2017-06-27</span></a></code></pre></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ex_carbrands</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;     group                                regex</span></a>

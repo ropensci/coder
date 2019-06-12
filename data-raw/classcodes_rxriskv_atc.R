@@ -1,4 +1,4 @@
-rxriskv_atc <- tibble::frame_data(
+rxriskv_atc <- tibble::tribble(
 
   ~group,                                      ~regex,
 
@@ -15,7 +15,7 @@ rxriskv_atc <- tibble::frame_data(
   "depression",                                '^N06A[ABGX][0-2][0-689]',
   "diabetes",                                  '^A10[AB][A-G][01][1-8]',
   "end stage renal disease",                   '^B03XA0[12]|A11CC0[1-4]',
-  "epilepsy,	",                               'N^03A[ABD-GX][01][0-59]',
+  "epilepsy,	",                               '^N03A[ABD-GX][01][0-59]',
   "gastric oesophageal reflux disorder",       '^A02B[A-DX][05][1-6]',
   "glaucoma",                                  '^S01E[A-EX][05][1-5]',
   "gout",                                      '^M04A[A-C]01',
