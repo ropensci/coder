@@ -8,37 +8,15 @@ ex_cars <-
     code_date = Sys.Date() - sample(N)
   )
 
-
 ex_carbrands <-
   as.classcodes(data.frame(
-    group = c(
-      "Mazda",
-      #"Renault",
-      "Mer-Ben",
-      # "GM",
-      "Ford",
-      "Fiat",
-      #"Honda",
-      "Toyota",
-      "Volksw",
-      "Geely"
-    ),
+    group = c("Mazda", "Mer-Ben", "Ford", "Fiat", "Toyota", "Volksw", "Geely"),
     regex = c(
-      "Mazda",
-      #"Datsun",
-      "Merc",
-      #"Cadillac|Camaro|Pontiac",
-      "Ford|Lincoln",
-      "Chrysler|Fiat|Dodge|Ferrari|Maserati",
-      #"Honda",
-      "Toyota",
-      "Porsche",
-      "Volvo|Lotus"
-    )
+      "Mazda", "Merc", "Ford|Lincoln", "Chrysler|Fiat|Dodge|Ferrari|Maserati",
+      "Toyota", "Porsche", "Volvo|Lotus")
   ),
   coding = "ex_allcars",
   description = "Example data of car brand names and their producers."
 )
-
 
 usethis::use_data(ex_cars, ex_carbrands, overwrite = TRUE)
