@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
       </span>
     </div>
 
@@ -143,45 +143,18 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>all_classcodes</span>()</div><div class='output co'>#&gt;                clascodes
-#&gt; 1         charlson_icd10
-#&gt; 2              cps_icd10
-#&gt; 3             elix_icd10
-#&gt; 4           ex_carbrands
-#&gt; 5           hip.ae_icd10
-#&gt; 6             hip.ae_kva
-#&gt; 7  hip_fracture_ae_icd10
-#&gt; 8    hip_fracture_ae_kva
-#&gt; 9          knee.ae_icd10
-#&gt; 10           knee.ae_kva
-#&gt; 11           rxriskv_atc
-#&gt; 12  rxriskv_modified_atc
-#&gt;                                                               description
-#&gt; 1                                           Comorbidity based on charlson
-#&gt; 2                                    comorbidity-polypharmacy score (CPS)
-#&gt; 3                                               Comorbidity based on elix
-#&gt; 4                    Example data of car brand names and their producers.
-#&gt; 5                                             Comorbidity based on hip.ae
-#&gt; 6                                             Comorbidity based on hip.ae
-#&gt; 7                                   Adverse events after hip arthroplasty
-#&gt; 8                                   Adverse events after hip arthroplasty
-#&gt; 9                                            Comorbidity based on knee.ae
-#&gt; 10                                           Comorbidity based on knee.ae
-#&gt; 11                                            Comorbidity index 'RxRiskV'
-#&gt; 12 Comorbidity index 'RxRiskV' (unofficial modification by Anne Garland).
-#&gt;        coding
-#&gt; 1       icd10
-#&gt; 2       icd10
-#&gt; 3       icd10
-#&gt; 4  ex_allcars
-#&gt; 5       icd10
-#&gt; 6         kva
-#&gt; 7       icd10
-#&gt; 8         kva
-#&gt; 9       icd10
-#&gt; 10        kva
-#&gt; 11        atc
-#&gt; 12        atc
+    <pre class="examples"><div class='input'><span class='fu'>all_classcodes</span>()</div><div class='output co'>#&gt;                clascodes coding
+#&gt; 1         charlson_icd10  icd10
+#&gt; 2              cps_icd10  icd10
+#&gt; 3             elix_icd10  icd10
+#&gt; 4    ex.carbrands_excars excars
+#&gt; 5           hip.ae_icd10  icd10
+#&gt; 6             hip.ae_kva    kva
+#&gt; 7  hip.fracture.ae_icd10  icd10
+#&gt; 8          knee.ae_icd10  icd10
+#&gt; 9            knee.ae_kva    kva
+#&gt; 10  rxriskv.modified_atc    atc
+#&gt; 11           rxriskv_atc    atc
 #&gt;                                                                         indices
 #&gt; 1  regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated
 #&gt; 2                                                                 only_ordinary
@@ -194,20 +167,18 @@
 #&gt; 9                                                                              
 #&gt; 10                                                                             
 #&gt; 11                                                                             
-#&gt; 12                                                                             
 #&gt;     N     n
 #&gt; 1  17  1178
 #&gt; 2   2 12406
 #&gt; 3  31  1517
-#&gt; 4   7    22
+#&gt; 4   7    NA
 #&gt; 5   6   289
 #&gt; 6   1    21
-#&gt; 7   1   749
-#&gt; 8   1   143
-#&gt; 9   6   288
-#&gt; 10  1   141
-#&gt; 11 39  1203
-#&gt; 12 42  1391</div></pre>
+#&gt; 7   6   292
+#&gt; 8   6   288
+#&gt; 9   1   141
+#&gt; 10 42  1363
+#&gt; 11 39  1173</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

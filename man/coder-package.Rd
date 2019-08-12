@@ -4,7 +4,7 @@
 \name{coder-package}
 \alias{coder}
 \alias{coder-package}
-\title{coder: Classification of Items into Categories Based on External Code Data}
+\title{coder: Deterministic Categorization of Items Based on External Code Data}
 \description{
 Identify items and classify them into categories by coded data.
   Functionality of the package relies on three central objects.

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert output from classify to data frame or data.table — as.data.frame.classified • coder</title>
+<title>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
+and KVA codes — ae • coder</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,14 +31,10 @@
 
 
 
-<meta property="og:title" content="Convert output from classify to data frame or data.table — as.data.frame.classified" />
+<meta property="og:title" content="Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
+and KVA codes — ae" />
 
-<meta property="og:description" content="Output from classify is given as a matrix.
-It is often convenient co convert this matrix to a data frame or data.table
- with
-a separate column for id instead of row names since this fits better with
-the philosophy of &quot;tidyverse&quot;. The data frame format is however less optimal
-for working with large data sets, wherefore matrix output is used as default." />
+<meta property="og:description" content="classcodes objects to use with classify" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,67 +119,90 @@ for working with large data sets, wherefore matrix output is used as default." /
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert output from classify to data frame or data.table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/as.data.frame.classified.R'><code>R/as.data.frame.classified.R</code></a></small>
-    <div class="hidden name"><code>as.data.frame.classified.Rd</code></div>
+    <h1>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
+and KVA codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
+    <div class="hidden name"><code>ae.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Output from <code><a href='classify.html'>classify</a></code> is given as a matrix.
-It is often convenient co convert this matrix to a data frame or data.table
- with
-a separate column for id instead of row names since this fits better with
-the philosophy of "tidyverse". The data frame format is however less optimal
-for working with large data sets, wherefore matrix output is used as default.</p>
+    <p><code><a href='classcodes.html'>classcodes</a></code> objects to use with <code><a href='classify.html'>classify</a></code></p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for classified</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='no'>knee.ae_icd10</span>
 
-<span class='co'># S3 method for classified</span>
-<span class='fu'>as.data.table</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='no'>hip.ae_icd10</span>
+
+<span class='no'>hip.ae_kva</span>
+
+<span class='no'>knee.ae_kva</span>
+
+<span class='no'>hip.fracture.ae_icd10</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
+  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 or KVA codes for each group</p></dd>
+  <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
+</dl>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>output from <code><a href='classify.html'>classify</a></code>
-(technically an object of internal class "classified")</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Group names are prefixed by two letters as given by the references.
+Two groups (DB and DM) are split into two due to different conditions.</p>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="hip-fractures"><a class="anchor" href="#hip-fractures"></a>Hip fractures</h2>
 
-    <p>data frame with:</p><ul>
-<li><p>first column named as "id" column specified as input
-    to <code><a href='classify.html'>classify</a></code> and with data from <code><a href='https://www.rdocumentation.org/packages/base/topics/row.names'>row.names(x)</a></code></p></li>
-<li><p>all columns from <code>x</code></p></li>
-<li><p>no row names</p></li>
-</ul>
+    
+    <p>AE codes for hip fractures are based on codes for elective cases but with
+some additional codes for DM 1 (N300, N308, N309 and N390).</p>
+    
+    <h2 class="hasAnchor" id="conditions"><a class="anchor" href="#conditions"></a>Conditions</h2>
 
+    
+    <p>Special conditions apply to all categories.
+Those require non-standard modifications
+of the classcodes data prior to categorization.</p>
+<dl class='dl-horizontal'>
+ <dt>hbdia1_hdia</dt><dd><p><code>TRUE</code> if the code was
+ given as any type of diagnose during hospital visit for index operation,
+ or as main diagnose for later visits, otherwise <code>FALSE</code></p></dd>
+ <dt>late_hdia</dt><dd><p><code>TRUE</code> if the code was
+ given as main diagnose at a later visit after the index operation,
+ otherwise <code>FALSE</code></p></dd>
+ <dt>post_op</dt><dd><p><code>TRUE</code> if the code was
+ given at a later visit after the index operation, otherwise <code>FALSE</code></p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
+Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other classcodes: <code><a href='all_classcodes.html'>all_classcodes</a></code>,
-  <code><a href='classcodes.html'>classcodes</a></code>, <code><a href='get_classcodes.html'>get_classcodes</a></code>,
-  <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a></code>,
-  <code><a href='summary.classcodes.html'>summary.classcodes</a></code>, <code><a href='visualize.html'>visualize</a></code></p></div>
+    <div class='dont-index'><p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
+  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
+  <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#hip-fractures">Hip fractures</a></li>
+
+      <li><a href="#conditions">Conditions</a></li>
+
+      <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

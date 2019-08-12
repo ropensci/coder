@@ -4,6 +4,9 @@
     <loc>eribul.github.io/coder/index.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/reference/ae.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/reference/all_classcodes.html</loc>
   </url>
   <url>
@@ -43,10 +46,10 @@
     <loc>eribul.github.io/coder/reference/elix_icd10.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/ex_carbrands.html</loc>
+    <loc>eribul.github.io/coder/reference/ex.carbrands_excars.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/ex_cars.html</loc>
+    <loc>eribul.github.io/coder/reference/ex.cars.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/ex_icd10.html</loc>
@@ -61,16 +64,7 @@
     <loc>eribul.github.io/coder/reference/get_classcodes.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/hip_fracture_ae_icd10.html</loc>
-  </url>
-  <url>
-    <loc>eribul.github.io/coder/reference/hip_fracture_ae_kva.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/index_fun.html</loc>
-  </url>
-  <url>
-    <loc>eribul.github.io/coder/reference/knee.ae_icd10.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/print.summary.classcodes.html</loc>

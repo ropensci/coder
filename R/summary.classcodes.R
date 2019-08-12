@@ -20,14 +20,14 @@
 #' @family classcodes
 #'
 #' @examples
-#' summary(ex_carbrands)
+#' summary(ex.carbrands_excars)
 summary.classcodes <- function(object, ...) {
   if (is.null(attr(object, "coding"))) {
     stop("Unknown coding. Specify by argument 'coding' in 'as.classcodes'")
   }
 
   # Identify code value set as specified
-  cl <- try(get(tolower(attr(object, "coding"))))
+  cl <- try(get(tolower(attr(object, "coding"))), TRUE)
 
   # Make summary table if such code value set exist
   if (class(cl) == "try-error") {
@@ -71,7 +71,7 @@ summary.classcodes <- function(object, ...) {
 #' @export
 #' @family classcodes
 #' @examples
-#' print(summary(ex_carbrands))
+#' print(summary(ex.carbrands_excars))
 print.summary.classcodes <- function(x, ...) {
 
   # List of indices used by the object
@@ -82,8 +82,6 @@ print.summary.classcodes <- function(x, ...) {
     else paste(indices, collapse = ", ")
 
   # Print message
-  if (!is.null(attr(x$object, "description")))
-    cat("\n", attr(x$object, "description"), "\n")
   cat("\nBased on coding:", attr(x$object, "coding"), "\n")
   cat("Indices:", indices, "\n\n")
   if (!is.null(x$summary)) {

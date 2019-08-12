@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2019-06-12</h4>
+            <h4 class="date">2019-08-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -114,24 +114,24 @@
 <a class="sourceLine" id="cb1-12" data-line-number="12">    ))</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">  )</a></code></pre></div>
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_cars)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex.cars)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;                         id          code  code_date</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2018-03-27</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2018-05-10</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2018-06-05</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2017-12-30</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2019-03-29</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2017-06-27</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1        Schneiders, Lakyn     Merc 240D 2018-05-28</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2          al-Bacho, Uqbah    Volvo 142E 2018-07-11</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3 Mirandapinedo, Christian   AMC Javelin 2018-08-06</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4    Alfaro-Nunez, Brandon Toyota Corona 2018-03-02</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5         Wynne, Stephanie     Merc 240D 2019-05-30</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 6              Lott, Daryl    Datsun 710 2017-08-28</span></a></code></pre></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ex_carbrands</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;     group                                regex</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 1   Mazda                                Mazda</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2 Mer-Ben                                 Merc</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3    Ford                         Ford|Lincoln</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 5  Toyota                               Toyota</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 6  Volksw                              Porsche</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 7   Geely                          Volvo|Lotus</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ex.carbrands_excars</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;     group                                 regex</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 1   Mazda                                 Mazda</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2 Mer-Ben                                  Merc</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3    Ford                          Ford|Lincoln</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati,</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 5  Toyota                                Toyota</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 6  Volksw                               Porsche</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 7   Geely                           Volvo|Lotus</span></a></code></pre></div>
 </div>
 <div id="categorize" class="section level1">
 <h1 class="hasAnchor">
@@ -142,11 +142,11 @@
 <li>
 <code>people</code>: the people we are interested in,</li>
 <li>
-<code>ex_cars</code>: the centralised car registry and</li>
+<code>ex.cars</code>: the centralised car registry and</li>
 <li>
-<code>ex_carbrands</code>: the classification of car makers.</li>
+<code>ex.carbrands_excars</code>: the classification of car makers.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex.cars, ex.carbrands_excars, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE    TRUE FALSE FALSE   TRUE  FALSE</span></a>
@@ -179,8 +179,8 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">(x &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">   </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">     people, </a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">     ex_cars, </a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">     ex_carbrands, </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">     ex.cars, </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">     ex.carbrands_excars, </a>
 <a class="sourceLine" id="cb5-6" data-line-number="6">     <span class="dt">id =</span> <span class="st">"name"</span>, </a>
 <a class="sourceLine" id="cb5-7" data-line-number="7">     <span class="dt">date =</span> <span class="st">"license"</span>, </a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">     <span class="dt">days =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>)</a>
@@ -203,9 +203,9 @@
 <h1 class="hasAnchor">
 <a href="#car-rating" class="anchor"></a>Car rating</h1>
 <p>We are not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let us assign some score to each company. We then specifies that the index should be calculated based on the new column named “score”.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ex_carbrands<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">37</span>)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ex.carbrands_excars<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">37</span>)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex.cars, ex.carbrands_excars, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04 FALSE    TRUE FALSE FALSE   TRUE  FALSE</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18  TRUE   FALSE FALSE FALSE  FALSE  FALSE</span></a>

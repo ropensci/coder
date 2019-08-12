@@ -4,7 +4,7 @@
 \name{rxriskv}
 \alias{rxriskv}
 \alias{rxriskv_atc}
-\alias{rxriskv_modified_atc}
+\alias{rxriskv.modified_atc}
 \title{Classcodes for RxRiskV (original and modified)}
 \format{Data frames with 39 rows and 2 variables:
 \describe{
@@ -14,17 +14,19 @@
 \usage{
 rxriskv_atc
 
-rxriskv_modified_atc
+rxriskv.modified_atc
 }
 \description{
 \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
+\details{
+\code{rxriskv.modified_atc} adopted by Anne Garland to better mirror
+ medical use in Sweden.
+}
 \seealso{
-Other default classcodes: \code{\link{charlson_icd10}},
-  \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
-  \code{\link{hip_fracture_ae_icd10}},
-  \code{\link{hip_fracture_ae_kva}},
-  \code{\link{knee.ae_icd10}}
+Other default classcodes: \code{\link{ae}},
+  \code{\link{charlson_icd10}}, \code{\link{cps_icd10}},
+  \code{\link{elix_icd10}}
 }
 \concept{default classcodes}
 \keyword{datasets}

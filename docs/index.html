@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Classification of Items into Categories Based on External Code Data • coder</title>
+<title>Deterministic Categorization of Items Based on External Code Data • coder</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Classification of Items into Categories Based on External Code Data">
+<script src="pkgdown.js"></script><meta property="og:title" content="Deterministic Categorization of Items Based on External Code Data">
 <meta property="og:description" content="Identify items and classify them into categories by coded data.
   Functionality of the package relies on three central objects.
   1) A data frame ('data.table') with item data (for example patients) to classify.
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
       </span>
     </div>
 
@@ -121,7 +121,6 @@
 <table class="table table">
 <thead><tr class="header">
 <th align="left">clascodes</th>
-<th align="left">description</th>
 <th align="left">coding</th>
 <th align="left">indices</th>
 <th align="right">N</th>
@@ -130,7 +129,6 @@
 <tbody>
 <tr class="odd">
 <td align="left">charlson_icd10</td>
-<td align="left">Comorbidity based on charlson</td>
 <td align="left">icd10</td>
 <td align="left">regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated</td>
 <td align="right">17</td>
@@ -138,7 +136,6 @@
 </tr>
 <tr class="even">
 <td align="left">cps_icd10</td>
-<td align="left">comorbidity-polypharmacy score (CPS)</td>
 <td align="left">icd10</td>
 <td align="left">only_ordinary</td>
 <td align="right">2</td>
@@ -146,23 +143,20 @@
 </tr>
 <tr class="odd">
 <td align="left">elix_icd10</td>
-<td align="left">Comorbidity based on elix</td>
 <td align="left">icd10</td>
 <td align="left">sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm</td>
 <td align="right">31</td>
 <td align="right">1517</td>
 </tr>
 <tr class="even">
-<td align="left">ex_carbrands</td>
-<td align="left">Example data of car brand names and their producers.</td>
-<td align="left">ex_allcars</td>
+<td align="left">ex.carbrands_excars</td>
+<td align="left">excars</td>
 <td align="left"></td>
 <td align="right">7</td>
-<td align="right">22</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">hip.ae_icd10</td>
-<td align="left">Comorbidity based on hip.ae</td>
 <td align="left">icd10</td>
 <td align="left"></td>
 <td align="right">6</td>
@@ -170,59 +164,45 @@
 </tr>
 <tr class="even">
 <td align="left">hip.ae_kva</td>
-<td align="left">Comorbidity based on hip.ae</td>
 <td align="left">kva</td>
 <td align="left"></td>
 <td align="right">1</td>
 <td align="right">21</td>
 </tr>
 <tr class="odd">
-<td align="left">hip_fracture_ae_icd10</td>
-<td align="left">Adverse events after hip arthroplasty</td>
+<td align="left">hip.fracture.ae_icd10</td>
 <td align="left">icd10</td>
 <td align="left"></td>
-<td align="right">1</td>
-<td align="right">749</td>
+<td align="right">6</td>
+<td align="right">292</td>
 </tr>
 <tr class="even">
-<td align="left">hip_fracture_ae_kva</td>
-<td align="left">Adverse events after hip arthroplasty</td>
-<td align="left">kva</td>
-<td align="left"></td>
-<td align="right">1</td>
-<td align="right">143</td>
-</tr>
-<tr class="odd">
 <td align="left">knee.ae_icd10</td>
-<td align="left">Comorbidity based on knee.ae</td>
 <td align="left">icd10</td>
 <td align="left"></td>
 <td align="right">6</td>
 <td align="right">288</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">knee.ae_kva</td>
-<td align="left">Comorbidity based on knee.ae</td>
 <td align="left">kva</td>
 <td align="left"></td>
 <td align="right">1</td>
 <td align="right">141</td>
 </tr>
-<tr class="odd">
-<td align="left">rxriskv_atc</td>
-<td align="left">Comorbidity index ‘RxRiskV’</td>
-<td align="left">atc</td>
-<td align="left"></td>
-<td align="right">39</td>
-<td align="right">1203</td>
-</tr>
 <tr class="even">
-<td align="left">rxriskv_modified_atc</td>
-<td align="left">Comorbidity index ‘RxRiskV’ (unofficial modification by Anne Garland).</td>
+<td align="left">rxriskv.modified_atc</td>
 <td align="left">atc</td>
 <td align="left"></td>
 <td align="right">42</td>
-<td align="right">1391</td>
+<td align="right">1363</td>
+</tr>
+<tr class="odd">
+<td align="left">rxriskv_atc</td>
+<td align="left">atc</td>
+<td align="left"></td>
+<td align="right">39</td>
+<td align="right">1173</td>
 </tr>
 </tbody>
 </table>

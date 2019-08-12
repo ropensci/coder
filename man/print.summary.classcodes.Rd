@@ -18,7 +18,7 @@ Nothing. This function is called for its side effects
 Print summary for classcodes object
 }
 \examples{
-print(summary(ex_carbrands))
+print(summary(ex.carbrands_excars))
 }
 \seealso{
 Other classcodes: \code{\link{all_classcodes}},

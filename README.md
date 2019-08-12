@@ -45,20 +45,19 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 
-|clascodes             |description                                                            |coding     |indices                                                                      |  N|     n|
-|:---------------------|:----------------------------------------------------------------------|:----------|:----------------------------------------------------------------------------|--:|-----:|
-|charlson_icd10        |Comorbidity based on charlson                                          |icd10      |regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated | 17|  1178|
-|cps_icd10             |comorbidity-polypharmacy score (CPS)                                   |icd10      |only_ordinary                                                                |  2| 12406|
-|elix_icd10            |Comorbidity based on elix                                              |icd10      |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm         | 31|  1517|
-|ex_carbrands          |Example data of car brand names and their producers.                   |ex_allcars |                                                                             |  7|    22|
-|hip.ae_icd10          |Comorbidity based on hip.ae                                            |icd10      |                                                                             |  6|   289|
-|hip.ae_kva            |Comorbidity based on hip.ae                                            |kva        |                                                                             |  1|    21|
-|hip_fracture_ae_icd10 |Adverse events after hip arthroplasty                                  |icd10      |                                                                             |  1|   749|
-|hip_fracture_ae_kva   |Adverse events after hip arthroplasty                                  |kva        |                                                                             |  1|   143|
-|knee.ae_icd10         |Comorbidity based on knee.ae                                           |icd10      |                                                                             |  6|   288|
-|knee.ae_kva           |Comorbidity based on knee.ae                                           |kva        |                                                                             |  1|   141|
-|rxriskv_atc           |Comorbidity index 'RxRiskV'                                            |atc        |                                                                             | 39|  1203|
-|rxriskv_modified_atc  |Comorbidity index 'RxRiskV' (unofficial modification by Anne Garland). |atc        |                                                                             | 42|  1391|
+|clascodes             |coding |indices                                                                      |  N|     n|
+|:---------------------|:------|:----------------------------------------------------------------------------|--:|-----:|
+|charlson_icd10        |icd10  |regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated | 17|  1178|
+|cps_icd10             |icd10  |only_ordinary                                                                |  2| 12406|
+|elix_icd10            |icd10  |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm         | 31|  1517|
+|ex.carbrands_excars   |excars |                                                                             |  7|    NA|
+|hip.ae_icd10          |icd10  |                                                                             |  6|   289|
+|hip.ae_kva            |kva    |                                                                             |  1|    21|
+|hip.fracture.ae_icd10 |icd10  |                                                                             |  6|   292|
+|knee.ae_icd10         |icd10  |                                                                             |  6|   288|
+|knee.ae_kva           |kva    |                                                                             |  1|   141|
+|rxriskv.modified_atc  |atc    |                                                                             | 42|  1363|
+|rxriskv_atc           |atc    |                                                                             | 39|  1173|
 
 # Contribution
 

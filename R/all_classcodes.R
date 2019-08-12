@@ -10,10 +10,10 @@ all_classcodes <- function() {
 
   # Get all classcodes object from the package
   names  <- utils::data(package = "coder")$results[, "Item"]
-  cl <- lapply(names, get_classcodes)
-  is.cl <- vapply(cl, is.classcodes, NA)
+  cl     <- lapply(names, get_classcodes)
+  is.cl  <- vapply(cl, is.classcodes, NA)
   names  <- names[is.cl]
-  cl <- cl[is.cl]
+  cl     <- cl[is.cl]
 
 
   # If the coding used for the classcodes object is not included in the package,
@@ -25,7 +25,6 @@ all_classcodes <- function() {
 
   data.frame(
     clascodes   = names,
-    description = vapply(cl, function(.) attr(., "description"), ""),
     coding      = vapply(cl, function(.) attr(., "coding"), ""),
     indices     = vapply(
                     lapply(cl, function(.) attr(., "indices")),

@@ -6,7 +6,7 @@
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x, coding = NULL, description = NULL)
+as.classcodes(x, coding = NULL)
 
 is.classcodes(x)
 }
@@ -15,9 +15,6 @@ is.classcodes(x)
 
 \item{coding}{Coding used for the classification
 (character vector of length one). Used by \code{\link{summary.classcodes}}.}
-
-\item{description}{description of the classcodes object
-(used by \code{\link{summary.classcodes}})}
 }
 \value{
 Object of class "classcodes" (data frame) with attribute \code{code}

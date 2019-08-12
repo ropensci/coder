@@ -26,7 +26,7 @@ grasp. Use this function to present all individual codes identified for each
 group in the classification.
 }
 \examples{
-summary(ex_carbrands)
+summary(ex.carbrands_excars)
 }
 \seealso{
 \code{\link{visualize}} for a graphical representation of the

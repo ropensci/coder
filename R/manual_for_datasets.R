@@ -126,96 +126,68 @@
 "cps_icd10"
 
 
-#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10 and KVA codes
+#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
+#' and KVA codes
 #'
 #' \code{\link{classcodes}} objects to use with \code{\link{classify}}
 #'
-#' Group names are prefixed by two letters as given by the reference.
+#' Group names are prefixed by two letters as given by the references.
 #' Two groups (DB and DM) are split into two due to different conditions.
 #'
+#' @section Hip fractures:
+#' AE codes for hip fractures are based on codes for elective cases but with
+#' some additional codes for DM 1 (N300, N308, N309 and N390).
+#'
 #' @section Conditions:
-#' Special conditions are used (see the reference):
+#' Special conditions apply to all categories.
+#' Those require non-standard modifications
+#' of the classcodes data prior to categorization.
 #'
 #' \describe{
 #'  \item{hbdia1_hdia}{\code{TRUE} if the code was
-#'  given as any type of diagnose at first visit after TKA/THA, or as main diagnose
-#'  for later visits, otherwise \code{FALSE}}
+#'  given as any type of diagnose during hospital visit for index operation,
+#'  or as main diagnose for later visits, otherwise \code{FALSE}}
 #'  \item{late_hdia}{\code{TRUE} if the code was
-#'  given as main diagnose at a later visit after TKA/THA, otherwise \code{FALSE}}
+#'  given as main diagnose at a later visit after the index operation,
+#'  otherwise \code{FALSE}}
 #'  \item{post_op}{\code{TRUE} if the code was
-#'  given at a later visit after TKA/THA, otherwise \code{FALSE}}
+#'  given at a later visit after the index operation, otherwise \code{FALSE}}
 #' }
 #'
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
-#'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
-#'   \item{condition}{two special conditions are used, see below.}
+#'   \item{regex}{regular expressions identifying ICD-10 or KVA codes for each group}
+#'   \item{condition}{special conditions are used, see below.}
 #' }
 #'
-#' @references Codes for knee taken from p. 83 of the annual report 2016 from knee
-#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
-#' \code{hip.ae_icd10} is a modified version for hips based on
-#' \code{knee.ae_icd10}.
+#' @references
+#' Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
+#' Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
 #'
-#' @aliases hip.ae_icd10 hip.ae_kva knee.ae_kva
+#' @name ae
 #' @family default classcodes
 "knee.ae_icd10"
 
+#' @rdname ae
+"hip.ae_icd10"
 
+#' @rdname ae
+"hip.ae_kva"
 
+#' @rdname ae
+"knee.ae_kva"
 
-#' Classcodes for adverse events after THA after hip fracture
-#' based on ICD-10 codes
-#'
-#' This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-#' The work was initiated for fracture data but the result might be feasible
-#' also for non fracture data.
-#'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
-#'
-#'
-#' @format A data frame with 1 row and 2 variables:
-#' \describe{
-#'   \item{group}{We only have one group of adverse events}
-#'   \item{regex}{regular expression identifying ICD-10 codes}
-#' }
-#'
-#' @seealso Companion codes based on Atgardskoder (KVA codes)
-#' \code{\link{hip_fracture_ae_kva}}.
-#'
-#' @references Codes partly inspired by p. 83 of the annual report 2016 from knee
-#' arthroplasty register \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}
-#'
-#' @family default classcodes
-"hip_fracture_ae_icd10"
-
-
-#' Classcodes for adverse events after THA after hip fracture
-#' based on Atgardskoder (KVA codes)
-#'
-#' This classcodes object was developed by the Swedish Hip Arthroplasty Register.
-#' The work was initiated for fracture data but the result might be feasible
-#' also for non fracture data.
-#'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
-#'
-#'
-#' @format A data frame with 1 row and 2 variables:
-#' \describe{
-#'   \item{group}{We only have one group of adverse events}
-#'   \item{regex}{regular expression identifying KVA codes}
-#' }
-#'
-#' @seealso Companion codes based on ICD-10 \code{\link{hip_fracture_ae_icd10}}.
-#'
-#' @family default classcodes
-"hip_fracture_ae_kva"
+#' @rdname ae
+"hip.fracture.ae_icd10"
 
 
 #' Classcodes for RxRiskV (original and modified)
 #'
 #' \code{\link{classcodes}} object to use with \code{\link{classify}}
+#'
+#'  \code{rxriskv.modified_atc} adopted by Anne Garland to better mirror
+#'  medical use in Sweden.
 #'
 #' @format Data frames with 39 rows and 2 variables:
 #' \describe{
@@ -227,7 +199,7 @@
 "rxriskv_atc"
 
 #' @rdname rxriskv
-"rxriskv_modified_atc"
+"rxriskv.modified_atc"
 
 
 
@@ -250,7 +222,7 @@
 #' }
 #'
 #' @family example data
-"ex_cars"
+"ex.cars"
 
 
 #' Example classcodes object for classification of car brands by their producer
@@ -262,7 +234,7 @@
 #' }
 #'
 #' @family example data
-"ex_carbrands"
+"ex.carbrands_excars"
 
 
 
