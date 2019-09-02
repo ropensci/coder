@@ -9,11 +9,13 @@
 <title>Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 and KVA codes — ae • coder</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -31,11 +33,12 @@ and KVA codes — ae • coder</title>
 
 
 
+
 <meta property="og:title" content="Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 and KVA codes — ae" />
-
 <meta property="og:description" content="classcodes objects to use with classify" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -99,7 +102,6 @@ and KVA codes — ae" />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/eribul/coder">
@@ -126,9 +128,7 @@ and KVA codes</h1>
     </div>
 
     <div class="ref-description">
-    
     <p><code><a href='classcodes.html'>classcodes</a></code> objects to use with <code><a href='classify.html'>classify</a></code></p>
-    
     </div>
 
     <pre class="usage"><span class='no'>knee.ae_icd10</span>
@@ -140,7 +140,8 @@ and KVA codes</h1>
 <span class='no'>knee.ae_kva</span>
 
 <span class='no'>hip.fracture.ae_icd10</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
@@ -148,18 +149,15 @@ and KVA codes</h1>
   <dt>regex</dt><dd><p>regular expressions identifying ICD-10 or KVA codes for each group</p></dd>
   <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
 </dl>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Group names are prefixed by two letters as given by the references.
 Two groups (DB and DM) are split into two due to different conditions.</p>
-    
     <h2 class="hasAnchor" id="hip-fractures"><a class="anchor" href="#hip-fractures"></a>Hip fractures</h2>
 
     
     <p>AE codes for hip fractures are based on codes for elective cases but with
 some additional codes for DM 1 (N300, N308, N309 and N390).</p>
-    
     <h2 class="hasAnchor" id="conditions"><a class="anchor" href="#conditions"></a>Conditions</h2>
 
     
@@ -176,36 +174,27 @@ of the classcodes data prior to categorization.</p>
  <dt>post_op</dt><dd><p><code>TRUE</code> if the code was
  given at a later visit after the index operation, otherwise <code>FALSE</code></p></dd>
 </dl>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
 Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix_icd10.html'>elix_icd10</a></code>,
+  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix.html'>elix</a></code>,
   <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#format">Format</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#hip-fractures">Hip fractures</a></li>
-
       <li><a href="#conditions">Conditions</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>

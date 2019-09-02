@@ -64,7 +64,7 @@ Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrappo
 }
 \seealso{
 Other default classcodes: \code{\link{charlson_icd10}},
-  \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
+  \code{\link{cps_icd10}}, \code{\link{elix}},
   \code{\link{rxriskv}}
 }
 \concept{default classcodes}

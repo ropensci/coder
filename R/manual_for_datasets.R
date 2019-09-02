@@ -2,6 +2,9 @@
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
+#' \code{elix.short_icd10} is just for testing and should not be used
+#' in practice! (It is based only on the first three code positions of ICD-10.)
+#'
 #' @format A data frame with 31 rows and 8 variables:
 #' \describe{
 #'   \item{group}{comorbidity groups}
@@ -43,7 +46,11 @@
 #'   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
 #'
 #' @family default classcodes
+#' @name elix
 "elix_icd10"
+
+#' @rdname elix
+"elix.short_icd10"
 
 
 

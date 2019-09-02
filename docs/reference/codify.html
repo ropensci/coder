@@ -8,11 +8,13 @@
 
 <title>codify elements — codify • coder</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,11 @@
 
 
 
-<meta property="og:title" content="codify elements — codify" />
 
+<meta property="og:title" content="codify elements — codify" />
 <meta property="og:description" content="codify elements" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -97,7 +100,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/eribul/coder">
@@ -123,13 +125,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>codify elements</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>codify</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -175,7 +175,7 @@ is available. If set to <code>FALSE</code>, calculations might be carried out
 but the object will be changed by reference.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Data frame (<code>data.table</code>) with columns corresponding to <code>x</code>
@@ -189,36 +189,31 @@ but the object will be changed by reference.</p></td>
 </ul><p>The output has at one row for each
   combination of "id" and code. Note that other columns of <code>x</code> might be
   repeated accordingly.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: <code><a href='categorize.html'>categorize</a></code>,
   <code><a href='classify.html'>classify</a></code>, <code><a href='index_fun.html'>index_fun</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                  name       date  code_date  code  hdia in_period
-#&gt;   1:    Adams, Jaimin 2019-06-14 2018-08-16  E835 FALSE      TRUE
-#&gt;   2:    Adams, Jaimin 2019-06-14 2018-10-03  N179 FALSE      TRUE
-#&gt;   3:    Adams, Jaimin 2019-06-14 2018-12-01  M713 FALSE      TRUE
-#&gt;   4:    Adams, Jaimin 2019-06-14 2018-12-07 M861F FALSE      TRUE
-#&gt;   5:    Adams, Jaimin 2019-06-14 2019-01-29  T323 FALSE      TRUE
-#&gt;  ---                                                             
-#&gt; 354: el-Zadeh,  Muzna 2018-12-28 2018-06-11  Q753 FALSE      TRUE
-#&gt; 355: el-Zadeh,  Muzna 2018-12-28 2018-11-26 M000G FALSE      TRUE
-#&gt; 356: el-Zadeh,  Muzna 2018-12-28 2018-12-03  T589 FALSE      TRUE
-#&gt; 357: el-Zadeh,  Muzna 2018-12-28 2018-12-10  C946 FALSE      TRUE
-#&gt; 358: el-Zadeh,  Muzna 2018-12-28 2018-12-19  J011 FALSE      TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                       name       date  code_date  code  hdia in_period
+#&gt;   1:         Adams, Dallas 2019-04-01 2018-08-19 H333B FALSE      TRUE
+#&gt;   2:         Adams, Dallas 2019-04-01 2018-11-21 T861F  TRUE      TRUE
+#&gt;   3:         Adams, Dallas 2019-04-01 2018-11-28  Z383 FALSE      TRUE
+#&gt;   4:         Adams, Dallas 2019-04-01 2019-03-10  E350 FALSE      TRUE
+#&gt;   5:         Adams, Dallas 2019-04-01 2019-03-15 S1271  TRUE      TRUE
+#&gt;  ---                                                                  
+#&gt; 353: el-Othman, Taajuddeen 2018-11-30 2018-07-02  D303 FALSE      TRUE
+#&gt; 354: el-Othman, Taajuddeen 2018-11-30 2018-07-12 O240B FALSE      TRUE
+#&gt; 355: el-Othman, Taajuddeen 2018-11-30 2018-08-01  B252 FALSE      TRUE
+#&gt; 356: el-Othman, Taajuddeen 2018-11-30 2018-09-15  F060 FALSE      TRUE
+#&gt; 357: el-Othman, Taajuddeen 2018-11-30 2018-10-02  L739 FALSE      TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

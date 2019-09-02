@@ -8,11 +8,13 @@
 
 <title>Code data — codedata • coder</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,11 @@
 
 
 
-<meta property="og:title" content="Code data — codedata" />
 
+<meta property="og:title" content="Code data — codedata" />
 <meta property="og:description" content="Code data" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -97,7 +100,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/eribul/coder">
@@ -123,16 +125,14 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Code data</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>as.codedata</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>.setkeys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
   <span class='kw'>npr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>nprdate</span> <span class='kw'>=</span> <span class='st'>"utdatuma"</span>)
 
 <span class='fu'>is.codedata</span>(<span class='no'>x</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -180,7 +180,7 @@ date for out patients? Could be either "indatuma" or "utdatuma".
 (Note that in patients only have one date.)</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>as.codedata</code> returns a <code>data.table</code> object
@@ -193,7 +193,6 @@ date for out patients? Could be either "indatuma" or "utdatuma".
 <p><code>is.codedata</code> returns <code>TRUE</code> if these same conditions are met and
 <code>FALSE</code> otherwise.
 (Note that <code>codedata</code> is not a formal R class of its own!)</p>
-    
     <h2 class="hasAnchor" id="data-from-npr"><a class="anchor" href="#data-from-npr"></a>Data from NPR</h2>
 
     
@@ -215,7 +214,6 @@ outpatient care has relevant dates stored as <code>utdatuma</code> and in-patien
 data has relevant dates named <code>utdatuma</code>. This is however not tested
 formally. If <code>utdatuma</code> is missing from the out-patient data,
 <code>indatuma</code> is used without warning.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
@@ -237,11 +235,8 @@ formally. If <code>utdatuma</code> is missing from the out-patient data,
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#data-from-npr">Data from NPR</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

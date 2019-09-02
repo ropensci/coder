@@ -42,6 +42,7 @@ usethis::use_data(
   ex.carbrands_excars,
   charlson_icd10,
   elix_icd10,
+  elix.short_icd10,
   hip.ae_icd10,
   hip.ae_kva,
   knee.ae_icd10,

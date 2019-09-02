@@ -1,7 +1,7 @@
 # Make package
 
 # Make sure it works with latest packages on CRAN
-update.packages(ask = FALSE)
+# update.packages(ask = FALSE)
 
 # Rebuild data sets
 unlink("data", TRUE)

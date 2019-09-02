@@ -26,7 +26,7 @@ rxriskv.modified_atc
 \seealso{
 Other default classcodes: \code{\link{ae}},
   \code{\link{charlson_icd10}}, \code{\link{cps_icd10}},
-  \code{\link{elix_icd10}}
+  \code{\link{elix}}
 }
 \concept{default classcodes}
 \keyword{datasets}

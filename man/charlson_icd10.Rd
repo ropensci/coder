@@ -60,7 +60,7 @@ A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
 \seealso{
 Other default classcodes: \code{\link{ae}},
-  \code{\link{cps_icd10}}, \code{\link{elix_icd10}},
+  \code{\link{cps_icd10}}, \code{\link{elix}},
   \code{\link{rxriskv}}
 }
 \concept{default classcodes}

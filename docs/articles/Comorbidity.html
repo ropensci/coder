@@ -86,7 +86,7 @@
       <h1>Comorbidity</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2019-08-12</h4>
+            <h4 class="date">2019-09-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/Comorbidity.Rmd"><code>vignettes/Comorbidity.Rmd</code></a></small>
       <div class="hidden name"><code>Comorbidity.Rmd</code></div>
@@ -103,8 +103,8 @@
 <h2 class="hasAnchor">
 <a href="#patients" class="anchor"></a>Patients</h2>
 <p>The data set <code>ex_people</code> is contained in the package and holds some example data for a set of people. Column ‘surgery’ gives the date of when a hip replacement was inserted.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(coder)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_people))</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(coder)</a>
+<a class="sourceLine" id="cb1-2" title="2">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_people))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -112,28 +112,28 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Fuller, Morgan</td>
-<td align="left">2019-06-09</td>
+<td align="left">Warta, Ian</td>
+<td align="left">2018-11-19</td>
 </tr>
 <tr class="even">
-<td align="left">Galvan, Angelica</td>
-<td align="left">2019-06-02</td>
+<td align="left">Kinanee, Isaiah</td>
+<td align="left">2018-09-02</td>
 </tr>
 <tr class="odd">
-<td align="left">Jensen, Duncan</td>
-<td align="left">2019-02-18</td>
+<td align="left">Linke, Robert</td>
+<td align="left">2018-11-13</td>
 </tr>
 <tr class="even">
-<td align="left">Michaels, Brianna</td>
-<td align="left">2019-04-14</td>
+<td align="left">Wabeke, Siavash</td>
+<td align="left">2019-06-06</td>
 </tr>
 <tr class="odd">
-<td align="left">Phung, Nathan</td>
-<td align="left">2018-10-23</td>
+<td align="left">el-Odeh, Naasif</td>
+<td align="left">2019-07-24</td>
 </tr>
 <tr class="even">
-<td align="left">Sivisay, Emily</td>
-<td align="left">2019-07-18</td>
+<td align="left">al-Zia, Naseera</td>
+<td align="left">2019-05-18</td>
 </tr>
 </tbody>
 </table>
@@ -149,7 +149,7 @@
 <li>code: A medical code (based on ICD-10) that was relevant for the hospital visit.</li>
 <li>hdia: Identifies if the “code” is the immidiate couse (TRUE) or an underlying couse (FALSE) for the hospital visit.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_icd10))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ex_icd10))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">id</th>
@@ -159,39 +159,39 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Acosta, Kevin</td>
-<td align="left">2018-11-17</td>
-<td align="left">A507</td>
+<td align="left">Adams, Dallas</td>
+<td align="left">2018-08-19</td>
+<td align="left">H333B</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
-<td align="left">Adams, Jaimin</td>
-<td align="left">2018-08-16</td>
-<td align="left">E835</td>
+<td align="left">Adams, Dallas</td>
+<td align="left">2018-11-21</td>
+<td align="left">T861F</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Adams, Dallas</td>
+<td align="left">2018-11-28</td>
+<td align="left">Z383</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Adams, Dallas</td>
+<td align="left">2019-03-10</td>
+<td align="left">E350</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="odd">
-<td align="left">Adams, Jaimin</td>
-<td align="left">2018-10-03</td>
-<td align="left">N179</td>
-<td align="left">FALSE</td>
+<td align="left">Adams, Dallas</td>
+<td align="left">2019-03-15</td>
+<td align="left">S1271</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Adams, Jaimin</td>
-<td align="left">2018-12-01</td>
-<td align="left">M713</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">Adams, Jaimin</td>
-<td align="left">2018-12-07</td>
-<td align="left">M861F</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">Adams, Jaimin</td>
-<td align="left">2019-01-29</td>
-<td align="left">T323</td>
+<td align="left">Adu, Marlon</td>
+<td align="left">2018-05-26</td>
+<td align="left">P549</td>
 <td align="left">FALSE</td>
 </tr>
 </tbody>
@@ -206,6 +206,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
