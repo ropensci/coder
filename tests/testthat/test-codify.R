@@ -12,7 +12,7 @@ test_that("codify", {
   expect_equal(
     nrow(codify(ex_people[1, ], ex_icd10, id = "name",
            date = "surgery", days = c(-365, 0))),
-    3
+    1
   )
 
   # Codes within 30 days after (i e adverse events)
@@ -26,7 +26,7 @@ test_that("codify", {
   expect_equal(
     nrow(codify(ex_people[1, ], ex_icd10, id = "name",
                 date = "surgery", days = c(-Inf, Inf))),
-    3
+    1
   )
 
 })
@@ -56,7 +56,7 @@ test_that("missing dates", {
   suppressWarnings(
     expect_equal(
       nrow(codify(pe, icd, id = "name", date = "surgery", days = NULL)),
-      9
+      3
     )
   )
 })

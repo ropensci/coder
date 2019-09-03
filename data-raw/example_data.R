@@ -1,4 +1,4 @@
-
+set.seed(123)
 # Generate some example data to include in the package
 
 n <- 1e2     # How many people to look for
