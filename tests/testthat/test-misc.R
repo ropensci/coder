@@ -9,9 +9,8 @@ y <- classify(y, elix_icd10)
 
 test_that("get_classcodes", {
   expect_error(get_classcodes("hejsan"))
-  expect_equal(get_classcodes("elix_icd10"), elix_icd10)
-  expect_equal(get_classcodes(elix_icd10), elix_icd10)
-  expect_equal(get_classcodes(NULL, x), elix_icd10)
-  expect_equal(get_classcodes(NULL, y), elix_icd10)
+  expect_equal(get_classcodes("elix_icd10"), get_classcodes(elix_icd10))
+  expect_equal(get_classcodes(NULL, x), get_classcodes(elix_icd10))
+  expect_equal(get_classcodes(NULL, y), get_classcodes(elix_icd10))
 })
 

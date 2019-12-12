@@ -19,13 +19,15 @@ and KVA codes — ae • coder</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -52,6 +54,7 @@ and KVA codes — ae" />
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -76,7 +79,7 @@ and KVA codes — ae" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +108,7 @@ and KVA codes — ae" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/eribul/coder">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -116,6 +119,7 @@ and KVA codes — ae" />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -148,6 +152,7 @@ and KVA codes</h1>
   <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
   <dt>regex</dt><dd><p>regular expressions identifying ICD-10 or KVA codes for each group</p></dd>
   <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
+
 </dl>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -156,12 +161,14 @@ Two groups (DB and DM) are split into two due to different conditions.</p>
     <h2 class="hasAnchor" id="hip-fractures"><a class="anchor" href="#hip-fractures"></a>Hip fractures</h2>
 
     
-    <p>AE codes for hip fractures are based on codes for elective cases but with
+
+<p>AE codes for hip fractures are based on codes for elective cases but with
 some additional codes for DM 1 (N300, N308, N309 and N390).</p>
     <h2 class="hasAnchor" id="conditions"><a class="anchor" href="#conditions"></a>Conditions</h2>
 
     
-    <p>Special conditions apply to all categories.
+
+<p>Special conditions apply to all categories.
 Those require non-standard modifications
 of the classcodes data prior to categorization.</p>
 <dl class='dl-horizontal'>
@@ -173,16 +180,20 @@ of the classcodes data prior to categorization.</p>
  otherwise <code>FALSE</code></p></dd>
  <dt>post_op</dt><dd><p><code>TRUE</code> if the code was
  given at a later visit after the index operation, otherwise <code>FALSE</code></p></dd>
+
 </dl>
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
 Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other default classcodes: <code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-  <code><a href='cps_icd10.html'>cps_icd10</a></code>, <code><a href='elix.html'>elix</a></code>,
-  <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
+    <div class='dont-index'><p>Other default classcodes: 
+<code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
+<code><a href='cps_icd10.html'>cps_icd10</a></code>,
+<code><a href='elix.html'>elix</a></code>,
+<code><a href='rxriskv_atc.html'>rxriskv_atc</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -199,19 +210,23 @@ Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsr
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://github.com/eribul'>Erik Bulow</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -18,13 +18,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -52,6 +54,7 @@ part of the triad of case data, code data and classification scheme." />
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -76,7 +79,7 @@ part of the triad of case data, code data and classification scheme." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +108,7 @@ part of the triad of case data, code data and classification scheme." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/eribul/coder">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -116,6 +119,7 @@ part of the triad of case data, code data and classification scheme." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -160,7 +164,7 @@ Could be <code>NULL</code> for unknown or arbitrary coding.</p>
     <p>A classcodes object is a data frame with columns:</p><dl class='dl-horizontal'>
 <dt>group:</dt><dd><p>unique and non missing class name</p></dd>
 <dt>regex:</dt><dd><p>regular expression defining class membership
-(see <code><a href='https://www.rdocumentation.org/packages/base/topics/regex'>regex</a></code> for details). Occurrences of non unique regular
+(see <code><a href='https://rdrr.io/r/base/regex.html'>regex</a></code> for details). Occurrences of non unique regular
 expressions will lead to the same class having multiple names. This is
 accepted but will raise a warning.</p></dd>
 <dt>description (optional):</dt><dd><p>description of each category</p></dd>
@@ -171,6 +175,7 @@ accepted but will raise a warning.</p></dd>
 <dt>weights (optional):</dt><dd><p>weights for each class used for
   <code><a href='index_fun.html'>index</a></code> calculation.
   Could be more than one and could have arbitrary names.</p></dd>
+
 </dl><p>Note that classes does not have to be disjunct.</p>
 <p>The package have several default classcodes included listed on its index page
 `help(package = "coder")`</p>
@@ -180,32 +185,36 @@ accepted but will raise a warning.</p></dd>
 and hard to interpret. Use <code><a href='visualize.html'>visualize</a></code> to visualize classcodes
 graphically or <code><a href='summary.classcodes.html'>summary.classcodes</a></code> to
 list all codes individually.</p>
-<p>Other classcodes: <code><a href='all_classcodes.html'>all_classcodes</a></code>,
-  <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>,
-  <code><a href='get_classcodes.html'>get_classcodes</a></code>,
-  <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a></code>,
-  <code><a href='summary.classcodes.html'>summary.classcodes</a></code>, <code><a href='visualize.html'>visualize</a></code></p>
-<p>Other classcodes: <code><a href='all_classcodes.html'>all_classcodes</a></code>,
-  <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>,
-  <code><a href='get_classcodes.html'>get_classcodes</a></code>,
-  <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a></code>,
-  <code><a href='summary.classcodes.html'>summary.classcodes</a></code>, <code><a href='visualize.html'>visualize</a></code></p></div>
+<p>Other classcodes: 
+<code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
+<code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
+<code><a href='get_classcodes.html'>get_classcodes</a>()</code>,
+<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
+<code><a href='visualize.html'>visualize</a>()</code></p>
+<p>Other classcodes: 
+<code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
+<code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
+<code><a href='get_classcodes.html'>get_classcodes</a>()</code>,
+<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
+<code><a href='visualize.html'>visualize</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/coder/topics/elix'>elix_icd10</a></span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 9</span><span>
-#&gt;    group  regex   sum_all sum_all_ahrq walraven sid29 sid30 ahrq_mort ahrq_readm
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> conge~ ^(I(09~       1            1        7     9     9         9         13
-#&gt; </span><span style='color: #555555;'> 2</span><span> cardi~ ^(I(44~       1            0        5     8     0         0          0
-#&gt; </span><span style='color: #555555;'> 3</span><span> valvu~ ^(A520~       1            1       -</span><span style='color: #BB0000;'>1</span><span>     0     0         0          0
-#&gt; </span><span style='color: #555555;'> 4</span><span> pulmo~ I(2([6~       1            1        4     5     5         6          5
-#&gt; </span><span style='color: #555555;'> 5</span><span> perip~ ^(I7([~       1            1        2     4     4         3          4
-#&gt; </span><span style='color: #555555;'> 6</span><span> hyper~ ^I10          1            1        0    -</span><span style='color: #BB0000;'>2</span><span>    -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>1</span><span>         -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> hyper~ ^I1[1-~       1            1        0    -</span><span style='color: #BB0000;'>2</span><span>    -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>1</span><span>         -</span><span style='color: #BB0000;'>1</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> paral~ ^G(041~       1            1        7     4     3         5          6
-#&gt; </span><span style='color: #555555;'> 9</span><span> other~ ^(G(1[~       1            1        6     5     4         5          7
-#&gt; </span><span style='color: #555555;'>10</span><span> chron~ ^((I27~       1            1        3     3     3         3          8
-#&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/coder/man/elix.html'>elix_icd10</a></span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 10</span><span>
+#&gt;    group regex regex_short sum_all sum_all_ahrq walraven sid29 sid30 ahrq_mort
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> cong… ^(I(… ^(I(09|1[1…       1            1        7     9     9         9
+#&gt; </span><span style='color: #555555;'> 2</span><span> card… ^(I(… ^(I(4[457-…       1            0        5     8     0         0
+#&gt; </span><span style='color: #555555;'> 3</span><span> valv… ^(A5… ^(A52|I(0[…       1            1       -</span><span style='color: #BB0000;'>1</span><span>     0     0         0
+#&gt; </span><span style='color: #555555;'> 4</span><span> pulm… ^I(2… ^I2[678]          1            1        4     5     5         6
+#&gt; </span><span style='color: #555555;'> 5</span><span> peri… ^(I7… ^(I7[01389…       1            1        2     4     4         3
+#&gt; </span><span style='color: #555555;'> 6</span><span> hype… ^I10  ^I10              1            1        0    -</span><span style='color: #BB0000;'>2</span><span>    -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> hype… ^I1[… ^I1[1-35]         1            1        0    -</span><span style='color: #BB0000;'>2</span><span>    -</span><span style='color: #BB0000;'>1</span><span>        -</span><span style='color: #BB0000;'>1</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> para… ^G(0… ^G(04|11|8…       1            1        7     4     3         5
+#&gt; </span><span style='color: #555555;'> 9</span><span> othe… ^(G(… ^(G(1[0-3]…       1            1        6     5     4         5
+#&gt; </span><span style='color: #555555;'>10</span><span> chro… ^((I… ^(I27|(J([…       1            1        3     3     3         3
+#&gt; </span><span style='color: #555555;'># … with 21 more rows, and 1 more variable: ahrq_readm </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -220,19 +229,23 @@ list all codes individually.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://github.com/eribul'>Erik Bulow</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

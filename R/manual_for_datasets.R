@@ -9,6 +9,10 @@
 #' \describe{
 #'   \item{group}{comorbidity groups}
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{regex_short}{regular expressions identifying only the first three
+#'   characters of ICD-10 codes of each group. This alternative version was
+#'   added for comparison. There are good no reasons to use this version
+#'   instead of 'regex'!}
 #'   \item{sum_all}{all weights = 1. This is included for convenience when
 #'   calculating several indices simultainisly}
 #'   \item{sum_all_ahrq}{as \code{sum_all} exluding "cardiac arrythmias"}
@@ -32,7 +36,8 @@
 #' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
 #'   C. Van, … Jennings, A. (2009).
 #'   A Modification of the Elixhauser Comorbidity Measures Into a Point System
-#'   for Hospital Death Using Administrative Data. Medical Care, 47(6), 626–633.
+#'   for Hospital Death Using Administrative Data.
+#'   Medical Care, 47(6), 626–633.
 #'
 #' Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
 #'   Vadera, S., & Griffith, S. D. (2015).
@@ -48,9 +53,6 @@
 #' @family default classcodes
 #' @name elix
 "elix_icd10"
-
-#' @rdname elix
-"elix.short_icd10"
 
 
 
@@ -124,7 +126,7 @@
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 #'   \item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 #' }
-#' @source Stawicki, Stanislaw P., et al.
+#' @references Stawicki, Stanislaw P., et al.
 #' "Comorbidity polypharmacy score and its clinical utility: A pragmatic
 #' practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
 #' (2015): 224.
@@ -164,7 +166,8 @@
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
-#'   \item{regex}{regular expressions identifying ICD-10 or KVA codes for each group}
+#'   \item{regex}{regular expressions identifying ICD-10 or
+#'     KVA codes for each group}
 #'   \item{condition}{special conditions are used, see below.}
 #' }
 #'
@@ -189,24 +192,40 @@
 "hip.fracture.ae_icd10"
 
 
-#' Classcodes for RxRiskV (original and modified)
+#' Classcodes for RxRisk V based on ATC codes
 #'
-#' \code{\link{classcodes}} object to use with \code{\link{classify}}
+#' \code{\link{classcodes}} object to use with \code{\link{classify}}.
+#' Provided mostly as proof-of-concept. Codes have not been externaly
+#'   validated and desired implemantation might differ over time and by country.
 #'
-#'  \code{rxriskv.modified_atc} adopted by Anne Garland to better mirror
-#'  medical use in Sweden.
-#'
-#' @format Data frames with 39 rows and 2 variables:
+#' @format Data frames with 39 rows and 6 variables:
 #' \describe{
-#'   \item{group}{disease group}
-#'   \item{regex}{regular expressions identifying ATC codes of each group}
+#'   \item{group}{medical condition}
+#'   \item{regex}{ATC codes from table 1 in Pratt et al. 2018
+#'    (ignoring PBS item codes and extra conditions).}
+#'   \item{regex_unknown}{Source for this classification is unknown!}
+#'   \item{regex_garland}{Based on \code{regex_unknown} but modified by Anne
+#'   Garland to resemble medical use in Sweden 2016. Unpublished!}
+#'  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
+#'  \item{pratt}{Mortality weights from table 1 in Pratt et al. 2018}
 #' }
-#' @name rxriskv
+#'
+#' @references
+#' Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.
+#'   Comorbidity in the elderly with diabetes:
+#'   Identification of areas of potential treatment conflicts.
+#'   Diabetes Res Clin Pract 2010;87:385–93.
+#'   doi:10.1016/j.diabres.2009.10.019.
+#'
+#' Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
+#'   Ramsay E, et al.
+#'   The validity of the Rx-Risk Comorbidity Index using medicines mapped to
+#'   the Anatomical Therapeutic Chemical (ATC) Classification System.
+#'   BMJ Open 2018;8.
+#'   doi:10.1136/bmjopen-2017-021122.
+#'
 #' @family default classcodes
 "rxriskv_atc"
-
-#' @rdname rxriskv
-"rxriskv.modified_atc"
 
 
 

@@ -57,16 +57,20 @@ and hard to interpret. Use \code{\link{visualize}} to visualize classcodes
 graphically or \code{\link{summary.classcodes}} to
 list all codes individually.
 
-Other classcodes: \code{\link{all_classcodes}},
-  \code{\link{as.data.frame.classified}},
-  \code{\link{get_classcodes}},
-  \code{\link{print.summary.classcodes}},
-  \code{\link{summary.classcodes}}, \code{\link{visualize}}
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{get_classcodes}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 
-Other classcodes: \code{\link{all_classcodes}},
-  \code{\link{as.data.frame.classified}},
-  \code{\link{get_classcodes}},
-  \code{\link{print.summary.classcodes}},
-  \code{\link{summary.classcodes}}, \code{\link{visualize}}
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{get_classcodes}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 }
 \concept{classcodes}

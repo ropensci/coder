@@ -4,12 +4,15 @@
 \name{elix}
 \alias{elix}
 \alias{elix_icd10}
-\alias{elix.short_icd10}
 \title{Classcodes for Elixhauser based on ICD-10 codes}
 \format{A data frame with 31 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
+  \item{regex_short}{regular expressions identifying only the first three
+  characters of ICD-10 codes of each group. This alternative version was
+  added for comparison. There are good no reasons to use this version
+  instead of 'regex'!}
   \item{sum_all}{all weights = 1. This is included for convenience when
   calculating several indices simultainisly}
   \item{sum_all_ahrq}{as \code{sum_all} exluding "cardiac arrythmias"}
@@ -47,8 +50,6 @@ Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
 }
 \usage{
 elix_icd10
-
-elix.short_icd10
 }
 \description{
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
@@ -58,9 +59,11 @@ A \code{\link{classcodes}} object to use with \code{\link{classify}}
 in practice! (It is based only on the first three code positions of ICD-10.)
 }
 \seealso{
-Other default classcodes: \code{\link{ae}},
-  \code{\link{charlson_icd10}}, \code{\link{cps_icd10}},
-  \code{\link{rxriskv}}
+Other default classcodes: 
+\code{\link{ae}},
+\code{\link{charlson_icd10}},
+\code{\link{cps_icd10}},
+\code{\link{rxriskv_atc}}
 }
 \concept{default classcodes}
 \keyword{datasets}

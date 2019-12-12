@@ -27,8 +27,8 @@
 #'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
 #'   these are changed to more technical names avoiding special characters and
 #'   are prefixed by the name of the classification scheme.
-#' @param ... used to pass arguments between methods
-#'
+#' @param ... arguments passed to \code{\link{get_classcodes}}
+#' @inheritParams get_classcodes
 #' @return Boolean matrix with one row for each element/row of \code{x} and
 #'   columns for each class with corresponding class names (according to the
 #'   \code{\link{classcodes}} object).
@@ -54,7 +54,7 @@
 #' # id column instead of row names
 #' as.data.frame(y)
 #' @family verbs
-classify <- function(x, by, ...) UseMethod("classify")
+classify <- function(x, by, ..., regex = "regex") UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object
 # Three posibilites exists
@@ -76,9 +76,9 @@ eval_condition <- function(cond, x) {
 
 #' @export
 #' @rdname classify
-classify.default <- function(x, by, ...) {
+classify.default <- function(x, by, ..., regex = "regex") {
   .by <- by
-  by  <- get_classcodes(by)
+  by  <- get_classcodes(by, regex = regex)
   y   <- vapply(by$regex, grepl, logical(length(x)), x = as.character(x))
   if (length(x) == 1)
     y <- as.matrix(t(y))
@@ -94,7 +94,8 @@ classify.default <- function(x, by, ...) {
 #' @export
 #' @rdname classify
 classify.data.frame <-
-  function(x, by, id = NULL, code = "code", tech_names = FALSE, ...) {
+  function(
+    x, by, id = NULL, code = "code", tech_names = FALSE, ..., regex = "regex") {
 
   # Stop early
   if (tech_names && is.object(by)) {
@@ -102,7 +103,7 @@ classify.data.frame <-
   }
 
   .by <- by
-  by <- get_classcodes(by)
+  by <- get_classcodes(by, regex = regex)
 
   # The id column can be identified in multiple ways
   id <-

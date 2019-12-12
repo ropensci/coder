@@ -32,10 +32,12 @@ summary(ex.carbrands_excars)
 \code{\link{visualize}} for a graphical representation of the
   classcodes objects.
 
-Other classcodes: \code{\link{all_classcodes}},
-  \code{\link{as.data.frame.classified}},
-  \code{\link{classcodes}}, \code{\link{get_classcodes}},
-  \code{\link{print.summary.classcodes}},
-  \code{\link{visualize}}
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{get_classcodes}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{visualize}()}
 }
 \concept{classcodes}

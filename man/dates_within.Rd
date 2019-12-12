@@ -26,7 +26,8 @@ dates_within(x) # TRUE FALSE FALSE
 dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
 }
 \seealso{
-Other helper: \code{\link{filter_dates}},
-  \code{\link{spss2date}}
+Other helper: 
+\code{\link{filter_dates}()},
+\code{\link{spss2date}()}
 }
 \concept{helper}

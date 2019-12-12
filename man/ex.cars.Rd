@@ -17,8 +17,10 @@ ex.cars
 Example data for fictive people and their car ownership.
 }
 \seealso{
-Other example data: \code{\link{ex.carbrands_excars}},
-  \code{\link{ex_icd10}}, \code{\link{ex_people}}
+Other example data: 
+\code{\link{ex.carbrands_excars}},
+\code{\link{ex_icd10}},
+\code{\link{ex_people}}
 }
 \concept{example data}
 \keyword{datasets}

@@ -5,11 +5,29 @@
 \alias{categorise}
 \title{Categorize cases based on external data and classification scheme}
 \usage{
-categorize(.data, from, what, id, date = NULL, days = NULL,
-  ind = NULL, tech_names = FALSE, sort = TRUE)
+categorize(
+  .data,
+  from,
+  what,
+  id,
+  date = NULL,
+  days = NULL,
+  ind = NULL,
+  tech_names = FALSE,
+  sort = TRUE
+)
 
-categorise(.data, from, what, id, date = NULL, days = NULL,
-  ind = NULL, tech_names = FALSE, sort = TRUE)
+categorise(
+  .data,
+  from,
+  what,
+  id,
+  date = NULL,
+  days = NULL,
+  ind = NULL,
+  tech_names = FALSE,
+  sort = TRUE
+)
 }
 \arguments{
 \item{.data}{To which data set should the categories be added?
@@ -66,7 +84,9 @@ categorize(ex_people, ex_icd10, "charlson_icd10",
 )
 }
 \seealso{
-Other verbs: \code{\link{classify}}, \code{\link{codify}},
-  \code{\link{index_fun}}
+Other verbs: 
+\code{\link{classify}()},
+\code{\link{codify}()},
+\code{\link{index_fun}}
 }
 \concept{verbs}

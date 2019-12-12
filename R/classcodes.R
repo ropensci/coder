@@ -56,12 +56,17 @@ as.classcodes <- function(x, coding = NULL) {
     warning("Non unique elements of 'x$regex' implying identical classes with ",
       "multilpe names!")
   }
+
+  rgs <- colnames(x)[startsWith(colnames(x), "regex")]
   structure(
     x,
     class       = unique(c("classcodes", class(x))),
-    coding      = coding,
-    indices     = setdiff(colnames(x),
-                          c("group", "regex", "condition", "description"))
+    regexprs    = rgs,
+    coding      = if (!is.null(coding)) coding else attr(x, "coding"),
+    indices     = setdiff(
+                    colnames(x),
+                    c(rgs, c("group", "condition", "description"))
+                  )
   )
 }
 
@@ -69,3 +74,11 @@ as.classcodes <- function(x, coding = NULL) {
 #' @rdname classcodes
 #' @family classcodes
 is.classcodes <- function(x) inherits(x, "classcodes")
+
+#' @export
+`[.classcodes` <- function(x, ...) {
+  coding <- attr(x, "coding")
+  x <- NextMethod()
+  attr(x, "coding") <- coding
+  as.classcodes(x)
+}

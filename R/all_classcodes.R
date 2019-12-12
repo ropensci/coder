@@ -1,6 +1,7 @@
 #' Summary data for all default classcodes object in the package
 #'
-#' @return Data frame with columns describing the classification schemes.
+#' @return Data frame with columns describing all default classcodes
+#'   objects from the package.
 #' @export
 #' @family classcodes
 #'
@@ -10,7 +11,7 @@ all_classcodes <- function() {
 
   # Get all classcodes object from the package
   names  <- utils::data(package = "coder")$results[, "Item"]
-  cl     <- lapply(names, get_classcodes)
+  cl     <- lapply(names, function(x) try(get_classcodes(x), TRUE))
   is.cl  <- vapply(cl, is.classcodes, NA)
   names  <- names[is.cl]
   cl     <- cl[is.cl]
@@ -23,14 +24,20 @@ all_classcodes <- function() {
     if (!is.null(s)) sum(s$n) else NA
   }
 
+  clps <- function(x) paste(x, collapse = ", ")
+
+  # Remove prefix "regex" to only present alternatives
+  rgs_short <- function(x) {
+    rgs <- gsub("regex_?", "", attr(x, "regexprs"))
+    rgs[rgs != ""]
+  }
+
   data.frame(
     clascodes   = names,
-    coding      = vapply(cl, function(.) attr(., "coding"), ""),
-    indices     = vapply(
-                    lapply(cl, function(.) attr(., "indices")),
-                    paste, "", collapse  = ", "
-                  ),
-    N           = vapply(cl, function(.) nrow(.), NA_integer_),
+    coding      = vapply(cl, attr, "", "coding"),
+    alt_regex   = vapply(lapply(cl, rgs_short), clps, ""),
+    indices     = vapply(lapply(cl, attr, "indices"), clps, ""),
+    N           = vapply(cl, nrow, NA_integer_),
     n           = vapply(cl, no_codes, NA_integer_),
     stringsAsFactors = FALSE
   )

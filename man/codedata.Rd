@@ -6,8 +6,15 @@
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, y = NULL, ..., .setkeys = TRUE, .copy = NA,
-  npr = FALSE, nprdate = "utdatuma")
+as.codedata(
+  x,
+  y = NULL,
+  ...,
+  .setkeys = TRUE,
+  .copy = NA,
+  npr = FALSE,
+  nprdate = "utdatuma"
+)
 
 is.codedata(x)
 }

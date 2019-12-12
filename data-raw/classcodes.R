@@ -42,7 +42,6 @@ usethis::use_data(
   ex.carbrands_excars,
   charlson_icd10,
   elix_icd10,
-  elix.short_icd10,
   hip.ae_icd10,
   hip.ae_kva,
   knee.ae_icd10,
@@ -50,7 +49,6 @@ usethis::use_data(
   hip.fracture.ae_icd10,
   cps_icd10,
   rxriskv_atc,
-  rxriskv.modified_atc,
   overwrite = TRUE
 )
 

@@ -7,7 +7,8 @@
 all_classcodes()
 }
 \value{
-Data frame with columns describing the classification schemes.
+Data frame with columns describing all default classcodes
+  objects from the package.
 }
 \description{
 Summary data for all default classcodes object in the package
@@ -16,9 +17,12 @@ Summary data for all default classcodes object in the package
 all_classcodes()
 }
 \seealso{
-Other classcodes: \code{\link{as.data.frame.classified}},
-  \code{\link{classcodes}}, \code{\link{get_classcodes}},
-  \code{\link{print.summary.classcodes}},
-  \code{\link{summary.classcodes}}, \code{\link{visualize}}
+Other classcodes: 
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{get_classcodes}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 }
 \concept{classcodes}

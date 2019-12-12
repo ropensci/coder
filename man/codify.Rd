@@ -54,7 +54,9 @@ codify elements
 codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 }
 \seealso{
-Other verbs: \code{\link{categorize}},
-  \code{\link{classify}}, \code{\link{index_fun}}
+Other verbs: 
+\code{\link{categorize}()},
+\code{\link{classify}()},
+\code{\link{index_fun}}
 }
 \concept{verbs}

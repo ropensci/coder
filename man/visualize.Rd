@@ -5,9 +5,9 @@
 \alias{visualise}
 \title{Visualise classification scheme in web browser}
 \usage{
-visualize(x, group = NULL, show = TRUE)
+visualize(x, group = NULL, show = TRUE, ...)
 
-visualise(x, group = NULL, show = TRUE)
+visualise(x, group = NULL, show = TRUE, ...)
 }
 \arguments{
 \item{x}{classcodes specification as either a name or a classcodes object,
@@ -18,6 +18,13 @@ or a classcodes object itself.}
 
 \item{show}{should a visualisation be shown in a web browser.
 Set to \code{FALSE} to just retrieve a URL for later use.}
+
+\item{...}{
+  Arguments passed on to \code{\link[=get_classcodes]{get_classcodes}}
+  \describe{
+    \item{\code{regex}}{name of column with regular expressions to use for
+classification, either with or without prefix \code{regex_}}
+  }}
 }
 \value{
 URL to website with visualisation (invisible)
@@ -38,6 +45,13 @@ in use, and during the creation and debugging of such.
  visualize("charlson_icd10",
    c("diabetes without complication", "diabetes complication"))
 
+ # Is this different from the "Royal College of Surgeons classification?
+ # Yes, there is only one group for diabetes
+ visualize("charlson_icd10",
+   c("diabetes without complication", "diabetes complication"),
+   regex = "rcs"
+ )
+
  # Show all groups from Charlson
  visualize("charlson_icd10")
 
@@ -47,10 +61,12 @@ in use, and during the creation and debugging of such.
 }
 }
 \seealso{
-Other classcodes: \code{\link{all_classcodes}},
-  \code{\link{as.data.frame.classified}},
-  \code{\link{classcodes}}, \code{\link{get_classcodes}},
-  \code{\link{print.summary.classcodes}},
-  \code{\link{summary.classcodes}}
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{get_classcodes}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{summary.classcodes}()}
 }
 \concept{classcodes}

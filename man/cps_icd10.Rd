@@ -11,23 +11,25 @@
   \item{regex}{regular expressions identifying ICD-10 codes of each group}
   \item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 }}
-\source{
-Stawicki, Stanislaw P., et al.
-"Comorbidity polypharmacy score and its clinical utility: A pragmatic
-practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
-(2015): 224.
-\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
-}
 \usage{
 cps_icd10
 }
 \description{
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
+\references{
+Stawicki, Stanislaw P., et al.
+"Comorbidity polypharmacy score and its clinical utility: A pragmatic
+practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
+(2015): 224.
+\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+}
 \seealso{
-Other default classcodes: \code{\link{ae}},
-  \code{\link{charlson_icd10}}, \code{\link{elix}},
-  \code{\link{rxriskv}}
+Other default classcodes: 
+\code{\link{ae}},
+\code{\link{charlson_icd10}},
+\code{\link{elix}},
+\code{\link{rxriskv_atc}}
 }
 \concept{default classcodes}
 \keyword{datasets}

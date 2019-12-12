@@ -45,20 +45,18 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 
-|clascodes             |coding |indices                                                                      |  N|     n|
-|:---------------------|:------|:----------------------------------------------------------------------------|--:|-----:|
-|charlson_icd10        |icd10  |regex_rcs, charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated | 17|  1178|
-|cps_icd10             |icd10  |only_ordinary                                                                |  2| 12406|
-|elix.short_icd10      |icd10  |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm         | 31|  2067|
-|elix_icd10            |icd10  |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm         | 31|  1516|
-|ex.carbrands_excars   |excars |                                                                             |  7|    NA|
-|hip.ae_icd10          |icd10  |                                                                             |  6|   289|
-|hip.ae_kva            |kva    |                                                                             |  1|    21|
-|hip.fracture.ae_icd10 |icd10  |                                                                             |  6|   292|
-|knee.ae_icd10         |icd10  |                                                                             |  6|   288|
-|knee.ae_kva           |kva    |                                                                             |  1|   141|
-|rxriskv.modified_atc  |atc    |                                                                             | 42|  1363|
-|rxriskv_atc           |atc    |                                                                             | 39|  1173|
+|clascodes             |coding |alt_regex |indices                                                              |  N|     n|
+|:---------------------|:------|:---------|:--------------------------------------------------------------------|--:|-----:|
+|charlson_icd10        |icd10  |          |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated    | 17|  1178|
+|cps_icd10             |icd10  |          |only_ordinary                                                        |  2| 12406|
+|elix_icd10            |icd10  |          |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm | 31|  1516|
+|ex.carbrands_excars   |excars |          |                                                                     |  7|    NA|
+|hip.ae_icd10          |icd10  |          |                                                                     |  6|   289|
+|hip.ae_kva            |kva    |          |                                                                     |  1|    21|
+|hip.fracture.ae_icd10 |icd10  |          |                                                                     |  6|   292|
+|knee.ae_icd10         |icd10  |          |                                                                     |  6|   288|
+|knee.ae_kva           |kva    |          |                                                                     |  1|   141|
+|rxriskv_atc           |atc    |          |index_pratt                                                          | 46|   406|
 
 # Contribution
 

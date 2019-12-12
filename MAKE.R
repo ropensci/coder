@@ -1,7 +1,13 @@
 # Make package
 
+# Might need to adjust. Works if opended from #217
+setwd("coder")
+
 # Make sure it works with latest packages on CRAN
 # update.packages(ask = FALSE)
+
+# Spell check
+devtools::spell_check()
 
 # Rebuild data sets
 unlink("data", TRUE)

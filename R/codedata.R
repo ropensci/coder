@@ -71,7 +71,8 @@
 #'
 #' @family codedata
 as.codedata <- function(
-    x, y = NULL, ..., .setkeys = TRUE, .copy = NA, npr = FALSE, nprdate = "utdatuma") {
+    x, y = NULL, ..., .setkeys = TRUE, .copy = NA,
+    npr = FALSE, nprdate = "utdatuma") {
 
   code_date <- id <- NULL # Fix for R Check
 

@@ -25,7 +25,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Erik Bulow \email{eriklgb@gmail.com} (0000-0002-9973-456X)
+\strong{Maintainer}: Erik Bulow \email{eriklgb@gmail.com} (\href{https://orcid.org/0000-0002-9973-456X}{ORCID})
 
 }
 \keyword{internal}

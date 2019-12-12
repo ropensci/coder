@@ -6,12 +6,19 @@
 \alias{classify.data.frame}
 \title{Classify elements}
 \usage{
-classify(x, by, ...)
+classify(x, by, ..., regex = "regex")
 
-\method{classify}{default}(x, by, ...)
+\method{classify}{default}(x, by, ..., regex = "regex")
 
-\method{classify}{data.frame}(x, by, id = NULL, code = "code",
-  tech_names = FALSE, ...)
+\method{classify}{data.frame}(
+  x,
+  by,
+  id = NULL,
+  code = "code",
+  tech_names = FALSE,
+  ...,
+  regex = "regex"
+)
 }
 \arguments{
 \item{x}{object with elements to classify (often the output from
@@ -19,7 +26,10 @@ classify(x, by, ...)
 
 \item{by}{classification scheme of type \code{classcodes} to classify by}
 
-\item{...}{used to pass arguments between methods}
+\item{...}{arguments passed to \code{\link{get_classcodes}}}
+
+\item{regex}{name of column with regular expressions to use for
+classification, either with or without prefix \code{regex_}}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
 example a patient id)}
@@ -49,7 +59,7 @@ Note that row order is not preserved for \code{classify.data.frame} due to
  performance reasons (the function is intended to work with large data sets
  where sorting is computationally expensive).
 
-Row names does however identify origin (as specified by \code{id} for
+ Row names does however identify origin (as specified by \code{id} for
  \code{classify.data.frame} or simply as \code{x} itself for
  \code{classify.default}. It should therefore be possible to manually
  reorder the output to maintain original order.
@@ -73,7 +83,9 @@ as.data.frame(y)
 convert the output of \code{classify} to a data frame with id column instead
 of row names.
 
-Other verbs: \code{\link{categorize}},
-  \code{\link{codify}}, \code{\link{index_fun}}
+Other verbs: 
+\code{\link{categorize}()},
+\code{\link{codify}()},
+\code{\link{index_fun}}
 }
 \concept{verbs}

@@ -59,9 +59,11 @@ charlson_icd10
 A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
 \seealso{
-Other default classcodes: \code{\link{ae}},
-  \code{\link{cps_icd10}}, \code{\link{elix}},
-  \code{\link{rxriskv}}
+Other default classcodes: 
+\code{\link{ae}},
+\code{\link{cps_icd10}},
+\code{\link{elix}},
+\code{\link{rxriskv_atc}}
 }
 \concept{default classcodes}
 \keyword{datasets}

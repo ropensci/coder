@@ -21,9 +21,12 @@ Print summary for classcodes object
 print(summary(ex.carbrands_excars))
 }
 \seealso{
-Other classcodes: \code{\link{all_classcodes}},
-  \code{\link{as.data.frame.classified}},
-  \code{\link{classcodes}}, \code{\link{get_classcodes}},
-  \code{\link{summary.classcodes}}, \code{\link{visualize}}
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{get_classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 }
 \concept{classcodes}

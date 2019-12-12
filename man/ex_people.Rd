@@ -16,8 +16,10 @@ ex_people
 Example data for fictive people to use for testing and in examples.
 }
 \seealso{
-Other example data: \code{\link{ex.carbrands_excars}},
-  \code{\link{ex.cars}}, \code{\link{ex_icd10}}
+Other example data: 
+\code{\link{ex.carbrands_excars}},
+\code{\link{ex.cars}},
+\code{\link{ex_icd10}}
 }
 \concept{example data}
 \keyword{datasets}

@@ -11,7 +11,7 @@
 #' (all groups if \code{NULL})
 #' @param show should a visualisation be shown in a web browser.
 #' Set to \code{FALSE} to just retrieve a URL for later use.
-#'
+#' @inheritDotParams get_classcodes regex
 #' @return URL to website with visualisation (invisible)
 #' @export
 #'
@@ -25,6 +25,13 @@
 #'  visualize("charlson_icd10",
 #'    c("diabetes without complication", "diabetes complication"))
 #'
+#'  # Is this different from the "Royal College of Surgeons classification?
+#'  # Yes, there is only one group for diabetes
+#'  visualize("charlson_icd10",
+#'    c("diabetes without complication", "diabetes complication"),
+#'    regex = "rcs"
+#'  )
+#'
 #'  # Show all groups from Charlson
 #'  visualize("charlson_icd10")
 #'
@@ -33,8 +40,8 @@
 #'
 #' }
 #' @family classcodes
-visualize <- function(x, group = NULL, show = TRUE) {
-  x <- get_classcodes(x)
+visualize <- function(x, group = NULL, show = TRUE, ...) {
+  x <- get_classcodes(x, ...)
 
   if (!is.null(group))
     x <- x[x$group %in% group, ]
