@@ -4,19 +4,32 @@
 \alias{summary.classcodes}
 \title{Summarizing a classcodes object}
 \usage{
-\method{summary}{classcodes}(object, ...)
+\method{summary}{classcodes}(object, regex = "regex", coding, ...)
 }
 \arguments{
 \item{object}{classcodes object}
 
+\item{regex}{name of column with regular expressions to use for
+classification, either with or without prefix \code{regex_}}
+
+\item{coding}{name (as character) of classification used for coding
+(for example "icd10" or "atc")}
+
 \item{...}{ignored}
 }
 \value{
-Data frame (nivisable) with columns:
-\describe{
-  \item{group}{Groups identified by \code{object}.}
-  \item{n}{The number oif codes to be recognized for each group.}
-  \item{codes}{Individual codes within each group.}
+List (invisable) with objects:
+
+\itemize{
+  \item{\code{object}: input \code{object}}
+  \item{\code{summary}: a data frame with columns:
+     \itemize{
+    \item{\code{group}: Groups identified by \code{object}.}
+    \item{\code{n}: The number oif codes to be recognized for each group.}
+    \item{\code{codes}: Individual codes within each group.}
+    }
+  }
+  \item{\code{coding}: input \code{coding}}
 }
 }
 \description{
@@ -26,7 +39,7 @@ grasp. Use this function to present all individual codes identified for each
 group in the classification.
 }
 \examples{
-summary(ex.carbrands_excars)
+summary(elixhauser, coding = "icd10")
 }
 \seealso{
 \code{\link{visualize}} for a graphical representation of the

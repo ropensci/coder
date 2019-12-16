@@ -45,7 +45,7 @@ people <-
 We also have a car registry with car ownership for 1,000 cars (with `code_date` the date when the car was bought):
 
 ```{r}
-head(ex.cars)
+head(ex_cars)
 ```
 
 We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company.
@@ -55,7 +55,7 @@ The classification scheme is made by regular expressions since these are more ef
 
 
 ```{r}
-ex.carbrands_excars
+ex_carbrands
 ```
 
 
@@ -66,11 +66,11 @@ We want to know if anyone owns a car frmo a company that we are interested in.
 We use the three objects from above:
 
 * `people`: the people we are interested in,
-* `ex.cars`: the centralised car registry and
-* `ex.carbrands_excars`: the classification of car makers. 
+* `ex_cars`: the centralised car registry and
+* `ex_carbrands`: the classification of car makers. 
 
 ```{r}
-(x <- categorize(people, ex.cars, ex.carbrands_excars, id = "name"))
+(x <- categorize(people, ex_cars, ex_carbrands, id = "name"))
 ```
 
 # Interpretation
@@ -97,8 +97,8 @@ The `days` argument specifies that we are interested in cars bought before this 
 (x <- 
    categorize(
      people, 
-     ex.cars, 
-     ex.carbrands_excars, 
+     ex_cars, 
+     ex_carbrands, 
      id = "name", 
      date = "license", 
      days = c(-Inf, -1)
@@ -116,9 +116,9 @@ We would also like to rate the cars based on the manufacturer. Let us assign som
 We then specifies that the index should be calculated based on the new column named "score".
 
 ```{r}
-ex.carbrands_excars$score <- c(10, 1, 2, 1, 1, 2, 37)
+ex_carbrands$score <- c(10, 1, 2, 1, 1, 2, 37)
 
-(x <- categorize(people, ex.cars, ex.carbrands_excars, id = "name", ind = "score"))
+(x <- categorize(people, ex_cars, ex_carbrands, id = "name", ind = "score"))
 ```
 
 Even though Emily owns half as many cars as Albrecht, she gets a higher score.

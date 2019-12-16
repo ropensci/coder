@@ -11,10 +11,9 @@ tibble::tibble(
 mutate(
   data  = map(names, ~ readxl::read_excel(xl_path, .))
 ) %>%
-separate(names, c("name", "coding"), sep = "_") %>%
 mutate(
-  classcode = map2(data, coding, as.classcodes) %>%
-              set_names(paste(name, coding, sep = "_"))
+  classcode = map(data, as.classcodes) %>%
+              set_names(names)
 ) %>%
 {attach(.$classcode)} # Must be able to refer to each object by name in use_data
 
@@ -25,8 +24,8 @@ mutate(
 # There are some additional ICD-10 codes used for hip fractures.
 # https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf
 # p. 149
-hip.fracture.ae_icd10 <-
-  hip.ae_icd10 %>%
+hip_fracture_ae <-
+  hip_ae %>%
   mutate(
     regex = if_else(
       group == "DM1 other",
@@ -34,21 +33,19 @@ hip.fracture.ae_icd10 <-
       regex
     )
   ) %>%
-  as.classcodes("icd10")
+  as.classcodes()
 
 
 # Save all datasets. Must be referred by name directly (could use rlang maybe)
 usethis::use_data(
-  ex.carbrands_excars,
-  charlson_icd10,
-  elix_icd10,
-  hip.ae_icd10,
-  hip.ae_kva,
-  knee.ae_icd10,
-  knee.ae_kva,
-  hip.fracture.ae_icd10,
-  cps_icd10,
-  rxriskv_atc,
+  ex_carbrands,
+  charlson,
+  elixhauser,
+  hip_ae,
+  knee_ae,
+  hip_fracture_ae,
+  cps,
+  rxriskv,
   overwrite = TRUE
 )
 

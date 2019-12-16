@@ -3,35 +3,30 @@
 \docType{data}
 \name{ae}
 \alias{ae}
-\alias{knee.ae_icd10}
-\alias{hip.ae_icd10}
-\alias{hip.ae_kva}
-\alias{knee.ae_kva}
-\alias{hip.fracture.ae_icd10}
+\alias{knee_ae}
+\alias{hip_ae}
+\alias{hip_fracture_ae}
 \title{Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 and KVA codes}
 \format{Data frame with 3 columns:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
-  \item{regex}{regular expressions identifying ICD-10 or KVA codes for each group}
+  \item{regex}{regular expressions identifying ICD-10 codes for each group}
+ \item{regex_kva}{regular expressions identifying KVA codes}
   \item{condition}{special conditions are used, see below.}
 }}
 \usage{
-knee.ae_icd10
+knee_ae
 
-hip.ae_icd10
+hip_ae
 
-hip.ae_kva
-
-knee.ae_kva
-
-hip.fracture.ae_icd10
+hip_fracture_ae
 }
 \description{
 \code{\link{classcodes}} objects to use with \code{\link{classify}}
 }
 \details{
-Group names are prefixed by two letters as given by the references.
+ICD-10 group names are prefixed by two letters as given by the references.
 Two groups (DB and DM) are split into two due to different conditions.
 }
 \section{Hip fractures}{
@@ -64,10 +59,10 @@ Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrappo
 }
 \seealso{
 Other default classcodes: 
-\code{\link{charlson_icd10}},
-\code{\link{cps_icd10}},
-\code{\link{elix}},
-\code{\link{rxriskv_atc}}
+\code{\link{charlson}},
+\code{\link{cps}},
+\code{\link{elixhauser}},
+\code{\link{rxriskv}}
 }
 \concept{default classcodes}
 \keyword{datasets}

@@ -2,7 +2,7 @@ context("index")
 y <-
   codify(ex_people, ex_icd10, id = "name",
     date = "surgery", days = c(-365, 0)) %>%
-  classify("charlson_icd10")
+  classify("charlson")
 
 test_that("index", {
   suppressWarnings(

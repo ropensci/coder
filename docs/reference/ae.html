@@ -71,7 +71,7 @@ and KVA codes — ae" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -135,28 +135,25 @@ and KVA codes</h1>
     <p><code><a href='classcodes.html'>classcodes</a></code> objects to use with <code><a href='classify.html'>classify</a></code></p>
     </div>
 
-    <pre class="usage"><span class='no'>knee.ae_icd10</span>
+    <pre class="usage"><span class='no'>knee_ae</span>
 
-<span class='no'>hip.ae_icd10</span>
+<span class='no'>hip_ae</span>
 
-<span class='no'>hip.ae_kva</span>
-
-<span class='no'>knee.ae_kva</span>
-
-<span class='no'>hip.fracture.ae_icd10</span></pre>
+<span class='no'>hip_fracture_ae</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
   <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
-  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 or KVA codes for each group</p></dd>
+  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes for each group</p></dd>
+ <dt>regex_kva</dt><dd><p>regular expressions identifying KVA codes</p></dd>
   <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
 
 </dl>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Group names are prefixed by two letters as given by the references.
+    <p>ICD-10 group names are prefixed by two letters as given by the references.
 Two groups (DB and DM) are split into two due to different conditions.</p>
     <h2 class="hasAnchor" id="hip-fractures"><a class="anchor" href="#hip-fractures"></a>Hip fractures</h2>
 
@@ -190,10 +187,10 @@ Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsr
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other default classcodes: 
-<code><a href='charlson_icd10.html'>charlson_icd10</a></code>,
-<code><a href='cps_icd10.html'>cps_icd10</a></code>,
-<code><a href='elix.html'>elix</a></code>,
-<code><a href='rxriskv_atc.html'>rxriskv_atc</a></code></p></div>
+<code><a href='charlson.html'>charlson</a></code>,
+<code><a href='cps.html'>cps</a></code>,
+<code><a href='elixhauser.html'>elixhauser</a></code>,
+<code><a href='rxriskv.html'>rxriskv</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

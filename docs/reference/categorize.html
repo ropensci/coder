@@ -70,7 +70,7 @@ categorise is used as an additional alias." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -222,107 +222,107 @@ Indices are also included if so specified by the 'ind' argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Add Elixhauser based on all registered ICD10-codes</span>
-<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elix_icd10"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery congestive heart failure
-#&gt;   1:        Alexander, Bethany 2018-12-20                    FALSE
-#&gt;   2:           Arguello, Tommy 2019-09-17                    FALSE
-#&gt;   3:             Austin, Maeve 2019-09-10                    FALSE
-#&gt;   4:            Ball, Rockelle 2019-01-27                    FALSE
-#&gt;   5:            Bean, Haileigh 2019-02-25                    FALSE
-#&gt;   6:            Beehler, Kelly 2019-01-15                    FALSE
-#&gt;   7:           Bessard, Marzel 2019-10-07                    FALSE
-#&gt;   8:              Bishop, Alec 2019-01-19                    FALSE
-#&gt;   9:            Bivings, Devin 2019-03-18                    FALSE
-#&gt;  10:            Brown, Patrick 2019-05-30                    FALSE
-#&gt;  11:             Burges, Amber 2019-03-24                    FALSE
-#&gt;  12:            Burton, Martin 2019-08-13                    FALSE
-#&gt;  13:           Cannon, Timothy 2018-12-20                    FALSE
-#&gt;  14:  Cardenas Perez, Gabriela 2019-04-19                    FALSE
-#&gt;  15:               Chung, Noor 2019-04-28                    FALSE
-#&gt;  16:           Connors, Jaylyn 2019-02-21                    FALSE
-#&gt;  17:    Copeland-Doyle, Symone 2019-04-02                    FALSE
-#&gt;  18:                 Doan, Sam 2019-10-03                    FALSE
-#&gt;  19:         Dominguez, Suriel 2019-11-24                    FALSE
-#&gt;  20:         Enriquez, Anthony 2019-07-30                    FALSE
-#&gt;  21:      Fitzsimmons, Tabatha 2019-03-25                     TRUE
-#&gt;  22:             Grim, Cheanna 2019-05-10                    FALSE
-#&gt;  23:               Harder, Rio 2019-10-29                    FALSE
-#&gt;  24:               Hood, Dania 2019-08-06                    FALSE
-#&gt;  25:           Howard, Marcius 2019-10-10                    FALSE
-#&gt;  26:              Huff, Hassan 2019-11-23                    FALSE
-#&gt;  27:           Hughey, Darlene 2019-06-29                    FALSE
-#&gt;  28:        Hutchinson, Joshua 2019-03-24                    FALSE
-#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-19                    FALSE
-#&gt;  30:       Khamsoulinh, De'Von 2019-08-08                    FALSE
-#&gt;  31:          Lechuga, Anthony 2019-03-17                    FALSE
-#&gt;  32:         Littlejohn, Kevin 2019-04-29                    FALSE
-#&gt;  33:          Liufau, Sue Lynn 2019-06-11                    FALSE
-#&gt;  34:            Martin, Trevor 2019-03-28                    FALSE
-#&gt;  35:          Martinez, Alison 2019-07-02                    FALSE
-#&gt;  36:         Martinez, Columba 2019-01-16                    FALSE
-#&gt;  37:          Mendoza, Jessica 2019-06-16                    FALSE
-#&gt;  38:           Mendoza, Nathan 2019-01-20                    FALSE
-#&gt;  39:   Miller, Von Buddenbrock 2019-02-15                    FALSE
-#&gt;  40:              Mills, Henry 2019-05-18                    FALSE
-#&gt;  41:           Mitchell, Dalon 2019-01-13                    FALSE
-#&gt;  42:              Murray, Eric 2019-04-25                    FALSE
-#&gt;  43:             Nguyen, Hoang 2019-07-28                    FALSE
-#&gt;  44:            Orozco, Daniel 2019-03-04                    FALSE
-#&gt;  45:              Pappas, Cole 2019-05-07                    FALSE
-#&gt;  46:         Pearsall, Deontre 2019-07-25                    FALSE
-#&gt;  47:           Pena, Francisco 2019-07-05                    FALSE
-#&gt;  48:              Perez, Vidal 2019-10-22                    FALSE
-#&gt;  49:        Peterson, Brittany 2019-03-13                    FALSE
-#&gt;  50:            Polvon, Alicia 2019-05-02                    FALSE
-#&gt;  51:             Quick, Miriah 2019-09-06                    FALSE
-#&gt;  52:             Raab, Jeannie 2019-05-09                    FALSE
-#&gt;  53:             Rice, Jamissa 2019-12-05                    FALSE
-#&gt;  54:        Rockwell, Savannah 2019-06-28                    FALSE
-#&gt;  55:         Rodriquez, Monica 2019-01-23                    FALSE
-#&gt;  56:              Romero, Carl 2019-11-02                    FALSE
-#&gt;  57: Rosales-Marroquin, Monika 2019-03-14                    FALSE
-#&gt;  58:                 Sam, Niki 2019-10-07                    FALSE
-#&gt;  59:             Sanchez, Ryan 2019-09-28                    FALSE
-#&gt;  60:             Sharma, Katie 2019-09-14                    FALSE
-#&gt;  61:           Snider, Melanie 2018-12-13                    FALSE
-#&gt;  62:       Summerhays, Spencer 2019-01-11                    FALSE
-#&gt;  63:            Thompson, Trae 2019-08-29                    FALSE
-#&gt;  64: Torres Escalante, Herbert 2019-04-22                    FALSE
-#&gt;  65:   Trader-Bankston, J'Quan 2019-08-11                    FALSE
-#&gt;  66:               Tram, Medha 2019-09-23                    FALSE
-#&gt;  67:            Vaclav, Taylor 2019-10-25                    FALSE
-#&gt;  68:           Valdez, Antonio 2018-12-14                    FALSE
-#&gt;  69:           Ventura, Joshua 2019-08-06                    FALSE
-#&gt;  70:         Vogltanz, Michael 2019-03-28                    FALSE
-#&gt;  71:             Wang, Phillip 2019-06-27                    FALSE
-#&gt;  72:          Whitaker, Taylor 2019-03-20                    FALSE
-#&gt;  73:                 Wu, Lucas 2019-12-11                    FALSE
-#&gt;  74:             Wuertz, Jenny 2019-01-30                    FALSE
-#&gt;  75:    al-Asmar, Abdur Raheem 2019-07-28                    FALSE
-#&gt;  76:       al-Bashara, Shaahir 2019-01-06                    FALSE
-#&gt;  77:          al-Dawood, Hasan 2019-10-07                    FALSE
-#&gt;  78:           al-Dib, Farhaan 2019-09-25                    FALSE
-#&gt;  79:        al-Ismail, Waleeda 2019-09-17                    FALSE
-#&gt;  80:        al-Jafri, Shaheera 2019-11-14                    FALSE
-#&gt;  81:        al-Kader, Siddeeqa 2019-11-02                    FALSE
-#&gt;  82:          al-Karam, Ziyaad 2019-09-13                    FALSE
-#&gt;  83:       al-Ramadan, Hanoona 2019-05-09                    FALSE
-#&gt;  84:         al-Shaban, Mazeed 2019-04-26                    FALSE
-#&gt;  85:            el-Amiri, Jaad 2019-08-01                    FALSE
-#&gt;  86:         el-Bashara, Najma 2019-06-15                    FALSE
-#&gt;  87:           el-Diab, Nadeem 2019-08-08                    FALSE
-#&gt;  88:          el-Faris, Shuaib 2019-10-28                    FALSE
-#&gt;  89:          el-Hallal, Uwais 2019-05-21                    FALSE
-#&gt;  90:         el-Hamad, Tayyiba 2019-05-05                    FALSE
-#&gt;  91:       el-Jamail, Hudhaifa 2019-09-24                    FALSE
-#&gt;  92:         el-Khalifa, Nawfa 2019-08-13                    FALSE
-#&gt;  93:           el-Khan, Jasoor 2019-07-29                    FALSE
-#&gt;  94:          el-Masri, Junaid 2019-04-20                    FALSE
-#&gt;  95:        el-Sabir, Mumtaaza 2019-10-09                    FALSE
-#&gt;  96:          el-Sadek, Wafaaa 2019-05-26                    FALSE
-#&gt;  97:       el-Salehi, Mahuroos 2019-03-07                    FALSE
-#&gt;  98:      el-Salih, Farajallah 2019-03-30                    FALSE
-#&gt;  99:         el-Sharif, Nadeem 2019-09-21                    FALSE
-#&gt; 100:          el-Zaki, Huwaida 2019-10-05                    FALSE
+<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elixhauser"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery congestive heart failure
+#&gt;   1:        Alexander, Bethany 2018-12-24                    FALSE
+#&gt;   2:           Arguello, Tommy 2019-09-21                    FALSE
+#&gt;   3:             Austin, Maeve 2019-09-14                    FALSE
+#&gt;   4:            Ball, Rockelle 2019-01-31                    FALSE
+#&gt;   5:            Bean, Haileigh 2019-03-01                    FALSE
+#&gt;   6:            Beehler, Kelly 2019-01-19                    FALSE
+#&gt;   7:           Bessard, Marzel 2019-10-11                    FALSE
+#&gt;   8:              Bishop, Alec 2019-01-23                    FALSE
+#&gt;   9:            Bivings, Devin 2019-03-22                    FALSE
+#&gt;  10:            Brown, Patrick 2019-06-03                    FALSE
+#&gt;  11:             Burges, Amber 2019-03-28                    FALSE
+#&gt;  12:            Burton, Martin 2019-08-17                    FALSE
+#&gt;  13:           Cannon, Timothy 2018-12-24                    FALSE
+#&gt;  14:  Cardenas Perez, Gabriela 2019-04-23                    FALSE
+#&gt;  15:               Chung, Noor 2019-05-02                    FALSE
+#&gt;  16:           Connors, Jaylyn 2019-02-25                    FALSE
+#&gt;  17:    Copeland-Doyle, Symone 2019-04-06                    FALSE
+#&gt;  18:                 Doan, Sam 2019-10-07                    FALSE
+#&gt;  19:         Dominguez, Suriel 2019-11-28                    FALSE
+#&gt;  20:         Enriquez, Anthony 2019-08-03                    FALSE
+#&gt;  21:      Fitzsimmons, Tabatha 2019-03-29                     TRUE
+#&gt;  22:             Grim, Cheanna 2019-05-14                    FALSE
+#&gt;  23:               Harder, Rio 2019-11-02                    FALSE
+#&gt;  24:               Hood, Dania 2019-08-10                    FALSE
+#&gt;  25:           Howard, Marcius 2019-10-14                    FALSE
+#&gt;  26:              Huff, Hassan 2019-11-27                    FALSE
+#&gt;  27:           Hughey, Darlene 2019-07-03                    FALSE
+#&gt;  28:        Hutchinson, Joshua 2019-03-28                    FALSE
+#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-23                    FALSE
+#&gt;  30:       Khamsoulinh, De'Von 2019-08-12                    FALSE
+#&gt;  31:          Lechuga, Anthony 2019-03-21                    FALSE
+#&gt;  32:         Littlejohn, Kevin 2019-05-03                    FALSE
+#&gt;  33:          Liufau, Sue Lynn 2019-06-15                    FALSE
+#&gt;  34:            Martin, Trevor 2019-04-01                    FALSE
+#&gt;  35:          Martinez, Alison 2019-07-06                    FALSE
+#&gt;  36:         Martinez, Columba 2019-01-20                    FALSE
+#&gt;  37:          Mendoza, Jessica 2019-06-20                    FALSE
+#&gt;  38:           Mendoza, Nathan 2019-01-24                    FALSE
+#&gt;  39:   Miller, Von Buddenbrock 2019-02-19                    FALSE
+#&gt;  40:              Mills, Henry 2019-05-22                    FALSE
+#&gt;  41:           Mitchell, Dalon 2019-01-17                    FALSE
+#&gt;  42:              Murray, Eric 2019-04-29                    FALSE
+#&gt;  43:             Nguyen, Hoang 2019-08-01                    FALSE
+#&gt;  44:            Orozco, Daniel 2019-03-08                    FALSE
+#&gt;  45:              Pappas, Cole 2019-05-11                    FALSE
+#&gt;  46:         Pearsall, Deontre 2019-07-29                    FALSE
+#&gt;  47:           Pena, Francisco 2019-07-09                    FALSE
+#&gt;  48:              Perez, Vidal 2019-10-26                    FALSE
+#&gt;  49:        Peterson, Brittany 2019-03-17                    FALSE
+#&gt;  50:            Polvon, Alicia 2019-05-06                    FALSE
+#&gt;  51:             Quick, Miriah 2019-09-10                    FALSE
+#&gt;  52:             Raab, Jeannie 2019-05-13                    FALSE
+#&gt;  53:             Rice, Jamissa 2019-12-09                    FALSE
+#&gt;  54:        Rockwell, Savannah 2019-07-02                    FALSE
+#&gt;  55:         Rodriquez, Monica 2019-01-27                    FALSE
+#&gt;  56:              Romero, Carl 2019-11-06                    FALSE
+#&gt;  57: Rosales-Marroquin, Monika 2019-03-18                    FALSE
+#&gt;  58:                 Sam, Niki 2019-10-11                    FALSE
+#&gt;  59:             Sanchez, Ryan 2019-10-02                    FALSE
+#&gt;  60:             Sharma, Katie 2019-09-18                    FALSE
+#&gt;  61:           Snider, Melanie 2018-12-17                    FALSE
+#&gt;  62:       Summerhays, Spencer 2019-01-15                    FALSE
+#&gt;  63:            Thompson, Trae 2019-09-02                    FALSE
+#&gt;  64: Torres Escalante, Herbert 2019-04-26                    FALSE
+#&gt;  65:   Trader-Bankston, J'Quan 2019-08-15                    FALSE
+#&gt;  66:               Tram, Medha 2019-09-27                    FALSE
+#&gt;  67:            Vaclav, Taylor 2019-10-29                    FALSE
+#&gt;  68:           Valdez, Antonio 2018-12-18                    FALSE
+#&gt;  69:           Ventura, Joshua 2019-08-10                    FALSE
+#&gt;  70:         Vogltanz, Michael 2019-04-01                    FALSE
+#&gt;  71:             Wang, Phillip 2019-07-01                    FALSE
+#&gt;  72:          Whitaker, Taylor 2019-03-24                    FALSE
+#&gt;  73:                 Wu, Lucas 2019-12-15                    FALSE
+#&gt;  74:             Wuertz, Jenny 2019-02-03                    FALSE
+#&gt;  75:    al-Asmar, Abdur Raheem 2019-08-01                    FALSE
+#&gt;  76:       al-Bashara, Shaahir 2019-01-10                    FALSE
+#&gt;  77:          al-Dawood, Hasan 2019-10-11                    FALSE
+#&gt;  78:           al-Dib, Farhaan 2019-09-29                    FALSE
+#&gt;  79:        al-Ismail, Waleeda 2019-09-21                    FALSE
+#&gt;  80:        al-Jafri, Shaheera 2019-11-18                    FALSE
+#&gt;  81:        al-Kader, Siddeeqa 2019-11-06                    FALSE
+#&gt;  82:          al-Karam, Ziyaad 2019-09-17                    FALSE
+#&gt;  83:       al-Ramadan, Hanoona 2019-05-13                    FALSE
+#&gt;  84:         al-Shaban, Mazeed 2019-04-30                    FALSE
+#&gt;  85:            el-Amiri, Jaad 2019-08-05                    FALSE
+#&gt;  86:         el-Bashara, Najma 2019-06-19                    FALSE
+#&gt;  87:           el-Diab, Nadeem 2019-08-12                    FALSE
+#&gt;  88:          el-Faris, Shuaib 2019-11-01                    FALSE
+#&gt;  89:          el-Hallal, Uwais 2019-05-25                    FALSE
+#&gt;  90:         el-Hamad, Tayyiba 2019-05-09                    FALSE
+#&gt;  91:       el-Jamail, Hudhaifa 2019-09-28                    FALSE
+#&gt;  92:         el-Khalifa, Nawfa 2019-08-17                    FALSE
+#&gt;  93:           el-Khan, Jasoor 2019-08-02                    FALSE
+#&gt;  94:          el-Masri, Junaid 2019-04-24                    FALSE
+#&gt;  95:        el-Sabir, Mumtaaza 2019-10-13                    FALSE
+#&gt;  96:          el-Sadek, Wafaaa 2019-05-30                    FALSE
+#&gt;  97:       el-Salehi, Mahuroos 2019-03-11                    FALSE
+#&gt;  98:      el-Salih, Farajallah 2019-04-03                    FALSE
+#&gt;  99:         el-Sharif, Nadeem 2019-09-25                    FALSE
+#&gt; 100:          el-Zaki, Huwaida 2019-10-09                    FALSE
 #&gt;                           name    surgery congestive heart failure
 #&gt;      cardiac arrhythmias valvular disease pulmonary circulation disorder
 #&gt;   1:               FALSE            FALSE                          FALSE
@@ -1143,1234 +1143,928 @@ Indices are also included if so specified by the 'ind' argument.</p>
 <span class='co'># Add Charlson categorias and two versions of a calculated index.</span>
 <span class='co'># Only include recent hospital visits within 30 days before surgery,</span>
 <span class='co'># and use technical variable names to clearly identify the new columns.</span>
-<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"charlson_icd10"</span>,
+<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"charlson"</span>,
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>30</span>, -<span class='fl'>1</span>),
   <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"quan_original"</span>, <span class='st'>"quan_updated"</span>),
   <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt;                           name    surgery charlson_icd10_myocardial_infarction
-#&gt;   1:        Alexander, Bethany 2018-12-20                                FALSE
-#&gt;   2:           Arguello, Tommy 2019-09-17                                   NA
-#&gt;   3:             Austin, Maeve 2019-09-10                                   NA
-#&gt;   4:            Ball, Rockelle 2019-01-27                                FALSE
-#&gt;   5:            Bean, Haileigh 2019-02-25                                   NA
-#&gt;   6:            Beehler, Kelly 2019-01-15                                   NA
-#&gt;   7:           Bessard, Marzel 2019-10-07                                   NA
-#&gt;   8:              Bishop, Alec 2019-01-19                                FALSE
-#&gt;   9:            Bivings, Devin 2019-03-18                                   NA
-#&gt;  10:            Brown, Patrick 2019-05-30                                FALSE
-#&gt;  11:             Burges, Amber 2019-03-24                                FALSE
-#&gt;  12:            Burton, Martin 2019-08-13                                   NA
-#&gt;  13:           Cannon, Timothy 2018-12-20                                   NA
-#&gt;  14:  Cardenas Perez, Gabriela 2019-04-19                                   NA
-#&gt;  15:               Chung, Noor 2019-04-28                                   NA
-#&gt;  16:           Connors, Jaylyn 2019-02-21                                   NA
-#&gt;  17:    Copeland-Doyle, Symone 2019-04-02                                FALSE
-#&gt;  18:                 Doan, Sam 2019-10-03                                   NA
-#&gt;  19:         Dominguez, Suriel 2019-11-24                                   NA
-#&gt;  20:         Enriquez, Anthony 2019-07-30                                   NA
-#&gt;  21:      Fitzsimmons, Tabatha 2019-03-25                                FALSE
-#&gt;  22:             Grim, Cheanna 2019-05-10                                   NA
-#&gt;  23:               Harder, Rio 2019-10-29                                   NA
-#&gt;  24:               Hood, Dania 2019-08-06                                FALSE
-#&gt;  25:           Howard, Marcius 2019-10-10                                   NA
-#&gt;  26:              Huff, Hassan 2019-11-23                                   NA
-#&gt;  27:           Hughey, Darlene 2019-06-29                                   NA
-#&gt;  28:        Hutchinson, Joshua 2019-03-24                                   NA
-#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-19                                   NA
-#&gt;  30:       Khamsoulinh, De'Von 2019-08-08                                   NA
-#&gt;  31:          Lechuga, Anthony 2019-03-17                                   NA
-#&gt;  32:         Littlejohn, Kevin 2019-04-29                                   NA
-#&gt;  33:          Liufau, Sue Lynn 2019-06-11                                   NA
-#&gt;  34:            Martin, Trevor 2019-03-28                                FALSE
-#&gt;  35:          Martinez, Alison 2019-07-02                                FALSE
-#&gt;  36:         Martinez, Columba 2019-01-16                                   NA
-#&gt;  37:          Mendoza, Jessica 2019-06-16                                   NA
-#&gt;  38:           Mendoza, Nathan 2019-01-20                                   NA
-#&gt;  39:   Miller, Von Buddenbrock 2019-02-15                                   NA
-#&gt;  40:              Mills, Henry 2019-05-18                                   NA
-#&gt;  41:           Mitchell, Dalon 2019-01-13                                   NA
-#&gt;  42:              Murray, Eric 2019-04-25                                FALSE
-#&gt;  43:             Nguyen, Hoang 2019-07-28                                   NA
-#&gt;  44:            Orozco, Daniel 2019-03-04                                   NA
-#&gt;  45:              Pappas, Cole 2019-05-07                                   NA
-#&gt;  46:         Pearsall, Deontre 2019-07-25                                   NA
-#&gt;  47:           Pena, Francisco 2019-07-05                                FALSE
-#&gt;  48:              Perez, Vidal 2019-10-22                                   NA
-#&gt;  49:        Peterson, Brittany 2019-03-13                                FALSE
-#&gt;  50:            Polvon, Alicia 2019-05-02                                   NA
-#&gt;  51:             Quick, Miriah 2019-09-06                                   NA
-#&gt;  52:             Raab, Jeannie 2019-05-09                                   NA
-#&gt;  53:             Rice, Jamissa 2019-12-05                                   NA
-#&gt;  54:        Rockwell, Savannah 2019-06-28                                FALSE
-#&gt;  55:         Rodriquez, Monica 2019-01-23                                FALSE
-#&gt;  56:              Romero, Carl 2019-11-02                                   NA
-#&gt;  57: Rosales-Marroquin, Monika 2019-03-14                                FALSE
-#&gt;  58:                 Sam, Niki 2019-10-07                                   NA
-#&gt;  59:             Sanchez, Ryan 2019-09-28                                   NA
-#&gt;  60:             Sharma, Katie 2019-09-14                                   NA
-#&gt;  61:           Snider, Melanie 2018-12-13                                   NA
-#&gt;  62:       Summerhays, Spencer 2019-01-11                                   NA
-#&gt;  63:            Thompson, Trae 2019-08-29                                   NA
-#&gt;  64: Torres Escalante, Herbert 2019-04-22                                FALSE
-#&gt;  65:   Trader-Bankston, J'Quan 2019-08-11                                   NA
-#&gt;  66:               Tram, Medha 2019-09-23                                   NA
-#&gt;  67:            Vaclav, Taylor 2019-10-25                                   NA
-#&gt;  68:           Valdez, Antonio 2018-12-14                                   NA
-#&gt;  69:           Ventura, Joshua 2019-08-06                                   NA
-#&gt;  70:         Vogltanz, Michael 2019-03-28                                FALSE
-#&gt;  71:             Wang, Phillip 2019-06-27                                FALSE
-#&gt;  72:          Whitaker, Taylor 2019-03-20                                   NA
-#&gt;  73:                 Wu, Lucas 2019-12-11                                   NA
-#&gt;  74:             Wuertz, Jenny 2019-01-30                                FALSE
-#&gt;  75:    al-Asmar, Abdur Raheem 2019-07-28                                   NA
-#&gt;  76:       al-Bashara, Shaahir 2019-01-06                                   NA
-#&gt;  77:          al-Dawood, Hasan 2019-10-07                                   NA
-#&gt;  78:           al-Dib, Farhaan 2019-09-25                                   NA
-#&gt;  79:        al-Ismail, Waleeda 2019-09-17                                   NA
-#&gt;  80:        al-Jafri, Shaheera 2019-11-14                                   NA
-#&gt;  81:        al-Kader, Siddeeqa 2019-11-02                                   NA
-#&gt;  82:          al-Karam, Ziyaad 2019-09-13                                   NA
-#&gt;  83:       al-Ramadan, Hanoona 2019-05-09                                   NA
-#&gt;  84:         al-Shaban, Mazeed 2019-04-26                                   NA
-#&gt;  85:            el-Amiri, Jaad 2019-08-01                                   NA
-#&gt;  86:         el-Bashara, Najma 2019-06-15                                   NA
-#&gt;  87:           el-Diab, Nadeem 2019-08-08                                   NA
-#&gt;  88:          el-Faris, Shuaib 2019-10-28                                   NA
-#&gt;  89:          el-Hallal, Uwais 2019-05-21                                   NA
-#&gt;  90:         el-Hamad, Tayyiba 2019-05-05                                   NA
-#&gt;  91:       el-Jamail, Hudhaifa 2019-09-24                                   NA
-#&gt;  92:         el-Khalifa, Nawfa 2019-08-13                                FALSE
-#&gt;  93:           el-Khan, Jasoor 2019-07-29                                   NA
-#&gt;  94:          el-Masri, Junaid 2019-04-20                                FALSE
-#&gt;  95:        el-Sabir, Mumtaaza 2019-10-09                                   NA
-#&gt;  96:          el-Sadek, Wafaaa 2019-05-26                                   NA
-#&gt;  97:       el-Salehi, Mahuroos 2019-03-07                                   NA
-#&gt;  98:      el-Salih, Farajallah 2019-03-30                                FALSE
-#&gt;  99:         el-Sharif, Nadeem 2019-09-21                                   NA
-#&gt; 100:          el-Zaki, Huwaida 2019-10-05                                   NA
-#&gt;                           name    surgery charlson_icd10_myocardial_infarction
-#&gt;      charlson_icd10_congestive_heart_failure
-#&gt;   1:                                   FALSE
-#&gt;   2:                                      NA
-#&gt;   3:                                      NA
-#&gt;   4:                                   FALSE
-#&gt;   5:                                      NA
-#&gt;   6:                                      NA
-#&gt;   7:                                      NA
-#&gt;   8:                                   FALSE
-#&gt;   9:                                      NA
-#&gt;  10:                                   FALSE
-#&gt;  11:                                   FALSE
-#&gt;  12:                                      NA
-#&gt;  13:                                      NA
-#&gt;  14:                                      NA
-#&gt;  15:                                      NA
-#&gt;  16:                                      NA
-#&gt;  17:                                   FALSE
-#&gt;  18:                                      NA
-#&gt;  19:                                      NA
-#&gt;  20:                                      NA
-#&gt;  21:                                    TRUE
-#&gt;  22:                                      NA
-#&gt;  23:                                      NA
-#&gt;  24:                                   FALSE
-#&gt;  25:                                      NA
-#&gt;  26:                                      NA
-#&gt;  27:                                      NA
-#&gt;  28:                                      NA
-#&gt;  29:                                      NA
-#&gt;  30:                                      NA
-#&gt;  31:                                      NA
-#&gt;  32:                                      NA
-#&gt;  33:                                      NA
-#&gt;  34:                                   FALSE
-#&gt;  35:                                   FALSE
-#&gt;  36:                                      NA
-#&gt;  37:                                      NA
-#&gt;  38:                                      NA
-#&gt;  39:                                      NA
-#&gt;  40:                                      NA
-#&gt;  41:                                      NA
-#&gt;  42:                                   FALSE
-#&gt;  43:                                      NA
-#&gt;  44:                                      NA
-#&gt;  45:                                      NA
-#&gt;  46:                                      NA
-#&gt;  47:                                   FALSE
-#&gt;  48:                                      NA
-#&gt;  49:                                   FALSE
-#&gt;  50:                                      NA
-#&gt;  51:                                      NA
-#&gt;  52:                                      NA
-#&gt;  53:                                      NA
-#&gt;  54:                                   FALSE
-#&gt;  55:                                   FALSE
-#&gt;  56:                                      NA
-#&gt;  57:                                   FALSE
-#&gt;  58:                                      NA
-#&gt;  59:                                      NA
-#&gt;  60:                                      NA
-#&gt;  61:                                      NA
-#&gt;  62:                                      NA
-#&gt;  63:                                      NA
-#&gt;  64:                                   FALSE
-#&gt;  65:                                      NA
-#&gt;  66:                                      NA
-#&gt;  67:                                      NA
-#&gt;  68:                                      NA
-#&gt;  69:                                      NA
-#&gt;  70:                                   FALSE
-#&gt;  71:                                   FALSE
-#&gt;  72:                                      NA
-#&gt;  73:                                      NA
-#&gt;  74:                                   FALSE
-#&gt;  75:                                      NA
-#&gt;  76:                                      NA
-#&gt;  77:                                      NA
-#&gt;  78:                                      NA
-#&gt;  79:                                      NA
-#&gt;  80:                                      NA
-#&gt;  81:                                      NA
-#&gt;  82:                                      NA
-#&gt;  83:                                      NA
-#&gt;  84:                                      NA
-#&gt;  85:                                      NA
-#&gt;  86:                                      NA
-#&gt;  87:                                      NA
-#&gt;  88:                                      NA
-#&gt;  89:                                      NA
-#&gt;  90:                                      NA
-#&gt;  91:                                      NA
-#&gt;  92:                                   FALSE
-#&gt;  93:                                      NA
-#&gt;  94:                                   FALSE
-#&gt;  95:                                      NA
-#&gt;  96:                                      NA
-#&gt;  97:                                      NA
-#&gt;  98:                                   FALSE
-#&gt;  99:                                      NA
-#&gt; 100:                                      NA
-#&gt;      charlson_icd10_congestive_heart_failure
-#&gt;      charlson_icd10_peripheral_vascular_disease
-#&gt;   1:                                      FALSE
-#&gt;   2:                                         NA
-#&gt;   3:                                         NA
-#&gt;   4:                                      FALSE
-#&gt;   5:                                         NA
-#&gt;   6:                                         NA
-#&gt;   7:                                         NA
-#&gt;   8:                                      FALSE
-#&gt;   9:                                         NA
-#&gt;  10:                                      FALSE
-#&gt;  11:                                      FALSE
-#&gt;  12:                                         NA
-#&gt;  13:                                         NA
-#&gt;  14:                                         NA
-#&gt;  15:                                         NA
-#&gt;  16:                                         NA
-#&gt;  17:                                      FALSE
-#&gt;  18:                                         NA
-#&gt;  19:                                         NA
-#&gt;  20:                                         NA
-#&gt;  21:                                      FALSE
-#&gt;  22:                                         NA
-#&gt;  23:                                         NA
-#&gt;  24:                                      FALSE
-#&gt;  25:                                         NA
-#&gt;  26:                                         NA
-#&gt;  27:                                         NA
-#&gt;  28:                                         NA
-#&gt;  29:                                         NA
-#&gt;  30:                                         NA
-#&gt;  31:                                         NA
-#&gt;  32:                                         NA
-#&gt;  33:                                         NA
-#&gt;  34:                                      FALSE
-#&gt;  35:                                      FALSE
-#&gt;  36:                                         NA
-#&gt;  37:                                         NA
-#&gt;  38:                                         NA
-#&gt;  39:                                         NA
-#&gt;  40:                                         NA
-#&gt;  41:                                         NA
-#&gt;  42:                                      FALSE
-#&gt;  43:                                         NA
-#&gt;  44:                                         NA
-#&gt;  45:                                         NA
-#&gt;  46:                                         NA
-#&gt;  47:                                      FALSE
-#&gt;  48:                                         NA
-#&gt;  49:                                      FALSE
-#&gt;  50:                                         NA
-#&gt;  51:                                         NA
-#&gt;  52:                                         NA
-#&gt;  53:                                         NA
-#&gt;  54:                                      FALSE
-#&gt;  55:                                      FALSE
-#&gt;  56:                                         NA
-#&gt;  57:                                      FALSE
-#&gt;  58:                                         NA
-#&gt;  59:                                         NA
-#&gt;  60:                                         NA
-#&gt;  61:                                         NA
-#&gt;  62:                                         NA
-#&gt;  63:                                         NA
-#&gt;  64:                                      FALSE
-#&gt;  65:                                         NA
-#&gt;  66:                                         NA
-#&gt;  67:                                         NA
-#&gt;  68:                                         NA
-#&gt;  69:                                         NA
-#&gt;  70:                                      FALSE
-#&gt;  71:                                      FALSE
-#&gt;  72:                                         NA
-#&gt;  73:                                         NA
-#&gt;  74:                                      FALSE
-#&gt;  75:                                         NA
-#&gt;  76:                                         NA
-#&gt;  77:                                         NA
-#&gt;  78:                                         NA
-#&gt;  79:                                         NA
-#&gt;  80:                                         NA
-#&gt;  81:                                         NA
-#&gt;  82:                                         NA
-#&gt;  83:                                         NA
-#&gt;  84:                                         NA
-#&gt;  85:                                         NA
-#&gt;  86:                                         NA
-#&gt;  87:                                         NA
-#&gt;  88:                                         NA
-#&gt;  89:                                         NA
-#&gt;  90:                                         NA
-#&gt;  91:                                         NA
-#&gt;  92:                                      FALSE
-#&gt;  93:                                         NA
-#&gt;  94:                                      FALSE
-#&gt;  95:                                         NA
-#&gt;  96:                                         NA
-#&gt;  97:                                         NA
-#&gt;  98:                                      FALSE
-#&gt;  99:                                         NA
-#&gt; 100:                                         NA
-#&gt;      charlson_icd10_peripheral_vascular_disease
-#&gt;      charlson_icd10_cerebrovascular_disease charlson_icd10_dementia
-#&gt;   1:                                  FALSE                   FALSE
-#&gt;   2:                                     NA                      NA
-#&gt;   3:                                     NA                      NA
-#&gt;   4:                                  FALSE                   FALSE
-#&gt;   5:                                     NA                      NA
-#&gt;   6:                                     NA                      NA
-#&gt;   7:                                     NA                      NA
-#&gt;   8:                                  FALSE                   FALSE
-#&gt;   9:                                     NA                      NA
-#&gt;  10:                                  FALSE                   FALSE
-#&gt;  11:                                  FALSE                   FALSE
-#&gt;  12:                                     NA                      NA
-#&gt;  13:                                     NA                      NA
-#&gt;  14:                                     NA                      NA
-#&gt;  15:                                     NA                      NA
-#&gt;  16:                                     NA                      NA
-#&gt;  17:                                  FALSE                   FALSE
-#&gt;  18:                                     NA                      NA
-#&gt;  19:                                     NA                      NA
-#&gt;  20:                                     NA                      NA
-#&gt;  21:                                  FALSE                   FALSE
-#&gt;  22:                                     NA                      NA
-#&gt;  23:                                     NA                      NA
-#&gt;  24:                                  FALSE                   FALSE
-#&gt;  25:                                     NA                      NA
-#&gt;  26:                                     NA                      NA
-#&gt;  27:                                     NA                      NA
-#&gt;  28:                                     NA                      NA
-#&gt;  29:                                     NA                      NA
-#&gt;  30:                                     NA                      NA
-#&gt;  31:                                     NA                      NA
-#&gt;  32:                                     NA                      NA
-#&gt;  33:                                     NA                      NA
-#&gt;  34:                                  FALSE                   FALSE
-#&gt;  35:                                  FALSE                   FALSE
-#&gt;  36:                                     NA                      NA
-#&gt;  37:                                     NA                      NA
-#&gt;  38:                                     NA                      NA
-#&gt;  39:                                     NA                      NA
-#&gt;  40:                                     NA                      NA
-#&gt;  41:                                     NA                      NA
-#&gt;  42:                                  FALSE                   FALSE
-#&gt;  43:                                     NA                      NA
-#&gt;  44:                                     NA                      NA
-#&gt;  45:                                     NA                      NA
-#&gt;  46:                                     NA                      NA
-#&gt;  47:                                  FALSE                   FALSE
-#&gt;  48:                                     NA                      NA
-#&gt;  49:                                  FALSE                   FALSE
-#&gt;  50:                                     NA                      NA
-#&gt;  51:                                     NA                      NA
-#&gt;  52:                                     NA                      NA
-#&gt;  53:                                     NA                      NA
-#&gt;  54:                                  FALSE                   FALSE
-#&gt;  55:                                  FALSE                   FALSE
-#&gt;  56:                                     NA                      NA
-#&gt;  57:                                  FALSE                   FALSE
-#&gt;  58:                                     NA                      NA
-#&gt;  59:                                     NA                      NA
-#&gt;  60:                                     NA                      NA
-#&gt;  61:                                     NA                      NA
-#&gt;  62:                                     NA                      NA
-#&gt;  63:                                     NA                      NA
-#&gt;  64:                                  FALSE                   FALSE
-#&gt;  65:                                     NA                      NA
-#&gt;  66:                                     NA                      NA
-#&gt;  67:                                     NA                      NA
-#&gt;  68:                                     NA                      NA
-#&gt;  69:                                     NA                      NA
-#&gt;  70:                                  FALSE                   FALSE
-#&gt;  71:                                  FALSE                   FALSE
-#&gt;  72:                                     NA                      NA
-#&gt;  73:                                     NA                      NA
-#&gt;  74:                                  FALSE                   FALSE
-#&gt;  75:                                     NA                      NA
-#&gt;  76:                                     NA                      NA
-#&gt;  77:                                     NA                      NA
-#&gt;  78:                                     NA                      NA
-#&gt;  79:                                     NA                      NA
-#&gt;  80:                                     NA                      NA
-#&gt;  81:                                     NA                      NA
-#&gt;  82:                                     NA                      NA
-#&gt;  83:                                     NA                      NA
-#&gt;  84:                                     NA                      NA
-#&gt;  85:                                     NA                      NA
-#&gt;  86:                                     NA                      NA
-#&gt;  87:                                     NA                      NA
-#&gt;  88:                                     NA                      NA
-#&gt;  89:                                     NA                      NA
-#&gt;  90:                                     NA                      NA
-#&gt;  91:                                     NA                      NA
-#&gt;  92:                                  FALSE                   FALSE
-#&gt;  93:                                     NA                      NA
-#&gt;  94:                                  FALSE                   FALSE
-#&gt;  95:                                     NA                      NA
-#&gt;  96:                                     NA                      NA
-#&gt;  97:                                     NA                      NA
-#&gt;  98:                                  FALSE                   FALSE
-#&gt;  99:                                     NA                      NA
-#&gt; 100:                                     NA                      NA
-#&gt;      charlson_icd10_cerebrovascular_disease charlson_icd10_dementia
-#&gt;      charlson_icd10_chronic_pulmonary_disease charlson_icd10_rheumatic_disease
-#&gt;   1:                                    FALSE                            FALSE
-#&gt;   2:                                       NA                               NA
-#&gt;   3:                                       NA                               NA
-#&gt;   4:                                    FALSE                            FALSE
-#&gt;   5:                                       NA                               NA
-#&gt;   6:                                       NA                               NA
-#&gt;   7:                                       NA                               NA
-#&gt;   8:                                    FALSE                            FALSE
-#&gt;   9:                                       NA                               NA
-#&gt;  10:                                    FALSE                            FALSE
-#&gt;  11:                                    FALSE                            FALSE
-#&gt;  12:                                       NA                               NA
-#&gt;  13:                                       NA                               NA
-#&gt;  14:                                       NA                               NA
-#&gt;  15:                                       NA                               NA
-#&gt;  16:                                       NA                               NA
-#&gt;  17:                                    FALSE                            FALSE
-#&gt;  18:                                       NA                               NA
-#&gt;  19:                                       NA                               NA
-#&gt;  20:                                       NA                               NA
-#&gt;  21:                                    FALSE                            FALSE
-#&gt;  22:                                       NA                               NA
-#&gt;  23:                                       NA                               NA
-#&gt;  24:                                    FALSE                            FALSE
-#&gt;  25:                                       NA                               NA
-#&gt;  26:                                       NA                               NA
-#&gt;  27:                                       NA                               NA
-#&gt;  28:                                       NA                               NA
-#&gt;  29:                                       NA                               NA
-#&gt;  30:                                       NA                               NA
-#&gt;  31:                                       NA                               NA
-#&gt;  32:                                       NA                               NA
-#&gt;  33:                                       NA                               NA
-#&gt;  34:                                    FALSE                            FALSE
-#&gt;  35:                                    FALSE                            FALSE
-#&gt;  36:                                       NA                               NA
-#&gt;  37:                                       NA                               NA
-#&gt;  38:                                       NA                               NA
-#&gt;  39:                                       NA                               NA
-#&gt;  40:                                       NA                               NA
-#&gt;  41:                                       NA                               NA
-#&gt;  42:                                    FALSE                            FALSE
-#&gt;  43:                                       NA                               NA
-#&gt;  44:                                       NA                               NA
-#&gt;  45:                                       NA                               NA
-#&gt;  46:                                       NA                               NA
-#&gt;  47:                                    FALSE                            FALSE
-#&gt;  48:                                       NA                               NA
-#&gt;  49:                                    FALSE                            FALSE
-#&gt;  50:                                       NA                               NA
-#&gt;  51:                                       NA                               NA
-#&gt;  52:                                       NA                               NA
-#&gt;  53:                                       NA                               NA
-#&gt;  54:                                    FALSE                            FALSE
-#&gt;  55:                                    FALSE                            FALSE
-#&gt;  56:                                       NA                               NA
-#&gt;  57:                                    FALSE                            FALSE
-#&gt;  58:                                       NA                               NA
-#&gt;  59:                                       NA                               NA
-#&gt;  60:                                       NA                               NA
-#&gt;  61:                                       NA                               NA
-#&gt;  62:                                       NA                               NA
-#&gt;  63:                                       NA                               NA
-#&gt;  64:                                    FALSE                            FALSE
-#&gt;  65:                                       NA                               NA
-#&gt;  66:                                       NA                               NA
-#&gt;  67:                                       NA                               NA
-#&gt;  68:                                       NA                               NA
-#&gt;  69:                                       NA                               NA
-#&gt;  70:                                    FALSE                            FALSE
-#&gt;  71:                                    FALSE                            FALSE
-#&gt;  72:                                       NA                               NA
-#&gt;  73:                                       NA                               NA
-#&gt;  74:                                    FALSE                            FALSE
-#&gt;  75:                                       NA                               NA
-#&gt;  76:                                       NA                               NA
-#&gt;  77:                                       NA                               NA
-#&gt;  78:                                       NA                               NA
-#&gt;  79:                                       NA                               NA
-#&gt;  80:                                       NA                               NA
-#&gt;  81:                                       NA                               NA
-#&gt;  82:                                       NA                               NA
-#&gt;  83:                                       NA                               NA
-#&gt;  84:                                       NA                               NA
-#&gt;  85:                                       NA                               NA
-#&gt;  86:                                       NA                               NA
-#&gt;  87:                                       NA                               NA
-#&gt;  88:                                       NA                               NA
-#&gt;  89:                                       NA                               NA
-#&gt;  90:                                       NA                               NA
-#&gt;  91:                                       NA                               NA
-#&gt;  92:                                    FALSE                            FALSE
-#&gt;  93:                                       NA                               NA
-#&gt;  94:                                    FALSE                            FALSE
-#&gt;  95:                                       NA                               NA
-#&gt;  96:                                       NA                               NA
-#&gt;  97:                                       NA                               NA
-#&gt;  98:                                    FALSE                            FALSE
-#&gt;  99:                                       NA                               NA
-#&gt; 100:                                       NA                               NA
-#&gt;      charlson_icd10_chronic_pulmonary_disease charlson_icd10_rheumatic_disease
-#&gt;      charlson_icd10_peptic_ulcer_disease charlson_icd10_mild_liver_disease
-#&gt;   1:                               FALSE                             FALSE
-#&gt;   2:                                  NA                                NA
-#&gt;   3:                                  NA                                NA
-#&gt;   4:                               FALSE                             FALSE
-#&gt;   5:                                  NA                                NA
-#&gt;   6:                                  NA                                NA
-#&gt;   7:                                  NA                                NA
-#&gt;   8:                               FALSE                             FALSE
-#&gt;   9:                                  NA                                NA
-#&gt;  10:                               FALSE                             FALSE
-#&gt;  11:                               FALSE                             FALSE
-#&gt;  12:                                  NA                                NA
-#&gt;  13:                                  NA                                NA
-#&gt;  14:                                  NA                                NA
-#&gt;  15:                                  NA                                NA
-#&gt;  16:                                  NA                                NA
-#&gt;  17:                               FALSE                             FALSE
-#&gt;  18:                                  NA                                NA
-#&gt;  19:                                  NA                                NA
-#&gt;  20:                                  NA                                NA
-#&gt;  21:                               FALSE                             FALSE
-#&gt;  22:                                  NA                                NA
-#&gt;  23:                                  NA                                NA
-#&gt;  24:                               FALSE                             FALSE
-#&gt;  25:                                  NA                                NA
-#&gt;  26:                                  NA                                NA
-#&gt;  27:                                  NA                                NA
-#&gt;  28:                                  NA                                NA
-#&gt;  29:                                  NA                                NA
-#&gt;  30:                                  NA                                NA
-#&gt;  31:                                  NA                                NA
-#&gt;  32:                                  NA                                NA
-#&gt;  33:                                  NA                                NA
-#&gt;  34:                               FALSE                             FALSE
-#&gt;  35:                               FALSE                             FALSE
-#&gt;  36:                                  NA                                NA
-#&gt;  37:                                  NA                                NA
-#&gt;  38:                                  NA                                NA
-#&gt;  39:                                  NA                                NA
-#&gt;  40:                                  NA                                NA
-#&gt;  41:                                  NA                                NA
-#&gt;  42:                               FALSE                             FALSE
-#&gt;  43:                                  NA                                NA
-#&gt;  44:                                  NA                                NA
-#&gt;  45:                                  NA                                NA
-#&gt;  46:                                  NA                                NA
-#&gt;  47:                               FALSE                             FALSE
-#&gt;  48:                                  NA                                NA
-#&gt;  49:                               FALSE                             FALSE
-#&gt;  50:                                  NA                                NA
-#&gt;  51:                                  NA                                NA
-#&gt;  52:                                  NA                                NA
-#&gt;  53:                                  NA                                NA
-#&gt;  54:                               FALSE                             FALSE
-#&gt;  55:                               FALSE                             FALSE
-#&gt;  56:                                  NA                                NA
-#&gt;  57:                               FALSE                             FALSE
-#&gt;  58:                                  NA                                NA
-#&gt;  59:                                  NA                                NA
-#&gt;  60:                                  NA                                NA
-#&gt;  61:                                  NA                                NA
-#&gt;  62:                                  NA                                NA
-#&gt;  63:                                  NA                                NA
-#&gt;  64:                               FALSE                             FALSE
-#&gt;  65:                                  NA                                NA
-#&gt;  66:                                  NA                                NA
-#&gt;  67:                                  NA                                NA
-#&gt;  68:                                  NA                                NA
-#&gt;  69:                                  NA                                NA
-#&gt;  70:                               FALSE                             FALSE
-#&gt;  71:                               FALSE                             FALSE
-#&gt;  72:                                  NA                                NA
-#&gt;  73:                                  NA                                NA
-#&gt;  74:                               FALSE                             FALSE
-#&gt;  75:                                  NA                                NA
-#&gt;  76:                                  NA                                NA
-#&gt;  77:                                  NA                                NA
-#&gt;  78:                                  NA                                NA
-#&gt;  79:                                  NA                                NA
-#&gt;  80:                                  NA                                NA
-#&gt;  81:                                  NA                                NA
-#&gt;  82:                                  NA                                NA
-#&gt;  83:                                  NA                                NA
-#&gt;  84:                                  NA                                NA
-#&gt;  85:                                  NA                                NA
-#&gt;  86:                                  NA                                NA
-#&gt;  87:                                  NA                                NA
-#&gt;  88:                                  NA                                NA
-#&gt;  89:                                  NA                                NA
-#&gt;  90:                                  NA                                NA
-#&gt;  91:                                  NA                                NA
-#&gt;  92:                               FALSE                             FALSE
-#&gt;  93:                                  NA                                NA
-#&gt;  94:                               FALSE                             FALSE
-#&gt;  95:                                  NA                                NA
-#&gt;  96:                                  NA                                NA
-#&gt;  97:                                  NA                                NA
-#&gt;  98:                               FALSE                             FALSE
-#&gt;  99:                                  NA                                NA
-#&gt; 100:                                  NA                                NA
-#&gt;      charlson_icd10_peptic_ulcer_disease charlson_icd10_mild_liver_disease
-#&gt;      charlson_icd10_diabetes_without_complication
-#&gt;   1:                                        FALSE
-#&gt;   2:                                           NA
-#&gt;   3:                                           NA
-#&gt;   4:                                        FALSE
-#&gt;   5:                                           NA
-#&gt;   6:                                           NA
-#&gt;   7:                                           NA
-#&gt;   8:                                        FALSE
-#&gt;   9:                                           NA
-#&gt;  10:                                        FALSE
-#&gt;  11:                                        FALSE
-#&gt;  12:                                           NA
-#&gt;  13:                                           NA
-#&gt;  14:                                           NA
-#&gt;  15:                                           NA
-#&gt;  16:                                           NA
-#&gt;  17:                                        FALSE
-#&gt;  18:                                           NA
-#&gt;  19:                                           NA
-#&gt;  20:                                           NA
-#&gt;  21:                                        FALSE
-#&gt;  22:                                           NA
-#&gt;  23:                                           NA
-#&gt;  24:                                        FALSE
-#&gt;  25:                                           NA
-#&gt;  26:                                           NA
-#&gt;  27:                                           NA
-#&gt;  28:                                           NA
-#&gt;  29:                                           NA
-#&gt;  30:                                           NA
-#&gt;  31:                                           NA
-#&gt;  32:                                           NA
-#&gt;  33:                                           NA
-#&gt;  34:                                        FALSE
-#&gt;  35:                                        FALSE
-#&gt;  36:                                           NA
-#&gt;  37:                                           NA
-#&gt;  38:                                           NA
-#&gt;  39:                                           NA
-#&gt;  40:                                           NA
-#&gt;  41:                                           NA
-#&gt;  42:                                        FALSE
-#&gt;  43:                                           NA
-#&gt;  44:                                           NA
-#&gt;  45:                                           NA
-#&gt;  46:                                           NA
-#&gt;  47:                                        FALSE
-#&gt;  48:                                           NA
-#&gt;  49:                                        FALSE
-#&gt;  50:                                           NA
-#&gt;  51:                                           NA
-#&gt;  52:                                           NA
-#&gt;  53:                                           NA
-#&gt;  54:                                        FALSE
-#&gt;  55:                                        FALSE
-#&gt;  56:                                           NA
-#&gt;  57:                                        FALSE
-#&gt;  58:                                           NA
-#&gt;  59:                                           NA
-#&gt;  60:                                           NA
-#&gt;  61:                                           NA
-#&gt;  62:                                           NA
-#&gt;  63:                                           NA
-#&gt;  64:                                        FALSE
-#&gt;  65:                                           NA
-#&gt;  66:                                           NA
-#&gt;  67:                                           NA
-#&gt;  68:                                           NA
-#&gt;  69:                                           NA
-#&gt;  70:                                        FALSE
-#&gt;  71:                                        FALSE
-#&gt;  72:                                           NA
-#&gt;  73:                                           NA
-#&gt;  74:                                        FALSE
-#&gt;  75:                                           NA
-#&gt;  76:                                           NA
-#&gt;  77:                                           NA
-#&gt;  78:                                           NA
-#&gt;  79:                                           NA
-#&gt;  80:                                           NA
-#&gt;  81:                                           NA
-#&gt;  82:                                           NA
-#&gt;  83:                                           NA
-#&gt;  84:                                           NA
-#&gt;  85:                                           NA
-#&gt;  86:                                           NA
-#&gt;  87:                                           NA
-#&gt;  88:                                           NA
-#&gt;  89:                                           NA
-#&gt;  90:                                           NA
-#&gt;  91:                                           NA
-#&gt;  92:                                        FALSE
-#&gt;  93:                                           NA
-#&gt;  94:                                        FALSE
-#&gt;  95:                                           NA
-#&gt;  96:                                           NA
-#&gt;  97:                                           NA
-#&gt;  98:                                        FALSE
-#&gt;  99:                                           NA
-#&gt; 100:                                           NA
-#&gt;      charlson_icd10_diabetes_without_complication
-#&gt;      charlson_icd10_hemiplegia_or_paraplegia charlson_icd10_renal_disease
-#&gt;   1:                                   FALSE                        FALSE
-#&gt;   2:                                      NA                           NA
-#&gt;   3:                                      NA                           NA
-#&gt;   4:                                   FALSE                        FALSE
-#&gt;   5:                                      NA                           NA
-#&gt;   6:                                      NA                           NA
-#&gt;   7:                                      NA                           NA
-#&gt;   8:                                   FALSE                        FALSE
-#&gt;   9:                                      NA                           NA
-#&gt;  10:                                   FALSE                        FALSE
-#&gt;  11:                                   FALSE                        FALSE
-#&gt;  12:                                      NA                           NA
-#&gt;  13:                                      NA                           NA
-#&gt;  14:                                      NA                           NA
-#&gt;  15:                                      NA                           NA
-#&gt;  16:                                      NA                           NA
-#&gt;  17:                                   FALSE                        FALSE
-#&gt;  18:                                      NA                           NA
-#&gt;  19:                                      NA                           NA
-#&gt;  20:                                      NA                           NA
-#&gt;  21:                                   FALSE                        FALSE
-#&gt;  22:                                      NA                           NA
-#&gt;  23:                                      NA                           NA
-#&gt;  24:                                   FALSE                        FALSE
-#&gt;  25:                                      NA                           NA
-#&gt;  26:                                      NA                           NA
-#&gt;  27:                                      NA                           NA
-#&gt;  28:                                      NA                           NA
-#&gt;  29:                                      NA                           NA
-#&gt;  30:                                      NA                           NA
-#&gt;  31:                                      NA                           NA
-#&gt;  32:                                      NA                           NA
-#&gt;  33:                                      NA                           NA
-#&gt;  34:                                   FALSE                        FALSE
-#&gt;  35:                                   FALSE                        FALSE
-#&gt;  36:                                      NA                           NA
-#&gt;  37:                                      NA                           NA
-#&gt;  38:                                      NA                           NA
-#&gt;  39:                                      NA                           NA
-#&gt;  40:                                      NA                           NA
-#&gt;  41:                                      NA                           NA
-#&gt;  42:                                   FALSE                        FALSE
-#&gt;  43:                                      NA                           NA
-#&gt;  44:                                      NA                           NA
-#&gt;  45:                                      NA                           NA
-#&gt;  46:                                      NA                           NA
-#&gt;  47:                                   FALSE                        FALSE
-#&gt;  48:                                      NA                           NA
-#&gt;  49:                                   FALSE                        FALSE
-#&gt;  50:                                      NA                           NA
-#&gt;  51:                                      NA                           NA
-#&gt;  52:                                      NA                           NA
-#&gt;  53:                                      NA                           NA
-#&gt;  54:                                   FALSE                        FALSE
-#&gt;  55:                                   FALSE                        FALSE
-#&gt;  56:                                      NA                           NA
-#&gt;  57:                                   FALSE                        FALSE
-#&gt;  58:                                      NA                           NA
-#&gt;  59:                                      NA                           NA
-#&gt;  60:                                      NA                           NA
-#&gt;  61:                                      NA                           NA
-#&gt;  62:                                      NA                           NA
-#&gt;  63:                                      NA                           NA
-#&gt;  64:                                   FALSE                        FALSE
-#&gt;  65:                                      NA                           NA
-#&gt;  66:                                      NA                           NA
-#&gt;  67:                                      NA                           NA
-#&gt;  68:                                      NA                           NA
-#&gt;  69:                                      NA                           NA
-#&gt;  70:                                   FALSE                        FALSE
-#&gt;  71:                                   FALSE                        FALSE
-#&gt;  72:                                      NA                           NA
-#&gt;  73:                                      NA                           NA
-#&gt;  74:                                   FALSE                        FALSE
-#&gt;  75:                                      NA                           NA
-#&gt;  76:                                      NA                           NA
-#&gt;  77:                                      NA                           NA
-#&gt;  78:                                      NA                           NA
-#&gt;  79:                                      NA                           NA
-#&gt;  80:                                      NA                           NA
-#&gt;  81:                                      NA                           NA
-#&gt;  82:                                      NA                           NA
-#&gt;  83:                                      NA                           NA
-#&gt;  84:                                      NA                           NA
-#&gt;  85:                                      NA                           NA
-#&gt;  86:                                      NA                           NA
-#&gt;  87:                                      NA                           NA
-#&gt;  88:                                      NA                           NA
-#&gt;  89:                                      NA                           NA
-#&gt;  90:                                      NA                           NA
-#&gt;  91:                                      NA                           NA
-#&gt;  92:                                   FALSE                        FALSE
-#&gt;  93:                                      NA                           NA
-#&gt;  94:                                   FALSE                        FALSE
-#&gt;  95:                                      NA                           NA
-#&gt;  96:                                      NA                           NA
-#&gt;  97:                                      NA                           NA
-#&gt;  98:                                   FALSE                        FALSE
-#&gt;  99:                                      NA                           NA
-#&gt; 100:                                      NA                           NA
-#&gt;      charlson_icd10_hemiplegia_or_paraplegia charlson_icd10_renal_disease
-#&gt;      charlson_icd10_diabetes_complication charlson_icd10_malignancy
-#&gt;   1:                                FALSE                     FALSE
-#&gt;   2:                                   NA                        NA
-#&gt;   3:                                   NA                        NA
-#&gt;   4:                                FALSE                     FALSE
-#&gt;   5:                                   NA                        NA
-#&gt;   6:                                   NA                        NA
-#&gt;   7:                                   NA                        NA
-#&gt;   8:                                FALSE                     FALSE
-#&gt;   9:                                   NA                        NA
-#&gt;  10:                                FALSE                     FALSE
-#&gt;  11:                                FALSE                     FALSE
-#&gt;  12:                                   NA                        NA
-#&gt;  13:                                   NA                        NA
-#&gt;  14:                                   NA                        NA
-#&gt;  15:                                   NA                        NA
-#&gt;  16:                                   NA                        NA
-#&gt;  17:                                FALSE                     FALSE
-#&gt;  18:                                   NA                        NA
-#&gt;  19:                                   NA                        NA
-#&gt;  20:                                   NA                        NA
-#&gt;  21:                                FALSE                     FALSE
-#&gt;  22:                                   NA                        NA
-#&gt;  23:                                   NA                        NA
-#&gt;  24:                                FALSE                     FALSE
-#&gt;  25:                                   NA                        NA
-#&gt;  26:                                   NA                        NA
-#&gt;  27:                                   NA                        NA
-#&gt;  28:                                   NA                        NA
-#&gt;  29:                                   NA                        NA
-#&gt;  30:                                   NA                        NA
-#&gt;  31:                                   NA                        NA
-#&gt;  32:                                   NA                        NA
-#&gt;  33:                                   NA                        NA
-#&gt;  34:                                FALSE                     FALSE
-#&gt;  35:                                FALSE                     FALSE
-#&gt;  36:                                   NA                        NA
-#&gt;  37:                                   NA                        NA
-#&gt;  38:                                   NA                        NA
-#&gt;  39:                                   NA                        NA
-#&gt;  40:                                   NA                        NA
-#&gt;  41:                                   NA                        NA
-#&gt;  42:                                FALSE                     FALSE
-#&gt;  43:                                   NA                        NA
-#&gt;  44:                                   NA                        NA
-#&gt;  45:                                   NA                        NA
-#&gt;  46:                                   NA                        NA
-#&gt;  47:                                FALSE                     FALSE
-#&gt;  48:                                   NA                        NA
-#&gt;  49:                                FALSE                      TRUE
-#&gt;  50:                                   NA                        NA
-#&gt;  51:                                   NA                        NA
-#&gt;  52:                                   NA                        NA
-#&gt;  53:                                   NA                        NA
-#&gt;  54:                                FALSE                     FALSE
-#&gt;  55:                                FALSE                     FALSE
-#&gt;  56:                                   NA                        NA
-#&gt;  57:                                FALSE                     FALSE
-#&gt;  58:                                   NA                        NA
-#&gt;  59:                                   NA                        NA
-#&gt;  60:                                   NA                        NA
-#&gt;  61:                                   NA                        NA
-#&gt;  62:                                   NA                        NA
-#&gt;  63:                                   NA                        NA
-#&gt;  64:                                FALSE                     FALSE
-#&gt;  65:                                   NA                        NA
-#&gt;  66:                                   NA                        NA
-#&gt;  67:                                   NA                        NA
-#&gt;  68:                                   NA                        NA
-#&gt;  69:                                   NA                        NA
-#&gt;  70:                                FALSE                      TRUE
-#&gt;  71:                                FALSE                     FALSE
-#&gt;  72:                                   NA                        NA
-#&gt;  73:                                   NA                        NA
-#&gt;  74:                                FALSE                     FALSE
-#&gt;  75:                                   NA                        NA
-#&gt;  76:                                   NA                        NA
-#&gt;  77:                                   NA                        NA
-#&gt;  78:                                   NA                        NA
-#&gt;  79:                                   NA                        NA
-#&gt;  80:                                   NA                        NA
-#&gt;  81:                                   NA                        NA
-#&gt;  82:                                   NA                        NA
-#&gt;  83:                                   NA                        NA
-#&gt;  84:                                   NA                        NA
-#&gt;  85:                                   NA                        NA
-#&gt;  86:                                   NA                        NA
-#&gt;  87:                                   NA                        NA
-#&gt;  88:                                   NA                        NA
-#&gt;  89:                                   NA                        NA
-#&gt;  90:                                   NA                        NA
-#&gt;  91:                                   NA                        NA
-#&gt;  92:                                FALSE                     FALSE
-#&gt;  93:                                   NA                        NA
-#&gt;  94:                                FALSE                     FALSE
-#&gt;  95:                                   NA                        NA
-#&gt;  96:                                   NA                        NA
-#&gt;  97:                                   NA                        NA
-#&gt;  98:                                FALSE                     FALSE
-#&gt;  99:                                   NA                        NA
-#&gt; 100:                                   NA                        NA
-#&gt;      charlson_icd10_diabetes_complication charlson_icd10_malignancy
-#&gt;      charlson_icd10_moderate_or_severe_liver_disease
-#&gt;   1:                                           FALSE
-#&gt;   2:                                              NA
-#&gt;   3:                                              NA
-#&gt;   4:                                           FALSE
-#&gt;   5:                                              NA
-#&gt;   6:                                              NA
-#&gt;   7:                                              NA
-#&gt;   8:                                           FALSE
-#&gt;   9:                                              NA
-#&gt;  10:                                           FALSE
-#&gt;  11:                                           FALSE
-#&gt;  12:                                              NA
-#&gt;  13:                                              NA
-#&gt;  14:                                              NA
-#&gt;  15:                                              NA
-#&gt;  16:                                              NA
-#&gt;  17:                                           FALSE
-#&gt;  18:                                              NA
-#&gt;  19:                                              NA
-#&gt;  20:                                              NA
-#&gt;  21:                                           FALSE
-#&gt;  22:                                              NA
-#&gt;  23:                                              NA
-#&gt;  24:                                           FALSE
-#&gt;  25:                                              NA
-#&gt;  26:                                              NA
-#&gt;  27:                                              NA
-#&gt;  28:                                              NA
-#&gt;  29:                                              NA
-#&gt;  30:                                              NA
-#&gt;  31:                                              NA
-#&gt;  32:                                              NA
-#&gt;  33:                                              NA
-#&gt;  34:                                           FALSE
-#&gt;  35:                                           FALSE
-#&gt;  36:                                              NA
-#&gt;  37:                                              NA
-#&gt;  38:                                              NA
-#&gt;  39:                                              NA
-#&gt;  40:                                              NA
-#&gt;  41:                                              NA
-#&gt;  42:                                           FALSE
-#&gt;  43:                                              NA
-#&gt;  44:                                              NA
-#&gt;  45:                                              NA
-#&gt;  46:                                              NA
-#&gt;  47:                                           FALSE
-#&gt;  48:                                              NA
-#&gt;  49:                                           FALSE
-#&gt;  50:                                              NA
-#&gt;  51:                                              NA
-#&gt;  52:                                              NA
-#&gt;  53:                                              NA
-#&gt;  54:                                           FALSE
-#&gt;  55:                                           FALSE
-#&gt;  56:                                              NA
-#&gt;  57:                                           FALSE
-#&gt;  58:                                              NA
-#&gt;  59:                                              NA
-#&gt;  60:                                              NA
-#&gt;  61:                                              NA
-#&gt;  62:                                              NA
-#&gt;  63:                                              NA
-#&gt;  64:                                           FALSE
-#&gt;  65:                                              NA
-#&gt;  66:                                              NA
-#&gt;  67:                                              NA
-#&gt;  68:                                              NA
-#&gt;  69:                                              NA
-#&gt;  70:                                           FALSE
-#&gt;  71:                                           FALSE
-#&gt;  72:                                              NA
-#&gt;  73:                                              NA
-#&gt;  74:                                           FALSE
-#&gt;  75:                                              NA
-#&gt;  76:                                              NA
-#&gt;  77:                                              NA
-#&gt;  78:                                              NA
-#&gt;  79:                                              NA
-#&gt;  80:                                              NA
-#&gt;  81:                                              NA
-#&gt;  82:                                              NA
-#&gt;  83:                                              NA
-#&gt;  84:                                              NA
-#&gt;  85:                                              NA
-#&gt;  86:                                              NA
-#&gt;  87:                                              NA
-#&gt;  88:                                              NA
-#&gt;  89:                                              NA
-#&gt;  90:                                              NA
-#&gt;  91:                                              NA
-#&gt;  92:                                           FALSE
-#&gt;  93:                                              NA
-#&gt;  94:                                           FALSE
-#&gt;  95:                                              NA
-#&gt;  96:                                              NA
-#&gt;  97:                                              NA
-#&gt;  98:                                           FALSE
-#&gt;  99:                                              NA
-#&gt; 100:                                              NA
-#&gt;      charlson_icd10_moderate_or_severe_liver_disease
-#&gt;      charlson_icd10_metastatic_solid_tumor charlson_icd10_aids_hiv
-#&gt;   1:                                 FALSE                   FALSE
-#&gt;   2:                                    NA                      NA
-#&gt;   3:                                    NA                      NA
-#&gt;   4:                                 FALSE                   FALSE
-#&gt;   5:                                    NA                      NA
-#&gt;   6:                                    NA                      NA
-#&gt;   7:                                    NA                      NA
-#&gt;   8:                                 FALSE                   FALSE
-#&gt;   9:                                    NA                      NA
-#&gt;  10:                                 FALSE                   FALSE
-#&gt;  11:                                 FALSE                   FALSE
-#&gt;  12:                                    NA                      NA
-#&gt;  13:                                    NA                      NA
-#&gt;  14:                                    NA                      NA
-#&gt;  15:                                    NA                      NA
-#&gt;  16:                                    NA                      NA
-#&gt;  17:                                 FALSE                   FALSE
-#&gt;  18:                                    NA                      NA
-#&gt;  19:                                    NA                      NA
-#&gt;  20:                                    NA                      NA
-#&gt;  21:                                 FALSE                   FALSE
-#&gt;  22:                                    NA                      NA
-#&gt;  23:                                    NA                      NA
-#&gt;  24:                                 FALSE                   FALSE
-#&gt;  25:                                    NA                      NA
-#&gt;  26:                                    NA                      NA
-#&gt;  27:                                    NA                      NA
-#&gt;  28:                                    NA                      NA
-#&gt;  29:                                    NA                      NA
-#&gt;  30:                                    NA                      NA
-#&gt;  31:                                    NA                      NA
-#&gt;  32:                                    NA                      NA
-#&gt;  33:                                    NA                      NA
-#&gt;  34:                                 FALSE                   FALSE
-#&gt;  35:                                 FALSE                   FALSE
-#&gt;  36:                                    NA                      NA
-#&gt;  37:                                    NA                      NA
-#&gt;  38:                                    NA                      NA
-#&gt;  39:                                    NA                      NA
-#&gt;  40:                                    NA                      NA
-#&gt;  41:                                    NA                      NA
-#&gt;  42:                                 FALSE                   FALSE
-#&gt;  43:                                    NA                      NA
-#&gt;  44:                                    NA                      NA
-#&gt;  45:                                    NA                      NA
-#&gt;  46:                                    NA                      NA
-#&gt;  47:                                 FALSE                   FALSE
-#&gt;  48:                                    NA                      NA
-#&gt;  49:                                 FALSE                   FALSE
-#&gt;  50:                                    NA                      NA
-#&gt;  51:                                    NA                      NA
-#&gt;  52:                                    NA                      NA
-#&gt;  53:                                    NA                      NA
-#&gt;  54:                                 FALSE                   FALSE
-#&gt;  55:                                 FALSE                   FALSE
-#&gt;  56:                                    NA                      NA
-#&gt;  57:                                 FALSE                   FALSE
-#&gt;  58:                                    NA                      NA
-#&gt;  59:                                    NA                      NA
-#&gt;  60:                                    NA                      NA
-#&gt;  61:                                    NA                      NA
-#&gt;  62:                                    NA                      NA
-#&gt;  63:                                    NA                      NA
-#&gt;  64:                                 FALSE                   FALSE
-#&gt;  65:                                    NA                      NA
-#&gt;  66:                                    NA                      NA
-#&gt;  67:                                    NA                      NA
-#&gt;  68:                                    NA                      NA
-#&gt;  69:                                    NA                      NA
-#&gt;  70:                                 FALSE                   FALSE
-#&gt;  71:                                 FALSE                   FALSE
-#&gt;  72:                                    NA                      NA
-#&gt;  73:                                    NA                      NA
-#&gt;  74:                                 FALSE                   FALSE
-#&gt;  75:                                    NA                      NA
-#&gt;  76:                                    NA                      NA
-#&gt;  77:                                    NA                      NA
-#&gt;  78:                                    NA                      NA
-#&gt;  79:                                    NA                      NA
-#&gt;  80:                                    NA                      NA
-#&gt;  81:                                    NA                      NA
-#&gt;  82:                                    NA                      NA
-#&gt;  83:                                    NA                      NA
-#&gt;  84:                                    NA                      NA
-#&gt;  85:                                    NA                      NA
-#&gt;  86:                                    NA                      NA
-#&gt;  87:                                    NA                      NA
-#&gt;  88:                                    NA                      NA
-#&gt;  89:                                    NA                      NA
-#&gt;  90:                                    NA                      NA
-#&gt;  91:                                    NA                      NA
-#&gt;  92:                                 FALSE                   FALSE
-#&gt;  93:                                    NA                      NA
-#&gt;  94:                                 FALSE                   FALSE
-#&gt;  95:                                    NA                      NA
-#&gt;  96:                                    NA                      NA
-#&gt;  97:                                    NA                      NA
-#&gt;  98:                                 FALSE                   FALSE
-#&gt;  99:                                    NA                      NA
-#&gt; 100:                                    NA                      NA
-#&gt;      charlson_icd10_metastatic_solid_tumor charlson_icd10_aids_hiv
-#&gt;      charlson_icd10_index_quan_original charlson_icd10_index_quan_updated
-#&gt;   1:                                  0                                 0
-#&gt;   2:                                 NA                                NA
-#&gt;   3:                                 NA                                NA
-#&gt;   4:                                  0                                 0
-#&gt;   5:                                 NA                                NA
-#&gt;   6:                                 NA                                NA
-#&gt;   7:                                 NA                                NA
-#&gt;   8:                                  0                                 0
-#&gt;   9:                                 NA                                NA
-#&gt;  10:                                  0                                 0
-#&gt;  11:                                  0                                 0
-#&gt;  12:                                 NA                                NA
-#&gt;  13:                                 NA                                NA
-#&gt;  14:                                 NA                                NA
-#&gt;  15:                                 NA                                NA
-#&gt;  16:                                 NA                                NA
-#&gt;  17:                                  0                                 0
-#&gt;  18:                                 NA                                NA
-#&gt;  19:                                 NA                                NA
-#&gt;  20:                                 NA                                NA
-#&gt;  21:                                  1                                 2
-#&gt;  22:                                 NA                                NA
-#&gt;  23:                                 NA                                NA
-#&gt;  24:                                  0                                 0
-#&gt;  25:                                 NA                                NA
-#&gt;  26:                                 NA                                NA
-#&gt;  27:                                 NA                                NA
-#&gt;  28:                                 NA                                NA
-#&gt;  29:                                 NA                                NA
-#&gt;  30:                                 NA                                NA
-#&gt;  31:                                 NA                                NA
-#&gt;  32:                                 NA                                NA
-#&gt;  33:                                 NA                                NA
-#&gt;  34:                                  0                                 0
-#&gt;  35:                                  0                                 0
-#&gt;  36:                                 NA                                NA
-#&gt;  37:                                 NA                                NA
-#&gt;  38:                                 NA                                NA
-#&gt;  39:                                 NA                                NA
-#&gt;  40:                                 NA                                NA
-#&gt;  41:                                 NA                                NA
-#&gt;  42:                                  0                                 0
-#&gt;  43:                                 NA                                NA
-#&gt;  44:                                 NA                                NA
-#&gt;  45:                                 NA                                NA
-#&gt;  46:                                 NA                                NA
-#&gt;  47:                                  0                                 0
-#&gt;  48:                                 NA                                NA
-#&gt;  49:                                  2                                 2
-#&gt;  50:                                 NA                                NA
-#&gt;  51:                                 NA                                NA
-#&gt;  52:                                 NA                                NA
-#&gt;  53:                                 NA                                NA
-#&gt;  54:                                  0                                 0
-#&gt;  55:                                  0                                 0
-#&gt;  56:                                 NA                                NA
-#&gt;  57:                                  0                                 0
-#&gt;  58:                                 NA                                NA
-#&gt;  59:                                 NA                                NA
-#&gt;  60:                                 NA                                NA
-#&gt;  61:                                 NA                                NA
-#&gt;  62:                                 NA                                NA
-#&gt;  63:                                 NA                                NA
-#&gt;  64:                                  0                                 0
-#&gt;  65:                                 NA                                NA
-#&gt;  66:                                 NA                                NA
-#&gt;  67:                                 NA                                NA
-#&gt;  68:                                 NA                                NA
-#&gt;  69:                                 NA                                NA
-#&gt;  70:                                  2                                 2
-#&gt;  71:                                  0                                 0
-#&gt;  72:                                 NA                                NA
-#&gt;  73:                                 NA                                NA
-#&gt;  74:                                  0                                 0
-#&gt;  75:                                 NA                                NA
-#&gt;  76:                                 NA                                NA
-#&gt;  77:                                 NA                                NA
-#&gt;  78:                                 NA                                NA
-#&gt;  79:                                 NA                                NA
-#&gt;  80:                                 NA                                NA
-#&gt;  81:                                 NA                                NA
-#&gt;  82:                                 NA                                NA
-#&gt;  83:                                 NA                                NA
-#&gt;  84:                                 NA                                NA
-#&gt;  85:                                 NA                                NA
-#&gt;  86:                                 NA                                NA
-#&gt;  87:                                 NA                                NA
-#&gt;  88:                                 NA                                NA
-#&gt;  89:                                 NA                                NA
-#&gt;  90:                                 NA                                NA
-#&gt;  91:                                 NA                                NA
-#&gt;  92:                                  0                                 0
-#&gt;  93:                                 NA                                NA
-#&gt;  94:                                  0                                 0
-#&gt;  95:                                 NA                                NA
-#&gt;  96:                                 NA                                NA
-#&gt;  97:                                 NA                                NA
-#&gt;  98:                                  0                                 0
-#&gt;  99:                                 NA                                NA
-#&gt; 100:                                 NA                                NA
-#&gt;      charlson_icd10_index_quan_original charlson_icd10_index_quan_updated</div></pre>
+)</div><div class='output co'>#&gt;                           name    surgery charlson_myocardial_infarction
+#&gt;   1:        Alexander, Bethany 2018-12-24                          FALSE
+#&gt;   2:           Arguello, Tommy 2019-09-21                             NA
+#&gt;   3:             Austin, Maeve 2019-09-14                             NA
+#&gt;   4:            Ball, Rockelle 2019-01-31                          FALSE
+#&gt;   5:            Bean, Haileigh 2019-03-01                             NA
+#&gt;   6:            Beehler, Kelly 2019-01-19                             NA
+#&gt;   7:           Bessard, Marzel 2019-10-11                             NA
+#&gt;   8:              Bishop, Alec 2019-01-23                          FALSE
+#&gt;   9:            Bivings, Devin 2019-03-22                             NA
+#&gt;  10:            Brown, Patrick 2019-06-03                          FALSE
+#&gt;  11:             Burges, Amber 2019-03-28                          FALSE
+#&gt;  12:            Burton, Martin 2019-08-17                             NA
+#&gt;  13:           Cannon, Timothy 2018-12-24                             NA
+#&gt;  14:  Cardenas Perez, Gabriela 2019-04-23                             NA
+#&gt;  15:               Chung, Noor 2019-05-02                             NA
+#&gt;  16:           Connors, Jaylyn 2019-02-25                             NA
+#&gt;  17:    Copeland-Doyle, Symone 2019-04-06                          FALSE
+#&gt;  18:                 Doan, Sam 2019-10-07                             NA
+#&gt;  19:         Dominguez, Suriel 2019-11-28                             NA
+#&gt;  20:         Enriquez, Anthony 2019-08-03                             NA
+#&gt;  21:      Fitzsimmons, Tabatha 2019-03-29                          FALSE
+#&gt;  22:             Grim, Cheanna 2019-05-14                             NA
+#&gt;  23:               Harder, Rio 2019-11-02                             NA
+#&gt;  24:               Hood, Dania 2019-08-10                          FALSE
+#&gt;  25:           Howard, Marcius 2019-10-14                             NA
+#&gt;  26:              Huff, Hassan 2019-11-27                             NA
+#&gt;  27:           Hughey, Darlene 2019-07-03                             NA
+#&gt;  28:        Hutchinson, Joshua 2019-03-28                             NA
+#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-23                             NA
+#&gt;  30:       Khamsoulinh, De'Von 2019-08-12                             NA
+#&gt;  31:          Lechuga, Anthony 2019-03-21                             NA
+#&gt;  32:         Littlejohn, Kevin 2019-05-03                             NA
+#&gt;  33:          Liufau, Sue Lynn 2019-06-15                             NA
+#&gt;  34:            Martin, Trevor 2019-04-01                          FALSE
+#&gt;  35:          Martinez, Alison 2019-07-06                          FALSE
+#&gt;  36:         Martinez, Columba 2019-01-20                             NA
+#&gt;  37:          Mendoza, Jessica 2019-06-20                             NA
+#&gt;  38:           Mendoza, Nathan 2019-01-24                             NA
+#&gt;  39:   Miller, Von Buddenbrock 2019-02-19                             NA
+#&gt;  40:              Mills, Henry 2019-05-22                             NA
+#&gt;  41:           Mitchell, Dalon 2019-01-17                             NA
+#&gt;  42:              Murray, Eric 2019-04-29                          FALSE
+#&gt;  43:             Nguyen, Hoang 2019-08-01                             NA
+#&gt;  44:            Orozco, Daniel 2019-03-08                             NA
+#&gt;  45:              Pappas, Cole 2019-05-11                             NA
+#&gt;  46:         Pearsall, Deontre 2019-07-29                             NA
+#&gt;  47:           Pena, Francisco 2019-07-09                          FALSE
+#&gt;  48:              Perez, Vidal 2019-10-26                             NA
+#&gt;  49:        Peterson, Brittany 2019-03-17                          FALSE
+#&gt;  50:            Polvon, Alicia 2019-05-06                             NA
+#&gt;  51:             Quick, Miriah 2019-09-10                             NA
+#&gt;  52:             Raab, Jeannie 2019-05-13                             NA
+#&gt;  53:             Rice, Jamissa 2019-12-09                             NA
+#&gt;  54:        Rockwell, Savannah 2019-07-02                          FALSE
+#&gt;  55:         Rodriquez, Monica 2019-01-27                          FALSE
+#&gt;  56:              Romero, Carl 2019-11-06                             NA
+#&gt;  57: Rosales-Marroquin, Monika 2019-03-18                          FALSE
+#&gt;  58:                 Sam, Niki 2019-10-11                             NA
+#&gt;  59:             Sanchez, Ryan 2019-10-02                             NA
+#&gt;  60:             Sharma, Katie 2019-09-18                             NA
+#&gt;  61:           Snider, Melanie 2018-12-17                             NA
+#&gt;  62:       Summerhays, Spencer 2019-01-15                             NA
+#&gt;  63:            Thompson, Trae 2019-09-02                             NA
+#&gt;  64: Torres Escalante, Herbert 2019-04-26                          FALSE
+#&gt;  65:   Trader-Bankston, J'Quan 2019-08-15                             NA
+#&gt;  66:               Tram, Medha 2019-09-27                             NA
+#&gt;  67:            Vaclav, Taylor 2019-10-29                             NA
+#&gt;  68:           Valdez, Antonio 2018-12-18                             NA
+#&gt;  69:           Ventura, Joshua 2019-08-10                             NA
+#&gt;  70:         Vogltanz, Michael 2019-04-01                          FALSE
+#&gt;  71:             Wang, Phillip 2019-07-01                          FALSE
+#&gt;  72:          Whitaker, Taylor 2019-03-24                             NA
+#&gt;  73:                 Wu, Lucas 2019-12-15                             NA
+#&gt;  74:             Wuertz, Jenny 2019-02-03                          FALSE
+#&gt;  75:    al-Asmar, Abdur Raheem 2019-08-01                             NA
+#&gt;  76:       al-Bashara, Shaahir 2019-01-10                             NA
+#&gt;  77:          al-Dawood, Hasan 2019-10-11                             NA
+#&gt;  78:           al-Dib, Farhaan 2019-09-29                             NA
+#&gt;  79:        al-Ismail, Waleeda 2019-09-21                             NA
+#&gt;  80:        al-Jafri, Shaheera 2019-11-18                             NA
+#&gt;  81:        al-Kader, Siddeeqa 2019-11-06                             NA
+#&gt;  82:          al-Karam, Ziyaad 2019-09-17                             NA
+#&gt;  83:       al-Ramadan, Hanoona 2019-05-13                             NA
+#&gt;  84:         al-Shaban, Mazeed 2019-04-30                             NA
+#&gt;  85:            el-Amiri, Jaad 2019-08-05                             NA
+#&gt;  86:         el-Bashara, Najma 2019-06-19                             NA
+#&gt;  87:           el-Diab, Nadeem 2019-08-12                             NA
+#&gt;  88:          el-Faris, Shuaib 2019-11-01                             NA
+#&gt;  89:          el-Hallal, Uwais 2019-05-25                             NA
+#&gt;  90:         el-Hamad, Tayyiba 2019-05-09                             NA
+#&gt;  91:       el-Jamail, Hudhaifa 2019-09-28                             NA
+#&gt;  92:         el-Khalifa, Nawfa 2019-08-17                          FALSE
+#&gt;  93:           el-Khan, Jasoor 2019-08-02                             NA
+#&gt;  94:          el-Masri, Junaid 2019-04-24                          FALSE
+#&gt;  95:        el-Sabir, Mumtaaza 2019-10-13                             NA
+#&gt;  96:          el-Sadek, Wafaaa 2019-05-30                             NA
+#&gt;  97:       el-Salehi, Mahuroos 2019-03-11                             NA
+#&gt;  98:      el-Salih, Farajallah 2019-04-03                          FALSE
+#&gt;  99:         el-Sharif, Nadeem 2019-09-25                             NA
+#&gt; 100:          el-Zaki, Huwaida 2019-10-09                             NA
+#&gt;                           name    surgery charlson_myocardial_infarction
+#&gt;      charlson_congestive_heart_failure charlson_peripheral_vascular_disease
+#&gt;   1:                             FALSE                                FALSE
+#&gt;   2:                                NA                                   NA
+#&gt;   3:                                NA                                   NA
+#&gt;   4:                             FALSE                                FALSE
+#&gt;   5:                                NA                                   NA
+#&gt;   6:                                NA                                   NA
+#&gt;   7:                                NA                                   NA
+#&gt;   8:                             FALSE                                FALSE
+#&gt;   9:                                NA                                   NA
+#&gt;  10:                             FALSE                                FALSE
+#&gt;  11:                             FALSE                                FALSE
+#&gt;  12:                                NA                                   NA
+#&gt;  13:                                NA                                   NA
+#&gt;  14:                                NA                                   NA
+#&gt;  15:                                NA                                   NA
+#&gt;  16:                                NA                                   NA
+#&gt;  17:                             FALSE                                FALSE
+#&gt;  18:                                NA                                   NA
+#&gt;  19:                                NA                                   NA
+#&gt;  20:                                NA                                   NA
+#&gt;  21:                              TRUE                                FALSE
+#&gt;  22:                                NA                                   NA
+#&gt;  23:                                NA                                   NA
+#&gt;  24:                             FALSE                                FALSE
+#&gt;  25:                                NA                                   NA
+#&gt;  26:                                NA                                   NA
+#&gt;  27:                                NA                                   NA
+#&gt;  28:                                NA                                   NA
+#&gt;  29:                                NA                                   NA
+#&gt;  30:                                NA                                   NA
+#&gt;  31:                                NA                                   NA
+#&gt;  32:                                NA                                   NA
+#&gt;  33:                                NA                                   NA
+#&gt;  34:                             FALSE                                FALSE
+#&gt;  35:                             FALSE                                FALSE
+#&gt;  36:                                NA                                   NA
+#&gt;  37:                                NA                                   NA
+#&gt;  38:                                NA                                   NA
+#&gt;  39:                                NA                                   NA
+#&gt;  40:                                NA                                   NA
+#&gt;  41:                                NA                                   NA
+#&gt;  42:                             FALSE                                FALSE
+#&gt;  43:                                NA                                   NA
+#&gt;  44:                                NA                                   NA
+#&gt;  45:                                NA                                   NA
+#&gt;  46:                                NA                                   NA
+#&gt;  47:                             FALSE                                FALSE
+#&gt;  48:                                NA                                   NA
+#&gt;  49:                             FALSE                                FALSE
+#&gt;  50:                                NA                                   NA
+#&gt;  51:                                NA                                   NA
+#&gt;  52:                                NA                                   NA
+#&gt;  53:                                NA                                   NA
+#&gt;  54:                             FALSE                                FALSE
+#&gt;  55:                             FALSE                                FALSE
+#&gt;  56:                                NA                                   NA
+#&gt;  57:                             FALSE                                FALSE
+#&gt;  58:                                NA                                   NA
+#&gt;  59:                                NA                                   NA
+#&gt;  60:                                NA                                   NA
+#&gt;  61:                                NA                                   NA
+#&gt;  62:                                NA                                   NA
+#&gt;  63:                                NA                                   NA
+#&gt;  64:                             FALSE                                FALSE
+#&gt;  65:                                NA                                   NA
+#&gt;  66:                                NA                                   NA
+#&gt;  67:                                NA                                   NA
+#&gt;  68:                                NA                                   NA
+#&gt;  69:                                NA                                   NA
+#&gt;  70:                             FALSE                                FALSE
+#&gt;  71:                             FALSE                                FALSE
+#&gt;  72:                                NA                                   NA
+#&gt;  73:                                NA                                   NA
+#&gt;  74:                             FALSE                                FALSE
+#&gt;  75:                                NA                                   NA
+#&gt;  76:                                NA                                   NA
+#&gt;  77:                                NA                                   NA
+#&gt;  78:                                NA                                   NA
+#&gt;  79:                                NA                                   NA
+#&gt;  80:                                NA                                   NA
+#&gt;  81:                                NA                                   NA
+#&gt;  82:                                NA                                   NA
+#&gt;  83:                                NA                                   NA
+#&gt;  84:                                NA                                   NA
+#&gt;  85:                                NA                                   NA
+#&gt;  86:                                NA                                   NA
+#&gt;  87:                                NA                                   NA
+#&gt;  88:                                NA                                   NA
+#&gt;  89:                                NA                                   NA
+#&gt;  90:                                NA                                   NA
+#&gt;  91:                                NA                                   NA
+#&gt;  92:                             FALSE                                FALSE
+#&gt;  93:                                NA                                   NA
+#&gt;  94:                             FALSE                                FALSE
+#&gt;  95:                                NA                                   NA
+#&gt;  96:                                NA                                   NA
+#&gt;  97:                                NA                                   NA
+#&gt;  98:                             FALSE                                FALSE
+#&gt;  99:                                NA                                   NA
+#&gt; 100:                                NA                                   NA
+#&gt;      charlson_congestive_heart_failure charlson_peripheral_vascular_disease
+#&gt;      charlson_cerebrovascular_disease charlson_dementia
+#&gt;   1:                            FALSE             FALSE
+#&gt;   2:                               NA                NA
+#&gt;   3:                               NA                NA
+#&gt;   4:                            FALSE             FALSE
+#&gt;   5:                               NA                NA
+#&gt;   6:                               NA                NA
+#&gt;   7:                               NA                NA
+#&gt;   8:                            FALSE             FALSE
+#&gt;   9:                               NA                NA
+#&gt;  10:                            FALSE             FALSE
+#&gt;  11:                            FALSE             FALSE
+#&gt;  12:                               NA                NA
+#&gt;  13:                               NA                NA
+#&gt;  14:                               NA                NA
+#&gt;  15:                               NA                NA
+#&gt;  16:                               NA                NA
+#&gt;  17:                            FALSE             FALSE
+#&gt;  18:                               NA                NA
+#&gt;  19:                               NA                NA
+#&gt;  20:                               NA                NA
+#&gt;  21:                            FALSE             FALSE
+#&gt;  22:                               NA                NA
+#&gt;  23:                               NA                NA
+#&gt;  24:                            FALSE             FALSE
+#&gt;  25:                               NA                NA
+#&gt;  26:                               NA                NA
+#&gt;  27:                               NA                NA
+#&gt;  28:                               NA                NA
+#&gt;  29:                               NA                NA
+#&gt;  30:                               NA                NA
+#&gt;  31:                               NA                NA
+#&gt;  32:                               NA                NA
+#&gt;  33:                               NA                NA
+#&gt;  34:                            FALSE             FALSE
+#&gt;  35:                            FALSE             FALSE
+#&gt;  36:                               NA                NA
+#&gt;  37:                               NA                NA
+#&gt;  38:                               NA                NA
+#&gt;  39:                               NA                NA
+#&gt;  40:                               NA                NA
+#&gt;  41:                               NA                NA
+#&gt;  42:                            FALSE             FALSE
+#&gt;  43:                               NA                NA
+#&gt;  44:                               NA                NA
+#&gt;  45:                               NA                NA
+#&gt;  46:                               NA                NA
+#&gt;  47:                            FALSE             FALSE
+#&gt;  48:                               NA                NA
+#&gt;  49:                            FALSE             FALSE
+#&gt;  50:                               NA                NA
+#&gt;  51:                               NA                NA
+#&gt;  52:                               NA                NA
+#&gt;  53:                               NA                NA
+#&gt;  54:                            FALSE             FALSE
+#&gt;  55:                            FALSE             FALSE
+#&gt;  56:                               NA                NA
+#&gt;  57:                            FALSE             FALSE
+#&gt;  58:                               NA                NA
+#&gt;  59:                               NA                NA
+#&gt;  60:                               NA                NA
+#&gt;  61:                               NA                NA
+#&gt;  62:                               NA                NA
+#&gt;  63:                               NA                NA
+#&gt;  64:                            FALSE             FALSE
+#&gt;  65:                               NA                NA
+#&gt;  66:                               NA                NA
+#&gt;  67:                               NA                NA
+#&gt;  68:                               NA                NA
+#&gt;  69:                               NA                NA
+#&gt;  70:                            FALSE             FALSE
+#&gt;  71:                            FALSE             FALSE
+#&gt;  72:                               NA                NA
+#&gt;  73:                               NA                NA
+#&gt;  74:                            FALSE             FALSE
+#&gt;  75:                               NA                NA
+#&gt;  76:                               NA                NA
+#&gt;  77:                               NA                NA
+#&gt;  78:                               NA                NA
+#&gt;  79:                               NA                NA
+#&gt;  80:                               NA                NA
+#&gt;  81:                               NA                NA
+#&gt;  82:                               NA                NA
+#&gt;  83:                               NA                NA
+#&gt;  84:                               NA                NA
+#&gt;  85:                               NA                NA
+#&gt;  86:                               NA                NA
+#&gt;  87:                               NA                NA
+#&gt;  88:                               NA                NA
+#&gt;  89:                               NA                NA
+#&gt;  90:                               NA                NA
+#&gt;  91:                               NA                NA
+#&gt;  92:                            FALSE             FALSE
+#&gt;  93:                               NA                NA
+#&gt;  94:                            FALSE             FALSE
+#&gt;  95:                               NA                NA
+#&gt;  96:                               NA                NA
+#&gt;  97:                               NA                NA
+#&gt;  98:                            FALSE             FALSE
+#&gt;  99:                               NA                NA
+#&gt; 100:                               NA                NA
+#&gt;      charlson_cerebrovascular_disease charlson_dementia
+#&gt;      charlson_chronic_pulmonary_disease charlson_rheumatic_disease
+#&gt;   1:                              FALSE                      FALSE
+#&gt;   2:                                 NA                         NA
+#&gt;   3:                                 NA                         NA
+#&gt;   4:                              FALSE                      FALSE
+#&gt;   5:                                 NA                         NA
+#&gt;   6:                                 NA                         NA
+#&gt;   7:                                 NA                         NA
+#&gt;   8:                              FALSE                      FALSE
+#&gt;   9:                                 NA                         NA
+#&gt;  10:                              FALSE                      FALSE
+#&gt;  11:                              FALSE                      FALSE
+#&gt;  12:                                 NA                         NA
+#&gt;  13:                                 NA                         NA
+#&gt;  14:                                 NA                         NA
+#&gt;  15:                                 NA                         NA
+#&gt;  16:                                 NA                         NA
+#&gt;  17:                              FALSE                      FALSE
+#&gt;  18:                                 NA                         NA
+#&gt;  19:                                 NA                         NA
+#&gt;  20:                                 NA                         NA
+#&gt;  21:                              FALSE                      FALSE
+#&gt;  22:                                 NA                         NA
+#&gt;  23:                                 NA                         NA
+#&gt;  24:                              FALSE                      FALSE
+#&gt;  25:                                 NA                         NA
+#&gt;  26:                                 NA                         NA
+#&gt;  27:                                 NA                         NA
+#&gt;  28:                                 NA                         NA
+#&gt;  29:                                 NA                         NA
+#&gt;  30:                                 NA                         NA
+#&gt;  31:                                 NA                         NA
+#&gt;  32:                                 NA                         NA
+#&gt;  33:                                 NA                         NA
+#&gt;  34:                              FALSE                      FALSE
+#&gt;  35:                              FALSE                      FALSE
+#&gt;  36:                                 NA                         NA
+#&gt;  37:                                 NA                         NA
+#&gt;  38:                                 NA                         NA
+#&gt;  39:                                 NA                         NA
+#&gt;  40:                                 NA                         NA
+#&gt;  41:                                 NA                         NA
+#&gt;  42:                              FALSE                      FALSE
+#&gt;  43:                                 NA                         NA
+#&gt;  44:                                 NA                         NA
+#&gt;  45:                                 NA                         NA
+#&gt;  46:                                 NA                         NA
+#&gt;  47:                              FALSE                      FALSE
+#&gt;  48:                                 NA                         NA
+#&gt;  49:                              FALSE                      FALSE
+#&gt;  50:                                 NA                         NA
+#&gt;  51:                                 NA                         NA
+#&gt;  52:                                 NA                         NA
+#&gt;  53:                                 NA                         NA
+#&gt;  54:                              FALSE                      FALSE
+#&gt;  55:                              FALSE                      FALSE
+#&gt;  56:                                 NA                         NA
+#&gt;  57:                              FALSE                      FALSE
+#&gt;  58:                                 NA                         NA
+#&gt;  59:                                 NA                         NA
+#&gt;  60:                                 NA                         NA
+#&gt;  61:                                 NA                         NA
+#&gt;  62:                                 NA                         NA
+#&gt;  63:                                 NA                         NA
+#&gt;  64:                              FALSE                      FALSE
+#&gt;  65:                                 NA                         NA
+#&gt;  66:                                 NA                         NA
+#&gt;  67:                                 NA                         NA
+#&gt;  68:                                 NA                         NA
+#&gt;  69:                                 NA                         NA
+#&gt;  70:                              FALSE                      FALSE
+#&gt;  71:                              FALSE                      FALSE
+#&gt;  72:                                 NA                         NA
+#&gt;  73:                                 NA                         NA
+#&gt;  74:                              FALSE                      FALSE
+#&gt;  75:                                 NA                         NA
+#&gt;  76:                                 NA                         NA
+#&gt;  77:                                 NA                         NA
+#&gt;  78:                                 NA                         NA
+#&gt;  79:                                 NA                         NA
+#&gt;  80:                                 NA                         NA
+#&gt;  81:                                 NA                         NA
+#&gt;  82:                                 NA                         NA
+#&gt;  83:                                 NA                         NA
+#&gt;  84:                                 NA                         NA
+#&gt;  85:                                 NA                         NA
+#&gt;  86:                                 NA                         NA
+#&gt;  87:                                 NA                         NA
+#&gt;  88:                                 NA                         NA
+#&gt;  89:                                 NA                         NA
+#&gt;  90:                                 NA                         NA
+#&gt;  91:                                 NA                         NA
+#&gt;  92:                              FALSE                      FALSE
+#&gt;  93:                                 NA                         NA
+#&gt;  94:                              FALSE                      FALSE
+#&gt;  95:                                 NA                         NA
+#&gt;  96:                                 NA                         NA
+#&gt;  97:                                 NA                         NA
+#&gt;  98:                              FALSE                      FALSE
+#&gt;  99:                                 NA                         NA
+#&gt; 100:                                 NA                         NA
+#&gt;      charlson_chronic_pulmonary_disease charlson_rheumatic_disease
+#&gt;      charlson_peptic_ulcer_disease charlson_mild_liver_disease
+#&gt;   1:                         FALSE                       FALSE
+#&gt;   2:                            NA                          NA
+#&gt;   3:                            NA                          NA
+#&gt;   4:                         FALSE                       FALSE
+#&gt;   5:                            NA                          NA
+#&gt;   6:                            NA                          NA
+#&gt;   7:                            NA                          NA
+#&gt;   8:                         FALSE                       FALSE
+#&gt;   9:                            NA                          NA
+#&gt;  10:                         FALSE                       FALSE
+#&gt;  11:                         FALSE                       FALSE
+#&gt;  12:                            NA                          NA
+#&gt;  13:                            NA                          NA
+#&gt;  14:                            NA                          NA
+#&gt;  15:                            NA                          NA
+#&gt;  16:                            NA                          NA
+#&gt;  17:                         FALSE                       FALSE
+#&gt;  18:                            NA                          NA
+#&gt;  19:                            NA                          NA
+#&gt;  20:                            NA                          NA
+#&gt;  21:                         FALSE                       FALSE
+#&gt;  22:                            NA                          NA
+#&gt;  23:                            NA                          NA
+#&gt;  24:                         FALSE                       FALSE
+#&gt;  25:                            NA                          NA
+#&gt;  26:                            NA                          NA
+#&gt;  27:                            NA                          NA
+#&gt;  28:                            NA                          NA
+#&gt;  29:                            NA                          NA
+#&gt;  30:                            NA                          NA
+#&gt;  31:                            NA                          NA
+#&gt;  32:                            NA                          NA
+#&gt;  33:                            NA                          NA
+#&gt;  34:                         FALSE                       FALSE
+#&gt;  35:                         FALSE                       FALSE
+#&gt;  36:                            NA                          NA
+#&gt;  37:                            NA                          NA
+#&gt;  38:                            NA                          NA
+#&gt;  39:                            NA                          NA
+#&gt;  40:                            NA                          NA
+#&gt;  41:                            NA                          NA
+#&gt;  42:                         FALSE                       FALSE
+#&gt;  43:                            NA                          NA
+#&gt;  44:                            NA                          NA
+#&gt;  45:                            NA                          NA
+#&gt;  46:                            NA                          NA
+#&gt;  47:                         FALSE                       FALSE
+#&gt;  48:                            NA                          NA
+#&gt;  49:                         FALSE                       FALSE
+#&gt;  50:                            NA                          NA
+#&gt;  51:                            NA                          NA
+#&gt;  52:                            NA                          NA
+#&gt;  53:                            NA                          NA
+#&gt;  54:                         FALSE                       FALSE
+#&gt;  55:                         FALSE                       FALSE
+#&gt;  56:                            NA                          NA
+#&gt;  57:                         FALSE                       FALSE
+#&gt;  58:                            NA                          NA
+#&gt;  59:                            NA                          NA
+#&gt;  60:                            NA                          NA
+#&gt;  61:                            NA                          NA
+#&gt;  62:                            NA                          NA
+#&gt;  63:                            NA                          NA
+#&gt;  64:                         FALSE                       FALSE
+#&gt;  65:                            NA                          NA
+#&gt;  66:                            NA                          NA
+#&gt;  67:                            NA                          NA
+#&gt;  68:                            NA                          NA
+#&gt;  69:                            NA                          NA
+#&gt;  70:                         FALSE                       FALSE
+#&gt;  71:                         FALSE                       FALSE
+#&gt;  72:                            NA                          NA
+#&gt;  73:                            NA                          NA
+#&gt;  74:                         FALSE                       FALSE
+#&gt;  75:                            NA                          NA
+#&gt;  76:                            NA                          NA
+#&gt;  77:                            NA                          NA
+#&gt;  78:                            NA                          NA
+#&gt;  79:                            NA                          NA
+#&gt;  80:                            NA                          NA
+#&gt;  81:                            NA                          NA
+#&gt;  82:                            NA                          NA
+#&gt;  83:                            NA                          NA
+#&gt;  84:                            NA                          NA
+#&gt;  85:                            NA                          NA
+#&gt;  86:                            NA                          NA
+#&gt;  87:                            NA                          NA
+#&gt;  88:                            NA                          NA
+#&gt;  89:                            NA                          NA
+#&gt;  90:                            NA                          NA
+#&gt;  91:                            NA                          NA
+#&gt;  92:                         FALSE                       FALSE
+#&gt;  93:                            NA                          NA
+#&gt;  94:                         FALSE                       FALSE
+#&gt;  95:                            NA                          NA
+#&gt;  96:                            NA                          NA
+#&gt;  97:                            NA                          NA
+#&gt;  98:                         FALSE                       FALSE
+#&gt;  99:                            NA                          NA
+#&gt; 100:                            NA                          NA
+#&gt;      charlson_peptic_ulcer_disease charlson_mild_liver_disease
+#&gt;      charlson_diabetes_without_complication charlson_hemiplegia_or_paraplegia
+#&gt;   1:                                  FALSE                             FALSE
+#&gt;   2:                                     NA                                NA
+#&gt;   3:                                     NA                                NA
+#&gt;   4:                                  FALSE                             FALSE
+#&gt;   5:                                     NA                                NA
+#&gt;   6:                                     NA                                NA
+#&gt;   7:                                     NA                                NA
+#&gt;   8:                                  FALSE                             FALSE
+#&gt;   9:                                     NA                                NA
+#&gt;  10:                                  FALSE                             FALSE
+#&gt;  11:                                  FALSE                             FALSE
+#&gt;  12:                                     NA                                NA
+#&gt;  13:                                     NA                                NA
+#&gt;  14:                                     NA                                NA
+#&gt;  15:                                     NA                                NA
+#&gt;  16:                                     NA                                NA
+#&gt;  17:                                  FALSE                             FALSE
+#&gt;  18:                                     NA                                NA
+#&gt;  19:                                     NA                                NA
+#&gt;  20:                                     NA                                NA
+#&gt;  21:                                  FALSE                             FALSE
+#&gt;  22:                                     NA                                NA
+#&gt;  23:                                     NA                                NA
+#&gt;  24:                                  FALSE                             FALSE
+#&gt;  25:                                     NA                                NA
+#&gt;  26:                                     NA                                NA
+#&gt;  27:                                     NA                                NA
+#&gt;  28:                                     NA                                NA
+#&gt;  29:                                     NA                                NA
+#&gt;  30:                                     NA                                NA
+#&gt;  31:                                     NA                                NA
+#&gt;  32:                                     NA                                NA
+#&gt;  33:                                     NA                                NA
+#&gt;  34:                                  FALSE                             FALSE
+#&gt;  35:                                  FALSE                             FALSE
+#&gt;  36:                                     NA                                NA
+#&gt;  37:                                     NA                                NA
+#&gt;  38:                                     NA                                NA
+#&gt;  39:                                     NA                                NA
+#&gt;  40:                                     NA                                NA
+#&gt;  41:                                     NA                                NA
+#&gt;  42:                                  FALSE                             FALSE
+#&gt;  43:                                     NA                                NA
+#&gt;  44:                                     NA                                NA
+#&gt;  45:                                     NA                                NA
+#&gt;  46:                                     NA                                NA
+#&gt;  47:                                  FALSE                             FALSE
+#&gt;  48:                                     NA                                NA
+#&gt;  49:                                  FALSE                             FALSE
+#&gt;  50:                                     NA                                NA
+#&gt;  51:                                     NA                                NA
+#&gt;  52:                                     NA                                NA
+#&gt;  53:                                     NA                                NA
+#&gt;  54:                                  FALSE                             FALSE
+#&gt;  55:                                  FALSE                             FALSE
+#&gt;  56:                                     NA                                NA
+#&gt;  57:                                  FALSE                             FALSE
+#&gt;  58:                                     NA                                NA
+#&gt;  59:                                     NA                                NA
+#&gt;  60:                                     NA                                NA
+#&gt;  61:                                     NA                                NA
+#&gt;  62:                                     NA                                NA
+#&gt;  63:                                     NA                                NA
+#&gt;  64:                                  FALSE                             FALSE
+#&gt;  65:                                     NA                                NA
+#&gt;  66:                                     NA                                NA
+#&gt;  67:                                     NA                                NA
+#&gt;  68:                                     NA                                NA
+#&gt;  69:                                     NA                                NA
+#&gt;  70:                                  FALSE                             FALSE
+#&gt;  71:                                  FALSE                             FALSE
+#&gt;  72:                                     NA                                NA
+#&gt;  73:                                     NA                                NA
+#&gt;  74:                                  FALSE                             FALSE
+#&gt;  75:                                     NA                                NA
+#&gt;  76:                                     NA                                NA
+#&gt;  77:                                     NA                                NA
+#&gt;  78:                                     NA                                NA
+#&gt;  79:                                     NA                                NA
+#&gt;  80:                                     NA                                NA
+#&gt;  81:                                     NA                                NA
+#&gt;  82:                                     NA                                NA
+#&gt;  83:                                     NA                                NA
+#&gt;  84:                                     NA                                NA
+#&gt;  85:                                     NA                                NA
+#&gt;  86:                                     NA                                NA
+#&gt;  87:                                     NA                                NA
+#&gt;  88:                                     NA                                NA
+#&gt;  89:                                     NA                                NA
+#&gt;  90:                                     NA                                NA
+#&gt;  91:                                     NA                                NA
+#&gt;  92:                                  FALSE                             FALSE
+#&gt;  93:                                     NA                                NA
+#&gt;  94:                                  FALSE                             FALSE
+#&gt;  95:                                     NA                                NA
+#&gt;  96:                                     NA                                NA
+#&gt;  97:                                     NA                                NA
+#&gt;  98:                                  FALSE                             FALSE
+#&gt;  99:                                     NA                                NA
+#&gt; 100:                                     NA                                NA
+#&gt;      charlson_diabetes_without_complication charlson_hemiplegia_or_paraplegia
+#&gt;      charlson_renal_disease charlson_diabetes_complication charlson_malignancy
+#&gt;   1:                  FALSE                          FALSE               FALSE
+#&gt;   2:                     NA                             NA                  NA
+#&gt;   3:                     NA                             NA                  NA
+#&gt;   4:                  FALSE                          FALSE               FALSE
+#&gt;   5:                     NA                             NA                  NA
+#&gt;   6:                     NA                             NA                  NA
+#&gt;   7:                     NA                             NA                  NA
+#&gt;   8:                  FALSE                          FALSE               FALSE
+#&gt;   9:                     NA                             NA                  NA
+#&gt;  10:                  FALSE                          FALSE               FALSE
+#&gt;  11:                  FALSE                          FALSE               FALSE
+#&gt;  12:                     NA                             NA                  NA
+#&gt;  13:                     NA                             NA                  NA
+#&gt;  14:                     NA                             NA                  NA
+#&gt;  15:                     NA                             NA                  NA
+#&gt;  16:                     NA                             NA                  NA
+#&gt;  17:                  FALSE                          FALSE               FALSE
+#&gt;  18:                     NA                             NA                  NA
+#&gt;  19:                     NA                             NA                  NA
+#&gt;  20:                     NA                             NA                  NA
+#&gt;  21:                  FALSE                          FALSE               FALSE
+#&gt;  22:                     NA                             NA                  NA
+#&gt;  23:                     NA                             NA                  NA
+#&gt;  24:                  FALSE                          FALSE               FALSE
+#&gt;  25:                     NA                             NA                  NA
+#&gt;  26:                     NA                             NA                  NA
+#&gt;  27:                     NA                             NA                  NA
+#&gt;  28:                     NA                             NA                  NA
+#&gt;  29:                     NA                             NA                  NA
+#&gt;  30:                     NA                             NA                  NA
+#&gt;  31:                     NA                             NA                  NA
+#&gt;  32:                     NA                             NA                  NA
+#&gt;  33:                     NA                             NA                  NA
+#&gt;  34:                  FALSE                          FALSE               FALSE
+#&gt;  35:                  FALSE                          FALSE               FALSE
+#&gt;  36:                     NA                             NA                  NA
+#&gt;  37:                     NA                             NA                  NA
+#&gt;  38:                     NA                             NA                  NA
+#&gt;  39:                     NA                             NA                  NA
+#&gt;  40:                     NA                             NA                  NA
+#&gt;  41:                     NA                             NA                  NA
+#&gt;  42:                  FALSE                          FALSE               FALSE
+#&gt;  43:                     NA                             NA                  NA
+#&gt;  44:                     NA                             NA                  NA
+#&gt;  45:                     NA                             NA                  NA
+#&gt;  46:                     NA                             NA                  NA
+#&gt;  47:                  FALSE                          FALSE               FALSE
+#&gt;  48:                     NA                             NA                  NA
+#&gt;  49:                  FALSE                          FALSE                TRUE
+#&gt;  50:                     NA                             NA                  NA
+#&gt;  51:                     NA                             NA                  NA
+#&gt;  52:                     NA                             NA                  NA
+#&gt;  53:                     NA                             NA                  NA
+#&gt;  54:                  FALSE                          FALSE               FALSE
+#&gt;  55:                  FALSE                          FALSE               FALSE
+#&gt;  56:                     NA                             NA                  NA
+#&gt;  57:                  FALSE                          FALSE               FALSE
+#&gt;  58:                     NA                             NA                  NA
+#&gt;  59:                     NA                             NA                  NA
+#&gt;  60:                     NA                             NA                  NA
+#&gt;  61:                     NA                             NA                  NA
+#&gt;  62:                     NA                             NA                  NA
+#&gt;  63:                     NA                             NA                  NA
+#&gt;  64:                  FALSE                          FALSE               FALSE
+#&gt;  65:                     NA                             NA                  NA
+#&gt;  66:                     NA                             NA                  NA
+#&gt;  67:                     NA                             NA                  NA
+#&gt;  68:                     NA                             NA                  NA
+#&gt;  69:                     NA                             NA                  NA
+#&gt;  70:                  FALSE                          FALSE                TRUE
+#&gt;  71:                  FALSE                          FALSE               FALSE
+#&gt;  72:                     NA                             NA                  NA
+#&gt;  73:                     NA                             NA                  NA
+#&gt;  74:                  FALSE                          FALSE               FALSE
+#&gt;  75:                     NA                             NA                  NA
+#&gt;  76:                     NA                             NA                  NA
+#&gt;  77:                     NA                             NA                  NA
+#&gt;  78:                     NA                             NA                  NA
+#&gt;  79:                     NA                             NA                  NA
+#&gt;  80:                     NA                             NA                  NA
+#&gt;  81:                     NA                             NA                  NA
+#&gt;  82:                     NA                             NA                  NA
+#&gt;  83:                     NA                             NA                  NA
+#&gt;  84:                     NA                             NA                  NA
+#&gt;  85:                     NA                             NA                  NA
+#&gt;  86:                     NA                             NA                  NA
+#&gt;  87:                     NA                             NA                  NA
+#&gt;  88:                     NA                             NA                  NA
+#&gt;  89:                     NA                             NA                  NA
+#&gt;  90:                     NA                             NA                  NA
+#&gt;  91:                     NA                             NA                  NA
+#&gt;  92:                  FALSE                          FALSE               FALSE
+#&gt;  93:                     NA                             NA                  NA
+#&gt;  94:                  FALSE                          FALSE               FALSE
+#&gt;  95:                     NA                             NA                  NA
+#&gt;  96:                     NA                             NA                  NA
+#&gt;  97:                     NA                             NA                  NA
+#&gt;  98:                  FALSE                          FALSE               FALSE
+#&gt;  99:                     NA                             NA                  NA
+#&gt; 100:                     NA                             NA                  NA
+#&gt;      charlson_renal_disease charlson_diabetes_complication charlson_malignancy
+#&gt;      charlson_moderate_or_severe_liver_disease charlson_metastatic_solid_tumor
+#&gt;   1:                                     FALSE                           FALSE
+#&gt;   2:                                        NA                              NA
+#&gt;   3:                                        NA                              NA
+#&gt;   4:                                     FALSE                           FALSE
+#&gt;   5:                                        NA                              NA
+#&gt;   6:                                        NA                              NA
+#&gt;   7:                                        NA                              NA
+#&gt;   8:                                     FALSE                           FALSE
+#&gt;   9:                                        NA                              NA
+#&gt;  10:                                     FALSE                           FALSE
+#&gt;  11:                                     FALSE                           FALSE
+#&gt;  12:                                        NA                              NA
+#&gt;  13:                                        NA                              NA
+#&gt;  14:                                        NA                              NA
+#&gt;  15:                                        NA                              NA
+#&gt;  16:                                        NA                              NA
+#&gt;  17:                                     FALSE                           FALSE
+#&gt;  18:                                        NA                              NA
+#&gt;  19:                                        NA                              NA
+#&gt;  20:                                        NA                              NA
+#&gt;  21:                                     FALSE                           FALSE
+#&gt;  22:                                        NA                              NA
+#&gt;  23:                                        NA                              NA
+#&gt;  24:                                     FALSE                           FALSE
+#&gt;  25:                                        NA                              NA
+#&gt;  26:                                        NA                              NA
+#&gt;  27:                                        NA                              NA
+#&gt;  28:                                        NA                              NA
+#&gt;  29:                                        NA                              NA
+#&gt;  30:                                        NA                              NA
+#&gt;  31:                                        NA                              NA
+#&gt;  32:                                        NA                              NA
+#&gt;  33:                                        NA                              NA
+#&gt;  34:                                     FALSE                           FALSE
+#&gt;  35:                                     FALSE                           FALSE
+#&gt;  36:                                        NA                              NA
+#&gt;  37:                                        NA                              NA
+#&gt;  38:                                        NA                              NA
+#&gt;  39:                                        NA                              NA
+#&gt;  40:                                        NA                              NA
+#&gt;  41:                                        NA                              NA
+#&gt;  42:                                     FALSE                           FALSE
+#&gt;  43:                                        NA                              NA
+#&gt;  44:                                        NA                              NA
+#&gt;  45:                                        NA                              NA
+#&gt;  46:                                        NA                              NA
+#&gt;  47:                                     FALSE                           FALSE
+#&gt;  48:                                        NA                              NA
+#&gt;  49:                                     FALSE                           FALSE
+#&gt;  50:                                        NA                              NA
+#&gt;  51:                                        NA                              NA
+#&gt;  52:                                        NA                              NA
+#&gt;  53:                                        NA                              NA
+#&gt;  54:                                     FALSE                           FALSE
+#&gt;  55:                                     FALSE                           FALSE
+#&gt;  56:                                        NA                              NA
+#&gt;  57:                                     FALSE                           FALSE
+#&gt;  58:                                        NA                              NA
+#&gt;  59:                                        NA                              NA
+#&gt;  60:                                        NA                              NA
+#&gt;  61:                                        NA                              NA
+#&gt;  62:                                        NA                              NA
+#&gt;  63:                                        NA                              NA
+#&gt;  64:                                     FALSE                           FALSE
+#&gt;  65:                                        NA                              NA
+#&gt;  66:                                        NA                              NA
+#&gt;  67:                                        NA                              NA
+#&gt;  68:                                        NA                              NA
+#&gt;  69:                                        NA                              NA
+#&gt;  70:                                     FALSE                           FALSE
+#&gt;  71:                                     FALSE                           FALSE
+#&gt;  72:                                        NA                              NA
+#&gt;  73:                                        NA                              NA
+#&gt;  74:                                     FALSE                           FALSE
+#&gt;  75:                                        NA                              NA
+#&gt;  76:                                        NA                              NA
+#&gt;  77:                                        NA                              NA
+#&gt;  78:                                        NA                              NA
+#&gt;  79:                                        NA                              NA
+#&gt;  80:                                        NA                              NA
+#&gt;  81:                                        NA                              NA
+#&gt;  82:                                        NA                              NA
+#&gt;  83:                                        NA                              NA
+#&gt;  84:                                        NA                              NA
+#&gt;  85:                                        NA                              NA
+#&gt;  86:                                        NA                              NA
+#&gt;  87:                                        NA                              NA
+#&gt;  88:                                        NA                              NA
+#&gt;  89:                                        NA                              NA
+#&gt;  90:                                        NA                              NA
+#&gt;  91:                                        NA                              NA
+#&gt;  92:                                     FALSE                           FALSE
+#&gt;  93:                                        NA                              NA
+#&gt;  94:                                     FALSE                           FALSE
+#&gt;  95:                                        NA                              NA
+#&gt;  96:                                        NA                              NA
+#&gt;  97:                                        NA                              NA
+#&gt;  98:                                     FALSE                           FALSE
+#&gt;  99:                                        NA                              NA
+#&gt; 100:                                        NA                              NA
+#&gt;      charlson_moderate_or_severe_liver_disease charlson_metastatic_solid_tumor
+#&gt;      charlson_aids_hiv charlson_index_quan_original charlson_index_quan_updated
+#&gt;   1:             FALSE                            0                           0
+#&gt;   2:                NA                           NA                          NA
+#&gt;   3:                NA                           NA                          NA
+#&gt;   4:             FALSE                            0                           0
+#&gt;   5:                NA                           NA                          NA
+#&gt;   6:                NA                           NA                          NA
+#&gt;   7:                NA                           NA                          NA
+#&gt;   8:             FALSE                            0                           0
+#&gt;   9:                NA                           NA                          NA
+#&gt;  10:             FALSE                            0                           0
+#&gt;  11:             FALSE                            0                           0
+#&gt;  12:                NA                           NA                          NA
+#&gt;  13:                NA                           NA                          NA
+#&gt;  14:                NA                           NA                          NA
+#&gt;  15:                NA                           NA                          NA
+#&gt;  16:                NA                           NA                          NA
+#&gt;  17:             FALSE                            0                           0
+#&gt;  18:                NA                           NA                          NA
+#&gt;  19:                NA                           NA                          NA
+#&gt;  20:                NA                           NA                          NA
+#&gt;  21:             FALSE                            1                           2
+#&gt;  22:                NA                           NA                          NA
+#&gt;  23:                NA                           NA                          NA
+#&gt;  24:             FALSE                            0                           0
+#&gt;  25:                NA                           NA                          NA
+#&gt;  26:                NA                           NA                          NA
+#&gt;  27:                NA                           NA                          NA
+#&gt;  28:                NA                           NA                          NA
+#&gt;  29:                NA                           NA                          NA
+#&gt;  30:                NA                           NA                          NA
+#&gt;  31:                NA                           NA                          NA
+#&gt;  32:                NA                           NA                          NA
+#&gt;  33:                NA                           NA                          NA
+#&gt;  34:             FALSE                            0                           0
+#&gt;  35:             FALSE                            0                           0
+#&gt;  36:                NA                           NA                          NA
+#&gt;  37:                NA                           NA                          NA
+#&gt;  38:                NA                           NA                          NA
+#&gt;  39:                NA                           NA                          NA
+#&gt;  40:                NA                           NA                          NA
+#&gt;  41:                NA                           NA                          NA
+#&gt;  42:             FALSE                            0                           0
+#&gt;  43:                NA                           NA                          NA
+#&gt;  44:                NA                           NA                          NA
+#&gt;  45:                NA                           NA                          NA
+#&gt;  46:                NA                           NA                          NA
+#&gt;  47:             FALSE                            0                           0
+#&gt;  48:                NA                           NA                          NA
+#&gt;  49:             FALSE                            2                           2
+#&gt;  50:                NA                           NA                          NA
+#&gt;  51:                NA                           NA                          NA
+#&gt;  52:                NA                           NA                          NA
+#&gt;  53:                NA                           NA                          NA
+#&gt;  54:             FALSE                            0                           0
+#&gt;  55:             FALSE                            0                           0
+#&gt;  56:                NA                           NA                          NA
+#&gt;  57:             FALSE                            0                           0
+#&gt;  58:                NA                           NA                          NA
+#&gt;  59:                NA                           NA                          NA
+#&gt;  60:                NA                           NA                          NA
+#&gt;  61:                NA                           NA                          NA
+#&gt;  62:                NA                           NA                          NA
+#&gt;  63:                NA                           NA                          NA
+#&gt;  64:             FALSE                            0                           0
+#&gt;  65:                NA                           NA                          NA
+#&gt;  66:                NA                           NA                          NA
+#&gt;  67:                NA                           NA                          NA
+#&gt;  68:                NA                           NA                          NA
+#&gt;  69:                NA                           NA                          NA
+#&gt;  70:             FALSE                            2                           2
+#&gt;  71:             FALSE                            0                           0
+#&gt;  72:                NA                           NA                          NA
+#&gt;  73:                NA                           NA                          NA
+#&gt;  74:             FALSE                            0                           0
+#&gt;  75:                NA                           NA                          NA
+#&gt;  76:                NA                           NA                          NA
+#&gt;  77:                NA                           NA                          NA
+#&gt;  78:                NA                           NA                          NA
+#&gt;  79:                NA                           NA                          NA
+#&gt;  80:                NA                           NA                          NA
+#&gt;  81:                NA                           NA                          NA
+#&gt;  82:                NA                           NA                          NA
+#&gt;  83:                NA                           NA                          NA
+#&gt;  84:                NA                           NA                          NA
+#&gt;  85:                NA                           NA                          NA
+#&gt;  86:                NA                           NA                          NA
+#&gt;  87:                NA                           NA                          NA
+#&gt;  88:                NA                           NA                          NA
+#&gt;  89:                NA                           NA                          NA
+#&gt;  90:                NA                           NA                          NA
+#&gt;  91:                NA                           NA                          NA
+#&gt;  92:             FALSE                            0                           0
+#&gt;  93:                NA                           NA                          NA
+#&gt;  94:             FALSE                            0                           0
+#&gt;  95:                NA                           NA                          NA
+#&gt;  96:                NA                           NA                          NA
+#&gt;  97:                NA                           NA                          NA
+#&gt;  98:             FALSE                            0                           0
+#&gt;  99:                NA                           NA                          NA
+#&gt; 100:                NA                           NA                          NA
+#&gt;      charlson_aids_hiv charlson_index_quan_original charlson_index_quan_updated</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

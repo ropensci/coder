@@ -72,7 +72,7 @@ in use, and during the creation and debugging of such." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -187,24 +187,24 @@ classification, either with or without prefix <code>regex_</code></p></dd>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 
  <span class='co'># How is depression classified according to Elixhauser?</span>
- <span class='fu'>visualize</span>(<span class='st'>"elix_icd10"</span>, <span class='st'>"depression"</span>)
+ <span class='fu'>visualize</span>(<span class='st'>"elixhauser"</span>, <span class='st'>"depression"</span>)
 
  <span class='co'># Compare the two diabetes groups according to Charlson</span>
- <span class='fu'>visualize</span>(<span class='st'>"charlson_icd10"</span>,
+ <span class='fu'>visualize</span>(<span class='st'>"charlson"</span>,
    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"diabetes without complication"</span>, <span class='st'>"diabetes complication"</span>))
 
  <span class='co'># Is this different from the "Royal College of Surgeons classification?</span>
  <span class='co'># Yes, there is only one group for diabetes</span>
- <span class='fu'>visualize</span>(<span class='st'>"charlson_icd10"</span>,
+ <span class='fu'>visualize</span>(<span class='st'>"charlson"</span>,
    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"diabetes without complication"</span>, <span class='st'>"diabetes complication"</span>),
    <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"rcs"</span>
  )
 
  <span class='co'># Show all groups from Charlson</span>
- <span class='fu'>visualize</span>(<span class='st'>"charlson_icd10"</span>)
+ <span class='fu'>visualize</span>(<span class='st'>"charlson"</span>)
 
  <span class='co'># Get URL for later visualisation</span>
- (<span class='fu'>visualize</span>(<span class='st'>"tha_fracture_ae_icd10"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))
+ (<span class='fu'>visualize</span>(<span class='st'>"tha.fracture.ae"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))
 
 }</div></pre>
   </div>

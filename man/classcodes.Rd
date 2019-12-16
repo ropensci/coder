@@ -6,15 +6,12 @@
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x, coding = NULL)
+as.classcodes(x)
 
 is.classcodes(x)
 }
 \arguments{
 \item{x}{data frame with properties as described in the details section}
-
-\item{coding}{Coding used for the classification
-(character vector of length one). Used by \code{\link{summary.classcodes}}.}
 }
 \value{
 Object of class "classcodes" (data frame) with attribute \code{code}
@@ -49,7 +46,7 @@ The package have several default classcodes included listed on its index page
 `help(package = "coder")`
 }
 \examples{
-as.classcodes(coder::elix_icd10)
+as.classcodes(coder::elixhauser)
 }
 \seealso{
 Regular expressions used in classcodes can often be quite complex

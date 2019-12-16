@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for RxRiskV (original and modified) — rxriskv • coder</title>
+<title>Classcodes for RxRisk V based on ATC codes — rxriskv • coder</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
 
 
 
-<meta property="og:title" content="Classcodes for RxRiskV (original and modified) — rxriskv" />
-<meta property="og:description" content="classcodes object to use with classify" />
+<meta property="og:title" content="Classcodes for RxRisk V based on ATC codes — rxriskv" />
+<meta property="og:description" content="classcodes object to use with classify.
+Provided mostly as proof-of-concept. Codes have not been externaly
+  validated and desired implemantation might differ over time and by country." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -123,43 +125,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for RxRiskV (original and modified)</h1>
+    <h1>Classcodes for RxRisk V based on ATC codes</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
     <div class="hidden name"><code>rxriskv.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p><code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code>.
+Provided mostly as proof-of-concept. Codes have not been externaly
+  validated and desired implemantation might differ over time and by country.</p>
     </div>
 
-    <pre class="usage"><span class='no'>rxriskv_atc</span>
-
-<span class='no'>rxriskv.modified_atc</span></pre>
+    <pre class="usage"><span class='no'>rxriskv</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Data frames with 39 rows and 2 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>disease group</p></dd>
-  <dt>regex</dt><dd><p>regular expressions identifying ATC codes of each group</p></dd>
+    <p>Data frames with 39 rows and 6 variables:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>medical condition</p></dd>
+  <dt>regex</dt><dd><p>ATC codes from table 1 in Pratt et al. 2018
+   (ignoring PBS item codes and extra conditions).</p></dd>
+  <dt>regex_unknown</dt><dd><p>Source for this classification is unknown!</p></dd>
+  <dt>regex_garland</dt><dd><p>Based on <code>regex_unknown</code> but modified by Anne
+  Garland to resemble medical use in Sweden 2016. Unpublished!</p></dd>
+ <dt>regex_caughey</dt><dd><p>From appendix 1 in Caughey et al. 2010</p></dd>
+ <dt>pratt</dt><dd><p>Mortality weights from table 1 in Pratt et al. 2018</p></dd>
 
 </dl>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><code>rxriskv.modified_atc</code> adopted by Anne Garland to better mirror
- medical use in Sweden.</p>
+    <p>Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.
+  Comorbidity in the elderly with diabetes:
+  Identification of areas of potential treatment conflicts.
+  Diabetes Res Clin Pract 2010;87:385–93.
+  doi:10.1016/j.diabres.2009.10.019.</p>
+<p>Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
+  Ramsay E, et al.
+  The validity of the Rx-Risk Comorbidity Index using medicines mapped to
+  the Anatomical Therapeutic Chemical (ATC) Classification System.
+  BMJ Open 2018;8.
+  doi:10.1136/bmjopen-2017-021122.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other default classcodes: <code><a href='ae.html'>ae</a></code>,
-  <code><a href='charlson_icd10.html'>charlson_icd10</a></code>, <code><a href='cps_icd10.html'>cps_icd10</a></code>,
-  <code><a href='elix.html'>elix</a></code></p></div>
+    <div class='dont-index'><p>Other default classcodes: 
+<code><a href='ae.html'>ae</a></code>,
+<code><a href='charlson.html'>charlson</a></code>,
+<code><a href='cps.html'>cps</a></code>,
+<code><a href='elixhauser.html'>elixhauser</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
-      <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

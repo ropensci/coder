@@ -5,12 +5,12 @@ x <- codify(ex_people, ex_icd10, id = "name",
 
 test_that("classify", {
   expect_equal(
-    elix_icd10$group[which(classify("C80", "elix_icd10"))],
+    elixhauser$group[which(classify("C80", "elixhauser"))],
     "metastatic cancer"
   )
-  expect_is(classify(x, "elix_icd10"), "matrix")
+  expect_is(classify(x, "elixhauser"), "matrix")
   expect_error(
-    classify(x, "hip.ae_icd10", id = "name"),
+    classify(x, "hip_ae", id = "name"),
     "Classification is conditioned on variables not found in the data set!"
   )
 })

@@ -72,7 +72,7 @@ group in the classification." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@ group in the classification.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classcodes</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>, <span class='no'>coding</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,6 +149,16 @@ group in the classification.</p>
       <td><p>classcodes object</p></td>
     </tr>
     <tr>
+      <th>regex</th>
+      <td><p>name of column with regular expressions to use for
+classification, either with or without prefix <code>regex_</code></p></td>
+    </tr>
+    <tr>
+      <th>coding</th>
+      <td><p>name (as character) of classification used for coding
+(for example "icd10" or "atc")</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>ignored</p></td>
     </tr>
@@ -156,12 +166,17 @@ group in the classification.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame (nivisable) with columns:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>Groups identified by <code>object</code>.</p></dd>
-  <dt>n</dt><dd><p>The number oif codes to be recognized for each group.</p></dd>
-  <dt>codes</dt><dd><p>Individual codes within each group.</p></dd>
-
-</dl>
+    <p>List (invisable) with objects:</p>
+<ul>
+<li><p><code>object</code>: input <code>object</code></p></li>
+<li><p><code>summary</code>: a data frame with columns:
+     <ul>
+<li><p><code>group</code>: Groups identified by <code>object</code>.</p></li>
+<li><p><code>n</code>: The number oif codes to be recognized for each group.</p></li>
+<li><p><code>codes</code>: Individual codes within each group.</p></li>
+</ul></p></li>
+<li><p><code>coding</code>: input <code>coding</code></p></li>
+</ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -176,10 +191,76 @@ group in the classification.</p>
 <code><a href='visualize.html'>visualize</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>ex.carbrands_excars</span>)</div><div class='output co'>#&gt; 
-#&gt; Based on coding: excars 
-#&gt; Indices:  
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>elixhauser</span>, <span class='kw'>coding</span> <span class='kw'>=</span> <span class='st'>"icd10"</span>)</div><div class='output co'>#&gt; 
+#&gt; Based on coding: icd10 
+#&gt; Indices: sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
 #&gt; 
+#&gt; Recognized codes per group:
+#&gt; 
+#&gt;  group                          n  
+#&gt;  AIDS/HIV                        22
+#&gt;  alcohol abuse                   30
+#&gt;  blood loss anemia                1
+#&gt;  cardiac arrhythmias             45
+#&gt;  chronic pulmonary disease       57
+#&gt;  coagulopathy                    29
+#&gt;  congestive heart failure        19
+#&gt;  deficiency anemia               17
+#&gt;  depression                      22
+#&gt;  diabetes complicated            93
+#&gt;  diabetes uncomplicated          33
+#&gt;  drug abuse                      82
+#&gt;  fluid electrolyte disorders     15
+#&gt;  hypertension complicated        13
+#&gt;  hypertension uncomplicated       1
+#&gt;  hypothyroidism                  21
+#&gt;  liver disease                   95
+#&gt;  lymphoma                        64
+#&gt;  metastatic cancer               29
+#&gt;  obesity                          5
+#&gt;  other neurological disorders   105
+#&gt;  paralysis                       22
+#&gt;  peptic ulcer disease             8
+#&gt;  peripheral vascular disorder    38
+#&gt;  psychoses                       29
+#&gt;  pulmonary circulation disorder  10
+#&gt;  renal failure                   15
+#&gt;  rheumatoid arthritis           107
+#&gt;  solid tumor                    421
+#&gt;  valvular disease                58
+#&gt;  weight loss                     10
+#&gt;  codes                                                 
+#&gt;  B200, B201, B202, B203, B204, B205, B206, B207, B2 ...
+#&gt;  E529, F100, F101, F102, F102A, F102B, F102X, F103, ...
+#&gt;  D500                                                  
+#&gt;  I441, I441A, I441B, I442, I443, I456, I456A, I456B ...
+#&gt;  I2782, I2792, J409, J410, J411, J418, J429, J430,  ...
+#&gt;  D659, D669, D679, D680, D681, D682, D683, D684, D6 ...
+#&gt;  I099, I1101, I1301, I1321, I255, I420, I425, I4261 ...
+#&gt;  D508, D509, D510, D511, D512, D513, D518, D519, D5 ...
+#&gt;  F2042, F313, F314, F3152, F320, F321, F322, F323,  ...
+#&gt;  E102, E102A, E102B, E102C, E102W, E102X, E103, E10 ...
+#&gt;  E100, E100A, E100B, E100C, E100D, E100X, E101, E10 ...
+#&gt;  F110, F111, F112, F113, F114, F115, F116, F117, F1 ...
+#&gt;  E222, E869, E870, E870A, E870B, E871, E871A, E871B ...
+#&gt;  I1102, I119, I1201, I129, I1302, I1311, I1322, I13 ...
+#&gt;  I109                                                  
+#&gt;  E000, E001, E002, E009, E010, E011, E012, E018, E0 ...
+#&gt;  B180, B180A, B180B, B180C, B180D, B180E, B180F, B1 ...
+#&gt;  C810, C811, C812, C813, C814, C817, C819, C820, C8 ...
+#&gt;  C770, C771, C772, C773, C774, C775, C778, C779, C7 ...
+#&gt;  E660, E661, E662, E668, E669                          
+#&gt;  G109, G110, G111, G112, G113, G1142, G118, G119, G ...
+#&gt;  G041, G1141, G801, G801A, G801B, G801X, G802, G810 ...
+#&gt;  K257, K259, K267, K269, K277, K279, K287, K289        
+#&gt;  I700, I701, I702, I702A, I702C, I702X, I708, I709, ...
+#&gt;  F200, F201, F202, F203, F2041, F205, F206, F208, F ...
+#&gt;  I260, I269, I270, I271, I272, I2781, I2791, I280,  ...
+#&gt;  I1202, I1312, N181, N182, N183, N184, N185, N189,  ...
+#&gt;  L940, L941, L943, M050, M051, M052, M053, M058, M0 ...
+#&gt;  C000, C001, C002, C003, C004, C005, C006, C008, C0 ...
+#&gt;  A520, I050, I051, I052, I058, I059, I060, I061, I0 ...
+#&gt;  E409, E419, E429, E439, E440, E441, E459, E469, R6 ...
 #&gt; 
 #&gt;  Use function visualize() for a graphical representation.
 #&gt; </div></pre>

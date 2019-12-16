@@ -17,15 +17,15 @@
 #' @examples
 #'
 #' # Calculate Elixhauser comorbidity index
-#' cl <- classify(c("C80", "I20"), "elix_icd10")
+#' cl <- classify(c("C80", "I20"), "elixhauser")
 #' index(cl)
 #'
 #' # Calculate Charlson-index using original weights
-#' cl <- classify(c("C80", "I21"), "charlson_icd10")
+#' cl <- classify(c("C80", "I21"), "charlson")
 #' index(cl, "quan_original")
 #'
 #' # Calculate Charlson-index using updated weights
-#' cl <- classify(c("C80", "I21"), "charlson_icd10")
+#' cl <- classify(c("C80", "I21"), "charlson")
 #' index(cl, "quan_updated")
 #'
 #' @name index_fun

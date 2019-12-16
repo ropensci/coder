@@ -4,10 +4,12 @@
 \alias{print.summary.classcodes}
 \title{Print summary for classcodes object}
 \usage{
-\method{print}{summary.classcodes}(x, ...)
+\method{print}{summary.classcodes}(x, n_print = 50, ...)
 }
 \arguments{
 \item{x}{object of class \code{\link{summary.classcodes}}}
+
+\item{n_print}{maximum characters to print from the \code{codes} column}
 
 \item{...}{ignored}
 }
@@ -18,7 +20,7 @@ Nothing. This function is called for its side effects
 Print summary for classcodes object
 }
 \examples{
-print(summary(ex.carbrands_excars))
+print(summary(elixhauser, coding = "icd10"))
 }
 \seealso{
 Other classcodes: 

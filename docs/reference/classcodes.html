@@ -71,7 +71,7 @@ part of the triad of case data, code data and classification scheme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@ data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and classification scheme.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.classcodes</span>(<span class='no'>x</span>, <span class='kw'>coding</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>as.classcodes</span>(<span class='no'>x</span>)
 
 <span class='fu'>is.classcodes</span>(<span class='no'>x</span>)</pre>
 
@@ -146,11 +146,6 @@ part of the triad of case data, code data and classification scheme.</p>
     <tr>
       <th>x</th>
       <td><p>data frame with properties as described in the details section</p></td>
-    </tr>
-    <tr>
-      <th>coding</th>
-      <td><p>Coding used for the classification
-(character vector of length one). Used by <code><a href='summary.classcodes.html'>summary.classcodes</a></code>.</p></td>
     </tr>
     </table>
 
@@ -201,7 +196,7 @@ list all codes individually.</p>
 <code><a href='visualize.html'>visualize</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/coder/man/elix.html'>elix_icd10</a></span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 10</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/coder/man/elixhauser.html'>elixhauser</a></span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 10</span><span>
 #&gt;    group regex regex_short sum_all sum_all_ahrq walraven sid29 sid30 ahrq_mort
 #&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> cong… ^(I(… ^(I(09|1[1…       1            1        7     9     9         9

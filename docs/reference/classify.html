@@ -73,7 +73,7 @@ together if using the magrittr pipe (%&amp;gt;%)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -222,7 +222,7 @@ of row names.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Classify individual ICD10-codes by Elixhauser</span>
-<span class='fu'>classify</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"elix_icd10"</span>)</div><div class='output co'>#&gt;              congestive heart failure cardiac arrhythmias valvular disease
+<span class='fu'>classify</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"elixhauser"</span>)</div><div class='output co'>#&gt;              congestive heart failure cardiac arrhythmias valvular disease
 #&gt; C80                             FALSE               FALSE            FALSE
 #&gt; I20                             FALSE               FALSE            FALSE
 #&gt; unvalid_code                    FALSE               FALSE            FALSE
@@ -259,7 +259,7 @@ of row names.</p>
 #&gt; I20                      FALSE         FALSE      FALSE     FALSE      FALSE
 #&gt; unvalid_code             FALSE         FALSE      FALSE     FALSE      FALSE
 #&gt; attr(,"classcodes")
-#&gt; [1] "elix_icd10"
+#&gt; [1] "elixhauser"
 #&gt; attr(,"id")
 #&gt; [1] "id"
 #&gt; attr(,"class")
@@ -268,7 +268,7 @@ of row names.</p>
 <span class='co'># one year before surgery</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
-(<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson_icd10"</span>))</div><div class='output co'>#&gt;                           myocardial infarction congestive heart failure
+(<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>))</div><div class='output co'>#&gt;                           myocardial infarction congestive heart failure
 #&gt; Bivings, Devin                            FALSE                    FALSE
 #&gt; Liufau, Sue Lynn                          FALSE                    FALSE
 #&gt; Mitchell, Dalon                           FALSE                    FALSE
@@ -1178,7 +1178,7 @@ of row names.</p>
 #&gt; Wu, Lucas                                  FALSE    FALSE
 #&gt; Wuertz, Jenny                              FALSE    FALSE
 #&gt; attr(,"classcodes")
-#&gt; [1] "charlson_icd10"
+#&gt; [1] "charlson"
 #&gt; attr(,"id")
 #&gt; [1] "name"
 #&gt; attr(,"class")

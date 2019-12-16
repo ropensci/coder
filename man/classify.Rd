@@ -66,13 +66,13 @@ Note that row order is not preserved for \code{classify.data.frame} due to
 }
 \examples{
 # Classify individual ICD10-codes by Elixhauser
-classify(c("C80", "I20", "unvalid_code"), by = "elix_icd10")
+classify(c("C80", "I20", "unvalid_code"), by = "elixhauser")
 
 # Classify patients by Charlson for comorbidities during
 # one year before surgery
 x <- codify(ex_people, ex_icd10, id = "name",
   date = "surgery", days = c(-365, 0))
-(y <- classify(x, "charlson_icd10"))
+(y <- classify(x, "charlson"))
 
 # It is possible to convert the outpot of classify to a data frame with
 # id column instead of row names

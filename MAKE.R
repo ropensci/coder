@@ -16,7 +16,9 @@ file.remove("R/sysdata.rda")
 library(tidyverse)
 library(data.table)
 devtools::load_all()
-for (file in dir("data-raw", pattern = ".R")) source(file.path("data-raw", file))
+for (file in dir("data-raw", pattern = ".R")) {
+  source(file.path("data-raw", file))
+}
 
 # Rebuild documentation
 unlink("man", TRUE)

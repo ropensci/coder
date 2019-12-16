@@ -33,12 +33,12 @@
 #'
 #' @examples
 #' # Add Elixhauser based on all registered ICD10-codes
-#' categorize(ex_people, ex_icd10, "elix_icd10", id = "name")
+#' categorize(ex_people, ex_icd10, "elixhauser", id = "name")
 #'
 #' # Add Charlson categorias and two versions of a calculated index.
 #' # Only include recent hospital visits within 30 days before surgery,
 #' # and use technical variable names to clearly identify the new columns.
-#' categorize(ex_people, ex_icd10, "charlson_icd10",
+#' categorize(ex_people, ex_icd10, "charlson",
 #'   id = "name", date = "surgery", days = c(-30, -1),
 #'   ind = c("quan_original", "quan_updated"),
 #'   tech_names = TRUE

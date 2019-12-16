@@ -26,9 +26,6 @@
 #' `help(package = "coder")`
 #'
 #' @param x data frame with properties as described in the details section
-#' @param coding Coding used for the classification
-#'   (character vector of length one). Used by \code{\link{summary.classcodes}}.
-#'
 #' @return Object of class "classcodes" (data frame) with attribute \code{code}
 #' specifying the coding used (for example "icd10", or "ATC").
 #' Could be \code{NULL} for unknown or arbitrary coding.
@@ -41,9 +38,9 @@
 #' @export
 #' @name classcodes
 #' @examples
-#' as.classcodes(coder::elix_icd10)
+#' as.classcodes(coder::elixhauser)
 #' @family classcodes
-as.classcodes <- function(x, coding = NULL) {
+as.classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),
     all(c("group", "regex") %in% names(x)),
@@ -62,7 +59,6 @@ as.classcodes <- function(x, coding = NULL) {
     x,
     class       = unique(c("classcodes", class(x))),
     regexprs    = rgs,
-    coding      = if (!is.null(coding)) coding else attr(x, "coding"),
     indices     = setdiff(
                     colnames(x),
                     c(rgs, c("group", "condition", "description"))
@@ -77,8 +73,6 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 
 #' @export
 `[.classcodes` <- function(x, ...) {
-  coding <- attr(x, "coding")
   x <- NextMethod()
-  attr(x, "coding") <- coding
   as.classcodes(x)
 }

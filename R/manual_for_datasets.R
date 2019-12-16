@@ -1,4 +1,4 @@
-#' Classcodes for Elixhauser based on ICD-10 codes
+#' Classcodes for Elixhauser based on ICD-codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
@@ -51,12 +51,11 @@
 #'   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
 #'
 #' @family default classcodes
-#' @name elix
-"elix_icd10"
+"elixhauser"
 
 
 
-#' Classcodes for Charlson comorbidity
+#' Classcodes for Charlson comorbidity based on ICD-codes
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
@@ -71,7 +70,10 @@
 #'   with weights other than \code{quan_original} and \code{quan_updated} might
 #'   therefore lead to different results than originally intended for each
 #'   index.}
-#'   \item{regex_rcs}{Alternative codes seggested by Armitage (2010).
+#'   \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM" in Quan et al. (2005).
+#'     Procedure code 38.48 for peripheral vascular disease ignored.}
+#'   \item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM" in Quan et al. (2005).}
+#'   \item{regex_icd10_rcs}{Codification by Armitage (2010).
 #'     Note that Peptic ulcer disease is not included.
 #'     All liver diseases (including mild) are included in
 #'     "moderate or severe liver disease".
@@ -119,7 +121,7 @@
 #'   Journal of clinical epidemiology, 68(1), 3-14.
 #'
 #' @family default classcodes
-"charlson_icd10"
+"charlson"
 
 
 
@@ -141,7 +143,7 @@
 #' (2015): 224.
 #' \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 #' @family default classcodes
-"cps_icd10"
+"cps"
 
 
 #' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
@@ -149,7 +151,7 @@
 #'
 #' \code{\link{classcodes}} objects to use with \code{\link{classify}}
 #'
-#' Group names are prefixed by two letters as given by the references.
+#' ICD-10 group names are prefixed by two letters as given by the references.
 #' Two groups (DB and DM) are split into two due to different conditions.
 #'
 #' @section Hip fractures:
@@ -175,8 +177,8 @@
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
-#'   \item{regex}{regular expressions identifying ICD-10 or
-#'     KVA codes for each group}
+#'   \item{regex}{regular expressions identifying ICD-10 codes for each group}
+#'  \item{regex_kva}{regular expressions identifying KVA codes}
 #'   \item{condition}{special conditions are used, see below.}
 #' }
 #'
@@ -186,19 +188,13 @@
 #'
 #' @name ae
 #' @family default classcodes
-"knee.ae_icd10"
+"knee_ae"
 
 #' @rdname ae
-"hip.ae_icd10"
+"hip_ae"
 
 #' @rdname ae
-"hip.ae_kva"
-
-#' @rdname ae
-"knee.ae_kva"
-
-#' @rdname ae
-"hip.fracture.ae_icd10"
+"hip_fracture_ae"
 
 
 #' Classcodes for RxRisk V based on ATC codes
@@ -234,7 +230,7 @@
 #'   doi:10.1136/bmjopen-2017-021122.
 #'
 #' @family default classcodes
-"rxriskv_atc"
+"rxriskv"
 
 
 
@@ -257,7 +253,7 @@
 #' }
 #'
 #' @family example data
-"ex.cars"
+"ex_cars"
 
 
 #' Example classcodes object for classification of car brands by their producer
@@ -269,7 +265,7 @@
 #' }
 #'
 #' @family example data
-"ex.carbrands_excars"
+"ex_carbrands"
 
 
 

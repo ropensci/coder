@@ -39,24 +39,24 @@ in use, and during the creation and debugging of such.
 \dontrun{
 
  # How is depression classified according to Elixhauser?
- visualize("elix_icd10", "depression")
+ visualize("elixhauser", "depression")
 
  # Compare the two diabetes groups according to Charlson
- visualize("charlson_icd10",
+ visualize("charlson",
    c("diabetes without complication", "diabetes complication"))
 
  # Is this different from the "Royal College of Surgeons classification?
  # Yes, there is only one group for diabetes
- visualize("charlson_icd10",
+ visualize("charlson",
    c("diabetes without complication", "diabetes complication"),
    regex = "rcs"
  )
 
  # Show all groups from Charlson
- visualize("charlson_icd10")
+ visualize("charlson")
 
  # Get URL for later visualisation
- (visualize("tha_fracture_ae_icd10", show = FALSE))
+ (visualize("tha.fracture.ae", show = FALSE))
 
 }
 }

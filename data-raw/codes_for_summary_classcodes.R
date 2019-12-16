@@ -1,7 +1,7 @@
 
 # Store all available codes to use for summary.classcodes
 icd10      <- as.character(decoder:::icd10$key)
-ex.allcars <- rownames(mtcars) # Example data
+ex_allcars <- rownames(mtcars) # Example data
 
 kva <- read.delim("data-raw/kva.txt", FALSE, skip = 4)$V1
 
@@ -16,7 +16,7 @@ atc <-
 
 usethis::use_data(
   icd10,
-  ex.allcars,
+  ex_allcars,
   kva,
   atc,
 

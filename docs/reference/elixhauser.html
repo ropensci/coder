@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate index based on classification scheme — index_fun • coder</title>
+<title>Classcodes for Elixhauser based on ICD-codes — elixhauser • coder</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Calculate index based on classification scheme — index_fun" />
-<meta property="og:description" content="Calculate index based on classification scheme" />
+<meta property="og:title" content="Classcodes for Elixhauser based on ICD-codes — elixhauser" />
+<meta property="og:description" content="A classcodes object to use with classify" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,83 +123,81 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate index based on classification scheme</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/index_fun.R'><code>R/index_fun.R</code></a></small>
-    <div class="hidden name"><code>index_fun.Rd</code></div>
+    <h1>Classcodes for Elixhauser based on ICD-codes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
+    <div class="hidden name"><code>elixhauser.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate index based on classification scheme</p>
+    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='no'>elixhauser</span></pre>
 
-<span class='co'># S3 method for data.frame</span>
-<span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='co'># S3 method for matrix</span>
-<span class='fu'>index</span>(<span class='no'>x</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>output from <code>classify</code>
-(or possibly from <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>)</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>used internally</p></td>
-    </tr>
-    <tr>
-      <th>by</th>
-      <td><p>name of column with 'weights' from corresponding
-<code><a href='classcodes.html'>classcodes</a></code> object. Can be omitted if the index is just the
-count of relevant classes.</p></td>
-    </tr>
-    <tr>
-      <th>from</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object. Can be omitted if information
-already present as attribute of <code>x</code> (which is often the case) and/or
-if index calculated without weights.</p></td>
-    </tr>
-    </table>
+    <p>A data frame with 31 rows and 8 variables:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>comorbidity groups</p></dd>
+  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes of each group</p></dd>
+  <dt>regex_short</dt><dd><p>regular expressions identifying only the first three
+  characters of ICD-10 codes of each group. This alternative version was
+  added for comparison. There are good no reasons to use this version
+  instead of 'regex'!</p></dd>
+  <dt>sum_all</dt><dd><p>all weights = 1. This is included for convenience when
+  calculating several indices simultainisly</p></dd>
+  <dt>sum_all_ahrq</dt><dd><p>as <code>sum_all</code> exluding "cardiac arrythmias"</p></dd>
+  <dt>walraven</dt><dd><p>weights suggested by Walraven et al (2009)</p></dd>
+  <dt>sid29</dt><dd><p>weights suggested by Thompson et al. (2015)
+    based on all conditions except cardian arryrtmias</p></dd>
+  <dt>sid30</dt><dd><p>weights suggested by Thompson et al. (2015)
+    based on all conditions</p></dd>
+ <dt>ahrq_mort</dt><dd><p>weights for in-hospital mortality suggested by
+   Moore et al. (2017)</p></dd>
+ <dt>ahrq_readm</dt><dd><p>weights for readmissions suggested by
+   Moore et al. (2017)</p></dd>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+</dl>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Named numeric index vector with names corresponding to
-  <code><a href='https://rdrr.io/r/base/colnames.html'>rownames(x)</a></code></p>
+    <p>Quan Hude et al. (2005). Coding algorithms for defining
+  comorbidities in ICD-9-CM and ICD-10 administrative data.
+  Medical care, 1130-1139.
+  <a href='www.jstor.org/stable/3768193'>www.jstor.org/stable/3768193</a></p>
+<p>Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
+  C. Van, … Jennings, A. (2009).
+  A Modification of the Elixhauser Comorbidity Measures Into a Point System
+  for Hospital Death Using Administrative Data.
+  Medical Care, 47(6), 626–633.</p>
+<p>Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
+  Vadera, S., &amp; Griffith, S. D. (2015).
+  A new Elixhauser-based comorbidity summary measure to predict in-hospital
+  mortality. Med Care, 53(4), 374–379.
+  http://doi.org/10.1097/MLR.0000000000000326</p>
+<p>Moore, B. J., White, S., Washington, R., Coenen, N., &amp; Elixhauser, A. (2017).
+  Identifying Increased Risk of Readmission and In-hospital Mortality Using
+  Hospital Administrative Data.
+  Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>elix.short_icd10</code> is just for testing and should not be used
+in practice! (It is based only on the first three code positions of ICD-10.)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other verbs: 
-<code><a href='categorize.html'>categorize</a>()</code>,
-<code><a href='classify.html'>classify</a>()</code>,
-<code><a href='codify.html'>codify</a>()</code></p></div>
+    <div class='dont-index'><p>Other default classcodes: 
+<code><a href='ae.html'>ae</a></code>,
+<code><a href='charlson.html'>charlson</a></code>,
+<code><a href='cps.html'>cps</a></code>,
+<code><a href='rxriskv.html'>rxriskv</a></code></p></div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Calculate Elixhauser comorbidity index</span>
-<span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>), <span class='st'>"elixhauser"</span>)
-<span class='fu'>index</span>(<span class='no'>cl</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; C80 I20 
-#&gt;   1   0 </div><div class='input'>
-<span class='co'># Calculate Charlson-index using original weights</span>
-<span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I21"</span>), <span class='st'>"charlson"</span>)
-<span class='fu'>index</span>(<span class='no'>cl</span>, <span class='st'>"quan_original"</span>)</div><div class='output co'>#&gt; C80 I21 
-#&gt;   6   1 </div><div class='input'>
-<span class='co'># Calculate Charlson-index using updated weights</span>
-<span class='no'>cl</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I21"</span>), <span class='st'>"charlson"</span>)
-<span class='fu'>index</span>(<span class='no'>cl</span>, <span class='st'>"quan_updated"</span>)</div><div class='output co'>#&gt; C80 I21 
-#&gt;   6   0 </div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
