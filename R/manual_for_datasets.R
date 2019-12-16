@@ -56,7 +56,7 @@
 
 
 
-#' Classcodes for Charlson based on ICD-10 codes
+#' Classcodes for Charlson comorbidity
 #'
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}
 #'
@@ -76,8 +76,12 @@
 #'     All liver diseases (including mild) are included in
 #'     "moderate or severe liver disease".
 #'     All diabetes is included in "diabetes complication"}
+#'   \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to ICD-8 by Brusselaers et al. (2017).
+#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
+#'   \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to ICD-9 by Brusselaers et al. (2017).
+#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
 #'   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
-#'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
+#'   \item{deyo_ramano}{weights suggested ßby Deyo and Romano*}
 #'   \item{dhoore}{weights suggested by D'Hoore*}
 #'   \item{ghali}{weights suggested by Ghali*}
 #'   \item{quan_original}{weights suggested by Quan (2005)}
@@ -92,6 +96,11 @@
 #'    with the Royal College of Surgeons Charlson Score.
 #'    British Journal of Surgery, 97(5), 772–781.
 #'    \url{http://doi.org/10.1002/bjs.6930}
+#'
+#'  Brusselaers N, Lagergren J. (2017)
+#'    The Charlson Comorbidity Index in Registry-based Research.
+#'    Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.
+#'
 #'
 #'  Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
 #'    Adapting a clinical comorbidity index for use with ICD-9-CM
