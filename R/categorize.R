@@ -11,7 +11,7 @@
 #'   A data frame with at least one column with case (patient) identification
 #'   (column name specified by argument id). A column with a date of interest
 #'   (column name specified by argument date) is mandatory if days != NULL.
-#' @param from where do we find the class codes? \code{\link{codedata}}
+#' @param from where do we find the class codes? \code{\link{as.codedata}}
 #' @param id,date,days arguments passed to \code{\link{codify}}
 #' @param ind control possible inclusion of index vector. Set to \code{FALSE} if
 #'   no index should be calculated, otherwise a value passed to argument
@@ -23,6 +23,9 @@
 #' sorted this way, but this might be inconvinient if the original
 #' order was intended. Set to \code{FALSE} in order to not shuffle the
 #' input data.
+#'
+#' @param alnum argument passed to \code{\link{as.codedata}}.
+#'   Specify if all non alphanumeric characters should be dropped from codes.
 #'
 #' @return data frame ('data.table' object) with all data from
 #' the input data set \code{to/.data} combined with logical columns indicating
@@ -46,7 +49,7 @@
 #' @family verbs
 categorize <- function(
   .data, from, what, id, date = NULL, days = NULL, ind = NULL,
-  tech_names = FALSE, sort = TRUE) {
+  tech_names = FALSE, sort = TRUE, alnum = FALSE) {
 
   if (!is.data.table(.data)) {
     .data <- as.data.table(.data)
@@ -56,7 +59,7 @@ categorize <- function(
   if (sort & !haskey(.data)) setkeyv(.data, id)
   if (anyDuplicated(.data[[id]])) stop("Non-unique ids!")
 
-  cod       <- codify(x = .data, from = from, id = id, date = date, days = days)
+  cod       <- codify(x = .data, from = from, id = id, date = date, days = days, alnum = alnum)
   cl        <- classify(cod, what, tech_names = tech_names)
 
   .data$id_chr <- as.character(.data[[id]]) # To be able to merge

@@ -14,7 +14,8 @@ categorize(
   days = NULL,
   ind = NULL,
   tech_names = FALSE,
-  sort = TRUE
+  sort = TRUE,
+  alnum = FALSE
 )
 
 categorise(
@@ -26,7 +27,8 @@ categorise(
   days = NULL,
   ind = NULL,
   tech_names = FALSE,
-  sort = TRUE
+  sort = TRUE,
+  alnum = FALSE
 )
 }
 \arguments{
@@ -35,7 +37,7 @@ A data frame with at least one column with case (patient) identification
 (column name specified by argument id). A column with a date of interest
 (column name specified by argument date) is mandatory if days != NULL.}
 
-\item{from}{where do we find the class codes? \code{\link{codedata}}}
+\item{from}{where do we find the class codes? \code{\link{as.codedata}}}
 
 \item{what}{What to add? Specify classification scheme
 (\code{\link{classcodes}} classcode object) specifying categories to add
@@ -59,6 +61,9 @@ Data is sorted by 'id' internally. It is therefore faster to keep the output
 sorted this way, but this might be inconvinient if the original
 order was intended. Set to \code{FALSE} in order to not shuffle the
 input data.}
+
+\item{alnum}{argument passed to \code{\link{as.codedata}}.
+Specify if all non alphanumeric characters should be dropped from codes.}
 }
 \value{
 data frame ('data.table' object) with all data from

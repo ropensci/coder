@@ -1,4 +1,5 @@
 #' codify elements
+#'
 #' @inheritParams copybig
 #' @param x data.frame with at least two columns, one with case (patient)
 #'   identification (column name specified by argument \code{id}) and one with a
@@ -17,6 +18,7 @@
 #'   which might be used for calculating adverse events after a surgical
 #'   procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
 #'   \code{NULL} means no time limitation at all.
+#' @inheritDotParams as.codedata alnum
 #'
 #' @return Data frame (\code{data.table}) with columns corresponding to \code{x}
 #'   and additional columns matched from \code{from}: \itemize{ \item
@@ -33,7 +35,7 @@
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 #' @family verbs
-codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA) {
+codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
 
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
@@ -51,7 +53,7 @@ codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA) {
   x2 <- copybig(x, .copy) # New name to avoid copy complications
   if (usedate) setnames(x2, date, "date")
   if (!is.codedata(from)) {
-    from <- as.codedata(from, .copy = .copy)
+    from <- as.codedata(from, .copy = .copy, ...)
   }
 
   # id column must be character to merge with columkn from codedata

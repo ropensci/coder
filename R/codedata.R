@@ -17,6 +17,7 @@
 #' National Patient Register, which date variable should be reconised as code
 #' date for out patients? Could be either "indatuma" or "utdatuma".
 #' (Note that in patients only have one date.)
+#' @param alnum Should codes be cleaned from all non alfanumeric characters (boolean)?
 #'
 #' @section Data from NPR:
 #'
@@ -24,7 +25,7 @@
 #' argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
 #' (\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
 #'
-#' Note that the name should be \code{indatuma/utdatuma} (with letter s
+#' Note that the name should be \code{indatuma/utdatuma} (with letter "a"
 #' suffixed). This is to distinguish the character date format \code{\%Y\%m\%d}
 #' from the SPSS date format sometimes stored in \code{indatum/utdatum}.
 #' If the SPSS date is the only one available, the help function
@@ -53,7 +54,6 @@
 #' \code{FALSE} otherwise.
 #' (Note that \code{codedata} is not a formal R class of its own!)
 #' @export
-#' @name codedata
 #'
 #' @examples
 #'
@@ -72,9 +72,9 @@
 #' @family codedata
 as.codedata <- function(
     x, y = NULL, ..., .setkeys = TRUE, .copy = NA,
-    npr = FALSE, nprdate = "utdatuma") {
+    npr = FALSE, nprdate = "utdatuma", alnum = FALSE) {
 
-  code_date <- id <- NULL # Fix for R Check
+  code_date <- id <- code <- NULL # Fix for R Check
 
   if (!is.data.table(x)) {
     x <- as.data.table(x)
@@ -98,6 +98,11 @@ as.codedata <- function(
   # Always save id as character. Even though it might be numeric,
   # it is easier if we always know its type.
   x[, id := as.character(id)]
+
+  # Remove all non alfanumeric characters
+  if (alnum) {
+    x[, code := gsub("[^[:alnum:]]", "", code)]
+  }
 
   keys <- c("id", if (hasdates) "code_date", "code")
   if (.setkeys) setkeyv(x, keys)
@@ -224,7 +229,7 @@ check_codedata <- function(x) {
 
 
 #' @export
-#' @rdname codedata
+#' @rdname as.codedata
 is.codedata <- function(x) {
   !inherits(tryCatch(check_codedata(x), error = function(e) e), "error")
 }

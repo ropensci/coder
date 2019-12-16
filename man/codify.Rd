@@ -4,7 +4,7 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date = NULL, days = NULL, .copy = NA)
+codify(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...)
 }
 \arguments{
 \item{x}{data.frame with at least two columns, one with case (patient)
@@ -35,6 +35,12 @@ If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recomended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
+
+\item{...}{
+  Arguments passed on to \code{\link[=as.codedata]{as.codedata}}
+  \describe{
+    \item{\code{alnum}}{Should codes be cleaned from all non alfanumeric characters (boolean)?}
+  }}
 }
 \value{
 Data frame (\code{data.table}) with columns corresponding to \code{x}

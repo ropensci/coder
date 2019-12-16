@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@
     <p>codify elements</p>
     </div>
 
-    <pre class="usage"><span class='fu'>codify</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>codify</span>(<span class='no'>x</span>, <span class='no'>from</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,6 +177,13 @@ If the size is larger, the argument must be set explicitly. Set <code>TRUE</code
 to make copies regardless of object size. This is recomended if enough RAM
 is available. If set to <code>FALSE</code>, calculations might be carried out
 but the object will be changed by reference.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed on to <code><a href='codedata.html'>as.codedata</a></code></p><dl class='dl-horizontal'>
+    <dt><code>alnum</code></dt><dd><p>Should codes be cleaned from all non alfanumeric characters (boolean)?</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 
