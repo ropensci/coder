@@ -2,7 +2,6 @@
 % Please edit documentation in R/categorize.R
 \name{categorize}
 \alias{categorize}
-\alias{categorise}
 \title{Categorize cases based on external data and classification scheme}
 \usage{
 categorize(
@@ -15,19 +14,7 @@ categorize(
   ind = NULL,
   tech_names = FALSE,
   sort = TRUE,
-  alnum = FALSE
-)
-
-categorise(
-  .data,
-  from,
-  what,
-  id,
-  date = NULL,
-  days = NULL,
-  ind = NULL,
-  tech_names = FALSE,
-  sort = TRUE,
+  regex = "regex",
   alnum = FALSE
 )
 }
@@ -48,7 +35,8 @@ based on individual code groups.}
 \item{ind}{control possible inclusion of index vector. Set to \code{FALSE} if
 no index should be calculated, otherwise a value passed to argument
 \code{by} in function \code{\link{index}}. It is possible to
-include several indices as a character vector.}
+include several indices as a character vector.
+\code{NULL} will include all available indices.}
 
 \item{tech_names}{should technical column names be used? If \code{FALSE},
 colnames are taken directly from group names of \code{by}, if \code{TRUE},
@@ -61,6 +49,9 @@ Data is sorted by 'id' internally. It is therefore faster to keep the output
 sorted this way, but this might be inconvinient if the original
 order was intended. Set to \code{FALSE} in order to not shuffle the
 input data.}
+
+\item{regex}{name of column with regular expressions from classcodes object
+\code{what} to use for classification, either with or without prefix "regex_"}
 
 \item{alnum}{argument passed to \code{\link{as.codedata}}.
 Specify if all non alphanumeric characters should be dropped from codes.}

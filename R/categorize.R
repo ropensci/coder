@@ -17,6 +17,9 @@
 #'   no index should be calculated, otherwise a value passed to argument
 #'   \code{by} in function \code{\link{index}}. It is possible to
 #'   include several indices as a character vector.
+#'   \code{NULL} will include all available indices.
+#' @param  regex name of column with regular expressions from classcodes object
+#'   \code{what} to use for classification, either with or without prefix "regex_"
 #' @param sort logical. Should output be sorted by the 'id' column?
 #' (This could effect computational speed for large data sets.)
 #' Data is sorted by 'id' internally. It is therefore faster to keep the output
@@ -49,7 +52,7 @@
 #' @family verbs
 categorize <- function(
   .data, from, what, id, date = NULL, days = NULL, ind = NULL,
-  tech_names = FALSE, sort = TRUE, alnum = FALSE) {
+  tech_names = FALSE, sort = TRUE, regex = "regex", alnum = FALSE) {
 
   if (!is.data.table(.data)) {
     .data <- as.data.table(.data)
@@ -71,7 +74,7 @@ categorize <- function(
   # Add index named ind if ind not FALSE
   if (!identical(ind, FALSE)) {
     if (is.null(ind)) {
-      ind <- list(ind)
+      ind <- attr(get_classcodes(what, regex), "indices")
     }
     indx        <- lapply(ind, function(x) index(cl, by = x))
     indx        <- as.data.table(as.data.frame(indx), keep.rownames = id)
@@ -86,8 +89,3 @@ categorize <- function(
   }
   out[, id_chr := NULL][]
 }
-
-
-#' @rdname categorize
-#' @export
-categorise <- categorize

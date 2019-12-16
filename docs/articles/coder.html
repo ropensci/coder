@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
       </span>
     </div>
 
@@ -149,17 +149,7 @@
 <code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;                  name    license Mazda Mer-Ben Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 3:    NA</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 4:    NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; Empty data.table (0 rows and 9 cols): name,license,Mazda,Mer-Ben,Ford,Fiat...</span></a></code></pre></div>
 </div>
 <div id="interpretation" class="section level1">
 <h1 class="hasAnchor">
@@ -188,17 +178,7 @@
 <a class="sourceLine" id="cb5-8" title="8">     <span class="dt">days =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>)</a>
 <a class="sourceLine" id="cb5-9" title="9">  )</a>
 <a class="sourceLine" id="cb5-10" title="10">)</a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt;                  name    license Mazda Mer-Ben Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; 1:   Albrecht, Lauren 2016-03-04    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; 2:        Aziz, Emily 2014-12-18    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 3: Gavin, Christopher 1949-05-23    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 4:     Svenne Petsson 1985-05-04    NA      NA   NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 3:    NA</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 4:    NA</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; Empty data.table (0 rows and 9 cols): name,license,Mazda,Mer-Ben,Ford,Fiat...</span></a></code></pre></div>
 <p>Indeed, Lauren bought a car before he were alowed to drive it himself.</p>
 </div>
 <div id="car-rating" class="section level1">
