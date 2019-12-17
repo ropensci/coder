@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@ date of interest (column name specified by argument <code>date</code>)</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>object with code data for which <code><a href='codedata.html'>is.codedata</a></code> is
+      <td><p>object with code data for which <code><a href='as.codedata.html'>is.codedata</a></code> is
 <code>TRUE</code></p></td>
     </tr>
     <tr>
@@ -180,7 +180,7 @@ but the object will be changed by reference.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='codedata.html'>as.codedata</a></code></p><dl class='dl-horizontal'>
+      <td><p>Arguments passed on to <code><a href='as.codedata.html'>as.codedata</a></code></p><dl class='dl-horizontal'>
     <dt><code>alnum</code></dt><dd><p>Should codes be cleaned from all non alfanumeric characters (boolean)?</p></dd>
   
 </dl></td>
@@ -209,17 +209,17 @@ but the object will be changed by reference.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                    name       date  code_date  code  hdia in_period
-#&gt;   1: Alexander, Bethany 2018-12-24 2018-11-13  S925 FALSE      TRUE
-#&gt;   2: Alexander, Bethany 2018-12-24 2018-12-18  E278 FALSE      TRUE
-#&gt;   3:    Arguello, Tommy 2019-09-21 2018-10-02  H059 FALSE      TRUE
-#&gt;   4:    Arguello, Tommy 2019-09-21 2019-03-03  A231 FALSE      TRUE
-#&gt;   5:    Arguello, Tommy 2019-09-21 2019-06-09 Z032A FALSE      TRUE
+#&gt;   1: Alexander, Bethany 2018-12-25 2018-11-14  S925 FALSE      TRUE
+#&gt;   2: Alexander, Bethany 2018-12-25 2018-12-19  E278 FALSE      TRUE
+#&gt;   3:    Arguello, Tommy 2019-09-22 2018-10-03  H059 FALSE      TRUE
+#&gt;   4:    Arguello, Tommy 2019-09-22 2019-03-04  A231 FALSE      TRUE
+#&gt;   5:    Arguello, Tommy 2019-09-22 2019-06-10 Z032A FALSE      TRUE
 #&gt;  ---                                                               
-#&gt; 365:   el-Zaki, Huwaida 2019-10-09 2018-11-25  I712 FALSE      TRUE
-#&gt; 366:   el-Zaki, Huwaida 2019-10-09 2018-11-25  T336 FALSE      TRUE
-#&gt; 367:   el-Zaki, Huwaida 2019-10-09 2019-02-09  B958 FALSE      TRUE
-#&gt; 368:   el-Zaki, Huwaida 2019-10-09 2019-03-29 S3201 FALSE      TRUE
-#&gt; 369:   el-Zaki, Huwaida 2019-10-09 2019-09-05  C759 FALSE      TRUE</div></pre>
+#&gt; 365:   el-Zaki, Huwaida 2019-10-10 2018-11-26  I712 FALSE      TRUE
+#&gt; 366:   el-Zaki, Huwaida 2019-10-10 2018-11-26  T336 FALSE      TRUE
+#&gt; 367:   el-Zaki, Huwaida 2019-10-10 2019-02-10  B958 FALSE      TRUE
+#&gt; 368:   el-Zaki, Huwaida 2019-10-10 2019-03-30 S3201 FALSE      TRUE
+#&gt; 369:   el-Zaki, Huwaida 2019-10-10 2019-09-06  C759 FALSE      TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

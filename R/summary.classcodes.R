@@ -6,10 +6,10 @@
 #' group in the classification.
 #'
 #' @param object classcodes object
-#' @inheritParams classify
 #' @param coding name (as character) of classification used for coding
 #'   (for example "icd10" or "atc")
 #' @param ... ignored
+#' @param cc_args List of named arguments passed to \code{\link{set_classcodes}}
 #'
 #' @return List (invisable) with objects:
 #'
@@ -31,7 +31,7 @@
 #'
 #' @examples
 #' summary(elixhauser, coding = "icd10")
-summary.classcodes <- function(object, regex = "regex", coding, ...) {
+summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 
   # Identify code value set as specified
   cl <- try(get(coding), TRUE)
@@ -42,7 +42,7 @@ summary.classcodes <- function(object, regex = "regex", coding, ...) {
   } else {
 
     # Classify each such code according to the classcodes object
-    cl <- classify(cl, object, tech_names = TRUE, regex = regex)
+    cl <- classify(cl, object, cc_args = cc_args)
     # Kep only the ones that are relevant according to the classification scheme
     cl <- as.data.frame(cl[rowSums(cl) > 0,])
 

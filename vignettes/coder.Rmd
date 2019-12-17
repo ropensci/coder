@@ -33,11 +33,10 @@ library(coder)
 people <- 
   data.frame(
     name = c(
-      "Gavin, Christopher", "Albrecht, Lauren",
-      "Aziz, Emily", "Svenne Petsson"
+      "Medina, Desmand", "al-Hashem,  Muzna", "el-Kaleel, Aadil", "Pettsson, Svenne"
     ),
     license = as.Date(c(
-      "1949-05-23", "2016-03-04", "2014-12-18", "1985-05-04"
+      "1949-05-23", "2016-03-04", "2019-12-18", "1985-05-04"
     ))
   )
 ```
@@ -61,7 +60,7 @@ ex_carbrands
 
 # Categorize 
 
-We want to know if anyone owns a car frmo a company that we are interested in.
+We want to know if anyone owns a car from a company that we are interested in.
 
 We use the three objects from above:
 
@@ -100,13 +99,15 @@ The `days` argument specifies that we are interested in cars bought before this 
      ex_cars, 
      ex_carbrands, 
      id = "name", 
-     date = "license", 
-     days = c(-Inf, -1)
+     codify_args = list(
+       date = "license", 
+       days = c(-Inf, -1)
+     )
   )
 )
 ```
 
-Indeed, Lauren bought a car before he were alowed to drive it himself. 
+Indeed, someone did buy some cars before taking a drivers license! 
 
 
 # Car rating
@@ -116,12 +117,10 @@ We would also like to rate the cars based on the manufacturer. Let us assign som
 We then specifies that the index should be calculated based on the new column named "score".
 
 ```{r}
-ex_carbrands$score <- c(10, 1, 2, 1, 1, 2, 37)
+ex_carbrands$score <- c(10, 1, 2, 1, 1, 2, 3)
 
 (x <- categorize(people, ex_cars, ex_carbrands, id = "name", ind = "score"))
 ```
-
-Even though Emily owns half as many cars as Albrecht, she gets a higher score.
 
 
 # Concluding remark

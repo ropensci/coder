@@ -20,7 +20,7 @@ or a classcodes object itself.}
 Set to \code{FALSE} to just retrieve a URL for later use.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=get_classcodes]{get_classcodes}}
+  Arguments passed on to \code{\link[=set_classcodes]{set_classcodes}}
   \describe{
     \item{\code{regex}}{name of column with regular expressions to use for
 classification, either with or without prefix \code{regex_}}
@@ -65,8 +65,8 @@ Other classcodes:
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
-\code{\link{get_classcodes}()},
 \code{\link{print.summary.classcodes}()},
+\code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()}
 }
 \concept{classcodes}

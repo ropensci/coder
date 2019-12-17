@@ -1,0 +1,69 @@
+#' Set classcodes object
+#'
+#' @param x classcodes specification as either a name or a classcodes object,
+#' or a classcodes object itself.
+#' @param from object that classcodes could be inherited from
+#' @param regex name of column with regular expressions to use for
+#'   classification, either with or without prefix \code{regex_}
+#' @param start,stop should codes start/end with the specified regular expressions?
+#'   If \code{TRUE}, column "regex" is prefixed/suffixed by "^"/"$".
+#' @param tech_names should technical column names be used? If \code{FALSE},
+#'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
+#'   these are changed to more technical names avoiding special characters and
+#'   are prefixed by the name of the classification scheme.
+#'
+#' @return \code{\link{classcodes}} object.
+#' @family classcodes
+#' @export
+set_classcodes <- function(x, from = NULL, regex = "regex", start = TRUE, stop = FALSE, tech_names = FALSE) {
+
+  # Possible inherited classcodes
+  inh <- attr(from, "classcodes")
+
+  obj <-
+    if      (is.classcodes(x)) {
+      x
+    } else if (is.character(x) && exists(x, envir = .GlobalEnv)) {
+      get(x)
+    } else if (is.character(x) &&
+               x %in% utils::data(package = "coder")$results[, "Item"]) {
+      utils::data(list = x, package = "coder", envir = environment())
+      get(x, envir = environment())
+    } else if (is.null(x) && is.classcodes(inh)) {
+      inh
+    } else if (is.null(x) &&
+               inh %in% utils::data(package = "coder")$results[, "Item"]) {
+      utils::data(list = inh, package = "coder", envir = environment())
+      get(inh, envir = environment())
+    } else {
+      stop("No classcodes object found!")
+    }
+
+  obj <- as.classcodes(obj)
+
+  if (tech_names)
+    obj$group <- clean_text(x, paste(regex, obj$group, sep = "_"))
+
+  # identify regex column from regex attributes
+  objrgs <- attr(obj, "regexpr")
+  regex <- objrgs[objrgs == regex | endsWith(objrgs, regex)]
+  if (length(regex) != 1) stop("Column with regular expression not found!")
+  # Change "regex" column to the one specified
+  obj$regex <- obj[[regex]]
+  # Remove all alternative regexs and keep only rows with regex
+  obj <- obj[!is.na(obj[[regex]]), !grepl("regex_", names(obj))]
+
+  # Add prefix/suffix if specified
+  obj$regex <-
+    if (start & !stop) {
+      paste0("^(", obj$regex, ")")
+    } else if (!start & stop) {
+      paste0("(", obj$regex, ")$")
+    } else if (start & stop) {
+      paste0("^(", obj$regex, ")$")
+    } else {
+      obj$regex
+    }
+
+  obj
+}

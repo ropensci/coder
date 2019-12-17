@@ -17,18 +17,16 @@
 #'
 #'
 #' @param x object with elements to classify (often the output from
-#' \code{\link{codify}})
+#'   \code{\link{codify}})
 #' @param by classification scheme of type \code{classcodes} to classify by
+#' @param ... arguments passed between methods
 #' @param code name (as character) of variable in \code{x} containing codes to
 #'   classify
 #' @param id name (as character) of variable in \code{x} to group id (for
-#'   example a patient id)
-#' @param tech_names should technical column names be used? If \code{FALSE},
-#'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
-#'   these are changed to more technical names avoiding special characters and
-#'   are prefixed by the name of the classification scheme.
-#' @param ... arguments passed to \code{\link{get_classcodes}}
-#' @inheritParams get_classcodes
+#'   example a patient id).
+#' @param cc_args List with named arguemnts passed to \code{\link{set_classcodes}}
+#'
+#'
 #' @return Boolean matrix with one row for each element/row of \code{x} and
 #'   columns for each class with corresponding class names (according to the
 #'   \code{\link{classcodes}} object).
@@ -48,13 +46,16 @@
 #' # one year before surgery
 #' x <- codify(ex_people, ex_icd10, id = "name",
 #'   date = "surgery", days = c(-365, 0))
-#' (y <- classify(x, "charlson"))
+#' y <- classify(x, "charlson")
+#'
+#' # Use tha RCS classification instead and use thechnical column names
+#' y <- classify(x, "charlson", cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
 #'
 #' # It is possible to convert the outpot of classify to a data frame with
 #' # id column instead of row names
 #' as.data.frame(y)
 #' @family verbs
-classify <- function(x, by, ..., regex = "regex") UseMethod("classify")
+classify <- function(x, by, ..., cc_args = list()) UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object
 # Three posibilites exists
@@ -76,12 +77,13 @@ eval_condition <- function(cond, x) {
 
 #' @export
 #' @rdname classify
-classify.default <- function(x, by, ..., regex = "regex") {
-  .by <- by
-  by  <- get_classcodes(by, regex = regex)
+classify.default <- function(x, by, ..., cc_args = list()) {
+  cc_args$x <- .by <- by
+  by  <- do.call(set_classcodes, cc_args)
   y   <- vapply(by$regex, grepl, logical(length(x)), x = as.character(x))
   if (length(x) == 1)
     y <- as.matrix(t(y))
+
   structure(
     y,
     dimnames   = list(x, by$group),
@@ -93,17 +95,10 @@ classify.default <- function(x, by, ..., regex = "regex") {
 
 #' @export
 #' @rdname classify
-classify.data.frame <-
-  function(
-    x, by, id = NULL, code = "code", tech_names = FALSE, ..., regex = "regex") {
+classify.data.frame <- function(x, by, ..., id = NULL, code = "code", cc_args = list()) {
 
-  # Stop early
-  if (tech_names && is.object(by)) {
-    stop("classcodes object must be refferred by name if 'tech_names = TRUE'!")
-  }
-
-  .by <- by
-  by <- get_classcodes(by, regex = regex)
+  cc_args$x <- .by <- by
+  by <- do.call(set_classcodes, cc_args)
 
   # The id column can be identified in multiple ways
   id <-
@@ -163,14 +158,9 @@ classify.data.frame <-
     clm <- matrix(clm, 1, dimnames = list(idx[1]))
   }
 
-  # Change to technical colnames if desired
-  out <- rbind(clu, clm)
-  if (tech_names) {
-    colnames(out) <- paste(
-      .by, gsub("\\W", "_", tolower(colnames(out)), perl = TRUE), sep = "_")
-
-  }
   # Combine data from cases with one and more classes
+  out <- rbind(clu, clm)
+
   structure(
     out,
     classcodes = .by,

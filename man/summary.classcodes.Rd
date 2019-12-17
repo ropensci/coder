@@ -4,18 +4,17 @@
 \alias{summary.classcodes}
 \title{Summarizing a classcodes object}
 \usage{
-\method{summary}{classcodes}(object, regex = "regex", coding, ...)
+\method{summary}{classcodes}(object, coding, ..., cc_args = list())
 }
 \arguments{
 \item{object}{classcodes object}
-
-\item{regex}{name of column with regular expressions to use for
-classification, either with or without prefix \code{regex_}}
 
 \item{coding}{name (as character) of classification used for coding
 (for example "icd10" or "atc")}
 
 \item{...}{ignored}
+
+\item{cc_args}{List of named arguments passed to \code{\link{set_classcodes}}}
 }
 \value{
 List (invisable) with objects:
@@ -49,8 +48,8 @@ Other classcodes:
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
-\code{\link{get_classcodes}()},
 \code{\link{print.summary.classcodes}()},
+\code{\link{set_classcodes}()},
 \code{\link{visualize}()}
 }
 \concept{classcodes}

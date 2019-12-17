@@ -6,12 +6,12 @@
 #' weights but might be useful both for understanding of a clasification scheme
 #' in use, and during the creation and debugging of such.
 #'
-#' @inheritParams get_classcodes
+#' @inheritParams set_classcodes
 #' @param group names (as character vector) of groups to visualise
 #' (all groups if \code{NULL})
 #' @param show should a visualisation be shown in a web browser.
 #' Set to \code{FALSE} to just retrieve a URL for later use.
-#' @inheritDotParams get_classcodes regex
+#' @inheritDotParams set_classcodes regex
 #' @return URL to website with visualisation (invisible)
 #' @export
 #'
@@ -41,7 +41,7 @@
 #' }
 #' @family classcodes
 visualize <- function(x, group = NULL, show = TRUE, ...) {
-  x <- get_classcodes(x, ...)
+  x <- set_classcodes(x, ...)
 
   if (!is.null(group))
     x <- x[x$group %in% group, ]

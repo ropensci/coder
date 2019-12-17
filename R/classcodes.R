@@ -41,6 +41,9 @@
 #' as.classcodes(coder::elixhauser)
 #' @family classcodes
 as.classcodes <- function(x) {
+
+  class(x) <- setdiff(class(x), "classcodes") # To avoid infinite recursive looping due to `$<-.classcodes` method
+
   stopifnot(
     is.data.frame(x),
     all(c("group", "regex") %in% names(x)),
@@ -48,6 +51,7 @@ as.classcodes <- function(x) {
     !any(x$group == ""),
     !any(duplicated(x$group))
   )
+
   x$regex <- as.character(x$regex)
   if (any(duplicated(x$regex))) {
     warning("Non unique elements of 'x$regex' implying identical classes with ",
@@ -73,6 +77,17 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 
 #' @export
 `[.classcodes` <- function(x, ...) {
+  x <- NextMethod()
+  as.classcodes(x)
+}
+
+#' @export
+`[<-.classcodes` <- function(x, i, j, value) {
+  as.classcodes(NextMethod())
+}
+
+#' @export
+`$<-.classcodes` <- function(x, name, value) {
   x <- NextMethod()
   as.classcodes(x)
 }

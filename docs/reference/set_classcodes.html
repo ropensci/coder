@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for Charlson comorbidity based on ICD-codes — charlson • coder</title>
+<title>Set classcodes object — set_classcodes • coder</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Classcodes for Charlson comorbidity based on ICD-codes — charlson" />
-<meta property="og:description" content="A classcodes object to use with classify" />
+<meta property="og:title" content="Set classcodes object — set_classcodes" />
+<meta property="og:description" content="Set classcodes object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,90 +123,74 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for Charlson comorbidity based on ICD-codes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>charlson.Rd</code></div>
+    <h1>Set classcodes object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/set_classcodes.R'><code>R/set_classcodes.R</code></a></small>
+    <div class="hidden name"><code>set_classcodes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p>Set classcodes object</p>
     </div>
 
-    <pre class="usage"><span class='no'>charlson</span></pre>
+    <pre class="usage"><span class='fu'>set_classcodes</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>,
+  <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>stop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>classcodes specification as either a name or a classcodes object,
+or a classcodes object itself.</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>object that classcodes could be inherited from</p></td>
+    </tr>
+    <tr>
+      <th>regex</th>
+      <td><p>name of column with regular expressions to use for
+classification, either with or without prefix <code>regex_</code></p></td>
+    </tr>
+    <tr>
+      <th>start, stop</th>
+      <td><p>should codes start/end with the specified regular expressions?
+If <code>TRUE</code>, column "regex" is prefixed/suffixed by "^"/"$".</p></td>
+    </tr>
+    <tr>
+      <th>tech_names</th>
+      <td><p>should technical column names be used? If <code>FALSE</code>,
+colnames are taken directly from group names of <code>by</code>, if <code>TRUE</code>,
+these are changed to more technical names avoiding special characters and
+are prefixed by the name of the classification scheme.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 17 rows and 8 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>comorbidity groups</p></dd>
-  <dt>description</dt><dd><p>Verbal description of codes as described by
-    Deyo et al. (1992).</p></dd>
-  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes of each group as
-  decoded from Quan et al. 2005. Note that this classification was not
-  originally used with all weights! To simply use this classification table
-  with weights other than <code>quan_original</code> and <code>quan_updated</code> might
-  therefore lead to different results than originally intended for each
-  index.</p></dd>
-  <dt>regex_icd9cm_deyo</dt><dd><p>Codes from table 1 column "Deyo's ICD-9-CM" in Quan et al. (2005).
-    Procedure code 38.48 for peripheral vascular disease ignored.</p></dd>
-  <dt>regex_icd9cm_enhanced</dt><dd><p>Codes from table 1 column "Enhanced ICD-9-CM" in Quan et al. (2005).</p></dd>
-  <dt>regex_icd10_rcs</dt><dd><p>Codification by Armitage (2010).
-    Note that Peptic ulcer disease is not included.
-    All liver diseases (including mild) are included in
-    "moderate or severe liver disease".
-    All diabetes is included in "diabetes complication"</p></dd>
-  <dt>regex_icd8_brusselaers</dt><dd><p>Back translated version from ICD-10 to ICD-8 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.</p></dd>
-  <dt>regex_icd9_brusselaers</dt><dd><p>Back translated version from ICD-10 to ICD-9 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.</p></dd>
-  <dt>charlson</dt><dd><p>original weights as suggested by Charlson et al. (1987)*</p></dd>
-  <dt>deyo_ramano</dt><dd><p>weights suggested ßby Deyo and Romano*</p></dd>
-  <dt>dhoore</dt><dd><p>weights suggested by D'Hoore*</p></dd>
-  <dt>ghali</dt><dd><p>weights suggested by Ghali*</p></dd>
-  <dt>quan_original</dt><dd><p>weights suggested by Quan (2005)</p></dd>
-  <dt>quan_updated</dt><dd><p>weights suggested by Quan (2011)</p></dd>
-
-</dl>
-
-<p>* Weights decoded from Yurkovich et al. (2015).</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>Armitage, J. N., &amp; van der Meulen, J. H. (2010).
-   Identifying co-morbidity in surgical patients using administrative data
-   with the Royal College of Surgeons Charlson Score.
-   British Journal of Surgery, 97(5), 772–781.
-   <a href='http://doi.org/10.1002/bjs.6930'>http://doi.org/10.1002/bjs.6930</a></p>
-<p>Brusselaers N, Lagergren J. (2017)
-   The Charlson Comorbidity Index in Registry-based Research.
-   Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.</p>
-
-<p>Deyo, R. A., Cherkin, D. C., &amp; Ciol, M. A. (1992).
-   Adapting a clinical comorbidity index for use with ICD-9-CM
-   administrative databases.
-   Journal of Clinical Epidemiology, 45(6), 613–619.
-   <a href='https://doi.org/10.1016/0895-4356(92)90133-8'>https://doi.org/10.1016/0895-4356(92)90133-8</a></p>
-<p>Quan Hude et al. (2005). Coding algorithms for defining
-  comorbidities in ICD-9-CM and ICD-10 administrative data.
-  Medical care, 1130-1139.
-<a href='www.jstor.org/stable/3768193'>www.jstor.org/stable/3768193</a></p>
-<p>Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., &amp; Lacaille,
-  D. (2015). A systematic review identifies valid comorbidity indices derived
-  from administrative health data.
-  Journal of clinical epidemiology, 68(1), 3-14.</p>
+    <p><code><a href='classcodes.html'>classcodes</a></code> object.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other default classcodes: 
-<code><a href='ae.html'>ae</a></code>,
-<code><a href='cps.html'>cps</a></code>,
-<code><a href='elixhauser.html'>elixhauser</a></code>,
-<code><a href='rxriskv.html'>rxriskv</a></code></p></div>
+    <div class='dont-index'><p>Other classcodes: 
+<code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
+<code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
+<code><a href='classcodes.html'>classcodes</a></code>,
+<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
+<code><a href='visualize.html'>visualize</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

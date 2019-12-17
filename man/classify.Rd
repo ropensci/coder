@@ -6,19 +6,11 @@
 \alias{classify.data.frame}
 \title{Classify elements}
 \usage{
-classify(x, by, ..., regex = "regex")
+classify(x, by, ..., cc_args = list())
 
-\method{classify}{default}(x, by, ..., regex = "regex")
+\method{classify}{default}(x, by, ..., cc_args = list())
 
-\method{classify}{data.frame}(
-  x,
-  by,
-  id = NULL,
-  code = "code",
-  tech_names = FALSE,
-  ...,
-  regex = "regex"
-)
+\method{classify}{data.frame}(x, by, ..., id = NULL, code = "code", cc_args = list())
 }
 \arguments{
 \item{x}{object with elements to classify (often the output from
@@ -26,21 +18,15 @@ classify(x, by, ..., regex = "regex")
 
 \item{by}{classification scheme of type \code{classcodes} to classify by}
 
-\item{...}{arguments passed to \code{\link{get_classcodes}}}
+\item{...}{arguments passed between methods}
 
-\item{regex}{name of column with regular expressions to use for
-classification, either with or without prefix \code{regex_}}
+\item{cc_args}{List with named arguemnts passed to \code{\link{set_classcodes}}}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
-example a patient id)}
+example a patient id).}
 
 \item{code}{name (as character) of variable in \code{x} containing codes to
 classify}
-
-\item{tech_names}{should technical column names be used? If \code{FALSE},
-colnames are taken directly from group names of \code{by}, if \code{TRUE},
-these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.}
 }
 \value{
 Boolean matrix with one row for each element/row of \code{x} and
@@ -72,7 +58,10 @@ classify(c("C80", "I20", "unvalid_code"), by = "elixhauser")
 # one year before surgery
 x <- codify(ex_people, ex_icd10, id = "name",
   date = "surgery", days = c(-365, 0))
-(y <- classify(x, "charlson"))
+y <- classify(x, "charlson")
+
+# Use tha RCS classification instead and use thechnical column names
+y <- classify(x, "charlson", cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
 
 # It is possible to convert the outpot of classify to a data frame with
 # id column instead of row names

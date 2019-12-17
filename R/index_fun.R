@@ -51,7 +51,7 @@ index.data.frame <- function(x, ...) {
 index.matrix <- function(x, by = NULL, from = NULL, ...) {
 
   # Find classcodes object (NULL is valid if no weights supplied)
-  from <- get_classcodes(from, x)
+  from <- set_classcodes(from, x)
 
   # clean text to compare colnames if tech_names used
   regularize <- function(x) {

@@ -73,7 +73,7 @@ together if using the magrittr pipe (%&amp;gt;%)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
       </span>
     </div>
 
@@ -140,21 +140,13 @@ classification of cases. It is often used with output from
 together if using the magrittr pipe (<code>%&gt;%</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>classify</span>(<span class='no'>x</span>, <span class='no'>by</span>, <span class='no'>...</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>)
+    <pre class="usage"><span class='fu'>classify</span>(<span class='no'>x</span>, <span class='no'>by</span>, <span class='no'>...</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>classify</span>(<span class='no'>x</span>, <span class='no'>by</span>, <span class='no'>...</span>, <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>)
+<span class='fu'>classify</span>(<span class='no'>x</span>, <span class='no'>by</span>, <span class='no'>...</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>classify</span>(
-  <span class='no'>x</span>,
-  <span class='no'>by</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"code"</span>,
-  <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>
-)</pre>
+<span class='fu'>classify</span>(<span class='no'>x</span>, <span class='no'>by</span>, <span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"code"</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,29 +162,21 @@ together if using the magrittr pipe (<code>%&gt;%</code>).</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <code><a href='get_classcodes.html'>get_classcodes</a></code></p></td>
+      <td><p>arguments passed between methods</p></td>
     </tr>
     <tr>
-      <th>regex</th>
-      <td><p>name of column with regular expressions to use for
-classification, either with or without prefix <code>regex_</code></p></td>
+      <th>cc_args</th>
+      <td><p>List with named arguemnts passed to <code><a href='set_classcodes.html'>set_classcodes</a></code></p></td>
     </tr>
     <tr>
       <th>id</th>
       <td><p>name (as character) of variable in <code>x</code> to group id (for
-example a patient id)</p></td>
+example a patient id).</p></td>
     </tr>
     <tr>
       <th>code</th>
       <td><p>name (as character) of variable in <code>x</code> containing codes to
 classify</p></td>
-    </tr>
-    <tr>
-      <th>tech_names</th>
-      <td><p>should technical column names be used? If <code>FALSE</code>,
-colnames are taken directly from group names of <code>by</code>, if <code>TRUE</code>,
-these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.</p></td>
     </tr>
     </table>
 
@@ -268,1529 +252,1123 @@ of row names.</p>
 <span class='co'># one year before surgery</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
-(<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>))</div><div class='output co'>#&gt;                           myocardial infarction congestive heart failure
-#&gt; Bivings, Devin                            FALSE                    FALSE
-#&gt; Liufau, Sue Lynn                          FALSE                    FALSE
-#&gt; Mitchell, Dalon                           FALSE                    FALSE
-#&gt; Perez, Vidal                              FALSE                    FALSE
-#&gt; Valdez, Antonio                           FALSE                    FALSE
-#&gt; al-Dib, Farhaan                           FALSE                    FALSE
-#&gt; el-Salehi, Mahuroos                       FALSE                    FALSE
-#&gt; Beehler, Kelly                               NA                       NA
-#&gt; Connors, Jaylyn                              NA                       NA
-#&gt; Lechuga, Anthony                             NA                       NA
-#&gt; Martinez, Columba                            NA                       NA
-#&gt; Mendoza, Nathan                              NA                       NA
-#&gt; Miller, Von Buddenbrock                      NA                       NA
-#&gt; Orozco, Daniel                               NA                       NA
-#&gt; Snider, Melanie                              NA                       NA
-#&gt; Cardenas Perez, Gabriela                  FALSE                    FALSE
-#&gt; al-Bashara, Shaahir                       FALSE                    FALSE
-#&gt; al-Asmar, Abdur Raheem                    FALSE                    FALSE
-#&gt; al-Dawood, Hasan                          FALSE                    FALSE
-#&gt; al-Ismail, Waleeda                        FALSE                    FALSE
-#&gt; al-Jafri, Shaheera                        FALSE                    FALSE
-#&gt; al-Kader, Siddeeqa                        FALSE                    FALSE
-#&gt; al-Karam, Ziyaad                          FALSE                    FALSE
-#&gt; al-Ramadan, Hanoona                       FALSE                    FALSE
-#&gt; al-Shaban, Mazeed                         FALSE                    FALSE
-#&gt; Alexander, Bethany                        FALSE                    FALSE
-#&gt; Arguello, Tommy                           FALSE                    FALSE
-#&gt; Austin, Maeve                             FALSE                    FALSE
-#&gt; Ball, Rockelle                            FALSE                    FALSE
-#&gt; Bean, Haileigh                            FALSE                    FALSE
-#&gt; Bessard, Marzel                           FALSE                    FALSE
-#&gt; Bishop, Alec                              FALSE                    FALSE
-#&gt; Brown, Patrick                            FALSE                    FALSE
-#&gt; Burges, Amber                             FALSE                    FALSE
-#&gt; Burton, Martin                            FALSE                    FALSE
-#&gt; Cannon, Timothy                           FALSE                    FALSE
-#&gt; Chung, Noor                               FALSE                    FALSE
-#&gt; Copeland-Doyle, Symone                    FALSE                    FALSE
-#&gt; Doan, Sam                                 FALSE                    FALSE
-#&gt; Dominguez, Suriel                         FALSE                    FALSE
-#&gt; el-Amiri, Jaad                            FALSE                    FALSE
-#&gt; el-Bashara, Najma                         FALSE                    FALSE
-#&gt; el-Diab, Nadeem                           FALSE                    FALSE
-#&gt; el-Faris, Shuaib                          FALSE                    FALSE
-#&gt; el-Hallal, Uwais                          FALSE                    FALSE
-#&gt; el-Hamad, Tayyiba                         FALSE                    FALSE
-#&gt; el-Jamail, Hudhaifa                       FALSE                    FALSE
-#&gt; el-Khalifa, Nawfa                         FALSE                    FALSE
-#&gt; el-Khan, Jasoor                           FALSE                    FALSE
-#&gt; el-Masri, Junaid                          FALSE                    FALSE
-#&gt; el-Sabir, Mumtaaza                        FALSE                    FALSE
-#&gt; el-Sadek, Wafaaa                          FALSE                    FALSE
-#&gt; el-Salih, Farajallah                      FALSE                    FALSE
-#&gt; el-Sharif, Nadeem                         FALSE                    FALSE
-#&gt; el-Zaki, Huwaida                          FALSE                    FALSE
-#&gt; Enriquez, Anthony                         FALSE                    FALSE
-#&gt; Fitzsimmons, Tabatha                      FALSE                     TRUE
-#&gt; Grim, Cheanna                             FALSE                    FALSE
-#&gt; Harder, Rio                               FALSE                    FALSE
-#&gt; Hood, Dania                               FALSE                    FALSE
-#&gt; Howard, Marcius                           FALSE                    FALSE
-#&gt; Huff, Hassan                              FALSE                    FALSE
-#&gt; Hughey, Darlene                           FALSE                    FALSE
-#&gt; Hutchinson, Joshua                        FALSE                    FALSE
-#&gt; Iron Cloud-Gresko, Sadie                  FALSE                    FALSE
-#&gt; Khamsoulinh, De'Von                       FALSE                    FALSE
-#&gt; Littlejohn, Kevin                         FALSE                    FALSE
-#&gt; Martin, Trevor                            FALSE                    FALSE
-#&gt; Martinez, Alison                          FALSE                    FALSE
-#&gt; Mendoza, Jessica                          FALSE                    FALSE
-#&gt; Mills, Henry                              FALSE                    FALSE
-#&gt; Murray, Eric                              FALSE                    FALSE
-#&gt; Nguyen, Hoang                             FALSE                    FALSE
-#&gt; Pappas, Cole                              FALSE                    FALSE
-#&gt; Pearsall, Deontre                         FALSE                    FALSE
-#&gt; Pena, Francisco                           FALSE                    FALSE
-#&gt; Peterson, Brittany                        FALSE                    FALSE
-#&gt; Polvon, Alicia                            FALSE                    FALSE
-#&gt; Quick, Miriah                             FALSE                    FALSE
-#&gt; Raab, Jeannie                             FALSE                    FALSE
-#&gt; Rice, Jamissa                             FALSE                    FALSE
-#&gt; Rockwell, Savannah                        FALSE                    FALSE
-#&gt; Rodriquez, Monica                         FALSE                    FALSE
-#&gt; Romero, Carl                              FALSE                    FALSE
-#&gt; Rosales-Marroquin, Monika                 FALSE                    FALSE
-#&gt; Sam, Niki                                 FALSE                    FALSE
-#&gt; Sanchez, Ryan                             FALSE                    FALSE
-#&gt; Sharma, Katie                             FALSE                    FALSE
-#&gt; Summerhays, Spencer                       FALSE                    FALSE
-#&gt; Thompson, Trae                            FALSE                    FALSE
-#&gt; Torres Escalante, Herbert                 FALSE                    FALSE
-#&gt; Trader-Bankston, J'Quan                   FALSE                    FALSE
-#&gt; Tram, Medha                               FALSE                    FALSE
-#&gt; Vaclav, Taylor                            FALSE                    FALSE
-#&gt; Wang, Phillip                             FALSE                    FALSE
-#&gt; Ventura, Joshua                           FALSE                    FALSE
-#&gt; Whitaker, Taylor                          FALSE                    FALSE
-#&gt; Vogltanz, Michael                         FALSE                    FALSE
-#&gt; Wu, Lucas                                 FALSE                    FALSE
-#&gt; Wuertz, Jenny                             FALSE                    FALSE
-#&gt;                           peripheral vascular disease cerebrovascular disease
-#&gt; Bivings, Devin                                  FALSE                   FALSE
-#&gt; Liufau, Sue Lynn                                FALSE                   FALSE
-#&gt; Mitchell, Dalon                                 FALSE                   FALSE
-#&gt; Perez, Vidal                                    FALSE                   FALSE
-#&gt; Valdez, Antonio                                 FALSE                   FALSE
-#&gt; al-Dib, Farhaan                                 FALSE                   FALSE
-#&gt; el-Salehi, Mahuroos                             FALSE                   FALSE
-#&gt; Beehler, Kelly                                     NA                      NA
-#&gt; Connors, Jaylyn                                    NA                      NA
-#&gt; Lechuga, Anthony                                   NA                      NA
-#&gt; Martinez, Columba                                  NA                      NA
-#&gt; Mendoza, Nathan                                    NA                      NA
-#&gt; Miller, Von Buddenbrock                            NA                      NA
-#&gt; Orozco, Daniel                                     NA                      NA
-#&gt; Snider, Melanie                                    NA                      NA
-#&gt; Cardenas Perez, Gabriela                        FALSE                   FALSE
-#&gt; al-Bashara, Shaahir                             FALSE                   FALSE
-#&gt; al-Asmar, Abdur Raheem                          FALSE                   FALSE
-#&gt; al-Dawood, Hasan                                FALSE                   FALSE
-#&gt; al-Ismail, Waleeda                              FALSE                   FALSE
-#&gt; al-Jafri, Shaheera                              FALSE                   FALSE
-#&gt; al-Kader, Siddeeqa                              FALSE                   FALSE
-#&gt; al-Karam, Ziyaad                                FALSE                   FALSE
-#&gt; al-Ramadan, Hanoona                             FALSE                   FALSE
-#&gt; al-Shaban, Mazeed                               FALSE                   FALSE
-#&gt; Alexander, Bethany                              FALSE                   FALSE
-#&gt; Arguello, Tommy                                 FALSE                   FALSE
-#&gt; Austin, Maeve                                   FALSE                   FALSE
-#&gt; Ball, Rockelle                                  FALSE                   FALSE
-#&gt; Bean, Haileigh                                  FALSE                   FALSE
-#&gt; Bessard, Marzel                                 FALSE                   FALSE
-#&gt; Bishop, Alec                                    FALSE                   FALSE
-#&gt; Brown, Patrick                                  FALSE                   FALSE
-#&gt; Burges, Amber                                   FALSE                   FALSE
-#&gt; Burton, Martin                                  FALSE                   FALSE
-#&gt; Cannon, Timothy                                 FALSE                   FALSE
-#&gt; Chung, Noor                                     FALSE                   FALSE
-#&gt; Copeland-Doyle, Symone                          FALSE                    TRUE
-#&gt; Doan, Sam                                       FALSE                   FALSE
-#&gt; Dominguez, Suriel                               FALSE                   FALSE
-#&gt; el-Amiri, Jaad                                  FALSE                   FALSE
-#&gt; el-Bashara, Najma                               FALSE                    TRUE
-#&gt; el-Diab, Nadeem                                 FALSE                   FALSE
-#&gt; el-Faris, Shuaib                                FALSE                   FALSE
-#&gt; el-Hallal, Uwais                                FALSE                   FALSE
-#&gt; el-Hamad, Tayyiba                               FALSE                   FALSE
-#&gt; el-Jamail, Hudhaifa                             FALSE                   FALSE
-#&gt; el-Khalifa, Nawfa                               FALSE                   FALSE
-#&gt; el-Khan, Jasoor                                 FALSE                   FALSE
-#&gt; el-Masri, Junaid                                FALSE                   FALSE
-#&gt; el-Sabir, Mumtaaza                              FALSE                   FALSE
-#&gt; el-Sadek, Wafaaa                                FALSE                    TRUE
-#&gt; el-Salih, Farajallah                            FALSE                   FALSE
-#&gt; el-Sharif, Nadeem                               FALSE                   FALSE
-#&gt; el-Zaki, Huwaida                                 TRUE                   FALSE
-#&gt; Enriquez, Anthony                               FALSE                   FALSE
-#&gt; Fitzsimmons, Tabatha                            FALSE                   FALSE
-#&gt; Grim, Cheanna                                   FALSE                   FALSE
-#&gt; Harder, Rio                                     FALSE                   FALSE
-#&gt; Hood, Dania                                     FALSE                   FALSE
-#&gt; Howard, Marcius                                 FALSE                   FALSE
-#&gt; Huff, Hassan                                    FALSE                   FALSE
-#&gt; Hughey, Darlene                                 FALSE                   FALSE
-#&gt; Hutchinson, Joshua                              FALSE                   FALSE
-#&gt; Iron Cloud-Gresko, Sadie                        FALSE                   FALSE
-#&gt; Khamsoulinh, De'Von                             FALSE                   FALSE
-#&gt; Littlejohn, Kevin                               FALSE                   FALSE
-#&gt; Martin, Trevor                                  FALSE                   FALSE
-#&gt; Martinez, Alison                                FALSE                   FALSE
-#&gt; Mendoza, Jessica                                FALSE                   FALSE
-#&gt; Mills, Henry                                    FALSE                   FALSE
-#&gt; Murray, Eric                                    FALSE                   FALSE
-#&gt; Nguyen, Hoang                                   FALSE                   FALSE
-#&gt; Pappas, Cole                                    FALSE                   FALSE
-#&gt; Pearsall, Deontre                               FALSE                   FALSE
-#&gt; Pena, Francisco                                 FALSE                   FALSE
-#&gt; Peterson, Brittany                              FALSE                   FALSE
-#&gt; Polvon, Alicia                                  FALSE                   FALSE
-#&gt; Quick, Miriah                                   FALSE                   FALSE
-#&gt; Raab, Jeannie                                   FALSE                   FALSE
-#&gt; Rice, Jamissa                                   FALSE                   FALSE
-#&gt; Rockwell, Savannah                              FALSE                   FALSE
-#&gt; Rodriquez, Monica                               FALSE                   FALSE
-#&gt; Romero, Carl                                    FALSE                   FALSE
-#&gt; Rosales-Marroquin, Monika                       FALSE                   FALSE
-#&gt; Sam, Niki                                       FALSE                   FALSE
-#&gt; Sanchez, Ryan                                   FALSE                   FALSE
-#&gt; Sharma, Katie                                   FALSE                   FALSE
-#&gt; Summerhays, Spencer                             FALSE                   FALSE
-#&gt; Thompson, Trae                                  FALSE                   FALSE
-#&gt; Torres Escalante, Herbert                       FALSE                   FALSE
-#&gt; Trader-Bankston, J'Quan                         FALSE                   FALSE
-#&gt; Tram, Medha                                     FALSE                   FALSE
-#&gt; Vaclav, Taylor                                  FALSE                   FALSE
-#&gt; Wang, Phillip                                   FALSE                   FALSE
-#&gt; Ventura, Joshua                                 FALSE                   FALSE
-#&gt; Whitaker, Taylor                                FALSE                   FALSE
-#&gt; Vogltanz, Michael                               FALSE                   FALSE
-#&gt; Wu, Lucas                                       FALSE                   FALSE
-#&gt; Wuertz, Jenny                                   FALSE                   FALSE
-#&gt;                           dementia chronic pulmonary disease rheumatic disease
-#&gt; Bivings, Devin               FALSE                     FALSE             FALSE
-#&gt; Liufau, Sue Lynn             FALSE                     FALSE             FALSE
-#&gt; Mitchell, Dalon              FALSE                     FALSE             FALSE
-#&gt; Perez, Vidal                 FALSE                     FALSE             FALSE
-#&gt; Valdez, Antonio              FALSE                     FALSE             FALSE
-#&gt; al-Dib, Farhaan              FALSE                     FALSE             FALSE
-#&gt; el-Salehi, Mahuroos          FALSE                     FALSE             FALSE
-#&gt; Beehler, Kelly                  NA                        NA                NA
-#&gt; Connors, Jaylyn                 NA                        NA                NA
-#&gt; Lechuga, Anthony                NA                        NA                NA
-#&gt; Martinez, Columba               NA                        NA                NA
-#&gt; Mendoza, Nathan                 NA                        NA                NA
-#&gt; Miller, Von Buddenbrock         NA                        NA                NA
-#&gt; Orozco, Daniel                  NA                        NA                NA
-#&gt; Snider, Melanie                 NA                        NA                NA
-#&gt; Cardenas Perez, Gabriela     FALSE                     FALSE             FALSE
-#&gt; al-Bashara, Shaahir          FALSE                     FALSE             FALSE
-#&gt; al-Asmar, Abdur Raheem       FALSE                     FALSE             FALSE
-#&gt; al-Dawood, Hasan             FALSE                     FALSE             FALSE
-#&gt; al-Ismail, Waleeda           FALSE                     FALSE             FALSE
-#&gt; al-Jafri, Shaheera           FALSE                     FALSE             FALSE
-#&gt; al-Kader, Siddeeqa           FALSE                     FALSE             FALSE
-#&gt; al-Karam, Ziyaad             FALSE                     FALSE             FALSE
-#&gt; al-Ramadan, Hanoona          FALSE                     FALSE             FALSE
-#&gt; al-Shaban, Mazeed            FALSE                     FALSE             FALSE
-#&gt; Alexander, Bethany           FALSE                     FALSE             FALSE
-#&gt; Arguello, Tommy              FALSE                     FALSE             FALSE
-#&gt; Austin, Maeve                FALSE                     FALSE             FALSE
-#&gt; Ball, Rockelle               FALSE                     FALSE             FALSE
-#&gt; Bean, Haileigh               FALSE                     FALSE             FALSE
-#&gt; Bessard, Marzel              FALSE                     FALSE             FALSE
-#&gt; Bishop, Alec                 FALSE                     FALSE             FALSE
-#&gt; Brown, Patrick               FALSE                     FALSE             FALSE
-#&gt; Burges, Amber                FALSE                     FALSE             FALSE
-#&gt; Burton, Martin               FALSE                     FALSE             FALSE
-#&gt; Cannon, Timothy              FALSE                     FALSE             FALSE
-#&gt; Chung, Noor                  FALSE                     FALSE             FALSE
-#&gt; Copeland-Doyle, Symone       FALSE                     FALSE             FALSE
-#&gt; Doan, Sam                    FALSE                     FALSE             FALSE
-#&gt; Dominguez, Suriel            FALSE                     FALSE             FALSE
-#&gt; el-Amiri, Jaad               FALSE                     FALSE             FALSE
-#&gt; el-Bashara, Najma            FALSE                     FALSE             FALSE
-#&gt; el-Diab, Nadeem              FALSE                     FALSE             FALSE
-#&gt; el-Faris, Shuaib              TRUE                     FALSE             FALSE
-#&gt; el-Hallal, Uwais             FALSE                     FALSE             FALSE
-#&gt; el-Hamad, Tayyiba            FALSE                     FALSE             FALSE
-#&gt; el-Jamail, Hudhaifa          FALSE                     FALSE             FALSE
-#&gt; el-Khalifa, Nawfa            FALSE                     FALSE             FALSE
-#&gt; el-Khan, Jasoor              FALSE                     FALSE             FALSE
-#&gt; el-Masri, Junaid             FALSE                     FALSE             FALSE
-#&gt; el-Sabir, Mumtaaza           FALSE                     FALSE             FALSE
-#&gt; el-Sadek, Wafaaa             FALSE                     FALSE             FALSE
-#&gt; el-Salih, Farajallah         FALSE                     FALSE             FALSE
-#&gt; el-Sharif, Nadeem            FALSE                     FALSE             FALSE
-#&gt; el-Zaki, Huwaida             FALSE                     FALSE             FALSE
-#&gt; Enriquez, Anthony            FALSE                     FALSE             FALSE
-#&gt; Fitzsimmons, Tabatha         FALSE                     FALSE             FALSE
-#&gt; Grim, Cheanna                FALSE                     FALSE             FALSE
-#&gt; Harder, Rio                  FALSE                     FALSE             FALSE
-#&gt; Hood, Dania                  FALSE                     FALSE             FALSE
-#&gt; Howard, Marcius              FALSE                     FALSE             FALSE
-#&gt; Huff, Hassan                 FALSE                     FALSE             FALSE
-#&gt; Hughey, Darlene              FALSE                     FALSE             FALSE
-#&gt; Hutchinson, Joshua           FALSE                     FALSE             FALSE
-#&gt; Iron Cloud-Gresko, Sadie     FALSE                     FALSE              TRUE
-#&gt; Khamsoulinh, De'Von          FALSE                     FALSE             FALSE
-#&gt; Littlejohn, Kevin            FALSE                     FALSE             FALSE
-#&gt; Martin, Trevor               FALSE                     FALSE             FALSE
-#&gt; Martinez, Alison             FALSE                     FALSE             FALSE
-#&gt; Mendoza, Jessica             FALSE                     FALSE             FALSE
-#&gt; Mills, Henry                 FALSE                     FALSE             FALSE
-#&gt; Murray, Eric                 FALSE                     FALSE             FALSE
-#&gt; Nguyen, Hoang                FALSE                     FALSE             FALSE
-#&gt; Pappas, Cole                 FALSE                     FALSE              TRUE
-#&gt; Pearsall, Deontre            FALSE                     FALSE             FALSE
-#&gt; Pena, Francisco              FALSE                     FALSE             FALSE
-#&gt; Peterson, Brittany           FALSE                     FALSE             FALSE
-#&gt; Polvon, Alicia               FALSE                     FALSE             FALSE
-#&gt; Quick, Miriah                FALSE                     FALSE             FALSE
-#&gt; Raab, Jeannie                FALSE                     FALSE              TRUE
-#&gt; Rice, Jamissa                FALSE                     FALSE             FALSE
-#&gt; Rockwell, Savannah           FALSE                     FALSE             FALSE
-#&gt; Rodriquez, Monica            FALSE                     FALSE             FALSE
-#&gt; Romero, Carl                 FALSE                     FALSE             FALSE
-#&gt; Rosales-Marroquin, Monika    FALSE                     FALSE             FALSE
-#&gt; Sam, Niki                    FALSE                     FALSE             FALSE
-#&gt; Sanchez, Ryan                FALSE                     FALSE             FALSE
-#&gt; Sharma, Katie                FALSE                     FALSE             FALSE
-#&gt; Summerhays, Spencer          FALSE                     FALSE             FALSE
-#&gt; Thompson, Trae               FALSE                     FALSE             FALSE
-#&gt; Torres Escalante, Herbert    FALSE                     FALSE             FALSE
-#&gt; Trader-Bankston, J'Quan      FALSE                     FALSE             FALSE
-#&gt; Tram, Medha                  FALSE                     FALSE             FALSE
-#&gt; Vaclav, Taylor               FALSE                     FALSE             FALSE
-#&gt; Wang, Phillip                 TRUE                     FALSE             FALSE
-#&gt; Ventura, Joshua              FALSE                     FALSE             FALSE
-#&gt; Whitaker, Taylor             FALSE                     FALSE             FALSE
-#&gt; Vogltanz, Michael            FALSE                     FALSE             FALSE
-#&gt; Wu, Lucas                    FALSE                     FALSE             FALSE
-#&gt; Wuertz, Jenny                FALSE                     FALSE             FALSE
-#&gt;                           peptic ulcer disease mild liver disease
-#&gt; Bivings, Devin                           FALSE              FALSE
-#&gt; Liufau, Sue Lynn                         FALSE              FALSE
-#&gt; Mitchell, Dalon                          FALSE              FALSE
-#&gt; Perez, Vidal                             FALSE              FALSE
-#&gt; Valdez, Antonio                          FALSE              FALSE
-#&gt; al-Dib, Farhaan                          FALSE              FALSE
-#&gt; el-Salehi, Mahuroos                      FALSE              FALSE
-#&gt; Beehler, Kelly                              NA                 NA
-#&gt; Connors, Jaylyn                             NA                 NA
-#&gt; Lechuga, Anthony                            NA                 NA
-#&gt; Martinez, Columba                           NA                 NA
-#&gt; Mendoza, Nathan                             NA                 NA
-#&gt; Miller, Von Buddenbrock                     NA                 NA
-#&gt; Orozco, Daniel                              NA                 NA
-#&gt; Snider, Melanie                             NA                 NA
-#&gt; Cardenas Perez, Gabriela                 FALSE              FALSE
-#&gt; al-Bashara, Shaahir                      FALSE              FALSE
-#&gt; al-Asmar, Abdur Raheem                   FALSE              FALSE
-#&gt; al-Dawood, Hasan                         FALSE              FALSE
-#&gt; al-Ismail, Waleeda                       FALSE              FALSE
-#&gt; al-Jafri, Shaheera                       FALSE              FALSE
-#&gt; al-Kader, Siddeeqa                       FALSE              FALSE
-#&gt; al-Karam, Ziyaad                         FALSE              FALSE
-#&gt; al-Ramadan, Hanoona                      FALSE              FALSE
-#&gt; al-Shaban, Mazeed                        FALSE              FALSE
-#&gt; Alexander, Bethany                       FALSE              FALSE
-#&gt; Arguello, Tommy                          FALSE              FALSE
-#&gt; Austin, Maeve                            FALSE              FALSE
-#&gt; Ball, Rockelle                           FALSE              FALSE
-#&gt; Bean, Haileigh                           FALSE              FALSE
-#&gt; Bessard, Marzel                          FALSE              FALSE
-#&gt; Bishop, Alec                             FALSE              FALSE
-#&gt; Brown, Patrick                           FALSE              FALSE
-#&gt; Burges, Amber                            FALSE               TRUE
-#&gt; Burton, Martin                           FALSE              FALSE
-#&gt; Cannon, Timothy                          FALSE              FALSE
-#&gt; Chung, Noor                              FALSE               TRUE
-#&gt; Copeland-Doyle, Symone                   FALSE              FALSE
-#&gt; Doan, Sam                                FALSE               TRUE
-#&gt; Dominguez, Suriel                        FALSE              FALSE
-#&gt; el-Amiri, Jaad                           FALSE              FALSE
-#&gt; el-Bashara, Najma                        FALSE              FALSE
-#&gt; el-Diab, Nadeem                          FALSE              FALSE
-#&gt; el-Faris, Shuaib                         FALSE              FALSE
-#&gt; el-Hallal, Uwais                         FALSE              FALSE
-#&gt; el-Hamad, Tayyiba                        FALSE              FALSE
-#&gt; el-Jamail, Hudhaifa                      FALSE              FALSE
-#&gt; el-Khalifa, Nawfa                        FALSE              FALSE
-#&gt; el-Khan, Jasoor                          FALSE              FALSE
-#&gt; el-Masri, Junaid                         FALSE              FALSE
-#&gt; el-Sabir, Mumtaaza                       FALSE              FALSE
-#&gt; el-Sadek, Wafaaa                         FALSE              FALSE
-#&gt; el-Salih, Farajallah                     FALSE              FALSE
-#&gt; el-Sharif, Nadeem                        FALSE              FALSE
-#&gt; el-Zaki, Huwaida                         FALSE              FALSE
-#&gt; Enriquez, Anthony                        FALSE              FALSE
-#&gt; Fitzsimmons, Tabatha                     FALSE              FALSE
-#&gt; Grim, Cheanna                            FALSE              FALSE
-#&gt; Harder, Rio                              FALSE              FALSE
-#&gt; Hood, Dania                              FALSE              FALSE
-#&gt; Howard, Marcius                          FALSE              FALSE
-#&gt; Huff, Hassan                             FALSE              FALSE
-#&gt; Hughey, Darlene                          FALSE              FALSE
-#&gt; Hutchinson, Joshua                       FALSE              FALSE
-#&gt; Iron Cloud-Gresko, Sadie                 FALSE              FALSE
-#&gt; Khamsoulinh, De'Von                      FALSE              FALSE
-#&gt; Littlejohn, Kevin                        FALSE              FALSE
-#&gt; Martin, Trevor                           FALSE              FALSE
-#&gt; Martinez, Alison                         FALSE              FALSE
-#&gt; Mendoza, Jessica                         FALSE              FALSE
-#&gt; Mills, Henry                             FALSE              FALSE
-#&gt; Murray, Eric                             FALSE              FALSE
-#&gt; Nguyen, Hoang                            FALSE              FALSE
-#&gt; Pappas, Cole                             FALSE              FALSE
-#&gt; Pearsall, Deontre                        FALSE              FALSE
-#&gt; Pena, Francisco                          FALSE              FALSE
-#&gt; Peterson, Brittany                       FALSE              FALSE
-#&gt; Polvon, Alicia                           FALSE              FALSE
-#&gt; Quick, Miriah                            FALSE              FALSE
-#&gt; Raab, Jeannie                            FALSE              FALSE
-#&gt; Rice, Jamissa                            FALSE              FALSE
-#&gt; Rockwell, Savannah                       FALSE              FALSE
-#&gt; Rodriquez, Monica                        FALSE              FALSE
-#&gt; Romero, Carl                             FALSE              FALSE
-#&gt; Rosales-Marroquin, Monika                FALSE              FALSE
-#&gt; Sam, Niki                                FALSE              FALSE
-#&gt; Sanchez, Ryan                            FALSE              FALSE
-#&gt; Sharma, Katie                            FALSE              FALSE
-#&gt; Summerhays, Spencer                      FALSE              FALSE
-#&gt; Thompson, Trae                           FALSE              FALSE
-#&gt; Torres Escalante, Herbert                FALSE              FALSE
-#&gt; Trader-Bankston, J'Quan                  FALSE               TRUE
-#&gt; Tram, Medha                              FALSE              FALSE
-#&gt; Vaclav, Taylor                           FALSE              FALSE
-#&gt; Wang, Phillip                            FALSE              FALSE
-#&gt; Ventura, Joshua                          FALSE              FALSE
-#&gt; Whitaker, Taylor                         FALSE              FALSE
-#&gt; Vogltanz, Michael                        FALSE              FALSE
-#&gt; Wu, Lucas                                FALSE              FALSE
-#&gt; Wuertz, Jenny                            FALSE              FALSE
-#&gt;                           diabetes without complication
-#&gt; Bivings, Devin                                    FALSE
-#&gt; Liufau, Sue Lynn                                  FALSE
-#&gt; Mitchell, Dalon                                   FALSE
-#&gt; Perez, Vidal                                      FALSE
-#&gt; Valdez, Antonio                                   FALSE
-#&gt; al-Dib, Farhaan                                   FALSE
-#&gt; el-Salehi, Mahuroos                               FALSE
-#&gt; Beehler, Kelly                                       NA
-#&gt; Connors, Jaylyn                                      NA
-#&gt; Lechuga, Anthony                                     NA
-#&gt; Martinez, Columba                                    NA
-#&gt; Mendoza, Nathan                                      NA
-#&gt; Miller, Von Buddenbrock                              NA
-#&gt; Orozco, Daniel                                       NA
-#&gt; Snider, Melanie                                      NA
-#&gt; Cardenas Perez, Gabriela                          FALSE
-#&gt; al-Bashara, Shaahir                               FALSE
-#&gt; al-Asmar, Abdur Raheem                            FALSE
-#&gt; al-Dawood, Hasan                                  FALSE
-#&gt; al-Ismail, Waleeda                                FALSE
-#&gt; al-Jafri, Shaheera                                FALSE
-#&gt; al-Kader, Siddeeqa                                FALSE
-#&gt; al-Karam, Ziyaad                                  FALSE
-#&gt; al-Ramadan, Hanoona                               FALSE
-#&gt; al-Shaban, Mazeed                                 FALSE
-#&gt; Alexander, Bethany                                FALSE
-#&gt; Arguello, Tommy                                   FALSE
-#&gt; Austin, Maeve                                     FALSE
-#&gt; Ball, Rockelle                                    FALSE
-#&gt; Bean, Haileigh                                    FALSE
-#&gt; Bessard, Marzel                                   FALSE
-#&gt; Bishop, Alec                                      FALSE
-#&gt; Brown, Patrick                                    FALSE
-#&gt; Burges, Amber                                     FALSE
-#&gt; Burton, Martin                                    FALSE
-#&gt; Cannon, Timothy                                   FALSE
-#&gt; Chung, Noor                                       FALSE
-#&gt; Copeland-Doyle, Symone                            FALSE
-#&gt; Doan, Sam                                         FALSE
-#&gt; Dominguez, Suriel                                 FALSE
-#&gt; el-Amiri, Jaad                                    FALSE
-#&gt; el-Bashara, Najma                                 FALSE
-#&gt; el-Diab, Nadeem                                   FALSE
-#&gt; el-Faris, Shuaib                                  FALSE
-#&gt; el-Hallal, Uwais                                  FALSE
-#&gt; el-Hamad, Tayyiba                                 FALSE
-#&gt; el-Jamail, Hudhaifa                               FALSE
-#&gt; el-Khalifa, Nawfa                                 FALSE
-#&gt; el-Khan, Jasoor                                   FALSE
-#&gt; el-Masri, Junaid                                  FALSE
-#&gt; el-Sabir, Mumtaaza                                FALSE
-#&gt; el-Sadek, Wafaaa                                  FALSE
-#&gt; el-Salih, Farajallah                              FALSE
-#&gt; el-Sharif, Nadeem                                 FALSE
-#&gt; el-Zaki, Huwaida                                  FALSE
-#&gt; Enriquez, Anthony                                 FALSE
-#&gt; Fitzsimmons, Tabatha                              FALSE
-#&gt; Grim, Cheanna                                     FALSE
-#&gt; Harder, Rio                                       FALSE
-#&gt; Hood, Dania                                       FALSE
-#&gt; Howard, Marcius                                   FALSE
-#&gt; Huff, Hassan                                      FALSE
-#&gt; Hughey, Darlene                                   FALSE
-#&gt; Hutchinson, Joshua                                FALSE
-#&gt; Iron Cloud-Gresko, Sadie                          FALSE
-#&gt; Khamsoulinh, De'Von                               FALSE
-#&gt; Littlejohn, Kevin                                 FALSE
-#&gt; Martin, Trevor                                    FALSE
-#&gt; Martinez, Alison                                  FALSE
-#&gt; Mendoza, Jessica                                  FALSE
-#&gt; Mills, Henry                                       TRUE
-#&gt; Murray, Eric                                      FALSE
-#&gt; Nguyen, Hoang                                     FALSE
-#&gt; Pappas, Cole                                      FALSE
-#&gt; Pearsall, Deontre                                 FALSE
-#&gt; Pena, Francisco                                   FALSE
-#&gt; Peterson, Brittany                                FALSE
-#&gt; Polvon, Alicia                                    FALSE
-#&gt; Quick, Miriah                                     FALSE
-#&gt; Raab, Jeannie                                     FALSE
-#&gt; Rice, Jamissa                                     FALSE
-#&gt; Rockwell, Savannah                                FALSE
-#&gt; Rodriquez, Monica                                 FALSE
-#&gt; Romero, Carl                                      FALSE
-#&gt; Rosales-Marroquin, Monika                         FALSE
-#&gt; Sam, Niki                                         FALSE
-#&gt; Sanchez, Ryan                                     FALSE
-#&gt; Sharma, Katie                                     FALSE
-#&gt; Summerhays, Spencer                               FALSE
-#&gt; Thompson, Trae                                    FALSE
-#&gt; Torres Escalante, Herbert                         FALSE
-#&gt; Trader-Bankston, J'Quan                           FALSE
-#&gt; Tram, Medha                                       FALSE
-#&gt; Vaclav, Taylor                                    FALSE
-#&gt; Wang, Phillip                                     FALSE
-#&gt; Ventura, Joshua                                   FALSE
-#&gt; Whitaker, Taylor                                   TRUE
-#&gt; Vogltanz, Michael                                 FALSE
-#&gt; Wu, Lucas                                         FALSE
-#&gt; Wuertz, Jenny                                     FALSE
-#&gt;                           hemiplegia or paraplegia renal disease
-#&gt; Bivings, Devin                               FALSE         FALSE
-#&gt; Liufau, Sue Lynn                             FALSE         FALSE
-#&gt; Mitchell, Dalon                              FALSE         FALSE
-#&gt; Perez, Vidal                                 FALSE         FALSE
-#&gt; Valdez, Antonio                              FALSE         FALSE
-#&gt; al-Dib, Farhaan                              FALSE         FALSE
-#&gt; el-Salehi, Mahuroos                          FALSE         FALSE
-#&gt; Beehler, Kelly                                  NA            NA
-#&gt; Connors, Jaylyn                                 NA            NA
-#&gt; Lechuga, Anthony                                NA            NA
-#&gt; Martinez, Columba                               NA            NA
-#&gt; Mendoza, Nathan                                 NA            NA
-#&gt; Miller, Von Buddenbrock                         NA            NA
-#&gt; Orozco, Daniel                                  NA            NA
-#&gt; Snider, Melanie                                 NA            NA
-#&gt; Cardenas Perez, Gabriela                     FALSE         FALSE
-#&gt; al-Bashara, Shaahir                           TRUE         FALSE
-#&gt; al-Asmar, Abdur Raheem                       FALSE         FALSE
-#&gt; al-Dawood, Hasan                             FALSE         FALSE
-#&gt; al-Ismail, Waleeda                           FALSE         FALSE
-#&gt; al-Jafri, Shaheera                           FALSE         FALSE
-#&gt; al-Kader, Siddeeqa                           FALSE         FALSE
-#&gt; al-Karam, Ziyaad                             FALSE         FALSE
-#&gt; al-Ramadan, Hanoona                          FALSE         FALSE
-#&gt; al-Shaban, Mazeed                            FALSE         FALSE
-#&gt; Alexander, Bethany                           FALSE         FALSE
-#&gt; Arguello, Tommy                              FALSE         FALSE
-#&gt; Austin, Maeve                                FALSE         FALSE
-#&gt; Ball, Rockelle                               FALSE         FALSE
-#&gt; Bean, Haileigh                               FALSE         FALSE
-#&gt; Bessard, Marzel                              FALSE         FALSE
-#&gt; Bishop, Alec                                 FALSE         FALSE
-#&gt; Brown, Patrick                               FALSE         FALSE
-#&gt; Burges, Amber                                FALSE         FALSE
-#&gt; Burton, Martin                               FALSE         FALSE
-#&gt; Cannon, Timothy                              FALSE         FALSE
-#&gt; Chung, Noor                                  FALSE         FALSE
-#&gt; Copeland-Doyle, Symone                       FALSE         FALSE
-#&gt; Doan, Sam                                    FALSE         FALSE
-#&gt; Dominguez, Suriel                            FALSE         FALSE
-#&gt; el-Amiri, Jaad                               FALSE         FALSE
-#&gt; el-Bashara, Najma                            FALSE         FALSE
-#&gt; el-Diab, Nadeem                              FALSE         FALSE
-#&gt; el-Faris, Shuaib                             FALSE         FALSE
-#&gt; el-Hallal, Uwais                             FALSE         FALSE
-#&gt; el-Hamad, Tayyiba                            FALSE         FALSE
-#&gt; el-Jamail, Hudhaifa                          FALSE         FALSE
-#&gt; el-Khalifa, Nawfa                            FALSE         FALSE
-#&gt; el-Khan, Jasoor                              FALSE         FALSE
-#&gt; el-Masri, Junaid                             FALSE         FALSE
-#&gt; el-Sabir, Mumtaaza                           FALSE         FALSE
-#&gt; el-Sadek, Wafaaa                             FALSE         FALSE
-#&gt; el-Salih, Farajallah                         FALSE         FALSE
-#&gt; el-Sharif, Nadeem                            FALSE         FALSE
-#&gt; el-Zaki, Huwaida                             FALSE         FALSE
-#&gt; Enriquez, Anthony                            FALSE         FALSE
-#&gt; Fitzsimmons, Tabatha                         FALSE         FALSE
-#&gt; Grim, Cheanna                                FALSE         FALSE
-#&gt; Harder, Rio                                  FALSE         FALSE
-#&gt; Hood, Dania                                  FALSE         FALSE
-#&gt; Howard, Marcius                              FALSE         FALSE
-#&gt; Huff, Hassan                                 FALSE         FALSE
-#&gt; Hughey, Darlene                              FALSE         FALSE
-#&gt; Hutchinson, Joshua                           FALSE         FALSE
-#&gt; Iron Cloud-Gresko, Sadie                     FALSE         FALSE
-#&gt; Khamsoulinh, De'Von                          FALSE         FALSE
-#&gt; Littlejohn, Kevin                            FALSE         FALSE
-#&gt; Martin, Trevor                               FALSE         FALSE
-#&gt; Martinez, Alison                             FALSE         FALSE
-#&gt; Mendoza, Jessica                             FALSE         FALSE
-#&gt; Mills, Henry                                 FALSE         FALSE
-#&gt; Murray, Eric                                 FALSE         FALSE
-#&gt; Nguyen, Hoang                                FALSE         FALSE
-#&gt; Pappas, Cole                                 FALSE         FALSE
-#&gt; Pearsall, Deontre                            FALSE         FALSE
-#&gt; Pena, Francisco                              FALSE         FALSE
-#&gt; Peterson, Brittany                           FALSE         FALSE
-#&gt; Polvon, Alicia                               FALSE         FALSE
-#&gt; Quick, Miriah                                FALSE         FALSE
-#&gt; Raab, Jeannie                                FALSE         FALSE
-#&gt; Rice, Jamissa                                FALSE         FALSE
-#&gt; Rockwell, Savannah                           FALSE         FALSE
-#&gt; Rodriquez, Monica                            FALSE         FALSE
-#&gt; Romero, Carl                                 FALSE         FALSE
-#&gt; Rosales-Marroquin, Monika                    FALSE         FALSE
-#&gt; Sam, Niki                                    FALSE         FALSE
-#&gt; Sanchez, Ryan                                FALSE         FALSE
-#&gt; Sharma, Katie                                FALSE         FALSE
-#&gt; Summerhays, Spencer                          FALSE         FALSE
-#&gt; Thompson, Trae                               FALSE         FALSE
-#&gt; Torres Escalante, Herbert                    FALSE         FALSE
-#&gt; Trader-Bankston, J'Quan                      FALSE         FALSE
-#&gt; Tram, Medha                                  FALSE         FALSE
-#&gt; Vaclav, Taylor                                TRUE         FALSE
-#&gt; Wang, Phillip                                FALSE         FALSE
-#&gt; Ventura, Joshua                              FALSE         FALSE
-#&gt; Whitaker, Taylor                             FALSE         FALSE
-#&gt; Vogltanz, Michael                            FALSE         FALSE
-#&gt; Wu, Lucas                                    FALSE         FALSE
-#&gt; Wuertz, Jenny                                FALSE         FALSE
-#&gt;                           diabetes complication malignancy
-#&gt; Bivings, Devin                            FALSE      FALSE
-#&gt; Liufau, Sue Lynn                          FALSE      FALSE
-#&gt; Mitchell, Dalon                           FALSE      FALSE
-#&gt; Perez, Vidal                              FALSE      FALSE
-#&gt; Valdez, Antonio                           FALSE      FALSE
-#&gt; al-Dib, Farhaan                           FALSE      FALSE
-#&gt; el-Salehi, Mahuroos                       FALSE      FALSE
-#&gt; Beehler, Kelly                               NA         NA
-#&gt; Connors, Jaylyn                              NA         NA
-#&gt; Lechuga, Anthony                             NA         NA
-#&gt; Martinez, Columba                            NA         NA
-#&gt; Mendoza, Nathan                              NA         NA
-#&gt; Miller, Von Buddenbrock                      NA         NA
-#&gt; Orozco, Daniel                               NA         NA
-#&gt; Snider, Melanie                              NA         NA
-#&gt; Cardenas Perez, Gabriela                  FALSE       TRUE
-#&gt; al-Bashara, Shaahir                       FALSE      FALSE
-#&gt; al-Asmar, Abdur Raheem                    FALSE      FALSE
-#&gt; al-Dawood, Hasan                          FALSE      FALSE
-#&gt; al-Ismail, Waleeda                        FALSE      FALSE
-#&gt; al-Jafri, Shaheera                        FALSE      FALSE
-#&gt; al-Kader, Siddeeqa                        FALSE      FALSE
-#&gt; al-Karam, Ziyaad                          FALSE      FALSE
-#&gt; al-Ramadan, Hanoona                       FALSE      FALSE
-#&gt; al-Shaban, Mazeed                         FALSE      FALSE
-#&gt; Alexander, Bethany                        FALSE      FALSE
-#&gt; Arguello, Tommy                           FALSE      FALSE
-#&gt; Austin, Maeve                             FALSE      FALSE
-#&gt; Ball, Rockelle                            FALSE      FALSE
-#&gt; Bean, Haileigh                            FALSE      FALSE
-#&gt; Bessard, Marzel                           FALSE      FALSE
-#&gt; Bishop, Alec                              FALSE      FALSE
-#&gt; Brown, Patrick                            FALSE      FALSE
-#&gt; Burges, Amber                             FALSE      FALSE
-#&gt; Burton, Martin                            FALSE      FALSE
-#&gt; Cannon, Timothy                           FALSE      FALSE
-#&gt; Chung, Noor                               FALSE       TRUE
-#&gt; Copeland-Doyle, Symone                    FALSE      FALSE
-#&gt; Doan, Sam                                 FALSE      FALSE
-#&gt; Dominguez, Suriel                         FALSE      FALSE
-#&gt; el-Amiri, Jaad                            FALSE      FALSE
-#&gt; el-Bashara, Najma                         FALSE      FALSE
-#&gt; el-Diab, Nadeem                           FALSE      FALSE
-#&gt; el-Faris, Shuaib                          FALSE      FALSE
-#&gt; el-Hallal, Uwais                          FALSE       TRUE
-#&gt; el-Hamad, Tayyiba                         FALSE      FALSE
-#&gt; el-Jamail, Hudhaifa                       FALSE      FALSE
-#&gt; el-Khalifa, Nawfa                         FALSE      FALSE
-#&gt; el-Khan, Jasoor                           FALSE      FALSE
-#&gt; el-Masri, Junaid                           TRUE      FALSE
-#&gt; el-Sabir, Mumtaaza                        FALSE      FALSE
-#&gt; el-Sadek, Wafaaa                          FALSE      FALSE
-#&gt; el-Salih, Farajallah                      FALSE      FALSE
-#&gt; el-Sharif, Nadeem                         FALSE      FALSE
-#&gt; el-Zaki, Huwaida                          FALSE       TRUE
-#&gt; Enriquez, Anthony                         FALSE      FALSE
-#&gt; Fitzsimmons, Tabatha                      FALSE      FALSE
-#&gt; Grim, Cheanna                             FALSE      FALSE
-#&gt; Harder, Rio                               FALSE       TRUE
-#&gt; Hood, Dania                               FALSE      FALSE
-#&gt; Howard, Marcius                           FALSE      FALSE
-#&gt; Huff, Hassan                              FALSE      FALSE
-#&gt; Hughey, Darlene                           FALSE      FALSE
-#&gt; Hutchinson, Joshua                        FALSE      FALSE
-#&gt; Iron Cloud-Gresko, Sadie                  FALSE      FALSE
-#&gt; Khamsoulinh, De'Von                       FALSE       TRUE
-#&gt; Littlejohn, Kevin                         FALSE      FALSE
-#&gt; Martin, Trevor                            FALSE      FALSE
-#&gt; Martinez, Alison                          FALSE      FALSE
-#&gt; Mendoza, Jessica                          FALSE      FALSE
-#&gt; Mills, Henry                              FALSE       TRUE
-#&gt; Murray, Eric                              FALSE      FALSE
-#&gt; Nguyen, Hoang                             FALSE      FALSE
-#&gt; Pappas, Cole                              FALSE       TRUE
-#&gt; Pearsall, Deontre                         FALSE      FALSE
-#&gt; Pena, Francisco                           FALSE      FALSE
-#&gt; Peterson, Brittany                        FALSE       TRUE
-#&gt; Polvon, Alicia                            FALSE      FALSE
-#&gt; Quick, Miriah                             FALSE      FALSE
-#&gt; Raab, Jeannie                             FALSE      FALSE
-#&gt; Rice, Jamissa                             FALSE       TRUE
-#&gt; Rockwell, Savannah                        FALSE       TRUE
-#&gt; Rodriquez, Monica                         FALSE      FALSE
-#&gt; Romero, Carl                              FALSE      FALSE
-#&gt; Rosales-Marroquin, Monika                 FALSE      FALSE
-#&gt; Sam, Niki                                 FALSE       TRUE
-#&gt; Sanchez, Ryan                             FALSE      FALSE
-#&gt; Sharma, Katie                             FALSE      FALSE
-#&gt; Summerhays, Spencer                       FALSE      FALSE
-#&gt; Thompson, Trae                            FALSE      FALSE
-#&gt; Torres Escalante, Herbert                 FALSE      FALSE
-#&gt; Trader-Bankston, J'Quan                   FALSE      FALSE
-#&gt; Tram, Medha                               FALSE       TRUE
-#&gt; Vaclav, Taylor                            FALSE      FALSE
-#&gt; Wang, Phillip                             FALSE      FALSE
-#&gt; Ventura, Joshua                           FALSE      FALSE
-#&gt; Whitaker, Taylor                          FALSE      FALSE
-#&gt; Vogltanz, Michael                         FALSE       TRUE
-#&gt; Wu, Lucas                                 FALSE      FALSE
-#&gt; Wuertz, Jenny                             FALSE      FALSE
-#&gt;                           moderate or severe liver disease
-#&gt; Bivings, Devin                                       FALSE
-#&gt; Liufau, Sue Lynn                                     FALSE
-#&gt; Mitchell, Dalon                                      FALSE
-#&gt; Perez, Vidal                                         FALSE
-#&gt; Valdez, Antonio                                      FALSE
-#&gt; al-Dib, Farhaan                                      FALSE
-#&gt; el-Salehi, Mahuroos                                  FALSE
-#&gt; Beehler, Kelly                                          NA
-#&gt; Connors, Jaylyn                                         NA
-#&gt; Lechuga, Anthony                                        NA
-#&gt; Martinez, Columba                                       NA
-#&gt; Mendoza, Nathan                                         NA
-#&gt; Miller, Von Buddenbrock                                 NA
-#&gt; Orozco, Daniel                                          NA
-#&gt; Snider, Melanie                                         NA
-#&gt; Cardenas Perez, Gabriela                             FALSE
-#&gt; al-Bashara, Shaahir                                  FALSE
-#&gt; al-Asmar, Abdur Raheem                               FALSE
-#&gt; al-Dawood, Hasan                                     FALSE
-#&gt; al-Ismail, Waleeda                                   FALSE
-#&gt; al-Jafri, Shaheera                                   FALSE
-#&gt; al-Kader, Siddeeqa                                   FALSE
-#&gt; al-Karam, Ziyaad                                     FALSE
-#&gt; al-Ramadan, Hanoona                                  FALSE
-#&gt; al-Shaban, Mazeed                                    FALSE
-#&gt; Alexander, Bethany                                   FALSE
-#&gt; Arguello, Tommy                                      FALSE
-#&gt; Austin, Maeve                                        FALSE
-#&gt; Ball, Rockelle                                       FALSE
-#&gt; Bean, Haileigh                                       FALSE
-#&gt; Bessard, Marzel                                      FALSE
-#&gt; Bishop, Alec                                         FALSE
-#&gt; Brown, Patrick                                       FALSE
-#&gt; Burges, Amber                                        FALSE
-#&gt; Burton, Martin                                       FALSE
-#&gt; Cannon, Timothy                                      FALSE
-#&gt; Chung, Noor                                           TRUE
-#&gt; Copeland-Doyle, Symone                               FALSE
-#&gt; Doan, Sam                                            FALSE
-#&gt; Dominguez, Suriel                                    FALSE
-#&gt; el-Amiri, Jaad                                       FALSE
-#&gt; el-Bashara, Najma                                    FALSE
-#&gt; el-Diab, Nadeem                                      FALSE
-#&gt; el-Faris, Shuaib                                     FALSE
-#&gt; el-Hallal, Uwais                                     FALSE
-#&gt; el-Hamad, Tayyiba                                    FALSE
-#&gt; el-Jamail, Hudhaifa                                  FALSE
-#&gt; el-Khalifa, Nawfa                                    FALSE
-#&gt; el-Khan, Jasoor                                      FALSE
-#&gt; el-Masri, Junaid                                     FALSE
-#&gt; el-Sabir, Mumtaaza                                   FALSE
-#&gt; el-Sadek, Wafaaa                                     FALSE
-#&gt; el-Salih, Farajallah                                 FALSE
-#&gt; el-Sharif, Nadeem                                    FALSE
-#&gt; el-Zaki, Huwaida                                     FALSE
-#&gt; Enriquez, Anthony                                    FALSE
-#&gt; Fitzsimmons, Tabatha                                 FALSE
-#&gt; Grim, Cheanna                                        FALSE
-#&gt; Harder, Rio                                          FALSE
-#&gt; Hood, Dania                                          FALSE
-#&gt; Howard, Marcius                                      FALSE
-#&gt; Huff, Hassan                                         FALSE
-#&gt; Hughey, Darlene                                      FALSE
-#&gt; Hutchinson, Joshua                                   FALSE
-#&gt; Iron Cloud-Gresko, Sadie                             FALSE
-#&gt; Khamsoulinh, De'Von                                  FALSE
-#&gt; Littlejohn, Kevin                                    FALSE
-#&gt; Martin, Trevor                                       FALSE
-#&gt; Martinez, Alison                                     FALSE
-#&gt; Mendoza, Jessica                                     FALSE
-#&gt; Mills, Henry                                         FALSE
-#&gt; Murray, Eric                                         FALSE
-#&gt; Nguyen, Hoang                                        FALSE
-#&gt; Pappas, Cole                                         FALSE
-#&gt; Pearsall, Deontre                                    FALSE
-#&gt; Pena, Francisco                                      FALSE
-#&gt; Peterson, Brittany                                   FALSE
-#&gt; Polvon, Alicia                                       FALSE
-#&gt; Quick, Miriah                                        FALSE
-#&gt; Raab, Jeannie                                        FALSE
-#&gt; Rice, Jamissa                                        FALSE
-#&gt; Rockwell, Savannah                                   FALSE
-#&gt; Rodriquez, Monica                                    FALSE
-#&gt; Romero, Carl                                         FALSE
-#&gt; Rosales-Marroquin, Monika                            FALSE
-#&gt; Sam, Niki                                            FALSE
-#&gt; Sanchez, Ryan                                        FALSE
-#&gt; Sharma, Katie                                        FALSE
-#&gt; Summerhays, Spencer                                  FALSE
-#&gt; Thompson, Trae                                       FALSE
-#&gt; Torres Escalante, Herbert                            FALSE
-#&gt; Trader-Bankston, J'Quan                              FALSE
-#&gt; Tram, Medha                                          FALSE
-#&gt; Vaclav, Taylor                                       FALSE
-#&gt; Wang, Phillip                                        FALSE
-#&gt; Ventura, Joshua                                      FALSE
-#&gt; Whitaker, Taylor                                     FALSE
-#&gt; Vogltanz, Michael                                    FALSE
-#&gt; Wu, Lucas                                            FALSE
-#&gt; Wuertz, Jenny                                        FALSE
-#&gt;                           metastatic solid tumor AIDS/HIV
-#&gt; Bivings, Devin                             FALSE    FALSE
-#&gt; Liufau, Sue Lynn                           FALSE    FALSE
-#&gt; Mitchell, Dalon                            FALSE    FALSE
-#&gt; Perez, Vidal                               FALSE    FALSE
-#&gt; Valdez, Antonio                            FALSE    FALSE
-#&gt; al-Dib, Farhaan                            FALSE    FALSE
-#&gt; el-Salehi, Mahuroos                        FALSE    FALSE
-#&gt; Beehler, Kelly                                NA       NA
-#&gt; Connors, Jaylyn                               NA       NA
-#&gt; Lechuga, Anthony                              NA       NA
-#&gt; Martinez, Columba                             NA       NA
-#&gt; Mendoza, Nathan                               NA       NA
-#&gt; Miller, Von Buddenbrock                       NA       NA
-#&gt; Orozco, Daniel                                NA       NA
-#&gt; Snider, Melanie                               NA       NA
-#&gt; Cardenas Perez, Gabriela                   FALSE    FALSE
-#&gt; al-Bashara, Shaahir                        FALSE    FALSE
-#&gt; al-Asmar, Abdur Raheem                     FALSE    FALSE
-#&gt; al-Dawood, Hasan                           FALSE    FALSE
-#&gt; al-Ismail, Waleeda                         FALSE    FALSE
-#&gt; al-Jafri, Shaheera                         FALSE    FALSE
-#&gt; al-Kader, Siddeeqa                         FALSE    FALSE
-#&gt; al-Karam, Ziyaad                           FALSE    FALSE
-#&gt; al-Ramadan, Hanoona                        FALSE    FALSE
-#&gt; al-Shaban, Mazeed                          FALSE    FALSE
-#&gt; Alexander, Bethany                         FALSE    FALSE
-#&gt; Arguello, Tommy                            FALSE    FALSE
-#&gt; Austin, Maeve                              FALSE    FALSE
-#&gt; Ball, Rockelle                             FALSE    FALSE
-#&gt; Bean, Haileigh                             FALSE    FALSE
-#&gt; Bessard, Marzel                            FALSE    FALSE
-#&gt; Bishop, Alec                               FALSE    FALSE
-#&gt; Brown, Patrick                             FALSE    FALSE
-#&gt; Burges, Amber                              FALSE    FALSE
-#&gt; Burton, Martin                             FALSE    FALSE
-#&gt; Cannon, Timothy                            FALSE    FALSE
-#&gt; Chung, Noor                                FALSE    FALSE
-#&gt; Copeland-Doyle, Symone                     FALSE    FALSE
-#&gt; Doan, Sam                                  FALSE    FALSE
-#&gt; Dominguez, Suriel                          FALSE    FALSE
-#&gt; el-Amiri, Jaad                             FALSE    FALSE
-#&gt; el-Bashara, Najma                          FALSE    FALSE
-#&gt; el-Diab, Nadeem                            FALSE    FALSE
-#&gt; el-Faris, Shuaib                           FALSE     TRUE
-#&gt; el-Hallal, Uwais                           FALSE    FALSE
-#&gt; el-Hamad, Tayyiba                          FALSE    FALSE
-#&gt; el-Jamail, Hudhaifa                        FALSE    FALSE
-#&gt; el-Khalifa, Nawfa                          FALSE    FALSE
-#&gt; el-Khan, Jasoor                            FALSE    FALSE
-#&gt; el-Masri, Junaid                           FALSE    FALSE
-#&gt; el-Sabir, Mumtaaza                          TRUE    FALSE
-#&gt; el-Sadek, Wafaaa                           FALSE    FALSE
-#&gt; el-Salih, Farajallah                       FALSE    FALSE
-#&gt; el-Sharif, Nadeem                          FALSE    FALSE
-#&gt; el-Zaki, Huwaida                           FALSE    FALSE
-#&gt; Enriquez, Anthony                          FALSE    FALSE
-#&gt; Fitzsimmons, Tabatha                       FALSE    FALSE
-#&gt; Grim, Cheanna                              FALSE    FALSE
-#&gt; Harder, Rio                                FALSE    FALSE
-#&gt; Hood, Dania                                FALSE    FALSE
-#&gt; Howard, Marcius                            FALSE    FALSE
-#&gt; Huff, Hassan                               FALSE    FALSE
-#&gt; Hughey, Darlene                            FALSE    FALSE
-#&gt; Hutchinson, Joshua                         FALSE    FALSE
-#&gt; Iron Cloud-Gresko, Sadie                   FALSE    FALSE
-#&gt; Khamsoulinh, De'Von                        FALSE    FALSE
-#&gt; Littlejohn, Kevin                          FALSE    FALSE
-#&gt; Martin, Trevor                             FALSE    FALSE
-#&gt; Martinez, Alison                           FALSE    FALSE
-#&gt; Mendoza, Jessica                           FALSE    FALSE
-#&gt; Mills, Henry                               FALSE    FALSE
-#&gt; Murray, Eric                               FALSE    FALSE
-#&gt; Nguyen, Hoang                              FALSE    FALSE
-#&gt; Pappas, Cole                               FALSE    FALSE
-#&gt; Pearsall, Deontre                          FALSE    FALSE
-#&gt; Pena, Francisco                            FALSE    FALSE
-#&gt; Peterson, Brittany                         FALSE    FALSE
-#&gt; Polvon, Alicia                             FALSE    FALSE
-#&gt; Quick, Miriah                              FALSE    FALSE
-#&gt; Raab, Jeannie                              FALSE    FALSE
-#&gt; Rice, Jamissa                              FALSE    FALSE
-#&gt; Rockwell, Savannah                         FALSE    FALSE
-#&gt; Rodriquez, Monica                          FALSE    FALSE
-#&gt; Romero, Carl                               FALSE    FALSE
-#&gt; Rosales-Marroquin, Monika                  FALSE    FALSE
-#&gt; Sam, Niki                                  FALSE    FALSE
-#&gt; Sanchez, Ryan                              FALSE    FALSE
-#&gt; Sharma, Katie                              FALSE    FALSE
-#&gt; Summerhays, Spencer                        FALSE    FALSE
-#&gt; Thompson, Trae                             FALSE    FALSE
-#&gt; Torres Escalante, Herbert                  FALSE    FALSE
-#&gt; Trader-Bankston, J'Quan                    FALSE    FALSE
-#&gt; Tram, Medha                                FALSE    FALSE
-#&gt; Vaclav, Taylor                             FALSE    FALSE
-#&gt; Wang, Phillip                              FALSE    FALSE
-#&gt; Ventura, Joshua                            FALSE    FALSE
-#&gt; Whitaker, Taylor                           FALSE    FALSE
-#&gt; Vogltanz, Michael                          FALSE    FALSE
-#&gt; Wu, Lucas                                  FALSE    FALSE
-#&gt; Wuertz, Jenny                              FALSE    FALSE
-#&gt; attr(,"classcodes")
-#&gt; [1] "charlson"
-#&gt; attr(,"id")
-#&gt; [1] "name"
-#&gt; attr(,"class")
-#&gt; [1] "classified" "matrix"    </div><div class='input'>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>)
+
+<span class='co'># Use tha RCS classification instead and use thechnical column names</span>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"icd10_rcs"</span>, <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Non unique elements of 'x$regex' implying identical classes with multilpe names!</span></div><div class='input'>
 <span class='co'># It is possible to convert the outpot of classify to a data frame with</span>
 <span class='co'># id column instead of row names</span>
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name myocardial infarction congestive heart failure
-#&gt; 1              Bivings, Devin                 FALSE                    FALSE
-#&gt; 2            Liufau, Sue Lynn                 FALSE                    FALSE
-#&gt; 3             Mitchell, Dalon                 FALSE                    FALSE
-#&gt; 4                Perez, Vidal                 FALSE                    FALSE
-#&gt; 5             Valdez, Antonio                 FALSE                    FALSE
-#&gt; 6             al-Dib, Farhaan                 FALSE                    FALSE
-#&gt; 7         el-Salehi, Mahuroos                 FALSE                    FALSE
-#&gt; 8              Beehler, Kelly                    NA                       NA
-#&gt; 9             Connors, Jaylyn                    NA                       NA
-#&gt; 10           Lechuga, Anthony                    NA                       NA
-#&gt; 11          Martinez, Columba                    NA                       NA
-#&gt; 12            Mendoza, Nathan                    NA                       NA
-#&gt; 13    Miller, Von Buddenbrock                    NA                       NA
-#&gt; 14             Orozco, Daniel                    NA                       NA
-#&gt; 15            Snider, Melanie                    NA                       NA
-#&gt; 16   Cardenas Perez, Gabriela                 FALSE                    FALSE
-#&gt; 17        al-Bashara, Shaahir                 FALSE                    FALSE
-#&gt; 18     al-Asmar, Abdur Raheem                 FALSE                    FALSE
-#&gt; 19           al-Dawood, Hasan                 FALSE                    FALSE
-#&gt; 20         al-Ismail, Waleeda                 FALSE                    FALSE
-#&gt; 21         al-Jafri, Shaheera                 FALSE                    FALSE
-#&gt; 22         al-Kader, Siddeeqa                 FALSE                    FALSE
-#&gt; 23           al-Karam, Ziyaad                 FALSE                    FALSE
-#&gt; 24        al-Ramadan, Hanoona                 FALSE                    FALSE
-#&gt; 25          al-Shaban, Mazeed                 FALSE                    FALSE
-#&gt; 26         Alexander, Bethany                 FALSE                    FALSE
-#&gt; 27            Arguello, Tommy                 FALSE                    FALSE
-#&gt; 28              Austin, Maeve                 FALSE                    FALSE
-#&gt; 29             Ball, Rockelle                 FALSE                    FALSE
-#&gt; 30             Bean, Haileigh                 FALSE                    FALSE
-#&gt; 31            Bessard, Marzel                 FALSE                    FALSE
-#&gt; 32               Bishop, Alec                 FALSE                    FALSE
-#&gt; 33             Brown, Patrick                 FALSE                    FALSE
-#&gt; 34              Burges, Amber                 FALSE                    FALSE
-#&gt; 35             Burton, Martin                 FALSE                    FALSE
-#&gt; 36            Cannon, Timothy                 FALSE                    FALSE
-#&gt; 37                Chung, Noor                 FALSE                    FALSE
-#&gt; 38     Copeland-Doyle, Symone                 FALSE                    FALSE
-#&gt; 39                  Doan, Sam                 FALSE                    FALSE
-#&gt; 40          Dominguez, Suriel                 FALSE                    FALSE
-#&gt; 41             el-Amiri, Jaad                 FALSE                    FALSE
-#&gt; 42          el-Bashara, Najma                 FALSE                    FALSE
-#&gt; 43            el-Diab, Nadeem                 FALSE                    FALSE
-#&gt; 44           el-Faris, Shuaib                 FALSE                    FALSE
-#&gt; 45           el-Hallal, Uwais                 FALSE                    FALSE
-#&gt; 46          el-Hamad, Tayyiba                 FALSE                    FALSE
-#&gt; 47        el-Jamail, Hudhaifa                 FALSE                    FALSE
-#&gt; 48          el-Khalifa, Nawfa                 FALSE                    FALSE
-#&gt; 49            el-Khan, Jasoor                 FALSE                    FALSE
-#&gt; 50           el-Masri, Junaid                 FALSE                    FALSE
-#&gt; 51         el-Sabir, Mumtaaza                 FALSE                    FALSE
-#&gt; 52           el-Sadek, Wafaaa                 FALSE                    FALSE
-#&gt; 53       el-Salih, Farajallah                 FALSE                    FALSE
-#&gt; 54          el-Sharif, Nadeem                 FALSE                    FALSE
-#&gt; 55           el-Zaki, Huwaida                 FALSE                    FALSE
-#&gt; 56          Enriquez, Anthony                 FALSE                    FALSE
-#&gt; 57       Fitzsimmons, Tabatha                 FALSE                     TRUE
-#&gt; 58              Grim, Cheanna                 FALSE                    FALSE
-#&gt; 59                Harder, Rio                 FALSE                    FALSE
-#&gt; 60                Hood, Dania                 FALSE                    FALSE
-#&gt; 61            Howard, Marcius                 FALSE                    FALSE
-#&gt; 62               Huff, Hassan                 FALSE                    FALSE
-#&gt; 63            Hughey, Darlene                 FALSE                    FALSE
-#&gt; 64         Hutchinson, Joshua                 FALSE                    FALSE
-#&gt; 65   Iron Cloud-Gresko, Sadie                 FALSE                    FALSE
-#&gt; 66        Khamsoulinh, De'Von                 FALSE                    FALSE
-#&gt; 67          Littlejohn, Kevin                 FALSE                    FALSE
-#&gt; 68             Martin, Trevor                 FALSE                    FALSE
-#&gt; 69           Martinez, Alison                 FALSE                    FALSE
-#&gt; 70           Mendoza, Jessica                 FALSE                    FALSE
-#&gt; 71               Mills, Henry                 FALSE                    FALSE
-#&gt; 72               Murray, Eric                 FALSE                    FALSE
-#&gt; 73              Nguyen, Hoang                 FALSE                    FALSE
-#&gt; 74               Pappas, Cole                 FALSE                    FALSE
-#&gt; 75          Pearsall, Deontre                 FALSE                    FALSE
-#&gt; 76            Pena, Francisco                 FALSE                    FALSE
-#&gt; 77         Peterson, Brittany                 FALSE                    FALSE
-#&gt; 78             Polvon, Alicia                 FALSE                    FALSE
-#&gt; 79              Quick, Miriah                 FALSE                    FALSE
-#&gt; 80              Raab, Jeannie                 FALSE                    FALSE
-#&gt; 81              Rice, Jamissa                 FALSE                    FALSE
-#&gt; 82         Rockwell, Savannah                 FALSE                    FALSE
-#&gt; 83          Rodriquez, Monica                 FALSE                    FALSE
-#&gt; 84               Romero, Carl                 FALSE                    FALSE
-#&gt; 85  Rosales-Marroquin, Monika                 FALSE                    FALSE
-#&gt; 86                  Sam, Niki                 FALSE                    FALSE
-#&gt; 87              Sanchez, Ryan                 FALSE                    FALSE
-#&gt; 88              Sharma, Katie                 FALSE                    FALSE
-#&gt; 89        Summerhays, Spencer                 FALSE                    FALSE
-#&gt; 90             Thompson, Trae                 FALSE                    FALSE
-#&gt; 91  Torres Escalante, Herbert                 FALSE                    FALSE
-#&gt; 92    Trader-Bankston, J'Quan                 FALSE                    FALSE
-#&gt; 93                Tram, Medha                 FALSE                    FALSE
-#&gt; 94             Vaclav, Taylor                 FALSE                    FALSE
-#&gt; 95              Wang, Phillip                 FALSE                    FALSE
-#&gt; 96            Ventura, Joshua                 FALSE                    FALSE
-#&gt; 97           Whitaker, Taylor                 FALSE                    FALSE
-#&gt; 98          Vogltanz, Michael                 FALSE                    FALSE
-#&gt; 99                  Wu, Lucas                 FALSE                    FALSE
-#&gt; 100             Wuertz, Jenny                 FALSE                    FALSE
-#&gt;     peripheral vascular disease cerebrovascular disease dementia
-#&gt; 1                         FALSE                   FALSE    FALSE
-#&gt; 2                         FALSE                   FALSE    FALSE
-#&gt; 3                         FALSE                   FALSE    FALSE
-#&gt; 4                         FALSE                   FALSE    FALSE
-#&gt; 5                         FALSE                   FALSE    FALSE
-#&gt; 6                         FALSE                   FALSE    FALSE
-#&gt; 7                         FALSE                   FALSE    FALSE
-#&gt; 8                            NA                      NA       NA
-#&gt; 9                            NA                      NA       NA
-#&gt; 10                           NA                      NA       NA
-#&gt; 11                           NA                      NA       NA
-#&gt; 12                           NA                      NA       NA
-#&gt; 13                           NA                      NA       NA
-#&gt; 14                           NA                      NA       NA
-#&gt; 15                           NA                      NA       NA
-#&gt; 16                        FALSE                   FALSE    FALSE
-#&gt; 17                        FALSE                   FALSE    FALSE
-#&gt; 18                        FALSE                   FALSE    FALSE
-#&gt; 19                        FALSE                   FALSE    FALSE
-#&gt; 20                        FALSE                   FALSE    FALSE
-#&gt; 21                        FALSE                   FALSE    FALSE
-#&gt; 22                        FALSE                   FALSE    FALSE
-#&gt; 23                        FALSE                   FALSE    FALSE
-#&gt; 24                        FALSE                   FALSE    FALSE
-#&gt; 25                        FALSE                   FALSE    FALSE
-#&gt; 26                        FALSE                   FALSE    FALSE
-#&gt; 27                        FALSE                   FALSE    FALSE
-#&gt; 28                        FALSE                   FALSE    FALSE
-#&gt; 29                        FALSE                   FALSE    FALSE
-#&gt; 30                        FALSE                   FALSE    FALSE
-#&gt; 31                        FALSE                   FALSE    FALSE
-#&gt; 32                        FALSE                   FALSE    FALSE
-#&gt; 33                        FALSE                   FALSE    FALSE
-#&gt; 34                        FALSE                   FALSE    FALSE
-#&gt; 35                        FALSE                   FALSE    FALSE
-#&gt; 36                        FALSE                   FALSE    FALSE
-#&gt; 37                        FALSE                   FALSE    FALSE
-#&gt; 38                        FALSE                    TRUE    FALSE
-#&gt; 39                        FALSE                   FALSE    FALSE
-#&gt; 40                        FALSE                   FALSE    FALSE
-#&gt; 41                        FALSE                   FALSE    FALSE
-#&gt; 42                        FALSE                    TRUE    FALSE
-#&gt; 43                        FALSE                   FALSE    FALSE
-#&gt; 44                        FALSE                   FALSE     TRUE
-#&gt; 45                        FALSE                   FALSE    FALSE
-#&gt; 46                        FALSE                   FALSE    FALSE
-#&gt; 47                        FALSE                   FALSE    FALSE
-#&gt; 48                        FALSE                   FALSE    FALSE
-#&gt; 49                        FALSE                   FALSE    FALSE
-#&gt; 50                        FALSE                   FALSE    FALSE
-#&gt; 51                        FALSE                   FALSE    FALSE
-#&gt; 52                        FALSE                    TRUE    FALSE
-#&gt; 53                        FALSE                   FALSE    FALSE
-#&gt; 54                        FALSE                   FALSE    FALSE
-#&gt; 55                         TRUE                   FALSE    FALSE
-#&gt; 56                        FALSE                   FALSE    FALSE
-#&gt; 57                        FALSE                   FALSE    FALSE
-#&gt; 58                        FALSE                   FALSE    FALSE
-#&gt; 59                        FALSE                   FALSE    FALSE
-#&gt; 60                        FALSE                   FALSE    FALSE
-#&gt; 61                        FALSE                   FALSE    FALSE
-#&gt; 62                        FALSE                   FALSE    FALSE
-#&gt; 63                        FALSE                   FALSE    FALSE
-#&gt; 64                        FALSE                   FALSE    FALSE
-#&gt; 65                        FALSE                   FALSE    FALSE
-#&gt; 66                        FALSE                   FALSE    FALSE
-#&gt; 67                        FALSE                   FALSE    FALSE
-#&gt; 68                        FALSE                   FALSE    FALSE
-#&gt; 69                        FALSE                   FALSE    FALSE
-#&gt; 70                        FALSE                   FALSE    FALSE
-#&gt; 71                        FALSE                   FALSE    FALSE
-#&gt; 72                        FALSE                   FALSE    FALSE
-#&gt; 73                        FALSE                   FALSE    FALSE
-#&gt; 74                        FALSE                   FALSE    FALSE
-#&gt; 75                        FALSE                   FALSE    FALSE
-#&gt; 76                        FALSE                   FALSE    FALSE
-#&gt; 77                        FALSE                   FALSE    FALSE
-#&gt; 78                        FALSE                   FALSE    FALSE
-#&gt; 79                        FALSE                   FALSE    FALSE
-#&gt; 80                        FALSE                   FALSE    FALSE
-#&gt; 81                        FALSE                   FALSE    FALSE
-#&gt; 82                        FALSE                   FALSE    FALSE
-#&gt; 83                        FALSE                   FALSE    FALSE
-#&gt; 84                        FALSE                   FALSE    FALSE
-#&gt; 85                        FALSE                   FALSE    FALSE
-#&gt; 86                        FALSE                   FALSE    FALSE
-#&gt; 87                        FALSE                   FALSE    FALSE
-#&gt; 88                        FALSE                   FALSE    FALSE
-#&gt; 89                        FALSE                   FALSE    FALSE
-#&gt; 90                        FALSE                   FALSE    FALSE
-#&gt; 91                        FALSE                   FALSE    FALSE
-#&gt; 92                        FALSE                   FALSE    FALSE
-#&gt; 93                        FALSE                   FALSE    FALSE
-#&gt; 94                        FALSE                   FALSE    FALSE
-#&gt; 95                        FALSE                   FALSE     TRUE
-#&gt; 96                        FALSE                   FALSE    FALSE
-#&gt; 97                        FALSE                   FALSE    FALSE
-#&gt; 98                        FALSE                   FALSE    FALSE
-#&gt; 99                        FALSE                   FALSE    FALSE
-#&gt; 100                       FALSE                   FALSE    FALSE
-#&gt;     chronic pulmonary disease rheumatic disease peptic ulcer disease
-#&gt; 1                       FALSE             FALSE                FALSE
-#&gt; 2                       FALSE             FALSE                FALSE
-#&gt; 3                       FALSE             FALSE                FALSE
-#&gt; 4                       FALSE             FALSE                FALSE
-#&gt; 5                       FALSE             FALSE                FALSE
-#&gt; 6                       FALSE             FALSE                FALSE
-#&gt; 7                       FALSE             FALSE                FALSE
-#&gt; 8                          NA                NA                   NA
-#&gt; 9                          NA                NA                   NA
-#&gt; 10                         NA                NA                   NA
-#&gt; 11                         NA                NA                   NA
-#&gt; 12                         NA                NA                   NA
-#&gt; 13                         NA                NA                   NA
-#&gt; 14                         NA                NA                   NA
-#&gt; 15                         NA                NA                   NA
-#&gt; 16                      FALSE             FALSE                FALSE
-#&gt; 17                      FALSE             FALSE                FALSE
-#&gt; 18                      FALSE             FALSE                FALSE
-#&gt; 19                      FALSE             FALSE                FALSE
-#&gt; 20                      FALSE             FALSE                FALSE
-#&gt; 21                      FALSE             FALSE                FALSE
-#&gt; 22                      FALSE             FALSE                FALSE
-#&gt; 23                      FALSE             FALSE                FALSE
-#&gt; 24                      FALSE             FALSE                FALSE
-#&gt; 25                      FALSE             FALSE                FALSE
-#&gt; 26                      FALSE             FALSE                FALSE
-#&gt; 27                      FALSE             FALSE                FALSE
-#&gt; 28                      FALSE             FALSE                FALSE
-#&gt; 29                      FALSE             FALSE                FALSE
-#&gt; 30                      FALSE             FALSE                FALSE
-#&gt; 31                      FALSE             FALSE                FALSE
-#&gt; 32                      FALSE             FALSE                FALSE
-#&gt; 33                      FALSE             FALSE                FALSE
-#&gt; 34                      FALSE             FALSE                FALSE
-#&gt; 35                      FALSE             FALSE                FALSE
-#&gt; 36                      FALSE             FALSE                FALSE
-#&gt; 37                      FALSE             FALSE                FALSE
-#&gt; 38                      FALSE             FALSE                FALSE
-#&gt; 39                      FALSE             FALSE                FALSE
-#&gt; 40                      FALSE             FALSE                FALSE
-#&gt; 41                      FALSE             FALSE                FALSE
-#&gt; 42                      FALSE             FALSE                FALSE
-#&gt; 43                      FALSE             FALSE                FALSE
-#&gt; 44                      FALSE             FALSE                FALSE
-#&gt; 45                      FALSE             FALSE                FALSE
-#&gt; 46                      FALSE             FALSE                FALSE
-#&gt; 47                      FALSE             FALSE                FALSE
-#&gt; 48                      FALSE             FALSE                FALSE
-#&gt; 49                      FALSE             FALSE                FALSE
-#&gt; 50                      FALSE             FALSE                FALSE
-#&gt; 51                      FALSE             FALSE                FALSE
-#&gt; 52                      FALSE             FALSE                FALSE
-#&gt; 53                      FALSE             FALSE                FALSE
-#&gt; 54                      FALSE             FALSE                FALSE
-#&gt; 55                      FALSE             FALSE                FALSE
-#&gt; 56                      FALSE             FALSE                FALSE
-#&gt; 57                      FALSE             FALSE                FALSE
-#&gt; 58                      FALSE             FALSE                FALSE
-#&gt; 59                      FALSE             FALSE                FALSE
-#&gt; 60                      FALSE             FALSE                FALSE
-#&gt; 61                      FALSE             FALSE                FALSE
-#&gt; 62                      FALSE             FALSE                FALSE
-#&gt; 63                      FALSE             FALSE                FALSE
-#&gt; 64                      FALSE             FALSE                FALSE
-#&gt; 65                      FALSE              TRUE                FALSE
-#&gt; 66                      FALSE             FALSE                FALSE
-#&gt; 67                      FALSE             FALSE                FALSE
-#&gt; 68                      FALSE             FALSE                FALSE
-#&gt; 69                      FALSE             FALSE                FALSE
-#&gt; 70                      FALSE             FALSE                FALSE
-#&gt; 71                      FALSE             FALSE                FALSE
-#&gt; 72                      FALSE             FALSE                FALSE
-#&gt; 73                      FALSE             FALSE                FALSE
-#&gt; 74                      FALSE              TRUE                FALSE
-#&gt; 75                      FALSE             FALSE                FALSE
-#&gt; 76                      FALSE             FALSE                FALSE
-#&gt; 77                      FALSE             FALSE                FALSE
-#&gt; 78                      FALSE             FALSE                FALSE
-#&gt; 79                      FALSE             FALSE                FALSE
-#&gt; 80                      FALSE              TRUE                FALSE
-#&gt; 81                      FALSE             FALSE                FALSE
-#&gt; 82                      FALSE             FALSE                FALSE
-#&gt; 83                      FALSE             FALSE                FALSE
-#&gt; 84                      FALSE             FALSE                FALSE
-#&gt; 85                      FALSE             FALSE                FALSE
-#&gt; 86                      FALSE             FALSE                FALSE
-#&gt; 87                      FALSE             FALSE                FALSE
-#&gt; 88                      FALSE             FALSE                FALSE
-#&gt; 89                      FALSE             FALSE                FALSE
-#&gt; 90                      FALSE             FALSE                FALSE
-#&gt; 91                      FALSE             FALSE                FALSE
-#&gt; 92                      FALSE             FALSE                FALSE
-#&gt; 93                      FALSE             FALSE                FALSE
-#&gt; 94                      FALSE             FALSE                FALSE
-#&gt; 95                      FALSE             FALSE                FALSE
-#&gt; 96                      FALSE             FALSE                FALSE
-#&gt; 97                      FALSE             FALSE                FALSE
-#&gt; 98                      FALSE             FALSE                FALSE
-#&gt; 99                      FALSE             FALSE                FALSE
-#&gt; 100                     FALSE             FALSE                FALSE
-#&gt;     mild liver disease diabetes without complication hemiplegia or paraplegia
-#&gt; 1                FALSE                         FALSE                    FALSE
-#&gt; 2                FALSE                         FALSE                    FALSE
-#&gt; 3                FALSE                         FALSE                    FALSE
-#&gt; 4                FALSE                         FALSE                    FALSE
-#&gt; 5                FALSE                         FALSE                    FALSE
-#&gt; 6                FALSE                         FALSE                    FALSE
-#&gt; 7                FALSE                         FALSE                    FALSE
-#&gt; 8                   NA                            NA                       NA
-#&gt; 9                   NA                            NA                       NA
-#&gt; 10                  NA                            NA                       NA
-#&gt; 11                  NA                            NA                       NA
-#&gt; 12                  NA                            NA                       NA
-#&gt; 13                  NA                            NA                       NA
-#&gt; 14                  NA                            NA                       NA
-#&gt; 15                  NA                            NA                       NA
-#&gt; 16               FALSE                         FALSE                    FALSE
-#&gt; 17               FALSE                         FALSE                     TRUE
-#&gt; 18               FALSE                         FALSE                    FALSE
-#&gt; 19               FALSE                         FALSE                    FALSE
-#&gt; 20               FALSE                         FALSE                    FALSE
-#&gt; 21               FALSE                         FALSE                    FALSE
-#&gt; 22               FALSE                         FALSE                    FALSE
-#&gt; 23               FALSE                         FALSE                    FALSE
-#&gt; 24               FALSE                         FALSE                    FALSE
-#&gt; 25               FALSE                         FALSE                    FALSE
-#&gt; 26               FALSE                         FALSE                    FALSE
-#&gt; 27               FALSE                         FALSE                    FALSE
-#&gt; 28               FALSE                         FALSE                    FALSE
-#&gt; 29               FALSE                         FALSE                    FALSE
-#&gt; 30               FALSE                         FALSE                    FALSE
-#&gt; 31               FALSE                         FALSE                    FALSE
-#&gt; 32               FALSE                         FALSE                    FALSE
-#&gt; 33               FALSE                         FALSE                    FALSE
-#&gt; 34                TRUE                         FALSE                    FALSE
-#&gt; 35               FALSE                         FALSE                    FALSE
-#&gt; 36               FALSE                         FALSE                    FALSE
-#&gt; 37                TRUE                         FALSE                    FALSE
-#&gt; 38               FALSE                         FALSE                    FALSE
-#&gt; 39                TRUE                         FALSE                    FALSE
-#&gt; 40               FALSE                         FALSE                    FALSE
-#&gt; 41               FALSE                         FALSE                    FALSE
-#&gt; 42               FALSE                         FALSE                    FALSE
-#&gt; 43               FALSE                         FALSE                    FALSE
-#&gt; 44               FALSE                         FALSE                    FALSE
-#&gt; 45               FALSE                         FALSE                    FALSE
-#&gt; 46               FALSE                         FALSE                    FALSE
-#&gt; 47               FALSE                         FALSE                    FALSE
-#&gt; 48               FALSE                         FALSE                    FALSE
-#&gt; 49               FALSE                         FALSE                    FALSE
-#&gt; 50               FALSE                         FALSE                    FALSE
-#&gt; 51               FALSE                         FALSE                    FALSE
-#&gt; 52               FALSE                         FALSE                    FALSE
-#&gt; 53               FALSE                         FALSE                    FALSE
-#&gt; 54               FALSE                         FALSE                    FALSE
-#&gt; 55               FALSE                         FALSE                    FALSE
-#&gt; 56               FALSE                         FALSE                    FALSE
-#&gt; 57               FALSE                         FALSE                    FALSE
-#&gt; 58               FALSE                         FALSE                    FALSE
-#&gt; 59               FALSE                         FALSE                    FALSE
-#&gt; 60               FALSE                         FALSE                    FALSE
-#&gt; 61               FALSE                         FALSE                    FALSE
-#&gt; 62               FALSE                         FALSE                    FALSE
-#&gt; 63               FALSE                         FALSE                    FALSE
-#&gt; 64               FALSE                         FALSE                    FALSE
-#&gt; 65               FALSE                         FALSE                    FALSE
-#&gt; 66               FALSE                         FALSE                    FALSE
-#&gt; 67               FALSE                         FALSE                    FALSE
-#&gt; 68               FALSE                         FALSE                    FALSE
-#&gt; 69               FALSE                         FALSE                    FALSE
-#&gt; 70               FALSE                         FALSE                    FALSE
-#&gt; 71               FALSE                          TRUE                    FALSE
-#&gt; 72               FALSE                         FALSE                    FALSE
-#&gt; 73               FALSE                         FALSE                    FALSE
-#&gt; 74               FALSE                         FALSE                    FALSE
-#&gt; 75               FALSE                         FALSE                    FALSE
-#&gt; 76               FALSE                         FALSE                    FALSE
-#&gt; 77               FALSE                         FALSE                    FALSE
-#&gt; 78               FALSE                         FALSE                    FALSE
-#&gt; 79               FALSE                         FALSE                    FALSE
-#&gt; 80               FALSE                         FALSE                    FALSE
-#&gt; 81               FALSE                         FALSE                    FALSE
-#&gt; 82               FALSE                         FALSE                    FALSE
-#&gt; 83               FALSE                         FALSE                    FALSE
-#&gt; 84               FALSE                         FALSE                    FALSE
-#&gt; 85               FALSE                         FALSE                    FALSE
-#&gt; 86               FALSE                         FALSE                    FALSE
-#&gt; 87               FALSE                         FALSE                    FALSE
-#&gt; 88               FALSE                         FALSE                    FALSE
-#&gt; 89               FALSE                         FALSE                    FALSE
-#&gt; 90               FALSE                         FALSE                    FALSE
-#&gt; 91               FALSE                         FALSE                    FALSE
-#&gt; 92                TRUE                         FALSE                    FALSE
-#&gt; 93               FALSE                         FALSE                    FALSE
-#&gt; 94               FALSE                         FALSE                     TRUE
-#&gt; 95               FALSE                         FALSE                    FALSE
-#&gt; 96               FALSE                         FALSE                    FALSE
-#&gt; 97               FALSE                          TRUE                    FALSE
-#&gt; 98               FALSE                         FALSE                    FALSE
-#&gt; 99               FALSE                         FALSE                    FALSE
-#&gt; 100              FALSE                         FALSE                    FALSE
-#&gt;     renal disease diabetes complication malignancy
-#&gt; 1           FALSE                 FALSE      FALSE
-#&gt; 2           FALSE                 FALSE      FALSE
-#&gt; 3           FALSE                 FALSE      FALSE
-#&gt; 4           FALSE                 FALSE      FALSE
-#&gt; 5           FALSE                 FALSE      FALSE
-#&gt; 6           FALSE                 FALSE      FALSE
-#&gt; 7           FALSE                 FALSE      FALSE
-#&gt; 8              NA                    NA         NA
-#&gt; 9              NA                    NA         NA
-#&gt; 10             NA                    NA         NA
-#&gt; 11             NA                    NA         NA
-#&gt; 12             NA                    NA         NA
-#&gt; 13             NA                    NA         NA
-#&gt; 14             NA                    NA         NA
-#&gt; 15             NA                    NA         NA
-#&gt; 16          FALSE                 FALSE       TRUE
-#&gt; 17          FALSE                 FALSE      FALSE
-#&gt; 18          FALSE                 FALSE      FALSE
-#&gt; 19          FALSE                 FALSE      FALSE
-#&gt; 20          FALSE                 FALSE      FALSE
-#&gt; 21          FALSE                 FALSE      FALSE
-#&gt; 22          FALSE                 FALSE      FALSE
-#&gt; 23          FALSE                 FALSE      FALSE
-#&gt; 24          FALSE                 FALSE      FALSE
-#&gt; 25          FALSE                 FALSE      FALSE
-#&gt; 26          FALSE                 FALSE      FALSE
-#&gt; 27          FALSE                 FALSE      FALSE
-#&gt; 28          FALSE                 FALSE      FALSE
-#&gt; 29          FALSE                 FALSE      FALSE
-#&gt; 30          FALSE                 FALSE      FALSE
-#&gt; 31          FALSE                 FALSE      FALSE
-#&gt; 32          FALSE                 FALSE      FALSE
-#&gt; 33          FALSE                 FALSE      FALSE
-#&gt; 34          FALSE                 FALSE      FALSE
-#&gt; 35          FALSE                 FALSE      FALSE
-#&gt; 36          FALSE                 FALSE      FALSE
-#&gt; 37          FALSE                 FALSE       TRUE
-#&gt; 38          FALSE                 FALSE      FALSE
-#&gt; 39          FALSE                 FALSE      FALSE
-#&gt; 40          FALSE                 FALSE      FALSE
-#&gt; 41          FALSE                 FALSE      FALSE
-#&gt; 42          FALSE                 FALSE      FALSE
-#&gt; 43          FALSE                 FALSE      FALSE
-#&gt; 44          FALSE                 FALSE      FALSE
-#&gt; 45          FALSE                 FALSE       TRUE
-#&gt; 46          FALSE                 FALSE      FALSE
-#&gt; 47          FALSE                 FALSE      FALSE
-#&gt; 48          FALSE                 FALSE      FALSE
-#&gt; 49          FALSE                 FALSE      FALSE
-#&gt; 50          FALSE                  TRUE      FALSE
-#&gt; 51          FALSE                 FALSE      FALSE
-#&gt; 52          FALSE                 FALSE      FALSE
-#&gt; 53          FALSE                 FALSE      FALSE
-#&gt; 54          FALSE                 FALSE      FALSE
-#&gt; 55          FALSE                 FALSE       TRUE
-#&gt; 56          FALSE                 FALSE      FALSE
-#&gt; 57          FALSE                 FALSE      FALSE
-#&gt; 58          FALSE                 FALSE      FALSE
-#&gt; 59          FALSE                 FALSE       TRUE
-#&gt; 60          FALSE                 FALSE      FALSE
-#&gt; 61          FALSE                 FALSE      FALSE
-#&gt; 62          FALSE                 FALSE      FALSE
-#&gt; 63          FALSE                 FALSE      FALSE
-#&gt; 64          FALSE                 FALSE      FALSE
-#&gt; 65          FALSE                 FALSE      FALSE
-#&gt; 66          FALSE                 FALSE       TRUE
-#&gt; 67          FALSE                 FALSE      FALSE
-#&gt; 68          FALSE                 FALSE      FALSE
-#&gt; 69          FALSE                 FALSE      FALSE
-#&gt; 70          FALSE                 FALSE      FALSE
-#&gt; 71          FALSE                 FALSE       TRUE
-#&gt; 72          FALSE                 FALSE      FALSE
-#&gt; 73          FALSE                 FALSE      FALSE
-#&gt; 74          FALSE                 FALSE       TRUE
-#&gt; 75          FALSE                 FALSE      FALSE
-#&gt; 76          FALSE                 FALSE      FALSE
-#&gt; 77          FALSE                 FALSE       TRUE
-#&gt; 78          FALSE                 FALSE      FALSE
-#&gt; 79          FALSE                 FALSE      FALSE
-#&gt; 80          FALSE                 FALSE      FALSE
-#&gt; 81          FALSE                 FALSE       TRUE
-#&gt; 82          FALSE                 FALSE       TRUE
-#&gt; 83          FALSE                 FALSE      FALSE
-#&gt; 84          FALSE                 FALSE      FALSE
-#&gt; 85          FALSE                 FALSE      FALSE
-#&gt; 86          FALSE                 FALSE       TRUE
-#&gt; 87          FALSE                 FALSE      FALSE
-#&gt; 88          FALSE                 FALSE      FALSE
-#&gt; 89          FALSE                 FALSE      FALSE
-#&gt; 90          FALSE                 FALSE      FALSE
-#&gt; 91          FALSE                 FALSE      FALSE
-#&gt; 92          FALSE                 FALSE      FALSE
-#&gt; 93          FALSE                 FALSE       TRUE
-#&gt; 94          FALSE                 FALSE      FALSE
-#&gt; 95          FALSE                 FALSE      FALSE
-#&gt; 96          FALSE                 FALSE      FALSE
-#&gt; 97          FALSE                 FALSE      FALSE
-#&gt; 98          FALSE                 FALSE       TRUE
-#&gt; 99          FALSE                 FALSE      FALSE
-#&gt; 100         FALSE                 FALSE      FALSE
-#&gt;     moderate or severe liver disease metastatic solid tumor AIDS/HIV
-#&gt; 1                              FALSE                  FALSE    FALSE
-#&gt; 2                              FALSE                  FALSE    FALSE
-#&gt; 3                              FALSE                  FALSE    FALSE
-#&gt; 4                              FALSE                  FALSE    FALSE
-#&gt; 5                              FALSE                  FALSE    FALSE
-#&gt; 6                              FALSE                  FALSE    FALSE
-#&gt; 7                              FALSE                  FALSE    FALSE
-#&gt; 8                                 NA                     NA       NA
-#&gt; 9                                 NA                     NA       NA
-#&gt; 10                                NA                     NA       NA
-#&gt; 11                                NA                     NA       NA
-#&gt; 12                                NA                     NA       NA
-#&gt; 13                                NA                     NA       NA
-#&gt; 14                                NA                     NA       NA
-#&gt; 15                                NA                     NA       NA
-#&gt; 16                             FALSE                  FALSE    FALSE
-#&gt; 17                             FALSE                  FALSE    FALSE
-#&gt; 18                             FALSE                  FALSE    FALSE
-#&gt; 19                             FALSE                  FALSE    FALSE
-#&gt; 20                             FALSE                  FALSE    FALSE
-#&gt; 21                             FALSE                  FALSE    FALSE
-#&gt; 22                             FALSE                  FALSE    FALSE
-#&gt; 23                             FALSE                  FALSE    FALSE
-#&gt; 24                             FALSE                  FALSE    FALSE
-#&gt; 25                             FALSE                  FALSE    FALSE
-#&gt; 26                             FALSE                  FALSE    FALSE
-#&gt; 27                             FALSE                  FALSE    FALSE
-#&gt; 28                             FALSE                  FALSE    FALSE
-#&gt; 29                             FALSE                  FALSE    FALSE
-#&gt; 30                             FALSE                  FALSE    FALSE
-#&gt; 31                             FALSE                  FALSE    FALSE
-#&gt; 32                             FALSE                  FALSE    FALSE
-#&gt; 33                             FALSE                  FALSE    FALSE
-#&gt; 34                             FALSE                  FALSE    FALSE
-#&gt; 35                             FALSE                  FALSE    FALSE
-#&gt; 36                             FALSE                  FALSE    FALSE
-#&gt; 37                              TRUE                  FALSE    FALSE
-#&gt; 38                             FALSE                  FALSE    FALSE
-#&gt; 39                             FALSE                  FALSE    FALSE
-#&gt; 40                             FALSE                  FALSE    FALSE
-#&gt; 41                             FALSE                  FALSE    FALSE
-#&gt; 42                             FALSE                  FALSE    FALSE
-#&gt; 43                             FALSE                  FALSE    FALSE
-#&gt; 44                             FALSE                  FALSE     TRUE
-#&gt; 45                             FALSE                  FALSE    FALSE
-#&gt; 46                             FALSE                  FALSE    FALSE
-#&gt; 47                             FALSE                  FALSE    FALSE
-#&gt; 48                             FALSE                  FALSE    FALSE
-#&gt; 49                             FALSE                  FALSE    FALSE
-#&gt; 50                             FALSE                  FALSE    FALSE
-#&gt; 51                             FALSE                   TRUE    FALSE
-#&gt; 52                             FALSE                  FALSE    FALSE
-#&gt; 53                             FALSE                  FALSE    FALSE
-#&gt; 54                             FALSE                  FALSE    FALSE
-#&gt; 55                             FALSE                  FALSE    FALSE
-#&gt; 56                             FALSE                  FALSE    FALSE
-#&gt; 57                             FALSE                  FALSE    FALSE
-#&gt; 58                             FALSE                  FALSE    FALSE
-#&gt; 59                             FALSE                  FALSE    FALSE
-#&gt; 60                             FALSE                  FALSE    FALSE
-#&gt; 61                             FALSE                  FALSE    FALSE
-#&gt; 62                             FALSE                  FALSE    FALSE
-#&gt; 63                             FALSE                  FALSE    FALSE
-#&gt; 64                             FALSE                  FALSE    FALSE
-#&gt; 65                             FALSE                  FALSE    FALSE
-#&gt; 66                             FALSE                  FALSE    FALSE
-#&gt; 67                             FALSE                  FALSE    FALSE
-#&gt; 68                             FALSE                  FALSE    FALSE
-#&gt; 69                             FALSE                  FALSE    FALSE
-#&gt; 70                             FALSE                  FALSE    FALSE
-#&gt; 71                             FALSE                  FALSE    FALSE
-#&gt; 72                             FALSE                  FALSE    FALSE
-#&gt; 73                             FALSE                  FALSE    FALSE
-#&gt; 74                             FALSE                  FALSE    FALSE
-#&gt; 75                             FALSE                  FALSE    FALSE
-#&gt; 76                             FALSE                  FALSE    FALSE
-#&gt; 77                             FALSE                  FALSE    FALSE
-#&gt; 78                             FALSE                  FALSE    FALSE
-#&gt; 79                             FALSE                  FALSE    FALSE
-#&gt; 80                             FALSE                  FALSE    FALSE
-#&gt; 81                             FALSE                  FALSE    FALSE
-#&gt; 82                             FALSE                  FALSE    FALSE
-#&gt; 83                             FALSE                  FALSE    FALSE
-#&gt; 84                             FALSE                  FALSE    FALSE
-#&gt; 85                             FALSE                  FALSE    FALSE
-#&gt; 86                             FALSE                  FALSE    FALSE
-#&gt; 87                             FALSE                  FALSE    FALSE
-#&gt; 88                             FALSE                  FALSE    FALSE
-#&gt; 89                             FALSE                  FALSE    FALSE
-#&gt; 90                             FALSE                  FALSE    FALSE
-#&gt; 91                             FALSE                  FALSE    FALSE
-#&gt; 92                             FALSE                  FALSE    FALSE
-#&gt; 93                             FALSE                  FALSE    FALSE
-#&gt; 94                             FALSE                  FALSE    FALSE
-#&gt; 95                             FALSE                  FALSE    FALSE
-#&gt; 96                             FALSE                  FALSE    FALSE
-#&gt; 97                             FALSE                  FALSE    FALSE
-#&gt; 98                             FALSE                  FALSE    FALSE
-#&gt; 99                             FALSE                  FALSE    FALSE
-#&gt; 100                            FALSE                  FALSE    FALSE</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name charlson_icd10_rcs_myocardial_infarction
+#&gt; 1              Bivings, Devin                                    FALSE
+#&gt; 2            Liufau, Sue Lynn                                    FALSE
+#&gt; 3             Mitchell, Dalon                                    FALSE
+#&gt; 4                Perez, Vidal                                    FALSE
+#&gt; 5             Valdez, Antonio                                    FALSE
+#&gt; 6             al-Dib, Farhaan                                    FALSE
+#&gt; 7         el-Salehi, Mahuroos                                    FALSE
+#&gt; 8              Beehler, Kelly                                       NA
+#&gt; 9             Connors, Jaylyn                                       NA
+#&gt; 10           Lechuga, Anthony                                       NA
+#&gt; 11          Martinez, Columba                                       NA
+#&gt; 12            Mendoza, Nathan                                       NA
+#&gt; 13    Miller, Von Buddenbrock                                       NA
+#&gt; 14             Orozco, Daniel                                       NA
+#&gt; 15            Snider, Melanie                                       NA
+#&gt; 16   Cardenas Perez, Gabriela                                    FALSE
+#&gt; 17        al-Bashara, Shaahir                                    FALSE
+#&gt; 18     al-Asmar, Abdur Raheem                                    FALSE
+#&gt; 19           al-Dawood, Hasan                                    FALSE
+#&gt; 20         al-Ismail, Waleeda                                    FALSE
+#&gt; 21         al-Jafri, Shaheera                                    FALSE
+#&gt; 22         al-Kader, Siddeeqa                                    FALSE
+#&gt; 23           al-Karam, Ziyaad                                    FALSE
+#&gt; 24        al-Ramadan, Hanoona                                    FALSE
+#&gt; 25          al-Shaban, Mazeed                                    FALSE
+#&gt; 26         Alexander, Bethany                                    FALSE
+#&gt; 27            Arguello, Tommy                                    FALSE
+#&gt; 28              Austin, Maeve                                    FALSE
+#&gt; 29             Ball, Rockelle                                    FALSE
+#&gt; 30             Bean, Haileigh                                    FALSE
+#&gt; 31            Bessard, Marzel                                    FALSE
+#&gt; 32               Bishop, Alec                                    FALSE
+#&gt; 33             Brown, Patrick                                    FALSE
+#&gt; 34              Burges, Amber                                    FALSE
+#&gt; 35             Burton, Martin                                    FALSE
+#&gt; 36            Cannon, Timothy                                    FALSE
+#&gt; 37                Chung, Noor                                    FALSE
+#&gt; 38     Copeland-Doyle, Symone                                    FALSE
+#&gt; 39                  Doan, Sam                                    FALSE
+#&gt; 40          Dominguez, Suriel                                    FALSE
+#&gt; 41             el-Amiri, Jaad                                    FALSE
+#&gt; 42          el-Bashara, Najma                                    FALSE
+#&gt; 43            el-Diab, Nadeem                                    FALSE
+#&gt; 44           el-Faris, Shuaib                                    FALSE
+#&gt; 45           el-Hallal, Uwais                                    FALSE
+#&gt; 46          el-Hamad, Tayyiba                                    FALSE
+#&gt; 47        el-Jamail, Hudhaifa                                    FALSE
+#&gt; 48          el-Khalifa, Nawfa                                    FALSE
+#&gt; 49            el-Khan, Jasoor                                    FALSE
+#&gt; 50           el-Masri, Junaid                                    FALSE
+#&gt; 51         el-Sabir, Mumtaaza                                    FALSE
+#&gt; 52           el-Sadek, Wafaaa                                    FALSE
+#&gt; 53       el-Salih, Farajallah                                    FALSE
+#&gt; 54          el-Sharif, Nadeem                                    FALSE
+#&gt; 55           el-Zaki, Huwaida                                    FALSE
+#&gt; 56          Enriquez, Anthony                                    FALSE
+#&gt; 57       Fitzsimmons, Tabatha                                    FALSE
+#&gt; 58              Grim, Cheanna                                    FALSE
+#&gt; 59                Harder, Rio                                    FALSE
+#&gt; 60                Hood, Dania                                    FALSE
+#&gt; 61            Howard, Marcius                                    FALSE
+#&gt; 62               Huff, Hassan                                    FALSE
+#&gt; 63            Hughey, Darlene                                    FALSE
+#&gt; 64         Hutchinson, Joshua                                    FALSE
+#&gt; 65   Iron Cloud-Gresko, Sadie                                    FALSE
+#&gt; 66        Khamsoulinh, De'Von                                    FALSE
+#&gt; 67          Littlejohn, Kevin                                    FALSE
+#&gt; 68             Martin, Trevor                                    FALSE
+#&gt; 69           Martinez, Alison                                    FALSE
+#&gt; 70           Mendoza, Jessica                                    FALSE
+#&gt; 71               Mills, Henry                                    FALSE
+#&gt; 72               Murray, Eric                                    FALSE
+#&gt; 73              Nguyen, Hoang                                    FALSE
+#&gt; 74               Pappas, Cole                                    FALSE
+#&gt; 75          Pearsall, Deontre                                    FALSE
+#&gt; 76            Pena, Francisco                                    FALSE
+#&gt; 77         Peterson, Brittany                                    FALSE
+#&gt; 78             Polvon, Alicia                                    FALSE
+#&gt; 79              Quick, Miriah                                    FALSE
+#&gt; 80              Raab, Jeannie                                    FALSE
+#&gt; 81              Rice, Jamissa                                    FALSE
+#&gt; 82         Rockwell, Savannah                                    FALSE
+#&gt; 83          Rodriquez, Monica                                    FALSE
+#&gt; 84               Romero, Carl                                    FALSE
+#&gt; 85  Rosales-Marroquin, Monika                                    FALSE
+#&gt; 86                  Sam, Niki                                    FALSE
+#&gt; 87              Sanchez, Ryan                                    FALSE
+#&gt; 88              Sharma, Katie                                    FALSE
+#&gt; 89        Summerhays, Spencer                                    FALSE
+#&gt; 90             Thompson, Trae                                    FALSE
+#&gt; 91  Torres Escalante, Herbert                                    FALSE
+#&gt; 92    Trader-Bankston, J'Quan                                    FALSE
+#&gt; 93                Tram, Medha                                    FALSE
+#&gt; 94             Vaclav, Taylor                                    FALSE
+#&gt; 95              Wang, Phillip                                    FALSE
+#&gt; 96            Ventura, Joshua                                    FALSE
+#&gt; 97           Whitaker, Taylor                                    FALSE
+#&gt; 98          Vogltanz, Michael                                    FALSE
+#&gt; 99                  Wu, Lucas                                    FALSE
+#&gt; 100             Wuertz, Jenny                                    FALSE
+#&gt;     charlson_icd10_rcs_congestive_heart_failure
+#&gt; 1                                         FALSE
+#&gt; 2                                         FALSE
+#&gt; 3                                         FALSE
+#&gt; 4                                         FALSE
+#&gt; 5                                         FALSE
+#&gt; 6                                         FALSE
+#&gt; 7                                         FALSE
+#&gt; 8                                            NA
+#&gt; 9                                            NA
+#&gt; 10                                           NA
+#&gt; 11                                           NA
+#&gt; 12                                           NA
+#&gt; 13                                           NA
+#&gt; 14                                           NA
+#&gt; 15                                           NA
+#&gt; 16                                        FALSE
+#&gt; 17                                        FALSE
+#&gt; 18                                        FALSE
+#&gt; 19                                        FALSE
+#&gt; 20                                        FALSE
+#&gt; 21                                        FALSE
+#&gt; 22                                        FALSE
+#&gt; 23                                        FALSE
+#&gt; 24                                        FALSE
+#&gt; 25                                        FALSE
+#&gt; 26                                        FALSE
+#&gt; 27                                        FALSE
+#&gt; 28                                        FALSE
+#&gt; 29                                        FALSE
+#&gt; 30                                        FALSE
+#&gt; 31                                        FALSE
+#&gt; 32                                        FALSE
+#&gt; 33                                        FALSE
+#&gt; 34                                        FALSE
+#&gt; 35                                        FALSE
+#&gt; 36                                        FALSE
+#&gt; 37                                        FALSE
+#&gt; 38                                        FALSE
+#&gt; 39                                        FALSE
+#&gt; 40                                        FALSE
+#&gt; 41                                        FALSE
+#&gt; 42                                        FALSE
+#&gt; 43                                        FALSE
+#&gt; 44                                        FALSE
+#&gt; 45                                        FALSE
+#&gt; 46                                        FALSE
+#&gt; 47                                        FALSE
+#&gt; 48                                        FALSE
+#&gt; 49                                        FALSE
+#&gt; 50                                        FALSE
+#&gt; 51                                        FALSE
+#&gt; 52                                        FALSE
+#&gt; 53                                        FALSE
+#&gt; 54                                        FALSE
+#&gt; 55                                        FALSE
+#&gt; 56                                        FALSE
+#&gt; 57                                         TRUE
+#&gt; 58                                        FALSE
+#&gt; 59                                        FALSE
+#&gt; 60                                        FALSE
+#&gt; 61                                         TRUE
+#&gt; 62                                        FALSE
+#&gt; 63                                        FALSE
+#&gt; 64                                        FALSE
+#&gt; 65                                        FALSE
+#&gt; 66                                        FALSE
+#&gt; 67                                        FALSE
+#&gt; 68                                        FALSE
+#&gt; 69                                        FALSE
+#&gt; 70                                        FALSE
+#&gt; 71                                        FALSE
+#&gt; 72                                        FALSE
+#&gt; 73                                        FALSE
+#&gt; 74                                        FALSE
+#&gt; 75                                        FALSE
+#&gt; 76                                        FALSE
+#&gt; 77                                        FALSE
+#&gt; 78                                        FALSE
+#&gt; 79                                        FALSE
+#&gt; 80                                        FALSE
+#&gt; 81                                        FALSE
+#&gt; 82                                        FALSE
+#&gt; 83                                        FALSE
+#&gt; 84                                        FALSE
+#&gt; 85                                        FALSE
+#&gt; 86                                        FALSE
+#&gt; 87                                        FALSE
+#&gt; 88                                        FALSE
+#&gt; 89                                        FALSE
+#&gt; 90                                        FALSE
+#&gt; 91                                        FALSE
+#&gt; 92                                        FALSE
+#&gt; 93                                        FALSE
+#&gt; 94                                        FALSE
+#&gt; 95                                        FALSE
+#&gt; 96                                        FALSE
+#&gt; 97                                        FALSE
+#&gt; 98                                        FALSE
+#&gt; 99                                        FALSE
+#&gt; 100                                       FALSE
+#&gt;     charlson_icd10_rcs_peripheral_vascular_disease
+#&gt; 1                                            FALSE
+#&gt; 2                                            FALSE
+#&gt; 3                                            FALSE
+#&gt; 4                                            FALSE
+#&gt; 5                                            FALSE
+#&gt; 6                                            FALSE
+#&gt; 7                                            FALSE
+#&gt; 8                                               NA
+#&gt; 9                                               NA
+#&gt; 10                                              NA
+#&gt; 11                                              NA
+#&gt; 12                                              NA
+#&gt; 13                                              NA
+#&gt; 14                                              NA
+#&gt; 15                                              NA
+#&gt; 16                                           FALSE
+#&gt; 17                                           FALSE
+#&gt; 18                                           FALSE
+#&gt; 19                                           FALSE
+#&gt; 20                                           FALSE
+#&gt; 21                                           FALSE
+#&gt; 22                                           FALSE
+#&gt; 23                                           FALSE
+#&gt; 24                                           FALSE
+#&gt; 25                                           FALSE
+#&gt; 26                                           FALSE
+#&gt; 27                                           FALSE
+#&gt; 28                                           FALSE
+#&gt; 29                                           FALSE
+#&gt; 30                                           FALSE
+#&gt; 31                                           FALSE
+#&gt; 32                                           FALSE
+#&gt; 33                                           FALSE
+#&gt; 34                                           FALSE
+#&gt; 35                                           FALSE
+#&gt; 36                                           FALSE
+#&gt; 37                                           FALSE
+#&gt; 38                                           FALSE
+#&gt; 39                                           FALSE
+#&gt; 40                                           FALSE
+#&gt; 41                                           FALSE
+#&gt; 42                                           FALSE
+#&gt; 43                                           FALSE
+#&gt; 44                                           FALSE
+#&gt; 45                                           FALSE
+#&gt; 46                                           FALSE
+#&gt; 47                                           FALSE
+#&gt; 48                                           FALSE
+#&gt; 49                                           FALSE
+#&gt; 50                                           FALSE
+#&gt; 51                                           FALSE
+#&gt; 52                                           FALSE
+#&gt; 53                                           FALSE
+#&gt; 54                                           FALSE
+#&gt; 55                                            TRUE
+#&gt; 56                                           FALSE
+#&gt; 57                                           FALSE
+#&gt; 58                                           FALSE
+#&gt; 59                                           FALSE
+#&gt; 60                                           FALSE
+#&gt; 61                                           FALSE
+#&gt; 62                                           FALSE
+#&gt; 63                                           FALSE
+#&gt; 64                                           FALSE
+#&gt; 65                                           FALSE
+#&gt; 66                                           FALSE
+#&gt; 67                                           FALSE
+#&gt; 68                                           FALSE
+#&gt; 69                                           FALSE
+#&gt; 70                                           FALSE
+#&gt; 71                                           FALSE
+#&gt; 72                                           FALSE
+#&gt; 73                                           FALSE
+#&gt; 74                                           FALSE
+#&gt; 75                                           FALSE
+#&gt; 76                                           FALSE
+#&gt; 77                                           FALSE
+#&gt; 78                                           FALSE
+#&gt; 79                                           FALSE
+#&gt; 80                                           FALSE
+#&gt; 81                                           FALSE
+#&gt; 82                                           FALSE
+#&gt; 83                                           FALSE
+#&gt; 84                                           FALSE
+#&gt; 85                                           FALSE
+#&gt; 86                                           FALSE
+#&gt; 87                                           FALSE
+#&gt; 88                                           FALSE
+#&gt; 89                                           FALSE
+#&gt; 90                                           FALSE
+#&gt; 91                                           FALSE
+#&gt; 92                                           FALSE
+#&gt; 93                                           FALSE
+#&gt; 94                                           FALSE
+#&gt; 95                                           FALSE
+#&gt; 96                                           FALSE
+#&gt; 97                                           FALSE
+#&gt; 98                                           FALSE
+#&gt; 99                                           FALSE
+#&gt; 100                                          FALSE
+#&gt;     charlson_icd10_rcs_cerebrovascular_disease charlson_icd10_rcs_dementia
+#&gt; 1                                        FALSE                       FALSE
+#&gt; 2                                        FALSE                       FALSE
+#&gt; 3                                        FALSE                       FALSE
+#&gt; 4                                        FALSE                       FALSE
+#&gt; 5                                        FALSE                       FALSE
+#&gt; 6                                        FALSE                       FALSE
+#&gt; 7                                        FALSE                       FALSE
+#&gt; 8                                           NA                          NA
+#&gt; 9                                           NA                          NA
+#&gt; 10                                          NA                          NA
+#&gt; 11                                          NA                          NA
+#&gt; 12                                          NA                          NA
+#&gt; 13                                          NA                          NA
+#&gt; 14                                          NA                          NA
+#&gt; 15                                          NA                          NA
+#&gt; 16                                       FALSE                       FALSE
+#&gt; 17                                       FALSE                       FALSE
+#&gt; 18                                       FALSE                       FALSE
+#&gt; 19                                       FALSE                       FALSE
+#&gt; 20                                       FALSE                       FALSE
+#&gt; 21                                       FALSE                       FALSE
+#&gt; 22                                       FALSE                       FALSE
+#&gt; 23                                       FALSE                       FALSE
+#&gt; 24                                       FALSE                       FALSE
+#&gt; 25                                       FALSE                       FALSE
+#&gt; 26                                       FALSE                       FALSE
+#&gt; 27                                       FALSE                       FALSE
+#&gt; 28                                       FALSE                       FALSE
+#&gt; 29                                       FALSE                       FALSE
+#&gt; 30                                       FALSE                       FALSE
+#&gt; 31                                       FALSE                       FALSE
+#&gt; 32                                       FALSE                       FALSE
+#&gt; 33                                       FALSE                       FALSE
+#&gt; 34                                       FALSE                       FALSE
+#&gt; 35                                       FALSE                       FALSE
+#&gt; 36                                       FALSE                       FALSE
+#&gt; 37                                       FALSE                       FALSE
+#&gt; 38                                        TRUE                       FALSE
+#&gt; 39                                       FALSE                       FALSE
+#&gt; 40                                       FALSE                       FALSE
+#&gt; 41                                       FALSE                       FALSE
+#&gt; 42                                        TRUE                       FALSE
+#&gt; 43                                       FALSE                       FALSE
+#&gt; 44                                       FALSE                        TRUE
+#&gt; 45                                       FALSE                       FALSE
+#&gt; 46                                       FALSE                       FALSE
+#&gt; 47                                       FALSE                       FALSE
+#&gt; 48                                       FALSE                       FALSE
+#&gt; 49                                       FALSE                       FALSE
+#&gt; 50                                       FALSE                       FALSE
+#&gt; 51                                       FALSE                       FALSE
+#&gt; 52                                        TRUE                       FALSE
+#&gt; 53                                       FALSE                       FALSE
+#&gt; 54                                       FALSE                       FALSE
+#&gt; 55                                       FALSE                       FALSE
+#&gt; 56                                       FALSE                       FALSE
+#&gt; 57                                       FALSE                       FALSE
+#&gt; 58                                       FALSE                       FALSE
+#&gt; 59                                       FALSE                       FALSE
+#&gt; 60                                       FALSE                       FALSE
+#&gt; 61                                       FALSE                       FALSE
+#&gt; 62                                       FALSE                       FALSE
+#&gt; 63                                       FALSE                       FALSE
+#&gt; 64                                       FALSE                       FALSE
+#&gt; 65                                       FALSE                       FALSE
+#&gt; 66                                       FALSE                       FALSE
+#&gt; 67                                       FALSE                       FALSE
+#&gt; 68                                       FALSE                       FALSE
+#&gt; 69                                       FALSE                       FALSE
+#&gt; 70                                       FALSE                       FALSE
+#&gt; 71                                       FALSE                       FALSE
+#&gt; 72                                       FALSE                       FALSE
+#&gt; 73                                       FALSE                       FALSE
+#&gt; 74                                       FALSE                       FALSE
+#&gt; 75                                       FALSE                       FALSE
+#&gt; 76                                       FALSE                       FALSE
+#&gt; 77                                       FALSE                       FALSE
+#&gt; 78                                       FALSE                       FALSE
+#&gt; 79                                       FALSE                       FALSE
+#&gt; 80                                       FALSE                       FALSE
+#&gt; 81                                       FALSE                       FALSE
+#&gt; 82                                       FALSE                       FALSE
+#&gt; 83                                       FALSE                       FALSE
+#&gt; 84                                       FALSE                       FALSE
+#&gt; 85                                       FALSE                       FALSE
+#&gt; 86                                       FALSE                       FALSE
+#&gt; 87                                       FALSE                       FALSE
+#&gt; 88                                       FALSE                       FALSE
+#&gt; 89                                       FALSE                       FALSE
+#&gt; 90                                       FALSE                       FALSE
+#&gt; 91                                       FALSE                       FALSE
+#&gt; 92                                       FALSE                       FALSE
+#&gt; 93                                       FALSE                       FALSE
+#&gt; 94                                       FALSE                       FALSE
+#&gt; 95                                       FALSE                        TRUE
+#&gt; 96                                       FALSE                       FALSE
+#&gt; 97                                       FALSE                       FALSE
+#&gt; 98                                       FALSE                       FALSE
+#&gt; 99                                       FALSE                       FALSE
+#&gt; 100                                      FALSE                       FALSE
+#&gt;     charlson_icd10_rcs_chronic_pulmonary_disease
+#&gt; 1                                          FALSE
+#&gt; 2                                          FALSE
+#&gt; 3                                          FALSE
+#&gt; 4                                          FALSE
+#&gt; 5                                          FALSE
+#&gt; 6                                          FALSE
+#&gt; 7                                          FALSE
+#&gt; 8                                             NA
+#&gt; 9                                             NA
+#&gt; 10                                            NA
+#&gt; 11                                            NA
+#&gt; 12                                            NA
+#&gt; 13                                            NA
+#&gt; 14                                            NA
+#&gt; 15                                            NA
+#&gt; 16                                         FALSE
+#&gt; 17                                         FALSE
+#&gt; 18                                         FALSE
+#&gt; 19                                         FALSE
+#&gt; 20                                         FALSE
+#&gt; 21                                         FALSE
+#&gt; 22                                         FALSE
+#&gt; 23                                         FALSE
+#&gt; 24                                         FALSE
+#&gt; 25                                         FALSE
+#&gt; 26                                         FALSE
+#&gt; 27                                         FALSE
+#&gt; 28                                         FALSE
+#&gt; 29                                         FALSE
+#&gt; 30                                         FALSE
+#&gt; 31                                         FALSE
+#&gt; 32                                         FALSE
+#&gt; 33                                         FALSE
+#&gt; 34                                         FALSE
+#&gt; 35                                         FALSE
+#&gt; 36                                         FALSE
+#&gt; 37                                         FALSE
+#&gt; 38                                         FALSE
+#&gt; 39                                         FALSE
+#&gt; 40                                         FALSE
+#&gt; 41                                         FALSE
+#&gt; 42                                         FALSE
+#&gt; 43                                         FALSE
+#&gt; 44                                         FALSE
+#&gt; 45                                         FALSE
+#&gt; 46                                         FALSE
+#&gt; 47                                         FALSE
+#&gt; 48                                         FALSE
+#&gt; 49                                         FALSE
+#&gt; 50                                         FALSE
+#&gt; 51                                         FALSE
+#&gt; 52                                         FALSE
+#&gt; 53                                         FALSE
+#&gt; 54                                         FALSE
+#&gt; 55                                         FALSE
+#&gt; 56                                         FALSE
+#&gt; 57                                         FALSE
+#&gt; 58                                         FALSE
+#&gt; 59                                         FALSE
+#&gt; 60                                         FALSE
+#&gt; 61                                         FALSE
+#&gt; 62                                         FALSE
+#&gt; 63                                         FALSE
+#&gt; 64                                         FALSE
+#&gt; 65                                         FALSE
+#&gt; 66                                         FALSE
+#&gt; 67                                         FALSE
+#&gt; 68                                         FALSE
+#&gt; 69                                         FALSE
+#&gt; 70                                         FALSE
+#&gt; 71                                         FALSE
+#&gt; 72                                         FALSE
+#&gt; 73                                         FALSE
+#&gt; 74                                         FALSE
+#&gt; 75                                         FALSE
+#&gt; 76                                         FALSE
+#&gt; 77                                         FALSE
+#&gt; 78                                         FALSE
+#&gt; 79                                         FALSE
+#&gt; 80                                         FALSE
+#&gt; 81                                         FALSE
+#&gt; 82                                         FALSE
+#&gt; 83                                         FALSE
+#&gt; 84                                         FALSE
+#&gt; 85                                         FALSE
+#&gt; 86                                         FALSE
+#&gt; 87                                         FALSE
+#&gt; 88                                         FALSE
+#&gt; 89                                         FALSE
+#&gt; 90                                         FALSE
+#&gt; 91                                         FALSE
+#&gt; 92                                         FALSE
+#&gt; 93                                         FALSE
+#&gt; 94                                         FALSE
+#&gt; 95                                         FALSE
+#&gt; 96                                         FALSE
+#&gt; 97                                         FALSE
+#&gt; 98                                         FALSE
+#&gt; 99                                         FALSE
+#&gt; 100                                        FALSE
+#&gt;     charlson_icd10_rcs_rheumatic_disease
+#&gt; 1                                  FALSE
+#&gt; 2                                  FALSE
+#&gt; 3                                  FALSE
+#&gt; 4                                  FALSE
+#&gt; 5                                  FALSE
+#&gt; 6                                  FALSE
+#&gt; 7                                  FALSE
+#&gt; 8                                     NA
+#&gt; 9                                     NA
+#&gt; 10                                    NA
+#&gt; 11                                    NA
+#&gt; 12                                    NA
+#&gt; 13                                    NA
+#&gt; 14                                    NA
+#&gt; 15                                    NA
+#&gt; 16                                 FALSE
+#&gt; 17                                 FALSE
+#&gt; 18                                 FALSE
+#&gt; 19                                 FALSE
+#&gt; 20                                 FALSE
+#&gt; 21                                 FALSE
+#&gt; 22                                 FALSE
+#&gt; 23                                 FALSE
+#&gt; 24                                 FALSE
+#&gt; 25                                 FALSE
+#&gt; 26                                 FALSE
+#&gt; 27                                 FALSE
+#&gt; 28                                 FALSE
+#&gt; 29                                 FALSE
+#&gt; 30                                 FALSE
+#&gt; 31                                 FALSE
+#&gt; 32                                 FALSE
+#&gt; 33                                 FALSE
+#&gt; 34                                 FALSE
+#&gt; 35                                 FALSE
+#&gt; 36                                 FALSE
+#&gt; 37                                 FALSE
+#&gt; 38                                 FALSE
+#&gt; 39                                 FALSE
+#&gt; 40                                 FALSE
+#&gt; 41                                 FALSE
+#&gt; 42                                 FALSE
+#&gt; 43                                 FALSE
+#&gt; 44                                 FALSE
+#&gt; 45                                 FALSE
+#&gt; 46                                 FALSE
+#&gt; 47                                 FALSE
+#&gt; 48                                 FALSE
+#&gt; 49                                 FALSE
+#&gt; 50                                 FALSE
+#&gt; 51                                 FALSE
+#&gt; 52                                 FALSE
+#&gt; 53                                 FALSE
+#&gt; 54                                 FALSE
+#&gt; 55                                 FALSE
+#&gt; 56                                 FALSE
+#&gt; 57                                 FALSE
+#&gt; 58                                 FALSE
+#&gt; 59                                 FALSE
+#&gt; 60                                 FALSE
+#&gt; 61                                 FALSE
+#&gt; 62                                 FALSE
+#&gt; 63                                 FALSE
+#&gt; 64                                 FALSE
+#&gt; 65                                  TRUE
+#&gt; 66                                 FALSE
+#&gt; 67                                 FALSE
+#&gt; 68                                 FALSE
+#&gt; 69                                 FALSE
+#&gt; 70                                 FALSE
+#&gt; 71                                 FALSE
+#&gt; 72                                 FALSE
+#&gt; 73                                 FALSE
+#&gt; 74                                  TRUE
+#&gt; 75                                 FALSE
+#&gt; 76                                 FALSE
+#&gt; 77                                 FALSE
+#&gt; 78                                 FALSE
+#&gt; 79                                 FALSE
+#&gt; 80                                  TRUE
+#&gt; 81                                 FALSE
+#&gt; 82                                 FALSE
+#&gt; 83                                 FALSE
+#&gt; 84                                 FALSE
+#&gt; 85                                 FALSE
+#&gt; 86                                 FALSE
+#&gt; 87                                 FALSE
+#&gt; 88                                 FALSE
+#&gt; 89                                 FALSE
+#&gt; 90                                 FALSE
+#&gt; 91                                 FALSE
+#&gt; 92                                 FALSE
+#&gt; 93                                 FALSE
+#&gt; 94                                 FALSE
+#&gt; 95                                 FALSE
+#&gt; 96                                 FALSE
+#&gt; 97                                 FALSE
+#&gt; 98                                 FALSE
+#&gt; 99                                 FALSE
+#&gt; 100                                FALSE
+#&gt;     charlson_icd10_rcs_hemiplegia_or_paraplegia
+#&gt; 1                                         FALSE
+#&gt; 2                                         FALSE
+#&gt; 3                                         FALSE
+#&gt; 4                                         FALSE
+#&gt; 5                                         FALSE
+#&gt; 6                                         FALSE
+#&gt; 7                                         FALSE
+#&gt; 8                                            NA
+#&gt; 9                                            NA
+#&gt; 10                                           NA
+#&gt; 11                                           NA
+#&gt; 12                                           NA
+#&gt; 13                                           NA
+#&gt; 14                                           NA
+#&gt; 15                                           NA
+#&gt; 16                                        FALSE
+#&gt; 17                                         TRUE
+#&gt; 18                                        FALSE
+#&gt; 19                                        FALSE
+#&gt; 20                                        FALSE
+#&gt; 21                                        FALSE
+#&gt; 22                                        FALSE
+#&gt; 23                                        FALSE
+#&gt; 24                                        FALSE
+#&gt; 25                                        FALSE
+#&gt; 26                                        FALSE
+#&gt; 27                                        FALSE
+#&gt; 28                                        FALSE
+#&gt; 29                                        FALSE
+#&gt; 30                                        FALSE
+#&gt; 31                                        FALSE
+#&gt; 32                                        FALSE
+#&gt; 33                                        FALSE
+#&gt; 34                                        FALSE
+#&gt; 35                                        FALSE
+#&gt; 36                                        FALSE
+#&gt; 37                                        FALSE
+#&gt; 38                                        FALSE
+#&gt; 39                                        FALSE
+#&gt; 40                                        FALSE
+#&gt; 41                                        FALSE
+#&gt; 42                                        FALSE
+#&gt; 43                                        FALSE
+#&gt; 44                                        FALSE
+#&gt; 45                                        FALSE
+#&gt; 46                                        FALSE
+#&gt; 47                                        FALSE
+#&gt; 48                                        FALSE
+#&gt; 49                                        FALSE
+#&gt; 50                                        FALSE
+#&gt; 51                                        FALSE
+#&gt; 52                                        FALSE
+#&gt; 53                                        FALSE
+#&gt; 54                                        FALSE
+#&gt; 55                                        FALSE
+#&gt; 56                                        FALSE
+#&gt; 57                                        FALSE
+#&gt; 58                                        FALSE
+#&gt; 59                                        FALSE
+#&gt; 60                                        FALSE
+#&gt; 61                                        FALSE
+#&gt; 62                                        FALSE
+#&gt; 63                                        FALSE
+#&gt; 64                                        FALSE
+#&gt; 65                                        FALSE
+#&gt; 66                                        FALSE
+#&gt; 67                                        FALSE
+#&gt; 68                                        FALSE
+#&gt; 69                                        FALSE
+#&gt; 70                                        FALSE
+#&gt; 71                                        FALSE
+#&gt; 72                                        FALSE
+#&gt; 73                                        FALSE
+#&gt; 74                                        FALSE
+#&gt; 75                                        FALSE
+#&gt; 76                                        FALSE
+#&gt; 77                                        FALSE
+#&gt; 78                                        FALSE
+#&gt; 79                                        FALSE
+#&gt; 80                                        FALSE
+#&gt; 81                                        FALSE
+#&gt; 82                                        FALSE
+#&gt; 83                                        FALSE
+#&gt; 84                                        FALSE
+#&gt; 85                                        FALSE
+#&gt; 86                                        FALSE
+#&gt; 87                                        FALSE
+#&gt; 88                                        FALSE
+#&gt; 89                                        FALSE
+#&gt; 90                                        FALSE
+#&gt; 91                                        FALSE
+#&gt; 92                                        FALSE
+#&gt; 93                                        FALSE
+#&gt; 94                                         TRUE
+#&gt; 95                                        FALSE
+#&gt; 96                                        FALSE
+#&gt; 97                                        FALSE
+#&gt; 98                                        FALSE
+#&gt; 99                                        FALSE
+#&gt; 100                                       FALSE
+#&gt;     charlson_icd10_rcs_renal_disease charlson_icd10_rcs_diabetes_complication
+#&gt; 1                              FALSE                                    FALSE
+#&gt; 2                              FALSE                                    FALSE
+#&gt; 3                              FALSE                                    FALSE
+#&gt; 4                              FALSE                                    FALSE
+#&gt; 5                              FALSE                                    FALSE
+#&gt; 6                              FALSE                                    FALSE
+#&gt; 7                              FALSE                                    FALSE
+#&gt; 8                                 NA                                       NA
+#&gt; 9                                 NA                                       NA
+#&gt; 10                                NA                                       NA
+#&gt; 11                                NA                                       NA
+#&gt; 12                                NA                                       NA
+#&gt; 13                                NA                                       NA
+#&gt; 14                                NA                                       NA
+#&gt; 15                                NA                                       NA
+#&gt; 16                             FALSE                                    FALSE
+#&gt; 17                             FALSE                                    FALSE
+#&gt; 18                             FALSE                                    FALSE
+#&gt; 19                             FALSE                                    FALSE
+#&gt; 20                             FALSE                                    FALSE
+#&gt; 21                             FALSE                                    FALSE
+#&gt; 22                             FALSE                                    FALSE
+#&gt; 23                             FALSE                                    FALSE
+#&gt; 24                             FALSE                                    FALSE
+#&gt; 25                             FALSE                                    FALSE
+#&gt; 26                             FALSE                                    FALSE
+#&gt; 27                             FALSE                                    FALSE
+#&gt; 28                             FALSE                                    FALSE
+#&gt; 29                             FALSE                                    FALSE
+#&gt; 30                             FALSE                                    FALSE
+#&gt; 31                             FALSE                                    FALSE
+#&gt; 32                             FALSE                                    FALSE
+#&gt; 33                             FALSE                                    FALSE
+#&gt; 34                             FALSE                                    FALSE
+#&gt; 35                             FALSE                                    FALSE
+#&gt; 36                             FALSE                                    FALSE
+#&gt; 37                             FALSE                                    FALSE
+#&gt; 38                             FALSE                                    FALSE
+#&gt; 39                             FALSE                                    FALSE
+#&gt; 40                             FALSE                                    FALSE
+#&gt; 41                             FALSE                                    FALSE
+#&gt; 42                             FALSE                                    FALSE
+#&gt; 43                             FALSE                                    FALSE
+#&gt; 44                             FALSE                                    FALSE
+#&gt; 45                             FALSE                                    FALSE
+#&gt; 46                             FALSE                                    FALSE
+#&gt; 47                             FALSE                                    FALSE
+#&gt; 48                             FALSE                                    FALSE
+#&gt; 49                             FALSE                                    FALSE
+#&gt; 50                             FALSE                                     TRUE
+#&gt; 51                             FALSE                                    FALSE
+#&gt; 52                             FALSE                                    FALSE
+#&gt; 53                             FALSE                                    FALSE
+#&gt; 54                             FALSE                                    FALSE
+#&gt; 55                             FALSE                                    FALSE
+#&gt; 56                             FALSE                                    FALSE
+#&gt; 57                              TRUE                                    FALSE
+#&gt; 58                             FALSE                                    FALSE
+#&gt; 59                             FALSE                                    FALSE
+#&gt; 60                             FALSE                                    FALSE
+#&gt; 61                             FALSE                                    FALSE
+#&gt; 62                              TRUE                                    FALSE
+#&gt; 63                             FALSE                                    FALSE
+#&gt; 64                             FALSE                                    FALSE
+#&gt; 65                             FALSE                                    FALSE
+#&gt; 66                             FALSE                                    FALSE
+#&gt; 67                             FALSE                                    FALSE
+#&gt; 68                             FALSE                                    FALSE
+#&gt; 69                             FALSE                                    FALSE
+#&gt; 70                             FALSE                                    FALSE
+#&gt; 71                             FALSE                                     TRUE
+#&gt; 72                             FALSE                                    FALSE
+#&gt; 73                             FALSE                                    FALSE
+#&gt; 74                             FALSE                                    FALSE
+#&gt; 75                             FALSE                                    FALSE
+#&gt; 76                             FALSE                                    FALSE
+#&gt; 77                             FALSE                                    FALSE
+#&gt; 78                              TRUE                                    FALSE
+#&gt; 79                             FALSE                                    FALSE
+#&gt; 80                             FALSE                                    FALSE
+#&gt; 81                             FALSE                                    FALSE
+#&gt; 82                             FALSE                                    FALSE
+#&gt; 83                             FALSE                                    FALSE
+#&gt; 84                             FALSE                                    FALSE
+#&gt; 85                             FALSE                                    FALSE
+#&gt; 86                             FALSE                                    FALSE
+#&gt; 87                             FALSE                                    FALSE
+#&gt; 88                             FALSE                                    FALSE
+#&gt; 89                             FALSE                                    FALSE
+#&gt; 90                             FALSE                                    FALSE
+#&gt; 91                             FALSE                                    FALSE
+#&gt; 92                             FALSE                                    FALSE
+#&gt; 93                             FALSE                                    FALSE
+#&gt; 94                             FALSE                                    FALSE
+#&gt; 95                             FALSE                                    FALSE
+#&gt; 96                             FALSE                                    FALSE
+#&gt; 97                             FALSE                                     TRUE
+#&gt; 98                             FALSE                                    FALSE
+#&gt; 99                             FALSE                                    FALSE
+#&gt; 100                            FALSE                                    FALSE
+#&gt;     charlson_icd10_rcs_malignancy
+#&gt; 1                           FALSE
+#&gt; 2                           FALSE
+#&gt; 3                           FALSE
+#&gt; 4                           FALSE
+#&gt; 5                           FALSE
+#&gt; 6                           FALSE
+#&gt; 7                           FALSE
+#&gt; 8                              NA
+#&gt; 9                              NA
+#&gt; 10                             NA
+#&gt; 11                             NA
+#&gt; 12                             NA
+#&gt; 13                             NA
+#&gt; 14                             NA
+#&gt; 15                             NA
+#&gt; 16                           TRUE
+#&gt; 17                          FALSE
+#&gt; 18                          FALSE
+#&gt; 19                          FALSE
+#&gt; 20                          FALSE
+#&gt; 21                          FALSE
+#&gt; 22                          FALSE
+#&gt; 23                          FALSE
+#&gt; 24                          FALSE
+#&gt; 25                          FALSE
+#&gt; 26                          FALSE
+#&gt; 27                          FALSE
+#&gt; 28                          FALSE
+#&gt; 29                          FALSE
+#&gt; 30                          FALSE
+#&gt; 31                          FALSE
+#&gt; 32                          FALSE
+#&gt; 33                          FALSE
+#&gt; 34                          FALSE
+#&gt; 35                          FALSE
+#&gt; 36                          FALSE
+#&gt; 37                           TRUE
+#&gt; 38                          FALSE
+#&gt; 39                          FALSE
+#&gt; 40                          FALSE
+#&gt; 41                          FALSE
+#&gt; 42                          FALSE
+#&gt; 43                          FALSE
+#&gt; 44                          FALSE
+#&gt; 45                           TRUE
+#&gt; 46                          FALSE
+#&gt; 47                          FALSE
+#&gt; 48                          FALSE
+#&gt; 49                          FALSE
+#&gt; 50                          FALSE
+#&gt; 51                          FALSE
+#&gt; 52                          FALSE
+#&gt; 53                          FALSE
+#&gt; 54                          FALSE
+#&gt; 55                           TRUE
+#&gt; 56                          FALSE
+#&gt; 57                          FALSE
+#&gt; 58                          FALSE
+#&gt; 59                           TRUE
+#&gt; 60                          FALSE
+#&gt; 61                          FALSE
+#&gt; 62                          FALSE
+#&gt; 63                          FALSE
+#&gt; 64                          FALSE
+#&gt; 65                          FALSE
+#&gt; 66                           TRUE
+#&gt; 67                          FALSE
+#&gt; 68                          FALSE
+#&gt; 69                          FALSE
+#&gt; 70                          FALSE
+#&gt; 71                           TRUE
+#&gt; 72                          FALSE
+#&gt; 73                          FALSE
+#&gt; 74                           TRUE
+#&gt; 75                          FALSE
+#&gt; 76                          FALSE
+#&gt; 77                           TRUE
+#&gt; 78                          FALSE
+#&gt; 79                          FALSE
+#&gt; 80                          FALSE
+#&gt; 81                           TRUE
+#&gt; 82                           TRUE
+#&gt; 83                          FALSE
+#&gt; 84                          FALSE
+#&gt; 85                          FALSE
+#&gt; 86                           TRUE
+#&gt; 87                          FALSE
+#&gt; 88                          FALSE
+#&gt; 89                          FALSE
+#&gt; 90                          FALSE
+#&gt; 91                          FALSE
+#&gt; 92                          FALSE
+#&gt; 93                           TRUE
+#&gt; 94                          FALSE
+#&gt; 95                          FALSE
+#&gt; 96                          FALSE
+#&gt; 97                          FALSE
+#&gt; 98                           TRUE
+#&gt; 99                          FALSE
+#&gt; 100                         FALSE
+#&gt;     charlson_icd10_rcs_moderate_or_severe_liver_disease
+#&gt; 1                                                 FALSE
+#&gt; 2                                                 FALSE
+#&gt; 3                                                 FALSE
+#&gt; 4                                                 FALSE
+#&gt; 5                                                 FALSE
+#&gt; 6                                                 FALSE
+#&gt; 7                                                 FALSE
+#&gt; 8                                                    NA
+#&gt; 9                                                    NA
+#&gt; 10                                                   NA
+#&gt; 11                                                   NA
+#&gt; 12                                                   NA
+#&gt; 13                                                   NA
+#&gt; 14                                                   NA
+#&gt; 15                                                   NA
+#&gt; 16                                                FALSE
+#&gt; 17                                                FALSE
+#&gt; 18                                                FALSE
+#&gt; 19                                                FALSE
+#&gt; 20                                                FALSE
+#&gt; 21                                                FALSE
+#&gt; 22                                                FALSE
+#&gt; 23                                                FALSE
+#&gt; 24                                                FALSE
+#&gt; 25                                                FALSE
+#&gt; 26                                                FALSE
+#&gt; 27                                                FALSE
+#&gt; 28                                                FALSE
+#&gt; 29                                                FALSE
+#&gt; 30                                                FALSE
+#&gt; 31                                                FALSE
+#&gt; 32                                                FALSE
+#&gt; 33                                                FALSE
+#&gt; 34                                                 TRUE
+#&gt; 35                                                FALSE
+#&gt; 36                                                FALSE
+#&gt; 37                                                 TRUE
+#&gt; 38                                                FALSE
+#&gt; 39                                                 TRUE
+#&gt; 40                                                FALSE
+#&gt; 41                                                FALSE
+#&gt; 42                                                FALSE
+#&gt; 43                                                FALSE
+#&gt; 44                                                FALSE
+#&gt; 45                                                FALSE
+#&gt; 46                                                FALSE
+#&gt; 47                                                FALSE
+#&gt; 48                                                FALSE
+#&gt; 49                                                FALSE
+#&gt; 50                                                FALSE
+#&gt; 51                                                FALSE
+#&gt; 52                                                FALSE
+#&gt; 53                                                FALSE
+#&gt; 54                                                FALSE
+#&gt; 55                                                FALSE
+#&gt; 56                                                FALSE
+#&gt; 57                                                FALSE
+#&gt; 58                                                FALSE
+#&gt; 59                                                FALSE
+#&gt; 60                                                FALSE
+#&gt; 61                                                FALSE
+#&gt; 62                                                FALSE
+#&gt; 63                                                FALSE
+#&gt; 64                                                FALSE
+#&gt; 65                                                FALSE
+#&gt; 66                                                FALSE
+#&gt; 67                                                FALSE
+#&gt; 68                                                FALSE
+#&gt; 69                                                FALSE
+#&gt; 70                                                FALSE
+#&gt; 71                                                FALSE
+#&gt; 72                                                FALSE
+#&gt; 73                                                FALSE
+#&gt; 74                                                FALSE
+#&gt; 75                                                FALSE
+#&gt; 76                                                FALSE
+#&gt; 77                                                FALSE
+#&gt; 78                                                FALSE
+#&gt; 79                                                FALSE
+#&gt; 80                                                FALSE
+#&gt; 81                                                FALSE
+#&gt; 82                                                FALSE
+#&gt; 83                                                FALSE
+#&gt; 84                                                FALSE
+#&gt; 85                                                FALSE
+#&gt; 86                                                FALSE
+#&gt; 87                                                FALSE
+#&gt; 88                                                FALSE
+#&gt; 89                                                FALSE
+#&gt; 90                                                FALSE
+#&gt; 91                                                FALSE
+#&gt; 92                                                 TRUE
+#&gt; 93                                                FALSE
+#&gt; 94                                                FALSE
+#&gt; 95                                                FALSE
+#&gt; 96                                                FALSE
+#&gt; 97                                                FALSE
+#&gt; 98                                                FALSE
+#&gt; 99                                                FALSE
+#&gt; 100                                               FALSE
+#&gt;     charlson_icd10_rcs_metastatic_solid_tumor charlson_icd10_rcs_aids_hiv
+#&gt; 1                                       FALSE                       FALSE
+#&gt; 2                                       FALSE                       FALSE
+#&gt; 3                                       FALSE                       FALSE
+#&gt; 4                                       FALSE                       FALSE
+#&gt; 5                                       FALSE                       FALSE
+#&gt; 6                                       FALSE                       FALSE
+#&gt; 7                                       FALSE                       FALSE
+#&gt; 8                                          NA                          NA
+#&gt; 9                                          NA                          NA
+#&gt; 10                                         NA                          NA
+#&gt; 11                                         NA                          NA
+#&gt; 12                                         NA                          NA
+#&gt; 13                                         NA                          NA
+#&gt; 14                                         NA                          NA
+#&gt; 15                                         NA                          NA
+#&gt; 16                                      FALSE                       FALSE
+#&gt; 17                                      FALSE                       FALSE
+#&gt; 18                                      FALSE                       FALSE
+#&gt; 19                                      FALSE                       FALSE
+#&gt; 20                                      FALSE                       FALSE
+#&gt; 21                                      FALSE                       FALSE
+#&gt; 22                                      FALSE                       FALSE
+#&gt; 23                                      FALSE                       FALSE
+#&gt; 24                                      FALSE                       FALSE
+#&gt; 25                                      FALSE                       FALSE
+#&gt; 26                                      FALSE                       FALSE
+#&gt; 27                                      FALSE                       FALSE
+#&gt; 28                                      FALSE                       FALSE
+#&gt; 29                                      FALSE                       FALSE
+#&gt; 30                                      FALSE                       FALSE
+#&gt; 31                                      FALSE                       FALSE
+#&gt; 32                                      FALSE                       FALSE
+#&gt; 33                                      FALSE                       FALSE
+#&gt; 34                                      FALSE                       FALSE
+#&gt; 35                                      FALSE                       FALSE
+#&gt; 36                                      FALSE                       FALSE
+#&gt; 37                                      FALSE                       FALSE
+#&gt; 38                                      FALSE                       FALSE
+#&gt; 39                                      FALSE                       FALSE
+#&gt; 40                                      FALSE                       FALSE
+#&gt; 41                                      FALSE                       FALSE
+#&gt; 42                                      FALSE                       FALSE
+#&gt; 43                                      FALSE                       FALSE
+#&gt; 44                                      FALSE                        TRUE
+#&gt; 45                                      FALSE                       FALSE
+#&gt; 46                                      FALSE                       FALSE
+#&gt; 47                                      FALSE                       FALSE
+#&gt; 48                                      FALSE                       FALSE
+#&gt; 49                                      FALSE                       FALSE
+#&gt; 50                                      FALSE                       FALSE
+#&gt; 51                                       TRUE                       FALSE
+#&gt; 52                                      FALSE                       FALSE
+#&gt; 53                                      FALSE                       FALSE
+#&gt; 54                                      FALSE                       FALSE
+#&gt; 55                                      FALSE                       FALSE
+#&gt; 56                                      FALSE                       FALSE
+#&gt; 57                                      FALSE                       FALSE
+#&gt; 58                                      FALSE                       FALSE
+#&gt; 59                                      FALSE                       FALSE
+#&gt; 60                                      FALSE                       FALSE
+#&gt; 61                                      FALSE                       FALSE
+#&gt; 62                                      FALSE                       FALSE
+#&gt; 63                                      FALSE                       FALSE
+#&gt; 64                                      FALSE                       FALSE
+#&gt; 65                                      FALSE                       FALSE
+#&gt; 66                                      FALSE                       FALSE
+#&gt; 67                                      FALSE                       FALSE
+#&gt; 68                                      FALSE                       FALSE
+#&gt; 69                                      FALSE                       FALSE
+#&gt; 70                                      FALSE                       FALSE
+#&gt; 71                                      FALSE                       FALSE
+#&gt; 72                                      FALSE                       FALSE
+#&gt; 73                                      FALSE                       FALSE
+#&gt; 74                                      FALSE                       FALSE
+#&gt; 75                                      FALSE                       FALSE
+#&gt; 76                                      FALSE                       FALSE
+#&gt; 77                                      FALSE                       FALSE
+#&gt; 78                                      FALSE                       FALSE
+#&gt; 79                                      FALSE                       FALSE
+#&gt; 80                                      FALSE                       FALSE
+#&gt; 81                                      FALSE                       FALSE
+#&gt; 82                                      FALSE                       FALSE
+#&gt; 83                                      FALSE                       FALSE
+#&gt; 84                                      FALSE                       FALSE
+#&gt; 85                                      FALSE                       FALSE
+#&gt; 86                                      FALSE                       FALSE
+#&gt; 87                                      FALSE                       FALSE
+#&gt; 88                                      FALSE                       FALSE
+#&gt; 89                                      FALSE                       FALSE
+#&gt; 90                                      FALSE                       FALSE
+#&gt; 91                                      FALSE                       FALSE
+#&gt; 92                                      FALSE                       FALSE
+#&gt; 93                                      FALSE                       FALSE
+#&gt; 94                                      FALSE                       FALSE
+#&gt; 95                                      FALSE                       FALSE
+#&gt; 96                                      FALSE                       FALSE
+#&gt; 97                                      FALSE                       FALSE
+#&gt; 98                                      FALSE                       FALSE
+#&gt; 99                                      FALSE                       FALSE
+#&gt; 100                                     FALSE                       FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

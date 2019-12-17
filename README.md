@@ -45,15 +45,16 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 
-|clascodes    |alt_regex                                                                   |indices                                                              |
-|:------------|:---------------------------------------------------------------------------|:--------------------------------------------------------------------|
-|charlson     |icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated    |
-|cps          |                                                                            |only_ordinary                                                        |
-|elixhauser   |short                                                                       |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm |
-|ex_carbrands |                                                                            |                                                                     |
-|hip_ae       |kva                                                                         |                                                                     |
-|knee_ae      |kva                                                                         |                                                                     |
-|rxriskv      |caughey, garland                                                            |index_pratt                                                          |
+|clascodes       |alt_regex                                                                   |indices                                                              |
+|:---------------|:---------------------------------------------------------------------------|:--------------------------------------------------------------------|
+|charlson        |icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated    |
+|cps             |                                                                            |only_ordinary                                                        |
+|elixhauser      |short                                                                       |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm |
+|ex_carbrands    |                                                                            |                                                                     |
+|hip_ae          |kva                                                                         |                                                                     |
+|hip_fracture_ae |kva                                                                         |                                                                     |
+|knee_ae         |kva                                                                         |                                                                     |
+|rxriskv         |caughey, garland                                                            |index_pratt                                                          |
 
 # Contribution
 

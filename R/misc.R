@@ -43,3 +43,16 @@ copybig <- function(x, .copy = NA) {
 spss2date <- function(x) {
   as.Date(x / 86400, origin = "1582-10-14")
 }
+
+
+#' Make clean text with only lowercase alphanumeric characters and "_"
+#'
+#' @param x_name Name of object to use as prefix
+#' @param x character vector
+#'
+#' @return character vector of the same length as \code{x}
+#' @keywords internal
+clean_text <- function(x_name, x) {
+  if (!is.character(x_name)) stop("Object ", deparse(substitute(x_name)), " must be refferred by name if 'tech_names = TRUE'!")
+   paste(x_name, gsub("\\W", "_", tolower(x), perl = TRUE), sep = "_")
+}

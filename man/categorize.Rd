@@ -9,13 +9,10 @@ categorize(
   from,
   what,
   id,
-  date = NULL,
-  days = NULL,
   ind = NULL,
-  tech_names = FALSE,
   sort = TRUE,
-  regex = "regex",
-  alnum = FALSE
+  codify_args = list(),
+  cc_args = list()
 )
 }
 \arguments{
@@ -30,18 +27,14 @@ A data frame with at least one column with case (patient) identification
 (\code{\link{classcodes}} classcode object) specifying categories to add
 based on individual code groups.}
 
-\item{id, date, days}{arguments passed to \code{\link{codify}}}
+\item{id}{name (as character) of variable in \code{x} to group id (for
+example a patient id).}
 
 \item{ind}{control possible inclusion of index vector. Set to \code{FALSE} if
 no index should be calculated, otherwise a value passed to argument
 \code{by} in function \code{\link{index}}. It is possible to
 include several indices as a character vector.
 \code{NULL} will include all available indices.}
-
-\item{tech_names}{should technical column names be used? If \code{FALSE},
-colnames are taken directly from group names of \code{by}, if \code{TRUE},
-these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.}
 
 \item{sort}{logical. Should output be sorted by the 'id' column?
 (This could effect computational speed for large data sets.)
@@ -50,11 +43,9 @@ sorted this way, but this might be inconvinient if the original
 order was intended. Set to \code{FALSE} in order to not shuffle the
 input data.}
 
-\item{regex}{name of column with regular expressions from classcodes object
-\code{what} to use for classification, either with or without prefix "regex_"}
+\item{codify_args}{List of named arguments passed to \code{\link{codify}}}
 
-\item{alnum}{argument passed to \code{\link{as.codedata}}.
-Specify if all non alphanumeric characters should be dropped from codes.}
+\item{cc_args}{List with named arguemnts passed to \code{\link{set_classcodes}}}
 }
 \value{
 data frame ('data.table' object) with all data from
@@ -74,9 +65,10 @@ categorize(ex_people, ex_icd10, "elixhauser", id = "name")
 # Only include recent hospital visits within 30 days before surgery,
 # and use technical variable names to clearly identify the new columns.
 categorize(ex_people, ex_icd10, "charlson",
-  id = "name", date = "surgery", days = c(-30, -1),
+  id = "name",
   ind = c("quan_original", "quan_updated"),
-  tech_names = TRUE
+  codify_args = list(date = "surgery", days = c(-30, -1)),
+  cc_args = list(tech_names = TRUE)
 )
 }
 \seealso{

@@ -8,9 +8,9 @@ y <- classify(y, elixhauser)
 
 
 test_that("get_classcodes", {
-  expect_error(get_classcodes("hejsan"))
-  expect_equal(get_classcodes("elixhauser"), get_classcodes(elixhauser))
-  expect_equal(get_classcodes(NULL, x), get_classcodes(elixhauser))
-  expect_equal(get_classcodes(NULL, y), get_classcodes(elixhauser))
+  expect_error(set_classcodes("hejsan"))
+  expect_equal(set_classcodes("elixhauser"), set_classcodes(elixhauser))
+  expect_equal(set_classcodes(NULL, x),      set_classcodes(elixhauser))
+  expect_equal(set_classcodes(NULL, y),      set_classcodes(elixhauser))
 })
 
