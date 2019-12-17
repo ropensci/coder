@@ -20,8 +20,8 @@ rxriskv
 }
 \description{
 \code{\link{classcodes}} object to use with \code{\link{classify}}.
-Provided mostly as proof-of-concept. Codes have not been externaly
-  validated and desired implemantation might differ over time and by country.
+Provided mostly as proof-of-concept. Codes have not been externally
+  validated and desired implementation might differ over time and by country.
 }
 \references{
 Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.

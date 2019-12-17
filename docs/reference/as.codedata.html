@@ -175,25 +175,25 @@ but it could be beneficial for later use of the object.</p></td>
       <td><p>Should the object be copied internally by <code>copy</code>?
 <code>NA</code> (by default) means that objects smaller than 1 Gb are copied.
 If the size is larger, the argument must be set explicitly. Set <code>TRUE</code>
-to make copies regardless of object size. This is recomended if enough RAM
+to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to <code>FALSE</code>, calculations might be carried out
 but the object will be changed by reference.</p></td>
     </tr>
     <tr>
       <th>npr</th>
       <td><p>Is data from the Swedish patient register?
-If so, the format might be recognised automatically (no guarantee).</p></td>
+If so, the format might be recognized automatically (no guarantee).</p></td>
     </tr>
     <tr>
       <th>nprdate</th>
-      <td><p>If <code>x</code> is recognised as a data set from the Swedish
-National Patient Register, which date variable should be reconised as code
+      <td><p>If <code>x</code> is recognized as a data set from the Swedish
+National Patient Register, which date variable should be recognized as code
 date for out patients? Could be either "indatuma" or "utdatuma".
 (Note that in patients only have one date.)</p></td>
     </tr>
     <tr>
       <th>alnum</th>
-      <td><p>Should codes be cleaned from all non alfanumeric characters (boolean)?</p></td>
+      <td><p>Should codes be cleaned from all non alphanumeric characters (boolean)?</p></td>
     </tr>
     </table>
 
@@ -203,9 +203,9 @@ date for out patients? Could be either "indatuma" or "utdatuma".
   with mandatory columns: "id" (individual id coerced to character) and
   "code". It has an optional column
   "code_date" (when the code was valid) if there was such a column in
-  <code>x</code> or if the data is recognised from NPR.
+  <code>x</code> or if the data is recognized from NPR.
   Possible additional columns from <code>x</code> are preserved
-  if data is not recognised as coming from NPR.</p>
+  if data is not recognized as coming from NPR.</p>
 <p><code>is.codedata</code> returns <code>TRUE</code> if these same conditions are met and
 <code>FALSE</code> otherwise.
 (Note that <code>codedata</code> is not a formal R class of its own!)</p>
@@ -214,7 +214,7 @@ date for out patients? Could be either "indatuma" or "utdatuma".
     
 
 
-<p>Data from the Swedish Patient Register can be recognised as such if
+<p>Data from the Swedish Patient Register can be recognized as such if
 argument <code>x</code> contains columns named <code>lpnr, indatuma/utdatuma</code> AND
 (<code>hdia, bdia1, ..., bdia15</code> OR <code>op1, ..., op30</code>).</p>
 <p>Note that the name should be <code>indatuma/utdatuma</code> (with letter "a"

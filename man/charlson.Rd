@@ -24,11 +24,11 @@
     "moderate or severe liver disease".
     All diabetes is included in "diabetes complication"}
   \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to ICD-8 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
+    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
   \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to ICD-9 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
+    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
-  \item{deyo_ramano}{weights suggested ßby Deyo and Romano*}
+  \item{deyo_ramano}{weights suggested by Deyo and Romano*}
   \item{dhoore}{weights suggested by D'Hoore*}
   \item{ghali}{weights suggested by Ghali*}
   \item{quan_original}{weights suggested by Quan (2005)}

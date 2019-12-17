@@ -36,13 +36,13 @@ include several indices as a character vector.
 \item{sort}{logical. Should output be sorted by the 'id' column?
 (This could effect computational speed for large data sets.)
 Data is sorted by 'id' internally. It is therefore faster to keep the output
-sorted this way, but this might be inconvinient if the original
+sorted this way, but this might be inconvenient if the original
 order was intended. Set to \code{FALSE} in order to not shuffle the
 input data.}
 
 \item{codify_args}{List of named arguments passed to \code{\link{codify}}}
 
-\item{cc_args}{List with named arguemnts passed to \code{\link{set_classcodes}}}
+\item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
 }
 \value{
 data frame ('data.table' object) with all data from

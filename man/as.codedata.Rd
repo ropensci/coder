@@ -36,28 +36,28 @@ but it could be beneficial for later use of the object.}
 \item{.copy}{Should the object be copied internally by \code{\link{copy}}?
 \code{NA} (by default) means that objects smaller than 1 Gb are copied.
 If the size is larger, the argument must be set explicitly. Set \code{TRUE}
-to make copies regardless of object size. This is recomended if enough RAM
+to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
 
 \item{npr}{Is data from the Swedish patient register?
-If so, the format might be recognised automatically (no guarantee).}
+If so, the format might be recognized automatically (no guarantee).}
 
-\item{nprdate}{If \code{x} is recognised as a data set from the Swedish
-National Patient Register, which date variable should be reconised as code
+\item{nprdate}{If \code{x} is recognized as a data set from the Swedish
+National Patient Register, which date variable should be recognized as code
 date for out patients? Could be either "indatuma" or "utdatuma".
 (Note that in patients only have one date.)}
 
-\item{alnum}{Should codes be cleaned from all non alfanumeric characters (boolean)?}
+\item{alnum}{Should codes be cleaned from all non alphanumeric characters (boolean)?}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object
   with mandatory columns: "id" (individual id coerced to character) and
   "code". It has an optional column
   "code_date" (when the code was valid) if there was such a column in
-  \code{x} or if the data is recognised from NPR.
+  \code{x} or if the data is recognized from NPR.
   Possible additional columns from \code{x} are preserved
-  if data is not recognised as coming from NPR.
+  if data is not recognized as coming from NPR.
 
 \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 \code{FALSE} otherwise.
@@ -69,7 +69,7 @@ Code data
 \section{Data from NPR}{
 
 
-Data from the Swedish Patient Register can be recognised as such if
+Data from the Swedish Patient Register can be recognized as such if
 argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
 (\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
 

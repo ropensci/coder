@@ -13,11 +13,11 @@
   added for comparison. There are good no reasons to use this version
   instead of 'regex'!}
   \item{sum_all}{all weights = 1. This is included for convenience when
-  calculating several indices simultainisly}
-  \item{sum_all_ahrq}{as \code{sum_all} exluding "cardiac arrythmias"}
+  calculating several indices simultaneously}
+  \item{sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmias"}
   \item{walraven}{weights suggested by Walraven et al (2009)}
   \item{sid29}{weights suggested by Thompson et al. (2015)
-    based on all conditions except cardian arryrtmias}
+    based on all conditions except cardiac arrhythmias}
   \item{sid30}{weights suggested by Thompson et al. (2015)
     based on all conditions}
  \item{ahrq_mort}{weights for in-hospital mortality suggested by

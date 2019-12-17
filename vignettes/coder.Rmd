@@ -3,9 +3,7 @@ title: "coder"
 author: "Erik Bulow"
 date: "`r Sys.Date()`"
 output: 
-#  rmarkdown::pdf_document:
-#    df_print: "kable"
- rmarkdown::html_vignette:
+  rmarkdown::html_vignette:
     df_print: "kable"
 vignette: >
   %\VignetteIndexEntry{coder}
@@ -50,7 +48,7 @@ head(ex_cars)
 We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company.
 We can specify a classification scheme of brands related to each company (a `classcodes` object).
 Note that not all models are classified.
-The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.
+The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.
 
 
 ```{r}
@@ -65,7 +63,7 @@ We want to know if anyone owns a car from a company that we are interested in.
 We use the three objects from above:
 
 * `people`: the people we are interested in,
-* `ex_cars`: the centralised car registry and
+* `ex_cars`: the centralized car registry and
 * `ex_carbrands`: the classification of car makers. 
 
 ```{r}
@@ -125,6 +123,6 @@ ex_carbrands$score <- c(10, 1, 2, 1, 1, 2, 3)
 
 # Concluding remark
 
-This vignette illustrates a simple example where the data sets are small, and the codnig schemes are trivial. 
+This vignette illustrates a simple example where the data sets are small, and the coding schemes are trivial. 
 If that is the case, it might be equally good to just join or merge the data sets manually. 
 A more realistic example of when the package might come handy is presented in the vignette called "Comorbidity".

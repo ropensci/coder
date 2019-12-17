@@ -3,7 +3,7 @@
 \name{as.data.frame.classified}
 \alias{as.data.frame.classified}
 \alias{as.data.table.classified}
-\title{Convert output martix from classify to data frame or data.table}
+\title{Convert output matrix from classify to data frame or data.table}
 \usage{
 \method{as.data.frame}{classified}(x, ...)
 
@@ -24,7 +24,7 @@ data frame with:
 }
 }
 \description{
-Convert output martix from classify to data frame or data.table
+Convert output matrix from classify to data frame or data.table
 }
 \seealso{
 Other classcodes: 

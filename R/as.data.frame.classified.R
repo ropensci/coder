@@ -1,4 +1,4 @@
-#' Convert output martix from classify to data frame or data.table
+#' Convert output matrix from classify to data frame or data.table
 #'
 #' @param x output from \code{\link{classify}}
 #' @param ... ignored

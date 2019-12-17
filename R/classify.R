@@ -24,7 +24,7 @@
 #'   classify
 #' @param id name (as character) of variable in \code{x} to group id (for
 #'   example a patient id).
-#' @param cc_args List with named arguemnts passed to \code{\link{set_classcodes}}
+#' @param cc_args List with named arguments passed to \code{\link{set_classcodes}}
 #'
 #'
 #' @return Boolean matrix with one row for each element/row of \code{x} and

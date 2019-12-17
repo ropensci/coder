@@ -2,17 +2,17 @@
 % Please edit documentation in R/visualize.R
 \name{visualize}
 \alias{visualize}
-\title{Visualise classification scheme in web browser}
+\title{visualize classification scheme in web browser}
 \usage{
 visualize(cc, group = NULL, show = TRUE, ...)
 }
 \arguments{
 \item{cc}{\code{\link{classcodes}} object or name of such}
 
-\item{group}{names (as character vector) of groups to visualise
+\item{group}{names (as character vector) of groups to visualize
 (all groups if \code{NULL})}
 
-\item{show}{should a visualisation be shown in a web browser.
+\item{show}{should a visualization be shown in a web browser.
 Set to \code{FALSE} to just retrieve a URL for later use.}
 
 \item{...}{
@@ -23,12 +23,12 @@ classification, either with or without prefix \code{regex_}}
   }}
 }
 \value{
-URL to website with visualisation (invisible)
+URL to website with visualization (invisible)
 }
 \description{
-Classes are visualised by their regular expressions in a web browser.
-The visualisation does not give any details on group names, conditions or
-weights but might be useful both for understanding of a clasification scheme
+Classes are visualized by their regular expressions in a web browser.
+The visualization does not give any details on group names, conditions or
+weights but might be useful both for understanding of a classification scheme
 in use, and during the creation and debugging of such.
 }
 \examples{
@@ -51,7 +51,7 @@ in use, and during the creation and debugging of such.
  # Show all groups from Charlson
  visualize("charlson")
 
- # Get URL for later visualisation
+ # Get URL for later visualization
  (visualize("hip_fracture_ae", show = FALSE))
 
 }

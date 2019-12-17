@@ -123,7 +123,7 @@
 <a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2018-11-21</span></a>
 <a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-01-10</span></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-01-08</span></a></code></pre></div>
-<p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for clasification of large data sets.</p>
+<p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ex_carbrands</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt;     group                                 regex</span></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; 1   Mazda                                 Mazda</span></a>
@@ -143,7 +143,7 @@
 <li>
 <code>people</code>: the people we are interested in,</li>
 <li>
-<code>ex_cars</code>: the centralised car registry and</li>
+<code>ex_cars</code>: the centralized car registry and</li>
 <li>
 <code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
@@ -236,7 +236,7 @@
 <div id="concluding-remark" class="section level1">
 <h1 class="hasAnchor">
 <a href="#concluding-remark" class="anchor"></a>Concluding remark</h1>
-<p>This vignette illustrates a simple example where the data sets are small, and the codnig schemes are trivial. If that is the case, it might be equally good to just join or merge the data sets manually. A more realistic example of when the package might come handy is presented in the vignette called “Comorbidity”.</p>
+<p>This vignette illustrates a simple example where the data sets are small, and the coding schemes are trivial. If that is the case, it might be equally good to just join or merge the data sets manually. A more realistic example of when the package might come handy is presented in the vignette called “Comorbidity”.</p>
 </div>
   </div>
 

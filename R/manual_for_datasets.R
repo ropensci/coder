@@ -14,11 +14,11 @@
 #'   added for comparison. There are good no reasons to use this version
 #'   instead of 'regex'!}
 #'   \item{sum_all}{all weights = 1. This is included for convenience when
-#'   calculating several indices simultainisly}
-#'   \item{sum_all_ahrq}{as \code{sum_all} exluding "cardiac arrythmias"}
+#'   calculating several indices simultaneously}
+#'   \item{sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmias"}
 #'   \item{walraven}{weights suggested by Walraven et al (2009)}
 #'   \item{sid29}{weights suggested by Thompson et al. (2015)
-#'     based on all conditions except cardian arryrtmias}
+#'     based on all conditions except cardiac arrhythmias}
 #'   \item{sid30}{weights suggested by Thompson et al. (2015)
 #'     based on all conditions}
 #'  \item{ahrq_mort}{weights for in-hospital mortality suggested by
@@ -79,11 +79,11 @@
 #'     "moderate or severe liver disease".
 #'     All diabetes is included in "diabetes complication"}
 #'   \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to ICD-8 by Brusselaers et al. (2017).
-#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
+#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
 #'   \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to ICD-9 by Brusselaers et al. (2017).
-#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contanis all diabetes.}
+#'     "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
 #'   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
-#'   \item{deyo_ramano}{weights suggested ßby Deyo and Romano*}
+#'   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
 #'   \item{dhoore}{weights suggested by D'Hoore*}
 #'   \item{ghali}{weights suggested by Ghali*}
 #'   \item{quan_original}{weights suggested by Quan (2005)}
@@ -200,8 +200,8 @@
 #' Classcodes for RxRisk V based on ATC codes
 #'
 #' \code{\link{classcodes}} object to use with \code{\link{classify}}.
-#' Provided mostly as proof-of-concept. Codes have not been externaly
-#'   validated and desired implemantation might differ over time and by country.
+#' Provided mostly as proof-of-concept. Codes have not been externally
+#'   validated and desired implementation might differ over time and by country.
 #'
 #' @format Data frames with 39 rows and 6 variables:
 #' \describe{

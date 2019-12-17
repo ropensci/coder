@@ -149,7 +149,7 @@
 <li>id: Name of the patients.</li>
 <li>code_date: A date of a hospital visit (each patient can have more than one visit)</li>
 <li>code: A medical code (based on ICD-10) that was relevant for the hospital visit.</li>
-<li>hdia: Identifies if the “code” is the immidiate couse (TRUE) or an underlying couse (FALSE) for the hospital visit.</li>
+<li>hdia: Identifies if the “code” is the immediate cause (TRUE) or an underlying cause (FALSE) for the hospital visit.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_icd10))</a></code></pre></div>
 <table class="table">
@@ -203,7 +203,7 @@
 <h1 class="hasAnchor">
 <a href="#notes" class="anchor"></a>Notes</h1>
 <p>Medical conditions were registered using standardized codes (ICD-10) and individual codes were summarized by weighting all individual comorbidities for each patient (the Charlson and Elixhauser comorbidity indices). Only hospital visits recorded within a specified time frame, compared to individual reference dates from the primary data source, were recognized as relevant.</p>
-<p>The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naïve approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster than those.</p>
+<p>The large data sets, as well as the complexity of the classification schemes make those calculations time consuming. A naive approach using bare code comparisons and for-loops in R, took approximately 16 hours to run on a laptop computer with 16 GB of RAM. We were then able to reformulate the coding schemes using regular expressions and we optimized our package using the data.table package. The classification time were then reduced to a number of seconds. We also compared the coder package to two packages on CRAN with similar scoop, icd and comorbidities.icd10. Our package was considerably faster than those.</p>
 </div>
   </div>
 

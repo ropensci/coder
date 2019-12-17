@@ -1,18 +1,18 @@
 
-#' Visualise classification scheme in web browser
+#' visualize classification scheme in web browser
 #'
-#' Classes are visualised by their regular expressions in a web browser.
-#' The visualisation does not give any details on group names, conditions or
-#' weights but might be useful both for understanding of a clasification scheme
+#' Classes are visualized by their regular expressions in a web browser.
+#' The visualization does not give any details on group names, conditions or
+#' weights but might be useful both for understanding of a classification scheme
 #' in use, and during the creation and debugging of such.
 #'
 #' @inheritParams set_classcodes
-#' @param group names (as character vector) of groups to visualise
+#' @param group names (as character vector) of groups to visualize
 #' (all groups if \code{NULL})
-#' @param show should a visualisation be shown in a web browser.
+#' @param show should a visualization be shown in a web browser.
 #' Set to \code{FALSE} to just retrieve a URL for later use.
 #' @inheritDotParams set_classcodes regex
-#' @return URL to website with visualisation (invisible)
+#' @return URL to website with visualization (invisible)
 #' @export
 #'
 #' @examples
@@ -35,7 +35,7 @@
 #'  # Show all groups from Charlson
 #'  visualize("charlson")
 #'
-#'  # Get URL for later visualisation
+#'  # Get URL for later visualization
 #'  (visualize("hip_fracture_ae", show = FALSE))
 #'
 #' }

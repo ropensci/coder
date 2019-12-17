@@ -20,7 +20,7 @@ classify(codified, cc, ..., cc_args = list())
 
 \item{...}{arguments passed between methods}
 
-\item{cc_args}{List with named arguemnts passed to \code{\link{set_classcodes}}}
+\item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
 example a patient id).}

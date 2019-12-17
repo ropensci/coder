@@ -14,7 +14,7 @@ output: github_document
 # coder 
 
 The goal of `coder` is to classify items from one dataset, using codes from a secondary source. 
-Please se vigtnettes with introductionary examples! 
+Please se vignettes with introductory examples! 
 
 ## Installation
 
@@ -34,7 +34,7 @@ devtools::install_github("eribul/coder")
 ## Classification schemes
 
 Classification schemes are used to classify items. 
-These schemas are constructed by regular expressions for computational speed, 
+These schema are constructed by regular expressions for computational speed, 
 but their content can be summarized and visualized for clarity.
 
 The package includes several default classification schemes (so called `classcodes` objects).

@@ -11,14 +11,14 @@
 #' @param ... ignored
 #' @param cc_args List of named arguments passed to \code{\link{set_classcodes}}
 #'
-#' @return List (invisable) with objects:
+#' @return List (invisible) with objects:
 #'
 #' \itemize{
 #'   \item{\code{object}: input \code{object}}
 #'   \item{\code{summary}: a data frame with columns:
 #'      \itemize{
 #'     \item{\code{group}: Groups identified by \code{object}.}
-#'     \item{\code{n}: The number oif codes to be recognized for each group.}
+#'     \item{\code{n}: The number of codes to be recognized for each group.}
 #'     \item{\code{codes}: Individual codes within each group.}
 #'     }
 #'   }

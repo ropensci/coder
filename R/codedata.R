@@ -12,16 +12,16 @@
 #' are ignored (with a warning). Specify \code{to, from}
 #' (as passed to \code{\link{filter_dates}}) to override.
 #' @param npr Is data from the Swedish patient register?
-#'   If so, the format might be recognised automatically (no guarantee).
-#' @param nprdate If \code{x} is recognised as a data set from the Swedish
-#' National Patient Register, which date variable should be reconised as code
+#'   If so, the format might be recognized automatically (no guarantee).
+#' @param nprdate If \code{x} is recognized as a data set from the Swedish
+#' National Patient Register, which date variable should be recognized as code
 #' date for out patients? Could be either "indatuma" or "utdatuma".
 #' (Note that in patients only have one date.)
-#' @param alnum Should codes be cleaned from all non alfanumeric characters (boolean)?
+#' @param alnum Should codes be cleaned from all non alphanumeric characters (boolean)?
 #'
 #' @section Data from NPR:
 #'
-#' Data from the Swedish Patient Register can be recognised as such if
+#' Data from the Swedish Patient Register can be recognized as such if
 #' argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
 #' (\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
 #'
@@ -46,9 +46,9 @@
 #'   with mandatory columns: "id" (individual id coerced to character) and
 #'   "code". It has an optional column
 #'   "code_date" (when the code was valid) if there was such a column in
-#'   \code{x} or if the data is recognised from NPR.
+#'   \code{x} or if the data is recognized from NPR.
 #'   Possible additional columns from \code{x} are preserved
-#'   if data is not recognised as coming from NPR.
+#'   if data is not recognized as coming from NPR.
 #'
 #' \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 #' \code{FALSE} otherwise.
@@ -111,7 +111,7 @@ as.codedata <- function(
 
 
 
-# transform possible NPR data if reconised as such,
+# transform possible NPR data if recognized as such,
 # otherwise return as is
 fix_possible_pardata <- function(x, nprdate = "utdatuma", .copy = NA) {
 
