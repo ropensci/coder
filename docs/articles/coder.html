@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.4</span>
       </span>
     </div>
 
@@ -148,17 +148,21 @@
 <code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 1:     1</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 3:     1</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; name coerced to character!</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; Warning in classify.data.frame(cod, cc): 'classify' does not preserve row order</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; (use 'categorize' to do so!)</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;    index</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 1:    NA</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 2:    NA</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 3:     1</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
 </div>
 <div id="interpretation" class="section level1">
 <h1 class="hasAnchor">
@@ -189,17 +193,21 @@
 <a class="sourceLine" id="cb5-10" title="10">     )</a>
 <a class="sourceLine" id="cb5-11" title="11">  )</a>
 <a class="sourceLine" id="cb5-12" title="12">)</a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 3:    NA</span></a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; name coerced to character!</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; Warning in classify.data.frame(cod, cc): 'classify' does not preserve row order</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; (use 'categorize' to do so!)</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt;    index</span></a>
+<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt; 1:    NA</span></a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 2:    NA</span></a>
+<a class="sourceLine" id="cb5-26" title="26"><span class="co">#&gt; 3:    NA</span></a>
+<a class="sourceLine" id="cb5-27" title="27"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
 <p>Indeed, someone did buy some cars before taking a drivers license!</p>
 </div>
 <div id="car-rating" class="section level1">
@@ -209,16 +217,21 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">ex_carbrands<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb6-2" title="2"></a>
 <a class="sourceLine" id="cb6-3" title="3">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;    score</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; 1:    10</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; 3:     1</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; 4:     5</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; name coerced to character!</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; Warning in classify.data.frame(cod, cc): 'classify' does not preserve row order</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; (use 'categorize' to do so!)</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;    score</span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 1:    NA</span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; 2:    NA</span></a>
+<a class="sourceLine" id="cb6-17" title="17"><span class="co">#&gt; 3:     1</span></a>
+<a class="sourceLine" id="cb6-18" title="18"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
 </div>
 <div id="concluding-remark" class="section level1">
 <h1 class="hasAnchor">

@@ -7,24 +7,23 @@
 \alias{index.matrix}
 \title{Calculate index based on classification scheme}
 \usage{
-index(x, ...)
+index(classified, ...)
 
-\method{index}{data.frame}(x, ...)
+\method{index}{data.frame}(classified, ...)
 
-\method{index}{matrix}(x, by = NULL, from = NULL, ...)
+\method{index}{matrix}(classified, index = NULL, cc = NULL, ...)
 }
 \arguments{
-\item{x}{output from \code{classify}
-(or possibly from \code{\link{as.data.frame.classified}})}
+\item{classified}{output from \code{classify}}
 
 \item{...}{used internally}
 
-\item{by}{name of column with 'weights' from corresponding
-\code{\link{classcodes}} object. Can be omitted if the index is just the
+\item{index}{name of column with 'weights' from corresponding
+\code{\link{classcodes}} object. Can be \code{NULL} if the index is just a
 count of relevant classes.}
 
-\item{from}{\code{\link{classcodes}} object. Can be omitted if information
-already present as attribute of \code{x} (which is often the case) and/or
+\item{cc}{\code{\link{classcodes}} object. Can be \code{NULL} if information
+already present as attribute of \code{classified} (which is often the case) and/or
 if index calculated without weights.}
 }
 \value{

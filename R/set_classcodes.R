@@ -1,8 +1,7 @@
 #' Set classcodes object
 #'
-#' @param x classcodes specification as either a name or a classcodes object,
-#' or a classcodes object itself.
-#' @param from object that classcodes could be inherited from
+#' @param cc \code{\link{classcodes}} object or name of such
+#' @param classified object that classcodes could be inherited from
 #' @param regex name of column with regular expressions to use for
 #'   classification, either with or without prefix \code{regex_}
 #' @param start,stop should codes start/end with the specified regular expressions?
@@ -15,23 +14,25 @@
 #' @return \code{\link{classcodes}} object.
 #' @family classcodes
 #' @export
-set_classcodes <- function(x, from = NULL, regex = "regex", start = TRUE, stop = FALSE, tech_names = FALSE) {
+set_classcodes <- function(
+  cc, classified = NULL, regex = "regex",
+  start = TRUE, stop = FALSE, tech_names = FALSE) {
 
   # Possible inherited classcodes
-  inh <- attr(from, "classcodes")
+  inh <- attr(classified, "classcodes")
 
   obj <-
-    if      (is.classcodes(x)) {
-      x
-    } else if (is.character(x) && exists(x, envir = .GlobalEnv)) {
-      get(x)
-    } else if (is.character(x) &&
-               x %in% utils::data(package = "coder")$results[, "Item"]) {
-      utils::data(list = x, package = "coder", envir = environment())
-      get(x, envir = environment())
-    } else if (is.null(x) && is.classcodes(inh)) {
+    if (is.classcodes(cc)) {
+      cc
+    } else if (is.character(cc) && exists(cc, envir = .GlobalEnv)) {
+      get(cc)
+    } else if (is.character(cc) &&
+               cc %in% utils::data(package = "coder")$results[, "Item"]) {
+      utils::data(list = cc, package = "coder", envir = environment())
+      get(cc, envir = environment())
+    } else if (is.null(cc) && is.classcodes(inh)) {
       inh
-    } else if (is.null(x) &&
+    } else if (is.null(cc) &&
                inh %in% utils::data(package = "coder")$results[, "Item"]) {
       utils::data(list = inh, package = "coder", envir = environment())
       get(inh, envir = environment())
@@ -41,8 +42,9 @@ set_classcodes <- function(x, from = NULL, regex = "regex", start = TRUE, stop =
 
   obj <- as.classcodes(obj)
 
-  if (tech_names)
-    obj$group <- clean_text(x, paste(regex, obj$group, sep = "_"))
+  if (tech_names) {
+    obj$group <- clean_text(cc, paste(regex, obj$group, sep = "_"))
+  }
 
   # identify regex column from regex attributes
   objrgs <- attr(obj, "regexpr")

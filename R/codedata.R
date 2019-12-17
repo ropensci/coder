@@ -233,4 +233,3 @@ check_codedata <- function(x) {
 is.codedata <- function(x) {
   !inherits(tryCatch(check_codedata(x), error = function(e) e), "error")
 }
-

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert output from classify to data frame or data.table — as.data.frame.classified • coder</title>
+<title>Convert output martix from classify to data frame or data.table — as.data.frame.classified • coder</title>
 
 
 <!-- jquery -->
@@ -35,13 +35,8 @@
 
 
 
-<meta property="og:title" content="Convert output from classify to data frame or data.table — as.data.frame.classified" />
-<meta property="og:description" content="Output from classify is given as a matrix.
-It is often convenient co convert this matrix to a data frame or data.table
- with
-a separate column for id instead of row names since this fits better with
-the philosophy of &quot;tidyverse&quot;. The data frame format is however less optimal
-for working with large data sets, wherefore matrix output is used as default." />
+<meta property="og:title" content="Convert output martix from classify to data frame or data.table — as.data.frame.classified" />
+<meta property="og:description" content="Convert output martix from classify to data frame or data.table" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -74,7 +69,7 @@ for working with large data sets, wherefore matrix output is used as default." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.4</span>
       </span>
     </div>
 
@@ -128,18 +123,13 @@ for working with large data sets, wherefore matrix output is used as default." /
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert output from classify to data frame or data.table</h1>
+    <h1>Convert output martix from classify to data frame or data.table</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/as.data.frame.classified.R'><code>R/as.data.frame.classified.R</code></a></small>
     <div class="hidden name"><code>as.data.frame.classified.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Output from <code><a href='classify.html'>classify</a></code> is given as a matrix.
-It is often convenient co convert this matrix to a data frame or data.table
- with
-a separate column for id instead of row names since this fits better with
-the philosophy of "tidyverse". The data frame format is however less optimal
-for working with large data sets, wherefore matrix output is used as default.</p>
+    <p>Convert output martix from classify to data frame or data.table</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classified</span>
@@ -153,8 +143,7 @@ for working with large data sets, wherefore matrix output is used as default.</p
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>output from <code><a href='classify.html'>classify</a></code>
-(technically an object of internal class "classified")</p></td>
+      <td><p>output from <code><a href='classify.html'>classify</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -167,7 +156,7 @@ for working with large data sets, wherefore matrix output is used as default.</p
     <p>data frame with:</p><ul>
 <li><p>first column named as "id" column specified as input
     to <code><a href='classify.html'>classify</a></code> and with data from <code><a href='https://rdrr.io/r/base/row.names.html'>row.names(x)</a></code></p></li>
-<li><p>all columns from <code>x</code></p></li>
+<li><p>all columns from <code>classified</code></p></li>
 <li><p>no row names</p></li>
 </ul>
 

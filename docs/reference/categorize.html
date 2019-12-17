@@ -36,8 +36,7 @@
 
 
 <meta property="og:title" content="Categorize cases based on external data and classification scheme — categorize" />
-<meta property="og:description" content="categorize is the main function of the package.
-categorise is used as an additional alias." />
+<meta property="og:description" content="Categorize cases based on external data and classification scheme" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +69,7 @@ categorise is used as an additional alias." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.4</span>
       </span>
     </div>
 
@@ -130,16 +129,15 @@ categorise is used as an additional alias." />
     </div>
 
     <div class="ref-description">
-    <p><code>categorize</code> is the main function of the package.
-<code>categorise</code> is used as an additional alias.</p>
+    <p>Categorize cases based on external data and classification scheme</p>
     </div>
 
     <pre class="usage"><span class='fu'>categorize</span>(
-  <span class='no'>.data</span>,
-  <span class='no'>from</span>,
-  <span class='no'>what</span>,
+  <span class='no'>data</span>,
+  <span class='no'>codedata</span>,
+  <span class='no'>cc</span>,
   <span class='no'>id</span>,
-  <span class='kw'>ind</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>sort</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>codify_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
@@ -149,21 +147,18 @@ categorise is used as an additional alias." />
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>To which data set should the categories be added?
-A data frame with at least one column with case (patient) identification
-(column name specified by argument id). A column with a date of interest
-(column name specified by argument date) is mandatory if days != NULL.</p></td>
+      <th>data</th>
+      <td><p>data frame with mandatory id column (identified by argument <code>id</code>),
+and semi-optional column with date of interest
+(identified by argument <code>date</code> if <code>days != NULL</code>).</p></td>
     </tr>
     <tr>
-      <th>from</th>
-      <td><p>where do we find the class codes? <code><a href='as.codedata.html'>as.codedata</a></code></p></td>
+      <th>codedata</th>
+      <td><p>external code data (see <code><a href='as.codedata.html'>as.codedata</a></code>)</p></td>
     </tr>
     <tr>
-      <th>what</th>
-      <td><p>What to add? Specify classification scheme
-(<code><a href='classcodes.html'>classcodes</a></code> classcode object) specifying categories to add
-based on individual code groups.</p></td>
+      <th>cc</th>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of such object).</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -171,9 +166,9 @@ based on individual code groups.</p></td>
 example a patient id).</p></td>
     </tr>
     <tr>
-      <th>ind</th>
-      <td><p>control possible inclusion of index vector. Set to <code>FALSE</code> if
-no index should be calculated, otherwise a value passed to argument
+      <th>index</th>
+      <td><p>control possible inclusion of index vector.
+Set to <code>FALSE</code> if no index should be calculated, otherwise a value passed to argument
 <code>by</code> in function <code><a href='index_fun.html'>index</a></code>. It is possible to
 include several indices as a character vector.
 <code>NULL</code> will include all available indices.</p></td>
@@ -200,9 +195,9 @@ input data.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data frame ('data.table' object) with all data from
-the input data set <code>to/.data</code> combined with logical columns indicating
+the input data set <code>to/data</code> combined with logical columns indicating
 membership of categories identified by the classcode object.
-Indices are also included if so specified by the 'ind' argument.</p>
+Indices are also included if so specified by the 'index' argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: 
@@ -212,7 +207,7 @@ Indices are also included if so specified by the 'ind' argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Add Elixhauser based on all registered ICD10-codes</span>
-<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elixhauser"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt;                           name    surgery congestive heart failure
+<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elixhauser"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order (use 'categorize' to do so!)</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery congestive heart failure
 #&gt;   1:        Alexander, Bethany 2018-12-25                    FALSE
 #&gt;   2:           Arguello, Tommy 2019-09-22                    FALSE
 #&gt;   3:             Austin, Maeve 2019-09-15                    FALSE
@@ -1131,86 +1126,86 @@ Indices are also included if so specified by the 'ind' argument.</p>
 #&gt; 100:             FALSE         FALSE      FALSE     FALSE      FALSE       2
 #&gt;      deficiency anemia alcohol abuse drug abuse psychoses depression sum_all
 #&gt;      sum_all_ahrq walraven sid29 sid30 ahrq_mort ahrq_readm
-#&gt;   1:            1       11     7     5         4         10
+#&gt;   1:            1        1     1     1         1          1
 #&gt;   2:            0        0     0     0         0          0
 #&gt;   3:            0        0     0     0         0          0
 #&gt;   4:            0        0     0     0         0          0
 #&gt;   5:            0        0     0     0         0          0
 #&gt;   6:            0        0     0     0         0          0
-#&gt;   7:            1        6     5     4         5          7
+#&gt;   7:            1        1     1     1         1          1
 #&gt;   8:            0        0     0     0         0          0
-#&gt;   9:            1        6     5     4         5          7
+#&gt;   9:            1        1     1     1         1          1
 #&gt;  10:            0        0     0     0         0          0
-#&gt;  11:            1       11     7     5         4         10
+#&gt;  11:            1        1     1     1         1          1
 #&gt;  12:            0        0     0     0         0          0
 #&gt;  13:            0        0     0     0         0          0
-#&gt;  14:            1        4    10     8         7         15
-#&gt;  15:            2       15    17    13        11         25
+#&gt;  14:            1        1     1     1         1          1
+#&gt;  15:            2        2     2     2         2          2
 #&gt;  16:            0        0     0     0         0          0
 #&gt;  17:            0        0     0     0         0          0
-#&gt;  18:            1       11     7     5         4         10
+#&gt;  18:            1        1     1     1         1          1
 #&gt;  19:            0        0     0     0         0          0
 #&gt;  20:            0        0     0     0         0          0
-#&gt;  21:            3       10    10    11        11         20
+#&gt;  21:            3        3     3     3         3          3
 #&gt;  22:            0        0     0     0         0          0
-#&gt;  23:            1        4    10     8         7         15
+#&gt;  23:            1        1     1     1         1          1
 #&gt;  24:            0        0     0     0         0          0
 #&gt;  25:            0        0     0     0         0          0
 #&gt;  26:            0        0     0     0         0          0
 #&gt;  27:            0        0     0     0         0          0
-#&gt;  28:            1        4    10     8         7         15
-#&gt;  29:            1        0     0     0         0          4
-#&gt;  30:            1        4    10     8         7         15
-#&gt;  31:            1        3    12     9        11          7
+#&gt;  28:            1        1     1     1         1          1
+#&gt;  29:            1        1     1     1         1          1
+#&gt;  30:            1        1     1     1         1          1
+#&gt;  31:            1        1     1     1         1          1
 #&gt;  32:            0        0     0     0         0          0
 #&gt;  33:            0        0     0     0         0          0
 #&gt;  34:            0        0     0     0         0          0
-#&gt;  35:            1        2     4     4         3          4
+#&gt;  35:            1        1     1     1         1          1
 #&gt;  36:            0        0     0     0         0          0
 #&gt;  37:            0        0     0     0         0          0
 #&gt;  38:            0        0     0     0         0          0
 #&gt;  39:            0        0     0     0         0          0
-#&gt;  40:            4        6     8     6         6         51
-#&gt;  41:            1        4    10     8         7         15
+#&gt;  40:            4        4     4     4         4          4
+#&gt;  41:            1        1     1     1         1          1
 #&gt;  42:            0        0     0     0         0          0
 #&gt;  43:            0        0     0     0         0          0
-#&gt;  44:            1       -1     0     0         0          0
-#&gt;  45:            3        9    21    17        18         27
+#&gt;  44:            1        1     1     1         1          1
+#&gt;  45:            3        3     3     3         3          3
 #&gt;  46:            0        0     0     0         0          0
 #&gt;  47:            0        0     0     0         0          0
 #&gt;  48:            0        0     0     0         0          0
-#&gt;  49:            1        4    10     8         7         15
+#&gt;  49:            1        1     1     1         1          1
 #&gt;  50:            0        0     0     0         0          0
 #&gt;  51:            0        0     0     0         0          0
-#&gt;  52:            1        0     0     0         0          4
-#&gt;  53:            2       10    15    12        12         22
-#&gt;  54:            1        4    10     8         7         15
+#&gt;  52:            1        1     1     1         1          1
+#&gt;  53:            2        2     2     2         2          2
+#&gt;  54:            1        1     1     1         1          1
 #&gt;  55:            0        0     0     0         0          0
-#&gt;  56:            2       -1     0    -1        -3          9
+#&gt;  56:            2        2     2     2         2          2
 #&gt;  57:            0        0     0     0         0          0
-#&gt;  58:            1        4    10     8         7         15
-#&gt;  59:            0        5     8     0         0          0
-#&gt;  60:            1        6     5     4         5          7
-#&gt;  61:            2        3    10     8         7         15
+#&gt;  58:            1        1     1     1         1          1
+#&gt;  59:            1        1     1     1         1          1
+#&gt;  60:            1        1     1     1         1          1
+#&gt;  61:            2        2     2     2         2          2
 #&gt;  62:            0        0     0     0         0          0
 #&gt;  63:            0        0     0     0         0          0
 #&gt;  64:            0        0     0     0         0          0
-#&gt;  65:            2        4    -4    -3        -3         24
-#&gt;  66:            1        6     5     4         5          7
-#&gt;  67:            1        7     4     3         5          6
+#&gt;  65:            2        2     2     2         2          2
+#&gt;  66:            1        1     1     1         1          1
+#&gt;  67:            1        1     1     1         1          1
 #&gt;  68:            0        0     0     0         0          0
 #&gt;  69:            0        0     0     0         0          0
-#&gt;  70:            1        4    10     8         7         15
+#&gt;  70:            1        1     1     1         1          1
 #&gt;  71:            0        0     0     0         0          0
-#&gt;  72:            1        0     1     0         0          6
+#&gt;  72:            1        1     1     1         1          1
 #&gt;  73:            0        0     0     0         0          0
-#&gt;  74:            1        4    10     8         7         15
+#&gt;  74:            1        1     1     1         1          1
 #&gt;  75:            0        0     0     0         0          0
-#&gt;  76:            1        7     4     3         5          6
+#&gt;  76:            1        1     1     1         1          1
 #&gt;  77:            0        0     0     0         0          0
-#&gt;  78:            1        9     8     6         6         16
-#&gt;  79:            0        5     8     0         0          0
-#&gt;  80:            1       -7   -11    -8        -7         14
+#&gt;  78:            1        1     1     1         1          1
+#&gt;  79:            1        1     1     1         1          1
+#&gt;  80:            1        1     1     1         1          1
 #&gt;  81:            0        0     0     0         0          0
 #&gt;  82:            0        0     0     0         0          0
 #&gt;  83:            0        0     0     0         0          0
@@ -1218,29 +1213,29 @@ Indices are also included if so specified by the 'ind' argument.</p>
 #&gt;  85:            0        0     0     0         0          0
 #&gt;  86:            0        0     0     0         0          0
 #&gt;  87:            0        0     0     0         0          0
-#&gt;  88:            1        0     0     0         0         19
-#&gt;  89:            1        4    10     8         7         15
+#&gt;  88:            1        1     1     1         1          1
+#&gt;  89:            1        1     1     1         1          1
 #&gt;  90:            0        0     0     0         0          0
 #&gt;  91:            0        0     0     0         0          0
 #&gt;  92:            0        0     0     0         0          0
-#&gt;  93:            1        0    -6    -4        -5         10
-#&gt;  94:            1        0     0    -1        -3          9
-#&gt;  95:            1       12    17    13        14         21
+#&gt;  93:            1        1     1     1         1          1
+#&gt;  94:            1        1     1     1         1          1
+#&gt;  95:            1        1     1     1         1          1
 #&gt;  96:            0        0     0     0         0          0
-#&gt;  97:            1       12    17    13        14         21
-#&gt;  98:            1        0     0     0         0         19
+#&gt;  97:            1        1     1     1         1          1
+#&gt;  98:            1        1     1     1         1          1
 #&gt;  99:            0        0     0     0         0          0
-#&gt; 100:            2        6    14    12        10         19
+#&gt; 100:            2        2     2     2         2          2
 #&gt;      sum_all_ahrq walraven sid29 sid30 ahrq_mort ahrq_readm</div><div class='input'>
 <span class='co'># Add Charlson categorias and two versions of a calculated index.</span>
 <span class='co'># Only include recent hospital visits within 30 days before surgery,</span>
 <span class='co'># and use technical variable names to clearly identify the new columns.</span>
 <span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"charlson"</span>,
   <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
-  <span class='kw'>ind</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"quan_original"</span>, <span class='st'>"quan_updated"</span>),
+  <span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"quan_original"</span>, <span class='st'>"quan_updated"</span>),
   <span class='kw'>codify_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>30</span>, -<span class='fl'>1</span>)),
   <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-)</div><div class='output co'>#&gt;                           name    surgery charlson_regex_myocardial_infarction
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order (use 'categorize' to do so!)</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery charlson_regex_myocardial_infarction
 #&gt;   1:        Alexander, Bethany 2018-12-25                                FALSE
 #&gt;   2:           Arguello, Tommy 2019-09-22                                   NA
 #&gt;   3:             Austin, Maeve 2019-09-15                                   NA
@@ -2383,7 +2378,7 @@ Indices are also included if so specified by the 'ind' argument.</p>
 #&gt;  18:                           NA                          NA
 #&gt;  19:                           NA                          NA
 #&gt;  20:                           NA                          NA
-#&gt;  21:                            1                           2
+#&gt;  21:                            1                           1
 #&gt;  22:                           NA                          NA
 #&gt;  23:                           NA                          NA
 #&gt;  24:                            0                           0
@@ -2411,7 +2406,7 @@ Indices are also included if so specified by the 'ind' argument.</p>
 #&gt;  46:                           NA                          NA
 #&gt;  47:                            0                           0
 #&gt;  48:                           NA                          NA
-#&gt;  49:                            2                           2
+#&gt;  49:                            1                           1
 #&gt;  50:                           NA                          NA
 #&gt;  51:                           NA                          NA
 #&gt;  52:                           NA                          NA
@@ -2432,7 +2427,7 @@ Indices are also included if so specified by the 'ind' argument.</p>
 #&gt;  67:                           NA                          NA
 #&gt;  68:                           NA                          NA
 #&gt;  69:                           NA                          NA
-#&gt;  70:                            2                           2
+#&gt;  70:                            1                           1
 #&gt;  71:                            0                           0
 #&gt;  72:                           NA                          NA
 #&gt;  73:                           NA                          NA

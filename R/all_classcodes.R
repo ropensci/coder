@@ -11,7 +11,7 @@ all_classcodes <- function() {
 
   # Get all classcodes object from the package
   names  <- utils::data(package = "coder")$results[, "Item"]
-  cl     <- lapply(names, function(x) try(get(x), TRUE))
+  cl     <- lapply(names, function(cc) try(get(cc), TRUE))
   is.cl  <- vapply(cl, is.classcodes, NA)
   names  <- names[is.cl]
   cl     <- cl[is.cl]

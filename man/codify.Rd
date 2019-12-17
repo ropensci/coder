@@ -4,14 +4,14 @@
 \alias{codify}
 \title{codify elements}
 \usage{
-codify(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...)
+codify(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...)
 }
 \arguments{
-\item{x}{data.frame with at least two columns, one with case (patient)
+\item{data}{data.frame with at least two columns, one with case (patient)
 identification (column name specified by argument \code{id}) and one with a
 date of interest (column name specified by argument \code{date})}
 
-\item{from}{object with code data for which \code{\link{is.codedata}} is
+\item{codedata}{object with code data for which \code{\link{is.codedata}} is
 \code{TRUE}}
 
 \item{id}{name of column in \code{x} containing case (patient) identification}

@@ -36,25 +36,18 @@
 #'  visualize("charlson")
 #'
 #'  # Get URL for later visualisation
-#'  (visualize("tha.fracture.ae", show = FALSE))
+#'  (visualize("hip_fracture_ae", show = FALSE))
 #'
 #' }
 #' @family classcodes
-visualize <- function(x, group = NULL, show = TRUE, ...) {
-  x <- set_classcodes(x, ...)
+visualize <- function(cc, group = NULL, show = TRUE, ...) {
+  cc <- set_classcodes(cc, ...)
 
   if (!is.null(group))
-    x <- x[x$group %in% group, ]
-  r <- paste0(x$regex, collapse = "|")
+    cc <- cc[cc$group %in% group, ]
+  r <- paste0(cc$regex, collapse = "|")
   r <- utils::URLencode(r)
   u <- paste0("https://jex.im/regulex/#!embed=true&flags=&re=", r)
   if (show) utils::browseURL(u)
   invisible(u)
 }
-
-
-#' @rdname visualize
-#' @export
-visualise <- visualize
-
-

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.4</span>
       </span>
     </div>
 
@@ -132,36 +132,35 @@
     <p>Calculate index based on classification scheme</p>
     </div>
 
-    <pre class="usage"><span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>index</span>(<span class='no'>classified</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>index</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'>index</span>(<span class='no'>classified</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for matrix</span>
-<span class='fu'>index</span>(<span class='no'>x</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>index</span>(<span class='no'>classified</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>output from <code>classify</code>
-(or possibly from <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code>)</p></td>
+      <th>classified</th>
+      <td><p>output from <code>classify</code></p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>used internally</p></td>
     </tr>
     <tr>
-      <th>by</th>
+      <th>index</th>
       <td><p>name of column with 'weights' from corresponding
-<code><a href='classcodes.html'>classcodes</a></code> object. Can be omitted if the index is just the
+<code><a href='classcodes.html'>classcodes</a></code> object. Can be <code>NULL</code> if the index is just a
 count of relevant classes.</p></td>
     </tr>
     <tr>
-      <th>from</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object. Can be omitted if information
-already present as attribute of <code>x</code> (which is often the case) and/or
+      <th>cc</th>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object. Can be <code>NULL</code> if information
+already present as attribute of <code>classified</code> (which is often the case) and/or
 if index calculated without weights.</p></td>
     </tr>
     </table>

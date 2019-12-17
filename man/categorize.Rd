@@ -5,33 +5,30 @@
 \title{Categorize cases based on external data and classification scheme}
 \usage{
 categorize(
-  .data,
-  from,
-  what,
+  data,
+  codedata,
+  cc,
   id,
-  ind = NULL,
+  index = NULL,
   sort = TRUE,
   codify_args = list(),
   cc_args = list()
 )
 }
 \arguments{
-\item{.data}{To which data set should the categories be added?
-A data frame with at least one column with case (patient) identification
-(column name specified by argument id). A column with a date of interest
-(column name specified by argument date) is mandatory if days != NULL.}
+\item{data}{data frame with mandatory id column (identified by argument \code{id}),
+and semi-optional column with date of interest
+(identified by argument \code{date} if \code{days != NULL}).}
 
-\item{from}{where do we find the class codes? \code{\link{as.codedata}}}
+\item{codedata}{external code data (see \code{\link{as.codedata}})}
 
-\item{what}{What to add? Specify classification scheme
-(\code{\link{classcodes}} classcode object) specifying categories to add
-based on individual code groups.}
+\item{cc}{\code{\link{classcodes}} object (or name of such object).}
 
 \item{id}{name (as character) of variable in \code{x} to group id (for
 example a patient id).}
 
-\item{ind}{control possible inclusion of index vector. Set to \code{FALSE} if
-no index should be calculated, otherwise a value passed to argument
+\item{index}{control possible inclusion of index vector.
+Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
 \code{by} in function \code{\link{index}}. It is possible to
 include several indices as a character vector.
 \code{NULL} will include all available indices.}
@@ -49,13 +46,12 @@ input data.}
 }
 \value{
 data frame ('data.table' object) with all data from
-the input data set \code{to/.data} combined with logical columns indicating
+the input data set \code{to/data} combined with logical columns indicating
 membership of categories identified by the classcode object.
-Indices are also included if so specified by the 'ind' argument.
+Indices are also included if so specified by the 'index' argument.
 }
 \description{
-\code{categorize} is the main function of the package.
-\code{categorise} is used as an additional alias.
+Categorize cases based on external data and classification scheme
 }
 \examples{
 # Add Elixhauser based on all registered ICD10-codes
@@ -66,7 +62,7 @@ categorize(ex_people, ex_icd10, "elixhauser", id = "name")
 # and use technical variable names to clearly identify the new columns.
 categorize(ex_people, ex_icd10, "charlson",
   id = "name",
-  ind = c("quan_original", "quan_updated"),
+  index = c("quan_original", "quan_updated"),
   codify_args = list(date = "surgery", days = c(-30, -1)),
   cc_args = list(tech_names = TRUE)
 )

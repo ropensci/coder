@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.4</span>
       </span>
     </div>
 
@@ -133,8 +133,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>set_classcodes</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>cc</span>,
+  <span class='kw'>classified</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"regex"</span>,
   <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>stop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -145,12 +145,11 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>classcodes specification as either a name or a classcodes object,
-or a classcodes object itself.</p></td>
+      <th>cc</th>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object or name of such</p></td>
     </tr>
     <tr>
-      <th>from</th>
+      <th>classified</th>
       <td><p>object that classcodes could be inherited from</p></td>
     </tr>
     <tr>

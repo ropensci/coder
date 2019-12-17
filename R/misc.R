@@ -53,6 +53,10 @@ spss2date <- function(x) {
 #' @return character vector of the same length as \code{x}
 #' @keywords internal
 clean_text <- function(x_name, x) {
-  if (!is.character(x_name)) stop("Object ", deparse(substitute(x_name)), " must be refferred by name if 'tech_names = TRUE'!")
+  if (!is.character(x_name)) {
+    stop("Object ", deparse(substitute(x_name)),
+         " must be refferred by name if 'tech_names = TRUE'!"
+    )
+  }
    paste(x_name, gsub("\\W", "_", tolower(x), perl = TRUE), sep = "_")
 }

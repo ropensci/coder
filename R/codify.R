@@ -1,10 +1,10 @@
 #' codify elements
 #'
 #' @inheritParams copybig
-#' @param x data.frame with at least two columns, one with case (patient)
+#' @param data data.frame with at least two columns, one with case (patient)
 #'   identification (column name specified by argument \code{id}) and one with a
 #'   date of interest (column name specified by argument \code{date})
-#' @param from object with code data for which \code{\link{is.codedata}} is
+#' @param codedata object with code data for which \code{\link{is.codedata}} is
 #'   \code{TRUE}
 #' @param id name of column in \code{x} containing case (patient) identification
 #' @param date name of column in \code{x} with possible date of interest
@@ -35,8 +35,11 @@
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 #' @family verbs
-codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
+codify <- function(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
 
+  if (!id %in% names(data)) {
+    stop("There is no column named '", id, "' in ", deparse(substitute(data)))
+  }
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
   idcols  <- c(id, if (usedate) "date")
@@ -47,13 +50,13 @@ codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...
   }
 
 
-  if (!is.data.table(x)) {
-    x <- data.table(x)
+  if (!is.data.table(data)) {
+    data <- data.table(data)
   }
-  x2 <- copybig(x, .copy) # New name to avoid copy complications
+  x2 <- copybig(data, .copy) # New name to avoid copy complications
   if (usedate) setnames(x2, date, "date")
-  if (!is.codedata(from)) {
-    from <- as.codedata(from, .copy = .copy, ...)
+  if (!is.codedata(codedata)) {
+    codedata <- as.codedata(codedata, .copy = .copy, ...)
   }
 
   # id column must be character to merge with columkn from codedata
@@ -68,7 +71,7 @@ codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...
   x2_id_date <- x2[, idcols, with = FALSE]
 
   out <-
-    merge(x2_id_date, from, by.x = id, by.y = "id",
+    merge(x2_id_date, codedata, by.x = id, by.y = "id",
           all.x = TRUE, allow.cartesian = TRUE)[,
       in_period :=
         if (!usedate) TRUE

@@ -16,9 +16,9 @@
 #'  reorder the output to maintain original order.
 #'
 #'
-#' @param x object with elements to classify (often the output from
+#' @param codified object with elements to classify (often the output from
 #'   \code{\link{codify}})
-#' @param by classification scheme of type \code{classcodes} to classify by
+#' @inheritParams set_classcodes
 #' @param ... arguments passed between methods
 #' @param code name (as character) of variable in \code{x} containing codes to
 #'   classify
@@ -40,7 +40,7 @@
 #'
 #' @examples
 #' # Classify individual ICD10-codes by Elixhauser
-#' classify(c("C80", "I20", "unvalid_code"), by = "elixhauser")
+#' classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 #'
 #' # Classify patients by Charlson for comorbidities during
 #' # one year before surgery
@@ -48,14 +48,14 @@
 #'   date = "surgery", days = c(-365, 0))
 #' y <- classify(x, "charlson")
 #'
-#' # Use tha RCS classification instead and use thechnical column names
+#' # Use tha RCS classification instead and use technical column names
 #' y <- classify(x, "charlson", cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
 #'
 #' # It is possible to convert the outpot of classify to a data frame with
 #' # id column instead of row names
 #' as.data.frame(y)
 #' @family verbs
-classify <- function(x, by, ..., cc_args = list()) UseMethod("classify")
+classify <- function(codified, cc, ..., cc_args = list()) UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object
 # Three posibilites exists
@@ -77,17 +77,17 @@ eval_condition <- function(cond, x) {
 
 #' @export
 #' @rdname classify
-classify.default <- function(x, by, ..., cc_args = list()) {
-  cc_args$x <- .by <- by
-  by  <- do.call(set_classcodes, cc_args)
-  y   <- vapply(by$regex, grepl, logical(length(x)), x = as.character(x))
-  if (length(x) == 1)
+classify.default <- function(codified, cc, ..., cc_args = list()) {
+  cc_args$cc <- .cc <- cc
+  cc  <- do.call(set_classcodes, cc_args)
+  y   <- vapply(cc$regex, grepl, logical(length(codified)), x = as.character(codified))
+  if (length(codified) == 1)
     y <- as.matrix(t(y))
 
   structure(
     y,
-    dimnames   = list(x, by$group),
-    classcodes = .by,
+    dimnames   = list(codified, cc$group),
+    classcodes = .cc,
     id         = "id",
     class      = c("classified", "matrix")
   )
@@ -95,46 +95,48 @@ classify.default <- function(x, by, ..., cc_args = list()) {
 
 #' @export
 #' @rdname classify
-classify.data.frame <- function(x, by, ..., id = NULL, code = "code", cc_args = list()) {
+classify.data.frame <- function(codified, cc, ..., id = NULL, code = "code", cc_args = list()) {
 
-  cc_args$x <- .by <- by
-  by <- do.call(set_classcodes, cc_args)
+  warning("'classify' does not preserve row order (use 'categorize' to do so!)")
+
+  cc_args$cc <- cc_name <- cc
+  cc <- do.call(set_classcodes, cc_args)
 
   # The id column can be identified in multiple ways
   id <-
-    if (is.null(id) & !is.null(attr(x, "id"))) attr(x, "id")
+    if (is.null(id) & !is.null(attr(codified, "id"))) attr(codified, "id")
     else if (is.character(id)) id
-    else if (is.null(id) & "id" %in% names(x)) "id"
+    else if (is.null(id) & "id" %in% names(codified)) "id"
     else stop("Argument 'id' must be specified!")
-  if (!id %in% names(x))
+  if (!id %in% names(codified))
     stop(id, " should specify case id but is not a column of x!")
-  if (!code %in% names(x))
+  if (!code %in% names(codified))
     stop(code, " should specify codes but is not a column of x!")
 
   # Rename columns in x to standard names
-  names(x)[names(x) == code] <- "code"
+  names(codified)[names(codified) == code] <- "code"
 
   # Special tratment for codes not belonging to any class (for speed up)
   # Make FALSE matrix for all these cases
   # and for NA cases, which should remain NA
-  i_nocl           <- !is.na(x$code) &
-                      !grepl(paste(by$regex, collapse = "|"), x$code)
-  i_na             <- is.na(x$code)
-  nocl             <- matrix(FALSE, sum(i_nocl), nrow(by))
-  rownames(nocl)   <- x[[id]][i_nocl]
+  i_nocl           <- !is.na(codified$code) &
+                      !grepl(paste(cc$regex, collapse = "|"), codified$code)
+  i_na             <- is.na(codified$code)
+  nocl             <- matrix(FALSE, sum(i_nocl), nrow(cc))
+  rownames(nocl)   <- codified[[id]][i_nocl]
 
-  nacl             <- matrix(NA, sum(i_na), nrow(by))
-  rownames(nacl)   <- x[[id]][i_na]
+  nacl             <- matrix(NA, sum(i_na), nrow(cc))
+  rownames(nacl)   <- codified[[id]][i_na]
 
   nocl             <- rbind(nocl, nacl)
-  colnames(nocl)   <- by$group
-  x                <- x[!i_nocl & !i_na, ]
+  colnames(nocl)   <- cc$group
+  codified                <- codified[!i_nocl & !i_na, ]
 
   # Classify all cases with at least one class
-  y                <- classify(x$code, by = by)
-  if ("condition" %in% names(by))
-    y <- y & vapply(by$condition, eval_condition, logical(nrow(x)), x = x)
-  rownames(y)      <- x[[id]]
+  y                <- classify(codified$code, cc)
+  if ("condition" %in% names(cc))
+    y <- y & vapply(cc$condition, eval_condition, logical(nrow(codified)), x = codified)
+  rownames(y)      <- codified[[id]]
 
   # Rejoin class cases and no class cases
   y                <- rbind(nocl, y)
@@ -163,7 +165,7 @@ classify.data.frame <- function(x, by, ..., id = NULL, code = "code", cc_args = 
 
   structure(
     out,
-    classcodes = .by,
+    classcodes = cc_name,
     id         = id,
     class      = c("classified", "matrix")
   )

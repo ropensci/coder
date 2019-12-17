@@ -6,17 +6,17 @@
 \alias{classify.data.frame}
 \title{Classify elements}
 \usage{
-classify(x, by, ..., cc_args = list())
+classify(codified, cc, ..., cc_args = list())
 
-\method{classify}{default}(x, by, ..., cc_args = list())
+\method{classify}{default}(codified, cc, ..., cc_args = list())
 
-\method{classify}{data.frame}(x, by, ..., id = NULL, code = "code", cc_args = list())
+\method{classify}{data.frame}(codified, cc, ..., id = NULL, code = "code", cc_args = list())
 }
 \arguments{
-\item{x}{object with elements to classify (often the output from
+\item{codified}{object with elements to classify (often the output from
 \code{\link{codify}})}
 
-\item{by}{classification scheme of type \code{classcodes} to classify by}
+\item{cc}{\code{\link{classcodes}} object or name of such}
 
 \item{...}{arguments passed between methods}
 
@@ -52,7 +52,7 @@ Note that row order is not preserved for \code{classify.data.frame} due to
 }
 \examples{
 # Classify individual ICD10-codes by Elixhauser
-classify(c("C80", "I20", "unvalid_code"), by = "elixhauser")
+classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 
 # Classify patients by Charlson for comorbidities during
 # one year before surgery
@@ -60,7 +60,7 @@ x <- codify(ex_people, ex_icd10, id = "name",
   date = "surgery", days = c(-365, 0))
 y <- classify(x, "charlson")
 
-# Use tha RCS classification instead and use thechnical column names
+# Use tha RCS classification instead and use technical column names
 y <- classify(x, "charlson", cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
 
 # It is possible to convert the outpot of classify to a data frame with

@@ -5,8 +5,8 @@
 \title{Set classcodes object}
 \usage{
 set_classcodes(
-  x,
-  from = NULL,
+  cc,
+  classified = NULL,
   regex = "regex",
   start = TRUE,
   stop = FALSE,
@@ -14,10 +14,9 @@ set_classcodes(
 )
 }
 \arguments{
-\item{x}{classcodes specification as either a name or a classcodes object,
-or a classcodes object itself.}
+\item{cc}{\code{\link{classcodes}} object or name of such}
 
-\item{from}{object that classcodes could be inherited from}
+\item{classified}{object that classcodes could be inherited from}
 
 \item{regex}{name of column with regular expressions to use for
 classification, either with or without prefix \code{regex_}}

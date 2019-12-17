@@ -2,16 +2,12 @@
 % Please edit documentation in R/visualize.R
 \name{visualize}
 \alias{visualize}
-\alias{visualise}
 \title{Visualise classification scheme in web browser}
 \usage{
-visualize(x, group = NULL, show = TRUE, ...)
-
-visualise(x, group = NULL, show = TRUE, ...)
+visualize(cc, group = NULL, show = TRUE, ...)
 }
 \arguments{
-\item{x}{classcodes specification as either a name or a classcodes object,
-or a classcodes object itself.}
+\item{cc}{\code{\link{classcodes}} object or name of such}
 
 \item{group}{names (as character vector) of groups to visualise
 (all groups if \code{NULL})}
@@ -56,7 +52,7 @@ in use, and during the creation and debugging of such.
  visualize("charlson")
 
  # Get URL for later visualisation
- (visualize("tha.fracture.ae", show = FALSE))
+ (visualize("hip_fracture_ae", show = FALSE))
 
 }
 }
