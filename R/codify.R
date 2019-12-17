@@ -57,7 +57,7 @@ codify <- function(x, from, id = "id", date = NULL, days = NULL, .copy = NA, ...
   }
 
   # id column must be character to merge with columkn from codedata
-  if (!is.character(x2[[id]]) && !is.factor(x2[[id]])) {
+  if (!is.character(x2[[id]])) {
     x2[[id]] <- as.character(x2[[id]])
     warning(id, " coerced to character!")
   }
