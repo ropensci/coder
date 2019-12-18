@@ -34,7 +34,7 @@ To initially set the key for a large data set can be slow
 but it could be beneficial for later use of the object.}
 
 \item{.copy}{Should the object be copied internally by \code{\link{copy}}?
-\code{NA} (by default) means that objects smaller than 1 Gb are copied.
+\code{NA} (by default) means that objects smaller than 1 GB are copied.
 If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out

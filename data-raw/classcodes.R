@@ -42,6 +42,7 @@ usethis::use_data(
   charlson,
   elixhauser,
   hip_ae,
+  hip_ae_hailer,
   knee_ae,
   hip_fracture_ae,
   cps,

@@ -75,6 +75,7 @@ Other default classcodes:
 \code{\link{ae}},
 \code{\link{cps}},
 \code{\link{elixhauser}},
+\code{\link{hip_ae_hailer}},
 \code{\link{rxriskv}}
 }
 \concept{default classcodes}

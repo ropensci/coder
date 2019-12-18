@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes — cps • coder</title>
+<title>Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
+and KVA codes — hip_ae_hailer • coder</title>
 
 
 <!-- jquery -->
@@ -35,8 +36,9 @@
 
 
 
-<meta property="og:title" content="Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes — cps" />
-<meta property="og:description" content="A classcodes object to use with classify" />
+<meta property="og:title" content="Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
+and KVA codes — hip_ae_hailer" />
+<meta property="og:description" content="classcodes objects to use with classify." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,41 +125,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes</h1>
+    <h1>Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
+and KVA codes</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/manual_for_datasets.R'><code>R/manual_for_datasets.R</code></a></small>
-    <div class="hidden name"><code>cps.Rd</code></div>
+    <div class="hidden name"><code>hip_ae_hailer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p><code><a href='classcodes.html'>classcodes</a></code> objects to use with <code><a href='classify.html'>classify</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='no'>cps</span></pre>
+    <pre class="usage"><span class='no'>hip_ae_hailer</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 2 rows and 2 variables:</p><dl class='dl-horizontal'>
-  <dt>group</dt><dd><p>comorbidity groups, either "ordinary" for most ICD-10-codes or
-  "special" for codes beginning with "UA", "UB" and "UP"</p></dd>
-  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes of each group</p></dd>
-  <dt>only_ordinary</dt><dd><p>index weights, 1 for ordinary and 0 for special</p></dd>
+    <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
+  <dt>group</dt><dd><p>Infection or dislocation</p></dd>
+  <dt>regex</dt><dd><p>regular expressions based on ICD-10</p></dd>
+ <dt>regex_kva</dt><dd><p>regular expressions based on KVA codes</p></dd>
 
 </dl>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Stawicki, Stanislaw P., et al.
-"Comorbidity polypharmacy score and its clinical utility: A pragmatic
-practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
-(2015): 224.
-<a href='http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/'>http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other default classcodes: 
+    <div class='dont-index'><p>ae</p>
+<p>Other default classcodes: 
 <code><a href='ae.html'>ae</a></code>,
 <code><a href='charlson.html'>charlson</a></code>,
+<code><a href='cps.html'>cps</a></code>,
 <code><a href='elixhauser.html'>elixhauser</a></code>,
-<code><a href='hip_ae_hailer.html'>hip_ae_hailer</a></code>,
 <code><a href='rxriskv.html'>rxriskv</a></code></p></div>
 
   </div>
@@ -165,7 +161,6 @@ practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
-      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

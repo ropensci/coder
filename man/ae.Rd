@@ -58,10 +58,13 @@ Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
 Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
 }
 \seealso{
+hip_ae_hailer
+
 Other default classcodes: 
 \code{\link{charlson}},
 \code{\link{cps}},
 \code{\link{elixhauser}},
+\code{\link{hip_ae_hailer}},
 \code{\link{rxriskv}}
 }
 \concept{default classcodes}

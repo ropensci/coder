@@ -6,9 +6,6 @@ setwd("coder")
 # Make sure it works with latest packages on CRAN
 # update.packages(ask = FALSE)
 
-# Spell check
-devtools::spell_check()
-
 # Rebuild data sets
 unlink("data", TRUE)
 dir.create("data")
@@ -30,9 +27,8 @@ devtools::build_manual()
 pkgdown::build_site()
 
 # Checks
+devtools::spell_check()
 devtools::check()
 goodpractice::goodpractice()
 rhub::check_for_cran()
 devtools::build_win()
-
-

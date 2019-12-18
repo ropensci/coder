@@ -6,7 +6,7 @@ NULL
 #'
 #' @param x object (potentially of large size)
 #' @param .copy Should the object be copied internally by \code{\link{copy}}?
-#' \code{NA} (by default) means that objects smaller than 1 Gb are copied.
+#' \code{NA} (by default) means that objects smaller than 1 GB are copied.
 #' If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 #' to make copies regardless of object size. This is recommended if enough RAM
 #' is available. If set to \code{FALSE}, calculations might be carried out
@@ -15,7 +15,7 @@ NULL
 #' @return Either \code{x} unchanged, or a fresh copy of \code{x}.
 #' @keywords internal
 copybig <- function(x, .copy = NA) {
-  # Copy x if < 1 Gb
+  # Copy x if < 1 GB
   # Require explicit specification for large objects
   # To calculate object size is slow and therefor only done if needed
   if (isTRUE(.copy) ||
@@ -24,7 +24,7 @@ copybig <- function(x, .copy = NA) {
     setnames(x2, names(x), copy(names(x)))
     return(x2)
   } else if (is.na(.copy) && big_x) {
-    stop("Object is > 1 Gb. Set argument 'copy' to TRUE' or FALSE ",
+    stop("Object is > 1 GB. Set argument 'copy' to TRUE' or FALSE ",
          "to declare wether it should be copied or changed by reference!")
   } else {
     return(x)

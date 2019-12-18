@@ -29,6 +29,7 @@ Other default classcodes:
 \code{\link{ae}},
 \code{\link{charlson}},
 \code{\link{elixhauser}},
+\code{\link{hip_ae_hailer}},
 \code{\link{rxriskv}}
 }
 \concept{default classcodes}

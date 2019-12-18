@@ -188,6 +188,7 @@
 #'
 #' @name ae
 #' @family default classcodes
+#' @seealso hip_ae_hailer
 "knee_ae"
 
 #' @rdname ae
@@ -195,6 +196,23 @@
 
 #' @rdname ae
 "hip_fracture_ae"
+
+
+#' Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
+#' and KVA codes
+#'
+#' \code{\link{classcodes}} objects to use with \code{\link{classify}}.
+#'
+#' @format Data frame with 3 columns:
+#' \describe{
+#'   \item{group}{Infection or dislocation}
+#'   \item{regex}{regular expressions based on ICD-10}
+#'  \item{regex_kva}{regular expressions based on KVA codes}
+#' }
+#'
+#' @seealso ae
+#' @family default classcodes
+"hip_ae_hailer"
 
 
 #' Classcodes for RxRisk V based on ATC codes

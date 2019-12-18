@@ -52,6 +52,7 @@ Arbitrary `classcodes` objects can be specified by the user.
 |elixhauser      |short                                                                       |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm |
 |ex_carbrands    |                                                                            |                                                                     |
 |hip_ae          |kva                                                                         |                                                                     |
+|hip_ae_hailer   |kva                                                                         |                                                                     |
 |hip_fracture_ae |kva                                                                         |                                                                     |
 |knee_ae         |kva                                                                         |                                                                     |
 |rxriskv         |caughey, garland                                                            |index_pratt                                                          |
