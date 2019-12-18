@@ -98,8 +98,9 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
 classify.data.frame <- function(codified, cc, ..., id = NULL, code = "code", cc_args = list()) {
 
   # Warning if not called from categorize
-  if (!any(startsWith(vapply(sys.calls(), function(x) deparse(x[[1]])[[1]], ""), "categorize"))) {
-    warning("'classify' does not preserve row order (use 'categorize' to do so!)")
+  if (!any(grepl("(coder)?categorize",
+                 vapply(sys.calls(), function(x) deparse(x[[1]])[[1]], "")))) {
+    warning("'classify' does not preserve row order ('categorize' does!)")
   }
 
   cc_args$cc <- cc_name <- cc

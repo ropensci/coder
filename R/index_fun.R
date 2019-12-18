@@ -70,7 +70,9 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
       function(y) any(grepl(y, regularize(colnames(classified)))), logical(1)))) {
       stop("Data non consistent with specified classcodes!")
     } else {
-      c(classified %*% cc[[index]])
+      ind <- cc[[index]]
+      ind[is.na(ind)] <- 0
+      c(classified %*% ind)
     }
 
   names(out) <- rownames(classified)

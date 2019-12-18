@@ -6,8 +6,7 @@ setwd("coder")
 # Make sure it works with latest packages on CRAN
 # update.packages(ask = FALSE)
 
-# Rebuild data sets
-unlink("data", TRUE)
+iunlink("data", TRUE)
 dir.create("data")
 file.remove("R/sysdata.rda")
 library(tidyverse)
