@@ -230,7 +230,7 @@
 #'   Garland to resemble medical use in Sweden 2016 (Unpublished).}
 #'  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
 #'  \item{pratt}{Mortality weights from table 1 in Pratt et al. 2018}
-#'  \item{sum-all}{Unweighted count of all conditions.}
+#'  \item{sum_all}{Unweighted count of all conditions.}
 #' }
 #'
 #' @references

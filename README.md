@@ -55,7 +55,7 @@ Arbitrary `classcodes` objects can be specified by the user.
 |hip_ae_hailer   |kva                                                                         |                                                                     |
 |hip_fracture_ae |kva                                                                         |                                                                     |
 |knee_ae         |kva                                                                         |                                                                     |
-|rxriskv         |caughey, garland                                                            |index_pratt                                                          |
+|rxriskv         |caughey, garland                                                            |pratt, sum_all                                                       |
 
 # Contribution
 

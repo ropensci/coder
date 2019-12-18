@@ -8,9 +8,9 @@ test_that("classify", {
     elixhauser$group[which(classify("C80", "elixhauser"))],
     "metastatic cancer"
   )
-  expect_is(classify(x, "elixhauser"), "matrix")
+  expect_is(suppressWarnings(classify(x, "elixhauser")), "matrix")
   expect_error(
-    classify(x, "hip_ae", id = "name"),
+    suppressWarnings(classify(x, "hip_ae", id = "name")),
     "Classification is conditioned on variables not found in the data set!"
   )
 })
