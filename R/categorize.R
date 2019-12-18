@@ -73,12 +73,12 @@ categorize <- function(
     index <-
       if (is.null(index) && !is.null(index_inh) && length(index_inh) > 0) {
         index_inh
-      } else if (is.null(index)){
+      } else if (is.null(index)) {
         list(NULL)
       } else {
         index
       }
-    indx        <- lapply(index, function(x) index(cl, by = x))
+    indx        <- lapply(index, function(x) index(cl, index = x))
     indx        <- as.data.table(as.data.frame(indx), keep.rownames = id)
     ind_names   <- if (identical(index, list(NULL))) "index" else index
     if (!is.null(cc_args$tech_names) && cc_args$tech_names) {
