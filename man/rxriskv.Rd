@@ -9,11 +9,11 @@
   \item{group}{medical condition}
   \item{regex}{ATC codes from table 1 in Pratt et al. 2018
    (ignoring PBS item codes and extra conditions).}
-  \item{regex_unknown}{Source for this classification is unknown!}
-  \item{regex_garland}{Based on \code{regex_unknown} but modified by Anne
-  Garland to resemble medical use in Sweden 2016. Unpublished!}
+  \item{regex_garland}{Modified version by Anne
+  Garland to resemble medical use in Sweden 2016 (Unpublished).}
  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
  \item{pratt}{Mortality weights from table 1 in Pratt et al. 2018}
+ \item{sum-all}{Unweighted count of all conditions.}
 }}
 \usage{
 rxriskv
