@@ -11,10 +11,10 @@ pardata <- cbind(pardata, diadata)
 
 suppressMessages(
   test_that("handle data from PAR", {
-    expect_true(is.codedata(as.codedata(pardata, npr = TRUE)))
-    expect_message(as.codedata(pardata, npr = TRUE))
-    expect_equal(ncol(as.codedata(pardata, npr = TRUE)), 4)
-    expect_equal(nrow(as.codedata(pardata, npr = TRUE)), 21766)
+    expect_message(npr <- npr2codedata(pardata))
+    expect_true(is.codedata(npr))
+    expect_equal(ncol(npr), 4)
+    expect_equal(nrow(npr), 21766)
     expect_error(as.codedata(iris))
   })
 )

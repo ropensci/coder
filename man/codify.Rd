@@ -39,7 +39,7 @@ but the object will be changed by reference.}
 \item{...}{
   Arguments passed on to \code{\link[=as.codedata]{as.codedata}}
   \describe{
-    \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters (boolean)?}
+    \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters (Boolean)?}
   }}
 }
 \value{

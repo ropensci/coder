@@ -5,25 +5,12 @@
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(
-  x,
-  y = NULL,
-  ...,
-  .setkeys = TRUE,
-  .copy = NA,
-  npr = FALSE,
-  nprdate = "utdatuma",
-  alnum = FALSE
-)
+as.codedata(x, ..., .setkeys = TRUE, alnum = FALSE)
 
 is.codedata(x)
 }
 \arguments{
-\item{x}{data frame with columns "id", "code_date" and "code" or
-object in format used by NPR (see below).}
-
-\item{y}{additional (optional) NPR data set if \code{x} contains data
-from NPR data. (see below).}
+\item{x}{data frame with columns "id", "code_date" and "code"}
 
 \item{...}{by default, codes for future dates or dates before "1970-01-01"
 are ignored (with a warning). Specify \code{to, from}
@@ -33,31 +20,15 @@ are ignored (with a warning). Specify \code{to, from}
 To initially set the key for a large data set can be slow
 but it could be beneficial for later use of the object.}
 
-\item{.copy}{Should the object be copied internally by \code{\link{copy}}?
-\code{NA} (by default) means that objects smaller than 1 GB are copied.
-If the size is larger, the argument must be set explicitly. Set \code{TRUE}
-to make copies regardless of object size. This is recommended if enough RAM
-is available. If set to \code{FALSE}, calculations might be carried out
-but the object will be changed by reference.}
-
-\item{npr}{Is data from the Swedish patient register?
-If so, the format might be recognized automatically (no guarantee).}
-
-\item{nprdate}{If \code{x} is recognized as a data set from the Swedish
-National Patient Register, which date variable should be recognized as code
-date for out patients? Could be either "indatuma" or "utdatuma".
-(Note that in patients only have one date.)}
-
-\item{alnum}{Should codes be cleaned from all non alphanumeric characters (boolean)?}
+\item{alnum}{Should codes be cleaned from all non alphanumeric characters (Boolean)?}
 }
 \value{
 \code{as.codedata} returns a \code{\link{data.table}} object
   with mandatory columns: "id" (individual id coerced to character) and
   "code". It has an optional column
   "code_date" (when the code was valid) if there was such a column in
-  \code{x} or if the data is recognized from NPR.
-  Possible additional columns from \code{x} are preserved
-  if data is not recognized as coming from NPR.
+  \code{x}.
+  Possible additional columns from \code{x} are preserved.
 
 \code{is.codedata} returns \code{TRUE} if these same conditions are met and
 \code{FALSE} otherwise.
@@ -66,31 +37,6 @@ date for out patients? Could be either "indatuma" or "utdatuma".
 \description{
 Code data
 }
-\section{Data from NPR}{
-
-
-Data from the Swedish Patient Register can be recognized as such if
-argument \code{x} contains columns named \code{lpnr, indatuma/utdatuma} AND
-(\code{hdia, bdia1, ..., bdia15} OR \code{op1, ..., op30}).
-
-Note that the name should be \code{indatuma/utdatuma} (with letter "a"
-suffixed). This is to distinguish the character date format \code{\%Y\%m\%d}
-from the SPSS date format sometimes stored in \code{indatum/utdatum}.
-If the SPSS date is the only one available, the help function
-\code{\link{spss2date}} can be used for transformation, but this must be done
-before using \code{as.codedata}.
-
-If the data set is of this format, it is transformed to the codedata format
-and returned as such.
-Also, NPR data often comes in the form of two separate data sets, one for
-inpatient and one for outpatient care. It is therefore possible to supply
-an additional data set by argument \code{y}. It is assumed that data from
-outpatient care has relevant dates stored as \code{utdatuma} and in-patient
-data has relevant dates named \code{utdatuma}. This is however not tested
-formally. If \code{utdatuma} is missing from the out-patient data,
-\code{indatuma} is used without warning.
-}
-
 \examples{
 
 x <- data.frame(
@@ -105,5 +51,8 @@ y <- data.frame(id = 2, code_date = as.Date("3017-02-02"), code = "b")
 z <- rbind(x, y)
 as.codedata(z)
 
+}
+\seealso{
+npr
 }
 \concept{codedata}
