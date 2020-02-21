@@ -7,17 +7,25 @@
 \format{A data frame with 31 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
-  \item{regex}{regular expressions identifying ICD-10 codes of each group}
+  \item{regex}{regular expressions identifying ICD-10 codes of each group.
+    Corresponds to column 'ICD-10' in table 2 of Quan et al. (2005).}
   \item{regex_short}{regular expressions identifying only the first three
   characters of ICD-10 codes of each group. This alternative version was
-  added for comparison. There are good no reasons to use this version
-  instead of 'regex'!}
-  \item{sum_all}{all weights = 1. This is included for convenience when
-  calculating several indices simultaneously}
-  \item{sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmias"}
-  \item{walraven}{weights suggested by Walraven et al (2009)}
+  added only to use in emergency when only the first three digits are available.
+  It is not an official version and we do not recommend to use it!}i
+  \item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
+    in table 2 of Quan et al. (2005).}
+  \item{regex_icd9cm_ahrqweb}{Corresponds to column
+    'Elixhauser AHRQ-Web ICD-9-CM' in table 2 of Quan et al. (2005).}
+  \item{regex_icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
+    in table 2 of Quan et al. (2005).}
+  \item{sum_all}{all weights = 1 (thus no weights)}
+  \item{sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmia.
+    Compare to \code{regex_icd9cm_ahrqweb} which does not
+    consider this condition.}
+  \item{walraven}{weights suggested by Walraven et al. (2009)}
   \item{sid29}{weights suggested by Thompson et al. (2015)
-    based on all conditions except cardiac arrhythmias}
+    based on all conditions except cardiac arrhythmia}
   \item{sid30}{weights suggested by Thompson et al. (2015)
     based on all conditions}
  \item{ahrq_mort}{weights for in-hospital mortality suggested by

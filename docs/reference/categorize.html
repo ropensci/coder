@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
       </span>
     </div>
 
@@ -207,107 +207,107 @@ Indices are also included if so specified by the 'index' argument.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Add Elixhauser based on all registered ICD10-codes</span>
-<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elixhauser"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery congestive heart failure
-#&gt;   1:        Alexander, Bethany 2018-12-26                    FALSE
-#&gt;   2:           Arguello, Tommy 2019-09-23                    FALSE
-#&gt;   3:             Austin, Maeve 2019-09-16                    FALSE
-#&gt;   4:            Ball, Rockelle 2019-02-02                    FALSE
-#&gt;   5:            Bean, Haileigh 2019-03-03                    FALSE
-#&gt;   6:            Beehler, Kelly 2019-01-21                    FALSE
-#&gt;   7:           Bessard, Marzel 2019-10-13                    FALSE
-#&gt;   8:              Bishop, Alec 2019-01-25                    FALSE
-#&gt;   9:            Bivings, Devin 2019-03-24                    FALSE
-#&gt;  10:            Brown, Patrick 2019-06-05                    FALSE
-#&gt;  11:             Burges, Amber 2019-03-30                    FALSE
-#&gt;  12:            Burton, Martin 2019-08-19                    FALSE
-#&gt;  13:           Cannon, Timothy 2018-12-26                    FALSE
-#&gt;  14:  Cardenas Perez, Gabriela 2019-04-25                    FALSE
-#&gt;  15:               Chung, Noor 2019-05-04                    FALSE
-#&gt;  16:           Connors, Jaylyn 2019-02-27                    FALSE
-#&gt;  17:    Copeland-Doyle, Symone 2019-04-08                    FALSE
-#&gt;  18:                 Doan, Sam 2019-10-09                    FALSE
-#&gt;  19:         Dominguez, Suriel 2019-11-30                    FALSE
-#&gt;  20:         Enriquez, Anthony 2019-08-05                    FALSE
-#&gt;  21:      Fitzsimmons, Tabatha 2019-03-31                     TRUE
-#&gt;  22:             Grim, Cheanna 2019-05-16                    FALSE
-#&gt;  23:               Harder, Rio 2019-11-04                    FALSE
-#&gt;  24:               Hood, Dania 2019-08-12                    FALSE
-#&gt;  25:           Howard, Marcius 2019-10-16                    FALSE
-#&gt;  26:              Huff, Hassan 2019-11-29                    FALSE
-#&gt;  27:           Hughey, Darlene 2019-07-05                    FALSE
-#&gt;  28:        Hutchinson, Joshua 2019-03-30                    FALSE
-#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-25                    FALSE
-#&gt;  30:       Khamsoulinh, De'Von 2019-08-14                    FALSE
-#&gt;  31:          Lechuga, Anthony 2019-03-23                    FALSE
-#&gt;  32:         Littlejohn, Kevin 2019-05-05                    FALSE
-#&gt;  33:          Liufau, Sue Lynn 2019-06-17                    FALSE
-#&gt;  34:            Martin, Trevor 2019-04-03                    FALSE
-#&gt;  35:          Martinez, Alison 2019-07-08                    FALSE
-#&gt;  36:         Martinez, Columba 2019-01-22                    FALSE
-#&gt;  37:          Mendoza, Jessica 2019-06-22                    FALSE
-#&gt;  38:           Mendoza, Nathan 2019-01-26                    FALSE
-#&gt;  39:   Miller, Von Buddenbrock 2019-02-21                    FALSE
-#&gt;  40:              Mills, Henry 2019-05-24                    FALSE
-#&gt;  41:           Mitchell, Dalon 2019-01-19                    FALSE
-#&gt;  42:              Murray, Eric 2019-05-01                    FALSE
-#&gt;  43:             Nguyen, Hoang 2019-08-03                    FALSE
-#&gt;  44:            Orozco, Daniel 2019-03-10                    FALSE
-#&gt;  45:              Pappas, Cole 2019-05-13                    FALSE
-#&gt;  46:         Pearsall, Deontre 2019-07-31                    FALSE
-#&gt;  47:           Pena, Francisco 2019-07-11                    FALSE
-#&gt;  48:              Perez, Vidal 2019-10-28                    FALSE
-#&gt;  49:        Peterson, Brittany 2019-03-19                    FALSE
-#&gt;  50:            Polvon, Alicia 2019-05-08                    FALSE
-#&gt;  51:             Quick, Miriah 2019-09-12                    FALSE
-#&gt;  52:             Raab, Jeannie 2019-05-15                    FALSE
-#&gt;  53:             Rice, Jamissa 2019-12-11                    FALSE
-#&gt;  54:        Rockwell, Savannah 2019-07-04                    FALSE
-#&gt;  55:         Rodriquez, Monica 2019-01-29                    FALSE
-#&gt;  56:              Romero, Carl 2019-11-08                    FALSE
-#&gt;  57: Rosales-Marroquin, Monika 2019-03-20                    FALSE
-#&gt;  58:                 Sam, Niki 2019-10-13                    FALSE
-#&gt;  59:             Sanchez, Ryan 2019-10-04                    FALSE
-#&gt;  60:             Sharma, Katie 2019-09-20                    FALSE
-#&gt;  61:           Snider, Melanie 2018-12-19                    FALSE
-#&gt;  62:       Summerhays, Spencer 2019-01-17                    FALSE
-#&gt;  63:            Thompson, Trae 2019-09-04                    FALSE
-#&gt;  64: Torres Escalante, Herbert 2019-04-28                    FALSE
-#&gt;  65:   Trader-Bankston, J'Quan 2019-08-17                    FALSE
-#&gt;  66:               Tram, Medha 2019-09-29                    FALSE
-#&gt;  67:            Vaclav, Taylor 2019-10-31                    FALSE
-#&gt;  68:           Valdez, Antonio 2018-12-20                    FALSE
-#&gt;  69:           Ventura, Joshua 2019-08-12                    FALSE
-#&gt;  70:         Vogltanz, Michael 2019-04-03                    FALSE
-#&gt;  71:             Wang, Phillip 2019-07-03                    FALSE
-#&gt;  72:          Whitaker, Taylor 2019-03-26                    FALSE
-#&gt;  73:                 Wu, Lucas 2019-12-17                    FALSE
-#&gt;  74:             Wuertz, Jenny 2019-02-05                    FALSE
-#&gt;  75:    al-Asmar, Abdur Raheem 2019-08-03                    FALSE
-#&gt;  76:       al-Bashara, Shaahir 2019-01-12                    FALSE
-#&gt;  77:          al-Dawood, Hasan 2019-10-13                    FALSE
-#&gt;  78:           al-Dib, Farhaan 2019-10-01                    FALSE
-#&gt;  79:        al-Ismail, Waleeda 2019-09-23                    FALSE
-#&gt;  80:        al-Jafri, Shaheera 2019-11-20                    FALSE
-#&gt;  81:        al-Kader, Siddeeqa 2019-11-08                    FALSE
-#&gt;  82:          al-Karam, Ziyaad 2019-09-19                    FALSE
-#&gt;  83:       al-Ramadan, Hanoona 2019-05-15                    FALSE
-#&gt;  84:         al-Shaban, Mazeed 2019-05-02                    FALSE
-#&gt;  85:            el-Amiri, Jaad 2019-08-07                    FALSE
-#&gt;  86:         el-Bashara, Najma 2019-06-21                    FALSE
-#&gt;  87:           el-Diab, Nadeem 2019-08-14                    FALSE
-#&gt;  88:          el-Faris, Shuaib 2019-11-03                    FALSE
-#&gt;  89:          el-Hallal, Uwais 2019-05-27                    FALSE
-#&gt;  90:         el-Hamad, Tayyiba 2019-05-11                    FALSE
-#&gt;  91:       el-Jamail, Hudhaifa 2019-09-30                    FALSE
-#&gt;  92:         el-Khalifa, Nawfa 2019-08-19                    FALSE
-#&gt;  93:           el-Khan, Jasoor 2019-08-04                    FALSE
-#&gt;  94:          el-Masri, Junaid 2019-04-26                    FALSE
-#&gt;  95:        el-Sabir, Mumtaaza 2019-10-15                    FALSE
-#&gt;  96:          el-Sadek, Wafaaa 2019-06-01                    FALSE
-#&gt;  97:       el-Salehi, Mahuroos 2019-03-13                    FALSE
-#&gt;  98:      el-Salih, Farajallah 2019-04-05                    FALSE
-#&gt;  99:         el-Sharif, Nadeem 2019-09-27                    FALSE
-#&gt; 100:          el-Zaki, Huwaida 2019-10-11                    FALSE
+<span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"elixhauser"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>)</div><div class='output co'>#&gt;                           name    surgery congestive heart failure
+#&gt;   1:        Alexander, Bethany 2019-03-01                    FALSE
+#&gt;   2:           Arguello, Tommy 2019-11-27                    FALSE
+#&gt;   3:             Austin, Maeve 2019-11-20                    FALSE
+#&gt;   4:            Ball, Rockelle 2019-04-08                    FALSE
+#&gt;   5:            Bean, Haileigh 2019-05-07                    FALSE
+#&gt;   6:            Beehler, Kelly 2019-03-27                    FALSE
+#&gt;   7:           Bessard, Marzel 2019-12-17                    FALSE
+#&gt;   8:              Bishop, Alec 2019-03-31                    FALSE
+#&gt;   9:            Bivings, Devin 2019-05-28                    FALSE
+#&gt;  10:            Brown, Patrick 2019-08-09                    FALSE
+#&gt;  11:             Burges, Amber 2019-06-03                    FALSE
+#&gt;  12:            Burton, Martin 2019-10-23                    FALSE
+#&gt;  13:           Cannon, Timothy 2019-03-01                    FALSE
+#&gt;  14:  Cardenas Perez, Gabriela 2019-06-29                    FALSE
+#&gt;  15:               Chung, Noor 2019-07-08                    FALSE
+#&gt;  16:           Connors, Jaylyn 2019-05-03                    FALSE
+#&gt;  17:    Copeland-Doyle, Symone 2019-06-12                    FALSE
+#&gt;  18:                 Doan, Sam 2019-12-13                    FALSE
+#&gt;  19:         Dominguez, Suriel 2020-02-03                    FALSE
+#&gt;  20:         Enriquez, Anthony 2019-10-09                    FALSE
+#&gt;  21:      Fitzsimmons, Tabatha 2019-06-04                     TRUE
+#&gt;  22:             Grim, Cheanna 2019-07-20                    FALSE
+#&gt;  23:               Harder, Rio 2020-01-08                    FALSE
+#&gt;  24:               Hood, Dania 2019-10-16                    FALSE
+#&gt;  25:           Howard, Marcius 2019-12-20                    FALSE
+#&gt;  26:              Huff, Hassan 2020-02-02                    FALSE
+#&gt;  27:           Hughey, Darlene 2019-09-08                    FALSE
+#&gt;  28:        Hutchinson, Joshua 2019-06-03                    FALSE
+#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-10-29                    FALSE
+#&gt;  30:       Khamsoulinh, De'Von 2019-10-18                    FALSE
+#&gt;  31:          Lechuga, Anthony 2019-05-27                    FALSE
+#&gt;  32:         Littlejohn, Kevin 2019-07-09                    FALSE
+#&gt;  33:          Liufau, Sue Lynn 2019-08-21                    FALSE
+#&gt;  34:            Martin, Trevor 2019-06-07                    FALSE
+#&gt;  35:          Martinez, Alison 2019-09-11                    FALSE
+#&gt;  36:         Martinez, Columba 2019-03-28                    FALSE
+#&gt;  37:          Mendoza, Jessica 2019-08-26                    FALSE
+#&gt;  38:           Mendoza, Nathan 2019-04-01                    FALSE
+#&gt;  39:   Miller, Von Buddenbrock 2019-04-27                    FALSE
+#&gt;  40:              Mills, Henry 2019-07-28                    FALSE
+#&gt;  41:           Mitchell, Dalon 2019-03-25                    FALSE
+#&gt;  42:              Murray, Eric 2019-07-05                    FALSE
+#&gt;  43:             Nguyen, Hoang 2019-10-07                    FALSE
+#&gt;  44:            Orozco, Daniel 2019-05-14                    FALSE
+#&gt;  45:              Pappas, Cole 2019-07-17                    FALSE
+#&gt;  46:         Pearsall, Deontre 2019-10-04                    FALSE
+#&gt;  47:           Pena, Francisco 2019-09-14                    FALSE
+#&gt;  48:              Perez, Vidal 2020-01-01                    FALSE
+#&gt;  49:        Peterson, Brittany 2019-05-23                    FALSE
+#&gt;  50:            Polvon, Alicia 2019-07-12                    FALSE
+#&gt;  51:             Quick, Miriah 2019-11-16                    FALSE
+#&gt;  52:             Raab, Jeannie 2019-07-19                    FALSE
+#&gt;  53:             Rice, Jamissa 2020-02-14                    FALSE
+#&gt;  54:        Rockwell, Savannah 2019-09-07                    FALSE
+#&gt;  55:         Rodriquez, Monica 2019-04-04                    FALSE
+#&gt;  56:              Romero, Carl 2020-01-12                    FALSE
+#&gt;  57: Rosales-Marroquin, Monika 2019-05-24                    FALSE
+#&gt;  58:                 Sam, Niki 2019-12-17                    FALSE
+#&gt;  59:             Sanchez, Ryan 2019-12-08                    FALSE
+#&gt;  60:             Sharma, Katie 2019-11-24                    FALSE
+#&gt;  61:           Snider, Melanie 2019-02-22                    FALSE
+#&gt;  62:       Summerhays, Spencer 2019-03-23                    FALSE
+#&gt;  63:            Thompson, Trae 2019-11-08                    FALSE
+#&gt;  64: Torres Escalante, Herbert 2019-07-02                    FALSE
+#&gt;  65:   Trader-Bankston, J'Quan 2019-10-21                    FALSE
+#&gt;  66:               Tram, Medha 2019-12-03                    FALSE
+#&gt;  67:            Vaclav, Taylor 2020-01-04                    FALSE
+#&gt;  68:           Valdez, Antonio 2019-02-23                    FALSE
+#&gt;  69:           Ventura, Joshua 2019-10-16                    FALSE
+#&gt;  70:         Vogltanz, Michael 2019-06-07                    FALSE
+#&gt;  71:             Wang, Phillip 2019-09-06                    FALSE
+#&gt;  72:          Whitaker, Taylor 2019-05-30                    FALSE
+#&gt;  73:                 Wu, Lucas 2020-02-20                    FALSE
+#&gt;  74:             Wuertz, Jenny 2019-04-11                    FALSE
+#&gt;  75:    al-Asmar, Abdur Raheem 2019-10-07                    FALSE
+#&gt;  76:       al-Bashara, Shaahir 2019-03-18                    FALSE
+#&gt;  77:          al-Dawood, Hasan 2019-12-17                    FALSE
+#&gt;  78:           al-Dib, Farhaan 2019-12-05                    FALSE
+#&gt;  79:        al-Ismail, Waleeda 2019-11-27                    FALSE
+#&gt;  80:        al-Jafri, Shaheera 2020-01-24                    FALSE
+#&gt;  81:        al-Kader, Siddeeqa 2020-01-12                    FALSE
+#&gt;  82:          al-Karam, Ziyaad 2019-11-23                    FALSE
+#&gt;  83:       al-Ramadan, Hanoona 2019-07-19                    FALSE
+#&gt;  84:         al-Shaban, Mazeed 2019-07-06                    FALSE
+#&gt;  85:            el-Amiri, Jaad 2019-10-11                    FALSE
+#&gt;  86:         el-Bashara, Najma 2019-08-25                    FALSE
+#&gt;  87:           el-Diab, Nadeem 2019-10-18                    FALSE
+#&gt;  88:          el-Faris, Shuaib 2020-01-07                    FALSE
+#&gt;  89:          el-Hallal, Uwais 2019-07-31                    FALSE
+#&gt;  90:         el-Hamad, Tayyiba 2019-07-15                    FALSE
+#&gt;  91:       el-Jamail, Hudhaifa 2019-12-04                    FALSE
+#&gt;  92:         el-Khalifa, Nawfa 2019-10-23                    FALSE
+#&gt;  93:           el-Khan, Jasoor 2019-10-08                    FALSE
+#&gt;  94:          el-Masri, Junaid 2019-06-30                    FALSE
+#&gt;  95:        el-Sabir, Mumtaaza 2019-12-19                    FALSE
+#&gt;  96:          el-Sadek, Wafaaa 2019-08-05                    FALSE
+#&gt;  97:       el-Salehi, Mahuroos 2019-05-17                    FALSE
+#&gt;  98:      el-Salih, Farajallah 2019-06-09                    FALSE
+#&gt;  99:         el-Sharif, Nadeem 2019-12-01                    FALSE
+#&gt; 100:          el-Zaki, Huwaida 2019-12-15                    FALSE
 #&gt;                           name    surgery congestive heart failure
 #&gt;      cardiac arrhythmias valvular disease pulmonary circulation disorder
 #&gt;   1:               FALSE            FALSE                          FALSE
@@ -1126,86 +1126,86 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt; 100:             FALSE         FALSE      FALSE     FALSE      FALSE       2
 #&gt;      deficiency anemia alcohol abuse drug abuse psychoses depression sum_all
 #&gt;      sum_all_ahrq walraven sid29 sid30 ahrq_mort ahrq_readm
-#&gt;   1:            1        1     1     1         1          1
+#&gt;   1:            1       11     7     5         4         10
 #&gt;   2:            0        0     0     0         0          0
 #&gt;   3:            0        0     0     0         0          0
 #&gt;   4:            0        0     0     0         0          0
 #&gt;   5:            0        0     0     0         0          0
 #&gt;   6:            0        0     0     0         0          0
-#&gt;   7:            1        1     1     1         1          1
+#&gt;   7:            1        6     5     4         5          7
 #&gt;   8:            0        0     0     0         0          0
-#&gt;   9:            1        1     1     1         1          1
+#&gt;   9:            1        6     5     4         5          7
 #&gt;  10:            0        0     0     0         0          0
-#&gt;  11:            1        1     1     1         1          1
+#&gt;  11:            1       11     7     5         4         10
 #&gt;  12:            0        0     0     0         0          0
 #&gt;  13:            0        0     0     0         0          0
-#&gt;  14:            1        1     1     1         1          1
-#&gt;  15:            2        2     2     2         2          2
+#&gt;  14:            1        4    10     8         7         15
+#&gt;  15:            2       15    17    13        11         25
 #&gt;  16:            0        0     0     0         0          0
 #&gt;  17:            0        0     0     0         0          0
-#&gt;  18:            1        1     1     1         1          1
+#&gt;  18:            1       11     7     5         4         10
 #&gt;  19:            0        0     0     0         0          0
 #&gt;  20:            0        0     0     0         0          0
-#&gt;  21:            3        3     3     3         3          3
+#&gt;  21:            3       10    10    11        11         20
 #&gt;  22:            0        0     0     0         0          0
-#&gt;  23:            1        1     1     1         1          1
+#&gt;  23:            1        4    10     8         7         15
 #&gt;  24:            0        0     0     0         0          0
 #&gt;  25:            0        0     0     0         0          0
 #&gt;  26:            0        0     0     0         0          0
 #&gt;  27:            0        0     0     0         0          0
-#&gt;  28:            1        1     1     1         1          1
-#&gt;  29:            1        1     1     1         1          1
-#&gt;  30:            1        1     1     1         1          1
-#&gt;  31:            1        1     1     1         1          1
+#&gt;  28:            1        4    10     8         7         15
+#&gt;  29:            1        0     0     0         0          4
+#&gt;  30:            1        4    10     8         7         15
+#&gt;  31:            1        3    12     9        11          7
 #&gt;  32:            0        0     0     0         0          0
 #&gt;  33:            0        0     0     0         0          0
 #&gt;  34:            0        0     0     0         0          0
-#&gt;  35:            1        1     1     1         1          1
+#&gt;  35:            1        2     4     4         3          4
 #&gt;  36:            0        0     0     0         0          0
 #&gt;  37:            0        0     0     0         0          0
 #&gt;  38:            0        0     0     0         0          0
 #&gt;  39:            0        0     0     0         0          0
-#&gt;  40:            4        4     4     4         4          4
-#&gt;  41:            1        1     1     1         1          1
+#&gt;  40:            4        6     8     6         6         51
+#&gt;  41:            1        4    10     8         7         15
 #&gt;  42:            0        0     0     0         0          0
 #&gt;  43:            0        0     0     0         0          0
-#&gt;  44:            1        1     1     1         1          1
-#&gt;  45:            3        3     3     3         3          3
+#&gt;  44:            1       -1     0     0         0          0
+#&gt;  45:            3        9    21    17        18         27
 #&gt;  46:            0        0     0     0         0          0
 #&gt;  47:            0        0     0     0         0          0
 #&gt;  48:            0        0     0     0         0          0
-#&gt;  49:            1        1     1     1         1          1
+#&gt;  49:            1        4    10     8         7         15
 #&gt;  50:            0        0     0     0         0          0
 #&gt;  51:            0        0     0     0         0          0
-#&gt;  52:            1        1     1     1         1          1
-#&gt;  53:            2        2     2     2         2          2
-#&gt;  54:            1        1     1     1         1          1
+#&gt;  52:            1        0     0     0         0          4
+#&gt;  53:            2       10    15    12        12         22
+#&gt;  54:            1        4    10     8         7         15
 #&gt;  55:            0        0     0     0         0          0
-#&gt;  56:            2        2     2     2         2          2
+#&gt;  56:            2       -1     0    -1        -3          9
 #&gt;  57:            0        0     0     0         0          0
-#&gt;  58:            1        1     1     1         1          1
-#&gt;  59:            1        1     1     1         1          1
-#&gt;  60:            1        1     1     1         1          1
-#&gt;  61:            2        2     2     2         2          2
+#&gt;  58:            1        4    10     8         7         15
+#&gt;  59:            0        5     8     0         0          0
+#&gt;  60:            1        6     5     4         5          7
+#&gt;  61:            2        3    10     8         7         15
 #&gt;  62:            0        0     0     0         0          0
 #&gt;  63:            0        0     0     0         0          0
 #&gt;  64:            0        0     0     0         0          0
-#&gt;  65:            2        2     2     2         2          2
-#&gt;  66:            1        1     1     1         1          1
-#&gt;  67:            1        1     1     1         1          1
+#&gt;  65:            2        4    -4    -3        -3         24
+#&gt;  66:            1        6     5     4         5          7
+#&gt;  67:            1        7     4     3         5          6
 #&gt;  68:            0        0     0     0         0          0
 #&gt;  69:            0        0     0     0         0          0
-#&gt;  70:            1        1     1     1         1          1
+#&gt;  70:            1        4    10     8         7         15
 #&gt;  71:            0        0     0     0         0          0
-#&gt;  72:            1        1     1     1         1          1
+#&gt;  72:            1        0     1     0         0          6
 #&gt;  73:            0        0     0     0         0          0
-#&gt;  74:            1        1     1     1         1          1
+#&gt;  74:            1        4    10     8         7         15
 #&gt;  75:            0        0     0     0         0          0
-#&gt;  76:            1        1     1     1         1          1
+#&gt;  76:            1        7     4     3         5          6
 #&gt;  77:            0        0     0     0         0          0
-#&gt;  78:            1        1     1     1         1          1
-#&gt;  79:            1        1     1     1         1          1
-#&gt;  80:            1        1     1     1         1          1
+#&gt;  78:            1        9     8     6         6         16
+#&gt;  79:            0        5     8     0         0          0
+#&gt;  80:            1       -7   -11    -8        -7         14
 #&gt;  81:            0        0     0     0         0          0
 #&gt;  82:            0        0     0     0         0          0
 #&gt;  83:            0        0     0     0         0          0
@@ -1213,19 +1213,19 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt;  85:            0        0     0     0         0          0
 #&gt;  86:            0        0     0     0         0          0
 #&gt;  87:            0        0     0     0         0          0
-#&gt;  88:            1        1     1     1         1          1
-#&gt;  89:            1        1     1     1         1          1
+#&gt;  88:            1        0     0     0         0         19
+#&gt;  89:            1        4    10     8         7         15
 #&gt;  90:            0        0     0     0         0          0
 #&gt;  91:            0        0     0     0         0          0
 #&gt;  92:            0        0     0     0         0          0
-#&gt;  93:            1        1     1     1         1          1
-#&gt;  94:            1        1     1     1         1          1
-#&gt;  95:            1        1     1     1         1          1
+#&gt;  93:            1        0    -6    -4        -5         10
+#&gt;  94:            1        0     0    -1        -3          9
+#&gt;  95:            1       12    17    13        14         21
 #&gt;  96:            0        0     0     0         0          0
-#&gt;  97:            1        1     1     1         1          1
-#&gt;  98:            1        1     1     1         1          1
+#&gt;  97:            1       12    17    13        14         21
+#&gt;  98:            1        0     0     0         0         19
 #&gt;  99:            0        0     0     0         0          0
-#&gt; 100:            2        2     2     2         2          2
+#&gt; 100:            2        6    14    12        10         19
 #&gt;      sum_all_ahrq walraven sid29 sid30 ahrq_mort ahrq_readm</div><div class='input'>
 <span class='co'># Add Charlson categorias and two versions of a calculated index.</span>
 <span class='co'># Only include recent hospital visits within 30 days before surgery,</span>
@@ -1235,107 +1235,107 @@ Indices are also included if so specified by the 'index' argument.</p>
   <span class='kw'>index</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"quan_original"</span>, <span class='st'>"quan_updated"</span>),
   <span class='kw'>codify_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>30</span>, -<span class='fl'>1</span>)),
   <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-)</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt;                           name    surgery charlson_regex_myocardial_infarction
-#&gt;   1:        Alexander, Bethany 2018-12-26                                FALSE
-#&gt;   2:           Arguello, Tommy 2019-09-23                                   NA
-#&gt;   3:             Austin, Maeve 2019-09-16                                   NA
-#&gt;   4:            Ball, Rockelle 2019-02-02                                FALSE
-#&gt;   5:            Bean, Haileigh 2019-03-03                                   NA
-#&gt;   6:            Beehler, Kelly 2019-01-21                                   NA
-#&gt;   7:           Bessard, Marzel 2019-10-13                                   NA
-#&gt;   8:              Bishop, Alec 2019-01-25                                FALSE
-#&gt;   9:            Bivings, Devin 2019-03-24                                   NA
-#&gt;  10:            Brown, Patrick 2019-06-05                                FALSE
-#&gt;  11:             Burges, Amber 2019-03-30                                FALSE
-#&gt;  12:            Burton, Martin 2019-08-19                                   NA
-#&gt;  13:           Cannon, Timothy 2018-12-26                                   NA
-#&gt;  14:  Cardenas Perez, Gabriela 2019-04-25                                   NA
-#&gt;  15:               Chung, Noor 2019-05-04                                   NA
-#&gt;  16:           Connors, Jaylyn 2019-02-27                                   NA
-#&gt;  17:    Copeland-Doyle, Symone 2019-04-08                                FALSE
-#&gt;  18:                 Doan, Sam 2019-10-09                                   NA
-#&gt;  19:         Dominguez, Suriel 2019-11-30                                   NA
-#&gt;  20:         Enriquez, Anthony 2019-08-05                                   NA
-#&gt;  21:      Fitzsimmons, Tabatha 2019-03-31                                FALSE
-#&gt;  22:             Grim, Cheanna 2019-05-16                                   NA
-#&gt;  23:               Harder, Rio 2019-11-04                                   NA
-#&gt;  24:               Hood, Dania 2019-08-12                                FALSE
-#&gt;  25:           Howard, Marcius 2019-10-16                                   NA
-#&gt;  26:              Huff, Hassan 2019-11-29                                   NA
-#&gt;  27:           Hughey, Darlene 2019-07-05                                   NA
-#&gt;  28:        Hutchinson, Joshua 2019-03-30                                   NA
-#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-08-25                                   NA
-#&gt;  30:       Khamsoulinh, De'Von 2019-08-14                                   NA
-#&gt;  31:          Lechuga, Anthony 2019-03-23                                   NA
-#&gt;  32:         Littlejohn, Kevin 2019-05-05                                   NA
-#&gt;  33:          Liufau, Sue Lynn 2019-06-17                                   NA
-#&gt;  34:            Martin, Trevor 2019-04-03                                FALSE
-#&gt;  35:          Martinez, Alison 2019-07-08                                FALSE
-#&gt;  36:         Martinez, Columba 2019-01-22                                   NA
-#&gt;  37:          Mendoza, Jessica 2019-06-22                                   NA
-#&gt;  38:           Mendoza, Nathan 2019-01-26                                   NA
-#&gt;  39:   Miller, Von Buddenbrock 2019-02-21                                   NA
-#&gt;  40:              Mills, Henry 2019-05-24                                   NA
-#&gt;  41:           Mitchell, Dalon 2019-01-19                                   NA
-#&gt;  42:              Murray, Eric 2019-05-01                                FALSE
-#&gt;  43:             Nguyen, Hoang 2019-08-03                                   NA
-#&gt;  44:            Orozco, Daniel 2019-03-10                                   NA
-#&gt;  45:              Pappas, Cole 2019-05-13                                   NA
-#&gt;  46:         Pearsall, Deontre 2019-07-31                                   NA
-#&gt;  47:           Pena, Francisco 2019-07-11                                FALSE
-#&gt;  48:              Perez, Vidal 2019-10-28                                   NA
-#&gt;  49:        Peterson, Brittany 2019-03-19                                FALSE
-#&gt;  50:            Polvon, Alicia 2019-05-08                                   NA
-#&gt;  51:             Quick, Miriah 2019-09-12                                   NA
-#&gt;  52:             Raab, Jeannie 2019-05-15                                   NA
-#&gt;  53:             Rice, Jamissa 2019-12-11                                   NA
-#&gt;  54:        Rockwell, Savannah 2019-07-04                                FALSE
-#&gt;  55:         Rodriquez, Monica 2019-01-29                                FALSE
-#&gt;  56:              Romero, Carl 2019-11-08                                   NA
-#&gt;  57: Rosales-Marroquin, Monika 2019-03-20                                FALSE
-#&gt;  58:                 Sam, Niki 2019-10-13                                   NA
-#&gt;  59:             Sanchez, Ryan 2019-10-04                                   NA
-#&gt;  60:             Sharma, Katie 2019-09-20                                   NA
-#&gt;  61:           Snider, Melanie 2018-12-19                                   NA
-#&gt;  62:       Summerhays, Spencer 2019-01-17                                   NA
-#&gt;  63:            Thompson, Trae 2019-09-04                                   NA
-#&gt;  64: Torres Escalante, Herbert 2019-04-28                                FALSE
-#&gt;  65:   Trader-Bankston, J'Quan 2019-08-17                                   NA
-#&gt;  66:               Tram, Medha 2019-09-29                                   NA
-#&gt;  67:            Vaclav, Taylor 2019-10-31                                   NA
-#&gt;  68:           Valdez, Antonio 2018-12-20                                   NA
-#&gt;  69:           Ventura, Joshua 2019-08-12                                   NA
-#&gt;  70:         Vogltanz, Michael 2019-04-03                                FALSE
-#&gt;  71:             Wang, Phillip 2019-07-03                                FALSE
-#&gt;  72:          Whitaker, Taylor 2019-03-26                                   NA
-#&gt;  73:                 Wu, Lucas 2019-12-17                                   NA
-#&gt;  74:             Wuertz, Jenny 2019-02-05                                FALSE
-#&gt;  75:    al-Asmar, Abdur Raheem 2019-08-03                                   NA
-#&gt;  76:       al-Bashara, Shaahir 2019-01-12                                   NA
-#&gt;  77:          al-Dawood, Hasan 2019-10-13                                   NA
-#&gt;  78:           al-Dib, Farhaan 2019-10-01                                   NA
-#&gt;  79:        al-Ismail, Waleeda 2019-09-23                                   NA
-#&gt;  80:        al-Jafri, Shaheera 2019-11-20                                   NA
-#&gt;  81:        al-Kader, Siddeeqa 2019-11-08                                   NA
-#&gt;  82:          al-Karam, Ziyaad 2019-09-19                                   NA
-#&gt;  83:       al-Ramadan, Hanoona 2019-05-15                                   NA
-#&gt;  84:         al-Shaban, Mazeed 2019-05-02                                   NA
-#&gt;  85:            el-Amiri, Jaad 2019-08-07                                   NA
-#&gt;  86:         el-Bashara, Najma 2019-06-21                                   NA
-#&gt;  87:           el-Diab, Nadeem 2019-08-14                                   NA
-#&gt;  88:          el-Faris, Shuaib 2019-11-03                                   NA
-#&gt;  89:          el-Hallal, Uwais 2019-05-27                                   NA
-#&gt;  90:         el-Hamad, Tayyiba 2019-05-11                                   NA
-#&gt;  91:       el-Jamail, Hudhaifa 2019-09-30                                   NA
-#&gt;  92:         el-Khalifa, Nawfa 2019-08-19                                FALSE
-#&gt;  93:           el-Khan, Jasoor 2019-08-04                                   NA
-#&gt;  94:          el-Masri, Junaid 2019-04-26                                FALSE
-#&gt;  95:        el-Sabir, Mumtaaza 2019-10-15                                   NA
-#&gt;  96:          el-Sadek, Wafaaa 2019-06-01                                   NA
-#&gt;  97:       el-Salehi, Mahuroos 2019-03-13                                   NA
-#&gt;  98:      el-Salih, Farajallah 2019-04-05                                FALSE
-#&gt;  99:         el-Sharif, Nadeem 2019-09-27                                   NA
-#&gt; 100:          el-Zaki, Huwaida 2019-10-11                                   NA
+)</div><div class='output co'>#&gt;                           name    surgery charlson_regex_myocardial_infarction
+#&gt;   1:        Alexander, Bethany 2019-03-01                                FALSE
+#&gt;   2:           Arguello, Tommy 2019-11-27                                   NA
+#&gt;   3:             Austin, Maeve 2019-11-20                                   NA
+#&gt;   4:            Ball, Rockelle 2019-04-08                                FALSE
+#&gt;   5:            Bean, Haileigh 2019-05-07                                   NA
+#&gt;   6:            Beehler, Kelly 2019-03-27                                   NA
+#&gt;   7:           Bessard, Marzel 2019-12-17                                   NA
+#&gt;   8:              Bishop, Alec 2019-03-31                                FALSE
+#&gt;   9:            Bivings, Devin 2019-05-28                                   NA
+#&gt;  10:            Brown, Patrick 2019-08-09                                FALSE
+#&gt;  11:             Burges, Amber 2019-06-03                                FALSE
+#&gt;  12:            Burton, Martin 2019-10-23                                   NA
+#&gt;  13:           Cannon, Timothy 2019-03-01                                   NA
+#&gt;  14:  Cardenas Perez, Gabriela 2019-06-29                                   NA
+#&gt;  15:               Chung, Noor 2019-07-08                                   NA
+#&gt;  16:           Connors, Jaylyn 2019-05-03                                   NA
+#&gt;  17:    Copeland-Doyle, Symone 2019-06-12                                FALSE
+#&gt;  18:                 Doan, Sam 2019-12-13                                   NA
+#&gt;  19:         Dominguez, Suriel 2020-02-03                                   NA
+#&gt;  20:         Enriquez, Anthony 2019-10-09                                   NA
+#&gt;  21:      Fitzsimmons, Tabatha 2019-06-04                                FALSE
+#&gt;  22:             Grim, Cheanna 2019-07-20                                   NA
+#&gt;  23:               Harder, Rio 2020-01-08                                   NA
+#&gt;  24:               Hood, Dania 2019-10-16                                FALSE
+#&gt;  25:           Howard, Marcius 2019-12-20                                   NA
+#&gt;  26:              Huff, Hassan 2020-02-02                                   NA
+#&gt;  27:           Hughey, Darlene 2019-09-08                                   NA
+#&gt;  28:        Hutchinson, Joshua 2019-06-03                                   NA
+#&gt;  29:  Iron Cloud-Gresko, Sadie 2019-10-29                                   NA
+#&gt;  30:       Khamsoulinh, De'Von 2019-10-18                                   NA
+#&gt;  31:          Lechuga, Anthony 2019-05-27                                   NA
+#&gt;  32:         Littlejohn, Kevin 2019-07-09                                   NA
+#&gt;  33:          Liufau, Sue Lynn 2019-08-21                                   NA
+#&gt;  34:            Martin, Trevor 2019-06-07                                FALSE
+#&gt;  35:          Martinez, Alison 2019-09-11                                FALSE
+#&gt;  36:         Martinez, Columba 2019-03-28                                   NA
+#&gt;  37:          Mendoza, Jessica 2019-08-26                                   NA
+#&gt;  38:           Mendoza, Nathan 2019-04-01                                   NA
+#&gt;  39:   Miller, Von Buddenbrock 2019-04-27                                   NA
+#&gt;  40:              Mills, Henry 2019-07-28                                   NA
+#&gt;  41:           Mitchell, Dalon 2019-03-25                                   NA
+#&gt;  42:              Murray, Eric 2019-07-05                                FALSE
+#&gt;  43:             Nguyen, Hoang 2019-10-07                                   NA
+#&gt;  44:            Orozco, Daniel 2019-05-14                                   NA
+#&gt;  45:              Pappas, Cole 2019-07-17                                   NA
+#&gt;  46:         Pearsall, Deontre 2019-10-04                                   NA
+#&gt;  47:           Pena, Francisco 2019-09-14                                FALSE
+#&gt;  48:              Perez, Vidal 2020-01-01                                   NA
+#&gt;  49:        Peterson, Brittany 2019-05-23                                FALSE
+#&gt;  50:            Polvon, Alicia 2019-07-12                                   NA
+#&gt;  51:             Quick, Miriah 2019-11-16                                   NA
+#&gt;  52:             Raab, Jeannie 2019-07-19                                   NA
+#&gt;  53:             Rice, Jamissa 2020-02-14                                   NA
+#&gt;  54:        Rockwell, Savannah 2019-09-07                                FALSE
+#&gt;  55:         Rodriquez, Monica 2019-04-04                                FALSE
+#&gt;  56:              Romero, Carl 2020-01-12                                   NA
+#&gt;  57: Rosales-Marroquin, Monika 2019-05-24                                FALSE
+#&gt;  58:                 Sam, Niki 2019-12-17                                   NA
+#&gt;  59:             Sanchez, Ryan 2019-12-08                                   NA
+#&gt;  60:             Sharma, Katie 2019-11-24                                   NA
+#&gt;  61:           Snider, Melanie 2019-02-22                                   NA
+#&gt;  62:       Summerhays, Spencer 2019-03-23                                   NA
+#&gt;  63:            Thompson, Trae 2019-11-08                                   NA
+#&gt;  64: Torres Escalante, Herbert 2019-07-02                                FALSE
+#&gt;  65:   Trader-Bankston, J'Quan 2019-10-21                                   NA
+#&gt;  66:               Tram, Medha 2019-12-03                                   NA
+#&gt;  67:            Vaclav, Taylor 2020-01-04                                   NA
+#&gt;  68:           Valdez, Antonio 2019-02-23                                   NA
+#&gt;  69:           Ventura, Joshua 2019-10-16                                   NA
+#&gt;  70:         Vogltanz, Michael 2019-06-07                                FALSE
+#&gt;  71:             Wang, Phillip 2019-09-06                                FALSE
+#&gt;  72:          Whitaker, Taylor 2019-05-30                                   NA
+#&gt;  73:                 Wu, Lucas 2020-02-20                                   NA
+#&gt;  74:             Wuertz, Jenny 2019-04-11                                FALSE
+#&gt;  75:    al-Asmar, Abdur Raheem 2019-10-07                                   NA
+#&gt;  76:       al-Bashara, Shaahir 2019-03-18                                   NA
+#&gt;  77:          al-Dawood, Hasan 2019-12-17                                   NA
+#&gt;  78:           al-Dib, Farhaan 2019-12-05                                   NA
+#&gt;  79:        al-Ismail, Waleeda 2019-11-27                                   NA
+#&gt;  80:        al-Jafri, Shaheera 2020-01-24                                   NA
+#&gt;  81:        al-Kader, Siddeeqa 2020-01-12                                   NA
+#&gt;  82:          al-Karam, Ziyaad 2019-11-23                                   NA
+#&gt;  83:       al-Ramadan, Hanoona 2019-07-19                                   NA
+#&gt;  84:         al-Shaban, Mazeed 2019-07-06                                   NA
+#&gt;  85:            el-Amiri, Jaad 2019-10-11                                   NA
+#&gt;  86:         el-Bashara, Najma 2019-08-25                                   NA
+#&gt;  87:           el-Diab, Nadeem 2019-10-18                                   NA
+#&gt;  88:          el-Faris, Shuaib 2020-01-07                                   NA
+#&gt;  89:          el-Hallal, Uwais 2019-07-31                                   NA
+#&gt;  90:         el-Hamad, Tayyiba 2019-07-15                                   NA
+#&gt;  91:       el-Jamail, Hudhaifa 2019-12-04                                   NA
+#&gt;  92:         el-Khalifa, Nawfa 2019-10-23                                FALSE
+#&gt;  93:           el-Khan, Jasoor 2019-10-08                                   NA
+#&gt;  94:          el-Masri, Junaid 2019-06-30                                FALSE
+#&gt;  95:        el-Sabir, Mumtaaza 2019-12-19                                   NA
+#&gt;  96:          el-Sadek, Wafaaa 2019-08-05                                   NA
+#&gt;  97:       el-Salehi, Mahuroos 2019-05-17                                   NA
+#&gt;  98:      el-Salih, Farajallah 2019-06-09                                FALSE
+#&gt;  99:         el-Sharif, Nadeem 2019-12-01                                   NA
+#&gt; 100:          el-Zaki, Huwaida 2019-12-15                                   NA
 #&gt;                           name    surgery charlson_regex_myocardial_infarction
 #&gt;      charlson_regex_congestive_heart_failure
 #&gt;   1:                                   FALSE
@@ -2378,7 +2378,7 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt;  18:                           NA                          NA
 #&gt;  19:                           NA                          NA
 #&gt;  20:                           NA                          NA
-#&gt;  21:                            1                           1
+#&gt;  21:                            1                           2
 #&gt;  22:                           NA                          NA
 #&gt;  23:                           NA                          NA
 #&gt;  24:                            0                           0
@@ -2406,7 +2406,7 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt;  46:                           NA                          NA
 #&gt;  47:                            0                           0
 #&gt;  48:                           NA                          NA
-#&gt;  49:                            1                           1
+#&gt;  49:                            2                           2
 #&gt;  50:                           NA                          NA
 #&gt;  51:                           NA                          NA
 #&gt;  52:                           NA                          NA
@@ -2427,7 +2427,7 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt;  67:                           NA                          NA
 #&gt;  68:                           NA                          NA
 #&gt;  69:                           NA                          NA
-#&gt;  70:                            1                           1
+#&gt;  70:                            2                           2
 #&gt;  71:                            0                           0
 #&gt;  72:                           NA                          NA
 #&gt;  73:                           NA                          NA

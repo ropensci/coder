@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1>Comorbidity</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2019-12-18</h4>
+            <h4 class="date">2020-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/Comorbidity.Rmd"><code>vignettes/Comorbidity.Rmd</code></a></small>
       <div class="hidden name"><code>Comorbidity.Rmd</code></div>
@@ -105,8 +105,8 @@
 <h2 class="hasAnchor">
 <a href="#patients" class="anchor"></a>Patients</h2>
 <p>The data set <code>ex_people</code> is contained in the package and holds some example data for a set of people. Column ‘surgery’ gives the date of when a hip replacement was inserted.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coder)</a>
-<a class="sourceLine" id="cb1-2" title="2">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_people))</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coder)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_people))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -115,27 +115,27 @@
 <tbody>
 <tr class="odd">
 <td align="left">Miller, Von Buddenbrock</td>
-<td align="left">2019-02-21</td>
+<td align="left">2019-04-27</td>
 </tr>
 <tr class="even">
 <td align="left">Enriquez, Anthony</td>
-<td align="left">2019-08-05</td>
+<td align="left">2019-10-09</td>
 </tr>
 <tr class="odd">
 <td align="left">al-Dib, Farhaan</td>
-<td align="left">2019-10-01</td>
+<td align="left">2019-12-05</td>
 </tr>
 <tr class="even">
 <td align="left">Martinez, Alison</td>
-<td align="left">2019-07-08</td>
+<td align="left">2019-09-11</td>
 </tr>
 <tr class="odd">
 <td align="left">el-Masri, Junaid</td>
-<td align="left">2019-04-26</td>
+<td align="left">2019-06-30</td>
 </tr>
 <tr class="even">
 <td align="left">Sam, Niki</td>
-<td align="left">2019-10-13</td>
+<td align="left">2019-12-17</td>
 </tr>
 </tbody>
 </table>
@@ -151,7 +151,7 @@
 <li>code: A medical code (based on ICD-10) that was relevant for the hospital visit.</li>
 <li>hdia: Identifies if the “code” is the immediate cause (TRUE) or an underlying cause (FALSE) for the hospital visit.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_icd10))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_icd10))</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">id</th>
@@ -162,37 +162,37 @@
 <tbody>
 <tr class="odd">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-03-07</td>
+<td align="left">2019-05-11</td>
 <td align="left">T931</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-06-01</td>
+<td align="left">2019-08-05</td>
 <td align="left">D301</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="odd">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-07-02</td>
+<td align="left">2019-09-05</td>
 <td align="left">I828</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2018-11-15</td>
+<td align="left">2019-01-19</td>
 <td align="left">S925</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="odd">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2018-12-20</td>
+<td align="left">2019-02-23</td>
 <td align="left">E278</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2019-04-26</td>
+<td align="left">2019-06-30</td>
 <td align="left">A507</td>
 <td align="left">FALSE</td>
 </tr>

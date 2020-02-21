@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2019-12-18</h4>
+            <h4 class="date">2020-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -102,37 +102,37 @@
 <h1 class="hasAnchor">
 <a href="#car-ownership" class="anchor"></a>Car ownership</h1>
 <p>Let’s assume we have a list of people, as well as dates for their driving license:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coder)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">people &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</a>
-<a class="sourceLine" id="cb1-6" title="6">    <span class="dt">name =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
-<a class="sourceLine" id="cb1-7" title="7">      <span class="st">"Medina, Desmand"</span>, <span class="st">"al-Hashem,  Muzna"</span>, <span class="st">"el-Kaleel, Aadil"</span>, <span class="st">"Pettsson, Svenne"</span></a>
-<a class="sourceLine" id="cb1-8" title="8">    ),</a>
-<a class="sourceLine" id="cb1-9" title="9">    <span class="dt">license =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</a>
-<a class="sourceLine" id="cb1-10" title="10">      <span class="st">"1949-05-23"</span>, <span class="st">"2016-03-04"</span>, <span class="st">"2019-12-18"</span>, <span class="st">"1985-05-04"</span></a>
-<a class="sourceLine" id="cb1-11" title="11">    ))</a>
-<a class="sourceLine" id="cb1-12" title="12">  )</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(coder)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>people &lt;-<span class="st"> </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="dt">name =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
+<span id="cb1-7"><a href="#cb1-7"></a>      <span class="st">"Medina, Desmand"</span>, <span class="st">"al-Hashem,  Muzna"</span>, <span class="st">"el-Kaleel, Aadil"</span>, <span class="st">"Pettsson, Svenne"</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    ),</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="dt">license =</span> <span class="kw"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>      <span class="st">"1949-05-23"</span>, <span class="st">"2016-03-04"</span>, <span class="st">"2019-12-18"</span>, <span class="st">"1985-05-04"</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    ))</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  )</span></code></pre></div>
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_cars)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt;                  id              code  code_date</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-03-29</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2017-11-13</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-01-04</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2018-11-22</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-01-11</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-01-09</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_cars)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt;                  id              code  code_date</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-06-02</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-01-17</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-03-10</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2019-01-26</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-03-17</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-03-15</span></span></code></pre></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">ex_carbrands</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co">#&gt;     group                                 regex</span></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; 1   Mazda                                 Mazda</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; 2 Mer-Ben                                  Merc</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; 3    Ford                          Ford|Lincoln</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati,</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; 5  Toyota                                Toyota</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 6  Volksw                               Porsche</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; 7   Geely                           Volvo|Lotus</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ex_carbrands</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;     group                                 regex</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; 1   Mazda                                 Mazda</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 2 Mer-Ben                                  Merc</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 3    Ford                          Ford|Lincoln</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati,</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 5  Toyota                                Toyota</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 6  Volksw                               Porsche</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 7   Geely                           Volvo|Lotus</span></span></code></pre></div>
 </div>
 <div id="categorize" class="section level1">
 <h1 class="hasAnchor">
@@ -147,20 +147,20 @@
 <li>
 <code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; name coerced to character!</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 3:     1</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>))</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; name coerced to character!</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; index calculated as number of relevant categories</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt;    index</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt; 1:    NA</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt; 2:    NA</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; 3:     1</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 4:     3</span></span></code></pre></div>
 </div>
 <div id="interpretation" class="section level1">
 <h1 class="hasAnchor">
@@ -179,53 +179,52 @@
 <h1 class="hasAnchor">
 <a href="#cars-owned-before-license" class="anchor"></a>Cars owned before license</h1>
 <p>We can use the date columns to check if anyone owned a car already before they got their drivers license. We need to specify that the date column is called <code>license</code>. The <code>days</code> argument specifies that we are interested in cars bought before this date.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">(x &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">   </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(</a>
-<a class="sourceLine" id="cb5-3" title="3">     people, </a>
-<a class="sourceLine" id="cb5-4" title="4">     ex_cars, </a>
-<a class="sourceLine" id="cb5-5" title="5">     ex_carbrands, </a>
-<a class="sourceLine" id="cb5-6" title="6">     <span class="dt">id =</span> <span class="st">"name"</span>, </a>
-<a class="sourceLine" id="cb5-7" title="7">     <span class="dt">codify_args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
-<a class="sourceLine" id="cb5-8" title="8">       <span class="dt">date =</span> <span class="st">"license"</span>, </a>
-<a class="sourceLine" id="cb5-9" title="9">       <span class="dt">days =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>)</a>
-<a class="sourceLine" id="cb5-10" title="10">     )</a>
-<a class="sourceLine" id="cb5-11" title="11">  )</a>
-<a class="sourceLine" id="cb5-12" title="12">)</a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; name coerced to character!</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-18" title="18"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb5-20" title="20"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb5-21" title="21"><span class="co">#&gt;    index</span></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb5-23" title="23"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="co">#&gt; 3:    NA</span></a>
-<a class="sourceLine" id="cb5-25" title="25"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>(x &lt;-<span class="st"> </span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">   </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>     people, </span>
+<span id="cb5-4"><a href="#cb5-4"></a>     ex_cars, </span>
+<span id="cb5-5"><a href="#cb5-5"></a>     ex_carbrands, </span>
+<span id="cb5-6"><a href="#cb5-6"></a>     <span class="dt">id =</span> <span class="st">"name"</span>, </span>
+<span id="cb5-7"><a href="#cb5-7"></a>     <span class="dt">codify_args =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb5-8"><a href="#cb5-8"></a>       <span class="dt">date =</span> <span class="st">"license"</span>, </span>
+<span id="cb5-9"><a href="#cb5-9"></a>       <span class="dt">days =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">-1</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>     )</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  )</span>
+<span id="cb5-12"><a href="#cb5-12"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; name coerced to character!</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; index calculated as number of relevant categories</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA    NA     NA     NA    NA</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA    NA     NA     NA    NA</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE FALSE  FALSE  FALSE  TRUE</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt;    index</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt; 1:    NA</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt; 2:    NA</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt; 3:    NA</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt; 4:     2</span></span></code></pre></div>
 <p>Indeed, someone did buy some cars before taking a drivers license!</p>
 </div>
 <div id="car-rating" class="section level1">
 <h1 class="hasAnchor">
 <a href="#car-rating" class="anchor"></a>Car rating</h1>
 <p>We are not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let us assign some score to each company. We then specifies that the index should be calculated based on the new column named “score”.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">ex_carbrands<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3">(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; name coerced to character!</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; index calculated as number of relevant categories</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;    score</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; 1:    NA</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt; 2:    NA</span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 3:     1</span></a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; 4:     3</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ex_carbrands<span class="op">$</span>score &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>(x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/categorize.html">categorize</a></span>(people, ex_cars, ex_carbrands, <span class="dt">id =</span> <span class="st">"name"</span>, <span class="dt">ind =</span> <span class="st">"score"</span>))</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; Warning in (function (data, codedata, id = "id", date = NULL, days = NULL, :</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; name coerced to character!</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford Fiat Toyota Volksw Geely</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA   NA     NA     NA    NA</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA   NA     NA     NA    NA</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE TRUE  FALSE  FALSE FALSE</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE TRUE  FALSE  FALSE  TRUE</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;    score</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 1:    NA</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 2:    NA</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; 3:     1</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 4:     5</span></span></code></pre></div>
 </div>
 <div id="concluding-remark" class="section level1">
 <h1 class="hasAnchor">

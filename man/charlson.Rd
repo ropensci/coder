@@ -15,18 +15,24 @@
   with weights other than \code{quan_original} and \code{quan_updated} might
   therefore lead to different results than originally intended for each
   index.}
-  \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM" in Quan et al. (2005).
+  \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
+    in Quan et al. (2005).
     Procedure code 38.48 for peripheral vascular disease ignored.}
-  \item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM" in Quan et al. (2005).}
+  \item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM"
+    in Quan et al. (2005).}
   \item{regex_icd10_rcs}{Codification by Armitage (2010).
     Note that Peptic ulcer disease is not included.
     All liver diseases (including mild) are included in
     "moderate or severe liver disease".
     All diabetes is included in "diabetes complication"}
-  \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to ICD-8 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
-  \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to ICD-9 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and "diabetes complication" contains all diabetes.}
+  \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to
+    ICD-8 by Brusselaers et al. (2017).
+    "Moderate and severe liver disease" contains all liver disease and
+    "diabetes complication" contains all diabetes.}
+  \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to
+  ICD-9 by Brusselaers et al. (2017).
+    "Moderate and severe liver disease" contains all liver disease and
+    "diabetes complication" contains all diabetes.}
   \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
   \item{deyo_ramano}{weights suggested by Deyo and Romano*}
   \item{dhoore}{weights suggested by D'Hoore*}

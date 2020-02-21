@@ -6,7 +6,7 @@ setwd("coder")
 # Make sure it works with latest packages on CRAN
 # update.packages(ask = FALSE)
 
-iunlink("data", TRUE)
+unlink("data", TRUE)
 dir.create("data")
 file.remove("R/sysdata.rda")
 library(tidyverse)
