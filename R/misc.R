@@ -44,6 +44,8 @@ spss2date <- function(x) {
   as.Date(x / 86400, origin = "1582-10-14")
 }
 
+is.Date <- function(x) data.class(x) == "Date"
+
 
 #' Make clean text with only lowercase alphanumeric characters and "_"
 #'

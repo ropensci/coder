@@ -25,7 +25,7 @@
 #'   \code{code}: code as matched from \code{from} (\code{NA} if no match
 #'   within period) \item \code{code_date}: corresponding date for which the
 #'   code was valid (\code{NA} if no match within period) \item
-#'   \code{in_period}: boolean indicator if the unit (patient) had at least one
+#'   \code{in_period}: Boolean indicator if the unit (patient) had at least one
 #'   code within the specified period } The output has at one row for each
 #'   combination of "id" and code. Note that other columns of \code{x} might be
 #'   repeated accordingly.
@@ -35,7 +35,8 @@
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
 #' @family verbs
-codify <- function(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
+codify <- function(
+  data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
 
   if (!id %in% names(data)) {
     stop("There is no column named '", id, "' in ", deparse(substitute(data)))
@@ -45,6 +46,8 @@ codify <- function(data, codedata, id = "id", date = NULL, days = NULL, .copy = 
   idcols  <- c(id, if (usedate) "date")
   if (usedate && is.null(date)) {
     stop("Argument 'date' must be specified if 'days' is not NULL!")
+  } else if (usedate && !is.Date(data[[date]])) {
+    stop("Date column '", date, "' is not of class 'Date'!")
   } else if (!usedate && !is.null(date)) {
     warning("Date column ignored since days = NULL!")
   }
@@ -59,7 +62,7 @@ codify <- function(data, codedata, id = "id", date = NULL, days = NULL, .copy = 
     codedata <- as.codedata(codedata, .copy = .copy, ...)
   }
 
-  # id column must be character to merge with columkn from codedata
+  # id column must be character to merge with column from codedata
   if (!is.character(x2[[id]])) {
     x2[[id]] <- as.character(x2[[id]])
     warning(id, " coerced to character!")

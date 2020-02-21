@@ -75,6 +75,7 @@ as.codedata <- function(
     npr = FALSE, nprdate = "utdatuma", alnum = FALSE) {
 
   code_date <- id <- code <- NULL # Fix for R Check
+  if (!npr) check_codedata(x)
 
   if (!is.data.table(x)) {
     x <- as.data.table(x)
@@ -220,7 +221,7 @@ check_codedata <- function(x) {
   names(x) <- tolower(names(x))
   if (!all(c("id", "code") %in% names(x)))
     stop("data frame must contain columns: id and code")
-  if ("code_data" %in% names(x) && data.class(x[["code_date"]]) != "Date")
+  if ("code_data" %in% names(x) && !is.Date(x[["code_date"]]))
     stop("Column 'code_date' is not of format 'Date'!")
   if (!is.character(x[["id"]]))
     stop("Column 'id' must be character!")

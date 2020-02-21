@@ -48,7 +48,7 @@ Data frame (\code{data.table}) with columns corresponding to \code{x}
   \code{code}: code as matched from \code{from} (\code{NA} if no match
   within period) \item \code{code_date}: corresponding date for which the
   code was valid (\code{NA} if no match within period) \item
-  \code{in_period}: boolean indicator if the unit (patient) had at least one
+  \code{in_period}: Boolean indicator if the unit (patient) had at least one
   code within the specified period } The output has at one row for each
   combination of "id" and code. Note that other columns of \code{x} might be
   repeated accordingly.

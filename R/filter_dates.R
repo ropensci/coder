@@ -67,6 +67,9 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
 #' @family helper
 dates_within <- function(x, from = "1970-01-01", to = Sys.Date()) {
+
+  stopifnot(is.Date(x))
+
   blank <- function(x)
     is.null(x) || is.na(x) || is.infinite(x) || as.character(x) == ""
 

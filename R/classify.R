@@ -58,7 +58,7 @@
 classify <- function(codified, cc, ..., cc_args = list()) UseMethod("classify")
 
 # Help function to evaluate possible extra conditions from a classcodes object
-# Three posibilites exists
+# Three possibilities exists
 # 1. The condition is just TRUE or NA => no evaluation needed,
 #    should be included
 # 2. Evaluation depends on other variables of x => evaluate
