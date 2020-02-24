@@ -35,7 +35,8 @@ people <-
     ),
     license = as.Date(c(
       "1949-05-23", "2016-03-04", "2019-12-18", "1985-05-04"
-    ))
+    )),
+    stringsAsFactors = FALSE
   )
 ```
 
