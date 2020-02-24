@@ -3,8 +3,7 @@
 #' @param x object to filter
 #' @param na.rm remove dates outside limits completely (otherwise keep position
 #' in vector but set to \code{NA})
-#' @param ... arguments passed to \code{\link{dates_within}}.
-#' It is here useful to specify the \code{limits} argument
+#' @inheritDotParams dates_within
 #'
 #' @return Object of same class as \code{x}. If date vector, a filtered vector,
 #' if data frame (with one column named "date"), the same data frame but only
@@ -16,13 +15,8 @@
 #' x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
 #' filter_dates(x) # "2017-02-02" NA           NA
 #' filter_dates(x, na.rm = TRUE) # "2017-02-02"
+#' filter_dates(data.frame(date = x, foo  = 1:3))
 #'
-#' filter_dates(
-#'   data.frame(
-#'     date = x,
-#'     foo  = 1:3
-#'   )
-#' )
 #' @family helper
 filter_dates <- function(x, ...) UseMethod("filter_dates", x)
 
@@ -33,12 +27,9 @@ filter_dates.data.frame <- function(x, ...) {
   stopifnot("date" %in% names(x))
   ftr <- dates_within(x[["date"]], ...)
   if (any(!ftr, na.rm = TRUE)) {
-    warning("Dates outside specified limits dropped! ",
-            "(Use argument 'limits' to override!)")
+    warning("Dates outside specified limits dropped (set with from/to)!")
     x[(ftr) | is.na(ftr), ]
-  } else {
-    x
-  }
+  } else x
 }
 
 #' @rdname filter_dates
@@ -47,8 +38,6 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
   y <- dates_within(x, ...)
   if (na.rm) x[y] else as.Date(ifelse(y, x, NA), origin = "1970-01-01")
 }
-
-
 
 
 #' Check if dates are within limits
@@ -70,13 +59,13 @@ dates_within <- function(x, from = "1970-01-01", to = Sys.Date()) {
 
   stopifnot(is.Date(x))
 
-  blank <- function(x)
+  is.blank <- function(x)
     is.null(x) || is.na(x) || is.infinite(x) || as.character(x) == ""
 
   x  <- as.numeric(x)
 
   # Set all comparisons to TRUE for non specified limit values
-  lower <- if (blank(from)) TRUE else x >= as.numeric(as.Date(from))
-  upper <- if (blank(to))   TRUE else x <= as.numeric(as.Date(to))
+  lower <- if (is.blank(from)) TRUE else x >= as.numeric(as.Date(from))
+  upper <- if (is.blank(to))   TRUE else x <= as.numeric(as.Date(to))
   lower & upper
 }
