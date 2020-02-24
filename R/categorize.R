@@ -47,6 +47,8 @@ categorize <- function(
   cc_args$cc <- cc_name <- cc
   cc <- do.call(set_classcodes, cc_args)
 
+  if (!id %in% names(data))      stop("No id column '", id, "' in data!")
+  if (!is.character(data[[id]])) stop("Id column must be of type character!")
   if (!is.data.table(data)) {
     data <- as.data.table(data)
   }
@@ -61,12 +63,9 @@ categorize <- function(
   cod              <- do.call(codify, codify_args)
   cl               <- classify(cod, cc)
 
-  data$id_chr <- as.character(data[[id]]) # To be able to merge
   out       <- merge(data, as.data.table(cl),
-                     by.x = "id_chr", by.y = id, sort = sort)
-  id_chr <- NULL # to avoid check note
-  data[, id_chr := NULL] # Don't need it any more
-
+                     by.x = id, by.y = id, sort = sort)
+  
   # Add index named index if index not FALSE
   index_inh <- attr(cc, "indices")
   if (!identical(index, FALSE)) {
@@ -85,7 +84,6 @@ categorize <- function(
       ind_names <- clean_text(cc_name, paste0("index_", ind_names))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
-    out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
+    out <- merge(out, indx,  by.x = id, by.y = id, sort = sort)
   }
-  out[, id_chr := NULL][]
 }
