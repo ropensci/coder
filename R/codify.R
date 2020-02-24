@@ -6,10 +6,9 @@
 #'   date of interest (column name specified by argument \code{date})
 #' @param codedata object with code data for which \code{\link{is.codedata}} is
 #'   \code{TRUE}
-#' @param id name of column in \code{x} containing case (patient) identification
+#' @param id name ( of column in \code{x} with case id (character).
 #' @param date name of column in \code{x} with possible date of interest
-#'   (\code{NULL} by default but must be specified if argument 'days' is
-#'   used).
+#'   (\code{NULL} by default; must be specified if \code{days != NULL}).
 #' @param days numeric vector of length two with lower and upper bound of range
 #'   of days relative to \code{date} for which codes from \code{from} are
 #'   relevant. (For example \code{c(-365, -1)} implies a time window of one year
@@ -38,9 +37,9 @@
 codify <- function(
   data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
 
-  if (!id %in% names(data)) {
-    stop("There is no column named '", id, "' in ", deparse(substitute(data)))
-  }
+  if (!id %in% names(data))      stop("No id column '", id "' in data!")
+  if (!is.character(data[[id]])) stop("Id column must be of type character!")
+  
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
   idcols  <- c(id, if (usedate) "date")
@@ -52,49 +51,23 @@ codify <- function(
     warning("Date column ignored since days = NULL!")
   }
 
-
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   x2 <- copybig(data, .copy) # New name to avoid copy complications
   if (usedate) setnames(x2, date, "date")
-  if (!is.codedata(codedata)) {
-    codedata <- as.codedata(codedata, .copy = .copy, ...)
-  }
+  if (!is.codedata(codedata)) codedata <- as.codedata(codedata, .copy = .copy, ...)
 
-  # id column must be character to merge with column from codedata
-  if (!is.character(x2[[id]])) {
-    x2[[id]] <- as.character(x2[[id]])
-    warning(id, " coerced to character!")
-  }
-
-  # Silly work around to avoid check notes
-  in_period <- code_date <- NULL
-  # To avoid unique on all data
-  x2_id_date <- x2[, idcols, with = FALSE]
+  in_period <- code_date <- NULL # Silly work around to avoid check notes
+  x2_id_date <- x2[, idcols, with = FALSE] # To avoid unique on all data
 
   out <-
-    merge(x2_id_date, codedata, by.x = id, by.y = "id",
-          all.x = TRUE, allow.cartesian = TRUE)[,
+    merge(x2_id_date, codedata, by.x = id, by.y = "id", all.x = TRUE, allow.cartesian = TRUE)[,
       in_period :=
         if (!usedate) TRUE
-        else
-          between(
-            as.numeric(code_date),
-            as.numeric(date) + min(days),
-            as.numeric(date) + max(days)
-          )
+        else between(
+          as.numeric(code_date), as.numeric(date) + min(days), as.numeric(date) + max(days))
     ][
-      (!in_period),
-      `:=`(
-        code      = NA,
-        code_date = NA
-      )
-    ][
-      ,
-      # If there are some codes within the period, keep them all
-      # If there are no codes within the period,
-      # keep only the first as a marker
+      (!in_period), `:=`(code = NA, code_date = NA)][,
+      # If codes within period: keep them all. If not: Keep the first as marker. 
       if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
       by = idcols
     ]
