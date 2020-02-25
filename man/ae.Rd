@@ -5,13 +5,14 @@
 \alias{ae}
 \alias{knee_ae}
 \alias{hip_ae}
-\alias{hip_fracture_ae}
 \title{Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 and KVA codes}
 \format{Data frame with 3 columns:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
   \item{regex}{regular expressions identifying ICD-10 codes for each group}
+ \item{regex_fracture}{regular expressions for fracture patients.
+   Essentially the same as \code{regex} but with some additional codes for group "DM1 other"}
  \item{regex_kva}{regular expressions identifying KVA codes}
   \item{condition}{special conditions are used, see below.}
 }}
@@ -23,8 +24,6 @@ Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrappo
 knee_ae
 
 hip_ae
-
-hip_fracture_ae
 }
 \description{
 \code{\link{classcodes}} objects to use with \code{\link{classify}}

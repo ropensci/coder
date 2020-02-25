@@ -196,6 +196,8 @@
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
 #'   \item{regex}{regular expressions identifying ICD-10 codes for each group}
+#'  \item{regex_fracture}{regular expressions for fracture patients.
+#'    Essentially the same as \code{regex} but with some additional codes for group "DM1 other"}
 #'  \item{regex_kva}{regular expressions identifying KVA codes}
 #'   \item{condition}{special conditions are used, see below.}
 #' }
@@ -219,9 +221,6 @@
 
 #' @rdname ae
 "hip_ae"
-
-#' @rdname ae
-"hip_fracture_ae"
 
 
 #' Classcodes for infection and dislocation after hip arthroplasty based on ICD-10

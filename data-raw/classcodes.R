@@ -19,17 +19,19 @@ mutate(
 
 
 
-# hip.fracture.ae_icd10 ---------------------------------------------------
+# hip_ae ---------------------------------------------------
 
 # There are some additional ICD-10 codes used for hip fractures.
 # https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf
 # p. 149
-hip_fracture_ae <-
+# I do not want to make a manual copy of all those codes but simply add a regex_frcture column based on
+# existing codes.
+hip_ae <-
   hip_ae %>%
   mutate(
-    regex = if_else(
+    regex_fracture = if_else(
       group == "DM1 other",
-      paste0(gsub(")$", "", regex, fixed = TRUE), "|N3(0[0899]|Y90))$"),
+      paste0(regex, "|N3(0[0899]|Y90)"),
       regex
     )
   ) %>%
@@ -44,7 +46,6 @@ usethis::use_data(
   hip_ae,
   hip_ae_hailer,
   knee_ae,
-  hip_fracture_ae,
   cps,
   rxriskv,
   overwrite = TRUE
