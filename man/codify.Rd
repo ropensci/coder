@@ -2,31 +2,20 @@
 % Please edit documentation in R/codify.R
 \name{codify}
 \alias{codify}
-\title{codify elements}
+\title{Codify elements (within period)}
 \usage{
 codify(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...)
 }
 \arguments{
-\item{data}{data.frame with at least two columns, one with case (patient)
-identification (column name specified by argument \code{id}) and one with a
-date of interest (column name specified by argument \code{date})}
+\item{data}{\code{\link{data.frame}} with at least case id, and optional date of interest}
 
-\item{codedata}{object with code data for which \code{\link{is.codedata}} is
-\code{TRUE}}
+\item{codedata}{output from \code{\link{as.codedata}}.}
 
-\item{id}{name ( of column in \code{x} with case id (character).}
+\item{id, date}{column names (from \code{data}) with case id (character)
+and date of interest (optional).}
 
-\item{date}{name of column in \code{x} with possible date of interest
-(\code{NULL} by default; must be specified if \code{days != NULL}).}
-
-\item{days}{numeric vector of length two with lower and upper bound of range
-of days relative to \code{date} for which codes from \code{from} are
-relevant. (For example \code{c(-365, -1)} implies a time window of one year
-prior to \code{date}, which might be useful for calculating comorbidity
-indices, while \code{c(1, 30)} gives a window of 30 days after \code{date},
-which might be used for calculating adverse events after a surgical
-procedure.) \code{c(-Inf, Inf)} means no limitation on non missing dates.
-\code{NULL} means no time limitation at all.}
+\item{days}{numeric vector of length two with lower and upper bound for range
+of relevant days relative to \code{date}. See "Relevant period".}
 
 \item{.copy}{Should the object be copied internally by \code{\link{copy}}?
 \code{NA} (by default) means that objects smaller than 1 GB are copied.
@@ -42,21 +31,31 @@ but the object will be changed by reference.}
   }}
 }
 \value{
-Data frame (\code{data.table}) with columns corresponding to \code{x}
-  and additional columns matched from \code{from}: \itemize{ \item
-  \code{code}: code as matched from \code{from} (\code{NA} if no match
-  within period) \item \code{code_date}: corresponding date for which the
-  code was valid (\code{NA} if no match within period) \item
-  \code{in_period}: Boolean indicator if the unit (patient) had at least one
-  code within the specified period } The output has at one row for each
-  combination of "id" and code. Note that other columns of \code{x} might be
-  repeated accordingly.
+\code{data} (coerced to \code{data.table}) with additional columns:
+  \code{code, code_date}: left joined from \code{codedata} or \code{NA} if no match
+  within period. \code{in_period}: Boolean indicator if the case had at least one
+  code within the specified period.
+
+  The output has one row for each combination of "id" from \code{data} and
+  "code" from \code{codedata}. Rows from \code{data} might be repeated accordingly.
 }
 \description{
-codify elements
+Enhance case data with code data, possibly limited to relevant period.
 }
+\section{Relevant period}{
+
+  Some examples for argument \code{days}:
+  \itemize{
+    \item \code{c(-365, -1)}: window of one year prior to the \code{date} column of \code{data}.            Useful for patient co-morbidity.
+    \item \code{c(1, 30)}: window of 30 days after \code{date}.
+      Useful for adverse events after a surgical procedure.
+   \item \code{c(-Inf, Inf)}: no limitation on non missing dates.
+   \item \code{NULL}: no time limitation at all.
+  }
+}
+
 \examples{
-codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
+codify(ex_people, ex_icd10, id = "name", date = "event", days = c(-365, 0))
 }
 \seealso{
 Other verbs: 

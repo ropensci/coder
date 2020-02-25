@@ -1,7 +1,7 @@
 context("classify")
 
 x <- codify(ex_people, ex_icd10, id = "name",
-       date = "surgery", days = c(-365, 0))
+       date = "event", days = c(-365, 0))
 
 test_that("classify", {
   expect_equal(

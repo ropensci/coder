@@ -1,7 +1,7 @@
 context("misc")
 
 y <- x <-
-  codify(ex_people, ex_icd10, id = "name", date = "surgery", days = c(-365, 0))
+  codify(ex_people, ex_icd10, id = "name", date = "event", days = c(-365, 0))
 
 x <- suppressWarnings(classify(x, "elixhauser"))
 

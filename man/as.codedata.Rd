@@ -10,15 +10,17 @@ as.codedata(x, ..., .setkeys = TRUE, alnum = FALSE)
 is.codedata(x)
 }
 \arguments{
-\item{x}{data frame with columns "id" (character), "code",
+\item{x}{\code{\link{data.frame}} with columns "id" (character), "code",
 and optional "code_date" (Date).}
 
-\item{...}{by default, codes for future dates or dates before "1970-01-01"
-are ignored (with a warning). Set \code{to, from}
-(passed to \code{\link{filter_dates}}) to override.}
+\item{...}{
+  Arguments passed on to \code{\link[=dates_within]{dates_within}}
+  \describe{
+    \item{\code{from}}{first and last date of interval to compare with}
+    \item{\code{to}}{first and last date of interval to compare with}
+  }}
 
-\item{.setkeys}{should keys be set for the \code{\link{data.table}} object?
-(Beneficial for large data sets.)}
+\item{.setkeys}{should output be indexed (Beneficial for large data sets.)}
 
 \item{alnum}{Should codes be cleaned from all non alphanumeric characters?}
 }
@@ -28,19 +30,21 @@ are ignored (with a warning). Set \code{to, from}
   Possible additional columns from \code{x} are preserved.
 }
 \description{
-Code data
+Make structured code data set based on \code{\link{data.frame}}.
 }
 \examples{
 
 x <- data.frame(
-  id = 1,
+  id = "1",
   code_date = as.Date("2017-02-02"),
-  code = "a"
+  code = "a",
+  stringsAsFactors = FALSE
 )
 as.codedata(x)
 
 # Drop dates outside specified limits
-y <- data.frame(id = 2, code_date = as.Date("3017-02-02"), code = "b")
+y <- data.frame(id = "2", code_date = as.Date("3017-02-02"), code = "b",
+  stringsAsFactors = FALSE)
 z <- rbind(x, y)
 as.codedata(z)
 

@@ -4,7 +4,7 @@
 \alias{classify}
 \alias{classify.default}
 \alias{classify.data.frame}
-\title{Classify elements}
+\title{Classify cases based on classcodes}
 \usage{
 classify(codified, cc, ..., cc_args = list())
 
@@ -13,8 +13,7 @@ classify(codified, cc, ..., cc_args = list())
 \method{classify}{data.frame}(codified, cc, ..., id = NULL, code = "code", cc_args = list())
 }
 \arguments{
-\item{codified}{object with elements to classify (often the output from
-\code{\link{codify}})}
+\item{codified}{output from \code{\link{codify}})}
 
 \item{cc}{\code{\link{classcodes}} object or name of such}
 
@@ -22,33 +21,15 @@ classify(codified, cc, ..., cc_args = list())
 
 \item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
 
-\item{id}{name (as character) of variable in \code{x} to group id (for
-example a patient id).}
-
-\item{code}{name (as character) of variable in \code{x} containing codes to
-classify}
+\item{code, id}{name of code/id columns (in \code{codified}).}
 }
 \value{
-Boolean matrix with one row for each element/row of \code{x} and
-  columns for each class with corresponding class names (according to the
+Boolean matrix with one row for each element/row of \code{codified}
+  and columns for each class with corresponding class names (according to the
   \code{\link{classcodes}} object).
 }
 \description{
-This is the main functions of the package, performing the actual
-classification of cases. It is often used with output from
-\code{\link{codify}} as input and is sometimes followed by the
-\code{\link{index}} function. These three function could easily be chained
-together if using the magrittr pipe (\code{\%>\%}).
-}
-\details{
-Note that row order is not preserved for \code{classify.data.frame} due to
- performance reasons (the function is intended to work with large data sets
- where sorting is computationally expensive).
-
- Row names does however identify origin (as specified by \code{id} for
- \code{classify.data.frame} or simply as \code{x} itself for
- \code{classify.default}. It should therefore be possible to manually
- reorder the output to maintain original order.
+Classify cases based on classcodes
 }
 \examples{
 # Classify individual ICD10-codes by Elixhauser
@@ -57,13 +38,14 @@ classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 # Classify patients by Charlson for comorbidities during
 # one year before surgery
 x <- codify(ex_people, ex_icd10, id = "name",
-  date = "surgery", days = c(-365, 0))
+  date = "event", days = c(-365, 0))
 y <- classify(x, "charlson")
 
 # Use tha RCS classification instead and use technical column names
-y <- classify(x, "charlson", cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
+y <- classify(x, "charlson",
+  cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
 
-# It is possible to convert the outpot of classify to a data frame with
+# It is possible to convert the output of classify to a data frame with
 # id column instead of row names
 as.data.frame(y)
 }

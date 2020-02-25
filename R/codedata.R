@@ -1,12 +1,11 @@
 #' Code data
 #'
-#' @param x data frame with columns "id" (character), "code",
+#' Make structured code data set based on \code{\link{data.frame}}.
+#'
+#' @inheritDotParams dates_within to from
+#' @param x \code{\link{data.frame}} with columns "id" (character), "code",
 #'   and optional "code_date" (Date).
-#' @param .setkeys should keys be set for the \code{\link{data.table}} object?
-#'   (Beneficial for large data sets.)
-#' @param ... by default, codes for future dates or dates before "1970-01-01"
-#'   are ignored (with a warning). Set \code{to, from}
-#'   (passed to \code{\link{filter_dates}}) to override.
+#' @param .setkeys should output be indexed (Beneficial for large data sets.)
 #' @param alnum Should codes be cleaned from all non alphanumeric characters?
 #'
 #' @return
@@ -20,14 +19,16 @@
 #' @examples
 #'
 #' x <- data.frame(
-#'   id = 1,
+#'   id = "1",
 #'   code_date = as.Date("2017-02-02"),
-#'   code = "a"
+#'   code = "a",
+#'   stringsAsFactors = FALSE
 #' )
 #' as.codedata(x)
 #'
 #' # Drop dates outside specified limits
-#' y <- data.frame(id = 2, code_date = as.Date("3017-02-02"), code = "b")
+#' y <- data.frame(id = "2", code_date = as.Date("3017-02-02"), code = "b",
+#'   stringsAsFactors = FALSE)
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'

@@ -34,7 +34,7 @@ npr2codedata <- function(x, y = NULL, nprdate = "utdatuma", .copy = NA, ...) {
   # Help function
   ascodedata <- function(x, ...) {
     x[, hdia := variable == "hdia"]
-    as.codedata(x[, .(id, code, code_date, hdia)], ...)
+    as.codedata(x[, list(id, code, code_date, hdia)], ...)
   }
 
   # silly workaround to avoid CHECK note

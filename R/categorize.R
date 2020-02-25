@@ -1,29 +1,24 @@
-#' Categorize cases based on external data and classification scheme
+#' Categorize cases based on external data and classcodes (classification scheme)
 #'
-#'
-#' @param data data frame with mandatory id column (identified by argument \code{id}),
-#'   and semi-optional column with date of interest
-#'   (identified by argument \code{date} if \code{days != NULL}).
+#' @inheritParams classify
+#' @param data (\code{\link{data.frame}}) with case data including at least an id,
+#'   and possibly a date, column.
 #' @param codedata external code data (see \code{\link{as.codedata}})
-#' @param cc \code{\link{classcodes}} object (or name of such object).
+#' @param cc \code{\link{classcodes}} object (or name of such).
 #' @param index control possible inclusion of index vector.
 #'   Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
 #'   \code{by} in function \code{\link{index}}. It is possible to
 #'   include several indices as a character vector.
 #'   \code{NULL} will include all available indices.
 #' @param sort logical. Should output be sorted by the 'id' column?
-#'   (This could effect computational speed for large data sets.)
-#'   Data is sorted by 'id' internally. It is therefore faster to keep the output
-#'   sorted this way, but this might be inconvenient if the original
-#'   order was intended. Set to \code{FALSE} in order to not shuffle the
-#'   input data.
+#'   (Sorting by id is always done internally. To restore the original row order of \code{data}
+#'   could be slow for large data sets.)
 #' @param codify_args List of named arguments passed to \code{\link{codify}}
-#' @inheritParams classify
 #'
-#' @return data frame ('data.table' object) with all data from
-#' the input data set \code{to/data} combined with logical columns indicating
-#' membership of categories identified by the classcode object.
-#' Indices are also included if so specified by the 'index' argument.
+#' @return \code{\link{data.table}} with
+#'  \code{data} enhanced by logical columns indicating
+#' membership of categories identified by \code{cc}, as well as
+#' indices if specified by \code{index}.
 #'
 #' @export
 #'
@@ -37,7 +32,7 @@
 #' categorize(ex_people, ex_icd10, "charlson",
 #'   id = "name",
 #'   index = c("quan_original", "quan_updated"),
-#'   codify_args = list(date = "surgery", days = c(-30, -1)),
+#'   codify_args = list(date = "event", days = c(-30, -1)),
 #'   cc_args = list(tech_names = TRUE)
 #' )
 #' @family verbs
@@ -65,7 +60,7 @@ categorize <- function(
 
   out       <- merge(data, as.data.table(cl),
                      by.x = id, by.y = id, sort = sort)
-  
+
   # Add index named index if index not FALSE
   index_inh <- attr(cc, "indices")
   if (!identical(index, FALSE)) {

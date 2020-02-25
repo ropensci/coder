@@ -2,7 +2,7 @@
 % Please edit documentation in R/categorize.R
 \name{categorize}
 \alias{categorize}
-\title{Categorize cases based on external data and classification scheme}
+\title{Categorize cases based on external data and classcodes (classification scheme)}
 \usage{
 categorize(
   data,
@@ -16,16 +16,14 @@ categorize(
 )
 }
 \arguments{
-\item{data}{data frame with mandatory id column (identified by argument \code{id}),
-and semi-optional column with date of interest
-(identified by argument \code{date} if \code{days != NULL}).}
+\item{data}{(\code{\link{data.frame}}) with case data including at least an id,
+and possibly a date, column.}
 
 \item{codedata}{external code data (see \code{\link{as.codedata}})}
 
-\item{cc}{\code{\link{classcodes}} object (or name of such object).}
+\item{cc}{\code{\link{classcodes}} object (or name of such).}
 
-\item{id}{name (as character) of variable in \code{x} to group id (for
-example a patient id).}
+\item{id}{name of code/id columns (in \code{codified}).}
 
 \item{index}{control possible inclusion of index vector.
 Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
@@ -34,24 +32,21 @@ include several indices as a character vector.
 \code{NULL} will include all available indices.}
 
 \item{sort}{logical. Should output be sorted by the 'id' column?
-(This could effect computational speed for large data sets.)
-Data is sorted by 'id' internally. It is therefore faster to keep the output
-sorted this way, but this might be inconvenient if the original
-order was intended. Set to \code{FALSE} in order to not shuffle the
-input data.}
+(Sorting by id is always done internally. To restore the original row order of \code{data}
+could be slow for large data sets.)}
 
 \item{codify_args}{List of named arguments passed to \code{\link{codify}}}
 
 \item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
 }
 \value{
-data frame ('data.table' object) with all data from
-the input data set \code{to/data} combined with logical columns indicating
-membership of categories identified by the classcode object.
-Indices are also included if so specified by the 'index' argument.
+\code{\link{data.table}} with
+ \code{data} enhanced by logical columns indicating
+membership of categories identified by \code{cc}, as well as
+indices if specified by \code{index}.
 }
 \description{
-Categorize cases based on external data and classification scheme
+Categorize cases based on external data and classcodes (classification scheme)
 }
 \examples{
 # Add Elixhauser based on all registered ICD10-codes
@@ -63,7 +58,7 @@ categorize(ex_people, ex_icd10, "elixhauser", id = "name")
 categorize(ex_people, ex_icd10, "charlson",
   id = "name",
   index = c("quan_original", "quan_updated"),
-  codify_args = list(date = "surgery", days = c(-30, -1)),
+  codify_args = list(date = "event", days = c(-30, -1)),
   cc_args = list(tech_names = TRUE)
 )
 }
