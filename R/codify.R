@@ -37,9 +37,9 @@
 codify <- function(
   data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
 
-  if (!id %in% names(data))      stop("No id column '", id "' in data!")
+  if (!id %in% names(data))      stop("No id column '", id, "' in data!")
   if (!is.character(data[[id]])) stop("Id column must be of type character!")
-  
+
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
   idcols  <- c(id, if (usedate) "date")
@@ -67,7 +67,7 @@ codify <- function(
           as.numeric(code_date), as.numeric(date) + min(days), as.numeric(date) + max(days))
     ][
       (!in_period), `:=`(code = NA, code_date = NA)][,
-      # If codes within period: keep them all. If not: Keep the first as marker. 
+      # If codes within period: keep them all. If not: Keep the first as marker.
       if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
       by = idcols
     ]

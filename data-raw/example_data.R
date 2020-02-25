@@ -9,7 +9,7 @@ N <- n * 10  # How many cases in the codedata set
 ex_people <-
   tibble::tibble(
     name    = randomNames::randomNames(n),
-    surgery = Sys.Date() - sample(0:365, n, TRUE)
+    event   = Sys.Date() - sample(0:365, n, TRUE)
 )
 
 

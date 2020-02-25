@@ -15,8 +15,12 @@ filter_dates(x, ...)
 \arguments{
 \item{x}{object to filter}
 
-\item{...}{arguments passed to \code{\link{dates_within}}.
-It is here useful to specify the \code{limits} argument}
+\item{...}{
+  Arguments passed on to \code{\link[=dates_within]{dates_within}}
+  \describe{
+    \item{\code{from}}{first and last date of interval to compare with}
+    \item{\code{to}}{first and last date of interval to compare with}
+  }}
 
 \item{na.rm}{remove dates outside limits completely (otherwise keep position
 in vector but set to \code{NA})}
@@ -34,13 +38,8 @@ Filter dates outside specified limits
 x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
 filter_dates(x) # "2017-02-02" NA           NA
 filter_dates(x, na.rm = TRUE) # "2017-02-02"
+filter_dates(data.frame(date = x, foo  = 1:3))
 
-filter_dates(
-  data.frame(
-    date = x,
-    foo  = 1:3
-  )
-)
 }
 \seealso{
 Other helper: 

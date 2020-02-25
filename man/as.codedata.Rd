@@ -10,29 +10,22 @@ as.codedata(x, ..., .setkeys = TRUE, alnum = FALSE)
 is.codedata(x)
 }
 \arguments{
-\item{x}{data frame with columns "id", "code_date" and "code"}
+\item{x}{data frame with columns "id" (character), "code",
+and optional "code_date" (Date).}
 
 \item{...}{by default, codes for future dates or dates before "1970-01-01"
-are ignored (with a warning). Specify \code{to, from}
-(as passed to \code{\link{filter_dates}}) to override.}
+are ignored (with a warning). Set \code{to, from}
+(passed to \code{\link{filter_dates}}) to override.}
 
-\item{.setkeys}{should keys be set for the data.table object?
-To initially set the key for a large data set can be slow
-but it could be beneficial for later use of the object.}
+\item{.setkeys}{should keys be set for the \code{\link{data.table}} object?
+(Beneficial for large data sets.)}
 
-\item{alnum}{Should codes be cleaned from all non alphanumeric characters (Boolean)?}
+\item{alnum}{Should codes be cleaned from all non alphanumeric characters?}
 }
 \value{
-\code{as.codedata} returns a \code{\link{data.table}} object
-  with mandatory columns: "id" (individual id coerced to character) and
-  "code". It has an optional column
-  "code_date" (when the code was valid) if there was such a column in
-  \code{x}.
+\code{\link{data.table}} with columns: "id" (character), "code" and
+  optionally "code_date" (Date)
   Possible additional columns from \code{x} are preserved.
-
-\code{is.codedata} returns \code{TRUE} if these same conditions are met and
-\code{FALSE} otherwise.
-(Note that \code{codedata} is not a formal R class of its own!)
 }
 \description{
 Code data
@@ -53,6 +46,6 @@ as.codedata(z)
 
 }
 \seealso{
-npr
+npr2codedata
 }
 \concept{codedata}

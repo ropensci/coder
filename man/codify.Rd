@@ -14,11 +14,10 @@ date of interest (column name specified by argument \code{date})}
 \item{codedata}{object with code data for which \code{\link{is.codedata}} is
 \code{TRUE}}
 
-\item{id}{name of column in \code{x} containing case (patient) identification}
+\item{id}{name ( of column in \code{x} with case id (character).}
 
 \item{date}{name of column in \code{x} with possible date of interest
-(\code{NULL} by default but must be specified if argument 'days' is
-used).}
+(\code{NULL} by default; must be specified if \code{days != NULL}).}
 
 \item{days}{numeric vector of length two with lower and upper bound of range
 of days relative to \code{date} for which codes from \code{from} are
@@ -39,7 +38,7 @@ but the object will be changed by reference.}
 \item{...}{
   Arguments passed on to \code{\link[=as.codedata]{as.codedata}}
   \describe{
-    \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters (Boolean)?}
+    \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters?}
   }}
 }
 \value{

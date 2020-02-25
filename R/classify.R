@@ -117,7 +117,7 @@ classify.data.frame <- function(codified, cc, ..., id = NULL, code = "code", cc_
   if (!code %in% names(codified))
     stop(code, " should specify codes but is not a column of x!")
   if (!is.character(codified[[id]]))
-    stop("Id column '", id, "' must be of type character!)
+    stop("Id column '", id, "' must be of type character!")
 
   # Rename columns in x to standard names
   names(codified)[names(codified) == code] <- "code"
