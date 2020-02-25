@@ -33,7 +33,17 @@
  \item{ahrq_readm}{weights for readmissions suggested by
    Moore et al. (2017)}
 }}
-\source{
+\usage{
+elixhauser
+}
+\description{
+A \code{\link{classcodes}} object to use with \code{\link{classify}}
+}
+\details{
+\code{elix.short_icd10} is just for testing and should not be used
+in practice! (It is based only on the first three code positions of ICD-10.)
+}
+\references{
 Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
@@ -55,16 +65,6 @@ Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
   Identifying Increased Risk of Readmission and In-hospital Mortality Using
   Hospital Administrative Data.
   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
-}
-\usage{
-elixhauser
-}
-\description{
-A \code{\link{classcodes}} object to use with \code{\link{classify}}
-}
-\details{
-\code{elix.short_icd10} is just for testing and should not be used
-in practice! (It is based only on the first three code positions of ICD-10.)
 }
 \seealso{
 Other default classcodes: 

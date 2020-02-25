@@ -42,7 +42,13 @@
 }
 
 * Weights decoded from Yurkovich et al. (2015).}
-\source{
+\usage{
+charlson
+}
+\description{
+A \code{\link{classcodes}} object to use with \code{\link{classify}}
+}
+\references{
 Armitage, J. N., & van der Meulen, J. H. (2010).
    Identifying co-morbidity in surgical patients using administrative data
    with the Royal College of Surgeons Charlson Score.
@@ -69,12 +75,6 @@ Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
   D. (2015). A systematic review identifies valid comorbidity indices derived
   from administrative health data.
   Journal of clinical epidemiology, 68(1), 3-14.
-}
-\usage{
-charlson
-}
-\description{
-A \code{\link{classcodes}} object to use with \code{\link{classify}}
 }
 \seealso{
 Other default classcodes: 

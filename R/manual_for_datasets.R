@@ -34,7 +34,8 @@
 #'  \item{ahrq_readm}{weights for readmissions suggested by
 #'    Moore et al. (2017)}
 #' }
-#' @source
+#'
+#' @references
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -106,7 +107,7 @@
 #'
 #' * Weights decoded from Yurkovich et al. (2015).
 #'
-#' @source
+#' @references
 #'  Armitage, J. N., & van der Meulen, J. H. (2010).
 #'    Identifying co-morbidity in surgical patients using administrative data
 #'    with the Royal College of Surgeons Charlson Score.
@@ -151,11 +152,14 @@
 #'   \item{regex}{regular expressions identifying ICD-10 codes of each group}
 #'   \item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 #' }
-#' @references Stawicki, Stanislaw P., et al.
-#' "Comorbidity polypharmacy score and its clinical utility: A pragmatic
-#' practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
-#' (2015): 224.
-#' \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+#' @references
+#'
+#' Stawicki, Stanislaw P., et al.
+#'   "Comorbidity polypharmacy score and its clinical utility: A pragmatic
+#'   practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
+#'   (2015): 224.
+#'   \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+#'
 #' @family default classcodes
 "cps"
 
@@ -197,6 +201,14 @@
 #' }
 #'
 #' @references
+#'
+#'   Magnéli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
+#'     Validation of adverse events after hip arthroplasty:
+#'     a Swedish multi-centre cohort study.
+#'     BMJ Open. 2019 Mar 7;9(3):e023773.
+#'     Available from: \url{http://www.ncbi.nlm.nih.gov/pubmed/30850403}
+#'
+#' @source
 #' Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
 #' Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
 #'

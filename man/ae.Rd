@@ -15,6 +15,10 @@ and KVA codes}
  \item{regex_kva}{regular expressions identifying KVA codes}
   \item{condition}{special conditions are used, see below.}
 }}
+\source{
+Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
+Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
+}
 \usage{
 knee_ae
 
@@ -54,8 +58,11 @@ of the classcodes data prior to categorization.
 }
 
 \references{
-Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
-Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
+Magnéli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
+    Validation of adverse events after hip arthroplasty:
+    a Swedish multi-centre cohort study.
+    BMJ Open. 2019 Mar 7;9(3):e023773.
+    Available from: \url{http://www.ncbi.nlm.nih.gov/pubmed/30850403}
 }
 \seealso{
 hip_ae_hailer
