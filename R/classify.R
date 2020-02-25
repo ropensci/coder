@@ -51,17 +51,21 @@ eval_condition <- function(cond, x) {
 
 # Find id from object -----------------------------------------------------
 
-find_id <- function(obj, id, code) {
-  if (is.null(id) & !is.null(attr(obj, "id"))) attr(obj, "id")
+find_id <- function(obj, id = NULL, code = NULL) {
+  id <-
+    if (is.null(id) & !is.null(attr(obj, "id"))) attr(obj, "id")
     else if (is.character(id)) id
     else if (is.null(id) & "id" %in% names(obj)) "id"
     else stop("Argument 'id' must be specified!")
+
   if (!id %in% names(obj))
     stop(id, " should specify case id but is not a column of x!")
   if (!code %in% names(obj))
     stop(code, " should specify codes but is not a column of x!")
   if (!is.character(obj[[id]]))
     stop("Id column '", id, "' must be of type character!")
+
+  id
 }
 
 
@@ -76,7 +80,7 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
     cc$regex, grepl, logical(length(codified)), x = as.character(codified))
 
   structure(
-    y          = if (length(codified) == 1) as.matrix(t(y)) else y,
+    if (length(codified) == 1) as.matrix(t(y)) else y,
     dimnames   = list(codified, cc$group),
     classcodes = .cc,
     id         = "id",
@@ -144,9 +148,48 @@ classify.data.frame <- function(
   }
 
   structure(
-    out        = rbind(clu, clm),
+    rbind(clu, clm),
     classcodes = cc_name,
     id         = id,
     class      = c("classified", "matrix")
+  )
+}
+
+
+# Convert output to data.frame --------------------------------------------
+
+#' Convert output matrix from classify to data frame or data.table
+#'
+#' @param x output from \code{\link{classify}}
+#' @param ... ignored
+#' @return data frame with:
+#' \itemize{
+#'   \item{first column named as "id" column specified as input
+#'     to \code{\link{classify}} and with data from \code{row.names(x)}}
+#'   \item{all columns from \code{classified}}
+#'   \item{no row names}
+#' }
+#'
+#' @export
+#' @family classcodes
+as.data.frame.classified <- function(x, ...) {
+  y            <- NextMethod()
+  id           <- attr(x, "id")
+  y[[id]]      <- row.names(x)
+  row.names(y) <- NULL
+  y            <- y[, c(id, setdiff(names(y), id))]
+  attr(y, "classcodes") <- attr(x, "classcodes")
+  y
+}
+
+
+# Convert output to data.table --------------------------------------------
+
+#' @export
+#' @rdname as.data.frame.classified
+as.data.table.classified <- function(x, ...) {
+  structure(
+    as.data.table(as.data.frame(x, ...)),
+    classcodes = attr(x, "classcodes")
   )
 }

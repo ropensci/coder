@@ -1,6 +1,6 @@
 # Make package
 
-# Might need to adjust. Works if opended from #217
+# Might need to adjust. Works if opened from #217
 setwd("coder")
 
 # Make sure it works with latest packages on CRAN
