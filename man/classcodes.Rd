@@ -6,12 +6,15 @@
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x)
+as.classcodes(x, hierarchy = attr(x, "hierarchy"))
 
 is.classcodes(x)
 }
 \arguments{
 \item{x}{data frame with properties as described in the details section}
+
+\item{hierarchy}{list of pairwise group names to appear as superior and subordinate classes.
+To be used for indexing when the subordinate class is redundant.}
 }
 \value{
 Object of class "classcodes" (data frame) with attribute \code{code}

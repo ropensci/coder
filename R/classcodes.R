@@ -28,6 +28,8 @@
 #' `help(package = "coder")`
 #'
 #' @param x data frame with properties as described in the details section
+#' @param hierarchy list of pairwise group names to appear as superior and subordinate classes.
+#'   To be used for indexing when the subordinate class is redundant.
 #' @return Object of class "classcodes" (data frame) with attribute \code{code}
 #' specifying the coding used (for example "icd10", or "ATC").
 #' Could be \code{NULL} for unknown or arbitrary coding.
@@ -42,7 +44,7 @@
 #' @examples
 #' as.classcodes(coder::elixhauser)
 #' @family classcodes
-as.classcodes <- function(x) {
+as.classcodes <- function(x, hierarchy = attr(x, "hierarchy")) {
 
   class(x) <- setdiff(class(x), "classcodes") # To avoid infinite recursive looping due to `$<-.classcodes` method
 
@@ -69,7 +71,7 @@ as.classcodes <- function(x) {
                     colnames(x),
                     c(rgs, c("group", "condition", "description"))
                   ),
-    hierarchy = attr(x, "hierarchy")
+    hierarchy = hierarchy
   )
 }
 
