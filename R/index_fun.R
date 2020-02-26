@@ -1,12 +1,17 @@
 #' Calculate index based on classification scheme
 #'
+#' (Weighted) sum of all identified classes for each case.
+#' Index weights for subordinate hierarchical classes
+#' (as identified by \code{attr(cc, "hierarchy")}) are excluded in presence of
+#' superior classes if index specified with argument \code{index}.
+#'
 #' @param classified output from \code{classify}
 #' @param index name of column with 'weights' from corresponding
 #'   \code{\link{classcodes}} object. Can be \code{NULL} if the index is just a
 #'   count of relevant classes.
 #' @param cc \code{\link{classcodes}} object. Can be \code{NULL} if information
-#'   already present as attribute of \code{classified} (which is often the case) and/or
-#'   if index calculated without weights.
+#'   already present as attribute of \code{classified} (which is often the case)
+#'   and/or if index calculated without weights.
 #'
 #' @param ... used internally
 #'
@@ -74,6 +79,20 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
       ind[is.na(ind)] <- 0
       c(classified %*% ind)
     }
+
+  # Adjust for hierarchical classes
+  hierarchy <- attr(cc, "hierarchy")
+  if (!is.null(hierarchy) & exists("ind")) {
+    # For each pair of hierarchical classes
+    for (hi in attr(cc, "hierarchy")) {
+      # Identify cases with both classes
+      both <- rowSums(cols(hi, classified), na.rm = TRUE) == 2
+      # Find index weights corresponding to those classes
+      diag_inx <- ind[vapply(clean(hi), grep, 1, clean(cc$group))]
+      # Subtract lowest absolute index number for cases with both hierarchical classes
+      out <- ifelse(both, out - sort(abs(diag_inx))[1], out)
+    }
+  }
 
   names(out) <- rownames(classified)
   out

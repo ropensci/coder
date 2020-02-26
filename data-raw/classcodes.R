@@ -5,13 +5,9 @@ rm(list = ls())
 xl_path <- "data-raw/classcodes.xlsx"
 
 # Read all classcodes from excel-file and give attributes
-tibble::tibble(
-  names = readxl::excel_sheets(xl_path)
-) %>%
+tibble::tibble(names = readxl::excel_sheets(xl_path)) %>%
 mutate(
-  data  = map(names, ~ readxl::read_excel(xl_path, .))
-) %>%
-mutate(
+  data  = map(names, ~ readxl::read_excel(xl_path, .)),
   classcode = map(data, as.classcodes) %>%
               set_names(names)
 ) %>%
@@ -37,6 +33,14 @@ hip_ae <-
   ) %>%
   as.classcodes()
 
+
+# Elixhauser --------------------------------------------------------------
+
+attr(elixhauser, "hierarchy") <-
+  list(
+    cancer   = c("metastatic cancer", "solid tumor"),
+    diabetes = c("diabetes uncomplicated", "diabetes complicated")
+  )
 
 # Save all datasets. Must be referred by name directly (could use rlang maybe)
 usethis::use_data(

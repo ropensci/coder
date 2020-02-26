@@ -23,15 +23,18 @@ index(classified, ...)
 count of relevant classes.}
 
 \item{cc}{\code{\link{classcodes}} object. Can be \code{NULL} if information
-already present as attribute of \code{classified} (which is often the case) and/or
-if index calculated without weights.}
+already present as attribute of \code{classified} (which is often the case)
+and/or if index calculated without weights.}
 }
 \value{
 Named numeric index vector with names corresponding to
   \code{rownames(x)}
 }
 \description{
-Calculate index based on classification scheme
+(Weighted) sum of all identified classes for each case.
+Index weights for subordinate hierarchical classes
+(as identified by \code{attr(cc, "hierarchy")}) are excluded in presence of
+superior classes if index specified with argument \code{index}.
 }
 \examples{
 

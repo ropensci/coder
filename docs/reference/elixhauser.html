@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Classcodes for Elixhauser based on ICD-codes — elixhauser" />
-<meta property="og:description" content="A classcodes object to use with classify" />
+<meta property="og:description" content="A classcodes object to use with classify." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -129,7 +129,7 @@
     </div>
 
     <div class="ref-description">
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code></p>
+    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='no'>elixhauser</span></pre>
@@ -144,7 +144,7 @@
   <dt>regex_short</dt><dd><p>regular expressions identifying only the first three
   characters of ICD-10 codes of each group. This alternative version was
   added only to use in emergency when only the first three digits are available.
-  It is not an official version and we do not recommend to use it!</p></dd>i
+  It is not an official version and we do not recommend to use it!</p></dd>
   <dt>regex_icd9cm</dt><dd><p>Corresponds to column 'Elixhauser's Original ICD-9-CM'
     in table 2 of Quan et al. (2005).</p></dd>
   <dt>regex_icd9cm_ahrqweb</dt><dd><p>Corresponds to column
@@ -166,7 +166,14 @@
    Moore et al. (2017)</p></dd>
 
 </dl>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Solid tumors are subordinate to metastatic cancer. A patient with both
+conditions will still be classified as such, although a possible (weighted)
+index value will only account for the metastatic cancer. The same is true for
+"diabetes uncomplicated", which is subordinate of "diabetes complicated".
+See Elixhauser et al. (1998).</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -186,10 +193,6 @@
   Identifying Increased Risk of Readmission and In-hospital Mortality Using
   Hospital Administrative Data.
   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>elix.short_icd10</code> is just for testing and should not be used
-in practice! (It is based only on the first three code positions of ICD-10.)</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other default classcodes: 
@@ -204,8 +207,8 @@ in practice! (It is based only on the first three code positions of ICD-10.)</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
       <li><a href="#details">Details</a></li>
+      <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
     </ul>
 

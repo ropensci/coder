@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>codify elements — codify • coder</title>
+<title>Codify elements (within period) — codify • coder</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="codify elements — codify" />
-<meta property="og:description" content="codify elements" />
+<meta property="og:title" content="Codify elements (within period) — codify" />
+<meta property="og:description" content="Enhance case data with code data, possibly limited to relevant period." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -123,13 +123,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>codify elements</h1>
+    <h1>Codify elements (within period)</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/codify.R'><code>R/codify.R</code></a></small>
     <div class="hidden name"><code>codify.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>codify elements</p>
+    <p>Enhance case data with code data, possibly limited to relevant period.</p>
     </div>
 
     <pre class="usage"><span class='fu'>codify</span>(<span class='no'>data</span>, <span class='no'>codedata</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
@@ -139,35 +139,21 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>data.frame with at least two columns, one with case (patient)
-identification (column name specified by argument <code>id</code>) and one with a
-date of interest (column name specified by argument <code>date</code>)</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with at least case id, and optional date of interest</p></td>
     </tr>
     <tr>
       <th>codedata</th>
-      <td><p>object with code data for which <code><a href='as.codedata.html'>is.codedata</a></code> is
-<code>TRUE</code></p></td>
+      <td><p>output from <code><a href='as.codedata.html'>as.codedata</a></code>.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>name of column in <code>x</code> containing case (patient) identification</p></td>
-    </tr>
-    <tr>
-      <th>date</th>
-      <td><p>name of column in <code>x</code> with possible date of interest
-(<code>NULL</code> by default but must be specified if argument 'days' is
-used).</p></td>
+      <th>id, date</th>
+      <td><p>column names (from <code>data</code>) with case id (character)
+and date of interest (optional).</p></td>
     </tr>
     <tr>
       <th>days</th>
-      <td><p>numeric vector of length two with lower and upper bound of range
-of days relative to <code>date</code> for which codes from <code>from</code> are
-relevant. (For example <code><a href='https://rdrr.io/r/base/c.html'>c(-365, -1)</a></code> implies a time window of one year
-prior to <code>date</code>, which might be useful for calculating comorbidity
-indices, while <code><a href='https://rdrr.io/r/base/c.html'>c(1, 30)</a></code> gives a window of 30 days after <code>date</code>,
-which might be used for calculating adverse events after a surgical
-procedure.) <code><a href='https://rdrr.io/r/base/c.html'>c(-Inf, Inf)</a></code> means no limitation on non missing dates.
-<code>NULL</code> means no time limitation at all.</p></td>
+      <td><p>numeric vector of length two with lower and upper bound for range
+of relevant days relative to <code>date</code>. See "Relevant period".</p></td>
     </tr>
     <tr>
       <th>.copy</th>
@@ -181,7 +167,7 @@ but the object will be changed by reference.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='as.codedata.html'>as.codedata</a></code></p><dl class='dl-horizontal'>
-    <dt><code>alnum</code></dt><dd><p>Should codes be cleaned from all non alphanumeric characters (boolean)?</p></dd>
+    <dt><code>alnum</code></dt><dd><p>Should codes be cleaned from all non alphanumeric characters?</p></dd>
   
 </dl></td>
     </tr>
@@ -189,17 +175,24 @@ but the object will be changed by reference.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame (<code>data.table</code>) with columns corresponding to <code>x</code>
-  and additional columns matched from <code>from</code>:</p><ul>
-<li><p><code>code</code>: code as matched from <code>from</code> (<code>NA</code> if no match
-  within period)</p></li>
-<li><p><code>code_date</code>: corresponding date for which the
-  code was valid (<code>NA</code> if no match within period)</p></li>
-<li><p><code>in_period</code>: boolean indicator if the unit (patient) had at least one
-  code within the specified period</p></li>
-</ul><p>The output has at one row for each
-  combination of "id" and code. Note that other columns of <code>x</code> might be
-  repeated accordingly.</p>
+    <p><code>data</code> (coerced to <code>data.table</code>) with additional columns:
+  <code>code, code_date</code>: left joined from <code>codedata</code> or <code>NA</code> if no match
+  within period. <code>in_period</code>: Boolean indicator if the case had at least one
+  code within the specified period.</p>
+<p>The output has one row for each combination of "id" from <code>data</code> and
+  "code" from <code>codedata</code>. Rows from <code>data</code> might be repeated accordingly.</p>
+    <h2 class="hasAnchor" id="relevant-period"><a class="anchor" href="#relevant-period"></a>Relevant period</h2>
+
+    
+
+<p>Some examples for argument <code>days</code>:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-365, -1)</a></code>: window of one year prior to the <code>date</code> column of <code>data</code>.            Useful for patient co-morbidity.</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(1, 30)</a></code>: window of 30 days after <code>date</code>.
+      Useful for adverse events after a surgical procedure.</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-Inf, Inf)</a></code>: no limitation on non missing dates.</p></li>
+<li><p><code>NULL</code>: no time limitation at all.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: 
@@ -208,24 +201,25 @@ but the object will be changed by reference.</p></td>
 <code><a href='index_fun.html'>index_fun</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                    name       date  code_date  code  hdia in_period
-#&gt;   1: Alexander, Bethany 2019-03-01 2019-01-19  S925 FALSE      TRUE
-#&gt;   2: Alexander, Bethany 2019-03-01 2019-02-23  E278 FALSE      TRUE
-#&gt;   3:    Arguello, Tommy 2019-11-27 2018-12-08  H059 FALSE      TRUE
-#&gt;   4:    Arguello, Tommy 2019-11-27 2019-05-09  A231 FALSE      TRUE
-#&gt;   5:    Arguello, Tommy 2019-11-27 2019-08-15 Z032A FALSE      TRUE
+    <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"event"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                    name       date  code_date  code  hdia in_period
+#&gt;   1: Alexander, Bethany 2019-03-06 2019-01-24  S925 FALSE      TRUE
+#&gt;   2: Alexander, Bethany 2019-03-06 2019-02-28  E278 FALSE      TRUE
+#&gt;   3:    Arguello, Tommy 2019-12-02 2018-12-13  H059 FALSE      TRUE
+#&gt;   4:    Arguello, Tommy 2019-12-02 2019-05-14  A231 FALSE      TRUE
+#&gt;   5:    Arguello, Tommy 2019-12-02 2019-08-20 Z032A FALSE      TRUE
 #&gt;  ---                                                               
-#&gt; 365:   el-Zaki, Huwaida 2019-12-15 2019-01-31  I712 FALSE      TRUE
-#&gt; 366:   el-Zaki, Huwaida 2019-12-15 2019-01-31  T336 FALSE      TRUE
-#&gt; 367:   el-Zaki, Huwaida 2019-12-15 2019-04-17  B958 FALSE      TRUE
-#&gt; 368:   el-Zaki, Huwaida 2019-12-15 2019-06-04 S3201 FALSE      TRUE
-#&gt; 369:   el-Zaki, Huwaida 2019-12-15 2019-11-11  C759 FALSE      TRUE</div></pre>
+#&gt; 365:   el-Zaki, Huwaida 2019-12-20 2019-02-05  I712 FALSE      TRUE
+#&gt; 366:   el-Zaki, Huwaida 2019-12-20 2019-02-05  T336 FALSE      TRUE
+#&gt; 367:   el-Zaki, Huwaida 2019-12-20 2019-04-22  B958 FALSE      TRUE
+#&gt; 368:   el-Zaki, Huwaida 2019-12-20 2019-06-09 S3201 FALSE      TRUE
+#&gt; 369:   el-Zaki, Huwaida 2019-12-20 2019-11-16  C759 FALSE      TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#relevant-period">Relevant period</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

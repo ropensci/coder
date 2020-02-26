@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Classify elements — classify • coder</title>
+<title>Classify cases based on classcodes — classify • coder</title>
 
 
 <!-- jquery -->
@@ -35,12 +35,8 @@
 
 
 
-<meta property="og:title" content="Classify elements — classify" />
-<meta property="og:description" content="This is the main functions of the package, performing the actual
-classification of cases. It is often used with output from
-codify as input and is sometimes followed by the
-index function. These three function could easily be chained
-together if using the magrittr pipe (%&amp;gt;%)." />
+<meta property="og:title" content="Classify cases based on classcodes — classify" />
+<meta property="og:description" content="Classify cases based on classcodes" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -73,7 +69,7 @@ together if using the magrittr pipe (%&amp;gt;%)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -127,17 +123,13 @@ together if using the magrittr pipe (%&amp;gt;%)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Classify elements</h1>
+    <h1>Classify cases based on classcodes</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/classify.R'><code>R/classify.R</code></a></small>
     <div class="hidden name"><code>classify.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is the main functions of the package, performing the actual
-classification of cases. It is often used with output from
-<code><a href='codify.html'>codify</a></code> as input and is sometimes followed by the
-<code><a href='index_fun.html'>index</a></code> function. These three function could easily be chained
-together if using the magrittr pipe (<code>%&gt;%</code>).</p>
+    <p>Classify cases based on classcodes</p>
     </div>
 
     <pre class="usage"><span class='fu'>classify</span>(<span class='no'>codified</span>, <span class='no'>cc</span>, <span class='no'>...</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>())
@@ -153,8 +145,7 @@ together if using the magrittr pipe (<code>%&gt;%</code>).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>codified</th>
-      <td><p>object with elements to classify (often the output from
-<code><a href='codify.html'>codify</a></code>)</p></td>
+      <td><p>output from <code><a href='codify.html'>codify</a></code>)</p></td>
     </tr>
     <tr>
       <th>cc</th>
@@ -169,31 +160,16 @@ together if using the magrittr pipe (<code>%&gt;%</code>).</p>
       <td><p>List with named arguments passed to <code><a href='set_classcodes.html'>set_classcodes</a></code></p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>name (as character) of variable in <code>x</code> to group id (for
-example a patient id).</p></td>
-    </tr>
-    <tr>
-      <th>code</th>
-      <td><p>name (as character) of variable in <code>x</code> containing codes to
-classify</p></td>
+      <th>code, id</th>
+      <td><p>name of code/id columns (in <code>codified</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Boolean matrix with one row for each element/row of <code>x</code> and
-  columns for each class with corresponding class names (according to the
+    <p>Boolean matrix with one row for each element/row of <code>codified</code>
+  and columns for each class with corresponding class names (according to the
   <code><a href='classcodes.html'>classcodes</a></code> object).</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Note that row order is not preserved for <code>classify.data.frame</code> due to
- performance reasons (the function is intended to work with large data sets
- where sorting is computationally expensive).</p>
-<p>Row names does however identify origin (as specified by <code>id</code> for
- <code>classify.data.frame</code> or simply as <code>x</code> itself for
- <code>classify.default</code>. It should therefore be possible to manually
- reorder the output to maintain original order.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='as.data.frame.classified.html'>as.data.frame.classified</a></code> for a convenience function to
@@ -251,11 +227,12 @@ of row names.</p>
 <span class='co'># Classify patients by Charlson for comorbidities during</span>
 <span class='co'># one year before surgery</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
-  <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"surgery"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
+  <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"event"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='input'>
 <span class='co'># Use tha RCS classification instead and use technical column names</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>, <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"icd10_rcs"</span>, <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Non unique elements of 'x$regex' implying identical classes with multilpe names!</span></div><div class='input'>
-<span class='co'># It is possible to convert the outpot of classify to a data frame with</span>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>,
+  <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"icd10_rcs"</span>, <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Non unique elements of 'x$regex' implying identical classes with multilpe names!</span></div><div class='input'>
+<span class='co'># It is possible to convert the output of classify to a data frame with</span>
 <span class='co'># id column instead of row names</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name charlson_icd10_rcs_myocardial_infarction
 #&gt; 1              Bivings, Devin                                    FALSE
@@ -352,10 +329,10 @@ of row names.</p>
 #&gt; 92    Trader-Bankston, J'Quan                                    FALSE
 #&gt; 93                Tram, Medha                                    FALSE
 #&gt; 94             Vaclav, Taylor                                    FALSE
-#&gt; 95              Wang, Phillip                                    FALSE
-#&gt; 96            Ventura, Joshua                                    FALSE
-#&gt; 97           Whitaker, Taylor                                    FALSE
-#&gt; 98          Vogltanz, Michael                                    FALSE
+#&gt; 95            Ventura, Joshua                                    FALSE
+#&gt; 96          Vogltanz, Michael                                    FALSE
+#&gt; 97              Wang, Phillip                                    FALSE
+#&gt; 98           Whitaker, Taylor                                    FALSE
 #&gt; 99                  Wu, Lucas                                    FALSE
 #&gt; 100             Wuertz, Jenny                                    FALSE
 #&gt;     charlson_icd10_rcs_congestive_heart_failure
@@ -655,9 +632,9 @@ of row names.</p>
 #&gt; 92                                       FALSE                       FALSE
 #&gt; 93                                       FALSE                       FALSE
 #&gt; 94                                       FALSE                       FALSE
-#&gt; 95                                       FALSE                        TRUE
+#&gt; 95                                       FALSE                       FALSE
 #&gt; 96                                       FALSE                       FALSE
-#&gt; 97                                       FALSE                       FALSE
+#&gt; 97                                       FALSE                        TRUE
 #&gt; 98                                       FALSE                       FALSE
 #&gt; 99                                       FALSE                       FALSE
 #&gt; 100                                      FALSE                       FALSE
@@ -1061,8 +1038,8 @@ of row names.</p>
 #&gt; 94                             FALSE                                    FALSE
 #&gt; 95                             FALSE                                    FALSE
 #&gt; 96                             FALSE                                    FALSE
-#&gt; 97                             FALSE                                     TRUE
-#&gt; 98                             FALSE                                    FALSE
+#&gt; 97                             FALSE                                    FALSE
+#&gt; 98                             FALSE                                     TRUE
 #&gt; 99                             FALSE                                    FALSE
 #&gt; 100                            FALSE                                    FALSE
 #&gt;     charlson_icd10_rcs_malignancy
@@ -1161,9 +1138,9 @@ of row names.</p>
 #&gt; 93                           TRUE
 #&gt; 94                          FALSE
 #&gt; 95                          FALSE
-#&gt; 96                          FALSE
+#&gt; 96                           TRUE
 #&gt; 97                          FALSE
-#&gt; 98                           TRUE
+#&gt; 98                          FALSE
 #&gt; 99                          FALSE
 #&gt; 100                         FALSE
 #&gt;     charlson_icd10_rcs_moderate_or_severe_liver_disease
@@ -1374,7 +1351,6 @@ of row names.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

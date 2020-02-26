@@ -1,9 +1,12 @@
 #' Classcodes for Elixhauser based on ICD-codes
 #'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#' A \code{\link{classcodes}} object to use with \code{\link{classify}}.
 #'
-#' \code{elix.short_icd10} is just for testing and should not be used
-#' in practice! (It is based only on the first three code positions of ICD-10.)
+#' Solid tumors are subordinate to metastatic cancer. A patient with both
+#' conditions will still be classified as such, although a possible (weighted)
+#' index value will only account for the metastatic cancer. The same is true for
+#' "diabetes uncomplicated", which is subordinate of "diabetes complicated".
+#' See Elixhauser et al. (1998).
 #'
 #' @format A data frame with 31 rows and 8 variables:
 #' \describe{
@@ -13,7 +16,7 @@
 #'   \item{regex_short}{regular expressions identifying only the first three
 #'   characters of ICD-10 codes of each group. This alternative version was
 #'   added only to use in emergency when only the first three digits are available.
-#'   It is not an official version and we do not recommend to use it!}i
+#'   It is not an official version and we do not recommend to use it!}
 #'   \item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
 #'     in table 2 of Quan et al. (2005).}
 #'   \item{regex_icd9cm_ahrqweb}{Corresponds to column

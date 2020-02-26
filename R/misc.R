@@ -46,6 +46,7 @@ spss2date <- function(x) {
 
 is.Date <- function(x) data.class(x) == "Date"
 
+clean <- function(x) gsub("\\W", "_", tolower(x), perl = TRUE)
 
 #' Make clean text with only lowercase alphanumeric characters and "_"
 #'
@@ -60,5 +61,17 @@ clean_text <- function(x_name, x) {
          " must be refferred by name if 'tech_names = TRUE'!"
     )
   }
-   paste(x_name, gsub("\\W", "_", tolower(x), perl = TRUE), sep = "_")
+   paste(x_name, clean(x), sep = "_")
+}
+
+
+#' Return all columns from x with names matching "find"
+#'
+#' @param find character vector with names to match
+#' @param x matrix
+#' @keywords internal
+cols <- function(find, x) {
+  find <- clean(find)
+  nms <- clean(colnames(x))
+  x[, c(lapply(find, grep, nms), recursive = TRUE), drop = FALSE]
 }

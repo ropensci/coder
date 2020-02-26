@@ -19,6 +19,8 @@
 #' \item{weights (optional):}{weights for each class used for
 #'   \code{\link{index}} calculation.
 #'   Could be more than one and could have arbitrary names.}
+#'   \item{hierarchy}{pairwise hierarchys for wich only the superior class
+#'     should be used for indexing}
 #' }
 #' Note that classes does not have to be disjunct.
 #'
@@ -66,7 +68,8 @@ as.classcodes <- function(x) {
     indices     = setdiff(
                     colnames(x),
                     c(rgs, c("group", "condition", "description"))
-                  )
+                  ),
+    hierarchy = attr(x, "hierarchy")
   )
 }
 
@@ -77,7 +80,9 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 
 #' @export
 `[.classcodes` <- function(x, ...) {
+  hi <- attr(x, "hierarchy")
   x <- NextMethod()
+  attr(x, "hierarchy") <- hi
   as.classcodes(x)
 }
 

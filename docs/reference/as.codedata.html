@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Code data — as.codedata" />
-<meta property="og:description" content="Code data" />
+<meta property="og:description" content="Make structured code data set based on data.frame." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -129,19 +129,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Code data</p>
+    <p>Make structured code data set based on <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.codedata</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>.setkeys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>npr</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>nprdate</span> <span class='kw'>=</span> <span class='st'>"utdatuma"</span>,
-  <span class='kw'>alnum</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>as.codedata</span>(<span class='no'>x</span>, <span class='no'>...</span>, <span class='kw'>.setkeys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alnum</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>is.codedata</span>(<span class='no'>x</span>)</pre>
 
@@ -150,100 +141,49 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data frame with columns "id", "code_date" and "code" or
-object in format used by NPR (see below).</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>additional (optional) NPR data set if <code>x</code> contains data
-from NPR data. (see below).</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with columns "id" (character), "code",
+and optional "code_date" (Date).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>by default, codes for future dates or dates before "1970-01-01"
-are ignored (with a warning). Specify <code>to, from</code>
-(as passed to <code><a href='filter_dates.html'>filter_dates</a></code>) to override.</p></td>
+      <td><p>Arguments passed on to <code><a href='dates_within.html'>dates_within</a></code></p><dl class='dl-horizontal'>
+    <dt><code>from</code></dt><dd><p>first and last date of interval to compare with</p></dd>
+    <dt><code>to</code></dt><dd><p>first and last date of interval to compare with</p></dd>
+  
+</dl></td>
     </tr>
     <tr>
       <th>.setkeys</th>
-      <td><p>should keys be set for the data.table object?
-To initially set the key for a large data set can be slow
-but it could be beneficial for later use of the object.</p></td>
-    </tr>
-    <tr>
-      <th>.copy</th>
-      <td><p>Should the object be copied internally by <code>copy</code>?
-<code>NA</code> (by default) means that objects smaller than 1 GB are copied.
-If the size is larger, the argument must be set explicitly. Set <code>TRUE</code>
-to make copies regardless of object size. This is recommended if enough RAM
-is available. If set to <code>FALSE</code>, calculations might be carried out
-but the object will be changed by reference.</p></td>
-    </tr>
-    <tr>
-      <th>npr</th>
-      <td><p>Is data from the Swedish patient register?
-If so, the format might be recognized automatically (no guarantee).</p></td>
-    </tr>
-    <tr>
-      <th>nprdate</th>
-      <td><p>If <code>x</code> is recognized as a data set from the Swedish
-National Patient Register, which date variable should be recognized as code
-date for out patients? Could be either "indatuma" or "utdatuma".
-(Note that in patients only have one date.)</p></td>
+      <td><p>should output be indexed (Beneficial for large data sets.)</p></td>
     </tr>
     <tr>
       <th>alnum</th>
-      <td><p>Should codes be cleaned from all non alphanumeric characters (boolean)?</p></td>
+      <td><p>Should codes be cleaned from all non alphanumeric characters?</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>as.codedata</code> returns a <code>data.table</code> object
-  with mandatory columns: "id" (individual id coerced to character) and
-  "code". It has an optional column
-  "code_date" (when the code was valid) if there was such a column in
-  <code>x</code> or if the data is recognized from NPR.
-  Possible additional columns from <code>x</code> are preserved
-  if data is not recognized as coming from NPR.</p>
-<p><code>is.codedata</code> returns <code>TRUE</code> if these same conditions are met and
-<code>FALSE</code> otherwise.
-(Note that <code>codedata</code> is not a formal R class of its own!)</p>
-    <h2 class="hasAnchor" id="data-from-npr"><a class="anchor" href="#data-from-npr"></a>Data from NPR</h2>
+    <p><code>data.table</code> with columns: "id" (character), "code" and
+  optionally "code_date" (Date)
+  Possible additional columns from <code>x</code> are preserved.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    
-
-
-<p>Data from the Swedish Patient Register can be recognized as such if
-argument <code>x</code> contains columns named <code>lpnr, indatuma/utdatuma</code> AND
-(<code>hdia, bdia1, ..., bdia15</code> OR <code>op1, ..., op30</code>).</p>
-<p>Note that the name should be <code>indatuma/utdatuma</code> (with letter "a"
-suffixed). This is to distinguish the character date format <code>%Y%m%d</code>
-from the SPSS date format sometimes stored in <code>indatum/utdatum</code>.
-If the SPSS date is the only one available, the help function
-<code><a href='spss2date.html'>spss2date</a></code> can be used for transformation, but this must be done
-before using <code>as.codedata</code>.</p>
-<p>If the data set is of this format, it is transformed to the codedata format
-and returned as such.
-Also, NPR data often comes in the form of two separate data sets, one for
-inpatient and one for outpatient care. It is therefore possible to supply
-an additional data set by argument <code>y</code>. It is assumed that data from
-outpatient care has relevant dates stored as <code>utdatuma</code> and in-patient
-data has relevant dates named <code>utdatuma</code>. This is however not tested
-formally. If <code>utdatuma</code> is missing from the out-patient data,
-<code>indatuma</code> is used without warning.</p>
+    <div class='dont-index'><p>npr2codedata</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"1"</span>,
   <span class='kw'>code_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2017-02-02"</span>),
-  <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"a"</span>
+  <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"a"</span>,
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )
 <span class='fu'>as.codedata</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    id  code_date code
 #&gt; 1:  1 2017-02-02    a</div><div class='input'>
 <span class='co'># Drop dates outside specified limits</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>code_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"3017-02-02"</span>), <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"b"</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"2"</span>, <span class='kw'>code_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"3017-02-02"</span>), <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)
 <span class='fu'>as.codedata</span>(<span class='no'>z</span>)</div><div class='output co'>#&gt;    id  code_date code
 #&gt; 1:  1 2017-02-02    a</div><div class='input'>
@@ -254,7 +194,7 @@ formally. If <code>utdatuma</code> is missing from the out-patient data,
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#data-from-npr">Data from NPR</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

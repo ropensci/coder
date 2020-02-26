@@ -71,7 +71,7 @@ and KVA codes — ae" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -137,9 +137,7 @@ and KVA codes</h1>
 
     <pre class="usage"><span class='no'>knee_ae</span>
 
-<span class='no'>hip_ae</span>
-
-<span class='no'>hip_fracture_ae</span></pre>
+<span class='no'>hip_ae</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -147,10 +145,16 @@ and KVA codes</h1>
     <p>Data frame with 3 columns:</p><dl class='dl-horizontal'>
   <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
   <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes for each group</p></dd>
+ <dt>regex_fracture</dt><dd><p>regular expressions for fracture patients.
+   Essentially the same as <code>regex</code> but with some additional codes for group "DM1 other"</p></dd>
  <dt>regex_kva</dt><dd><p>regular expressions identifying KVA codes</p></dd>
   <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
 
 </dl>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
+Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>ICD-10 group names are prefixed by two letters as given by the references.
@@ -182,8 +186,11 @@ of the classcodes data prior to categorization.</p>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
-Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
+    <p>Magnéli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
+    Validation of adverse events after hip arthroplasty:
+    a Swedish multi-centre cohort study.
+    BMJ Open. 2019 Mar 7;9(3):e023773.
+    Available from: <a href='http://www.ncbi.nlm.nih.gov/pubmed/30850403'>http://www.ncbi.nlm.nih.gov/pubmed/30850403</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>hip_ae_hailer</p>
@@ -199,6 +206,7 @@ Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsr
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
       <li><a href="#details">Details</a></li>
       <li><a href="#hip-fractures">Hip fractures</a></li>
       <li><a href="#conditions">Conditions</a></li>

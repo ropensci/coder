@@ -81,4 +81,5 @@ categorize <- function(
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = id, by.y = id, sort = sort)
   }
+  out
 }

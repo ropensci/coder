@@ -36,7 +36,10 @@
 
 
 <meta property="og:title" content="Calculate index based on classification scheme — index_fun" />
-<meta property="og:description" content="Calculate index based on classification scheme" />
+<meta property="og:description" content="(Weighted) sum of all identified classes for each case.
+Index weights for subordinate hierarchical classes
+(as identified by attr(cc, &quot;hierarchy&quot;)) are excluded in presence of
+superior classes if index specified with argument index." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
       </span>
     </div>
 
@@ -129,7 +132,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Calculate index based on classification scheme</p>
+    <p>(Weighted) sum of all identified classes for each case.
+Index weights for subordinate hierarchical classes
+(as identified by <code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "hierarchy")</a></code>) are excluded in presence of
+superior classes if index specified with argument <code>index</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>index</span>(<span class='no'>classified</span>, <span class='no'>...</span>)
@@ -160,8 +166,8 @@ count of relevant classes.</p></td>
     <tr>
       <th>cc</th>
       <td><p><code><a href='classcodes.html'>classcodes</a></code> object. Can be <code>NULL</code> if information
-already present as attribute of <code>classified</code> (which is often the case) and/or
-if index calculated without weights.</p></td>
+already present as attribute of <code>classified</code> (which is often the case)
+and/or if index calculated without weights.</p></td>
     </tr>
     </table>
 

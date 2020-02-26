@@ -2,8 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
-  coder: coder.html
   Comorbidity: Comorbidity.html
+  coder: coder.html
 urls:
   reference: eribul.github.io/coder/reference
   article: eribul.github.io/coder/articles
