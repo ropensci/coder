@@ -3,7 +3,9 @@
 #' @param cc \code{\link{classcodes}} object or name of such
 #' @param classified object that classcodes could be inherited from
 #' @param regex name of column with regular expressions to use for
-#'   classification, either with or without prefix \code{regex_}
+#'   classification, either with or without prefix \code{regex_}.
+#'   \code{NULL} (default) uses the first classcodes column with prefix "regex".
+#'   This should be a sensible choice for default classcodes object included in the package.
 #' @param start,stop should codes start/end with the specified regular expressions?
 #'   If \code{TRUE}, column "regex" is prefixed/suffixed by "^"/"$".
 #' @param tech_names should technical column names be used? If \code{FALSE},
@@ -15,7 +17,7 @@
 #' @family classcodes
 #' @export
 set_classcodes <- function(
-  cc, classified = NULL, regex = "regex",
+  cc, classified = NULL, regex = NULL,
   start = TRUE, stop = FALSE, tech_names = FALSE) {
 
   # Possible inherited classcodes
@@ -48,7 +50,13 @@ set_classcodes <- function(
 
   # identify regex column from regex attributes
   objrgs <- attr(obj, "regexpr")
-  regex <- objrgs[objrgs == regex | endsWith(objrgs, regex)]
+  if (is.null(regex)) {
+    regex <- objrgs[1]
+    if (regex != "regex")
+      message("Classification based on: ", regex)
+  } else {
+    regex <- objrgs[objrgs == regex | endsWith(objrgs, regex)]
+  }
   if (length(regex) != 1) stop("Column with regular expression not found!")
   # Change "regex" column to the one specified
   obj$regex <- obj[[regex]]

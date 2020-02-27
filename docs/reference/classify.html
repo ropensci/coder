@@ -182,7 +182,7 @@ of row names.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Classify individual ICD10-codes by Elixhauser</span>
-<span class='fu'>classify</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span>), <span class='st'>"elixhauser"</span>)</div><div class='output co'>#&gt;              congestive heart failure cardiac arrhythmias valvular disease
+<span class='fu'>classify</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span>), <span class='st'>"elixhauser"</span>)</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt;              congestive heart failure cardiac arrhythmias valvular disease
 #&gt; C80                             FALSE               FALSE            FALSE
 #&gt; I20                             FALSE               FALSE            FALSE
 #&gt; unvalid_code                    FALSE               FALSE            FALSE
@@ -228,10 +228,10 @@ of row names.</p>
 <span class='co'># one year before surgery</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>,
   <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"event"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='input'>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='input'>
 <span class='co'># Use tha RCS classification instead and use technical column names</span>
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>classify</span>(<span class='no'>x</span>, <span class='st'>"charlson"</span>,
-  <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"icd10_rcs"</span>, <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Non unique elements of 'x$regex' implying identical classes with multilpe names!</span></div><div class='input'>
+  <span class='kw'>cc_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>regex</span> <span class='kw'>=</span> <span class='st'>"icd10_rcs"</span>, <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='input'>
 <span class='co'># It is possible to convert the output of classify to a data frame with</span>
 <span class='co'># id column instead of row names</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name charlson_icd10_rcs_myocardial_infarction

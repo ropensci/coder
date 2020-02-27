@@ -7,13 +7,13 @@
 \format{Data frames with 39 rows and 6 variables:
 \describe{
   \item{group}{medical condition}
-  \item{regex}{ATC codes from table 1 in Pratt et al. 2018
+  \item{regex_pratt}{ATC codes from table 1 in Pratt et al. 2018
    (ignoring PBS item codes and extra conditions).}
   \item{regex_garland}{Modified version by Anne
   Garland to resemble medical use in Sweden 2016 (Unpublished).}
  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
- \item{pratt}{Mortality weights from table 1 in Pratt et al. 2018}
- \item{sum_all}{Unweighted count of all conditions.}
+ \item{index_pratt}{Mortality weights from table 1 in Pratt et al. 2018}
+ \item{index_sum_all}{Unweighted count of all conditions.}
 }}
 \usage{
 rxriskv

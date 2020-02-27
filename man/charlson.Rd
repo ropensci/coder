@@ -9,7 +9,7 @@
   \item{group}{comorbidity groups}
   \item{description}{Verbal description of codes as described by
     Deyo et al. (1992).}
-  \item{regex}{regular expressions identifying ICD-10 codes of each group as
+  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group as
   decoded from Quan et al. 2005. Note that this classification was not
   originally used with all weights! To simply use this classification table
   with weights other than \code{quan_original} and \code{quan_updated} might
@@ -33,12 +33,12 @@
   ICD-9 by Brusselaers et al. (2017).
     "Moderate and severe liver disease" contains all liver disease and
     "diabetes complication" contains all diabetes.}
-  \item{charlson}{original weights as suggested by Charlson et al. (1987)*}
-  \item{deyo_ramano}{weights suggested by Deyo and Romano*}
-  \item{dhoore}{weights suggested by D'Hoore*}
-  \item{ghali}{weights suggested by Ghali*}
-  \item{quan_original}{weights suggested by Quan (2005)}
-  \item{quan_updated}{weights suggested by Quan (2011)}
+  \item{index_charlson}{original weights as suggested by Charlson et al. (1987)*}
+  \item{index_deyo_ramano}{weights suggested by Deyo and Romano*}
+  \item{index_dhoore}{weights suggested by D'Hoore*}
+  \item{index_ghali}{weights suggested by Ghali*}
+  \item{index_quan_original}{weights suggested by Quan (2005)}
+  \item{index_quan_updated}{weights suggested by Quan (2011)}
 }
 
 * Weights decoded from Yurkovich et al. (2015).}

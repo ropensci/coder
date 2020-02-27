@@ -88,7 +88,7 @@
       <h1>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2020-02-26</h4>
+            <h4 class="date">2020-02-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -118,12 +118,12 @@
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(ex_cars)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co">#&gt;                  id              code  code_date</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-06-07</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-01-22</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-03-15</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2019-01-31</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-03-22</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-03-20</span></span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-06-08</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-01-23</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-03-16</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2019-02-01</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-03-23</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-03-21</span></span></code></pre></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ex_carbrands</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt;     group                                regex</span></span>
@@ -133,7 +133,7 @@
 <span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati</span></span>
 <span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 5  Toyota                               Toyota</span></span>
 <span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 6  Volksw                              Porsche</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 7   Geely                          Volvo|Lotus</span></span></code></pre></div>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 7   Geely                 Volvo|Lotus|Polestar</span></span></code></pre></div>
 </div>
 <div id="categorize" class="section level1">
 <h1 class="hasAnchor">

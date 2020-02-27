@@ -19,7 +19,9 @@ Set to \code{FALSE} to just retrieve a URL for later use.}
   Arguments passed on to \code{\link[=set_classcodes]{set_classcodes}}
   \describe{
     \item{\code{regex}}{name of column with regular expressions to use for
-classification, either with or without prefix \code{regex_}}
+classification, either with or without prefix \code{regex_}.
+\code{NULL} (default) uses the first classcodes column with prefix "regex".
+This should be a sensible choice for default classcodes object included in the package.}
   }}
 }
 \value{

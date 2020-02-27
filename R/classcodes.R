@@ -50,28 +50,20 @@ as.classcodes <- function(x, hierarchy = attr(x, "hierarchy")) {
 
   stopifnot(
     is.data.frame(x),
-    all(c("group", "regex") %in% names(x)),
+    "group" %in% names(x),
+    any(startsWith(names(x), "regex")),
     !anyNA(x$group),
     !any(x$group == ""),
     !any(duplicated(x$group))
   )
 
-  x$regex <- as.character(x$regex)
-  if (any(duplicated(x$regex))) {
-    warning("Non unique elements of 'x$regex' implying identical classes with ",
-      "multilpe names!")
-  }
-
   rgs <- colnames(x)[startsWith(colnames(x), "regex")]
   structure(
     x,
     class       = unique(c("classcodes", class(x))),
-    regexprs    = rgs,
-    indices     = setdiff(
-                    colnames(x),
-                    c(rgs, c("group", "condition", "description"))
-                  ),
-    hierarchy = hierarchy
+    regexprs    = colnames(x)[startsWith(colnames(x), "regex")],
+    indices     = colnames(x)[startsWith(colnames(x), "index")],
+    hierarchy   = hierarchy
   )
 }
 

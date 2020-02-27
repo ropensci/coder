@@ -25,10 +25,10 @@ mutate(
 hip_ae <-
   hip_ae %>%
   mutate(
-    regex_fracture = if_else(
+    regex_icd10_fracture = if_else(
       group == "DM1 other",
-      paste0(regex, "|N3(0[0899]|Y90)"),
-      regex
+      paste0(regex_icd10, "|N3(0[0899]|Y90)"),
+      regex_icd10
     )
   ) %>%
   as.classcodes()

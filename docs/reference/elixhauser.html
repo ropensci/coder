@@ -139,7 +139,7 @@
 
     <p>A data frame with 31 rows and 8 variables:</p><dl class='dl-horizontal'>
   <dt>group</dt><dd><p>comorbidity groups</p></dd>
-  <dt>regex</dt><dd><p>regular expressions identifying ICD-10 codes of each group.
+  <dt>regex_icd10</dt><dd><p>regular expressions identifying ICD-10 codes of each group.
     Corresponds to column 'ICD-10' in table 2 of Quan et al. (2005).</p></dd>
   <dt>regex_short</dt><dd><p>regular expressions identifying only the first three
   characters of ICD-10 codes of each group. This alternative version was
@@ -151,18 +151,18 @@
     'Elixhauser AHRQ-Web ICD-9-CM' in table 2 of Quan et al. (2005).</p></dd>
   <dt>regex_icd9cm_enhanced</dt><dd><p>Corresponds to column 'Enhanced ICD-9-CM'
     in table 2 of Quan et al. (2005).</p></dd>
-  <dt>sum_all</dt><dd><p>all weights = 1 (thus no weights)</p></dd>
-  <dt>sum_all_ahrq</dt><dd><p>as <code>sum_all</code> excluding "cardiac arrhythmia.
+  <dt>index_sum_all</dt><dd><p>all weights = 1 (thus no weights)</p></dd>
+  <dt>index_sum_all_ahrq</dt><dd><p>as <code>sum_all</code> excluding "cardiac arrhythmia.
     Compare to <code>regex_icd9cm_ahrqweb</code> which does not
     consider this condition.</p></dd>
-  <dt>walraven</dt><dd><p>weights suggested by Walraven et al. (2009)</p></dd>
-  <dt>sid29</dt><dd><p>weights suggested by Thompson et al. (2015)
+  <dt>index_walraven</dt><dd><p>weights suggested by Walraven et al. (2009)</p></dd>
+  <dt>index_sid29</dt><dd><p>weights suggested by Thompson et al. (2015)
     based on all conditions except cardiac arrhythmia</p></dd>
-  <dt>sid30</dt><dd><p>weights suggested by Thompson et al. (2015)
+  <dt>index_sid30</dt><dd><p>weights suggested by Thompson et al. (2015)
     based on all conditions</p></dd>
- <dt>ahrq_mort</dt><dd><p>weights for in-hospital mortality suggested by
+ <dt>index_ahrq_mort</dt><dd><p>weights for in-hospital mortality suggested by
    Moore et al. (2017)</p></dd>
- <dt>ahrq_readm</dt><dd><p>weights for readmissions suggested by
+ <dt>index_ahrq_readm</dt><dd><p>weights for readmissions suggested by
    Moore et al. (2017)</p></dd>
 
 </dl>

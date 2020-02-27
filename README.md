@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 [![Build Status](https://travis-ci.org/eribul/coder.svg?branch=master)](https://travis-ci.org/eribul/coder)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/eribul/coder?branch=master&svg=true)](https://ci.appveyor.com/project/eribul/coder)
 [![codecov](https://codecov.io/gh/eribul/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/eribul/coder)
@@ -45,16 +41,16 @@ Arbitrary `classcodes` objects can be specified by the user.
 ### Default classcodes
 
 
-|clascodes     |alt_regex                                                                   |indices                                                              |
-|:-------------|:---------------------------------------------------------------------------|:--------------------------------------------------------------------|
-|charlson      |icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers |charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated    |
-|cps           |                                                                            |only_ordinary                                                        |
-|elixhauser    |short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                              |sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm |
-|ex_carbrands  |                                                                            |                                                                     |
-|hip_ae        |kva, fracture                                                               |                                                                     |
-|hip_ae_hailer |kva                                                                         |                                                                     |
-|knee_ae       |kva                                                                         |                                                                     |
-|rxriskv       |caughey, garland                                                            |pratt, sum_all                                                       |
+|clascodes     |regex                                                                              |indices                                                                                                        |
+|:-------------|:----------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
+|charlson      |icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers |index_charlson, index_deyo_ramano, index_dhoore, index_ghali, index_quan_original, index_quan_updated          |
+|cps           |icd10                                                                              |index_only_ordinary                                                                                            |
+|elixhauser    |icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        |index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29, index_sid30, index_ahrq_mort, index_ahrq_readm |
+|ex_carbrands  |                                                                                   |                                                                                                               |
+|hip_ae        |icd10, kva, icd10_fracture                                                         |                                                                                                               |
+|hip_ae_hailer |icd10, kva                                                                         |                                                                                                               |
+|knee_ae       |icd10, kva                                                                         |                                                                                                               |
+|rxriskv       |pratt, caughey, garland                                                            |index_pratt, index_sum_all                                                                                     |
 
 # Contribution
 

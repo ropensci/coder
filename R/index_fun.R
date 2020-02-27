@@ -69,12 +69,13 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
       rowSums(classified)
     } else if (is.null(cc)) {
       stop("Argument 'from' is missing!")
-    } else if (!(index %in% names(cc))) {
+    } else if (!index %in% names(cc) & !any(endsWith(names(cc), index))) {
       stop(gettextf("'%s' is not a column of the classcodes object!", index))
     } else if (!all(vapply(regularize(cc$group),
       function(y) any(grepl(y, regularize(colnames(classified)))), logical(1)))) {
       stop("Data non consistent with specified classcodes!")
     } else {
+      index <- names(cc)[names(cc) == index | names(cc) == paste0("index_", index)]
       ind <- cc[[index]]
       ind[is.na(ind)] <- 0
       c(classified %*% ind)

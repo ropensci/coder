@@ -8,7 +8,7 @@ and KVA codes}
 \format{Data frame with 3 columns:
 \describe{
   \item{group}{Infection or dislocation}
-  \item{regex}{regular expressions based on ICD-10}
+  \item{regex_icd10}{regular expressions based on ICD-10}
  \item{regex_kva}{regular expressions based on KVA codes}
 }}
 \usage{
