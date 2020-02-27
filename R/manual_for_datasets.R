@@ -3,10 +3,14 @@
 #' A \code{\link{classcodes}} object to use with \code{\link{classify}}.
 #'
 #' Solid tumors are subordinate to metastatic cancer. A patient with both
-#' conditions will still be classified as such, although a possible (weighted)
-#' index value will only account for the metastatic cancer. The same is true for
+#' conditions will still be classified as such but a possible (weighted)
+#' index value will only account for metastatic cancer. The same is true for
 #' "diabetes uncomplicated", which is subordinate of "diabetes complicated".
 #' See Elixhauser et al. (1998).
+#'
+#' Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
+#' is not handled by the coder package. This should instead be considered as an additional
+#' pre- or post-processing step!
 #'
 #' @format A data frame with 31 rows and 8 variables:
 #' \describe{
@@ -40,16 +44,18 @@
 #'
 #' @references
 #'
+#' Elixhauser A, Steiner C, Harris DR, Coffey RM (1998).
+#'   Comorbidity Measures for Use with Administrative Data. Med Care. 1998;36(1):8–27.
+#'
+#' Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
+#'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
+#'   Hospital Administrative Data.
+#'   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
+#'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
 #'   \url{www.jstor.org/stable/3768193}
-#'
-#' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
-#'   C. Van, … Jennings, A. (2009).
-#'   A Modification of the Elixhauser Comorbidity Measures Into a Point System
-#'   for Hospital Death Using Administrative Data.
-#'   Medical Care, 47(6), 626–633.
 #'
 #' Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
 #'   Vadera, S., & Griffith, S. D. (2015).
@@ -57,10 +63,12 @@
 #'   mortality. Med Care, 53(4), 374–379.
 #'   http://doi.org/10.1097/MLR.0000000000000326
 #'
-#' Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
-#'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
-#'   Hospital Administrative Data.
-#'   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
+#' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
+#'   C. Van, … Jennings, A. (2009).
+#'   A Modification of the Elixhauser Comorbidity Measures Into a Point System
+#'   for Hospital Death Using Administrative Data.
+#'   Medical Care, 47(6), 626–633.
+#'
 #'
 #' @family default classcodes
 "elixhauser"
