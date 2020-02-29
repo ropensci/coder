@@ -24,6 +24,7 @@ devtools::install()
 knitr::knit("README.Rmd")
 devtools::build_manual()
 pkgdown::build_site()
+codemetar::write_codemeta()
 
 # Checks
 devtools::spell_check()
