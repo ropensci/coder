@@ -18,3 +18,4 @@ paper/*
 ^codemeta\.json$
 MAKE.R
 ^CODE_OF_CONDUCT\.md$
+library.bib

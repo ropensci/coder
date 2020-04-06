@@ -62,7 +62,7 @@ ch <-
   )
 ```
 
-The result is a dataset with columns for each comorbidity and (optional) each weighted index. Those were specified as "quan_original" and "quan_updated":
+The result is a dataset with columns for each comorbidity and (optional) each weighted index (quan_original and quan_updated):
 
 ```{r}
 dplyr::select(ch, name, quan_original, quan_updated) %>% knitr::kable()
@@ -86,7 +86,7 @@ knitr::kable(coder::all_classcodes())
 
 # Relation to other packages
 
-`coder` uses `data.table` as a backend to increase computational speed for large datasets. There are some CRAN packages with a specific scope of Charlson and Elixhauser comorbidity based on ICD-codes: `comorbidities.icd10`, `comorbidity` and `icd`. The first is rather slow for large datasets and is not actively developed. The other two are excellent alternatives for those specific use cases.
+`coder` uses `data.table` as a backend to increase computational speed for large datasets. There are some R packages with a narrow focus on Charlson and Elixhauser co-morbidity based on ICD-codes ([icd ](https://CRAN.R-project.org/package=icd), [comorbidity](https://CRAN.R-project.org/package=comorbidity), [medicalrisk ](https://CRAN.R-project.org/package=medicalrisk), [comorbidities.icd10 ](https://github.com/gforge/comorbidities.icd10), [icdcoder](https://github.com/wtcooper/icdcoder)). The `coder` package includes similar functionalities but has a wider scope.
 
 # Citation
 

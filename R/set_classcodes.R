@@ -42,10 +42,14 @@ set_classcodes <- function(
       stop("No classcodes object found!")
     }
 
-  obj <- as.classcodes(obj)
+  obj <-
+    as.classcodes(obj, .name =
+      if (is.character(cc)) cc else attr(cc, "name", exact = TRUE)
+    )
 
   if (tech_names) {
-    obj$group <- clean_text(cc, paste(regex, obj$group, sep = "_"))
+    obj$group <- clean_text(
+      attr(obj, "name", exact = TRUE), paste(regex, obj$group, sep = "_"))
   }
 
   # identify regex column from regex attributes

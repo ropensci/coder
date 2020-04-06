@@ -130,7 +130,7 @@ classify.data.frame <- function(
   codified         <- codified[!i_nocl & !i_na, ]
 
   # Classify all cases with at least one class
-  y                <- classify(codified$code, cc, cc_args = cc_args)
+  y                <- classify(codified$code, cc, cc_args = NULL)
   if ("condition" %in% names(cc)) {
     y <- y & vapply(cc$condition, eval_condition,
                     logical(nrow(codified)), x = codified)

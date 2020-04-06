@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "coder",
-  "description": "Identify items and classify them into categories by coded data.\n  Functionality of the package relies on three central objects.\n  1) A data frame ('data.table') with item data (for example patients) to classify.\n  2) A data frame ('data.table') with codes (for example 'ICD' 10-codes) for each item\n  valid at distinct time points.\n  3) A classification scheme (a 'classcodes' object) defining the\n  classification based on regular expressions.\n  It is easy to introduce new classification schemes to use with arbitrary\n  code data and some default 'classcodes' objects are included in the package.",
+  "description": "\n  Fast categorization of items based on external code data identified by \n  regular expressions.\n  It is easy to introduce new classification schemes (by 'classcodes' objects) or  \n  to use default schemes included in the package. Use cases includes patient \n  categorization based on co-morbidity indices such as Charlson, Elixhauser, \n  RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse \n  events after arthroplasty surgery.",
   "name": "coder: Deterministic Categorization of Items Based on External Code Data",
   "codeRepository": "https://github.com/eribul/coder",
   "issueTracker": "https://github.com/eribul/coder/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
+    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "author": [
     {
       "@type": "Person",

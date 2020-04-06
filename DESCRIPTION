@@ -1,19 +1,18 @@
 Package: coder
 Type: Package
 Title: Deterministic Categorization of Items Based on External Code Data
-Version: 0.11.1
+Version: 0.11.2
 Authors@R: person("Erik", "Bulow", email = "eriklgb@gmail.com",
                   role = c("aut", "cre"),
                   comment = c(ORCID = "0000-0002-9973-456X"))
-Description: Identify items and classify them into categories by coded data.
-  Functionality of the package relies on three central objects.
-  1) A data frame ('data.table') with item data (for example patients) to classify.
-  2) A data frame ('data.table') with codes (for example 'ICD' 10-codes) for each item
-  valid at distinct time points.
-  3) A classification scheme (a 'classcodes' object) defining the
-  classification based on regular expressions.
-  It is easy to introduce new classification schemes to use with arbitrary
-  code data and some default 'classcodes' objects are included in the package.
+Description: 
+  Fast categorization of items based on external code data identified by 
+  regular expressions.
+  It is easy to introduce new classification schemes (by 'classcodes' objects) or  
+  to use default schemes included in the package. Use cases includes patient 
+  categorization based on co-morbidity indices such as Charlson, Elixhauser, 
+  RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
+  events after arthroplasty surgery.
 License: MIT + file LICENSE
 Depends: R (>= 2.10)
 Suggests:

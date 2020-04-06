@@ -3,13 +3,11 @@ title: "Co-morbidity"
 author: "Erik Bulow"
 date: "`r Sys.Date()`"
 output: 
-  rmarkdown::html_vignette:
-    df_print: kable
+  rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Comorbidity}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: H:/zotero_lib.bib
 ---
 
 ```{r setup, include = FALSE}
@@ -20,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 
-The concept of co-morbidity is often attributed to @Feinstein1970:
+The concept of co-morbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
 
 > [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study. 
 
@@ -28,20 +26,19 @@ The `coder` package contains some default classcodes objects for co-morbidity:
 
 ```{r, warning=FALSE}
 
-suppressPackageStartupMessages(library(tidyverse))
 library(coder)
 
-# co-morbidity related classcodes objects
-comorb <- c("elixhauser", "charlson", "cps", "rxriskv")
-coder::all_classcodes() %>% 
-  filter(classcodes %in% comorb)
+cl <- coder::all_classcodes()
+knitr::kable(
+  cl[cl$classcodes %in% c("elixhauser", "charlson", "cps", "rxriskv"), ]
+)
 ```
 
 # Charlson and Elixhauser
 
-The @Charlson1987 and @Elixhauser1998 co-morbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by @Quan2005 and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
+The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](www.jstor.org/stable/3766985) co-morbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.]( https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
 
-The `coder` package provides substantial functionallity for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implemantations as well:
+The `coder` package provides substantial functionality for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implementations as well:
 
 - [icd (CRAN)](https://CRAN.R-project.org/package=icd)
 - [comorbidity (CRAN)](https://CRAN.R-project.org/package=comorbidity)
@@ -49,15 +46,15 @@ The `coder` package provides substantial functionallity for both Charlson and El
 - [comorbidities.icd10 (GitHub)](https://github.com/gforge/comorbidities.icd10)
 - [icdcoder (GitHub)](https://github.com/wtcooper/icdcoder)
 
-`icd` and `comorbidity` are both good packages well suited for their purpose based on effective implemantations. 
-`medicalrisk` can be used with ICD-9-CM codes but is not up-to-date with the latest version of ICD-10. `comorbidities.icd10` and `icdcoder` are not activelly developed or maintained. 
+`icd` and `comorbidity` are both good packages well suited for their purpose based on effective implementations. 
+`medicalrisk` can be used with ICD-9-CM codes but is not up-to-date with the latest version of ICD-10. `comorbidities.icd10` and `icdcoder` are not actively developed or maintained. 
 
-One advantage with the `coder` package is the great flexibility for combining differnt sets of codes (ICD-8, ICD-9, ICD-9-CM and ICD-10 etc as given by the "regex" column above), with differnt sets of weighted indices ("indices" column). 
+One advantage with the `coder` package is the great flexibility for combining different sets of codes (ICD-8, ICD-9, ICD-9-CM and ICD-10 etc as given by the "regex" column above), with different sets of weighted indices. 
 
 
 # Risk Rx V
 
-Another advantage of the `coder` package is the inclussion of additional classifications, such as the pharmacy-based case-mix instrument Rx Risk V [@Sloan2003]. We will use this classification in an example. This classification, in contrast to Charlson and Elixhauser, relies on medical prescription data codified by the Anatomic Therapeutic Chemical classification system (ATC).
+Another advantage of the `coder` package is the inclusion of additional classifications, such as the pharmacy-based case-mix instrument [Rx Risk V](https://dx.doi.org/10.1097/01.MLR.0000064641.84967.B7). We will use this classification in an example. This classification, in contrast to Charlson and Elixhauser, relies on medical prescription data codified by the Anatomic Therapeutic Chemical classification system (ATC).
 
 As for all classcodes objects in the package, additional information and references are found in the object documentation (`?rxriskv`).
 
@@ -65,26 +62,26 @@ As for all classcodes objects in the package, additional information and referen
 
 ## Patients
 
-`ex_people` contains 100 patients (with random names) who recieved surgery at given dates:
+`ex_people` contains 100 patients (with random names) who received surgery at given (random) dates:
 
 ```{r}
-head(ex_people)
+knitr::kable(head(ex_people))
 ```
 
-Let's generate some sample ATC data where each patient can have zero, one or several codes prescribed at different dates:
+Let's generate some sample ATC data where each patient can have zero, one, or several codes prescribed at different dates:
 
 ```{r}
 set.seed(123)
 N <- 10000
 
 ex_atc <- 
-  tibble(
+  data.frame(
     id        = sample((ex_people$name), N, replace = TRUE),
     code      = sample(coder:::atc, N, replace = TRUE),
-    # Prescription dates from 10 years before to 1 year after the median date of surgery
-    code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE)
+    code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE),
+    stringsAsFactors = FALSE
   )
-head(ex_atc)
+knitr::kable(head(ex_atc))
 ```
 
 
@@ -94,10 +91,10 @@ A first attempt to calculate the Rx Risk V score for each patient:
 
 ```{r}
 default <- categorize(ex_people, ex_atc, rxriskv, id = "name")
-head(default)
+knitr::kable(head(default))
 ```
 
-The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate wether patients had any of the individual co-morbidities identified by Rx Risk V. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let's sumarize the distribution of `index_pratt` [@Pratt2018]:
+The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual co-morbidities identified by Rx Risk V. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
 
 ```{r}
 hist2 <- function(x) hist(x$index_pratt, main = NULL, xlab = "RxRisk V", col = "lightblue")
@@ -111,58 +108,56 @@ Note however that some prescriptions might have been filed long before surgery, 
 Those are less relevant for co-morbidities at surgery. We can limit the categorization to a time window of one year prior to surgery.
 
 ```{r}
-categorize(
-  ex_people, ex_atc, rxriskv, id = "name", 
-  codify_args = list(date = "event", days = c(-365, -1))
-) %>% 
-  hist2()
+hist2(
+  categorize(
+    ex_people, ex_atc, rxriskv, id = "name", 
+    codify_args = list(date = "event", days = c(-365, -1))
+  ) 
+)
   
 ```
 
 # Alternative classification
 
 Co-morbidities are identified from ATC codes captured by regular expression. 
-Codes identified by `regex_pratt` [@Pratt2018] are used by default.
-Let's use an alternative version adopted fom @Caughey2010. 
+Codes identified by `regex_pratt` are used by default.
+Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019). 
 
 ```{r}
-categorize(
-  ex_people, ex_atc, rxriskv, id = "name", 
-  codify_args = list(date = "event", days = c(-365, -1)),
-  cc_args = list(regex = "regex_caughey")
-) %>% 
-  hist2()
+hist2(
+  categorize(
+    ex_people, ex_atc, rxriskv, id = "name", 
+    codify_args = list(date = "event", days = c(-365, -1)),
+    cc_args = list(regex = "regex_caughey")
+  )
+)
 ```
 
 # Dirty code data
 
-Let's assume that our code data is not as cleaned as simulated above. 
+Let's assume that our code data is not as clean as simulated above. 
 
 ```{r}
 s <- function(x) sample(x, N, replace = TRUE)
 
-ex_atc_messy <- 
-  ex_atc %>% 
-  mutate(code = paste0(
-    s(letters), s(0:9), s(LETTERS), s(c(".", "-", "?")), code, s(LETTERS), s(0:9)
-  ))
+ex_atc$code <- 
+  paste0(
+    s(letters), s(0:9), s(LETTERS), s(c(".", "-", "?")), 
+    ex_atc$code, s(LETTERS), s(0:9)
+  )
 
-head(ex_atc_messy)
+knitr::kable(head(ex_atc))
 
-categorize(ex_people, ex_atc_messy, rxriskv, id = "name") %>% 
-  count(index_pratt)
+sum(categorize(ex_people, ex_atc, rxriskv, id = "name")$index_pratt)
 ```
 
-Thus, no codes are recognized (every one got index = 0). By default, codes are only recognized if found immidiate in its corresponding column. This can be controlled by arguments `start` and `stop` specified via `cc_args`:
+Thus, no codes are recognized (every one got index = 0). By default, codes are only recognized if found immediate in its corresponding column. This can be controlled by arguments `start` and `stop` specified via `cc_args`:
 
 ```{r}
-categorize(
-  ex_people, ex_atc_messy, rxriskv, id = "name",
-  cc_args = list(start = FALSE, stop = FALSE)
-) %>% 
-hist2()
+hist2(
+  categorize(
+    ex_people, ex_atc, rxriskv, id = "name",
+    cc_args = list(start = FALSE, stop = FALSE)
+  )
+)
 ```
-
-
-
-# Bibliography

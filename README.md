@@ -109,7 +109,7 @@ The package includes default `classcodes` for medical patient data based on the 
 Default `classcades` are listed in the table. Each classification (classcodes column) can be based on several code systems (regex column) and have several alternative weighted indices (indices column). Those might be combined freely. 
 
 
-|clascodes     |regex                                                                              |indices                                                                                                        |
+|classcodes    |regex                                                                              |indices                                                                                                        |
 |:-------------|:----------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------|
 |charlson      |icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers |index_charlson, index_deyo_ramano, index_dhoore, index_ghali, index_quan_original, index_quan_updated          |
 |cps           |icd10                                                                              |index_only_ordinary                                                                                            |
@@ -133,7 +133,7 @@ citation("coder")
 #> To cite package 'coder' in publications use:
 #> 
 #>   Erik Bulow (2020). coder: Deterministic Categorization of Items Based on External Code
-#>   Data. R package version 0.11.1. https://github.com/eribul/coder
+#>   Data. R package version 0.11.2. https://github.com/eribul/coder
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -142,7 +142,7 @@ citation("coder")
 #> Data},
 #>     author = {Erik Bulow},
 #>     year = {2020},
-#>     note = {R package version 0.11.1},
+#>     note = {R package version 0.11.2},
 #>     url = {https://github.com/eribul/coder},
 #>   }
 ```

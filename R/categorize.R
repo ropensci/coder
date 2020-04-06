@@ -37,7 +37,7 @@
 #' categorize(ex_people, ex_icd10, "charlson",
 #'   id = "name",
 #'   index = c("quan_original", "quan_updated"),
-#'   codify_args = list(date = "surgery", days = c(-30, -1)),
+#'   codify_args = list(date = "event", days = c(-30, -1)),
 #'   cc_args = list(tech_names = TRUE)
 #' )
 #' @family verbs

@@ -30,6 +30,7 @@
 #' @param x data frame with properties as described in the details section
 #' @param hierarchy list of pairwise group names to appear as superior and subordinate classes.
 #'   To be used for indexing when the subordinate class is redundant.
+#' @param .name used internally for name dispatch
 #' @return Object of class "classcodes" (data frame) with attribute \code{code}
 #' specifying the coding used (for example "icd10", or "ATC").
 #' Could be \code{NULL} for unknown or arbitrary coding.
@@ -44,7 +45,7 @@
 #' @examples
 #' as.classcodes(coder::elixhauser)
 #' @family classcodes
-as.classcodes <- function(x, hierarchy = attr(x, "hierarchy")) {
+as.classcodes <- function(x, hierarchy = attr(x, "hierarchy"), .name = NULL) {
 
   class(x) <- setdiff(class(x), "classcodes") # To avoid infinite recursive looping due to `$<-.classcodes` method
 
@@ -63,7 +64,8 @@ as.classcodes <- function(x, hierarchy = attr(x, "hierarchy")) {
     class       = unique(c("classcodes", class(x))),
     regexprs    = colnames(x)[startsWith(colnames(x), "regex")],
     indices     = colnames(x)[startsWith(colnames(x), "index")],
-    hierarchy   = hierarchy
+    hierarchy   = hierarchy,
+    name        = .name
   )
 }
 
@@ -75,18 +77,18 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 #' @export
 `[.classcodes` <- function(x, ...) {
   hi <- attr(x, "hierarchy")
-  x <- NextMethod()
+  nm <- attr(x, "name", exact = TRUE)
+  x  <- NextMethod()
   attr(x, "hierarchy") <- hi
-  as.classcodes(x)
+  as.classcodes(x, .name = nm)
 }
 
 #' @export
 `[<-.classcodes` <- function(x, i, j, value) {
-  as.classcodes(NextMethod())
+  as.classcodes(NextMethod(), .name = attr(x, "name", exact = TRUE))
 }
 
 #' @export
 `$<-.classcodes` <- function(x, name, value) {
-  x <- NextMethod()
-  as.classcodes(x)
+  as.classcodes(NextMethod(), .name = attr(x, "name", exact = TRUE))
 }

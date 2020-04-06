@@ -7,7 +7,7 @@
 \usage{
 \method{as.data.frame}{classified}(x, ...)
 
-\method{as.data.table}{classified}(x, ...)
+as.data.table.classified(x, ...)
 }
 \arguments{
 \item{x}{output from \code{\link{classify}}}

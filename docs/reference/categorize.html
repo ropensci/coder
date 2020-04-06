@@ -6,27 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Categorize cases based on external data and classcodes (classification scheme) — categorize • coder</title>
+<title>Categorize cases based on external data and classification scheme — categorize • coder</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Categorize cases based on external data and classcodes (classification scheme) — categorize" />
-<meta property="og:description" content="Categorize cases based on external data and classcodes (classification scheme)" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Categorize cases based on external data and classification scheme — categorize" />
+<meta property="og:description" content="Categorize cases based on external data and classification scheme" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.2</span>
       </span>
     </div>
 
@@ -95,7 +98,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Comorbidity.html">Comorbidity</a>
+      <a href="../articles/Comorbidity.html">Co-morbidity</a>
     </li>
   </ul>
 </li>
@@ -105,7 +108,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/eribul/coder">
+  <a href="https://github.com/eribul/coder/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -123,13 +126,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Categorize cases based on external data and classcodes (classification scheme)</h1>
+    <h1>Categorize cases based on external data and classification scheme</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/categorize.R'><code>R/categorize.R</code></a></small>
     <div class="hidden name"><code>categorize.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Categorize cases based on external data and classcodes (classification scheme)</p>
+    <p>Categorize cases based on external data and classification scheme</p>
     </div>
 
     <pre class="usage"><span class='fu'>categorize</span>(
@@ -148,8 +151,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>(<code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code>) with case data including at least an id,
-and possibly a date, column.</p></td>
+      <td><p>data frame with mandatory id column (identified by argument <code>id</code>),
+and semi-optional column with date of interest
+(identified by argument <code>date</code> if <code>days != NULL</code>).</p></td>
     </tr>
     <tr>
       <th>codedata</th>
@@ -157,7 +161,7 @@ and possibly a date, column.</p></td>
     </tr>
     <tr>
       <th>cc</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of such).</p></td>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of such object).</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -174,8 +178,11 @@ include several indices as a character vector.
     <tr>
       <th>sort</th>
       <td><p>logical. Should output be sorted by the 'id' column?
-(Sorting by id is always done internally. To restore the original row order of <code>data</code>
-could be slow for large data sets.)</p></td>
+(This could effect computational speed for large data sets.)
+Data is sorted by 'id' internally. It is therefore faster to keep the output
+sorted this way, but this might be inconvenient if the original
+order was intended. Set to <code>FALSE</code> in order to not shuffle the
+input data.</p></td>
     </tr>
     <tr>
       <th>codify_args</th>
@@ -189,10 +196,10 @@ could be slow for large data sets.)</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.table</code> with
- <code>data</code> enhanced by logical columns indicating
-membership of categories identified by <code>cc</code>, as well as
-indices if specified by <code>index</code>.</p>
+    <p>data frame ('data.table' object) with all data from
+the input data set <code>to/data</code> combined with logical columns indicating
+membership of categories identified by the classcode object.
+Indices are also included if so specified by the 'index' argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: 
@@ -2353,15 +2360,10 @@ indices if specified by <code>index</code>.</p>
 #&gt; 100:                           NA                          NA
 #&gt;      charlson_index_quan_original charlson_index_quan_updated</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -2372,7 +2374,7 @@ indices if specified by <code>index</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>

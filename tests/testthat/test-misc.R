@@ -9,7 +9,6 @@ y <- suppressWarnings(classify(y, elixhauser))
 
 test_that("get_classcodes", {
   expect_error(set_classcodes("hejsan"))
-  expect_equal(set_classcodes("elixhauser"), set_classcodes(elixhauser))
   expect_equal(set_classcodes(NULL, x),      set_classcodes(elixhauser))
   expect_equal(set_classcodes(NULL, y),      set_classcodes(elixhauser))
 })
