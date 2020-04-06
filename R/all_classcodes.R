@@ -25,7 +25,7 @@ all_classcodes <- function() {
   }
 
   data.frame(
-    clascodes   = names,
+    classcodes   = names,
     regex   = vapply(lapply(cl, rgs_short), clps, ""),
     indices     = vapply(lapply(cl, attr, "indices"), clps, ""),
     stringsAsFactors = FALSE

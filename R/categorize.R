@@ -1,24 +1,29 @@
-#' Categorize cases based on external data and classcodes (classification scheme)
+#' Categorize cases based on external data and classification scheme
 #'
-#' @inheritParams classify
-#' @param data (\code{\link{data.frame}}) with case data including at least an id,
-#'   and possibly a date, column.
+#'
+#' @param data data frame with mandatory id column (identified by argument \code{id}),
+#'   and semi-optional column with date of interest
+#'   (identified by argument \code{date} if \code{days != NULL}).
 #' @param codedata external code data (see \code{\link{as.codedata}})
-#' @param cc \code{\link{classcodes}} object (or name of such).
+#' @param cc \code{\link{classcodes}} object (or name of such object).
 #' @param index control possible inclusion of index vector.
 #'   Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
 #'   \code{by} in function \code{\link{index}}. It is possible to
 #'   include several indices as a character vector.
 #'   \code{NULL} will include all available indices.
 #' @param sort logical. Should output be sorted by the 'id' column?
-#'   (Sorting by id is always done internally. To restore the original row order of \code{data}
-#'   could be slow for large data sets.)
+#'   (This could effect computational speed for large data sets.)
+#'   Data is sorted by 'id' internally. It is therefore faster to keep the output
+#'   sorted this way, but this might be inconvenient if the original
+#'   order was intended. Set to \code{FALSE} in order to not shuffle the
+#'   input data.
 #' @param codify_args List of named arguments passed to \code{\link{codify}}
+#' @inheritParams classify
 #'
-#' @return \code{\link{data.table}} with
-#'  \code{data} enhanced by logical columns indicating
-#' membership of categories identified by \code{cc}, as well as
-#' indices if specified by \code{index}.
+#' @return data frame ('data.table' object) with all data from
+#' the input data set \code{to/data} combined with logical columns indicating
+#' membership of categories identified by the classcode object.
+#' Indices are also included if so specified by the 'index' argument.
 #'
 #' @export
 #'
@@ -32,18 +37,18 @@
 #' categorize(ex_people, ex_icd10, "charlson",
 #'   id = "name",
 #'   index = c("quan_original", "quan_updated"),
-#'   codify_args = list(date = "event", days = c(-30, -1)),
+#'   codify_args = list(date = "surgery", days = c(-30, -1)),
 #'   cc_args = list(tech_names = TRUE)
 #' )
 #' @family verbs
 categorize <- function(
   data, codedata, cc, id, index = NULL, sort = TRUE, codify_args = list(), cc_args = list()) {
 
+  stopifnot(id %in% names(data), is.character(data[[id]]))
+
   cc_args$cc <- cc_name <- cc
   cc <- do.call(set_classcodes, cc_args)
 
-  if (!id %in% names(data))      stop("No id column '", id, "' in data!")
-  if (!is.character(data[[id]])) stop("Id column must be of type character!")
   if (!is.data.table(data)) {
     data <- as.data.table(data)
   }
@@ -56,10 +61,13 @@ categorize <- function(
   codify_args$codedata <- codedata
   codify_args$id   <- id
   cod              <- do.call(codify, codify_args)
-  cl               <- classify(cod, cc)
+  cl               <- classify(cod, cc, cc_args = NULL) # NULL because cc already set
 
+  data$id_chr <- as.character(data[[id]]) # To be able to merge
   out       <- merge(data, as.data.table(cl),
-                     by.x = id, by.y = id, sort = sort)
+                     by.x = "id_chr", by.y = id, sort = sort)
+  id_chr <- NULL # to avoid check note
+  data[, id_chr := NULL] # Don't need it any more
 
   # Add index named index if index not FALSE
   index_inh <- attr(cc, "indices")
@@ -79,7 +87,7 @@ categorize <- function(
       ind_names <- clean_text(cc_name, paste0("index_", ind_names))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
-    out <- merge(out, indx,  by.x = id, by.y = id, sort = sort)
+    out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
   }
-  out
+  out[, id_chr := NULL][]
 }

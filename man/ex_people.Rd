@@ -4,11 +4,13 @@
 \name{ex_people}
 \alias{ex_people}
 \title{Example data for random people}
-\format{Data frames with 100 rows and 2 variables:
+\format{
+Data frames with 100 rows and 2 variables:
 \describe{
   \item{name}{random person names}
   \item{surgery}{random dates for performed surgery on each patient}
-}}
+}
+}
 \usage{
 ex_people
 }

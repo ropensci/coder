@@ -4,7 +4,8 @@
 \name{elixhauser}
 \alias{elixhauser}
 \title{Classcodes for Elixhauser based on ICD-codes}
-\format{A data frame with 31 rows and 8 variables:
+\format{
+A data frame with 31 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group.
@@ -32,7 +33,8 @@
    Moore et al. (2017)}
  \item{index_ahrq_readm}{weights for readmissions suggested by
    Moore et al. (2017)}
-}}
+}
+}
 \usage{
 elixhauser
 }

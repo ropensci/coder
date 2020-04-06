@@ -7,7 +7,8 @@
 \alias{hip_ae}
 \title{Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 and KVA codes}
-\format{Data frame with 3 columns:
+\format{
+Data frame with 3 columns:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
   \item{regex_icd10}{regular expressions identifying ICD-10 codes for each group}
@@ -15,7 +16,10 @@ and KVA codes}
    Essentially the same as \code{regex} but with some additional codes for group "DM1 other"}
  \item{regex_kva}{regular expressions identifying KVA codes}
   \item{condition}{special conditions are used, see below.}
-}}
+}
+
+An object of class \code{classcodes} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7 rows and 5 columns.
+}
 \source{
 Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
 Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}

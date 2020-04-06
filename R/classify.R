@@ -74,8 +74,13 @@ find_id <- function(obj, id = NULL, code = NULL) {
 #' @export
 #' @rdname classify
 classify.default <- function(codified, cc, ..., cc_args = list()) {
-  cc_args$cc <- .cc <- cc
-  cc  <- do.call(set_classcodes, cc_args)
+  .cc <- cc
+
+  if (!is.null(cc_args) | !is.classcodes(cc)) {
+    ccargs <- cc_args
+    ccargs$cc <- cc
+    cc  <- do.call(set_classcodes, ccargs)
+  }
   y   <- vapply(
     cc$regex, grepl, logical(length(codified)), x = as.character(codified))
 
@@ -102,8 +107,13 @@ classify.data.frame <- function(
     warning("'classify' does not preserve row order ('categorize' does!)")
   }
 
-  cc_args$cc <- cc_name <- cc
-  cc <- do.call(set_classcodes, cc_args)
+  cc_name <- cc
+  # Do not reset cc if already set from categorize
+  if (!is.null(cc_args) | !is.classcodes(cc)) {
+    ccargs <- cc_args
+    ccargs$cc <- cc
+    cc <- do.call(set_classcodes, ccargs)
+  }
   id <- find_id(codified, id, code)
   names(codified)[names(codified) == code] <- "code"
 
@@ -120,7 +130,7 @@ classify.data.frame <- function(
   codified         <- codified[!i_nocl & !i_na, ]
 
   # Classify all cases with at least one class
-  y                <- classify(codified$code, cc)
+  y                <- classify(codified$code, cc, cc_args = cc_args)
   if ("condition" %in% names(cc)) {
     y <- y & vapply(cc$condition, eval_condition,
                     logical(nrow(codified)), x = codified)

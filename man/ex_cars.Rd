@@ -4,12 +4,14 @@
 \name{ex_cars}
 \alias{ex_cars}
 \title{Example data for can registry}
-\format{Data frames with 1,000 rows and 3 variables:
+\format{
+Data frames with 1,000 rows and 3 variables:
 \describe{
   \item{id}{random person names}
   \item{code}{random car models}
   \item{code_date}{random dates for car ownership}
-}}
+}
+}
 \usage{
 ex_cars
 }

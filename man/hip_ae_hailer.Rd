@@ -5,12 +5,14 @@
 \alias{hip_ae_hailer}
 \title{Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
 and KVA codes}
-\format{Data frame with 3 columns:
+\format{
+Data frame with 3 columns:
 \describe{
   \item{group}{Infection or dislocation}
   \item{regex_icd10}{regular expressions based on ICD-10}
  \item{regex_kva}{regular expressions based on KVA codes}
-}}
+}
+}
 \usage{
 hip_ae_hailer
 }

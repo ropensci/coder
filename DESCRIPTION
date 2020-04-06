@@ -24,7 +24,7 @@ Suggests:
 Imports:
   data.table
 LazyData: TRUE
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 VignetteBuilder: 
   knitr
 URL: https://github.com/eribul/coder

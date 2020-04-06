@@ -4,11 +4,13 @@
 \name{ex_carbrands}
 \alias{ex_carbrands}
 \title{Example classcodes object for classification of car brands by their producer}
-\format{Data frames with 11 rows and 2 variables:
+\format{
+Data frames with 11 rows and 2 variables:
 \describe{
   \item{group}{Car makers}
   \item{regex}{Regular expressions identifying car brands}
-}}
+}
+}
 \usage{
 ex_carbrands
 }

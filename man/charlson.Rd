@@ -4,7 +4,8 @@
 \name{charlson}
 \alias{charlson}
 \title{Classcodes for Charlson comorbidity based on ICD-codes}
-\format{A data frame with 17 rows and 8 variables:
+\format{
+A data frame with 17 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
   \item{description}{Verbal description of codes as described by
@@ -41,7 +42,8 @@
   \item{index_quan_updated}{weights suggested by Quan (2011)}
 }
 
-* Weights decoded from Yurkovich et al. (2015).}
+* Weights decoded from Yurkovich et al. (2015).
+}
 \usage{
 charlson
 }

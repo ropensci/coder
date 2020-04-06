@@ -4,7 +4,8 @@
 \name{rxriskv}
 \alias{rxriskv}
 \title{Classcodes for RxRisk V based on ATC codes}
-\format{Data frames with 39 rows and 6 variables:
+\format{
+Data frames with 39 rows and 6 variables:
 \describe{
   \item{group}{medical condition}
   \item{regex_pratt}{ATC codes from table 1 in Pratt et al. 2018
@@ -14,7 +15,8 @@
  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
  \item{index_pratt}{Mortality weights from table 1 in Pratt et al. 2018}
  \item{index_sum_all}{Unweighted count of all conditions.}
-}}
+}
+}
 \usage{
 rxriskv
 }
