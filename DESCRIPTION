@@ -19,9 +19,11 @@ Suggests:
   covr,
   testthat,
   knitr,
-  rmarkdown
+  rmarkdown,
+  writexl
 Imports:
-  data.table
+  data.table,
+  decoder
 LazyData: TRUE
 RoxygenNote: 7.1.0
 VignetteBuilder: 

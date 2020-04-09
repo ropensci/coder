@@ -75,3 +75,15 @@ cols <- function(find, x) {
   nms <- clean(colnames(x))
   x[, c(lapply(find, grep, nms), recursive = TRUE), drop = FALSE]
 }
+
+# Get data from decoder package
+decoder_data <- function(x) {
+  dts <- utils::data(package = "decoder")$results[, "Item"]
+  if (x %in% dts) {
+    e <- environment()
+    utils::data(list = x, package = "decoder", envir = e)
+    get0(x, e)
+  } else {
+    stop("'coding' should be one of: ", paste(dts, collapse = ", "))
+  }
+}

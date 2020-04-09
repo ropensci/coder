@@ -2,7 +2,7 @@
 % Please edit documentation in R/visualize.R
 \name{visualize}
 \alias{visualize}
-\title{visualize classification scheme in web browser}
+\title{Visualize classification scheme in web browser}
 \usage{
 visualize(cc, group = NULL, show = TRUE, ...)
 }

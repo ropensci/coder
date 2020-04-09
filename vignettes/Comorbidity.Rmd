@@ -76,8 +76,8 @@ N <- 10000
 
 ex_atc <- 
   data.frame(
-    id        = sample((ex_people$name), N, replace = TRUE),
-    code      = sample(coder:::atc, N, replace = TRUE),
+    id        = sample(ex_people$name, N, replace = TRUE),
+    code      = sample(decoder::atc$key, N, replace = TRUE),
     code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE),
     stringsAsFactors = FALSE
   )

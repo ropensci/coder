@@ -9,8 +9,9 @@
 \arguments{
 \item{object}{classcodes object}
 
-\item{coding}{name (as character) of classification used for coding
-(for example "icd10" or "atc")}
+\item{coding}{either a vector with codes from the original classification,
+or a name (character vector of length one) keyvalue object from package
+"decoder" (for example "icd10" or "atc")}
 
 \item{...}{ignored}
 

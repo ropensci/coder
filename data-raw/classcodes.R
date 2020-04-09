@@ -22,16 +22,14 @@ mutate(
 # p. 149
 # I do not want to make a manual copy of all those codes but simply add a regex_frcture column based on
 # existing codes.
-hip_ae <-
-  hip_ae %>%
-  mutate(
-    regex_icd10_fracture = if_else(
-      group == "DM1 other",
-      paste0(regex_icd10, "|N3(0[0899]|Y90)"),
-      regex_icd10
-    )
-  ) %>%
-  as.classcodes()
+hip_ae$regex_icd10_fracture <-
+  if_else(
+    hip_ae$group == "DM1 other",
+    paste0(hip_ae$regex_icd10, "|N3(0[0899]|Y90)"),
+    hip_ae$regex_icd10
+  )
+
+hip_ae <-  as.classcodes(hip_ae)
 
 
 # Elixhauser --------------------------------------------------------------

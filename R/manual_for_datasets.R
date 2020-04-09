@@ -331,7 +331,7 @@
 #' @format Data frames with 100 rows and 2 variables:
 #' \describe{
 #'   \item{name}{random person names}
-#'   \item{surgery}{random dates for performed surgery on each patient}
+#'   \item{event}{random dates for a relevant event}
 #' }
 #'
 #' @family example data

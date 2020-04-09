@@ -6,8 +6,9 @@
 #' group in the classification.
 #'
 #' @param object classcodes object
-#' @param coding name (as character) of classification used for coding
-#'   (for example "icd10" or "atc")
+#' @param coding either a vector with codes from the original classification,
+#'   or a name (character vector of length one) keyvalue object from package
+#'   "decoder" (for example "icd10" or "atc")
 #' @param ... ignored
 #' @param cc_args List of named arguments passed to \code{\link{set_classcodes}}
 #'
@@ -33,40 +34,42 @@
 #' summary(elixhauser, coding = "icd10")
 summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 
-  # Identify code value set as specified
-  cl <- try(get(coding), TRUE)
+  cl <-
+    if (is.character(coding) && length(coding) == 1) {
+      decoder_data(coding)$key
+    } else {
+      coding
+    }
 
-  # Make summary table if such code value set exist
-  if (class(cl) == "try-error") {
-    res <- NULL
-  } else {
+  # Classify each such code according to the classcodes object
+  cl <- classify(cl, object, cc_args = cc_args)
+  # Kep only the ones that are relevant according to the classification scheme
+  cl <- as.data.frame(cl[rowSums(cl) > 0,])
 
-    # Classify each such code according to the classcodes object
-    cl <- classify(cl, object, cc_args = cc_args)
-    # Kep only the ones that are relevant according to the classification scheme
-    cl <- as.data.frame(cl[rowSums(cl) > 0,])
+  # Idfentify wich groups the individual codes relate to
+  indx <- apply(cl, 1, which, useNames = FALSE)
+  indx <- c(lapply(indx, stats::setNames, NULL), recursive = TRUE)
+  nms <- object$group[indx]
 
-    # Idfentify wich groups the individual codes relate to
-    indx <- apply(cl, 1, which, useNames = FALSE)
-    indx <- c(lapply(indx, stats::setNames, NULL), recursive = TRUE)
-    nms <- object$group[indx]
+  # Paste all individual codes as comma separated list
+  codes <-
+    vapply(split(indx, nms), function(x) paste(names(x), collapse = ", "), "")
+  codes_vct <- lapply(split(indx, nms), function(x) names(x))
 
-    # Paste all individual codes as comma separated list
-    codes <-
-      vapply(split(indx, nms), function(x) paste(names(x), collapse = ", "), "")
+  # Result data frame
+  res <-
+    data.frame(
+      group            = names(codes),
+      n                = c(table(nms)),
+      codes            = codes,
+      row.names        = seq_along(codes),
+      stringsAsFactors = FALSE
+    )
 
-    # Result data frame
-    res <-
-      data.frame(
-        group            = names(codes),
-        n                = c(table(nms)),
-        codes            = codes,
-        row.names        = seq_along(codes),
-        stringsAsFactors = FALSE
-      )
-  }
-
-  structure(list(object = object, summary = res, coding = coding), class = "summary.classcodes")
+  structure(
+    list(object = object, summary = res, coding = coding, codes_vct = codes_vct),
+    class = "summary.classcodes"
+  )
 }
 
 #' Print summary for classcodes object
@@ -90,7 +93,6 @@ print.summary.classcodes <- function(x, n_print = 50, ...) {
     else paste(indices, collapse = ", ")
 
   # Print message
-  cat("\nBased on coding:", x$coding, "\n")
   cat("Indices:", indices, "\n\n")
   if (!is.null(x$summary)) {
     cat("Recognized codes per group:\n\n")

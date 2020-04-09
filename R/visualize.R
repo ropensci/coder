@@ -1,5 +1,5 @@
 
-#' visualize classification scheme in web browser
+#' Visualize classification scheme in web browser
 #'
 #' Classes are visualized by their regular expressions in a web browser.
 #' The visualization does not give any details on group names, conditions or
