@@ -2,7 +2,6 @@ on:
   push:
     paths:
       - README.Rmd
-      - *yaml
 
 name: Render README
 
@@ -15,9 +14,9 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+        run: Rscript -e 'install.packages(c("rmarkdown", "devtools", "knitr", "dplyr"))'
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'devtools::install(); rmarkdown::render("README.Rmd")'
       - name: Commit results
         run: |
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
