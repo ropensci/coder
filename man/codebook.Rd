@@ -37,3 +37,6 @@ codebook(elixhauser, "icd9cmd",
   cc_args = list(regex = "regex_icd9cm_enhanced")
 )
 }
+\seealso{
+codebooks
+}
