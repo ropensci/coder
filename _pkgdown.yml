@@ -1,3 +1,4 @@
+destination: docs
 url: eribul.github.io/coder
 
 authors:
@@ -29,3 +30,4 @@ reference:
   desc:
   contents:
   - has_concept("helper")
+
