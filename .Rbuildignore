@@ -19,3 +19,4 @@ paper/*
 MAKE.R
 ^CODE_OF_CONDUCT\.md$
 library.bib
+^\.github$
