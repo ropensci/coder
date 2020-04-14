@@ -16,7 +16,7 @@ jobs:
       - name: Install rmarkdown
         run: Rscript -e 'install.packages(c("rmarkdown", "devtools", "knitr", "dplyr"))'
       - name: Render README
-        run: Rscript -e 'devtools::install(); rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'devtools::build_rmd("README.Rmd")'
       - name: Commit results
         run: |
           git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
