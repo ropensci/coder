@@ -42,12 +42,12 @@ remotes::install_github("eribul/coder")
 Assume we have some patients with corresponding dates of interest:
 ```{r}
 library(coder)
-head(ex_people) %>% knitr::kable()
+knitr::kable(head(ex_people))
 ```
 We also have some external medical data (ICD-10-codes recorded at previous hospital):
 
 ```{r}
-head(ex_icd10) %>% knitr::kable()
+knitr::kable(head(ex_icd10))
 ```
 
 Using those two sources, as well as a classification scheme (see below), we can easily identify all Charlson co-morbidities during one year prior to the event of interest.
@@ -65,7 +65,9 @@ ch <-
 The result is a dataset with columns for each comorbidity and (optional) each weighted index (quan_original and quan_updated):
 
 ```{r}
-dplyr::select(ch, name, quan_original, quan_updated) %>% knitr::kable()
+knitr::kable(
+  dplyr::select(ch, name, quan_original, quan_updated) 
+)
 ```
 
 
