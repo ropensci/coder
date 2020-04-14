@@ -1,5 +1,6 @@
 ---
 title: "coder"
+output: github_document
 ---
 
 [![R build status](https://github.com/eribul/coder/workflows/R-CMD-check/badge.svg)](https://github.com/eribul/coder/actions)
