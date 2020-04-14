@@ -14,7 +14,7 @@ Description:
   RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
   events after arthroplasty surgery.
 License: MIT + file LICENSE
-Depends: R (>= 2.10)
+Depends: R (>= 3.3)
 Suggests:
   covr,
   testthat,
