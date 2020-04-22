@@ -18,7 +18,7 @@ ex_icd10 <-
   tibble::tibble(
     id   = sample(c(ex_people$name, randomNames::randomNames(n)), N, TRUE),
     code_date = Sys.Date() - sample(0:365, N, TRUE) - 100,
-    code = sample(decoder::icd10$key, N, TRUE),
+    code = sample(decoder::icd10cm$key, N, TRUE),
     hdia = sample(c(TRUE, FALSE), N, TRUE, c(.1, .9))
   ) %>%
   coder::as.codedata()

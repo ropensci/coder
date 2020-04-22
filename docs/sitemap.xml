@@ -16,6 +16,9 @@
     <loc>eribul.github.io/coder/reference/as.data.frame.classified.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/reference/as.keyvalue.classcodes.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/reference/categorize.html</loc>
   </url>
   <url>
@@ -29,6 +32,12 @@
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/clean_text.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/codebook.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/codebooks.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/coder-package.html</loc>
@@ -91,9 +100,15 @@
     <loc>eribul.github.io/coder/reference/visualize.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/articles/classcodes.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/articles/coder.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/articles/Comorbidity.html</loc>
+    <loc>eribul.github.io/coder/articles/comorbidity.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/articles/conditions.html</loc>
   </url>
 </urlset>

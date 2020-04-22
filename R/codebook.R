@@ -18,10 +18,10 @@ fileif <- function(x, file = NULL) {
 #' between groups and individual codes
 #' @seealso codebooks
 #' @export
-#'
+#' @family classcodes
 #' @examples
-#' # All codes from ICD-10-SE used by Elixhauser
-#' codebook(elixhauser, "icd10")
+#' # All codes from ICD-10-CM used by Elixhauser
+#' codebook(elixhauser, "icd10cm")
 #'
 #' # All codes from ICD-9-CM Disease part used by Elixhauser enhanced version
 #' codebook(elixhauser, "icd9cmd",
@@ -69,9 +69,9 @@ codebook <- function(object, coding, ..., file = NULL) {
 #' Only one 'README' object is kept however and renamed as such.
 #' @export
 #' @seealso codebook
-#'
+#' @family classcodes
 #' @examples
-#' c1 <- codebook(elixhauser, "icd10")
+#' c1 <- codebook(elixhauser, "icd10cm")
 #' c2 <- codebook(elixhauser, "icd9cmd",
 #'   cc_args = list(regex = "regex_icd9cm_enhanced")
 #'   )

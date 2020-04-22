@@ -11,7 +11,7 @@
 
 \item{coding}{either a vector with codes from the original classification,
 or a name (character vector of length one) keyvalue object from package
-"decoder" (for example "icd10" or "atc")}
+"decoder" (for example "icd10cm" or "atc")}
 
 \item{...}{ignored}
 
@@ -39,7 +39,7 @@ grasp. Use this function to present all individual codes identified for each
 group in the classification.
 }
 \examples{
-summary(elixhauser, coding = "icd10")
+summary(elixhauser, coding = "icd10cm")
 }
 \seealso{
 \code{\link{visualize}} for a graphical representation of the

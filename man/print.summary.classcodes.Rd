@@ -20,7 +20,7 @@ Nothing. This function is called for its side effects
 Print summary for classcodes object
 }
 \examples{
-print(summary(elixhauser, coding = "icd10"))
+print(summary(elixhauser, coding = "icd10cm"))
 }
 \seealso{
 Other classcodes: 

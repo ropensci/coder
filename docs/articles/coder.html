@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
       </span>
     </div>
 
@@ -57,7 +57,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Comorbidity.html">Co-morbidity</a>
+      <a href="../articles/classcodes.html">Classcodes objects</a>
+    </li>
+    <li>
+      <a href="../articles/comorbidity.html">Co-morbidity</a>
+    </li>
+    <li>
+      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -88,7 +94,7 @@
       <h1 data-toc-skip>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2020-04-06</h4>
+            <h4 class="date">2020-04-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -103,28 +109,37 @@
 <a href="#car-ownership" class="anchor"></a>Car ownership</h1>
 <p>Let’s assume we have a list of people, as well as dates for their driving license:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r">
-library(coder)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">coder</span>)
 
-people </pre></body></html></div>
+<span class="no">people</span> <span class="kw">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
+    <span class="kw">name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+      <span class="st">"Medina, Desmand"</span>, <span class="st">"al-Hashem,  Muzna"</span>, <span class="st">"el-Kaleel, Aadil"</span>, <span class="st">"Pettsson, Svenne"</span>
+    ),
+    <span class="kw">license</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+      <span class="st">"1949-05-23"</span>, <span class="st">"2016-03-04"</span>, <span class="st">"2019-12-18"</span>, <span class="st">"1985-05-04"</span>
+    )),
+    <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+  )</pre></body></html></div>
 <p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r">head(ex_cars)
-#&gt;                  id              code  code_date
-#&gt; 1   Medina, Desmand         Mazda RX4 2019-06-08
-#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-01-23
-#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-03-16
-#&gt; 4    Foster, Amanda    Toyota Corolla 2019-02-01
-#&gt; 5     Budy, Cameren     Maserati Bora 2019-03-23
-#&gt; 6       Ash, Reilly          Merc 230 2019-03-21</pre></body></html></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">ex_cars</span>)
+<span class="co">#&gt;                  id              code  code_date</span>
+<span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-08-02</span>
+<span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-03-19</span>
+<span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-05-10</span>
+<span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2019-03-28</span>
+<span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-05-17</span>
+<span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-05-15</span></pre></body></html></div>
 <p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r">ex_carbrands
-#&gt;     group                                regex
-#&gt; 1   Mazda                                Mazda
-#&gt; 2 Mer-Ben                                 Merc
-#&gt; 3    Ford                         Ford|Lincoln
-#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati
-#&gt; 5  Toyota                               Toyota
-#&gt; 6  Volksw                              Porsche
-#&gt; 7   Geely                 Volvo|Lotus|Polestar</pre></body></html></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">ex_carbrands</span>
+<span class="co">#&gt;     group                                regex</span>
+<span class="co">#&gt; 1   Mazda                                Mazda</span>
+<span class="co">#&gt; 2 Mer-Ben                                 Merc</span>
+<span class="co">#&gt; 3    Ford                         Ford|Lincoln</span>
+<span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati</span>
+<span class="co">#&gt; 5  Toyota                               Toyota</span>
+<span class="co">#&gt; 6  Volksw                              Porsche</span>
+<span class="co">#&gt; 7   Geely                 Volvo|Lotus|Polestar</span></pre></body></html></div>
 </div>
 <div id="categorize" class="section level1">
 <h1 class="hasAnchor">
@@ -139,17 +154,18 @@ people </pre></body></html></div>
 <li>
 <code>ex_carbrands</code>: the classification of car makers.</li>
 </ul>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">(x  index calculated as number of relevant categories
-#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely
-#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE
-#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA
-#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE
-#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE
-#&gt;    index
-#&gt; 1:     1
-#&gt; 2:    NA
-#&gt; 3:     1
-#&gt; 4:     3</pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r">(<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">people</span>, <span class="no">ex_cars</span>, <span class="no">ex_carbrands</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>))
+<span class="co">#&gt; index calculated as number of relevant categories</span>
+<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
+<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span>
+<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
+<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span>
+<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span>
+<span class="co">#&gt;    index</span>
+<span class="co">#&gt; 1:     1</span>
+<span class="co">#&gt; 2:    NA</span>
+<span class="co">#&gt; 3:     1</span>
+<span class="co">#&gt; 4:     3</span></pre></body></html></div>
 </div>
 <div id="interpretation" class="section level1">
 <h1 class="hasAnchor">
@@ -168,33 +184,48 @@ people </pre></body></html></div>
 <h1 class="hasAnchor">
 <a href="#cars-owned-before-license" class="anchor"></a>Cars owned before license</h1>
 <p>We can use the date columns to check if anyone owned a car already before they got their drivers license. We need to specify that the date column is called <code>license</code>. The <code>days</code> argument specifies that we are interested in cars bought before this date.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">(x  index calculated as number of relevant categories
-#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely
-#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA    NA     NA     NA    NA
-#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA
-#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA    NA     NA     NA    NA
-#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE FALSE  FALSE  FALSE  TRUE
-#&gt;    index
-#&gt; 1:    NA
-#&gt; 2:    NA
-#&gt; 3:    NA
-#&gt; 4:     2</pre></body></html></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r">(<span class="no">x</span> <span class="kw">&lt;-</span>
+   <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(
+     <span class="no">people</span>,
+     <span class="no">ex_cars</span>,
+     <span class="no">ex_carbrands</span>,
+     <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>,
+     <span class="kw">codify_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+       <span class="kw">date</span> <span class="kw">=</span> <span class="st">"license"</span>,
+       <span class="kw">days</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">Inf</span>, -<span class="fl">1</span>)
+     )
+  )
+)
+<span class="co">#&gt; index calculated as number of relevant categories</span>
+<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
+<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA    NA     NA     NA    NA</span>
+<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
+<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA    NA     NA     NA    NA</span>
+<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE FALSE  FALSE  FALSE  TRUE</span>
+<span class="co">#&gt;    index</span>
+<span class="co">#&gt; 1:    NA</span>
+<span class="co">#&gt; 2:    NA</span>
+<span class="co">#&gt; 3:    NA</span>
+<span class="co">#&gt; 4:     2</span></pre></body></html></div>
 <p>Indeed, someone did buy some cars before taking a drivers license!</p>
 </div>
 <div id="car-rating" class="section level1">
 <h1 class="hasAnchor">
 <a href="#car-rating" class="anchor"></a>Car rating</h1>
 <p>We are not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let us assign some score to each company. We then specifies that the index should be calculated based on the new column named “score”.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r">ex_carbrands$score                  name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely
-#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE
-#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA
-#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE
-#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE
-#&gt;    score
-#&gt; 1:    10
-#&gt; 2:    NA
-#&gt; 3:     1
-#&gt; 4:     5</pre></body></html></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">ex_carbrands</span>$<span class="no">score</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
+
+(<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">people</span>, <span class="no">ex_cars</span>, <span class="no">ex_carbrands</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>, <span class="kw">ind</span> <span class="kw">=</span> <span class="st">"score"</span>))
+<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
+<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span>
+<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
+<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span>
+<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span>
+<span class="co">#&gt;    score</span>
+<span class="co">#&gt; 1:    10</span>
+<span class="co">#&gt; 2:    NA</span>
+<span class="co">#&gt; 3:     1</span>
+<span class="co">#&gt; 4:     5</span></pre></body></html></div>
 </div>
 <div id="concluding-remark" class="section level1">
 <h1 class="hasAnchor">
@@ -218,7 +249,7 @@ people </pre></body></html></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

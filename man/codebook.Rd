@@ -11,7 +11,7 @@ codebook(object, coding, ..., file = NULL)
 
 \item{coding}{either a vector with codes from the original classification,
 or a name (character vector of length one) keyvalue object from package
-"decoder" (for example "icd10" or "atc")}
+"decoder" (for example "icd10cm" or "atc")}
 
 \item{...}{
   Arguments passed on to \code{\link[=summary.classcodes]{summary.classcodes}}
@@ -29,8 +29,8 @@ between groups and individual codes
 Make codebook for classcodes object
 }
 \examples{
-# All codes from ICD-10-SE used by Elixhauser
-codebook(elixhauser, "icd10")
+# All codes from ICD-10-CM used by Elixhauser
+codebook(elixhauser, "icd10cm")
 
 # All codes from ICD-9-CM Disease part used by Elixhauser enhanced version
 codebook(elixhauser, "icd9cmd",

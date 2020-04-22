@@ -11,7 +11,7 @@
 
 \item{coding}{either a vector with codes from the original classification,
 or a name (character vector of length one) keyvalue object from package
-"decoder" (for example "icd10" or "atc")}
+"decoder" (for example "icd10cm" or "atc")}
 
 \item{...}{arguments passed to \code{\link{summary.classcodes}}}
 }

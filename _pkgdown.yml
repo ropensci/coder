@@ -22,7 +22,7 @@ reference:
   desc:
   contents:
   - has_concept("example data")
-- title: Help functions for classcode data
+- title: Functions and methods for classcodes
   desc: Functions used for classifying data
   contents:
   - has_concept("classcodes")

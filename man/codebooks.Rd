@@ -19,7 +19,7 @@ Only one 'README' object is kept however and renamed as such.
 Combine codebooks for classcodes objects
 }
 \examples{
-c1 <- codebook(elixhauser, "icd10")
+c1 <- codebook(elixhauser, "icd10cm")
 c2 <- codebook(elixhauser, "icd9cmd",
   cc_args = list(regex = "regex_icd9cm_enhanced")
   )

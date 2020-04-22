@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set classcodes object — set_classcodes • coder</title>
+<title>Make keyvalue object from classcodes object — as.keyvalue.classcodes • coder</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Set classcodes object — set_classcodes" />
-<meta property="og:description" content="Set classcodes object" />
+<meta property="og:title" content="Make keyvalue object from classcodes object — as.keyvalue.classcodes" />
+<meta property="og:description" content="Make keyvalue object from classcodes object" />
 
 
 
@@ -132,68 +132,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set classcodes object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/set_classcodes.R'><code>R/set_classcodes.R</code></a></small>
-    <div class="hidden name"><code>set_classcodes.Rd</code></div>
+    <h1>Make keyvalue object from classcodes object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/as.keyvalue.R'><code>R/as.keyvalue.R</code></a></small>
+    <div class="hidden name"><code>as.keyvalue.classcodes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set classcodes object</p>
+    <p>Make keyvalue object from classcodes object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_classcodes</span>(
-  <span class='no'>cc</span>,
-  <span class='kw'>classified</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>regex</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>tech_names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='co'># S3 method for classcodes</span>
+<span class='fu'>as.keyvalue</span>(<span class='no'>x</span>, <span class='no'>coding</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>cc</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object or name of such</p></td>
+      <th>x</th>
+      <td><p>classcodes object</p></td>
     </tr>
     <tr>
-      <th>classified</th>
-      <td><p>object that classcodes could be inherited from</p></td>
+      <th>coding</th>
+      <td><p>either a vector with codes from the original classification,
+or a name (character vector of length one) keyvalue object from package
+"decoder" (for example "icd10cm" or "atc")</p></td>
     </tr>
     <tr>
-      <th>regex</th>
-      <td><p>name of column with regular expressions to use for
-classification, either with or without prefix <code>regex_</code>.
-<code>NULL</code> (default) uses the first classcodes column with prefix "regex".
-This should be a sensible choice for default classcodes object included in the package.</p></td>
-    </tr>
-    <tr>
-      <th>start, stop</th>
-      <td><p>should codes start/end with the specified regular expressions?
-If <code>TRUE</code>, column "regex" is prefixed/suffixed by "^"/"$".</p></td>
-    </tr>
-    <tr>
-      <th>tech_names</th>
-      <td><p>should technical column names be used? If <code>FALSE</code>,
-colnames are taken directly from group names of <code>by</code>, if <code>TRUE</code>,
-these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.</p></td>
+      <th>...</th>
+      <td><p>arguments passed to <code><a href='summary.classcodes.html'>summary.classcodes</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code><a href='classcodes.html'>classcodes</a></code> object.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other classcodes: 
-<code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
-<code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
-<code><a href='classcodes.html'>classcodes</a></code>,
-<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
-<code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
-<code><a href='visualize.html'>visualize</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

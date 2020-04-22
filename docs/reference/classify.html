@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
       </span>
     </div>
 
@@ -98,7 +98,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Comorbidity.html">Co-morbidity</a>
+      <a href="../articles/classcodes.html">Classcodes objects</a>
+    </li>
+    <li>
+      <a href="../articles/comorbidity.html">Co-morbidity</a>
+    </li>
+    <li>
+      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -239,22 +245,22 @@ of row names.</p>
 <span class='co'># id column instead of row names</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>y</span>)</div><div class='output co'>#&gt;                          name charlson_icd10_rcs_myocardial_infarction
 #&gt; 1              Bivings, Devin                                    FALSE
-#&gt; 2            Liufau, Sue Lynn                                    FALSE
-#&gt; 3             Mitchell, Dalon                                    FALSE
-#&gt; 4                Perez, Vidal                                    FALSE
-#&gt; 5             Valdez, Antonio                                    FALSE
-#&gt; 6             al-Dib, Farhaan                                    FALSE
-#&gt; 7         el-Salehi, Mahuroos                                    FALSE
-#&gt; 8              Beehler, Kelly                                       NA
-#&gt; 9             Connors, Jaylyn                                       NA
-#&gt; 10           Lechuga, Anthony                                       NA
-#&gt; 11          Martinez, Columba                                       NA
-#&gt; 12            Mendoza, Nathan                                       NA
-#&gt; 13    Miller, Von Buddenbrock                                       NA
-#&gt; 14             Orozco, Daniel                                       NA
-#&gt; 15            Snider, Melanie                                       NA
-#&gt; 16   Cardenas Perez, Gabriela                                    FALSE
-#&gt; 17        al-Bashara, Shaahir                                    FALSE
+#&gt; 2    Cardenas Perez, Gabriela                                    FALSE
+#&gt; 3            Liufau, Sue Lynn                                    FALSE
+#&gt; 4             Mitchell, Dalon                                    FALSE
+#&gt; 5                Perez, Vidal                                    FALSE
+#&gt; 6             Valdez, Antonio                                    FALSE
+#&gt; 7         al-Bashara, Shaahir                                    FALSE
+#&gt; 8             al-Dib, Farhaan                                    FALSE
+#&gt; 9         el-Salehi, Mahuroos                                    FALSE
+#&gt; 10             Beehler, Kelly                                       NA
+#&gt; 11            Connors, Jaylyn                                       NA
+#&gt; 12           Lechuga, Anthony                                       NA
+#&gt; 13          Martinez, Columba                                       NA
+#&gt; 14            Mendoza, Nathan                                       NA
+#&gt; 15    Miller, Von Buddenbrock                                       NA
+#&gt; 16             Orozco, Daniel                                       NA
+#&gt; 17            Snider, Melanie                                       NA
 #&gt; 18     al-Asmar, Abdur Raheem                                    FALSE
 #&gt; 19           al-Dawood, Hasan                                    FALSE
 #&gt; 20         al-Ismail, Waleeda                                    FALSE
@@ -346,16 +352,16 @@ of row names.</p>
 #&gt; 5                                         FALSE
 #&gt; 6                                         FALSE
 #&gt; 7                                         FALSE
-#&gt; 8                                            NA
-#&gt; 9                                            NA
+#&gt; 8                                         FALSE
+#&gt; 9                                         FALSE
 #&gt; 10                                           NA
 #&gt; 11                                           NA
 #&gt; 12                                           NA
 #&gt; 13                                           NA
 #&gt; 14                                           NA
 #&gt; 15                                           NA
-#&gt; 16                                        FALSE
-#&gt; 17                                        FALSE
+#&gt; 16                                           NA
+#&gt; 17                                           NA
 #&gt; 18                                        FALSE
 #&gt; 19                                        FALSE
 #&gt; 20                                        FALSE
@@ -381,7 +387,7 @@ of row names.</p>
 #&gt; 40                                        FALSE
 #&gt; 41                                        FALSE
 #&gt; 42                                        FALSE
-#&gt; 43                                        FALSE
+#&gt; 43                                         TRUE
 #&gt; 44                                        FALSE
 #&gt; 45                                        FALSE
 #&gt; 46                                        FALSE
@@ -395,11 +401,11 @@ of row names.</p>
 #&gt; 54                                        FALSE
 #&gt; 55                                        FALSE
 #&gt; 56                                        FALSE
-#&gt; 57                                         TRUE
+#&gt; 57                                        FALSE
 #&gt; 58                                        FALSE
 #&gt; 59                                        FALSE
 #&gt; 60                                        FALSE
-#&gt; 61                                         TRUE
+#&gt; 61                                        FALSE
 #&gt; 62                                        FALSE
 #&gt; 63                                        FALSE
 #&gt; 64                                        FALSE
@@ -447,16 +453,16 @@ of row names.</p>
 #&gt; 5                                            FALSE
 #&gt; 6                                            FALSE
 #&gt; 7                                            FALSE
-#&gt; 8                                               NA
-#&gt; 9                                               NA
+#&gt; 8                                            FALSE
+#&gt; 9                                            FALSE
 #&gt; 10                                              NA
 #&gt; 11                                              NA
 #&gt; 12                                              NA
 #&gt; 13                                              NA
 #&gt; 14                                              NA
 #&gt; 15                                              NA
-#&gt; 16                                           FALSE
-#&gt; 17                                           FALSE
+#&gt; 16                                              NA
+#&gt; 17                                              NA
 #&gt; 18                                           FALSE
 #&gt; 19                                           FALSE
 #&gt; 20                                           FALSE
@@ -465,7 +471,7 @@ of row names.</p>
 #&gt; 23                                           FALSE
 #&gt; 24                                           FALSE
 #&gt; 25                                           FALSE
-#&gt; 26                                           FALSE
+#&gt; 26                                            TRUE
 #&gt; 27                                           FALSE
 #&gt; 28                                           FALSE
 #&gt; 29                                           FALSE
@@ -494,7 +500,7 @@ of row names.</p>
 #&gt; 52                                           FALSE
 #&gt; 53                                           FALSE
 #&gt; 54                                           FALSE
-#&gt; 55                                            TRUE
+#&gt; 55                                           FALSE
 #&gt; 56                                           FALSE
 #&gt; 57                                           FALSE
 #&gt; 58                                           FALSE
@@ -548,16 +554,16 @@ of row names.</p>
 #&gt; 5                                        FALSE                       FALSE
 #&gt; 6                                        FALSE                       FALSE
 #&gt; 7                                        FALSE                       FALSE
-#&gt; 8                                           NA                          NA
-#&gt; 9                                           NA                          NA
+#&gt; 8                                        FALSE                       FALSE
+#&gt; 9                                        FALSE                       FALSE
 #&gt; 10                                          NA                          NA
 #&gt; 11                                          NA                          NA
 #&gt; 12                                          NA                          NA
 #&gt; 13                                          NA                          NA
 #&gt; 14                                          NA                          NA
 #&gt; 15                                          NA                          NA
-#&gt; 16                                       FALSE                       FALSE
-#&gt; 17                                       FALSE                       FALSE
+#&gt; 16                                          NA                          NA
+#&gt; 17                                          NA                          NA
 #&gt; 18                                       FALSE                       FALSE
 #&gt; 19                                       FALSE                       FALSE
 #&gt; 20                                       FALSE                       FALSE
@@ -578,13 +584,13 @@ of row names.</p>
 #&gt; 35                                       FALSE                       FALSE
 #&gt; 36                                       FALSE                       FALSE
 #&gt; 37                                       FALSE                       FALSE
-#&gt; 38                                        TRUE                       FALSE
+#&gt; 38                                       FALSE                       FALSE
 #&gt; 39                                       FALSE                       FALSE
 #&gt; 40                                       FALSE                       FALSE
 #&gt; 41                                       FALSE                       FALSE
-#&gt; 42                                        TRUE                       FALSE
+#&gt; 42                                       FALSE                       FALSE
 #&gt; 43                                       FALSE                       FALSE
-#&gt; 44                                       FALSE                        TRUE
+#&gt; 44                                       FALSE                       FALSE
 #&gt; 45                                       FALSE                       FALSE
 #&gt; 46                                       FALSE                       FALSE
 #&gt; 47                                       FALSE                       FALSE
@@ -592,7 +598,7 @@ of row names.</p>
 #&gt; 49                                       FALSE                       FALSE
 #&gt; 50                                       FALSE                       FALSE
 #&gt; 51                                       FALSE                       FALSE
-#&gt; 52                                        TRUE                       FALSE
+#&gt; 52                                       FALSE                       FALSE
 #&gt; 53                                       FALSE                       FALSE
 #&gt; 54                                       FALSE                       FALSE
 #&gt; 55                                       FALSE                       FALSE
@@ -621,12 +627,12 @@ of row names.</p>
 #&gt; 78                                       FALSE                       FALSE
 #&gt; 79                                       FALSE                       FALSE
 #&gt; 80                                       FALSE                       FALSE
-#&gt; 81                                       FALSE                       FALSE
+#&gt; 81                                        TRUE                       FALSE
 #&gt; 82                                       FALSE                       FALSE
 #&gt; 83                                       FALSE                       FALSE
 #&gt; 84                                       FALSE                       FALSE
 #&gt; 85                                       FALSE                       FALSE
-#&gt; 86                                       FALSE                       FALSE
+#&gt; 86                                        TRUE                       FALSE
 #&gt; 87                                       FALSE                       FALSE
 #&gt; 88                                       FALSE                       FALSE
 #&gt; 89                                       FALSE                       FALSE
@@ -635,7 +641,7 @@ of row names.</p>
 #&gt; 92                                       FALSE                       FALSE
 #&gt; 93                                       FALSE                       FALSE
 #&gt; 94                                       FALSE                       FALSE
-#&gt; 95                                       FALSE                        TRUE
+#&gt; 95                                       FALSE                       FALSE
 #&gt; 96                                       FALSE                       FALSE
 #&gt; 97                                       FALSE                       FALSE
 #&gt; 98                                       FALSE                       FALSE
@@ -649,16 +655,16 @@ of row names.</p>
 #&gt; 5                                          FALSE
 #&gt; 6                                          FALSE
 #&gt; 7                                          FALSE
-#&gt; 8                                             NA
-#&gt; 9                                             NA
+#&gt; 8                                          FALSE
+#&gt; 9                                          FALSE
 #&gt; 10                                            NA
 #&gt; 11                                            NA
 #&gt; 12                                            NA
 #&gt; 13                                            NA
 #&gt; 14                                            NA
 #&gt; 15                                            NA
-#&gt; 16                                         FALSE
-#&gt; 17                                         FALSE
+#&gt; 16                                            NA
+#&gt; 17                                            NA
 #&gt; 18                                         FALSE
 #&gt; 19                                         FALSE
 #&gt; 20                                         FALSE
@@ -750,16 +756,16 @@ of row names.</p>
 #&gt; 5                                  FALSE
 #&gt; 6                                  FALSE
 #&gt; 7                                  FALSE
-#&gt; 8                                     NA
-#&gt; 9                                     NA
+#&gt; 8                                  FALSE
+#&gt; 9                                  FALSE
 #&gt; 10                                    NA
 #&gt; 11                                    NA
 #&gt; 12                                    NA
 #&gt; 13                                    NA
 #&gt; 14                                    NA
 #&gt; 15                                    NA
-#&gt; 16                                 FALSE
-#&gt; 17                                 FALSE
+#&gt; 16                                    NA
+#&gt; 17                                    NA
 #&gt; 18                                 FALSE
 #&gt; 19                                 FALSE
 #&gt; 20                                 FALSE
@@ -789,7 +795,7 @@ of row names.</p>
 #&gt; 44                                 FALSE
 #&gt; 45                                 FALSE
 #&gt; 46                                 FALSE
-#&gt; 47                                 FALSE
+#&gt; 47                                  TRUE
 #&gt; 48                                 FALSE
 #&gt; 49                                 FALSE
 #&gt; 50                                 FALSE
@@ -807,7 +813,7 @@ of row names.</p>
 #&gt; 62                                 FALSE
 #&gt; 63                                 FALSE
 #&gt; 64                                 FALSE
-#&gt; 65                                  TRUE
+#&gt; 65                                 FALSE
 #&gt; 66                                 FALSE
 #&gt; 67                                 FALSE
 #&gt; 68                                 FALSE
@@ -816,13 +822,13 @@ of row names.</p>
 #&gt; 71                                 FALSE
 #&gt; 72                                 FALSE
 #&gt; 73                                 FALSE
-#&gt; 74                                  TRUE
-#&gt; 75                                 FALSE
+#&gt; 74                                 FALSE
+#&gt; 75                                  TRUE
 #&gt; 76                                 FALSE
 #&gt; 77                                 FALSE
 #&gt; 78                                 FALSE
 #&gt; 79                                 FALSE
-#&gt; 80                                  TRUE
+#&gt; 80                                 FALSE
 #&gt; 81                                 FALSE
 #&gt; 82                                 FALSE
 #&gt; 83                                 FALSE
@@ -835,7 +841,7 @@ of row names.</p>
 #&gt; 90                                 FALSE
 #&gt; 91                                 FALSE
 #&gt; 92                                 FALSE
-#&gt; 93                                 FALSE
+#&gt; 93                                  TRUE
 #&gt; 94                                 FALSE
 #&gt; 95                                 FALSE
 #&gt; 96                                 FALSE
@@ -851,16 +857,16 @@ of row names.</p>
 #&gt; 5                                         FALSE
 #&gt; 6                                         FALSE
 #&gt; 7                                         FALSE
-#&gt; 8                                            NA
-#&gt; 9                                            NA
+#&gt; 8                                         FALSE
+#&gt; 9                                         FALSE
 #&gt; 10                                           NA
 #&gt; 11                                           NA
 #&gt; 12                                           NA
 #&gt; 13                                           NA
 #&gt; 14                                           NA
 #&gt; 15                                           NA
-#&gt; 16                                        FALSE
-#&gt; 17                                         TRUE
+#&gt; 16                                           NA
+#&gt; 17                                           NA
 #&gt; 18                                        FALSE
 #&gt; 19                                        FALSE
 #&gt; 20                                        FALSE
@@ -937,7 +943,7 @@ of row names.</p>
 #&gt; 91                                        FALSE
 #&gt; 92                                        FALSE
 #&gt; 93                                        FALSE
-#&gt; 94                                         TRUE
+#&gt; 94                                        FALSE
 #&gt; 95                                        FALSE
 #&gt; 96                                        FALSE
 #&gt; 97                                        FALSE
@@ -952,16 +958,16 @@ of row names.</p>
 #&gt; 5                              FALSE                                    FALSE
 #&gt; 6                              FALSE                                    FALSE
 #&gt; 7                              FALSE                                    FALSE
-#&gt; 8                                 NA                                       NA
-#&gt; 9                                 NA                                       NA
+#&gt; 8                              FALSE                                    FALSE
+#&gt; 9                              FALSE                                    FALSE
 #&gt; 10                                NA                                       NA
 #&gt; 11                                NA                                       NA
 #&gt; 12                                NA                                       NA
 #&gt; 13                                NA                                       NA
 #&gt; 14                                NA                                       NA
 #&gt; 15                                NA                                       NA
-#&gt; 16                             FALSE                                    FALSE
-#&gt; 17                             FALSE                                    FALSE
+#&gt; 16                                NA                                       NA
+#&gt; 17                                NA                                       NA
 #&gt; 18                             FALSE                                    FALSE
 #&gt; 19                             FALSE                                    FALSE
 #&gt; 20                             FALSE                                    FALSE
@@ -972,12 +978,12 @@ of row names.</p>
 #&gt; 25                             FALSE                                    FALSE
 #&gt; 26                             FALSE                                    FALSE
 #&gt; 27                             FALSE                                    FALSE
-#&gt; 28                             FALSE                                    FALSE
-#&gt; 29                             FALSE                                    FALSE
+#&gt; 28                             FALSE                                     TRUE
+#&gt; 29                              TRUE                                    FALSE
 #&gt; 30                             FALSE                                    FALSE
 #&gt; 31                             FALSE                                    FALSE
 #&gt; 32                             FALSE                                    FALSE
-#&gt; 33                             FALSE                                    FALSE
+#&gt; 33                              TRUE                                    FALSE
 #&gt; 34                             FALSE                                    FALSE
 #&gt; 35                             FALSE                                    FALSE
 #&gt; 36                             FALSE                                    FALSE
@@ -994,19 +1000,19 @@ of row names.</p>
 #&gt; 47                             FALSE                                    FALSE
 #&gt; 48                             FALSE                                    FALSE
 #&gt; 49                             FALSE                                    FALSE
-#&gt; 50                             FALSE                                     TRUE
+#&gt; 50                             FALSE                                    FALSE
 #&gt; 51                             FALSE                                    FALSE
 #&gt; 52                             FALSE                                    FALSE
 #&gt; 53                             FALSE                                    FALSE
 #&gt; 54                             FALSE                                    FALSE
 #&gt; 55                             FALSE                                    FALSE
 #&gt; 56                             FALSE                                    FALSE
-#&gt; 57                              TRUE                                    FALSE
+#&gt; 57                             FALSE                                    FALSE
 #&gt; 58                             FALSE                                    FALSE
 #&gt; 59                             FALSE                                    FALSE
 #&gt; 60                             FALSE                                    FALSE
 #&gt; 61                             FALSE                                    FALSE
-#&gt; 62                              TRUE                                    FALSE
+#&gt; 62                             FALSE                                    FALSE
 #&gt; 63                             FALSE                                    FALSE
 #&gt; 64                             FALSE                                    FALSE
 #&gt; 65                             FALSE                                    FALSE
@@ -1015,14 +1021,14 @@ of row names.</p>
 #&gt; 68                             FALSE                                    FALSE
 #&gt; 69                             FALSE                                    FALSE
 #&gt; 70                             FALSE                                    FALSE
-#&gt; 71                             FALSE                                     TRUE
+#&gt; 71                             FALSE                                    FALSE
 #&gt; 72                             FALSE                                    FALSE
 #&gt; 73                             FALSE                                    FALSE
 #&gt; 74                             FALSE                                    FALSE
 #&gt; 75                             FALSE                                    FALSE
 #&gt; 76                             FALSE                                    FALSE
 #&gt; 77                             FALSE                                    FALSE
-#&gt; 78                              TRUE                                    FALSE
+#&gt; 78                             FALSE                                    FALSE
 #&gt; 79                             FALSE                                    FALSE
 #&gt; 80                             FALSE                                    FALSE
 #&gt; 81                             FALSE                                    FALSE
@@ -1037,11 +1043,11 @@ of row names.</p>
 #&gt; 90                             FALSE                                    FALSE
 #&gt; 91                             FALSE                                    FALSE
 #&gt; 92                             FALSE                                    FALSE
-#&gt; 93                             FALSE                                    FALSE
+#&gt; 93                              TRUE                                    FALSE
 #&gt; 94                             FALSE                                    FALSE
 #&gt; 95                             FALSE                                    FALSE
 #&gt; 96                             FALSE                                    FALSE
-#&gt; 97                             FALSE                                     TRUE
+#&gt; 97                             FALSE                                    FALSE
 #&gt; 98                             FALSE                                    FALSE
 #&gt; 99                             FALSE                                    FALSE
 #&gt; 100                            FALSE                                    FALSE
@@ -1053,17 +1059,17 @@ of row names.</p>
 #&gt; 5                           FALSE
 #&gt; 6                           FALSE
 #&gt; 7                           FALSE
-#&gt; 8                              NA
-#&gt; 9                              NA
+#&gt; 8                           FALSE
+#&gt; 9                           FALSE
 #&gt; 10                             NA
 #&gt; 11                             NA
 #&gt; 12                             NA
 #&gt; 13                             NA
 #&gt; 14                             NA
 #&gt; 15                             NA
-#&gt; 16                           TRUE
-#&gt; 17                          FALSE
-#&gt; 18                          FALSE
+#&gt; 16                             NA
+#&gt; 17                             NA
+#&gt; 18                           TRUE
 #&gt; 19                          FALSE
 #&gt; 20                          FALSE
 #&gt; 21                          FALSE
@@ -1073,24 +1079,24 @@ of row names.</p>
 #&gt; 25                          FALSE
 #&gt; 26                          FALSE
 #&gt; 27                          FALSE
-#&gt; 28                          FALSE
+#&gt; 28                           TRUE
 #&gt; 29                          FALSE
 #&gt; 30                          FALSE
 #&gt; 31                          FALSE
 #&gt; 32                          FALSE
-#&gt; 33                          FALSE
+#&gt; 33                           TRUE
 #&gt; 34                          FALSE
 #&gt; 35                          FALSE
 #&gt; 36                          FALSE
-#&gt; 37                           TRUE
+#&gt; 37                          FALSE
 #&gt; 38                          FALSE
-#&gt; 39                          FALSE
+#&gt; 39                           TRUE
 #&gt; 40                          FALSE
 #&gt; 41                          FALSE
 #&gt; 42                          FALSE
 #&gt; 43                          FALSE
 #&gt; 44                          FALSE
-#&gt; 45                           TRUE
+#&gt; 45                          FALSE
 #&gt; 46                          FALSE
 #&gt; 47                          FALSE
 #&gt; 48                          FALSE
@@ -1104,46 +1110,46 @@ of row names.</p>
 #&gt; 56                          FALSE
 #&gt; 57                          FALSE
 #&gt; 58                          FALSE
-#&gt; 59                           TRUE
+#&gt; 59                          FALSE
 #&gt; 60                          FALSE
 #&gt; 61                          FALSE
 #&gt; 62                          FALSE
 #&gt; 63                          FALSE
 #&gt; 64                          FALSE
 #&gt; 65                          FALSE
-#&gt; 66                           TRUE
+#&gt; 66                          FALSE
 #&gt; 67                          FALSE
 #&gt; 68                          FALSE
 #&gt; 69                          FALSE
 #&gt; 70                          FALSE
-#&gt; 71                           TRUE
+#&gt; 71                          FALSE
 #&gt; 72                          FALSE
 #&gt; 73                          FALSE
-#&gt; 74                           TRUE
+#&gt; 74                          FALSE
 #&gt; 75                          FALSE
 #&gt; 76                          FALSE
-#&gt; 77                           TRUE
+#&gt; 77                          FALSE
 #&gt; 78                          FALSE
 #&gt; 79                          FALSE
 #&gt; 80                          FALSE
-#&gt; 81                           TRUE
-#&gt; 82                           TRUE
+#&gt; 81                          FALSE
+#&gt; 82                          FALSE
 #&gt; 83                          FALSE
 #&gt; 84                          FALSE
 #&gt; 85                          FALSE
-#&gt; 86                           TRUE
+#&gt; 86                          FALSE
 #&gt; 87                          FALSE
 #&gt; 88                          FALSE
 #&gt; 89                          FALSE
 #&gt; 90                          FALSE
 #&gt; 91                          FALSE
-#&gt; 92                          FALSE
-#&gt; 93                           TRUE
+#&gt; 92                           TRUE
+#&gt; 93                          FALSE
 #&gt; 94                          FALSE
 #&gt; 95                          FALSE
 #&gt; 96                          FALSE
 #&gt; 97                          FALSE
-#&gt; 98                           TRUE
+#&gt; 98                          FALSE
 #&gt; 99                          FALSE
 #&gt; 100                         FALSE
 #&gt;     charlson_icd10_rcs_moderate_or_severe_liver_disease
@@ -1154,16 +1160,16 @@ of row names.</p>
 #&gt; 5                                                 FALSE
 #&gt; 6                                                 FALSE
 #&gt; 7                                                 FALSE
-#&gt; 8                                                    NA
-#&gt; 9                                                    NA
+#&gt; 8                                                 FALSE
+#&gt; 9                                                 FALSE
 #&gt; 10                                                   NA
 #&gt; 11                                                   NA
 #&gt; 12                                                   NA
 #&gt; 13                                                   NA
 #&gt; 14                                                   NA
 #&gt; 15                                                   NA
-#&gt; 16                                                FALSE
-#&gt; 17                                                FALSE
+#&gt; 16                                                   NA
+#&gt; 17                                                   NA
 #&gt; 18                                                FALSE
 #&gt; 19                                                FALSE
 #&gt; 20                                                FALSE
@@ -1180,12 +1186,12 @@ of row names.</p>
 #&gt; 31                                                FALSE
 #&gt; 32                                                FALSE
 #&gt; 33                                                FALSE
-#&gt; 34                                                 TRUE
+#&gt; 34                                                FALSE
 #&gt; 35                                                FALSE
 #&gt; 36                                                FALSE
-#&gt; 37                                                 TRUE
+#&gt; 37                                                FALSE
 #&gt; 38                                                FALSE
-#&gt; 39                                                 TRUE
+#&gt; 39                                                FALSE
 #&gt; 40                                                FALSE
 #&gt; 41                                                FALSE
 #&gt; 42                                                FALSE
@@ -1238,7 +1244,7 @@ of row names.</p>
 #&gt; 89                                                FALSE
 #&gt; 90                                                FALSE
 #&gt; 91                                                FALSE
-#&gt; 92                                                 TRUE
+#&gt; 92                                                FALSE
 #&gt; 93                                                FALSE
 #&gt; 94                                                FALSE
 #&gt; 95                                                FALSE
@@ -1255,16 +1261,16 @@ of row names.</p>
 #&gt; 5                                       FALSE                       FALSE
 #&gt; 6                                       FALSE                       FALSE
 #&gt; 7                                       FALSE                       FALSE
-#&gt; 8                                          NA                          NA
-#&gt; 9                                          NA                          NA
+#&gt; 8                                       FALSE                       FALSE
+#&gt; 9                                       FALSE                       FALSE
 #&gt; 10                                         NA                          NA
 #&gt; 11                                         NA                          NA
 #&gt; 12                                         NA                          NA
 #&gt; 13                                         NA                          NA
 #&gt; 14                                         NA                          NA
 #&gt; 15                                         NA                          NA
-#&gt; 16                                      FALSE                       FALSE
-#&gt; 17                                      FALSE                       FALSE
+#&gt; 16                                         NA                          NA
+#&gt; 17                                         NA                          NA
 #&gt; 18                                      FALSE                       FALSE
 #&gt; 19                                      FALSE                       FALSE
 #&gt; 20                                      FALSE                       FALSE
@@ -1291,14 +1297,14 @@ of row names.</p>
 #&gt; 41                                      FALSE                       FALSE
 #&gt; 42                                      FALSE                       FALSE
 #&gt; 43                                      FALSE                       FALSE
-#&gt; 44                                      FALSE                        TRUE
+#&gt; 44                                      FALSE                       FALSE
 #&gt; 45                                      FALSE                       FALSE
 #&gt; 46                                      FALSE                       FALSE
 #&gt; 47                                      FALSE                       FALSE
 #&gt; 48                                      FALSE                       FALSE
 #&gt; 49                                      FALSE                       FALSE
 #&gt; 50                                      FALSE                       FALSE
-#&gt; 51                                       TRUE                       FALSE
+#&gt; 51                                      FALSE                       FALSE
 #&gt; 52                                      FALSE                       FALSE
 #&gt; 53                                      FALSE                       FALSE
 #&gt; 54                                      FALSE                       FALSE
@@ -1341,7 +1347,7 @@ of row names.</p>
 #&gt; 91                                      FALSE                       FALSE
 #&gt; 92                                      FALSE                       FALSE
 #&gt; 93                                      FALSE                       FALSE
-#&gt; 94                                      FALSE                       FALSE
+#&gt; 94                                       TRUE                       FALSE
 #&gt; 95                                      FALSE                       FALSE
 #&gt; 96                                      FALSE                       FALSE
 #&gt; 97                                      FALSE                       FALSE
@@ -1363,7 +1369,7 @@ of row names.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

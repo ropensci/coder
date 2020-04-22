@@ -8,7 +8,7 @@
 #' @param object classcodes object
 #' @param coding either a vector with codes from the original classification,
 #'   or a name (character vector of length one) keyvalue object from package
-#'   "decoder" (for example "icd10" or "atc")
+#'   "decoder" (for example "icd10cm" or "atc")
 #' @param ... ignored
 #' @param cc_args List of named arguments passed to \code{\link{set_classcodes}}
 #'
@@ -31,7 +31,7 @@
 #' @family classcodes
 #'
 #' @examples
-#' summary(elixhauser, coding = "icd10")
+#' summary(elixhauser, coding = "icd10cm")
 summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 
   cl <-
@@ -82,7 +82,7 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 #' @export
 #' @family classcodes
 #' @examples
-#' print(summary(elixhauser, coding = "icd10"))
+#' print(summary(elixhauser, coding = "icd10cm"))
 print.summary.classcodes <- function(x, n_print = 50, ...) {
 
   # List of indices used by the object
