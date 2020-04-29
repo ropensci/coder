@@ -59,5 +59,30 @@ test_that("missing dates", {
       3
     )
   )
-})
 
+
+  expect_error(
+    codify(ex_people, ex_icd10, id = "wrong", date = "event"),
+    "No id column 'wrong' in data!"
+  )
+  ex_people$wrong_class <- as.numeric(as.factor(ex_people$name))
+  expect_error(
+    codify(ex_people, ex_icd10, id = "wrong_class", date = "event"),
+    "Id column must be of type character!"
+  )
+  expect_error(
+    codify(ex_people, ex_icd10, id = "name", days = c(-10, 10)),
+    "Argument 'date' must be specified if 'days' is not NULL!"
+  )
+  ex_people$wrong_date <- as.character(ex_people$event)
+  expect_error(
+    codify(ex_people, ex_icd10, id = "name",
+           date = "wrong_date", days = c(-10, 10)),
+    "Date column 'wrong_date' is not of class 'Date'!"
+  )
+
+  expect_equal(
+    codify(ex_people, ex_icd10, id = "name"),
+    codify(ex_people, as.data.frame(ex_icd10), id = "name")
+  )
+})

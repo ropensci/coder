@@ -26,15 +26,13 @@ set_classcodes <- function(
   obj <-
     if (is.classcodes(cc)) {
       cc
-    } else if (is.character(cc) && exists(cc, envir = .GlobalEnv)) {
-      get(cc)
     } else if (is.character(cc) &&
                cc %in% utils::data(package = "coder")$results[, "Item"]) {
       utils::data(list = cc, package = "coder", envir = environment())
       get(cc, envir = environment())
     } else if (is.null(cc) && is.classcodes(inh)) {
       inh
-    } else if (is.null(cc) &&
+    } else if (is.null(cc) && !is.null(inh) && !identical(inh, character(0)) &&
                inh %in% utils::data(package = "coder")$results[, "Item"]) {
       utils::data(list = inh, package = "coder", envir = environment())
       get(inh, envir = environment())
@@ -49,7 +47,10 @@ set_classcodes <- function(
 
   if (tech_names) {
     obj$group <- clean_text(
-      attr(obj, "name", exact = TRUE), paste(regex, obj$group, sep = "_"))
+      attr(obj, "name", exact = TRUE),
+      paste(if (is.null(regex)) attr(obj, "regexpr")[1] else regex,
+      obj$group, sep = "_")
+    )
   }
 
   # identify regex column from regex attributes

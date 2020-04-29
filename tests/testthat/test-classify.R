@@ -27,10 +27,10 @@ test_that("classify", {
     suppressWarnings(classify(x, "elixhauser", code = "wrong")),
     "wrong should specify codes but is not a column of x!"
   )
-  # Result should be matrix even if only one row
+  # Result should be matrix even if only one item has multiple codes
   expect_equal(
     class(suppressWarnings(classify(x, "elixhauser"))),
-    class(suppressWarnings(classify(x[1], "elixhauser")))
+    class(suppressWarnings(classify(x[1:2], "elixhauser")))
   )
 })
 
@@ -72,18 +72,25 @@ people <-
 
 cd <- codify(people, ex_cars, id = "name")
 
-# Use different conditions and check that result differs
-ex_carbrands$condition <- "cond1"
-cl1 <- suppressWarnings(classify(cd, ex_carbrands))
-ex_carbrands$condition <- "cond2"
-cl2 <- suppressWarnings(classify(cd, ex_carbrands))
-ex_carbrands$condition <- "cond3"
-cl3 <- suppressWarnings(classify(cd, ex_carbrands))
-
+# Use diff
 test_that("condition", {
-  expect_equal(sum(cl1, na.rm = TRUE), 5)
-  expect_equal(sum(cl2, na.rm = TRUE), 0)
-  expect_true(all(cl3 %in% c(NA, FALSE)))
+
+  ex_carbrands$condition <- "cond1"
+  expect_equal(
+    sum(suppressWarnings(classify(cd, ex_carbrands)), na.rm = TRUE),
+    5
+  )
+
+  ex_carbrands$condition <- "cond2"
+  expect_equal(
+    sum(suppressWarnings(classify(cd, ex_carbrands)), na.rm = TRUE),
+    0
+  )
+
+  ex_carbrands$condition <- "cond3"
+  expect_true(
+    all(suppressWarnings(classify(cd, ex_carbrands)) %in% c(NA, FALSE))
+  )
 })
 
 

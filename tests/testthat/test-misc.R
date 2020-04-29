@@ -1,15 +1,17 @@
 context("misc")
 
-y <- x <-
-  codify(ex_people, ex_icd10, id = "name", date = "event", days = c(-365, 0))
+test_that("misc", {
+  expect_equal(iris, copybig(iris, FALSE))
 
-x <- suppressWarnings(classify(x, "elixhauser"))
+  expect_equal(spss2date(0), as.Date("1582-10-14"))
 
-y <- suppressWarnings(classify(y, elixhauser))
+  expect_equal(clean_text("prefix", "Hello World!"), "prefix_hello_world_")
+  expect_error(
+    clean_text(iris, "wrong"),
+    "Object iris must be refferred by name"
+  )
 
-test_that("get_classcodes", {
-  expect_error(set_classcodes("hejsan"))
-  expect_equal(set_classcodes(NULL, x),      set_classcodes(elixhauser))
-  expect_equal(set_classcodes(NULL, y),      set_classcodes(elixhauser))
+  expect_equal(decoder_data("ben"), decoder::ben)
+  expect_error(decoder_data("wrong_yee!"), "'coding' should be one of")
 })
 

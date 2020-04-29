@@ -39,4 +39,15 @@ codebook(elixhauser, "icd9cmd",
 }
 \seealso{
 codebooks
+
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{codebooks}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{set_classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 }
+\concept{classcodes}

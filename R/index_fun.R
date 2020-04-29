@@ -47,7 +47,7 @@ index.data.frame <- function(classified, ...) {
   message("column '", names(classified)[1], "' used as id!")
   y <- as.matrix(classified[-1])
   dimnames(y)[1] <- classified[1]
-  index(y, from = attr(classified, "classcodes"), ...)
+  index(y, cc = attr(classified, "classcodes"), ...)
 }
 
 #' @rdname index_fun
@@ -67,8 +67,6 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
     if (is.null(index)) {
       message("index calculated as number of relevant categories")
       rowSums(classified)
-    } else if (is.null(cc)) {
-      stop("Argument 'from' is missing!")
     } else if (!index %in% names(cc) & !any(endsWith(names(cc), index))) {
       stop(gettextf("'%s' is not a column of the classcodes object!", index))
     } else if (!all(vapply(regularize(cc$group),

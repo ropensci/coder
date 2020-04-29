@@ -18,3 +18,10 @@ or a name (character vector of length one) keyvalue object from package
 \description{
 Make keyvalue object from classcodes object
 }
+\seealso{
+Other helper: 
+\code{\link{dates_within}()},
+\code{\link{filter_dates}()},
+\code{\link{spss2date}()}
+}
+\concept{helper}

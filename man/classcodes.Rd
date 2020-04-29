@@ -64,6 +64,8 @@ list all codes individually.
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
+\code{\link{codebooks}()},
+\code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
@@ -72,6 +74,8 @@ Other classcodes:
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
+\code{\link{codebooks}()},
+\code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},

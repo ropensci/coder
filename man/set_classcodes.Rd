@@ -42,6 +42,8 @@ Other classcodes:
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
+\code{\link{codebooks}()},
+\code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize}()}

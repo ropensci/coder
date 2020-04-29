@@ -53,16 +53,18 @@ in use, and during the creation and debugging of such.
  # Show all groups from Charlson
  visualize("charlson")
 
- # Get URL for later visualization
- (visualize("hip_fracture_ae", show = FALSE))
-
 }
+
+ # Get URL for later visualization
+ visualize("hip_ae", show = FALSE)
 }
 \seealso{
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
+\code{\link{codebooks}()},
+\code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()}

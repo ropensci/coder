@@ -12,6 +12,14 @@ test_that("Charlson", {
     )
   )
   expect_error(index(y, "hej"), "is not a column of the classcodes object!")
+  expect_message(index(y), "index calculated as number of relevant categories")
+  expect_equal(index(y), index(as.data.frame(y)))
+  expect_message(index(as.data.frame(y)), "column 'name' used as id!")
+
+  expect_error(
+    index(y, "index_sid30", cc = elixhauser),
+    "Data non consistent with specified classcodes!"
+  )
 })
 
 

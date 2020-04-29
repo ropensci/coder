@@ -27,4 +27,15 @@ codebooks(elix_icd10 = c1, elix_icd9cm = c2)
 }
 \seealso{
 codebook
+
+Other classcodes: 
+\code{\link{all_classcodes}()},
+\code{\link{as.data.frame.classified}()},
+\code{\link{classcodes}},
+\code{\link{codebook}()},
+\code{\link{print.summary.classcodes}()},
+\code{\link{set_classcodes}()},
+\code{\link{summary.classcodes}()},
+\code{\link{visualize}()}
 }
+\concept{classcodes}

@@ -43,6 +43,7 @@ filter_dates(data.frame(date = x, foo  = 1:3))
 }
 \seealso{
 Other helper: 
+\code{\link{as.keyvalue.classcodes}()},
 \code{\link{dates_within}()},
 \code{\link{spss2date}()}
 }

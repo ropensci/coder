@@ -35,10 +35,10 @@
 #'  # Show all groups from Charlson
 #'  visualize("charlson")
 #'
-#'  # Get URL for later visualization
-#'  (visualize("hip_fracture_ae", show = FALSE))
-#'
 #' }
+#'
+#'  # Get URL for later visualization
+#'  visualize("hip_ae", show = FALSE)
 #' @family classcodes
 visualize <- function(cc, group = NULL, show = TRUE, ...) {
   cc <- set_classcodes(cc, ...)

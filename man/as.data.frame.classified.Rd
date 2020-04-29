@@ -30,6 +30,8 @@ Convert output matrix from classify to data frame or data.table
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{classcodes}},
+\code{\link{codebooks}()},
+\code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},

@@ -136,8 +136,8 @@ citation("coder")
 #> 
 #> To cite package 'coder' in publications use:
 #> 
-#>   Erik Bulow (2020). coder: Deterministic Categorization of Items Based on External Code
-#>   Data. R package version 0.11.3. https://github.com/eribul/coder
+#>   Erik Bulow (2020). coder: Deterministic Categorization of Items Based on External Code Data. R package
+#>   version 0.11.4. https://github.com/eribul/coder
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -146,7 +146,7 @@ citation("coder")
 #> Data},
 #>     author = {Erik Bulow},
 #>     year = {2020},
-#>     note = {R package version 0.11.3},
+#>     note = {R package version 0.11.4},
 #>     url = {https://github.com/eribul/coder},
 #>   }
 ```
