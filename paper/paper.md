@@ -1,9 +1,10 @@
 ---
-title: 'coder: A R package for deterministic classification'
+title: 'coder: An R package for code-based item classification and categorization'
 tags:
   - R
   - epidemiology
   - statistics
+  - Administrative data
 authors:
   - name: Erik Bülow
     orcid: 0000-0002-9973-456X
@@ -11,7 +12,7 @@ authors:
 affiliations:
  - name: The Swedish Hip Arthroplasty Register, Registercentrum Västra Götaland, Gothenburg, Sweden
    index: 1
- - name: Department of orthopaedics, institute of clinical sciences, Sahlgrenska Academy, University of Gothenburg
+ - name: Department of orthopaedics, institute of clinical sciences, Sahlgrenska Academy, University of Gothenburg, Gothenburg, Sweden
    index: 2
 date: 9 August 2018
 bibliography: paper.bib
@@ -19,40 +20,14 @@ bibliography: paper.bib
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
+Registry based research and the use of real world evidence (RWE) and data (RWD) have gained popularity over the last years [@Sherman2016], both as an epidemiological research tool, but also for monitoring post market safety and adverse events due to regulatory decisions. Data from routinely used registries are often coded based on standardized classifications [@Springate2014]. This includes, but is not limited to, codes of diagnostics, procedures/interventions, medications/medical devices and health status/functioning. The World Health Organization (WHO) develops and coordinates some well-used classifications within their [family of international classifications](https://www.who.int/classifications/), so does The International Health Terminology Standards Development Organisation (IHTSDO), trading as [SNOMED International](snomed.org). National and regional classifications exist as well, for example medical and surgical procedure codes from the Nordic Medico-Statistical Committee [(NOMESCO)](http://nowbase.org/). Common classifications such as the International Classification of Diseases (ICD) or the Anatomical Therapeutic Chemical Classification System (ATC) entails thousands of codes which are hard to use and interpret in applied research. This is often solved by an abstraction layer combining individual codes into broader categories, sometimes further simplified by a single index value based on a weighted sum of individual categories [@Charlson1988; @Elixhauser1998; @QUan2005; @Sloan2003; @Pratt2018]. Nevertheless, large long-standing national databases can contain millions of entries. This leads to high computational burden and a potentially slow data managing process as a cumbersome but necessary prerequisite before any relevant analysis can be performed. There are several R-packages with a delibarate focus on comorbidity data coded by ICD and summarized by the Charlson or Elixhauser comorbidity indices: [icd](https://jackwasey.github.io/icd), [comorbidity](https://ellessenne.github.io/comorbidity/) [@Gasparini2018], [medicalrisk](https://github.com/patrickmdnet/medicalrisk). The `coder` package includes such capabilities but takes a more general approach to deterministic item classification and categorization.
 
-``Gala`` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for ``Gala`` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. ``Gala`` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the ``Astropy`` package [@astropy] (``astropy.units`` and
-``astropy.coordinates``).
 
-``Gala`` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in ``Gala`` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike. The source code for ``Gala`` has been
-archived to Zenodo with the linked DOI: [@zenodo]
+[coder](https://eribul.github.io/coder/) is an R package with the scope to combine items (i.e. patients) with generic code sets, and to classify and categorize such data based on generic classification schemes defined by regular expressions. It is easy to combine different classifications (such as multiple versions of ICD, ATC or NOMESCO codes), with different classification schemes (such as Charlson, Elixhauser, RxRisk V or local definitions of adverse events after total hip arthroplasty) and different weighted indices based on those classifications. The package includes default "classcodes"" objects for all those settings, as well as an infrastructure to implement and visualize custom classification schemes.  
 
-# Acknowledgements
+Internally, the code has been optimized for speed and large data sets using reference semantics from [data.table](https://rdatatable.gitlab.io/data.table/), matrix-based computations and code profiling. The prevalence of large datasets makes it difficult to use parallel computing however, since the limit of available random-access memory (RAM) often implies a more serious bottleneck, which limits the possibility to multiply data sets for multiple cores. It is recommended to use `coder` in tandem with [decoder](https://cancercentrum.bitbucket.io/decoder/), a package for interpretation of individual codes. 
 
-We acknowledge contributions from Brigitta Sipocz, Syrtis Major, and Semyeong
-Oh, and support from Kathryn Johnston during the genesis of this project.
+`coder` has been used in ongoing, as well as previously published research [@Bulow2017; @Bulow2019; @Bulow2020; @Cnudde2017; @Cnudde2018a; @Berg2018; @Jawad2019; @Wojtowicz2019; @Hansson2020; @Nemes2018a].
+
 
 # References
