@@ -25,7 +25,7 @@ mutate(
 hip_ae$regex_icd10_fracture <-
   if_else(
     hip_ae$group == "DM1 other",
-    paste0(hip_ae$regex_icd10, "|N3(0[0899]|Y90)"),
+    paste0(hip_ae$regex_icd10, "|N3(0[089]|90)"),
     hip_ae$regex_icd10
   )
 

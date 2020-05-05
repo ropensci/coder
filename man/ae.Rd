@@ -22,7 +22,8 @@ An object of class \code{classcodes} (inherits from \code{tbl_df}, \code{tbl}, \
 }
 \source{
 Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
-Hip (p. 149): \url{https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf}
+
+Hip (p. 162): \url{https://registercentrum.blob.core.windows.net/shpr/r/Arsrapport_2018_Hoftprotes_final_web-rJgg8LvkOB.pdf}
 }
 \usage{
 knee_ae
@@ -61,7 +62,7 @@ of the classcodes data prior to categorization.
 }
 
 \references{
-Magnéli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
+Magneli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
     Validation of adverse events after hip arthroplasty:
     a Swedish multi-centre cohort study.
     BMJ Open. 2019 Mar 7;9(3):e023773.
