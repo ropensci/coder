@@ -21,3 +21,4 @@ MAKE.R
 library.bib
 ^\.github$
 ^pkgdown$
+^tests/jv/*
