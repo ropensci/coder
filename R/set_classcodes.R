@@ -67,6 +67,8 @@ set_classcodes <- function(
   obj$regex <- obj[[regex]]
   # Remove all alternative regexs and keep only rows with regex
   obj <- obj[!is.na(obj[[regex]]), !grepl("regex_", names(obj))]
+  # Save original name of regex to use with tech_names = TRUE
+  attr(obj, "regex_name") <- regex
 
   # Add prefix/suffix if specified
   obj$regex <-
