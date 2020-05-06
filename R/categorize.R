@@ -84,8 +84,11 @@ categorize <- function(
     indx        <- as.data.table(as.data.frame(indx), keep.rownames = id)
     ind_names   <- if (identical(index, list(NULL))) "index" else index
     if (!is.null(cc_args$tech_names) && cc_args$tech_names) {
-      ind_names <- clean_text(
-        cc_name, paste0(attr(cc, "regex_name"), "_index_", ind_names))
+      ind_names <-
+        clean_text(
+          cc_name, paste0(attr(cc, "regex_name"), "_index_",
+          # we always want one "index_", not two if index name already prefixed
+          gsub("index_", "", ind_names)))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
