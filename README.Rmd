@@ -49,7 +49,7 @@ We also have some external medical data (ICD-10-codes recorded at previous hospi
 knitr::kable(head(ex_icd10))
 ```
 
-Using those two sources, as well as a classification scheme (see below), we can easily identify all Charlson co-morbidities during one year prior to the event of interest.
+Using those two sources, as well as a classification scheme (see below), we can easily identify all Charlson co-morbidities during one year prior to the event of interest. 
 
 ```{r}
 ch <- 
