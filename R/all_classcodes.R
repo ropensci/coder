@@ -11,7 +11,8 @@ all_classcodes <- function() {
 
   # Get all classcodes object from the package
   names  <- utils::data(package = "coder")$results[, "Item"]
-  cl     <- lapply(names, function(cc) try(get(cc), TRUE))
+  cl     <- lapply(names, function(cc)
+    try(get(cc, envir = as.environment("package:coder")), TRUE))
   is.cl  <- vapply(cl, is.classcodes, NA)
   names  <- names[is.cl]
   cl     <- cl[is.cl]
@@ -24,10 +25,13 @@ all_classcodes <- function() {
     rgs[rgs != ""]
   }
 
-  data.frame(
-    classcodes   = names,
-    regex   = vapply(lapply(cl, rgs_short), clps, ""),
-    indices     = vapply(lapply(cl, attr, "indices"), clps, ""),
-    stringsAsFactors = FALSE
+  structure(
+    data.frame(
+      classcodes   = names,
+      regex   = vapply(lapply(cl, rgs_short), clps, ""),
+      indices     = vapply(lapply(cl, attr, "indices"), clps, ""),
+      stringsAsFactors = FALSE
+    ),
+    class = c("tbl_df", "tbl", "data.frame")
   )
 }

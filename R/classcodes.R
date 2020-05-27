@@ -61,7 +61,7 @@ as.classcodes <- function(x, hierarchy = attr(x, "hierarchy"), .name = NULL) {
   rgs <- colnames(x)[startsWith(colnames(x), "regex")]
   structure(
     x,
-    class       = unique(c("classcodes", class(x))),
+    class       = unique(c("classcodes", "tbl_df", "tbl", class(x))),
     regexprs    = colnames(x)[startsWith(colnames(x), "regex")],
     indices     = colnames(x)[startsWith(colnames(x), "index")],
     hierarchy   = hierarchy,
