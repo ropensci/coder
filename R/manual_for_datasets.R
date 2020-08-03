@@ -9,18 +9,20 @@
 #' See Elixhauser et al. (1998).
 #'
 #' Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
-#' is not handled by the coder package. This should instead be considered as an additional
-#' pre- or post-processing step!
+#' is not handled by the coder package. This should instead be considered as
+#' an additional pre- or post-processing step!
 #'
 #' @format A data frame with 31 rows and 8 variables:
 #' \describe{
 #'   \item{group}{comorbidity groups}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group.
-#'     Corresponds to column 'ICD-10' in table 2 of Quan et al. (2005).}
-#'   \item{regex_icd10_short}{regular expressions identifying only the first three
-#'   characters of ICD-10 codes of each group. This alternative version was
-#'   added only to use in emergency when only the first three digits are available.
-#'   It is not an official version and we do not recommend to use it!}
+#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of
+#'     each group. Corresponds to column 'ICD-10' in table 2
+#'     of Quan et al. (2005).}
+#'   \item{regex_icd10_short}{regular expressions identifying only the first
+#'      three characters of ICD-10 codes of each group. This alternative version
+#'      was added only to use in emergency when only the first three digits are
+#'      available. It is not an official version and we do not recommend to
+#'      use it!}
 #'   \item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
 #'     in table 2 of Quan et al. (2005).}
 #'   \item{regex_icd9cm_ahrqweb}{Corresponds to column
@@ -45,12 +47,14 @@
 #' @references
 #'
 #' Elixhauser A, Steiner C, Harris DR, Coffey RM (1998).
-#'   Comorbidity Measures for Use with Administrative Data. Med Care. 1998;36(1):8–27.
+#'   Comorbidity Measures for Use with Administrative Data.
+#'   Med Care. 1998;36(1):8–27.
 #'
 #' Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
 #'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
 #'   Hospital Administrative Data.
-#'   Medical Care, 55(7), 698–705. \url{http://doi.org/10.1097/MLR.0000000000000735}
+#'   Medical Care, 55(7), 698–705.
+#'   \url{http://doi.org/10.1097/MLR.0000000000000735}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -84,11 +88,11 @@
 #'   \item{group}{comorbidity groups}
 #'   \item{description}{Verbal description of codes as described by
 #'     Deyo et al. (1992).}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group as
-#'   decoded from Quan et al. 2005. Note that this classification was not
-#'   originally used with all weights! To simply use this classification table
-#'   with weights other than \code{quan_original} and \code{quan_updated} might
-#'   therefore lead to different results than originally intended for each
+#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+#'   group as decoded from Quan et al. 2005. Note that this classification was
+#'   not originally used with all weights! To simply use this classification
+#'   table with weights other than \code{quan_original} and \code{quan_updated}
+#'   might therefore lead to different results than originally intended for each
 #'   index.}
 #'   \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
 #'     in Quan et al. (2005).
@@ -108,7 +112,8 @@
 #'   ICD-9 by Brusselaers et al. (2017).
 #'     "Moderate and severe liver disease" contains all liver disease and
 #'     "diabetes complication" contains all diabetes.}
-#'   \item{index_charlson}{original weights as suggested by Charlson et al. (1987)*}
+#'   \item{index_charlson}{original weights as suggested by Charlson et al.
+#'      (1987)*}
 #'   \item{index_deyo_ramano}{weights suggested by Deyo and Romano*}
 #'   \item{index_dhoore}{weights suggested by D'Hoore*}
 #'   \item{index_ghali}{weights suggested by Ghali*}
@@ -160,7 +165,8 @@
 #' \describe{
 #'   \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
 #'   "special" for codes beginning with "UA", "UB" and "UP"}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group}
+#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+#'     group}
 #'   \item{index_only_ordinary}{index weights, 1 for ordinary and 0 for special}
 #' }
 #' @references
@@ -206,9 +212,11 @@
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes for each group}
+#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes for each
+#'     group}
 #'  \item{regex_icd10_fracture}{regular expressions for fracture patients.
-#'    Essentially the same as \code{regex} but with some additional codes for group "DM1 other"}
+#'    Essentially the same as \code{regex} but with some additional codes for
+#'    group "DM1 other"}
 #'  \item{regex_kva}{regular expressions identifying KVA codes}
 #'   \item{condition}{special conditions are used, see below.}
 #' }
@@ -235,8 +243,8 @@
 "hip_ae"
 
 
-#' Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
-#' and KVA codes
+#' Classcodes for infection and dislocation after hip arthroplasty
+#' based on ICD-10 and KVA codes
 #'
 #' \code{\link{classcodes}} objects to use with \code{\link{classify}}.
 #'

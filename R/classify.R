@@ -3,7 +3,8 @@
 #' @inheritParams set_classcodes
 #' @param codified output from \code{\link{codify}})
 #' @param code,id name of code/id columns (in \code{codified}).
-#' @param cc_args List with named arguments passed to \code{\link{set_classcodes}}
+#' @param cc_args List with named arguments passed to
+#'   \code{\link{set_classcodes}}
 #' @param ... arguments passed between methods
 #'
 #' @return Boolean matrix with one row for each element/row of \code{codified}

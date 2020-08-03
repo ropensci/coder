@@ -70,10 +70,12 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
     } else if (!index %in% names(cc) & !any(endsWith(names(cc), index))) {
       stop(gettextf("'%s' is not a column of the classcodes object!", index))
     } else if (!all(vapply(regularize(cc$group),
-      function(y) any(grepl(y, regularize(colnames(classified)))), logical(1)))) {
+      function(y)
+        any(grepl(y, regularize(colnames(classified)))), logical(1)))) {
       stop("Data non consistent with specified classcodes!")
     } else {
-      index <- names(cc)[names(cc) == index | names(cc) == paste0("index_", index)]
+      index <- names(cc)[names(cc) == index |
+                         names(cc) == paste0("index_", index)]
       ind <- cc[[index]]
       ind[is.na(ind)] <- 0
       c(classified %*% ind)
@@ -88,7 +90,7 @@ index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
       both <- rowSums(cols(hi, classified), na.rm = TRUE) == 2
       # Find index weights corresponding to those classes
       diag_inx <- ind[vapply(clean(hi), grep, 1, clean(cc$group))]
-      # Subtract lowest absolute index number for cases with both hierarchical classes
+      # Subtract lowest abs index numb for cases with both hierarchical classes
       out <- ifelse(both, out - sort(abs(diag_inx))[1], out)
     }
   }

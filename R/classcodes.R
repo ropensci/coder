@@ -28,7 +28,8 @@
 #' `help(package = "coder")`
 #'
 #' @param x data frame with properties as described in the details section
-#' @param hierarchy list of pairwise group names to appear as superior and subordinate classes.
+#' @param hierarchy list of pairwise group names to appear as superior and
+#' subordinate classes.
 #'   To be used for indexing when the subordinate class is redundant.
 #' @param .name used internally for name dispatch
 #' @return Object of class "classcodes" (data frame) with attribute \code{code}
@@ -47,7 +48,8 @@
 #' @family classcodes
 as.classcodes <- function(x, hierarchy = attr(x, "hierarchy"), .name = NULL) {
 
-  class(x) <- setdiff(class(x), "classcodes") # To avoid infinite recursive looping due to `$<-.classcodes` method
+  # To avoid infinite recursive looping due to `$<-.classcodes` method
+  class(x) <- setdiff(class(x), "classcodes")
 
   stopifnot(
     is.data.frame(x),

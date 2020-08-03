@@ -67,7 +67,8 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
     )
 
   structure(
-    list(object = object, summary = res, coding = coding, codes_vct = codes_vct),
+    list(object = object, summary = res,
+         coding = coding, codes_vct = codes_vct),
     class = "summary.classcodes"
   )
 }

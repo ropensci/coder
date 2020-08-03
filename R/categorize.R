@@ -1,20 +1,22 @@
 #' Categorize cases based on external data and classification scheme
 #'
 #'
-#' @param data data frame with mandatory id column (identified by argument \code{id}),
+#' @param data data frame with mandatory id column
+#'   (identified by argument \code{id}),
 #'   and semi-optional column with date of interest
 #'   (identified by argument \code{date} if \code{days != NULL}).
 #' @param codedata external code data (see \code{\link{as.codedata}})
 #' @param cc \code{\link{classcodes}} object (or name of such object).
 #' @param index control possible inclusion of index vector.
-#'   Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
+#'   Set to \code{FALSE} if no index should be calculated, otherwise a value
+#'   passed to argument
 #'   \code{by} in function \code{\link{index}}. It is possible to
 #'   include several indices as a character vector.
 #'   \code{NULL} will include all available indices.
 #' @param sort logical. Should output be sorted by the 'id' column?
 #'   (This could effect computational speed for large data sets.)
-#'   Data is sorted by 'id' internally. It is therefore faster to keep the output
-#'   sorted this way, but this might be inconvenient if the original
+#'   Data is sorted by 'id' internally. It is therefore faster to keep the
+#'   output sorted this way, but this might be inconvenient if the original
 #'   order was intended. Set to \code{FALSE} in order to not shuffle the
 #'   input data.
 #' @param codify_args List of named arguments passed to \code{\link{codify}}
@@ -42,7 +44,8 @@
 #' )
 #' @family verbs
 categorize <- function(
-  data, codedata, cc, id, index = NULL, sort = TRUE, codify_args = list(), cc_args = list()) {
+  data, codedata, cc, id, index = NULL, sort = TRUE,
+  codify_args = list(), cc_args = list()) {
 
   stopifnot(id %in% names(data), is.character(data[[id]]))
 
@@ -61,7 +64,7 @@ categorize <- function(
   codify_args$codedata <- codedata
   codify_args$id   <- id
   cod              <- do.call(codify, codify_args)
-  cl               <- classify(cod, cc, cc_args = NULL) # NULL because cc already set
+  cl               <- classify(cod, cc, cc_args = NULL) # NULL since cc alr. set
 
   data$id_chr <- as.character(data[[id]]) # To be able to merge
   out       <- merge(data, as.data.table(cl),
