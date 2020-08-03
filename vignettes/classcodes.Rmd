@@ -2,7 +2,7 @@
 title: "Classcodes objects"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Co-morbidity_codes}
+  %\VignetteIndexEntry{Classcodes objects}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
