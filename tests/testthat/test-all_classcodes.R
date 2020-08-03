@@ -1,6 +1,6 @@
 ac <- all_classcodes()
 
-test_that("multiplication works", {
+test_that("all_classcodes", {
   expect_named(ac, c("classcodes", "regex", "indices"))
   expect_gte(nrow(ac), 8)
   expect_true(
