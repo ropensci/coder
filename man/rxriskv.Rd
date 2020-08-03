@@ -30,14 +30,14 @@ Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.
   Comorbidity in the elderly with diabetes:
   Identification of areas of potential treatment conflicts.
   Diabetes Res Clin Pract 2010;87:385–93.
-  doi:10.1016/j.diabres.2009.10.019.
+  \url{https://doi.org/10.1016/j.diabres.2009.10.019}.
 
 Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
   Ramsay E, et al.
   The validity of the Rx-Risk Comorbidity Index using medicines mapped to
   the Anatomical Therapeutic Chemical (ATC) Classification System.
   BMJ Open 2018;8.
-  doi:10.1136/bmjopen-2017-021122.
+  \url{https://doi.org/10.1136/bmjopen-2017-021122}.
 }
 \seealso{
 Other default classcodes: 

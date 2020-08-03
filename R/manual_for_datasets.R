@@ -50,18 +50,18 @@
 #' Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
 #'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
 #'   Hospital Administrative Data.
-#'   Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735
+#'   Medical Care, 55(7), 698–705. \url{http://doi.org/10.1097/MLR.0000000000000735}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
-#'   \url{www.jstor.org/stable/3768193}
+#'   \url{https://www.jstor.org/stable/3768193}
 #'
 #' Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
 #'   Vadera, S., & Griffith, S. D. (2015).
 #'   A new Elixhauser-based comorbidity summary measure to predict in-hospital
 #'   mortality. Med Care, 53(4), 374–379.
-#'   http://doi.org/10.1097/MLR.0000000000000326
+#'   \url{http://doi.org/10.1097/MLR.0000000000000326}
 #'
 #' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
 #'   C. Van, … Jennings, A. (2009).
@@ -139,7 +139,7 @@
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
-#' \url{www.jstor.org/stable/3768193}
+#' \url{https://www.jstor.org/stable/3768193}
 #'
 #' Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
 #'   D. (2015). A systematic review identifies valid comorbidity indices derived
@@ -275,14 +275,14 @@
 #'   Comorbidity in the elderly with diabetes:
 #'   Identification of areas of potential treatment conflicts.
 #'   Diabetes Res Clin Pract 2010;87:385–93.
-#'   doi:10.1016/j.diabres.2009.10.019.
+#'   \url{https://doi.org/10.1016/j.diabres.2009.10.019}.
 #'
 #' Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
 #'   Ramsay E, et al.
 #'   The validity of the Rx-Risk Comorbidity Index using medicines mapped to
 #'   the Anatomical Therapeutic Chemical (ATC) Classification System.
 #'   BMJ Open 2018;8.
-#'   doi:10.1136/bmjopen-2017-021122.
+#'   \url{https://doi.org/10.1136/bmjopen-2017-021122}.
 #'
 #' @family default classcodes
 "rxriskv"

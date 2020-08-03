@@ -71,7 +71,7 @@ Armitage, J. N., & van der Meulen, J. H. (2010).
 Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
-\url{www.jstor.org/stable/3768193}
+\url{https://www.jstor.org/stable/3768193}
 
 Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
   D. (2015). A systematic review identifies valid comorbidity indices derived
