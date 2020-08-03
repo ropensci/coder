@@ -28,7 +28,7 @@ LazyData: TRUE
 RoxygenNote: 7.1.1
 VignetteBuilder: 
   knitr
-URL: https://github.com/eribul/coder
+URL: https://eribul.github.io/coder
 BugReports: https://github.com/eribul/coder/issues
 Encoding: UTF-8
 Language: en-US

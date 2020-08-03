@@ -17,7 +17,7 @@ Fast categorization of items based on external code data identified by
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/eribul/coder}
+  \item \url{https://eribul.github.io/coder}
   \item Report bugs at \url{https://github.com/eribul/coder/issues}
 }
 
