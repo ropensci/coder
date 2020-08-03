@@ -41,15 +41,17 @@ library(coder)
 knitr::kable(head(ex_people))
 ```
 
-| name                       | event                                                      |
-| :------------------------- | :--------------------------------------------------------- |
-| Miller, Von Buddenbrock    | 2019-07-15                                                 |
-| Enriquez, Anthony          | 2019-12-27                                                 |
-| al-Dib, Farhaan            | 2020-02-22                                                 |
-| Martinez, Alison           | 2019-11-29                                                 |
-| el-Masri, Junaid           | 2019-09-17                                                 |
-| Sam, Niki                  | 2020-03-05                                                 |
-| We also have some external | medical data (ICD-10-codes recorded at previous hospital): |
+| name                    | event      |
+| :---------------------- | :--------- |
+| Miller, Von Buddenbrock | 2019-07-15 |
+| Enriquez, Anthony       | 2019-12-27 |
+| al-Dib, Farhaan         | 2020-02-22 |
+| Martinez, Alison        | 2019-11-29 |
+| el-Masri, Junaid        | 2019-09-17 |
+| Sam, Niki               | 2020-03-05 |
+
+We also have some external medical data (ICD-10-codes recorded at
+previous hospital):
 
 ``` r
 knitr::kable(head(ex_icd10))
