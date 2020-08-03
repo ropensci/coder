@@ -36,7 +36,7 @@ knitr::kable(
 
 # Charlson and Elixhauser
 
-The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](www.jstor.org/stable/3766985) co-morbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.]( https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
+The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](https://www.jstor.org/stable/3766985) co-morbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.](https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
 
 The `coder` package provides substantial functionality for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implementations as well:
 
