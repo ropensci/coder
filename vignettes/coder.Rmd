@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 
-A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://github.com/eribul/coder/).
+A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://eribul.github.io/coder/).
 
 The concept of comorbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
 
