@@ -70,20 +70,23 @@ As for all classcodes objects in the package, additional information and referen
 knitr::kable(head(ex_people))
 ```
 
-Let's generate some sample ATC data where each patient can have zero, one, or several codes prescribed at different dates:
+Let's generate some sample ATC data for 90 of the 100 individuals, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates:
 
 ```{r}
 set.seed(123)
 N <- 10000
 
+nms <- ex_people$name[1:90]
+
 ex_atc <- 
   data.frame(
-    id        = sample(ex_people$name, N, replace = TRUE),
+    id        = sample(nms, N, replace = TRUE),
     code      = sample(decoder::atc$key, N, replace = TRUE),
     code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE),
     stringsAsFactors = FALSE
   )
-knitr::kable(head(ex_atc))
+
+knitr::kable(head(ex_atc[order(ex_atc$id), ]))
 ```
 
 
@@ -96,7 +99,7 @@ default <- categorize(ex_people, ex_atc, rxriskv, id = "name")
 knitr::kable(head(default))
 ```
 
-The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual co-morbidities identified by Rx Risk V. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
+The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual co-morbidities identified by Rx Risk V. Patients without any ATC data have `NA` values but, which might be substituted with `FALSE`. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
 
 ```{r}
 hist2 <- function(x) hist(x$index_pratt, main = NULL, xlab = "RxRisk V", col = "lightblue")

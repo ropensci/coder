@@ -242,7 +242,7 @@
   <span class="kw">regex</span>    <span class="kw">=</span> <span class="st">"regex_icd9cm_deyo"</span>
 )</pre></body></html></div>
 <p><img src="regexp_charlson_ci_icd9.png" width="188"></p>
-<p>Here <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> indicates the beginning of the character string, followed by a literal <code>41</code> and either a <code>0</code> or <code>2</code>. The corresponding code according to ICD-is:</p>
+<p>Here <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> indicates the beginning of the character string, followed by a literal <code>41</code> and either a <code>0</code> or <code>2</code>. The corresponding code according to ICD-10 is:</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/visualize.html">visualize</a></span>(
   <span class="no">charlson</span>,
   <span class="kw">group</span>    <span class="kw">=</span> <span class="st">"myocardial infarction"</span>,
@@ -250,7 +250,7 @@
   <span class="kw">regex</span>    <span class="kw">=</span> <span class="st">"regex_icd10"</span>
 )</pre></body></html></div>
 <p><img src="regexp_charlson_ci_icd10.png" width="233"></p>
-<p>Such code starts with <code>I2</code> followed by either <code>1</code>, <code>2</code> or <code>52</code> and where <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> indicates a logical “or” within the parenthesis (as used for expressions longer than single characters).</p>
+<p>ICD-10 codes identifying myocardial infarction thus starts with <code>I2</code> followed by either <code>1</code>, <code>2</code> or <code>52</code>. The vertical bar, <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, in the regular expression indicates a logical “or” within the parenthesis (as used for expressions longer than single characters).</p>
 </div>
 <div id="list-all-codes" class="section level2">
 <h2 class="hasAnchor">
