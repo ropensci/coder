@@ -4,7 +4,7 @@
 \alias{as.keyvalue.classcodes}
 \title{Make keyvalue object from classcodes object}
 \usage{
-as.keyvalue.classcodes(x, coding, ...)
+\method{as.keyvalue}{classcodes}(x, coding, ...)
 }
 \arguments{
 \item{x}{classcodes object}

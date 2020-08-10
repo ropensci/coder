@@ -32,7 +32,8 @@ Set to \code{FALSE} if no index should be calculated, otherwise a value
 passed to argument
 \code{by} in function \code{\link{index}}. It is possible to
 include several indices as a character vector.
-\code{NULL} will include all available indices.}
+\code{NULL} will include all available indices as specified by the
+"indices" attribute of the \code{cc} object (\code{attr(cc, "indices")})}
 
 \item{sort}{logical. Should output be sorted by the 'id' column?
 (This could effect computational speed for large data sets.)
@@ -47,10 +48,10 @@ input data.}
 \code{\link{set_classcodes}}}
 }
 \value{
-data frame ('data.table' object) with all data from
-the input data set \code{to/data} combined with logical columns indicating
-membership of categories identified by the classcode object.
-Indices are also included if so specified by the 'index' argument.
+Object of class \code{data.table} made from \code{data} combined with
+logical columns indicating membership of categories identified by the
+\code{classcodes} object (the \code{cc} argument).
+Indices are also included if specified by the 'index' argument.
 }
 \description{
 Categorize cases based on external data and classification scheme
@@ -59,7 +60,7 @@ Categorize cases based on external data and classification scheme
 # Add Elixhauser based on all registered ICD10-codes
 categorize(ex_people, ex_icd10, "elixhauser", id = "name")
 
-# Add Charlson categorias and two versions of a calculated index.
+# Add Charlson categories and two versions of a calculated index.
 # Only include recent hospital visits within 30 days before surgery,
 # and use technical variable names to clearly identify the new columns.
 categorize(ex_people, ex_icd10, "charlson",
