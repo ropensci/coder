@@ -11,9 +11,11 @@ and KVA codes}
 Data frame with 3 columns:
 \describe{
   \item{group}{Different types of adverse events (see reference section)}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes for each group}
+  \item{regex_icd10}{regular expressions identifying ICD-10 codes for each
+    group}
  \item{regex_icd10_fracture}{regular expressions for fracture patients.
-   Essentially the same as \code{regex} but with some additional codes for group "DM1 other"}
+   Essentially the same as \code{regex} but with some additional codes for
+   group "DM1 other"}
  \item{regex_kva}{regular expressions identifying KVA codes}
   \item{condition}{special conditions are used, see below.}
 }

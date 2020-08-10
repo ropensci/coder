@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -59,12 +59,6 @@
 <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
     </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -88,13 +82,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="coder_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>coder</h1>
                         <h4 class="author">Erik Bulow</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-08-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/coder.Rmd"><code>vignettes/coder.Rmd</code></a></small>
       <div class="hidden name"><code>coder.Rmd</code></div>
@@ -103,134 +97,691 @@
 
     
     
-<p>This vignette will demonstrate the core functionality of the “coder” package by a trivial example.</p>
-<div id="car-ownership" class="section level1">
-<h1 class="hasAnchor">
-<a href="#car-ownership" class="anchor"></a>Car ownership</h1>
-<p>Let’s assume we have a list of people, as well as dates for their driving license:</p>
+<p>The concept of comorbidity is often attributed to <a href="https://doi.org/10.1016/0021-9681(70)90054-8">Feinstein</a>:</p>
+<blockquote>
+<p>[T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study.</p>
+</blockquote>
+<p>The <code>coder</code> package contains some default classcodes objects for co-morbidity:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">coder</span>)
 
-<span class="no">people</span> <span class="kw">&lt;-</span>
+<span class="no">cl</span> <span class="kw">&lt;-</span> <span class="kw pkg">coder</span><span class="kw ns">::</span><span class="fu"><a href="../reference/all_classcodes.html">all_classcodes</a></span>()
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
+  <span class="no">cl</span>[<span class="no">cl</span>$<span class="no">classcodes</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"elixhauser"</span>, <span class="st">"charlson"</span>, <span class="st">"cps"</span>, <span class="st">"rxriskv"</span>), ]
+)</pre></body></html></div>
+<table class="table">
+<colgroup>
+<col width="1%">
+<col width="5%">
+<col width="39%">
+<col width="53%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">classcodes</th>
+<th align="left">regex</th>
+<th align="left">indices</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">charlson</td>
+<td align="left">icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers</td>
+<td align="left">index_charlson, index_deyo_ramano, index_dhoore, index_ghali, index_quan_original, index_quan_updated</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">cps</td>
+<td align="left">icd10</td>
+<td align="left">index_only_ordinary</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">elixhauser</td>
+<td align="left">icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced</td>
+<td align="left">index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29, index_sid30, index_ahrq_mort, index_ahrq_readm</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">rxriskv</td>
+<td align="left">pratt, caughey, garland</td>
+<td align="left">index_pratt, index_sum_all</td>
+</tr>
+</tbody>
+</table>
+<div id="charlson-and-elixhauser" class="section level1">
+<h1 class="hasAnchor">
+<a href="#charlson-and-elixhauser" class="anchor"></a>Charlson and Elixhauser</h1>
+<p>The <a href="https://doi.org/10.1016/0021-9681(87)90171-8">Charlson</a> and <a href="https://www.jstor.org/stable/3766985">Elixhauser</a> co-morbidity indices are two examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by <a href="https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83">Quan et al.</a> and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.</p>
+<p>The <code>coder</code> package provides substantial functionality for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implementations as well:</p>
+<ul>
+<li><a href="https://CRAN.R-project.org/package=icd">icd (CRAN)</a></li>
+<li><a href="https://CRAN.R-project.org/package=comorbidity">comorbidity (CRAN)</a></li>
+<li><a href="https://CRAN.R-project.org/package=medicalrisk">medicalrisk (CRAN)</a></li>
+<li><a href="https://github.com/gforge/comorbidities.icd10">comorbidities.icd10 (GitHub)</a></li>
+<li><a href="https://github.com/wtcooper/icdcoder">icdcoder (GitHub)</a></li>
+</ul>
+<p><code>icd</code> and <code>comorbidity</code> are both good packages well suited for their purpose based on effective implementations. <code>medicalrisk</code> can be used with ICD-9-CM codes but is not up-to-date with the latest version of ICD-10. <code>comorbidities.icd10</code> and <code>icdcoder</code> are not actively developed or maintained.</p>
+<p>One advantage with the <code>coder</code> package is the great flexibility for combining different sets of codes (ICD-8, ICD-9, ICD-9-CM and ICD-10 etc as given by the “regex” column above), with different sets of weighted indices.</p>
+</div>
+<div id="risk-rx-v" class="section level1">
+<h1 class="hasAnchor">
+<a href="#risk-rx-v" class="anchor"></a>Risk Rx V</h1>
+<p>Another advantage of the <code>coder</code> package is the inclusion of additional classifications, such as the pharmacy-based case-mix instrument <a href="https://dx.doi.org/10.1097/01.MLR.0000064641.84967.B7">Rx Risk V</a>. We will use this classification in an example. This classification, in contrast to Charlson and Elixhauser, relies on medical prescription data codified by the Anatomic Therapeutic Chemical classification system (ATC).</p>
+<p>As for all classcodes objects in the package, additional information and references are found in the object documentation (<code><a href="../reference/rxriskv.html">?rxriskv</a></code>).</p>
+<div id="patients" class="section level2">
+<h2 class="hasAnchor">
+<a href="#patients" class="anchor"></a>Patients</h2>
+<p><code>ex_people</code> contains 100 patients (with random names) who received surgery at given (random) dates:</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">ex_people</span>))</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">event</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Miller, Von Buddenbrock</td>
+<td align="left">2019-10-15</td>
+</tr>
+<tr class="even">
+<td align="left">Enriquez, Anthony</td>
+<td align="left">2020-03-28</td>
+</tr>
+<tr class="odd">
+<td align="left">al-Dib, Farhaan</td>
+<td align="left">2020-05-24</td>
+</tr>
+<tr class="even">
+<td align="left">Martinez, Alison</td>
+<td align="left">2020-02-29</td>
+</tr>
+<tr class="odd">
+<td align="left">el-Masri, Junaid</td>
+<td align="left">2019-12-18</td>
+</tr>
+<tr class="even">
+<td align="left">Sam, Niki</td>
+<td align="left">2020-06-05</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s generate some sample ATC data where each patient can have zero, one, or several codes prescribed at different dates:</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">123</span>)
+<span class="no">N</span> <span class="kw">&lt;-</span> <span class="fl">10000</span>
+
+<span class="no">ex_atc</span> <span class="kw">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(
-    <span class="kw">name</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-      <span class="st">"Medina, Desmand"</span>, <span class="st">"al-Hashem,  Muzna"</span>, <span class="st">"el-Kaleel, Aadil"</span>, <span class="st">"Pettsson, Svenne"</span>
-    ),
-    <span class="kw">license</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-      <span class="st">"1949-05-23"</span>, <span class="st">"2016-03-04"</span>, <span class="st">"2019-12-18"</span>, <span class="st">"1985-05-04"</span>
-    )),
+    <span class="kw">id</span>        <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">ex_people</span>$<span class="no">name</span>, <span class="no">N</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>),
+    <span class="kw">code</span>      <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw pkg">decoder</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/decoder/man/atc.html">atc</a></span>$<span class="no">key</span>, <span class="no">N</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>),
+    <span class="kw">code_date</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(<span class="no">ex_people</span>$<span class="no">event</span>) + <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(-<span class="fl">3650</span>:<span class="fl">365</span>, <span class="no">N</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>),
     <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  )</pre></body></html></div>
-<p>We also have a car registry with car ownership for 1,000 cars (with <code>code_date</code> the date when the car was bought):</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">ex_cars</span>)
-<span class="co">#&gt;                  id              code  code_date</span>
-<span class="co">#&gt; 1   Medina, Desmand         Mazda RX4 2019-08-02</span>
-<span class="co">#&gt; 2 al-Hashem,  Muzna Chrysler Imperial 2018-03-19</span>
-<span class="co">#&gt; 3  el-Kaleel, Aadil         Merc 240D 2019-05-10</span>
-<span class="co">#&gt; 4    Foster, Amanda    Toyota Corolla 2019-03-28</span>
-<span class="co">#&gt; 5     Budy, Cameren     Maserati Bora 2019-05-17</span>
-<span class="co">#&gt; 6       Ash, Reilly          Merc 230 2019-05-15</span></pre></body></html></div>
-<p>We are not interested in individual brand names of each car, but we want to know who owns a car made by a specific company. We can specify a classification scheme of brands related to each company (a <code>classcodes</code> object). Note that not all models are classified. The classification scheme is made by regular expressions since these are more effective to work with for classification of large data sets.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">ex_carbrands</span>
-<span class="co">#&gt;     group                                regex</span>
-<span class="co">#&gt; 1   Mazda                                Mazda</span>
-<span class="co">#&gt; 2 Mer-Ben                                 Merc</span>
-<span class="co">#&gt; 3    Ford                         Ford|Lincoln</span>
-<span class="co">#&gt; 4    Fiat Chrysler|Fiat|Dodge|Ferrari|Maserati</span>
-<span class="co">#&gt; 5  Toyota                               Toyota</span>
-<span class="co">#&gt; 6  Volksw                              Porsche</span>
-<span class="co">#&gt; 7   Geely                 Volvo|Lotus|Polestar</span></pre></body></html></div>
+  )
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">ex_atc</span>))</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">id</th>
+<th align="left">code</th>
+<th align="left">code_date</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">al-Dawood, Hasan</td>
+<td align="left">QM01AX90</td>
+<td align="left">2012-01-01</td>
+</tr>
+<tr class="even">
+<td align="left">Mendoza, Jessica</td>
+<td align="left">QJ51BA90</td>
+<td align="left">2014-01-26</td>
+</tr>
+<tr class="odd">
+<td align="left">Rice, Jamissa</td>
+<td align="left">QA12CC09</td>
+<td align="left">2019-08-18</td>
+</tr>
+<tr class="even">
+<td align="left">al-Asmar, Abdur Raheem</td>
+<td align="left">QN06BX14</td>
+<td align="left">2016-06-05</td>
+</tr>
+<tr class="odd">
+<td align="left">Bivings, Devin</td>
+<td align="left">QC07E</td>
+<td align="left">2015-04-30</td>
+</tr>
+<tr class="even">
+<td align="left">Harder, Rio</td>
+<td align="left">B02AA02</td>
+<td align="left">2013-04-30</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="categorize" class="section level1">
-<h1 class="hasAnchor">
-<a href="#categorize" class="anchor"></a>Categorize</h1>
-<p>We want to know if anyone owns a car from a company that we are interested in.</p>
-<p>We use the three objects from above:</p>
-<ul>
-<li>
-<code>people</code>: the people we are interested in,</li>
-<li>
-<code>ex_cars</code>: the centralized car registry and</li>
-<li>
-<code>ex_carbrands</code>: the classification of car makers.</li>
-</ul>
-<div class="sourceCode" id="cb4"><html><body><pre class="r">(<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">people</span>, <span class="no">ex_cars</span>, <span class="no">ex_carbrands</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>))
-<span class="co">#&gt; index calculated as number of relevant categories</span>
-<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
-<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span>
-<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
-<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span>
-<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span>
-<span class="co">#&gt;    index</span>
-<span class="co">#&gt; 1:     1</span>
-<span class="co">#&gt; 2:    NA</span>
-<span class="co">#&gt; 3:     1</span>
-<span class="co">#&gt; 4:     3</span></pre></body></html></div>
 </div>
-<div id="interpretation" class="section level1">
+<div id="default-categorization" class="section level1">
 <h1 class="hasAnchor">
-<a href="#interpretation" class="anchor"></a>Interpretation</h1>
-<p>We can see that:</p>
-<ul>
-<li>Emily Aziz owns a Mazda.</li>
-<li>Lauren Albrecht owns both a Mercedes and a Toyota.</li>
-<li>Christopher Gavin might in fact own a car, but none of the ones we are interested in.</li>
-<li>Svenne Petsson is a Swede and is not found in our American car register.</li>
-</ul>
-<p>The <code>index</code> column is here the sum of identified cars owned by each person.</p>
-<p>Note that each column identifies if a person owns <strong>at least one</strong> car from the relevant company.</p>
+<a href="#default-categorization" class="anchor"></a>Default categorization</h1>
+<p>A first attempt to calculate the Rx Risk V score for each patient:</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">default</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">ex_people</span>, <span class="no">ex_atc</span>, <span class="no">rxriskv</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>)
+<span class="co">#&gt; Classification based on: regex_pratt</span>
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">default</span>))</pre></body></html></div>
+<table class="table">
+<colgroup>
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="3%">
+<col width="2%">
+<col width="3%">
+<col width="3%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="4%">
+<col width="1%">
+<col width="0%">
+<col width="1%">
+<col width="1%">
+<col width="0%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="1%">
+<col width="2%">
+<col width="3%">
+<col width="4%">
+<col width="3%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="2%">
+<col width="0%">
+<col width="3%">
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="2%">
+<col width="1%">
+<col width="2%">
+<col width="3%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">event</th>
+<th align="left">Alcohol dependence</th>
+<th align="left">Allergies</th>
+<th align="left">Anticoagulants</th>
+<th align="left">Antiplatelets</th>
+<th align="left">Anxiety</th>
+<th align="left">Arrhythmia</th>
+<th align="left">Benign prostatic hyperplasia</th>
+<th align="left">Bipolar disorder</th>
+<th align="left">Chronic airways disease</th>
+<th align="left">Congestive heart failure</th>
+<th align="left">Dementia</th>
+<th align="left">Depression</th>
+<th align="left">Diabetes</th>
+<th align="left">Epilepsy</th>
+<th align="left">Gastrooesophageal reflux disease</th>
+<th align="left">Glaucoma</th>
+<th align="left">Gout</th>
+<th align="left">Hepatitis B</th>
+<th align="left">Hepatitis C</th>
+<th align="left">HIV</th>
+<th align="left">Hyperkalaemia</th>
+<th align="left">Hyperlipidaemia</th>
+<th align="left">Hypertension</th>
+<th align="left">Hyperthyroidism</th>
+<th align="left">Hypothyroidism</th>
+<th align="left">Incontinence</th>
+<th align="left">Inflammation/pain</th>
+<th align="left">Irritable bowel syndrome</th>
+<th align="left">Ischaemic heart disease: hypertension</th>
+<th align="left">Ischemic heart disease: angina</th>
+<th align="left">Liver failure</th>
+<th align="left">Malignancies</th>
+<th align="left">Malnutrition</th>
+<th align="left">Migraine</th>
+<th align="left">Osteoporosis/Paget’s</th>
+<th align="left">Pain</th>
+<th align="left">Pancreatic insufficiency</th>
+<th align="left">Parkinson’s disease</th>
+<th align="left">Psoriasis</th>
+<th align="left">Psychotic illness</th>
+<th align="left">Pulmonary hypertension</th>
+<th align="left">Renal disease</th>
+<th align="left">Smoking cessation</th>
+<th align="left">Steroid-responsive disease</th>
+<th align="left">Transplant</th>
+<th align="left">Tuberculosis</th>
+<th align="right">index_pratt</th>
+<th align="right">index_sum_all</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Alexander, Bethany</td>
+<td align="left">2019-08-19</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">12</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">Arguello, Tommy</td>
+<td align="left">2020-05-16</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="right">12</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Austin, Maeve</td>
+<td align="left">2020-05-09</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">9</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">Ball, Rockelle</td>
+<td align="left">2019-09-26</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">12</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Bean, Haileigh</td>
+<td align="left">2019-10-25</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">3</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">Beehler, Kelly</td>
+<td align="left">2019-09-14</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="right">4</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>The first two columns are identical to <code>ex_people</code> (except row order, which could be preserved by <code>sort = FALSE</code>). Additional columns indicate whether patients had any of the individual co-morbidities identified by Rx Risk V. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let’s summarize the distribution of <code>index_pratt</code> (<a href="https://dx.doi.org/10.1136/bmjopen-2017-021122">Pratt et al.</a>):</p>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">hist2</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="no">x</span>$<span class="no">index_pratt</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"RxRisk V"</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"lightblue"</span>)
+<span class="fu">hist2</span>(<span class="no">default</span>)</pre></body></html></div>
+<p><img src="coder_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
-<div id="cars-owned-before-license" class="section level1">
+<div id="specified-time-window" class="section level1">
 <h1 class="hasAnchor">
-<a href="#cars-owned-before-license" class="anchor"></a>Cars owned before license</h1>
-<p>We can use the date columns to check if anyone owned a car already before they got their drivers license. We need to specify that the date column is called <code>license</code>. The <code>days</code> argument specifies that we are interested in cars bought before this date.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r">(<span class="no">x</span> <span class="kw">&lt;-</span>
-   <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(
-     <span class="no">people</span>,
-     <span class="no">ex_cars</span>,
-     <span class="no">ex_carbrands</span>,
-     <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>,
-     <span class="kw">codify_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-       <span class="kw">date</span> <span class="kw">=</span> <span class="st">"license"</span>,
-       <span class="kw">days</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">Inf</span>, -<span class="fl">1</span>)
-     )
+<a href="#specified-time-window" class="anchor"></a>Specified time-window</h1>
+<p>Note however that some prescriptions might have been filed long before surgery, or even after. Those are less relevant for co-morbidities at surgery. We can limit the categorization to a time window of one year prior to surgery.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu">hist2</span>(
+  <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(
+    <span class="no">ex_people</span>, <span class="no">ex_atc</span>, <span class="no">rxriskv</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>,
+    <span class="kw">codify_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">date</span> <span class="kw">=</span> <span class="st">"event"</span>, <span class="kw">days</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">365</span>, -<span class="fl">1</span>))
   )
 )
-<span class="co">#&gt; index calculated as number of relevant categories</span>
-<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
-<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23    NA      NA    NA    NA     NA     NA    NA</span>
-<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
-<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04    NA      NA    NA    NA     NA     NA    NA</span>
-<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE FALSE  FALSE  FALSE  TRUE</span>
-<span class="co">#&gt;    index</span>
-<span class="co">#&gt; 1:    NA</span>
-<span class="co">#&gt; 2:    NA</span>
-<span class="co">#&gt; 3:    NA</span>
-<span class="co">#&gt; 4:     2</span></pre></body></html></div>
-<p>Indeed, someone did buy some cars before taking a drivers license!</p>
+<span class="co">#&gt; Classification based on: regex_pratt</span></pre></body></html></div>
+<p><img src="coder_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
-<div id="car-rating" class="section level1">
+<div id="alternative-classification" class="section level1">
 <h1 class="hasAnchor">
-<a href="#car-rating" class="anchor"></a>Car rating</h1>
-<p>We are not only interested in the number of cars owned by each individual. We would also like to rate the cars based on the manufacturer. Let us assign some score to each company. We then specifies that the index should be calculated based on the new column named “score”.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">ex_carbrands</span>$<span class="no">score</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
+<a href="#alternative-classification" class="anchor"></a>Alternative classification</h1>
+<p>Co-morbidities are identified from ATC codes captured by regular expression. Codes identified by <code>regex_pratt</code> are used by default. Let’s use an alternative version adopted from <a href="https://dx.doi.org/10.1016/j.diabres.2009.10.019">Caughey</a>.</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu">hist2</span>(
+  <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(
+    <span class="no">ex_people</span>, <span class="no">ex_atc</span>, <span class="no">rxriskv</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>,
+    <span class="kw">codify_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">date</span> <span class="kw">=</span> <span class="st">"event"</span>, <span class="kw">days</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">365</span>, -<span class="fl">1</span>)),
+    <span class="kw">cc_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">regex</span> <span class="kw">=</span> <span class="st">"regex_caughey"</span>)
+  )
+)</pre></body></html></div>
+<p><img src="coder_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+</div>
+<div id="dirty-code-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#dirty-code-data" class="anchor"></a>Dirty code data</h1>
+<p>Let’s assume that our code data is not as clean as simulated above.</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">s</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">x</span>, <span class="no">N</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-(<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">people</span>, <span class="no">ex_cars</span>, <span class="no">ex_carbrands</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>, <span class="kw">ind</span> <span class="kw">=</span> <span class="st">"score"</span>))
-<span class="co">#&gt;                 name    license Mazda Mer-Ben  Ford  Fiat Toyota Volksw Geely</span>
-<span class="co">#&gt; 1:   Medina, Desmand 1949-05-23  TRUE   FALSE FALSE FALSE  FALSE  FALSE FALSE</span>
-<span class="co">#&gt; 2:  Pettsson, Svenne 1985-05-04    NA      NA    NA    NA     NA     NA    NA</span>
-<span class="co">#&gt; 3: al-Hashem,  Muzna 2016-03-04 FALSE   FALSE FALSE  TRUE  FALSE  FALSE FALSE</span>
-<span class="co">#&gt; 4:  el-Kaleel, Aadil 2019-12-18 FALSE    TRUE FALSE  TRUE  FALSE  FALSE  TRUE</span>
-<span class="co">#&gt;    score</span>
-<span class="co">#&gt; 1:    10</span>
-<span class="co">#&gt; 2:    NA</span>
-<span class="co">#&gt; 3:     1</span>
-<span class="co">#&gt; 4:     5</span></pre></body></html></div>
-</div>
-<div id="concluding-remark" class="section level1">
-<h1 class="hasAnchor">
-<a href="#concluding-remark" class="anchor"></a>Concluding remark</h1>
-<p>This vignette illustrates a simple example where the data sets are small, and the coding schemes are trivial. If that is the case, it might be equally good to just join or merge the data sets manually. A more realistic example of when the package might come handy is presented in the vignette called “Comorbidity”.</p>
+<span class="no">ex_atc</span>$<span class="no">code</span> <span class="kw">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(
+    <span class="fu">s</span>(<span class="no">letters</span>), <span class="fu">s</span>(<span class="fl">0</span>:<span class="fl">9</span>), <span class="fu">s</span>(<span class="no">LETTERS</span>), <span class="fu">s</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"."</span>, <span class="st">"-"</span>, <span class="st">"?"</span>)),
+    <span class="no">ex_atc</span>$<span class="no">code</span>, <span class="fu">s</span>(<span class="no">LETTERS</span>), <span class="fu">s</span>(<span class="fl">0</span>:<span class="fl">9</span>)
+  )
+
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">ex_atc</span>))</pre></body></html></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">id</th>
+<th align="left">code</th>
+<th align="left">code_date</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">al-Dawood, Hasan</td>
+<td align="left">j2F-QM01AX90H5</td>
+<td align="left">2012-01-01</td>
+</tr>
+<tr class="even">
+<td align="left">Mendoza, Jessica</td>
+<td align="left">c5V?QJ51BA90S5</td>
+<td align="left">2014-01-26</td>
+</tr>
+<tr class="odd">
+<td align="left">Rice, Jamissa</td>
+<td align="left">g9M.QA12CC09B0</td>
+<td align="left">2019-08-18</td>
+</tr>
+<tr class="even">
+<td align="left">al-Asmar, Abdur Raheem</td>
+<td align="left">c6S-QN06BX14N9</td>
+<td align="left">2016-06-05</td>
+</tr>
+<tr class="odd">
+<td align="left">Bivings, Devin</td>
+<td align="left">b6O-QC07EF1</td>
+<td align="left">2015-04-30</td>
+</tr>
+<tr class="even">
+<td align="left">Harder, Rio</td>
+<td align="left">c2L?B02AA02F4</td>
+<td align="left">2013-04-30</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb9"><html><body><pre class="r">
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="fu"><a href="../reference/categorize.html">categorize</a></span>(<span class="no">ex_people</span>, <span class="no">ex_atc</span>, <span class="no">rxriskv</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>)$<span class="no">index_pratt</span>)
+<span class="co">#&gt; Classification based on: regex_pratt</span>
+<span class="co">#&gt; [1] 0</span></pre></body></html></div>
+<p>Thus, no codes are recognized (every one got index = 0). By default, codes are only recognized if found immediate in its corresponding column. This can be controlled by arguments <code>start</code> and <code>stop</code> specified via <code>cc_args</code>:</p>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu">hist2</span>(
+  <span class="fu"><a href="../reference/categorize.html">categorize</a></span>(
+    <span class="no">ex_people</span>, <span class="no">ex_atc</span>, <span class="no">rxriskv</span>, <span class="kw">id</span> <span class="kw">=</span> <span class="st">"name"</span>,
+    <span class="kw">cc_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">start</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">stop</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
+  )
+)
+<span class="co">#&gt; Classification based on: regex_pratt</span></pre></body></html></div>
+<p><img src="coder_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
   </div>
 

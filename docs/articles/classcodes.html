@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -59,12 +59,6 @@
 <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
     </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -88,7 +82,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="classcodes_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Classcodes objects</h1>
@@ -104,13 +98,29 @@
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">coder</span>)</pre></body></html></div>
 <p>Classification is implemented by classcodes objects with regular expressions identifying different groups. Default classcodes object included in the package are:</p>
 <div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/all_classcodes.html">all_classcodes</a></span>()$<span class="no">classcodes</span>
-<span class="co">#&gt; [1] "charlson"      "cps"           "elixhauser"    "ex_carbrands" </span>
-<span class="co">#&gt; [5] "hip_ae"        "hip_ae_hailer" "knee_ae"       "rxriskv"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "charlson"      "cps"           "elixhauser"    "hip_ae"       </span>
+<span class="co">#&gt; [5] "hip_ae_hailer" "knee_ae"       "rxriskv"</span></pre></body></html></div>
 <p>We will have a closer look at one of those objects, <code>charlson</code>, to exemplify its content. The object is basically a data frame …</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">charlson</span>, <span class="fl">3</span>) <span class="co"># Display first 3 lines</span>
 )</pre></body></html></div>
 <table class="table">
+<colgroup>
+<col width="4%">
+<col width="29%">
+<col width="13%">
+<col width="5%">
+<col width="12%">
+<col width="9%">
+<col width="3%">
+<col width="4%">
+<col width="2%">
+<col width="3%">
+<col width="2%">
+<col width="2%">
+<col width="3%">
+<col width="3%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">group</th>
 <th align="left">description</th>
@@ -313,6 +323,11 @@
 )
 <span class="co">#&gt; Classification based on: regex_icd10</span></pre></body></html></div>
 <table class="table">
+<colgroup>
+<col width="5%">
+<col width="76%">
+<col width="17%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">code</th>
 <th align="left">description</th>
@@ -412,74 +427,79 @@
   <span class="no">charlson_icd8</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"group"</span>, <span class="st">"regex"</span>)]
 )</pre></body></html></div>
 <table class="table">
+<colgroup>
+<col width="2%">
+<col width="51%">
+<col width="46%">
+</colgroup>
 <thead><tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">group</th>
 <th align="left">regex</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td align="left">1</td>
 <td align="left">charlson_regex_icd8_brusselaers_myocardial_infarction</td>
 <td align="left">(41[0-2])$</td>
 </tr>
 <tr class="even">
-<td>2</td>
+<td align="left">2</td>
 <td align="left">charlson_regex_icd8_brusselaers_congestive_heart_failure</td>
 <td align="left">(4270|428)$</td>
 </tr>
 <tr class="odd">
-<td>3</td>
+<td align="left">3</td>
 <td align="left">charlson_regex_icd8_brusselaers_peripheral_vascular_disease</td>
 <td align="left">(44[0-5])$</td>
 </tr>
 <tr class="even">
-<td>4</td>
+<td align="left">4</td>
 <td align="left">charlson_regex_icd8_brusselaers_cerebrovascular_disease</td>
 <td align="left">(43[0-8])$</td>
 </tr>
 <tr class="odd">
-<td>5</td>
+<td align="left">5</td>
 <td align="left">charlson_regex_icd8_brusselaers_dementia</td>
 <td align="left">(290[01])$</td>
 </tr>
 <tr class="even">
-<td>6</td>
+<td align="left">6</td>
 <td align="left">charlson_regex_icd8_brusselaers_chronic_pulmonary_disease</td>
 <td align="left">(49[0-3]|51[5-8])$</td>
 </tr>
 <tr class="odd">
-<td>7</td>
+<td align="left">7</td>
 <td align="left">charlson_regex_icd8_brusselaers_rheumatic_disease</td>
 <td align="left">(7(1[0-2]|34))$</td>
 </tr>
 <tr class="even">
-<td>11</td>
+<td align="left">11</td>
 <td align="left">charlson_regex_icd8_brusselaers_hemiplegia_or_paraplegia</td>
 <td align="left">(344)$</td>
 </tr>
 <tr class="odd">
-<td>12</td>
+<td align="left">12</td>
 <td align="left">charlson_regex_icd8_brusselaers_renal_disease</td>
 <td align="left">(40[34]|58[0-3]|792)$</td>
 </tr>
 <tr class="even">
-<td>13</td>
+<td align="left">13</td>
 <td align="left">charlson_regex_icd8_brusselaers_diabetes_complication</td>
 <td align="left">(250)$</td>
 </tr>
 <tr class="odd">
-<td>14</td>
+<td align="left">14</td>
 <td align="left">charlson_regex_icd8_brusselaers_malignancy</td>
 <td align="left">(1([4-68][0-9]|7[0-24-9]|9[0-4])|20[0-7])$</td>
 </tr>
 <tr class="even">
-<td>15</td>
+<td align="left">15</td>
 <td align="left">charlson_regex_icd8_brusselaers_moderate_or_severe_liver_disease</td>
 <td align="left">(070|4560|51[1-3])$</td>
 </tr>
 <tr class="odd">
-<td>16</td>
+<td align="left">16</td>
 <td align="left">charlson_regex_icd8_brusselaers_metastatic_solid_tumor</td>
 <td align="left">(19[6-9])$</td>
 </tr>

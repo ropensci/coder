@@ -75,7 +75,7 @@ in use, and during the creation and debugging of such." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -102,12 +102,6 @@ in use, and during the creation and debugging of such." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
-    </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -172,7 +166,8 @@ Set to <code>FALSE</code> to just retrieve a URL for later use.</p></td>
     <dt><code>regex</code></dt><dd><p>name of column with regular expressions to use for
 classification, either with or without prefix <code>regex_</code>.
 <code>NULL</code> (default) uses the first classcodes column with prefix "regex".
-This should be a sensible choice for default classcodes object included in the package.</p></dd>
+This should be a sensible choice for default classcodes object included
+in the package.</p></dd>
   
 </dl></td>
     </tr>
@@ -187,6 +182,8 @@ This should be a sensible choice for default classcodes object included in the p
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
 <code><a href='classcodes.html'>classcodes</a></code>,
+<code><a href='codebooks.html'>codebooks</a>()</code>,
+<code><a href='codebook.html'>codebook</a>()</code>,
 <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code></p></div>
@@ -211,10 +208,10 @@ This should be a sensible choice for default classcodes object included in the p
  <span class='co'># Show all groups from Charlson</span>
  <span class='fu'>visualize</span>(<span class='st'>"charlson"</span>)
 
- <span class='co'># Get URL for later visualization</span>
- (<span class='fu'>visualize</span>(<span class='st'>"hip_fracture_ae"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))
+}
 
-}</div></pre>
+ <span class='co'># Get URL for later visualization</span>
+ <span class='fu'>visualize</span>(<span class='st'>"hip_ae"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -8,12 +8,14 @@
 A data frame with 31 rows and 8 variables:
 \describe{
   \item{group}{comorbidity groups}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group.
-    Corresponds to column 'ICD-10' in table 2 of Quan et al. (2005).}
-  \item{regex_icd10_short}{regular expressions identifying only the first three
-  characters of ICD-10 codes of each group. This alternative version was
-  added only to use in emergency when only the first three digits are available.
-  It is not an official version and we do not recommend to use it!}
+  \item{regex_icd10}{regular expressions identifying ICD-10 codes of
+    each group. Corresponds to column 'ICD-10' in table 2
+    of Quan et al. (2005).}
+  \item{regex_icd10_short}{regular expressions identifying only the first
+     three characters of ICD-10 codes of each group. This alternative version
+     was added only to use in emergency when only the first three digits are
+     available. It is not an official version and we do not recommend to
+     use it!}
   \item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
     in table 2 of Quan et al. (2005).}
   \item{regex_icd9cm_ahrqweb}{Corresponds to column
@@ -49,17 +51,19 @@ index value will only account for metastatic cancer. The same is true for
 See Elixhauser et al. (1998).
 
 Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
-is not handled by the coder package. This should instead be considered as an additional
-pre- or post-processing step!
+is not handled by the coder package. This should instead be considered as
+an additional pre- or post-processing step!
 }
 \references{
 Elixhauser A, Steiner C, Harris DR, Coffey RM (1998).
-  Comorbidity Measures for Use with Administrative Data. Med Care. 1998;36(1):8–27.
+  Comorbidity Measures for Use with Administrative Data.
+  Med Care. 1998;36(1):8–27.
 
 Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
   Identifying Increased Risk of Readmission and In-hospital Mortality Using
   Hospital Administrative Data.
-  Medical Care, 55(7), 698–705. \url{http://doi.org/10.1097/MLR.0000000000000735}
+  Medical Care, 55(7), 698–705.
+  \url{http://doi.org/10.1097/MLR.0000000000000735}
 
 Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.

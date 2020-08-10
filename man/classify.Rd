@@ -19,7 +19,8 @@ classify(codified, cc, ..., cc_args = list())
 
 \item{...}{arguments passed between methods}
 
-\item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
+\item{cc_args}{List with named arguments passed to
+\code{\link{set_classcodes}}}
 
 \item{code, id}{name of code/id columns (in \code{codified}).}
 }

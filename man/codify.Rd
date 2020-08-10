@@ -7,7 +7,8 @@
 codify(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...)
 }
 \arguments{
-\item{data}{\code{\link{data.frame}} with at least case id, and optional date of interest}
+\item{data}{\code{\link{data.frame}} with at least case id, and optional
+date of interest}
 
 \item{codedata}{output from \code{\link{as.codedata}}.}
 
@@ -32,12 +33,13 @@ but the object will be changed by reference.}
 }
 \value{
 \code{data} (coerced to \code{data.table}) with additional columns:
-  \code{code, code_date}: left joined from \code{codedata} or \code{NA} if no match
-  within period. \code{in_period}: Boolean indicator if the case had at least one
-  code within the specified period.
+  \code{code, code_date}: left joined from \code{codedata} or \code{NA}
+  if no match within period. \code{in_period}: Boolean indicator if the case
+  had at least one code within the specified period.
 
   The output has one row for each combination of "id" from \code{data} and
-  "code" from \code{codedata}. Rows from \code{data} might be repeated accordingly.
+  "code" from \code{codedata}. Rows from \code{data} might be repeated
+   accordingly.
 }
 \description{
 Enhance case data with code data, possibly limited to relevant period.
@@ -46,7 +48,8 @@ Enhance case data with code data, possibly limited to relevant period.
 
   Some examples for argument \code{days}:
   \itemize{
-    \item \code{c(-365, -1)}: window of one year prior to the \code{date} column of \code{data}.            Useful for patient co-morbidity.
+    \item \code{c(-365, -1)}: window of one year prior to the \code{date}
+      column of \code{data}.            Useful for patient co-morbidity.
     \item \code{c(1, 30)}: window of 30 days after \code{date}.
       Useful for adverse events after a surgical procedure.
    \item \code{c(-Inf, Inf)}: no limitation on non missing dates.

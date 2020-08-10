@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/eribul/coder",
   "issueTracker": "https://github.com/eribul/coder/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.11.2",
+  "version": "0.11.9",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
   "author": [
     {
       "@type": "Person",
@@ -84,6 +83,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "writexl",
+      "name": "writexl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=writexl"
     }
   ],
   "softwareRequirements": [
@@ -91,7 +102,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 2.10"
+      "version": ">= 3.3"
     },
     {
       "@type": "SoftwareApplication",
@@ -104,15 +115,23 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "decoder",
+      "name": "decoder",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=decoder"
     }
   ],
   "readme": "https://github.com/eribul/coder/blob/master/README.md",
-  "fileSize": "82.753KB",
-  "contIntegration": [
-    "https://travis-ci.org/eribul/coder",
-    "https://ci.appveyor.com/project/eribul/coder",
-    "https://codecov.io/gh/eribul/coder"
-  ],
+  "fileSize": "4187.641KB",
+  "contIntegration": "https://codecov.io/gh/eribul/coder",
   "keywords": [
     "r",
     "package",
@@ -121,9 +140,10 @@
     "icd-10",
     "rstats"
   ],
-  "releaseNotes": "https://www.github.com/eribul/coder/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/eribul/coder/blob/master/NEWS.md",
   "developmentStatus": "https://www.repostatus.org/#active",
   "contributor": {},
   "copyrightHolder": {},
-  "funder": {}
+  "funder": {},
+  "relatedLink": "https://eribul.github.io/coder"
 }

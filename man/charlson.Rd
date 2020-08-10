@@ -10,11 +10,11 @@ A data frame with 17 rows and 8 variables:
   \item{group}{comorbidity groups}
   \item{description}{Verbal description of codes as described by
     Deyo et al. (1992).}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each group as
-  decoded from Quan et al. 2005. Note that this classification was not
-  originally used with all weights! To simply use this classification table
-  with weights other than \code{quan_original} and \code{quan_updated} might
-  therefore lead to different results than originally intended for each
+  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+  group as decoded from Quan et al. 2005. Note that this classification was
+  not originally used with all weights! To simply use this classification
+  table with weights other than \code{quan_original} and \code{quan_updated}
+  might therefore lead to different results than originally intended for each
   index.}
   \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
     in Quan et al. (2005).
@@ -34,7 +34,8 @@ A data frame with 17 rows and 8 variables:
   ICD-9 by Brusselaers et al. (2017).
     "Moderate and severe liver disease" contains all liver disease and
     "diabetes complication" contains all diabetes.}
-  \item{index_charlson}{original weights as suggested by Charlson et al. (1987)*}
+  \item{index_charlson}{original weights as suggested by Charlson et al.
+     (1987)*}
   \item{index_deyo_ramano}{weights suggested by Deyo and Romano*}
   \item{index_dhoore}{weights suggested by D'Hoore*}
   \item{index_ghali}{weights suggested by Ghali*}

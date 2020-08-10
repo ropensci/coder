@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -99,12 +99,6 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
-    </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -148,7 +142,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with at least case id, and optional date of interest</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></code> with at least case id, and optional
+date of interest</p></td>
     </tr>
     <tr>
       <th>codedata</th>
@@ -185,17 +180,19 @@ but the object will be changed by reference.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>data</code> (coerced to <code>data.table</code>) with additional columns:
-  <code>code, code_date</code>: left joined from <code>codedata</code> or <code>NA</code> if no match
-  within period. <code>in_period</code>: Boolean indicator if the case had at least one
-  code within the specified period.</p>
+  <code>code, code_date</code>: left joined from <code>codedata</code> or <code>NA</code>
+  if no match within period. <code>in_period</code>: Boolean indicator if the case
+  had at least one code within the specified period.</p>
 <p>The output has one row for each combination of "id" from <code>data</code> and
-  "code" from <code>codedata</code>. Rows from <code>data</code> might be repeated accordingly.</p>
+  "code" from <code>codedata</code>. Rows from <code>data</code> might be repeated
+   accordingly.</p>
     <h2 class="hasAnchor" id="relevant-period"><a class="anchor" href="#relevant-period"></a>Relevant period</h2>
 
     
 
 <p>Some examples for argument <code>days</code>:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-365, -1)</a></code>: window of one year prior to the <code>date</code> column of <code>data</code>.            Useful for patient co-morbidity.</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-365, -1)</a></code>: window of one year prior to the <code>date</code>
+      column of <code>data</code>.            Useful for patient co-morbidity.</p></li>
 <li><p><code><a href='https://rdrr.io/r/base/c.html'>c(1, 30)</a></code>: window of 30 days after <code>date</code>.
       Useful for adverse events after a surgical procedure.</p></li>
 <li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-Inf, Inf)</a></code>: no limitation on non missing dates.</p></li>
@@ -211,17 +208,17 @@ but the object will be changed by reference.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>codify</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"name"</span>, <span class='kw'>date</span> <span class='kw'>=</span> <span class='st'>"event"</span>, <span class='kw'>days</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>365</span>, <span class='fl'>0</span>))</div><div class='output co'>#&gt;                    name       date  code_date    code  hdia in_period
-#&gt;   1: Alexander, Bethany 2019-05-01 2019-03-21 S62126K FALSE      TRUE
-#&gt;   2: Alexander, Bethany 2019-05-01 2019-04-25  I70718 FALSE      TRUE
-#&gt;   3:    Arguello, Tommy 2020-01-27 2019-02-07 S32464D FALSE      TRUE
-#&gt;   4:    Arguello, Tommy 2020-01-27 2019-07-09  M02152 FALSE      TRUE
-#&gt;   5:    Arguello, Tommy 2020-01-27 2019-10-15 T84192A FALSE      TRUE
+#&gt;   1: Alexander, Bethany 2019-08-19 2019-07-09 S62126K FALSE      TRUE
+#&gt;   2: Alexander, Bethany 2019-08-19 2019-08-13  I70718 FALSE      TRUE
+#&gt;   3:    Arguello, Tommy 2020-05-16 2019-05-28 S32464D FALSE      TRUE
+#&gt;   4:    Arguello, Tommy 2020-05-16 2019-10-27  M02152 FALSE      TRUE
+#&gt;   5:    Arguello, Tommy 2020-05-16 2020-02-02 T84192A FALSE      TRUE
 #&gt;  ---                                                                 
-#&gt; 365:   el-Zaki, Huwaida 2020-02-14 2019-04-02  M11821 FALSE      TRUE
-#&gt; 366:   el-Zaki, Huwaida 2020-02-14 2019-04-02 O368923 FALSE      TRUE
-#&gt; 367:   el-Zaki, Huwaida 2020-02-14 2019-06-17 T23609D FALSE      TRUE
-#&gt; 368:   el-Zaki, Huwaida 2020-02-14 2019-08-04 S7491XD FALSE      TRUE
-#&gt; 369:   el-Zaki, Huwaida 2020-02-14 2020-01-11    C751 FALSE      TRUE</div></pre>
+#&gt; 365:   el-Zaki, Huwaida 2020-06-03 2019-07-21  M11821 FALSE      TRUE
+#&gt; 366:   el-Zaki, Huwaida 2020-06-03 2019-07-21 O368923 FALSE      TRUE
+#&gt; 367:   el-Zaki, Huwaida 2020-06-03 2019-10-05 T23609D FALSE      TRUE
+#&gt; 368:   el-Zaki, Huwaida 2020-06-03 2019-11-22 S7491XD FALSE      TRUE
+#&gt; 369:   el-Zaki, Huwaida 2020-06-03 2020-04-30    C751 FALSE      TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

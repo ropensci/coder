@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -99,12 +99,6 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
-    </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -148,12 +142,14 @@
 
     <p>A data frame with 31 rows and 8 variables:</p><dl'>
   <dt>group</dt><dd><p>comorbidity groups</p></dd>
-  <dt>regex_icd10</dt><dd><p>regular expressions identifying ICD-10 codes of each group.
-    Corresponds to column 'ICD-10' in table 2 of Quan et al. (2005).</p></dd>
-  <dt>regex_icd10_short</dt><dd><p>regular expressions identifying only the first three
-  characters of ICD-10 codes of each group. This alternative version was
-  added only to use in emergency when only the first three digits are available.
-  It is not an official version and we do not recommend to use it!</p></dd>
+  <dt>regex_icd10</dt><dd><p>regular expressions identifying ICD-10 codes of
+    each group. Corresponds to column 'ICD-10' in table 2
+    of Quan et al. (2005).</p></dd>
+  <dt>regex_icd10_short</dt><dd><p>regular expressions identifying only the first
+     three characters of ICD-10 codes of each group. This alternative version
+     was added only to use in emergency when only the first three digits are
+     available. It is not an official version and we do not recommend to
+     use it!</p></dd>
   <dt>regex_icd9cm</dt><dd><p>Corresponds to column 'Elixhauser's Original ICD-9-CM'
     in table 2 of Quan et al. (2005).</p></dd>
   <dt>regex_icd9cm_ahrqweb</dt><dd><p>Corresponds to column
@@ -184,25 +180,27 @@ index value will only account for metastatic cancer. The same is true for
 "diabetes uncomplicated", which is subordinate of "diabetes complicated".
 See Elixhauser et al. (1998).</p>
 <p>Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
-is not handled by the coder package. This should instead be considered as an additional
-pre- or post-processing step!</p>
+is not handled by the coder package. This should instead be considered as
+an additional pre- or post-processing step!</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Elixhauser A, Steiner C, Harris DR, Coffey RM (1998).
-  Comorbidity Measures for Use with Administrative Data. Med Care. 1998;36(1):8–27.</p>
+  Comorbidity Measures for Use with Administrative Data.
+  Med Care. 1998;36(1):8–27.</p>
 <p>Moore, B. J., White, S., Washington, R., Coenen, N., &amp; Elixhauser, A. (2017).
   Identifying Increased Risk of Readmission and In-hospital Mortality Using
   Hospital Administrative Data.
-  Medical Care, 55(7), 698–705. http://doi.org/10.1097/MLR.0000000000000735</p>
+  Medical Care, 55(7), 698–705.
+  <a href='http://doi.org/10.1097/MLR.0000000000000735'>http://doi.org/10.1097/MLR.0000000000000735</a></p>
 <p>Quan Hude et al. (2005). Coding algorithms for defining
   comorbidities in ICD-9-CM and ICD-10 administrative data.
   Medical care, 1130-1139.
-  <a href='www.jstor.org/stable/3768193'>www.jstor.org/stable/3768193</a></p>
+  <a href='https://www.jstor.org/stable/3768193'>https://www.jstor.org/stable/3768193</a></p>
 <p>Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
   Vadera, S., &amp; Griffith, S. D. (2015).
   A new Elixhauser-based comorbidity summary measure to predict in-hospital
   mortality. Med Care, 53(4), 374–379.
-  http://doi.org/10.1097/MLR.0000000000000326</p>
+  <a href='http://doi.org/10.1097/MLR.0000000000000326'>http://doi.org/10.1097/MLR.0000000000000326</a></p>
 <p>Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
   C. Van, … Jennings, A. (2009).
   A Modification of the Elixhauser Comorbidity Measures Into a Point System

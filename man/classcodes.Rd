@@ -13,8 +13,9 @@ is.classcodes(x)
 \arguments{
 \item{x}{data frame with properties as described in the details section}
 
-\item{hierarchy}{list of pairwise group names to appear as superior and subordinate classes.
-To be used for indexing when the subordinate class is redundant.}
+\item{hierarchy}{list of pairwise group names to appear as superior and
+subordinate classes.
+  To be used for indexing when the subordinate class is redundant.}
 
 \item{.name}{used internally for name dispatch}
 }

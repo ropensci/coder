@@ -42,7 +42,6 @@ attr(elixhauser, "hierarchy") <-
 
 # Save all datasets. Must be referred by name directly (could use rlang maybe)
 usethis::use_data(
-  ex_carbrands,
   charlson,
   elixhauser,
   hip_ae,

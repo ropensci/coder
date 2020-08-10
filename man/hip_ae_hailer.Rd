@@ -3,8 +3,8 @@
 \docType{data}
 \name{hip_ae_hailer}
 \alias{hip_ae_hailer}
-\title{Classcodes for infection and dislocation after hip arthroplasty based on ICD-10
-and KVA codes}
+\title{Classcodes for infection and dislocation after hip arthroplasty
+based on ICD-10 and KVA codes}
 \format{
 Data frame with 3 columns:
 \describe{

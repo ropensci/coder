@@ -74,7 +74,7 @@ and KVA codes — ae" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -101,12 +101,6 @@ and KVA codes — ae" />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/classcodes.html">Classcodes objects</a>
-    </li>
-    <li>
-      <a href="../articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="../articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -153,9 +147,11 @@ and KVA codes</h1>
 
     <p>Data frame with 3 columns:</p><dl'>
   <dt>group</dt><dd><p>Different types of adverse events (see reference section)</p></dd>
-  <dt>regex_icd10</dt><dd><p>regular expressions identifying ICD-10 codes for each group</p></dd>
+  <dt>regex_icd10</dt><dd><p>regular expressions identifying ICD-10 codes for each
+    group</p></dd>
  <dt>regex_icd10_fracture</dt><dd><p>regular expressions for fracture patients.
-   Essentially the same as <code>regex</code> but with some additional codes for group "DM1 other"</p></dd>
+   Essentially the same as <code>regex</code> but with some additional codes for
+   group "DM1 other"</p></dd>
  <dt>regex_kva</dt><dd><p>regular expressions identifying KVA codes</p></dd>
   <dt>condition</dt><dd><p>special conditions are used, see below.</p></dd>
 
@@ -164,8 +160,8 @@ and KVA codes</h1>
 <p>An object of class <code>classcodes</code> (inherits from <code>tbl_df</code>, <code>tbl</code>, <code>data.frame</code>) with 7 rows and 5 columns.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.
-Hip (p. 149): <a href='https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf</a></p>
+    <p>Knee (p. 83): <a href='http://www.myknee.se/pdf/SVK-2016_1.1.pdf'>http://www.myknee.se/pdf/SVK-2016_1.1.pdf</a>.</p>
+<p>Hip (p. 162): <a href='https://registercentrum.blob.core.windows.net/shpr/r/Arsrapport_2018_Hoftprotes_final_web-rJgg8LvkOB.pdf'>https://registercentrum.blob.core.windows.net/shpr/r/Arsrapport_2018_Hoftprotes_final_web-rJgg8LvkOB.pdf</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>ICD-10 group names are prefixed by two letters as given by the references.
@@ -197,7 +193,7 @@ of the classcodes data prior to categorization.</p>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Magnéli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
+    <p>Magneli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
     Validation of adverse events after hip arthroplasty:
     a Swedish multi-centre cohort study.
     BMJ Open. 2019 Mar 7;9(3):e023773.

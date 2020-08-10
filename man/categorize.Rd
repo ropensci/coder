@@ -16,7 +16,8 @@ categorize(
 )
 }
 \arguments{
-\item{data}{data frame with mandatory id column (identified by argument \code{id}),
+\item{data}{data frame with mandatory id column
+(identified by argument \code{id}),
 and semi-optional column with date of interest
 (identified by argument \code{date} if \code{days != NULL}).}
 
@@ -27,21 +28,23 @@ and semi-optional column with date of interest
 \item{id}{name of code/id columns (in \code{codified}).}
 
 \item{index}{control possible inclusion of index vector.
-Set to \code{FALSE} if no index should be calculated, otherwise a value passed to argument
+Set to \code{FALSE} if no index should be calculated, otherwise a value
+passed to argument
 \code{by} in function \code{\link{index}}. It is possible to
 include several indices as a character vector.
 \code{NULL} will include all available indices.}
 
 \item{sort}{logical. Should output be sorted by the 'id' column?
 (This could effect computational speed for large data sets.)
-Data is sorted by 'id' internally. It is therefore faster to keep the output
-sorted this way, but this might be inconvenient if the original
+Data is sorted by 'id' internally. It is therefore faster to keep the
+output sorted this way, but this might be inconvenient if the original
 order was intended. Set to \code{FALSE} in order to not shuffle the
 input data.}
 
 \item{codify_args}{List of named arguments passed to \code{\link{codify}}}
 
-\item{cc_args}{List with named arguments passed to \code{\link{set_classcodes}}}
+\item{cc_args}{List with named arguments passed to
+\code{\link{set_classcodes}}}
 }
 \value{
 data frame ('data.table' object) with all data from

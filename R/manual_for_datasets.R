@@ -304,35 +304,6 @@
 ################################################################################
 
 
-#' Example data for can registry
-#'
-#' Example data for fictive people and their car ownership.
-#'
-#' @format Data frames with 1,000 rows and 3 variables:
-#' \describe{
-#'   \item{id}{random person names}
-#'   \item{code}{random car models}
-#'   \item{code_date}{random dates for car ownership}
-#' }
-#'
-#' @family example data
-"ex_cars"
-
-
-#' Example classcodes object for classification of car brands by their producer
-#'
-#' @format Data frames with 11 rows and 2 variables:
-#' \describe{
-#'   \item{group}{Car makers}
-#'   \item{regex}{Regular expressions identifying car brands}
-#' }
-#'
-#' @family example data
-"ex_carbrands"
-
-
-
-
 #' Example data for random people
 #'
 #' Example data for fictive people to use for testing and in examples.

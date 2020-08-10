@@ -4,9 +4,7 @@ pkgdown_sha: ~
 articles:
   classcodes: classcodes.html
   coder: coder.html
-  comorbidity: comorbidity.html
-  conditions: conditions.html
-last_built: 2020-04-22T09:14Z
+last_built: 2020-08-10T07:54Z
 urls:
   reference: eribul.github.io/coder/reference
   article: eribul.github.io/coder/articles

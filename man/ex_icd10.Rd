@@ -24,8 +24,6 @@ in examples.
 }
 \seealso{
 Other example data: 
-\code{\link{ex_carbrands}},
-\code{\link{ex_cars}},
 \code{\link{ex_people}}
 }
 \concept{example data}

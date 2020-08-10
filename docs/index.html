@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
       </span>
     </div>
 
@@ -65,12 +65,6 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="articles/classcodes.html">Classcodes objects</a>
-    </li>
-    <li>
-      <a href="articles/comorbidity.html">Co-morbidity</a>
-    </li>
-    <li>
-      <a href="articles/conditions.html">conditions</a>
     </li>
   </ul>
 </li>
@@ -126,27 +120,27 @@
 <tbody>
 <tr class="odd">
 <td align="left">Miller, Von Buddenbrock</td>
-<td align="left">2019-06-27</td>
+<td align="left">2019-10-15</td>
 </tr>
 <tr class="even">
 <td align="left">Enriquez, Anthony</td>
-<td align="left">2019-12-09</td>
+<td align="left">2020-03-28</td>
 </tr>
 <tr class="odd">
 <td align="left">al-Dib, Farhaan</td>
-<td align="left">2020-02-04</td>
+<td align="left">2020-05-24</td>
 </tr>
 <tr class="even">
 <td align="left">Martinez, Alison</td>
-<td align="left">2019-11-11</td>
+<td align="left">2020-02-29</td>
 </tr>
 <tr class="odd">
 <td align="left">el-Masri, Junaid</td>
-<td align="left">2019-08-30</td>
+<td align="left">2019-12-18</td>
 </tr>
 <tr class="even">
 <td align="left">Sam, Niki</td>
-<td align="left">2020-02-16</td>
+<td align="left">2020-06-05</td>
 </tr>
 </tbody>
 </table>
@@ -162,37 +156,37 @@
 <tbody>
 <tr class="odd">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-07-11</td>
+<td align="left">2019-10-29</td>
 <td align="left">O350XX9</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-10-05</td>
+<td align="left">2020-01-23</td>
 <td align="left">S55101A</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Aguilera, Brandon</td>
-<td align="left">2019-11-05</td>
+<td align="left">2020-02-23</td>
 <td align="left">A4181</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2019-03-21</td>
+<td align="left">2019-07-09</td>
 <td align="left">S62126K</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="odd">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2019-04-25</td>
+<td align="left">2019-08-13</td>
 <td align="left">I70718</td>
 <td align="left">FALSE</td>
 </tr>
 <tr class="even">
 <td align="left">Alexander, Bethany</td>
-<td align="left">2019-08-30</td>
+<td align="left">2019-12-18</td>
 <td align="left">O368124</td>
 <td align="left">FALSE</td>
 </tr>
@@ -288,26 +282,21 @@
 <td align="left">index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29, index_sid30, index_ahrq_mort, index_ahrq_readm</td>
 </tr>
 <tr class="even">
-<td align="left">ex_carbrands</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
 <td align="left">hip_ae</td>
 <td align="left">icd10, kva, icd10_fracture</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">hip_ae_hailer</td>
 <td align="left">icd10, kva</td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">knee_ae</td>
 <td align="left">icd10, kva</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rxriskv</td>
 <td align="left">pratt, caughey, garland</td>
 <td align="left">index_pratt, index_sum_all</td>
@@ -320,27 +309,6 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#relation-to-other-packages" class="anchor"></a>Relation to other packages</h1></div>
 <p><code>coder</code> uses <code>data.table</code> as a backend to increase computational speed for large datasets. There are some R packages with a narrow focus on Charlson and Elixhauser co-morbidity based on ICD-codes (<a href="https://CRAN.R-project.org/package=icd">icd</a>, <a href="https://CRAN.R-project.org/package=comorbidity">comorbidity</a>, <a href="https://CRAN.R-project.org/package=medicalrisk">medicalrisk</a>, <a href="https://github.com/gforge/comorbidities.icd10">comorbidities.icd10</a>, <a href="https://github.com/wtcooper/icdcoder">icdcoder</a>). The <code>coder</code> package includes similar functionalities but has a wider scope.</p>
-</div>
-<div id="citation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h1>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"coder"</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; To cite package 'coder' in publications use:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Erik Bulow (2020). coder: Deterministic Categorization of Items Based on External Code</span>
-<span class="co">#&gt;   Data. R package version 0.11.3. https://github.com/eribul/coder</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; A BibTeX entry for LaTeX users is</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   @Manual{,</span>
-<span class="co">#&gt;     title = {coder: Deterministic Categorization of Items Based on External Code</span>
-<span class="co">#&gt; Data},</span>
-<span class="co">#&gt;     author = {Erik Bulow},</span>
-<span class="co">#&gt;     year = {2020},</span>
-<span class="co">#&gt;     note = {R package version 0.11.3},</span>
-<span class="co">#&gt;     url = {https://github.com/eribul/coder},</span>
-<span class="co">#&gt;   }</span></pre></div>
 </div>
 <div id="contribution" class="section level1">
 <h1 class="hasAnchor">
