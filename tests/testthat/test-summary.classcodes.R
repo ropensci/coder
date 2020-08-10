@@ -24,11 +24,4 @@ test_that("print.summary.classcodes", {
     "Indices: index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29",
     fixed = TRUE
   )
-
-  expect_output(
-    print(summary(ex_carbrands, c("Volvo", "Saab"))),
-    "Indices: (Sum of categories)",
-    fixed = TRUE
-  )
-
 })

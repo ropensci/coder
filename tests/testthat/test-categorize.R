@@ -37,29 +37,3 @@ test_that("categorize", {
     nrow(ex_people)
   )
 })
-
-
-# No index ----------------------------------------------------------------
-
-set.seed(123)
-
-people <-
-  data.frame(
-    name = c(
-      "Medina, Desmand", "al-Hashem,  Muzna",
-      "el-Kaleel, Aadil", "Pettsson, Svenne"
-    ),
-    license = as.Date(c(
-      "1949-05-23", "2016-03-04", "2019-12-18", "1985-05-04"
-    )),
-    cond1 = TRUE,
-    cond2 = FALSE,
-    cond3 = NA,
-    stringsAsFactors = FALSE
-  )
-test_that("", {
-  expect_message(
-    categorize(people, ex_cars, ex_carbrands, id = "name"),
-    "index calculated as number of relevant categories"
-    )
-})
