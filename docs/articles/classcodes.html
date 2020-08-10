@@ -232,15 +232,31 @@
 <div id="visualise-graphically" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualise-graphically" class="anchor"></a>Visualise graphically</h2>
-<p>Regular expressions can be difficult to interpret but can be visualized by function <code>visualize</code>. This will usually display a web page in the default browser (suppressed by argument <code>show = FALSE</code> in the vignette):</p>
+<p>Regular expressions might be difficult to interpret but can be visualized by <code><a href="../reference/visualize.html">visualize()</a></code>. This will usually display a web page in the default browser (here suppressed by <code>show = FALSE</code>):</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">url</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/visualize.html">visualize</a></span>(<span class="no">charlson</span>, <span class="kw">show</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">regex</span> <span class="kw">=</span> <span class="st">"regex_icd10"</span>)</pre></body></html></div>
-<p>In the vignette, we can open the <code>url</code> “manually” by the <a href="https://jex.im/regulex/#!embed=true&amp;flags=&amp;re=%5E(I2(%5B12%5D%7C52))%7C%5E(I(099%7C1(10%7C3%5B02%5D)%7C255%7C4(2%5B05-9%5D%7C3)%7C50)%7CP290)%7C%5E(I7(%5B01%5D%7C3%5B189%5D%7C71%7C9%5B02%5D)%7CK55%5B189%5D%7CZ95%5B89%5D)%7C%5E(G4%5B56%5D%7CH340%7CI6)%7C%5E(F0(%5B0-3%5D%7C51)%7CG3(0%7C11))%7C%5E((I27%5B89%5D)%7CJ(4%5B0-7%5D%7C6(%5B0-7%5D%7C84)%7C70%5B13%5D))%7C%5E(M(0%5B56%5D%7C3(15%7C%5B2-4%5D%7C5%5B13%5D%7C60)))%7C%5E(K2%5B5-8%5D)%7C%5E(B18%7CK7(0%5B0-39%5D%7C1%5B3457%5D%7C%5B34%5D%7C6%5B023489%5D)%7CZ944)%7C%5E(E1%5B0-4%5D%5B01689%5D)%7C%5E(G(041%7C114%7C8(0%5B12%5D%7C%5B12%5D%7C3%5B0-49%5D)))%7C%5E(I1(20%7C31)%7CN(0(%5B35%5D%5B2-7%5D)%7C1%5B89%5D%7C250)%7CZ(49%5B012%5D%7C9(40%7C92)))%7C%5E(E1%5B0-4%5D%5B2-57%5D)%7C%5E(C(%5B01%5D%7C2%5B0-6%5D%7C3%5B0-47-9%5D%7C4%5B0135-9%5D%7C5%5B0-8%5D%7C6%7C7%5B0-6%5D%7C8%5B1-58%5D%7C9%5B0-7%5D))%7C%5E(I(8(5%5B09%5D%7C64)%7C982)%7CK7(04%7C%5B12%5D1%7C29%7C6%5B5-7%5D))%7C%5E(C(7%5B7-9%5D%7C80))%7C%5E(B2%5B0124%5D)">JavaScript Regular Expression Parser &amp; Visualizer</a>.</p>
+<p>Here, we can open the <code>url</code> “manually” by a link to the <a href="https://jex.im/regulex/#!embed=true&amp;flags=&amp;re=%5E(I2(%5B12%5D%7C52))%7C%5E(I(099%7C1(10%7C3%5B02%5D)%7C255%7C4(2%5B05-9%5D%7C3)%7C50)%7CP290)%7C%5E(I7(%5B01%5D%7C3%5B189%5D%7C71%7C9%5B02%5D)%7CK55%5B189%5D%7CZ95%5B89%5D)%7C%5E(G4%5B56%5D%7CH340%7CI6)%7C%5E(F0(%5B0-3%5D%7C51)%7CG3(0%7C11))%7C%5E((I27%5B89%5D)%7CJ(4%5B0-7%5D%7C6(%5B0-7%5D%7C84)%7C70%5B13%5D))%7C%5E(M(0%5B56%5D%7C3(15%7C%5B2-4%5D%7C5%5B13%5D%7C60)))%7C%5E(K2%5B5-8%5D)%7C%5E(B18%7CK7(0%5B0-39%5D%7C1%5B3457%5D%7C%5B34%5D%7C6%5B023489%5D)%7CZ944)%7C%5E(E1%5B0-4%5D%5B01689%5D)%7C%5E(G(041%7C114%7C8(0%5B12%5D%7C%5B12%5D%7C3%5B0-49%5D)))%7C%5E(I1(20%7C31)%7CN(0(%5B35%5D%5B2-7%5D)%7C1%5B89%5D%7C250)%7CZ(49%5B012%5D%7C9(40%7C92)))%7C%5E(E1%5B0-4%5D%5B2-57%5D)%7C%5E(C(%5B01%5D%7C2%5B0-6%5D%7C3%5B0-47-9%5D%7C4%5B0135-9%5D%7C5%5B0-8%5D%7C6%7C7%5B0-6%5D%7C8%5B1-58%5D%7C9%5B0-7%5D))%7C%5E(I(8(5%5B09%5D%7C64)%7C982)%7CK7(04%7C%5B12%5D1%7C29%7C6%5B5-7%5D))%7C%5E(C(7%5B7-9%5D%7C80))%7C%5E(B2%5B0124%5D)">JavaScript Regular Expression Parser &amp; Visualizer</a>. The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for myocardial infarction as codified by <code>regex_icd9cm_deyo</code>:</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/visualize.html">visualize</a></span>(
+  <span class="no">charlson</span>,
+  <span class="kw">group</span>    <span class="kw">=</span> <span class="st">"myocardial infarction"</span>,
+  <span class="kw">show</span>     <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">regex</span>    <span class="kw">=</span> <span class="st">"regex_icd9cm_deyo"</span>
+)</pre></body></html></div>
+<p><img src="regexp_charlson_ci_icd9.png" width="188"></p>
+<p>Here <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> indicates the beginning of the character string, followed by a literal <code>41</code> and either a <code>0</code> or <code>2</code>. The corresponding code according to ICD-is:</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/visualize.html">visualize</a></span>(
+  <span class="no">charlson</span>,
+  <span class="kw">group</span>    <span class="kw">=</span> <span class="st">"myocardial infarction"</span>,
+  <span class="kw">show</span>     <span class="kw">=</span> <span class="fl">FALSE</span>,
+  <span class="kw">regex</span>    <span class="kw">=</span> <span class="st">"regex_icd10"</span>
+)</pre></body></html></div>
+<p><img src="regexp_charlson_ci_icd10.png" width="233"></p>
+<p>Such code starts with <code>I2</code> followed by either <code>1</code>, <code>2</code> or <code>52</code> and where <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code> indicates a logical “or” within the parenthesis (as used for expressions longer than single characters).</p>
 </div>
 <div id="list-all-codes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#list-all-codes" class="anchor"></a>List all codes</h2>
 <p>An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the <code>summary</code> method for classcodes objects. (We here use the print method with <code>n = 30</code> to fit the output to the width of the vignette.)</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">charlson</span>, <span class="kw">coding</span> <span class="kw">=</span> <span class="st">"icd10cm"</span>),
   <span class="kw">n</span> <span class="kw">=</span> <span class="fl">30</span>
 )
@@ -274,7 +290,7 @@
 <h2 class="hasAnchor">
 <a href="#interpratable-codebook" class="anchor"></a>Interpratable codebook</h2>
 <p>Even with individual codes summarized, those might still be hard to interpret on their own. The <a href="https://cancercentrum.bitbucket.io/decoder/">decoder</a> package can help to translate codes to readable names/description. This is facilitated by the <code>codebook</code> function. The main purpose of the function is to export an Excel-file (if path specified by argument <code>file</code>). The output is otherwise a list, including both a summary table (described above) and a data frame “all_codes”:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/codebook.html">codebook</a></span>(<span class="no">charlson</span>, <span class="st">"icd10cm"</span>)$<span class="no">all_codes</span>)
 )
 <span class="co">#&gt; Classification based on: regex_icd10</span></pre></body></html></div>
@@ -318,7 +334,7 @@
 </tbody>
 </table>
 <p>Here, the descriptions are based on the ICD-10-CM codes from 2020. Corresponding descriptions in Swedish are retrieved by (<code>icd10se</code> instead of <code>icd10cm</code>):</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/codebook.html">codebook</a></span>(<span class="no">charlson</span>, <span class="st">"icd10se"</span>)$<span class="no">all_codes</span>)
 )
 <span class="co">#&gt; Classification based on: regex_icd10</span></pre></body></html></div>
@@ -377,7 +393,7 @@
 <h1 class="hasAnchor">
 <a href="#alternative-classifications" class="anchor"></a>Alternative classifications</h1>
 <p>Examples above use the default regex column (currently ICD-10). If we are interested in another version, for example specified by Deyo et al based on ICD-9-CM, this can be specified by the <code>regex</code>-argument passed by the <code>cc_args</code> argument to the <code>set_classcodes</code> function. Simultaneously, the <code>coding</code> argument is set to <code>icd9cmd</code> to match the regular expressions to the disease part of ICD-9-CM classifikcation.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(
     <span class="no">charlson</span>, <span class="kw">coding</span> <span class="kw">=</span> <span class="st">"icd9cmd"</span>,
     <span class="kw">cc_args</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">regex</span> <span class="kw">=</span> <span class="st">"regex_icd9cm_deyo"</span>)
@@ -414,7 +430,7 @@
 <a href="#set-clascodes-objects" class="anchor"></a>Set clascodes objects</h1>
 <p>Some functions do not use the classcodes object themselves, but a modified version passed through the <code>set_classcodes</code> function. This function can be called directly but is more often invoked by arguments passed by the <code>cc_args</code> argument used in other functions (as exemplified above).</p>
 <p>We can modify the <code>charlson</code> classcodes object as follows:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">charlson_icd8</span> <span class="kw">&lt;-</span>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">charlson_icd8</span> <span class="kw">&lt;-</span>
   <span class="fu"><a href="../reference/set_classcodes.html">set_classcodes</a></span>(
     <span class="st">"charlson"</span>,
     <span class="kw">regex</span> <span class="kw">=</span> <span class="st">"regex_icd8_brusselaers"</span>, <span class="co"># Version based on ICD-8</span>
@@ -423,7 +439,7 @@
     <span class="kw">tech_names</span> <span class="kw">=</span> <span class="fl">TRUE</span> <span class="co"># Use long but unique and descriptive variable names</span>
   )</pre></body></html></div>
 <p>The resulting object has only one <code>regex</code>-column. It is based on “regex_icd8_brusselaers” but suffixed with <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> (due to <code>stop = TRUE</code>). Group names might seem cumbersome but this will help to distinguish column names added by <code>categorize</code> if this function is run repeatedly with different classcodes. The original <code>charlson</code> object had 17 rows, but <code>charlson_icd8</code> has only 13, since not all groups are defined by that version.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(
   <span class="no">charlson_icd8</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"group"</span>, <span class="st">"regex"</span>)]
 )</pre></body></html></div>
 <table class="table">
@@ -506,7 +522,7 @@
 </tbody>
 </table>
 <p>Note that all indices columns remain (although not showed above):</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">charlson_icd8</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">charlson_icd8</span>)
 <span class="co">#&gt; [1] "group"               "description"         "index_charlson"     </span>
 <span class="co">#&gt; [4] "index_deyo_ramano"   "index_dhoore"        "index_ghali"        </span>
 <span class="co">#&gt; [7] "index_quan_original" "index_quan_updated"  "regex"</span></pre></body></html></div>

@@ -175,7 +175,8 @@ Set to <code>FALSE</code> if no index should be calculated, otherwise a value
 passed to argument
 <code>by</code> in function <code><a href='index_fun.html'>index</a></code>. It is possible to
 include several indices as a character vector.
-<code>NULL</code> will include all available indices.</p></td>
+<code>NULL</code> will include all available indices as specified by the
+"indices" attribute of the <code>cc</code> object (<code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "indices")</a></code>)</p></td>
     </tr>
     <tr>
       <th>sort</th>
@@ -199,10 +200,10 @@ input data.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame ('data.table' object) with all data from
-the input data set <code>to/data</code> combined with logical columns indicating
-membership of categories identified by the classcode object.
-Indices are also included if so specified by the 'index' argument.</p>
+    <p>Object of class <code>data.table</code> made from <code>data</code> combined with
+logical columns indicating membership of categories identified by the
+<code>classcodes</code> object (the <code>cc</code> argument).
+Indices are also included if specified by the 'index' argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: 
@@ -1334,7 +1335,7 @@ Indices are also included if so specified by the 'index' argument.</p>
 #&gt;  99:               0                0
 #&gt; 100:               7               15
 #&gt;      index_ahrq_mort index_ahrq_readm</div><div class='input'>
-<span class='co'># Add Charlson categorias and two versions of a calculated index.</span>
+<span class='co'># Add Charlson categories and two versions of a calculated index.</span>
 <span class='co'># Only include recent hospital visits within 30 days before surgery,</span>
 <span class='co'># and use technical variable names to clearly identify the new columns.</span>
 <span class='fu'>categorize</span>(<span class='no'>ex_people</span>, <span class='no'>ex_icd10</span>, <span class='st'>"charlson"</span>,

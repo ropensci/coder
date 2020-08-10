@@ -57,13 +57,49 @@ Some classcodes objects (see for example `?elixhauser`) might have an additional
 
 ## Visualise graphically
 
-Regular expressions can be difficult to interpret but can be visualized by function `visualize`. This will usually display a web page in the default browser (suppressed by argument `show = FALSE` in the vignette): 
+Regular expressions might be difficult to interpret but can be visualized by `visualize()`. This will usually display a web page in the default browser (here suppressed by `show = FALSE`):
 
 ```{r}
 url <- visualize(charlson, show = FALSE, regex = "regex_icd10")
 ```
 
-In the vignette, we can open the `url` "manually" by the [JavaScript Regular Expression Parser & Visualizer](`r url`).
+Here, we can open the `url` "manually" by a link to the [JavaScript Regular Expression Parser & Visualizer](`r url`). The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for `r charlson$group[1]` as codified by `regex_icd9cm_deyo`:
+
+```{r}
+visualize(
+  charlson, 
+  group    = "myocardial infarction", 
+  show     = FALSE, 
+  regex    = "regex_icd9cm_deyo"
+)
+```
+
+```{r, echo = FALSE}
+knitr::include_graphics("regexp_charlson_ci_icd9.png")
+
+```
+
+Here `^` indicates the beginning of the character string, followed by a literal `41` and either a `0` or `2`. The corresponding code according to ICD-10 is:
+
+
+
+```{r}
+visualize(
+  charlson, 
+  group    = "myocardial infarction", 
+  show     = FALSE, 
+  regex    = "regex_icd10"
+)
+```
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("regexp_charlson_ci_icd10.png")
+
+```
+
+ICD-10 codes identifying myocardial infarction thus starts with `I2` followed by either `1`, `2` or `52`. The vertical bar, `|`, in the regular expression indicates a logical "or" within the parenthesis (as used for expressions longer than single characters). 
+
 
 ## List all codes
 
