@@ -22,3 +22,5 @@ library.bib
 ^\.github$
 ^pkgdown$
 ^tests/jv/*
+^doc$
+^Meta$

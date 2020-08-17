@@ -54,7 +54,18 @@ logical columns indicating membership of categories identified by the
 Indices are also included if specified by the 'index' argument.
 }
 \description{
-Categorize cases based on external data and classification scheme
+This is the main function of the package, which relies of a triad of objects:
+(1) \code{data}) with unit id:s and possible dates of interest;
+(2) \code{codedata} for corresponding
+units and with optional dates of interest and;
+(3) a classification scheme ('classcodes' object; \code{cc}) with regular
+expressions to identify and categorize relevant codes.
+}
+\details{
+The function combines the three underlying steps performed by
+\code{\link{codify}}, \code{\link{classify}} and \code{\link{index_fun}}.
+ Relevant arguments are passed forward to those functions by
+ \code{codify_args} and \code{cc_args}.
 }
 \examples{
 # Add Elixhauser based on all registered ICD10-codes
@@ -71,6 +82,10 @@ categorize(ex_people, ex_icd10, "charlson",
 )
 }
 \seealso{
+For more details see the help vignette:
+\code{vignette("coder", package = "coder")} and the package website
+\url{https://eribul.github.io/coder}
+
 Other verbs: 
 \code{\link{classify}()},
 \code{\link{codify}()},
