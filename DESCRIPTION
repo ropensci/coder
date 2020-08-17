@@ -7,12 +7,19 @@ Authors@R: person("Erik", "Bulow", email = "eriklgb@gmail.com",
                   comment = c(ORCID = "0000-0002-9973-456X"))
 Description: 
   Fast categorization of items based on external code data identified by 
-  regular expressions.
-  It is easy to introduce new classification schemes (by 'classcodes' objects) or  
+  regular expressions. A typical use case considers patient with medically coded 
+  data, such as codes from the International Classification of Diseases (ICD) or 
+  the Anatomic Therapeutic Chemical (ATC) classification system. 
+  Functions of the package relies on a triad of objects: (1) case data with unit 
+  id:s and possible dates of interest; (2) external code data for corresponding 
+  units in (1) and with optional dates of interest and; (3) a classification 
+  scheme ('classcodes' object) with regular expressions to identify and 
+  categorize relevant codes from (2). 
+  It is easy to introduce new classification schemes ('classcodes' objects) or  
   to use default schemes included in the package. Use cases includes patient 
-  categorization based on co-morbidity indices such as Charlson, Elixhauser, 
+  categorization based on comorbidity indices such as Charlson, Elixhauser, 
   RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
-  events after arthroplasty surgery.
+  events after hip and knee arthroplasty surgery.
 License: MIT + file LICENSE
 Depends: R (>= 3.3)
 Suggests:
