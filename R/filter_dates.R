@@ -43,7 +43,14 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' Check if dates are within limits
 #'
 #' @param x Date vector
-#' @param from,to first and last date of interval to compare with
+#' @param from first date of interval to compare with (`1970-01-01` by default,
+#' since we assume that little data was recorded before 'epoch'; this is a bold
+#' assumption, however, which should be explicitly re-considered for relevant
+#' applications)
+#' @param to last date of interval to compare with
+#'   (the current data from [Sys.Date()], by default,
+#'   since we assume that future events are unknown,
+#'   thus indicating coding errors)
 #'
 #' @return Logical vector with `TRUE` if date within limits, `FALSE` otherwise.
 #' @export

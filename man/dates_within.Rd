@@ -9,7 +9,15 @@ dates_within(x, from = "1970-01-01", to = Sys.Date())
 \arguments{
 \item{x}{Date vector}
 
-\item{from, to}{first and last date of interval to compare with}
+\item{from}{first date of interval to compare with (\code{1970-01-01} by default,
+since we assume that little data was recorded before 'epoch'; this is a bold
+assumption, however, which should be explicitly re-considered for relevant
+applications)}
+
+\item{to}{last date of interval to compare with
+(the current data from \code{\link[=Sys.Date]{Sys.Date()}}, by default,
+since we assume that future events are unknown,
+thus indicating coding errors)}
 }
 \value{
 Logical vector with \code{TRUE} if date within limits, \code{FALSE} otherwise.

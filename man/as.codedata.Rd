@@ -16,8 +16,14 @@ and optional \code{code_date} (Date).}
 \item{...}{
   Arguments passed on to \code{\link[=dates_within]{dates_within}}
   \describe{
-    \item{\code{from}}{first and last date of interval to compare with}
-    \item{\code{to}}{first and last date of interval to compare with}
+    \item{\code{from}}{first date of interval to compare with (\code{1970-01-01} by default,
+since we assume that little data was recorded before 'epoch'; this is a bold
+assumption, however, which should be explicitly re-considered for relevant
+applications)}
+    \item{\code{to}}{last date of interval to compare with
+(the current data from \code{\link[=Sys.Date]{Sys.Date()}}, by default,
+since we assume that future events are unknown,
+thus indicating coding errors)}
   }}
 
 \item{.setkeys}{should output be indexed (Beneficial for large data sets.)}
