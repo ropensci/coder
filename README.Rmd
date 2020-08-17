@@ -24,6 +24,22 @@ knitr::opts_chunk$set(
 The goal of `coder` is to classify items from one dataset, using codes from a secondary source with classification schemes based on regular expressions and weighted indices. 
 
 
+## Installation 
+
+You can (soon) install the released version of coder from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+# install.packages("coder") # Not yet!
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("eribul/coder")
+```
+
+
 ## Typical use case
 
 **Patient data:** The initial rationale for the package was to classify patient data based on medical coding. A typical use case would consider patients from a medical/administrative data base, as identified by some patient id and possibly with some associated date of interest (date of diagnoses/treatment/intervention/hospitalization/rehabilitation). This data source could be for example an administrative hospital register or a national quality register. 
@@ -40,21 +56,6 @@ The goal of `coder` is to classify items from one dataset, using codes from a se
 
 (i-iii) corresponds to the output from functions `codify()`, `classify()` and `index()`, which could be chained explicitly as `codify() %>% classify() %>% index()`, or implicitly by the `categorize()` function. 
 
-
-## Installation 
-
-You can (soon) install the released version of coder from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-# install.packages("coder") # Not yet!
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("eribul/coder")
-```
 
 ## Usage
 

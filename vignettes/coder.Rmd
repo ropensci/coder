@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 
 # Introduction
 
+The `coder` package simplifies unit classification based on external code data. this is an abstract aim that is both generic, but which might also be hard to grasp without further concretization. In this vignette, I will first explain the overall design principles, and then exemplify the concept with a typical use case involving patients with total hip arthroplasty and their pre-surgery comorbidity. Note, however, that the package is not limited to patient data or medical settings, although this use case constituted the initial motivation for the package.
+
 ## Triad of objects
 
 Functions of the package relies on a triad of objects: 
@@ -34,6 +36,7 @@ The `coder` package contains some default classcodes objects for co-morbidity:
 ```{r, warning=FALSE}
 
 library(coder)
+library(tibble)
 
 cl <- coder::all_classcodes()
 knitr::kable(
@@ -51,13 +54,22 @@ iii. `index()` is a third optional step to summarize the individual `classcodes`
 Those steps could be performed explicitly as `codify() %>% classify() %>% index()` or implicitly by the main function `categorize()` combining all steps automatically.  
 
 
-# Comorbidity use case
+# Use case
 
 A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://eribul.github.io/coder/).
 
 The concept of comorbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
 
 > [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study. 
+
+Let's consider a group of patients with total hip arthroplasty (THA), as identified from a national quality register, which might be large in size. Assume we are interested in those patients pre-surgery comorbidity, which is not captured by the quality register itself. Instead, this data might be codified in a secondary source, such as a national patient register containing all hospital visits and admissions during several years, both before and after the THA-surgery. Each hospital visit/admission might be recorded with one or several medical codes, for example using the International classification of diseases version 10 (ICD-10). Similarly, a medical prescription register might hold records of prescribed drugs with their corresponding codes from the Anatomic therapeutic chemical classification (ATC) system. 
+
+Thus, combining the primary and secondary data sets (objects 1-2 above) using some unique patient id, and a possible time window (i.e. to only consider comorbidity as recorded during one year before the THA), is a first step to identify patient comorbidity. This step is performed by the `codify()` function in step (i) above.
+
+We have now gathered all the relevant codes for each patient. Common classifications (i.e. ICD-10 and ATC) are wast, however, including tens of thousands of medical/chemical codes, which are cumbersome and impractical to use directly. It is therefore common to categorize such codes into broader categories (i.e. by the Charlson, Elixhauser or RxRisk V classifications as below). Such classification could be a simple code matching problem using a look-up table. This is generally a slow, cumbersome and error-prone process, however. I therefore recommend to use regular expression for a compact code representation, as well as a computationally faster procedure. This is implemented in the `classify()` function from step (ii) above.
+
+We have now reduced the data from tens of thousands of codes to perhaps 10-50 combined categories. This might be sufficient in some cases, although further simplifications might also be needed. It is thus common to simplify comorbidity into a single number, an index score, as the sum of individual comorbidities, possible weighted to differentiate more serious conditions from more trivial. Different weights might be of relevance under different circumstances or in different fields. This is implemented by the `index()` function in step (iii) above.
+
 
 
 # Charlson and Elixhauser
@@ -86,26 +98,34 @@ As for all classcodes objects in the package, additional information and referen
 
 
 
+# Concrete example
+
+Let's consider the hypothetical example abow with some more concrete example data below. 
+
 ## Patients
 
-`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received surgery at given (random) dates:
+`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received THA surgery at given (random) dates (`event´ column). This data might represent a sample from a national quality register.
 
 ```{r}
 knitr::kable(head(ex_people))
 ```
-
-Let's generate some sample ATC data for 90 of the 100 individuals, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates. The [`decoder` (CRAN)](https://cran.r-project.org/package=decoder) package contains a list of relevant codes to use (`decoder::astc`). Assume that each ATC code corresponds to (random) prescription dates (`code_date`) during 10 years before or 1 year after the median date of surgery.
+Assume we have some external code data from a national prescription register. Such register would likely cover additional patients but let's just consider a small sample with ATC data for patients above, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates.
 
 ```{r}
 set.seed(123)
 N <- 10000
 
-nms <- ex_people$name[1:90]
-
 ex_atc <- 
   data.frame(
-    id        = sample(nms, N, replace = TRUE),
+    
+    # Name of patients with ATC codes
+    id        = sample(ex_people$name[1:90], N, replace = TRUE),
+    
+    # Some random ATC codes from the decoder package
     code      = sample(decoder::atc$key, N, replace = TRUE),
+    
+    # Assume that each ATC code corresponds to (random) prescription dates 
+    # during 10 years before or 1 year after the median date of surgery.
     code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE),
     stringsAsFactors = FALSE
   )
@@ -123,7 +143,7 @@ default <- categorize(ex_people, ex_atc, rxriskv, id = "name")
 knitr::kable(head(default))
 ```
 
-The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual comorbidities identified by Rx Risk V. Patients without any ATC data (the 10 excluded above) have `NA` values but, which might be substituted with `FALSE`. The last columns contain summarized index values (weighted sums of individual comorbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
+The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual comorbidities identified by Rx Risk V. Patients without any ATC data (the 10 excluded above) have `NA` values (which might be substituted by `FALSE`). The last columns contain summarized index values (weighted sums of individual comorbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
 
 ```{r}
 hist2 <- function(x) {
@@ -140,8 +160,7 @@ hist2(default)
 
 # Specified time-window
 
-Note however that some prescriptions might have been filed long before surgery, or even after. 
-Those are less relevant for comorbidities present at surgery. We can limit the categorization to a time window of one year prior to surgery.
+Note however that some prescriptions might have been filed long before surgery, or even after. Those codes are less relevant for comorbidities present at surgery. We can limit the categorization to a time window of one year prior to surgery.
 
 ```{r}
 hist2(
@@ -157,7 +176,7 @@ hist2(
 
 Comorbidities are identified from ATC codes captured by regular expression. 
 Codes identified by `regex_pratt` are used by default.
-Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019). 
+Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019) as specified by an argument passed by the `cc_args` argument. 
 
 ```{r}
 hist2(
@@ -174,10 +193,12 @@ hist2(
 
 # Specified index
 
-We did not specify the index above, wherefore all available indices were provided by default. We might go back to Pratts classification scheme (`regex_pratt`) and only calculate the corresponding index `index_pratt`. Let´s also perform the three computational steps explicitly instead of using the combining `categorize` function and tabulate the result
+We did not specify the index above, wherefore all available indices were provided by default. We might go back to Pratt's classification scheme (`regex_pratt`) and only calculate the corresponding index `index_pratt`. Let´s also perform the three computational steps explicitly instead of using the combining `categorize` function and tabulate the result
 
 ```{r}
+# Import the magritr pipe for convenience
 `%>%` <- magrittr::`%>%`
+
 codify(ex_people, ex_atc, id = "name", date = "event", days = c(-365, -1)) %>% 
   classify(rxriskv) %>% 
   index("pratt") %>% 
