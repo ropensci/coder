@@ -18,6 +18,13 @@
 #' @return [`classcodes`] object.
 #' @family classcodes
 #' @export
+#' @examples
+#' # Prepare a classcodes object for the Charlson comorbidity classification
+#' # based on the default regular expressions
+#' set_classcodes(charlson)
+#'
+#' # Same as above but based on regular expressions for ICD-8
+#' set_classcodes(charlson, regex = "regex_icd8_brusselaers")
 set_classcodes <- function(
   cc, classified = NULL, regex = NULL,
   start = TRUE, stop = FALSE, tech_names = FALSE) {
