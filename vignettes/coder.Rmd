@@ -17,12 +17,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
 
-A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://eribul.github.io/coder/).
+## Triad of objects
 
-The concept of comorbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
+Functions of the package relies on a triad of objects: 
 
-> [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study. 
+1. Case data with unit id:s and possible dates of interest
+2. External code data for corresponding units in (1) and with optional dates of interest and
+3. A classification scheme ('classcodes' object) with regular expressions to identify and categorize relevant codes from (2). 
+
+It is easy to introduce new classification schemes ('classcodes' objects) or to use default schemes included in the package. Use cases includes patient categorization based on comorbidity indices such as Charlson, Elixhauser, RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse events after hip and knee arthroplasty surgery.
 
 The `coder` package contains some default classcodes objects for co-morbidity:
 
@@ -35,10 +40,29 @@ knitr::kable(
   cl[cl$classcodes %in% c("elixhauser", "charlson", "cps", "rxriskv"), ]
 )
 ```
+## Triad of functions
+
+There are three important functions to control the intended work flow of the package:
+
+i. `codify()` will merge object (1) and (2) for a coded data set of the intended format. If optional dates are specified, those will be used to construct time windows in order to filter out only the important dates (i.e. comorbidity during one year before surgery or adverse events 90 days after).
+ii. `classify()` will then use the coded data and classify it using the `classcodes` object (3) (i.e. to code comorbidity data by the Charlson or Elixhauser comorbidity classifications, see below).
+iii. `index()` is a third optional step to summarize the individual `classcodes` categories to a (possibly weighted) index sum for each coded item (i.e. to calculate the Charlson comorbidity index for each patient).
+
+Those steps could be performed explicitly as `codify() %>% classify() %>% index()` or implicitly by the main function `categorize()` combining all steps automatically.  
+
+
+# Comorbidity use case
+
+A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://eribul.github.io/coder/).
+
+The concept of comorbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
+
+> [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study. 
+
 
 # Charlson and Elixhauser
 
-The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](https://www.jstor.org/stable/3766985) co-morbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.](https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
+The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](https://www.jstor.org/stable/3766985) comorbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.](https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
 
 The `coder` package provides substantial functionality for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implementations as well:
 
@@ -64,13 +88,13 @@ As for all classcodes objects in the package, additional information and referen
 
 ## Patients
 
-`ex_people` contains 100 patients (with random names) who received surgery at given (random) dates:
+`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received surgery at given (random) dates:
 
 ```{r}
 knitr::kable(head(ex_people))
 ```
 
-Let's generate some sample ATC data for 90 of the 100 individuals, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates:
+Let's generate some sample ATC data for 90 of the 100 individuals, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates. The [`decoder` (CRAN)](https://cran.r-project.org/package=decoder) package contains a list of relevant codes to use (`decoder::astc`). Assume that each ATC code corresponds to (random) prescription dates (`code_date`) during 10 years before or 1 year after the median date of surgery.
 
 ```{r}
 set.seed(123)
@@ -99,10 +123,17 @@ default <- categorize(ex_people, ex_atc, rxriskv, id = "name")
 knitr::kable(head(default))
 ```
 
-The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual co-morbidities identified by Rx Risk V. Patients without any ATC data have `NA` values but, which might be substituted with `FALSE`. The last columns contain summarized index values (weighted sums of individual co-morbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
+The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual comorbidities identified by Rx Risk V. Patients without any ATC data (the 10 excluded above) have `NA` values but, which might be substituted with `FALSE`. The last columns contain summarized index values (weighted sums of individual comorbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
 
 ```{r}
-hist2 <- function(x) hist(x$index_pratt, main = NULL, xlab = "RxRisk V", col = "lightblue")
+hist2 <- function(x) {
+  hist(
+    x$index_pratt, 
+    main = NULL, 
+    xlab = "RxRisk V", 
+    col  = "lightblue"
+  )
+}
 hist2(default)
 ```
 
@@ -110,7 +141,7 @@ hist2(default)
 # Specified time-window
 
 Note however that some prescriptions might have been filed long before surgery, or even after. 
-Those are less relevant for co-morbidities at surgery. We can limit the categorization to a time window of one year prior to surgery.
+Those are less relevant for comorbidities present at surgery. We can limit the categorization to a time window of one year prior to surgery.
 
 ```{r}
 hist2(
@@ -124,19 +155,37 @@ hist2(
 
 # Alternative classification
 
-Co-morbidities are identified from ATC codes captured by regular expression. 
+Comorbidities are identified from ATC codes captured by regular expression. 
 Codes identified by `regex_pratt` are used by default.
 Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019). 
 
 ```{r}
 hist2(
   categorize(
-    ex_people, ex_atc, rxriskv, id = "name", 
+    ex_people, 
+    ex_atc, 
+    rxriskv, 
+    id          = "name", 
     codify_args = list(date = "event", days = c(-365, -1)),
-    cc_args = list(regex = "regex_caughey")
+    cc_args     = list(regex = "regex_caughey")
   )
 )
 ```
+
+# Specified index
+
+We did not specify the index above, wherefore all available indices were provided by default. We might go back to Pratts classification scheme (`regex_pratt`) and only calculate the corresponding index `index_pratt`. Let´s also perform the three computational steps explicitly instead of using the combining `categorize` function and tabulate the result
+
+```{r}
+`%>%` <- magrittr::`%>%`
+codify(ex_people, ex_atc, id = "name", date = "event", days = c(-365, -1)) %>% 
+  classify(rxriskv) %>% 
+  index("pratt") %>% 
+  table()
+```
+
+
+
 
 # Dirty code data
 
