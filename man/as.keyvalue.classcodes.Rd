@@ -13,10 +13,16 @@
 or a name (character vector of length one) keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
-\item{...}{arguments passed to \code{\link{summary.classcodes}}}
+\item{...}{arguments passed to \code{\link[=summary.classcodes]{summary.classcodes()}}}
 }
 \description{
-Make keyvalue object from classcodes object
+S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
+}
+\examples{
+# List all codes with corresponding classes as recognized by the Elixhauser
+# comorbidity classification according to the Swedish version of the
+# international classification of diseases version 10 (ICD-10-SE)
+as.keyvalue(elixhauser, "icd10se")
 }
 \seealso{
 Other helper: 
