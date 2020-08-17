@@ -1,47 +1,48 @@
 #' Categorize cases based on external data and classification scheme
 #'
 #' This is the main function of the package, which relies of a triad of objects:
-#' (1) \code{data}) with unit id:s and possible dates of interest;
-#' (2) \code{codedata} for corresponding
+#' (1) `data` with unit id:s and possible dates of interest;
+#' (2) `codedata` for corresponding
 #' units and with optional dates of interest and;
-#' (3) a classification scheme ('classcodes' object; \code{cc}) with regular
+#' (3) a classification scheme ([`classcodes`] object; `cc`) with regular
 #' expressions to identify and categorize relevant codes.
 #'
 #' The function combines the three underlying steps performed by
-#' \code{\link{codify}}, \code{\link{classify}} and \code{\link{index_fun}}.
-#'  Relevant arguments are passed forward to those functions by
-#'  \code{codify_args} and \code{cc_args}.
+#' [codify()], [classify()] and [index()].
+#'  Relevant arguments are passed to those functions by
+#'  `codify_args` and `cc_args`.
 #'
 #' @seealso For more details see the help vignette:
-#' \code{vignette("coder", package = "coder")} and the package website
-#' \url{https://eribul.github.io/coder}
+#' `vignette("coder", package = "coder")` and the
+#' package website \url{https://eribul.github.io/coder}.
 #'
 #'
 #' @param data data frame with mandatory id column
-#'   (identified by argument \code{id}),
+#'   (identified by argument `id`),
 #'   and semi-optional column with date of interest
-#'   (identified by argument \code{date} if \code{days != NULL}).
-#' @param codedata external code data (see \code{\link{as.codedata}})
-#' @param cc \code{\link{classcodes}} object (or name of such object).
-#' @param index control possible inclusion of index vector.
-#'   Set to \code{FALSE} if no index should be calculated, otherwise a value
-#'   passed to argument
-#'   \code{by} in function \code{\link{index}}. It is possible to
-#'   include several indices as a character vector.
-#'   \code{NULL} will include all available indices as specified by the
-#'   "indices" attribute of the \code{cc} object (\code{attr(cc, "indices")})
+#'   (identified by argument `date` if  `days != NULL`).
+#' @param codedata external code data (see [as.codedata()])
+#' @param cc [`classcodes`] object (or name of such object).
+#' @param index
+#'   A character vector of index values to calculate (passed to argument
+#'   `by` in function [index()].
+#'
+#'   Set to `FALSE` if no index should be calculated.
+#'
+#'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`
+#'   are provided. A message lists the indices so that you can check they're
+#'   correct; suppress the message by supplying `index` explicitly.
 #' @param sort logical. Should output be sorted by the 'id' column?
-#'   (This could effect computational speed for large data sets.)
+#'   (This could affect computational speed for large data sets.
 #'   Data is sorted by 'id' internally. It is therefore faster to keep the
 #'   output sorted this way, but this might be inconvenient if the original
-#'   order was intended. Set to \code{FALSE} in order to not shuffle the
-#'   input data.
-#' @param codify_args List of named arguments passed to \code{\link{codify}}
+#'   order was important.)
+#' @param codify_args List of named arguments passed to [codify()]
 #' @inheritParams classify
 #'
-#' @return Object of class \code{data.table} made from \code{data} combined with
+#' @return Object of class `data.table` made from `data` combined with
 #' logical columns indicating membership of categories identified by the
-#' \code{classcodes} object (the \code{cc} argument).
+#' `classcodes` object (the `cc`} argument).
 #' Indices are also included if specified by the 'index' argument.
 #'
 #' @export
