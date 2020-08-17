@@ -13,7 +13,7 @@ date of interest}
 \item{codedata}{output from \code{\link[=as.codedata]{as.codedata()}}.}
 
 \item{id, date}{column names (from \code{data}) with case id (character)
-and date of interest (optional).}
+and date (class \code{\link{Date}}) of interest (optional).}
 
 \item{days}{numeric vector of length two with lower and upper bound for range
 of relevant days relative to \code{date}. See "Relevant period".}
@@ -53,7 +53,7 @@ column of \code{data}. Useful for patient co-morbidity.
 \item \code{c(1, 30)}: window of 30 days after \code{date}.
 Useful for adverse events after a surgical procedure.
 \item \code{c(-Inf, Inf)}: no limitation on non missing dates.
-\item \item \code{NULL}: no time limitation at all.
+\item \code{NULL}: no time limitation at all.
 }
 }
 

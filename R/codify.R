@@ -8,7 +8,7 @@
 #'   date of interest
 #' @param codedata output from [as.codedata()].
 #' @param id,date column names (from `data`) with case id (character)
-#'   and date of interest (optional).
+#'   and date (class [`Date`]) of interest (optional).
 #' @param days numeric vector of length two with lower and upper bound for range
 #'   of relevant days relative to `date`. See "Relevant period".
 #'
@@ -30,7 +30,7 @@
 #'   - `c(1, 30)`: window of 30 days after `date`.
 #'       Useful for adverse events after a surgical procedure.
 #'   -  `c(-Inf, Inf)`: no limitation on non missing dates.
-#'   - \item `NULL`: no time limitation at all.
+#'   - `NULL`: no time limitation at all.
 #'
 #' @export
 #'
