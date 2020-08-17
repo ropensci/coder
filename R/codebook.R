@@ -62,10 +62,10 @@ codebook <- function(object, coding, ..., file = NULL) {
 
 #' Combine codebooks for classcodes objects
 #'
-#' @param ... named output from \code{\link{codebook}}
+#' @param ... named output from [codebook()]
 #' @param file name of Excel file for data export
 #'
-#' @return Concatenated list with output from \code{\link{codebook}}.
+#' @return Concatenated list with output from [codebook()].
 #' Only one 'README' object is kept however and renamed as such.
 #' @export
 #' @seealso codebook

@@ -2,21 +2,21 @@
 #'
 #' (Weighted) sum of all identified classes for each case.
 #' Index weights for subordinate hierarchical classes
-#' (as identified by \code{attr(cc, "hierarchy")}) are excluded in presence of
-#' superior classes if index specified with argument \code{index}.
+#' (as identified by `attr(cc, "hierarchy")`) are excluded in presence of
+#' superior classes if index specified with argument `index`.
 #'
-#' @param classified output from \code{classify}
+#' @param classified output from [classify()]
 #' @param index name of column with 'weights' from corresponding
-#'   \code{\link{classcodes}} object. Can be \code{NULL} if the index is just a
+#'   [`classcodes`] object. Can be `NULL` if the index is just a
 #'   count of relevant classes.
-#' @param cc \code{\link{classcodes}} object. Can be \code{NULL} if information
-#'   already present as attribute of \code{classified} (which is often the case)
+#' @param cc [`classcodes`] object. Can be `NULL` if information
+#'   already present as attribute of `classified` (which is often the case)
 #'   and/or if index calculated without weights.
 #'
 #' @param ... used internally
 #'
 #' @return Named numeric index vector with names corresponding to
-#'   \code{rownames(x)}
+#'   `rownames(x)`
 #'
 #' @examples
 #'

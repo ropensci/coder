@@ -11,56 +11,66 @@ as.classcodes(x, hierarchy = attr(x, "hierarchy"), .name = NULL)
 is.classcodes(x)
 }
 \arguments{
-\item{x}{data frame with properties as described in the details section}
+\item{x}{data frame with columns described in the details section}
 
 \item{hierarchy}{list of pairwise group names to appear as superior and
 subordinate classes.
-  To be used for indexing when the subordinate class is redundant.}
+To be used for indexing when the subordinate class is redundant
+(see the details section of \code{\link{elixhauser}} for an example).}
 
 \item{.name}{used internally for name dispatch}
 }
 \value{
-Object of class "classcodes" (data frame) with attribute \code{code}
-specifying the coding used (for example "icd10", or "ATC").
-Could be \code{NULL} for unknown or arbitrary coding.
+Object of class "classcodes" (data frame) with additional attributes:
+\itemize{
+\item \verb{code:} the coding used (for example "icd10", or "ATC").
+\code{NULL} for unknown/arbitrary coding.
+\item \verb{regexprs:} name of columns with regular expressions
+\item \verb{indices:} name of columns with (optional) index weights
+\item \verb{hierarchy:} list as specified by the \code{hierarchy} argument.
+\item \verb{name:} name as specified by the \code{.name} argument.
+}
 }
 \description{
 "Classcodes" are classifying schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
-part of the triad of case data, code data and classification scheme.
+part of the triad of case data, code data and a classification scheme.
 }
 \details{
-A classcodes object is a data frame with columns:
-\describe{
-\item{group:}{unique and non missing class name}
-\item{regex:}{regular expression defining class membership
-(see \code{\link{regex}} for details). Occurrences of non unique regular
-expressions will lead to the same class having multiple names. This is
-accepted but will raise a warning.}
-\item{description (optional):}{description of each category}
-\item{condition (optional):}{a class might have conditions additional to what
-  is expressed by \code{regex}. If so, these should be specified as quoted
-  expressions that can be evaluated within the data frame used by
-  \code{\link{classify}}}
-\item{weights (optional):}{weights for each class used for
-  \code{\link{index}} calculation.
-  Could be more than one and could have arbitrary names.}
-  \item{hierarchy}{pairwise hierarchys for wich only the superior class
-    should be used for indexing}
+A classcodes object is a data frame with mandatory columns:
+\itemize{
+\item \code{group}: unique and non missing class names
+\item \verb{regex_*}: regular expressions (\link{regex}) defining class membership.
+Could be more than one and could have arbitrary names.
+Occurrences of non unique regular expressions will lead to the same class
+having multiple names. This is accepted but will raise a warning.
+Classes do not have to be disjunct;
+the same code can be recognized by more than one \verb{regex_*}.
 }
-Note that classes does not have to be disjunct.
 
-The package have several default classcodes included listed on its index page
-`help(package = "coder")`
+The object can have additional optional columns:
+\itemize{
+\item \code{description}: description of each category
+\item \code{condition}: a class might have conditions additional to what
+is expressed by \verb{regex_*}. If so, these should be specified as quoted
+expressions that can be evaluated within the data frame used by
+\code{\link[=classify]{classify()}}
+\item \verb{index_*}: weights for each class used by
+\code{\link[=index]{index()}}. Could be more than one and could have arbitrary names.
+}
 }
 \examples{
 as.classcodes(coder::elixhauser)
 }
 \seealso{
+A vignette provides additional details and examples:
+\code{vignette("classcodes", package = "coder")}
+
+The package have several default classcodes included, see \code{\link[=all_classcodes]{all_classcodes()}}.
+
 Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use \code{\link{visualize}} to visualize classcodes
-graphically or \code{\link{summary.classcodes}} to
-list all codes individually.
+and hard to interpret. Use \code{\link[=visualize]{visualize()}} to visualize classcodes
+graphically or \code{\link[=summary.classcodes]{summary.classcodes()}} to list all codes individually.
 
 Other classcodes: 
 \code{\link{all_classcodes}()},

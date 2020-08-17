@@ -10,23 +10,19 @@
 #'   or a name (character vector of length one) keyvalue object from package
 #'   "decoder" (for example "icd10cm" or "atc")
 #' @param ... ignored
-#' @param cc_args List of named arguments passed to \code{\link{set_classcodes}}
+#' @param cc_args List of named arguments passed to [set_classcodes()]
 #'
 #' @return List (invisible) with objects:
 #'
-#' \itemize{
-#'   \item{\code{object}: input \code{object}}
-#'   \item{\code{summary}: a data frame with columns:
-#'      \itemize{
-#'     \item{\code{group}: Groups identified by \code{object}.}
-#'     \item{\code{n}: The number of codes to be recognized for each group.}
-#'     \item{\code{codes}: Individual codes within each group.}
-#'     }
-#'   }
-#'   \item{\code{coding}: input \code{coding}}
-#' }
+#' - `object`: input `object`
+#' - `summary:` a data frame with columns:
+#'   - `group`: Groups identified by `object`.
+#'   - `n`: The number of codes to be recognized for each group.
+#'   - `codes`: Individual codes within each group.
+#' - `coding`: input `coding`
+#'
 #' @export
-#' @seealso \code{\link{visualize}} for a graphical representation of the
+#' @seealso [visualize()] for a graphical representation of the
 #'   classcodes objects.
 #' @family classcodes
 #'
@@ -75,8 +71,8 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 
 #' Print summary for classcodes object
 #'
-#' @param x object of class \code{\link{summary.classcodes}}
-#' @param n_print maximum characters to print from the \code{codes} column
+#' @param x object of class [summary.classcodes()]
+#' @param n_print maximum characters to print from the `codes` column
 #' @param ... ignored
 #'
 #' @return Nothing. This function is called for its side effects

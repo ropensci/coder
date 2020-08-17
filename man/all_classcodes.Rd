@@ -8,7 +8,7 @@ all_classcodes()
 }
 \value{
 Data frame with columns describing all default classcodes
-  objects from the package.
+objects from the package.
 }
 \description{
 Summary data for all default classcodes object in the package

@@ -7,37 +7,37 @@
 \format{
 Data frames with 39 rows and 6 variables:
 \describe{
-  \item{group}{medical condition}
-  \item{regex_pratt}{ATC codes from table 1 in Pratt et al. 2018
-   (ignoring PBS item codes and extra conditions).}
-  \item{regex_garland}{Modified version by Anne
-  Garland to resemble medical use in Sweden 2016 (Unpublished).}
- \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
- \item{index_pratt}{Mortality weights from table 1 in Pratt et al. 2018}
- \item{index_sum_all}{Unweighted count of all conditions.}
+\item{group}{medical condition}
+\item{regex_pratt}{ATC codes from table 1 in Pratt et al. 2018
+(ignoring PBS item codes and extra conditions).}
+\item{regex_garland}{Modified version by Anne
+Garland to resemble medical use in Sweden 2016 (Unpublished).}
+\item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
+\item{index_pratt}{Mortality weights from table 1 in Pratt et al. 2018}
+\item{index_sum_all}{Unweighted count of all conditions.}
 }
 }
 \usage{
 rxriskv
 }
 \description{
-\code{\link{classcodes}} object to use with \code{\link{classify}}.
+A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
 Provided mostly as proof-of-concept. Codes have not been externally
-  validated and desired implementation might differ over time and by country.
+validated and desired implementation might differ over time and by country.
 }
 \references{
 Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.
-  Comorbidity in the elderly with diabetes:
-  Identification of areas of potential treatment conflicts.
-  Diabetes Res Clin Pract 2010;87:385–93.
-  \url{https://doi.org/10.1016/j.diabres.2009.10.019}.
+Comorbidity in the elderly with diabetes:
+Identification of areas of potential treatment conflicts.
+Diabetes Res Clin Pract 2010;87:385–93.
+\url{https://doi.org/10.1016/j.diabres.2009.10.019}.
 
 Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
-  Ramsay E, et al.
-  The validity of the Rx-Risk Comorbidity Index using medicines mapped to
-  the Anatomical Therapeutic Chemical (ATC) Classification System.
-  BMJ Open 2018;8.
-  \url{https://doi.org/10.1136/bmjopen-2017-021122}.
+Ramsay E, et al.
+The validity of the Rx-Risk Comorbidity Index using medicines mapped to
+the Anatomical Therapeutic Chemical (ATC) Classification System.
+BMJ Open 2018;8.
+\url{https://doi.org/10.1136/bmjopen-2017-021122}.
 }
 \seealso{
 Other default classcodes: 

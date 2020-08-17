@@ -7,8 +7,8 @@
 \format{
 Data frames with 100 rows and 2 variables:
 \describe{
-  \item{name}{random person names}
-  \item{event}{random dates for a relevant event}
+\item{name}{random person names}
+\item{event}{random dates for a relevant event}
 }
 }
 \usage{

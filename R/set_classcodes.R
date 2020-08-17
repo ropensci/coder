@@ -1,21 +1,21 @@
 #' Set classcodes object
 #'
-#' @param cc \code{\link{classcodes}} object or name of such
+#' @param cc [`classcodes`] object or name of such
 #' @param classified object that classcodes could be inherited from
 #' @param regex name of column with regular expressions to use for
-#'   classification, either with or without prefix \code{regex_}.
-#'   \code{NULL} (default) uses the first classcodes column with prefix "regex".
+#'   classification, either with or without prefix `regex_`.
+#'   `NULL` (default) uses the first classcodes column with prefix "regex".
 #'   This should be a sensible choice for default classcodes object included
 #'   in the package.
 #' @param start,stop should codes start/end with the specified regular
-#'   expressions? If \code{TRUE}, column "regex" is prefixed/suffixed
-#'   by "^"/"$".
-#' @param tech_names should technical column names be used? If \code{FALSE},
-#'   colnames are taken directly from group names of \code{by}, if \code{TRUE},
+#'   expressions? If `TRUE`, column "regex" is prefixed/suffixed
+#'   by `^/$`.
+#' @param tech_names should technical column names be used? If `FALSE`,
+#'   colnames are taken directly from group names of `by`, if `TRUE`,
 #'   these are changed to more technical names avoiding special characters and
 #'   are prefixed by the name of the classification scheme.
 #'
-#' @return \code{\link{classcodes}} object.
+#' @return [`classcodes`] object.
 #' @family classcodes
 #' @export
 set_classcodes <- function(

@@ -7,7 +7,7 @@
 \method{print}{summary.classcodes}(x, n_print = 50, ...)
 }
 \arguments{
-\item{x}{object of class \code{\link{summary.classcodes}}}
+\item{x}{object of class \code{\link[=summary.classcodes]{summary.classcodes()}}}
 
 \item{n_print}{maximum characters to print from the \code{codes} column}
 

@@ -13,21 +13,21 @@ classify(codified, cc, ..., cc_args = list())
 \method{classify}{data.frame}(codified, cc, ..., id = NULL, code = "code", cc_args = list())
 }
 \arguments{
-\item{codified}{output from \code{\link{codify}})}
+\item{codified}{output from \code{\link[=codify]{codify()}}}
 
 \item{cc}{\code{\link{classcodes}} object or name of such}
 
 \item{...}{arguments passed between methods}
 
 \item{cc_args}{List with named arguments passed to
-\code{\link{set_classcodes}}}
+\code{\link[=set_classcodes]{set_classcodes()}}}
 
 \item{code, id}{name of code/id columns (in \code{codified}).}
 }
 \value{
 Boolean matrix with one row for each element/row of \code{codified}
-  and columns for each class with corresponding class names (according to the
-  \code{\link{classcodes}} object).
+and columns for each class with corresponding class names (according to the
+\code{\link{classcodes}} object).
 }
 \description{
 Classify cases based on classcodes
@@ -51,8 +51,8 @@ y <- classify(x, "charlson",
 as.data.frame(y)
 }
 \seealso{
-\code{\link{as.data.frame.classified}} for a convenience function to
-convert the output of \code{classify} to a data frame with id column instead
+\code{\link[=as.data.frame.classified]{as.data.frame.classified()}} for a convenience function to
+convert the output of \code{\link[=classify]{classify()}} to a data frame with id column instead
 of row names.
 
 Other verbs: 

@@ -1,34 +1,38 @@
 #' Code data
 #'
-#' Make structured code data set based on \code{\link{data.frame}}.
+#' Make structured code data set based on [data.frame].
 #'
 #' @inheritDotParams dates_within to from
-#' @param x \code{\link{data.frame}} with columns "id" (character), "code",
-#'   and optional "code_date" (Date).
+#' @param x [data.frame] with columns `id` (character), `code`,
+#'   and optional `code_date` (Date).
 #' @param .setkeys should output be indexed (Beneficial for large data sets.)
 #' @param alnum Should codes be cleaned from all non alphanumeric characters?
 #'
 #' @return
-#'   \code{\link{data.table}} with columns: "id" (character), "code" and
-#'   optionally "code_date" (Date)
-#'   Possible additional columns from \code{x} are preserved.
+#'   [data.table] with columns: `id` (character), `code` and
+#'   optionally `code_date` (Date)
+#'   Possible additional columns from `x` are preserved.
 #'
 #' @export
-#' @seealso npr2codedata
-#'
 #' @examples
 #'
-#' x <- data.frame(
-#'   id = "1",
-#'   code_date = as.Date("2017-02-02"),
-#'   code = "a",
-#'   stringsAsFactors = FALSE
-#' )
+#' x <-
+#'   data.frame(
+#'     id               = "1",
+#'     code_date        = as.Date("2017-02-02"),
+#'     code             = "a",
+#'     stringsAsFactors = FALSE
+#'   )
 #' as.codedata(x)
 #'
 #' # Drop dates outside specified limits
-#' y <- data.frame(id = "2", code_date = as.Date("3017-02-02"), code = "b",
-#'   stringsAsFactors = FALSE)
+#' y <-
+#'   data.frame(
+#'     id               = "2",
+#'     code_date        = as.Date("3017-02-02"),
+#'     code             = "b",
+#'     stringsAsFactors = FALSE
+#'   )
 #' z <- rbind(x, y)
 #' as.codedata(z)
 #'

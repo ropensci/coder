@@ -7,10 +7,10 @@
 codify(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...)
 }
 \arguments{
-\item{data}{\code{\link{data.frame}} with at least case id, and optional
+\item{data}{\link{data.frame} with at least case id, and optional
 date of interest}
 
-\item{codedata}{output from \code{\link{as.codedata}}.}
+\item{codedata}{output from \code{\link[=as.codedata]{as.codedata()}}.}
 
 \item{id, date}{column names (from \code{data}) with case id (character)
 and date of interest (optional).}
@@ -18,7 +18,7 @@ and date of interest (optional).}
 \item{days}{numeric vector of length two with lower and upper bound for range
 of relevant days relative to \code{date}. See "Relevant period".}
 
-\item{.copy}{Should the object be copied internally by \code{\link{copy}}?
+\item{.copy}{Should the object be copied internally by \code{\link[data.table:copy]{data.table::copy()}}?
 \code{NA} (by default) means that objects smaller than 1 GB are copied.
 If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM
@@ -32,29 +32,29 @@ but the object will be changed by reference.}
   }}
 }
 \value{
-\code{data} (coerced to \code{data.table}) with additional columns:
-  \code{code, code_date}: left joined from \code{codedata} or \code{NA}
-  if no match within period. \code{in_period}: Boolean indicator if the case
-  had at least one code within the specified period.
+\code{data} (coerced to \code{\link[data.table:data.table]{data.table::data.table()}} with additional columns:
+\verb{code, code_date}: left joined from \code{codedata} or \code{NA}
+if no match within period. \code{in_period}: Boolean indicator if the case
+had at least one code within the specified period.
 
-  The output has one row for each combination of "id" from \code{data} and
-  "code" from \code{codedata}. Rows from \code{data} might be repeated
-   accordingly.
+The output has one row for each combination of "id" from \code{data} and
+"code" from \code{codedata}. Rows from \code{data} might be repeated
+accordingly.
 }
 \description{
 Enhance case data with code data, possibly limited to relevant period.
 }
 \section{Relevant period}{
 
-  Some examples for argument \code{days}:
-  \itemize{
-    \item \code{c(-365, -1)}: window of one year prior to the \code{date}
-      column of \code{data}.            Useful for patient co-morbidity.
-    \item \code{c(1, 30)}: window of 30 days after \code{date}.
-      Useful for adverse events after a surgical procedure.
-   \item \code{c(-Inf, Inf)}: no limitation on non missing dates.
-   \item \code{NULL}: no time limitation at all.
-  }
+Some examples for argument \code{days}:
+\itemize{
+\item \code{c(-365, -1)}: window of one year prior to the \code{date}
+column of \code{data}. Useful for patient co-morbidity.
+\item \code{c(1, 30)}: window of 30 days after \code{date}.
+Useful for adverse events after a surgical procedure.
+\item \code{c(-Inf, Inf)}: no limitation on non missing dates.
+\item \item \code{NULL}: no time limitation at all.
+}
 }
 
 \examples{

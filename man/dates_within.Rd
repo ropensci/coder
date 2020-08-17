@@ -12,8 +12,7 @@ dates_within(x, from = "1970-01-01", to = Sys.Date())
 \item{from, to}{first and last date of interval to compare with}
 }
 \value{
-Logical vector with \code{TRUE} if date within limits, \code{FALSE}
- otherwise.
+Logical vector with \code{TRUE} if date within limits, \code{FALSE} otherwise.
 }
 \description{
 Check if dates are within limits

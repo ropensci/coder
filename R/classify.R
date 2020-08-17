@@ -1,18 +1,18 @@
 #' Classify cases based on classcodes
 #'
 #' @inheritParams set_classcodes
-#' @param codified output from \code{\link{codify}})
-#' @param code,id name of code/id columns (in \code{codified}).
+#' @param codified output from [codify()]
+#' @param code,id name of code/id columns (in `codified`).
 #' @param cc_args List with named arguments passed to
-#'   \code{\link{set_classcodes}}
+#'   [set_classcodes()]
 #' @param ... arguments passed between methods
 #'
-#' @return Boolean matrix with one row for each element/row of \code{codified}
+#' @return Boolean matrix with one row for each element/row of `codified`
 #'   and columns for each class with corresponding class names (according to the
-#'   \code{\link{classcodes}} object).
+#'   [`classcodes`] object).
 #'
-#' @seealso \code{\link{as.data.frame.classified}} for a convenience function to
-#' convert the output of \code{classify} to a data frame with id column instead
+#' @seealso [as.data.frame.classified()] for a convenience function to
+#' convert the output of [classify()] to a data frame with id column instead
 #' of row names.
 #'
 #' @export
@@ -171,15 +171,15 @@ classify.data.frame <- function(
 
 #' Convert output matrix from classify to data frame or data.table
 #'
-#' @param x output from \code{\link{classify}}
+#' @param x output from [classify()]
 #' @param ... ignored
 #' @return data frame with:
-#' \itemize{
-#'   \item{first column named as "id" column specified as input
-#'     to \code{\link{classify}} and with data from \code{row.names(x)}}
-#'   \item{all columns from \code{classified}}
-#'   \item{no row names}
-#' }
+#'
+#' - first column named as "id" column specified as input
+#'   to [classify()] and with data from `row.names(x)`
+#' - all columns from `classified`
+#' - no row names
+#'
 #'
 #' @export
 #' @family classcodes

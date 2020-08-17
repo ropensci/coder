@@ -26,7 +26,7 @@ in the package.}
 
 \item{start, stop}{should codes start/end with the specified regular
 expressions? If \code{TRUE}, column "regex" is prefixed/suffixed
-by "^"/"$".}
+by \verb{^/$}.}
 
 \item{tech_names}{should technical column names be used? If \code{FALSE},
 colnames are taken directly from group names of \code{by}, if \code{TRUE},

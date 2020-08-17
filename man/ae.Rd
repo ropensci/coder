@@ -10,14 +10,14 @@ and KVA codes}
 \format{
 Data frame with 3 columns:
 \describe{
-  \item{group}{Different types of adverse events (see reference section)}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes for each
-    group}
- \item{regex_icd10_fracture}{regular expressions for fracture patients.
-   Essentially the same as \code{regex} but with some additional codes for
-   group "DM1 other"}
- \item{regex_kva}{regular expressions identifying KVA codes}
-  \item{condition}{special conditions are used, see below.}
+\item{group}{Different types of adverse events (see reference section)}
+\item{regex_icd10}{regular expressions identifying ICD-10 codes for each
+group}
+\item{regex_icd10_fracture}{regular expressions for fracture patients.
+Essentially the same as \code{regex} but with some additional codes for
+group "DM1 other"}
+\item{regex_kva}{regular expressions identifying KVA codes}
+\item{condition}{special conditions are used, see below.}
 }
 
 An object of class \code{classcodes} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 7 rows and 5 columns.
@@ -33,7 +33,7 @@ knee_ae
 hip_ae
 }
 \description{
-\code{\link{classcodes}} objects to use with \code{\link{classify}}
+A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
 }
 \details{
 ICD-10 group names are prefixed by two letters as given by the references.
@@ -52,23 +52,23 @@ Those require non-standard modifications
 of the classcodes data prior to categorization.
 
 \describe{
- \item{hbdia1_hdia}{\code{TRUE} if the code was
- given as any type of diagnose during hospital visit for index operation,
- or as main diagnose for later visits, otherwise \code{FALSE}}
- \item{late_hdia}{\code{TRUE} if the code was
- given as main diagnose at a later visit after the index operation,
- otherwise \code{FALSE}}
- \item{post_op}{\code{TRUE} if the code was
- given at a later visit after the index operation, otherwise \code{FALSE}}
+\item{hbdia1_hdia}{\code{TRUE} if the code was
+given as any type of diagnose during hospital visit for index operation,
+or as main diagnose for later visits, otherwise \code{FALSE}}
+\item{late_hdia}{\code{TRUE} if the code was
+given as main diagnose at a later visit after the index operation,
+otherwise \code{FALSE}}
+\item{post_op}{\code{TRUE} if the code was
+given at a later visit after the index operation, otherwise \code{FALSE}}
 }
 }
 
 \references{
 Magneli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
-    Validation of adverse events after hip arthroplasty:
-    a Swedish multi-centre cohort study.
-    BMJ Open. 2019 Mar 7;9(3):e023773.
-    Available from: \url{http://www.ncbi.nlm.nih.gov/pubmed/30850403}
+Validation of adverse events after hip arthroplasty:
+a Swedish multi-centre cohort study.
+BMJ Open. 2019 Mar 7;9(3):e023773.
+Available from: \url{http://www.ncbi.nlm.nih.gov/pubmed/30850403}
 }
 \seealso{
 hip_ae_hailer

@@ -4,34 +4,33 @@
 #'
 #' @inheritParams copybig
 #' @inheritDotParams as.codedata alnum
-#' @param data \code{\link{data.frame}} with at least case id, and optional
+#' @param data [data.frame] with at least case id, and optional
 #'   date of interest
-#' @param codedata output from \code{\link{as.codedata}}.
-#' @param id,date column names (from \code{data}) with case id (character)
+#' @param codedata output from [as.codedata()].
+#' @param id,date column names (from `data`) with case id (character)
 #'   and date of interest (optional).
 #' @param days numeric vector of length two with lower and upper bound for range
-#'   of relevant days relative to \code{date}. See "Relevant period".
+#'   of relevant days relative to `date`. See "Relevant period".
 #'
 #' @return
-#'   \code{data} (coerced to \code{data.table}) with additional columns:
-#'   \code{code, code_date}: left joined from \code{codedata} or \code{NA}
-#'   if no match within period. \code{in_period}: Boolean indicator if the case
+#'   `data` (coerced to [data.table::data.table()] with additional columns:
+#'   `code, code_date`: left joined from `codedata` or `NA`
+#'   if no match within period. `in_period`: Boolean indicator if the case
 #'   had at least one code within the specified period.
 #'
-#'   The output has one row for each combination of "id" from \code{data} and
-#'   "code" from \code{codedata}. Rows from \code{data} might be repeated
+#'   The output has one row for each combination of "id" from `data` and
+#'   "code" from `codedata`. Rows from `data` might be repeated
 #'    accordingly.
 #'
 #' @section Relevant period:
-#'   Some examples for argument \code{days}:
-#'   \itemize{
-#'     \item \code{c(-365, -1)}: window of one year prior to the \code{date}
-#'       column of \code{data}.            Useful for patient co-morbidity.
-#'     \item \code{c(1, 30)}: window of 30 days after \code{date}.
+#'   Some examples for argument `days`:
+#'
+#'   - `c(-365, -1)`: window of one year prior to the `date`
+#'       column of `data`. Useful for patient co-morbidity.
+#'   - `c(1, 30)`: window of 30 days after `date`.
 #'       Useful for adverse events after a surgical procedure.
-#'    \item \code{c(-Inf, Inf)}: no limitation on non missing dates.
-#'    \item \code{NULL}: no time limitation at all.
-#'   }
+#'   -  `c(-Inf, Inf)`: no limitation on non missing dates.
+#'   - \item `NULL`: no time limitation at all.
 #'
 #' @export
 #'

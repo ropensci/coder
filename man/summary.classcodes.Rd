@@ -15,21 +15,19 @@ or a name (character vector of length one) keyvalue object from package
 
 \item{...}{ignored}
 
-\item{cc_args}{List of named arguments passed to \code{\link{set_classcodes}}}
+\item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
 }
 \value{
 List (invisible) with objects:
-
 \itemize{
-  \item{\code{object}: input \code{object}}
-  \item{\code{summary}: a data frame with columns:
-     \itemize{
-    \item{\code{group}: Groups identified by \code{object}.}
-    \item{\code{n}: The number of codes to be recognized for each group.}
-    \item{\code{codes}: Individual codes within each group.}
-    }
-  }
-  \item{\code{coding}: input \code{coding}}
+\item \code{object}: input \code{object}
+\item \verb{summary:} a data frame with columns:
+\itemize{
+\item \code{group}: Groups identified by \code{object}.
+\item \code{n}: The number of codes to be recognized for each group.
+\item \code{codes}: Individual codes within each group.
+}
+\item \code{coding}: input \code{coding}
 }
 }
 \description{
@@ -42,8 +40,8 @@ group in the classification.
 summary(elixhauser, coding = "icd10cm")
 }
 \seealso{
-\code{\link{visualize}} for a graphical representation of the
-  classcodes objects.
+\code{\link[=visualize]{visualize()}} for a graphical representation of the
+classcodes objects.
 
 Other classcodes: 
 \code{\link{all_classcodes}()},

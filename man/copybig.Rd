@@ -9,7 +9,7 @@ copybig(x, .copy = NA)
 \arguments{
 \item{x}{object (potentially of large size)}
 
-\item{.copy}{Should the object be copied internally by \code{\link{copy}}?
+\item{.copy}{Should the object be copied internally by \code{\link[data.table:copy]{data.table::copy()}}?
 \code{NA} (by default) means that objects smaller than 1 GB are copied.
 If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM

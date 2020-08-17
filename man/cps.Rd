@@ -7,25 +7,25 @@
 \format{
 A data frame with 2 rows and 2 variables:
 \describe{
-  \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
-  "special" for codes beginning with "UA", "UB" and "UP"}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
-    group}
-  \item{index_only_ordinary}{index weights, 1 for ordinary and 0 for special}
+\item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
+"special" for codes beginning with "UA", "UB" and "UP"}
+\item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+group}
+\item{index_only_ordinary}{index weights, 1 for ordinary and 0 for special}
 }
 }
 \usage{
 cps
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link{classify}}
+A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
 }
 \references{
 Stawicki, Stanislaw P., et al.
-  "Comorbidity polypharmacy score and its clinical utility: A pragmatic
-  practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
-  (2015): 224.
-  \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+"Comorbidity polypharmacy score and its clinical utility: A pragmatic
+practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
+(2015): 224.
+\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 }
 \seealso{
 Other default classcodes: 

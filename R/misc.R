@@ -5,14 +5,14 @@ NULL
 #' Decide if large objects should be copied
 #'
 #' @param x object (potentially of large size)
-#' @param .copy Should the object be copied internally by \code{\link{copy}}?
-#' \code{NA} (by default) means that objects smaller than 1 GB are copied.
-#' If the size is larger, the argument must be set explicitly. Set \code{TRUE}
+#' @param .copy Should the object be copied internally by [data.table::copy()]?
+#' `NA` (by default) means that objects smaller than 1 GB are copied.
+#' If the size is larger, the argument must be set explicitly. Set `TRUE`
 #' to make copies regardless of object size. This is recommended if enough RAM
-#' is available. If set to \code{FALSE}, calculations might be carried out
+#' is available. If set to `FALSE`, calculations might be carried out
 #' but the object will be changed by reference.
 #'
-#' @return Either \code{x} unchanged, or a fresh copy of \code{x}.
+#' @return Either `x` unchanged, or a fresh copy of `x`.
 #' @keywords internal
 copybig <- function(x, .copy = NA) {
   # Copy x if < 1 GB

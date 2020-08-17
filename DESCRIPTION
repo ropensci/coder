@@ -33,6 +33,7 @@ Imports:
   decoder
 LazyData: TRUE
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
 VignetteBuilder: 
   knitr
 URL: https://eribul.github.io/coder

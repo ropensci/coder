@@ -16,7 +16,7 @@ or a name (character vector of length one) keyvalue object from package
 \item{...}{
   Arguments passed on to \code{\link[=summary.classcodes]{summary.classcodes}}
   \describe{
-    \item{\code{cc_args}}{List of named arguments passed to \code{\link{set_classcodes}}}
+    \item{\code{cc_args}}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
   }}
 
 \item{file}{name of Excel file for data export}

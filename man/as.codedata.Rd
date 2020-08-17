@@ -10,8 +10,8 @@ as.codedata(x, ..., .setkeys = TRUE, alnum = FALSE)
 is.codedata(x)
 }
 \arguments{
-\item{x}{\code{\link{data.frame}} with columns "id" (character), "code",
-and optional "code_date" (Date).}
+\item{x}{\link{data.frame} with columns \code{id} (character), \code{code},
+and optional \code{code_date} (Date).}
 
 \item{...}{
   Arguments passed on to \code{\link[=dates_within]{dates_within}}
@@ -25,31 +25,34 @@ and optional "code_date" (Date).}
 \item{alnum}{Should codes be cleaned from all non alphanumeric characters?}
 }
 \value{
-\code{\link{data.table}} with columns: "id" (character), "code" and
-  optionally "code_date" (Date)
-  Possible additional columns from \code{x} are preserved.
+\link{data.table} with columns: \code{id} (character), \code{code} and
+optionally \code{code_date} (Date)
+Possible additional columns from \code{x} are preserved.
 }
 \description{
-Make structured code data set based on \code{\link{data.frame}}.
+Make structured code data set based on \link{data.frame}.
 }
 \examples{
 
-x <- data.frame(
-  id = "1",
-  code_date = as.Date("2017-02-02"),
-  code = "a",
-  stringsAsFactors = FALSE
-)
+x <-
+  data.frame(
+    id               = "1",
+    code_date        = as.Date("2017-02-02"),
+    code             = "a",
+    stringsAsFactors = FALSE
+  )
 as.codedata(x)
 
 # Drop dates outside specified limits
-y <- data.frame(id = "2", code_date = as.Date("3017-02-02"), code = "b",
-  stringsAsFactors = FALSE)
+y <-
+  data.frame(
+    id               = "2",
+    code_date        = as.Date("3017-02-02"),
+    code             = "b",
+    stringsAsFactors = FALSE
+  )
 z <- rbind(x, y)
 as.codedata(z)
 
-}
-\seealso{
-npr2codedata
 }
 \concept{codedata}

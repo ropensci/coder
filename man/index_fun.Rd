@@ -14,7 +14,7 @@ index(classified, ...)
 \method{index}{matrix}(classified, index = NULL, cc = NULL, ...)
 }
 \arguments{
-\item{classified}{output from \code{classify}}
+\item{classified}{output from \code{\link[=classify]{classify()}}}
 
 \item{...}{used internally}
 
@@ -28,7 +28,7 @@ and/or if index calculated without weights.}
 }
 \value{
 Named numeric index vector with names corresponding to
-  \code{rownames(x)}
+\code{rownames(x)}
 }
 \description{
 (Weighted) sum of all identified classes for each case.

@@ -7,77 +7,77 @@
 \format{
 A data frame with 17 rows and 8 variables:
 \describe{
-  \item{group}{comorbidity groups}
-  \item{description}{Verbal description of codes as described by
-    Deyo et al. (1992).}
-  \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
-  group as decoded from Quan et al. 2005. Note that this classification was
-  not originally used with all weights! To simply use this classification
-  table with weights other than \code{quan_original} and \code{quan_updated}
-  might therefore lead to different results than originally intended for each
-  index.}
-  \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
-    in Quan et al. (2005).
-    Procedure code 38.48 for peripheral vascular disease ignored.}
-  \item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM"
-    in Quan et al. (2005).}
-  \item{regex_icd10_rcs}{Codification by Armitage (2010).
-    Note that Peptic ulcer disease is not included.
-    All liver diseases (including mild) are included in
-    "moderate or severe liver disease".
-    All diabetes is included in "diabetes complication"}
-  \item{regex_icd8_brusselaers}{Back translated version from ICD-10 to
-    ICD-8 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and
-    "diabetes complication" contains all diabetes.}
-  \item{regex_icd9_brusselaers}{Back translated version from ICD-10 to
-  ICD-9 by Brusselaers et al. (2017).
-    "Moderate and severe liver disease" contains all liver disease and
-    "diabetes complication" contains all diabetes.}
-  \item{index_charlson}{original weights as suggested by Charlson et al.
-     (1987)*}
-  \item{index_deyo_ramano}{weights suggested by Deyo and Romano*}
-  \item{index_dhoore}{weights suggested by D'Hoore*}
-  \item{index_ghali}{weights suggested by Ghali*}
-  \item{index_quan_original}{weights suggested by Quan (2005)}
-  \item{index_quan_updated}{weights suggested by Quan (2011)}
+\item{group}{comorbidity groups}
+\item{description}{Verbal description of codes as described by
+Deyo et al. (1992).}
+\item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+group as decoded from Quan et al. 2005. Note that this classification was
+not originally used with all weights! To simply use this classification
+table with weights other than \code{quan_original} and \code{quan_updated}
+might therefore lead to different results than originally intended for each
+index.}
+\item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
+in Quan et al. (2005).
+Procedure code 38.48 for peripheral vascular disease ignored.}
+\item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM"
+in Quan et al. (2005).}
+\item{regex_icd10_rcs}{Codification by Armitage (2010).
+Note that Peptic ulcer disease is not included.
+All liver diseases (including mild) are included in
+"moderate or severe liver disease".
+All diabetes is included in "diabetes complication"}
+\item{regex_icd8_brusselaers}{Back translated version from ICD-10 to
+ICD-8 by Brusselaers et al. (2017).
+"Moderate and severe liver disease" contains all liver disease and
+"diabetes complication" contains all diabetes.}
+\item{regex_icd9_brusselaers}{Back translated version from ICD-10 to
+ICD-9 by Brusselaers et al. (2017).
+"Moderate and severe liver disease" contains all liver disease and
+"diabetes complication" contains all diabetes.}
+\item{index_charlson}{original weights as suggested by Charlson et al.
+(1987)\emph{}
+\item{index_deyo_ramano}{weights suggested by Deyo and Romano}}
+\item{index_dhoore}{weights suggested by D'Hoore*}
+\item{index_ghali}{weights suggested by Ghali*}
+\item{index_quan_original}{weights suggested by Quan (2005)}
+\item{index_quan_updated}{weights suggested by Quan (2011)}
 }
-
-* Weights decoded from Yurkovich et al. (2015).
+\itemize{
+\item Weights decoded from Yurkovich et al. (2015).
+}
 }
 \usage{
 charlson
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link{classify}}
+A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
 }
 \references{
 Armitage, J. N., & van der Meulen, J. H. (2010).
-   Identifying co-morbidity in surgical patients using administrative data
-   with the Royal College of Surgeons Charlson Score.
-   British Journal of Surgery, 97(5), 772–781.
-   \url{http://doi.org/10.1002/bjs.6930}
+Identifying co-morbidity in surgical patients using administrative data
+with the Royal College of Surgeons Charlson Score.
+British Journal of Surgery, 97(5), 772–781.
+\url{http://doi.org/10.1002/bjs.6930}
 
- Brusselaers N, Lagergren J. (2017)
-   The Charlson Comorbidity Index in Registry-based Research.
-   Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.
+Brusselaers N, Lagergren J. (2017)
+The Charlson Comorbidity Index in Registry-based Research.
+Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.
 
-
- Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
-   Adapting a clinical comorbidity index for use with ICD-9-CM
-   administrative databases.
-   Journal of Clinical Epidemiology, 45(6), 613–619.
-   \url{https://doi.org/10.1016/0895-4356(92)90133-8}
+Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
+Adapting a clinical comorbidity index for use with ICD-9-CM
+administrative databases.
+Journal of Clinical Epidemiology, 45(6), 613–619.
+\url{https://doi.org/10.1016/0895-4356(92)90133-8}
 
 Quan Hude et al. (2005). Coding algorithms for defining
-  comorbidities in ICD-9-CM and ICD-10 administrative data.
-  Medical care, 1130-1139.
+comorbidities in ICD-9-CM and ICD-10 administrative data.
+Medical care, 1130-1139.
 \url{https://www.jstor.org/stable/3768193}
 
 Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
-  D. (2015). A systematic review identifies valid comorbidity indices derived
-  from administrative health data.
-  Journal of clinical epidemiology, 68(1), 3-14.
+D. (2015). A systematic review identifies valid comorbidity indices derived
+from administrative health data.
+Journal of clinical epidemiology, 68(1), 3-14.
 }
 \seealso{
 Other default classcodes: 

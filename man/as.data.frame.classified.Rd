@@ -10,17 +10,17 @@
 \method{as.data.table}{classified}(x, ...)
 }
 \arguments{
-\item{x}{output from \code{\link{classify}}}
+\item{x}{output from \code{\link[=classify]{classify()}}}
 
 \item{...}{ignored}
 }
 \value{
 data frame with:
 \itemize{
-  \item{first column named as "id" column specified as input
-    to \code{\link{classify}} and with data from \code{row.names(x)}}
-  \item{all columns from \code{classified}}
-  \item{no row names}
+\item first column named as "id" column specified as input
+to \code{\link[=classify]{classify()}} and with data from \code{row.names(x)}
+\item all columns from \code{classified}
+\item no row names
 }
 }
 \description{

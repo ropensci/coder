@@ -1,6 +1,6 @@
 #' Classcodes for Elixhauser based on ICD-codes
 #'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}.
+#' A [`classcodes`] object to use with [classify()].
 #'
 #' Solid tumors are subordinate to metastatic cancer. A patient with both
 #' conditions will still be classified as such but a possible (weighted)
@@ -30,8 +30,8 @@
 #'   \item{regex_icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
 #'     in table 2 of Quan et al. (2005).}
 #'   \item{index_sum_all}{all weights = 1 (thus no weights)}
-#'   \item{index_sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmia.
-#'     Compare to \code{regex_icd9cm_ahrqweb} which does not
+#'   \item{index_sum_all_ahrq}{as `sum_all` excluding "cardiac arrhythmia.
+#'     Compare to `regex_icd9cm_ahrqweb` which does not
 #'     consider this condition.}
 #'   \item{index_walraven}{weights suggested by Walraven et al. (2009)}
 #'   \item{index_sid29}{weights suggested by Thompson et al. (2015)
@@ -81,7 +81,7 @@
 
 #' Classcodes for Charlson comorbidity based on ICD-codes
 #'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#' A [`classcodes`] object to use with [classify()].
 #'
 #' @format A data frame with 17 rows and 8 variables:
 #' \describe{
@@ -91,7 +91,7 @@
 #'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
 #'   group as decoded from Quan et al. 2005. Note that this classification was
 #'   not originally used with all weights! To simply use this classification
-#'   table with weights other than \code{quan_original} and \code{quan_updated}
+#'   table with weights other than `quan_original` and `quan_updated`
 #'   might therefore lead to different results than originally intended for each
 #'   index.}
 #'   \item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
@@ -159,7 +159,7 @@
 
 #' Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes
 #'
-#' A \code{\link{classcodes}} object to use with \code{\link{classify}}
+#' A [`classcodes`] object to use with [classify()].
 #'
 #' @format A data frame with 2 rows and 2 variables:
 #' \describe{
@@ -184,7 +184,7 @@
 #' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 #' and KVA codes
 #'
-#' \code{\link{classcodes}} objects to use with \code{\link{classify}}
+#' A [`classcodes`] object to use with [classify()].
 #'
 #' ICD-10 group names are prefixed by two letters as given by the references.
 #' Two groups (DB and DM) are split into two due to different conditions.
@@ -199,14 +199,14 @@
 #' of the classcodes data prior to categorization.
 #'
 #' \describe{
-#'  \item{hbdia1_hdia}{\code{TRUE} if the code was
+#'  \item{hbdia1_hdia}{`TRUE` if the code was
 #'  given as any type of diagnose during hospital visit for index operation,
-#'  or as main diagnose for later visits, otherwise \code{FALSE}}
-#'  \item{late_hdia}{\code{TRUE} if the code was
+#'  or as main diagnose for later visits, otherwise `FALSE`}
+#'  \item{late_hdia}{`TRUE` if the code was
 #'  given as main diagnose at a later visit after the index operation,
-#'  otherwise \code{FALSE}}
-#'  \item{post_op}{\code{TRUE} if the code was
-#'  given at a later visit after the index operation, otherwise \code{FALSE}}
+#'  otherwise `FALSE`}
+#'  \item{post_op}{`TRUE` if the code was
+#'  given at a later visit after the index operation, otherwise `FALSE`}
 #' }
 #'
 #' @format Data frame with 3 columns:
@@ -215,7 +215,7 @@
 #'   \item{regex_icd10}{regular expressions identifying ICD-10 codes for each
 #'     group}
 #'  \item{regex_icd10_fracture}{regular expressions for fracture patients.
-#'    Essentially the same as \code{regex} but with some additional codes for
+#'    Essentially the same as `regex` but with some additional codes for
 #'    group "DM1 other"}
 #'  \item{regex_kva}{regular expressions identifying KVA codes}
 #'   \item{condition}{special conditions are used, see below.}
@@ -246,7 +246,7 @@
 #' Classcodes for infection and dislocation after hip arthroplasty
 #' based on ICD-10 and KVA codes
 #'
-#' \code{\link{classcodes}} objects to use with \code{\link{classify}}.
+#' A [`classcodes`] object to use with [classify()].
 #'
 #' @format Data frame with 3 columns:
 #' \describe{
@@ -262,7 +262,8 @@
 
 #' Classcodes for RxRisk V based on ATC codes
 #'
-#' \code{\link{classcodes}} object to use with \code{\link{classify}}.
+#' A [`classcodes`] object to use with [classify()].
+
 #' Provided mostly as proof-of-concept. Codes have not been externally
 #'   validated and desired implementation might differ over time and by country.
 #'
@@ -326,7 +327,7 @@
 #'
 #' @format Data frames with 1,000 rows and 4 variables:
 #' \describe{
-#'   \item{id}{Random names corresponding to column \code{name} in dataset
+#'   \item{id}{Random names corresponding to column `name` in dataset
 #'     \code{ex_people}}
 #'   \item{date}{random dates corresponding to registered (comorbidity) codes}
 #'   \item{code}{(comorbidity) codes as given by ICD-10}

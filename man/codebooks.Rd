@@ -7,12 +7,12 @@
 codebooks(..., file = NULL)
 }
 \arguments{
-\item{...}{named output from \code{\link{codebook}}}
+\item{...}{named output from \code{\link[=codebook]{codebook()}}}
 
 \item{file}{name of Excel file for data export}
 }
 \value{
-Concatenated list with output from \code{\link{codebook}}.
+Concatenated list with output from \code{\link[=codebook]{codebook()}}.
 Only one 'README' object is kept however and renamed as such.
 }
 \description{

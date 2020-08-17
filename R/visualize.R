@@ -8,9 +8,9 @@
 #'
 #' @inheritParams set_classcodes
 #' @param group names (as character vector) of groups to visualize
-#' (all groups if \code{NULL})
+#' (all groups if `NULL`)
 #' @param show should a visualization be shown in a web browser.
-#' Set to \code{FALSE} to just retrieve a URL for later use.
+#' Set to `FALSE` to just retrieve a URL for later use.
 #' @inheritDotParams set_classcodes regex
 #' @return URL to website with visualization (invisible)
 #' @export

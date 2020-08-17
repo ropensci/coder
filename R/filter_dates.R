@@ -2,10 +2,10 @@
 #'
 #' @param x object to filter
 #' @param na.rm remove dates outside limits completely (otherwise keep position
-#' in vector but set to \code{NA})
+#' in vector but set to `NA`)
 #' @inheritDotParams dates_within
 #'
-#' @return Object of same class as \code{x}. If date vector, a filtered vector,
+#' @return Object of same class as `x`. If date vector, a filtered vector,
 #' if data frame (with one column named "date"), the same data frame but only
 #' with rows with dates within limits.
 #' @export
@@ -45,8 +45,7 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' @param x Date vector
 #' @param from,to first and last date of interval to compare with
 #'
-#' @return Logical vector with \code{TRUE} if date within limits, \code{FALSE}
-#'  otherwise.
+#' @return Logical vector with `TRUE` if date within limits, `FALSE` otherwise.
 #' @export
 #' @examples
 #'
