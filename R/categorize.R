@@ -17,9 +17,9 @@
 #' package website \url{https://eribul.github.io/coder}.
 #'
 #'
-#' @param data data frame with mandatory id column
+#' @param data [data.frame] or [data.table::data.table] with mandatory id column
 #'   (identified by argument `id`),
-#'   and semi-optional column with date of interest
+#'   and optional column with date of interest
 #'   (identified by argument `date` if  `days != NULL`).
 #' @param codedata external code data (see [as.codedata()])
 #' @param cc [`classcodes`] object (or name of such object).
@@ -38,6 +38,8 @@
 #'   output sorted this way, but this might be inconvenient if the original
 #'   order was important.)
 #' @param codify_args List of named arguments passed to [codify()]
+#' @param ... arguments passed between methods
+#' @param .data_cols used internally
 #' @inheritParams classify
 #'
 #' @return Object of class `data.table` made from `data` combined with
@@ -61,45 +63,57 @@
 #'   cc_args = list(tech_names = TRUE)
 #' )
 #' @family verbs
-categorize <- function(
-  data, codedata, cc, id, index = NULL, sort = TRUE,
-  codify_args = list(), cc_args = list()) {
-
-  stopifnot(id %in% names(data), is.character(data[[id]]))
+#' @name categorize
+categorize <- function(...) UseMethod("categorize")
 
 
-  # codify ------------------------------------------------------------------
+#' @export
+#' @rdname categorize
+categorize.data.frame <- function(data, ...) {
+  categorize(as.data.table(data), ...)
+}
 
-  cc_args$cc <- cc_name <- cc
-  cc <- do.call(set_classcodes, cc_args)
 
-  if (!is.data.table(data)) {
-    data <- as.data.table(data)
+#' @export
+#' @rdname categorize
+categorize.data.table <-
+  function(data, codedata, cc, id, ..., codify_args = list()) {
+
+    codify_args$data     <- data
+    codify_args$codedata <- codedata
+    codify_args$id       <- id
+    cod                  <- do.call(codify, codify_args)
+
+    categorize(cod, cc, id, ..., .data_cols = names(data))
   }
 
-  # Use id as key and check that it is unique!
-  if (sort & !haskey(data)) setkeyv(data, id)
-  if (anyDuplicated(data[[id]])) stop("Non-unique ids!")
 
-  codify_args$data     <- data
-  codify_args$codedata <- codedata
-  codify_args$id       <- id
-  cod                  <- do.call(codify, codify_args)
+#' @export
+#' @rdname categorize
+categorize.codified <- function(
+  codified, cc, id, ..., index = NULL, sort = TRUE,
+  cc_args = list(), .data_cols = NULL) {
 
-
+  if (is.null(.data_cols)) {
+    warning(
+      "Output might contain extra columns as left-overs from 'codedata'. ",
+      "Those should be ignored!"
+    )
+    .data_cols <- setdiff(names(codified), c("code", "code_date", "in_period"))
+  }
   # classify ----------------------------------------------------------------
-
-  cl                   <- classify(cod, cc, cc_args = NULL) # NULL since cc set
-
+  cc_args$cc  <- cc_name <- cc
+  cc          <- do.call(set_classcodes, cc_args)
+  cl          <- classify(codified, cc, cc_args = NULL) # NULL since cc set
+  ...data_cols <- NULL # Too avoid check notes
+  data        <- unique(codified, by = id)[, ...data_cols]
   data$id_chr <- as.character(data[[id]]) # To be able to merge
-  out       <- merge(data, as.data.table(cl),
+  out         <- merge(data, as.data.table(cl),
                      by.x = "id_chr", by.y = id, sort = sort)
-  id_chr <- NULL # to avoid check note
+  id_chr      <- NULL # to avoid check note
   data[, id_chr := NULL] # Don't need it any more
 
-
   # index -------------------------------------------------------------------
-
   if (!identical(index, FALSE)) {
     index_inh <- attr(cc, "indices")
     index <-
@@ -117,16 +131,12 @@ categorize <- function(
       ind_names <-
         clean_text(
           cc_name, paste0(attr(cc, "regex_name"), "_index_",
-          # we always want one "index_", not two if index name already prefixed
-          gsub("index_", "", ind_names)))
+                          # we always want one "index_", not two if index name already prefixed
+                          gsub("index_", "", ind_names)))
     }
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
   }
 
-
-  # out ---------------------------------------------------------------------
-
-  out[, id_chr := NULL][]
-
+ out[, id_chr := NULL][]
 }

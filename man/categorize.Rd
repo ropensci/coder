@@ -2,23 +2,34 @@
 % Please edit documentation in R/categorize.R
 \name{categorize}
 \alias{categorize}
+\alias{categorize.data.frame}
+\alias{categorize.data.table}
+\alias{categorize.codified}
 \title{Categorize cases based on external data and classification scheme}
 \usage{
-categorize(
-  data,
-  codedata,
+categorize(...)
+
+\method{categorize}{data.frame}(data, ...)
+
+\method{categorize}{data.table}(data, codedata, cc, id, ..., codify_args = list())
+
+\method{categorize}{codified}(
+  codified,
   cc,
   id,
+  ...,
   index = NULL,
   sort = TRUE,
-  codify_args = list(),
-  cc_args = list()
+  cc_args = list(),
+  .data_cols = NULL
 )
 }
 \arguments{
-\item{data}{data frame with mandatory id column
+\item{...}{arguments passed between methods}
+
+\item{data}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with mandatory id column
 (identified by argument \code{id}),
-and semi-optional column with date of interest
+and optional column with date of interest
 (identified by argument \code{date} if  \code{days != NULL}).}
 
 \item{codedata}{external code data (see \code{\link[=as.codedata]{as.codedata()}})}
@@ -26,6 +37,10 @@ and semi-optional column with date of interest
 \item{cc}{\code{\link{classcodes}} object (or name of such object).}
 
 \item{id}{name of code/id columns (in \code{codified}).}
+
+\item{codify_args}{List of named arguments passed to \code{\link[=codify]{codify()}}}
+
+\item{codified}{output from \code{\link[=codify]{codify()}}}
 
 \item{index}{A character vector of index values to calculate (passed to argument
 \code{by} in function \code{\link[=index]{index()}}.
@@ -42,10 +57,10 @@ Data is sorted by 'id' internally. It is therefore faster to keep the
 output sorted this way, but this might be inconvenient if the original
 order was important.)}
 
-\item{codify_args}{List of named arguments passed to \code{\link[=codify]{codify()}}}
-
 \item{cc_args}{List with named arguments passed to
 \code{\link[=set_classcodes]{set_classcodes()}}}
+
+\item{.data_cols}{used internally}
 }
 \value{
 Object of class \code{data.table} made from \code{data} combined with

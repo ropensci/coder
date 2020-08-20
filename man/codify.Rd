@@ -32,7 +32,8 @@ but the object will be changed by reference.}
   }}
 }
 \value{
-\code{data} (coerced to \code{\link[data.table:data.table]{data.table::data.table()}} with additional columns:
+Object of class \code{codified} (inheriting from \link[data.table:data.table]{data.table::data.table}).
+Essentially \code{data} with additional columns:
 \verb{code, code_date}: left joined from \code{codedata} or \code{NA}
 if no match within period. \code{in_period}: Boolean indicator if the case
 had at least one code within the specified period.

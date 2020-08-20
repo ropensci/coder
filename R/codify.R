@@ -13,7 +13,8 @@
 #'   of relevant days relative to `date`. See "Relevant period".
 #'
 #' @return
-#'   `data` (coerced to [data.table::data.table()] with additional columns:
+#'   Object of class `codified` (inheriting from [data.table::data.table]).
+#'   Essentially `data` with additional columns:
 #'   `code, code_date`: left joined from `codedata` or `NA`
 #'   if no match within period. `in_period`: Boolean indicator if the case
 #'   had at least one code within the specified period.
@@ -42,6 +43,7 @@ codify <- function(
 
   if (!id %in% names(data))      stop("No id column '", id, "' in data!")
   if (!is.character(data[[id]])) stop("Id column must be of type character!")
+  if (anyDuplicated(data[[id]])) stop("Non-unique ids!")
 
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
@@ -54,7 +56,7 @@ codify <- function(
     warning("Date column ignored since days = NULL!")
   }
 
-  if (!is.data.table(data)) data <- data.table(data)
+  if (!is.data.table(data)) data <- data.table(data, key = id)
   x2 <- copybig(data, .copy) # New name to avoid copy complications
   if (usedate) setnames(x2, date, "date")
   if (!is.codedata(codedata))
@@ -80,6 +82,6 @@ codify <- function(
       by = idcols
     ]
   out <- merge(unique(out), x2, by = idcols) # to get back all data
-  if (usedate) setnames(x2, "date", date)
-  structure(out, id = id)
+  if (usedate) setnames(out, "date", date)
+  structure(out, id = id, class = unique(c("codified", class(out))))
 }
