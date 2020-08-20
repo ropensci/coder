@@ -29,7 +29,7 @@
 #'
 #'   Set to `FALSE` if no index should be calculated.
 #'
-#'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`
+#'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`)
 #'   are provided. A message lists the indices so that you can check they're
 #'   correct; suppress the message by supplying `index` explicitly.
 #' @param sort logical. Should output be sorted by the 'id' column?
@@ -42,7 +42,7 @@
 #'
 #' @return Object of class `data.table` made from `data` combined with
 #' logical columns indicating membership of categories identified by the
-#' `classcodes` object (the `cc`} argument).
+#' `classcodes` object (the `cc` argument).
 #' Indices are also included if specified by the 'index' argument.
 #'
 #' @export

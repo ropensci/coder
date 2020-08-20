@@ -32,7 +32,7 @@ and semi-optional column with date of interest
 
 Set to \code{FALSE} if no index should be calculated.
 
-If \code{NULL}, the default, all available indices (from \code{attr(cc, "indices")}
+If \code{NULL}, the default, all available indices (from \code{attr(cc, "indices")})
 are provided. A message lists the indices so that you can check they're
 correct; suppress the message by supplying \code{index} explicitly.}
 
@@ -50,7 +50,7 @@ order was important.)}
 \value{
 Object of class \code{data.table} made from \code{data} combined with
 logical columns indicating membership of categories identified by the
-\code{classcodes} object (the \code{cc}} argument).
+\code{classcodes} object (the \code{cc} argument).
 Indices are also included if specified by the 'index' argument.
 }
 \description{

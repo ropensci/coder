@@ -13,7 +13,7 @@
 #' # List all codes with corresponding classes as recognized by the Elixhauser
 #' # comorbidity classification according to the Swedish version of the
 #' # international classification of diseases version 10 (ICD-10-SE)
-#' as.keyvalue(elixhauser, "icd10se")
+#' decoder::as.keyvalue(elixhauser, "icd10se")
 as.keyvalue.classcodes <- function(x, coding, ...) {
   decoder::as.keyvalue(summary(x, coding, ...)$codes_vct)
 }

@@ -196,9 +196,6 @@ hist2(
 We did not specify the index above, wherefore all available indices were provided by default. We might go back to Pratt's classification scheme (`regex_pratt`) and only calculate the corresponding index `index_pratt`. Let´s also perform the three computational steps explicitly instead of using the combining `categorize` function and tabulate the result
 
 ```{r}
-# Import the magritr pipe for convenience
-`%>%` <- magrittr::`%>%`
-
 codify(ex_people, ex_atc, id = "name", date = "event", days = c(-365, -1)) %>% 
   classify(rxriskv) %>% 
   index("pratt") %>% 

@@ -6,41 +6,41 @@
 \title{Classcodes for Charlson comorbidity based on ICD-codes}
 \format{
 A data frame with 17 rows and 8 variables:
-\describe{
-\item{group}{comorbidity groups}
-\item{description}{Verbal description of codes as described by
-Deyo et al. (1992).}
-\item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+\itemize{
+\item \verb{group:} comorbidity groups
+\item \verb{description:} Verbal description of codes as described by
+Deyo et al. (1992).
+\item \verb{regex_icd10:} regular expressions identifying ICD-10 codes of each
 group as decoded from Quan et al. 2005. Note that this classification was
 not originally used with all weights! To simply use this classification
 table with weights other than \code{quan_original} and \code{quan_updated}
 might therefore lead to different results than originally intended for each
-index.}
-\item{regex_icd9cm_deyo}{Codes from table 1 column "Deyo's ICD-9-CM"
+index.
+\item \verb{regex_icd9cm_deyo:}Codes from table 1 column "Deyo's ICD-9-CM"
 in Quan et al. (2005).
-Procedure code 38.48 for peripheral vascular disease ignored.}
-\item{regex_icd9cm_enhanced}{Codes from table 1 column "Enhanced ICD-9-CM"
-in Quan et al. (2005).}
-\item{regex_icd10_rcs}{Codification by Armitage (2010).
+Procedure code 38.48 for peripheral vascular disease ignored.
+\item \verb{regex_icd9cm_enhanced:} Codes from table 1 column "Enhanced ICD-9-CM"
+in Quan et al. (2005).
+\item \verb{regex_icd10_rcs:} Codification by Armitage (2010).
 Note that Peptic ulcer disease is not included.
 All liver diseases (including mild) are included in
 "moderate or severe liver disease".
-All diabetes is included in "diabetes complication"}
-\item{regex_icd8_brusselaers}{Back translated version from ICD-10 to
+All diabetes is included in "diabetes complication"
+\item \verb{regex_icd8_brusselaers:} Back translated version from ICD-10 to
 ICD-8 by Brusselaers et al. (2017).
 "Moderate and severe liver disease" contains all liver disease and
-"diabetes complication" contains all diabetes.}
-\item{regex_icd9_brusselaers}{Back translated version from ICD-10 to
+"diabetes complication" contains all diabetes.
+\item \verb{regex_icd9_brusselaers:} Back translated version from ICD-10 to
 ICD-9 by Brusselaers et al. (2017).
 "Moderate and severe liver disease" contains all liver disease and
-"diabetes complication" contains all diabetes.}
-\item{index_charlson}{original weights as suggested by Charlson et al.
-(1987)\emph{}
-\item{index_deyo_ramano}{weights suggested by Deyo and Romano}}
-\item{index_dhoore}{weights suggested by D'Hoore*}
-\item{index_ghali}{weights suggested by Ghali*}
-\item{index_quan_original}{weights suggested by Quan (2005)}
-\item{index_quan_updated}{weights suggested by Quan (2011)}
+"diabetes complication" contains all diabetes.
+\item \verb{index_charlson:} original weights as suggested by Charlson et al.
+(1987)*
+\item \verb{index_deyo_ramano:} weights suggested by Deyo and Romano*
+\item \verb{index_dhoore:} weights suggested by D'Hoore*
+\item \verb{index_ghali:} weights suggested by Ghali*
+\item \verb{index_quan_original:} weights suggested by Quan (2005)
+\item \verb{index_quan_updated:} weights suggested by Quan (2011)
 }
 \itemize{
 \item Weights decoded from Yurkovich et al. (2015).
