@@ -67,6 +67,9 @@ categorize <- function(
 
   stopifnot(id %in% names(data), is.character(data[[id]]))
 
+
+  # codify ------------------------------------------------------------------
+
   cc_args$cc <- cc_name <- cc
   cc <- do.call(set_classcodes, cc_args)
 
@@ -78,11 +81,15 @@ categorize <- function(
   if (sort & !haskey(data)) setkeyv(data, id)
   if (anyDuplicated(data[[id]])) stop("Non-unique ids!")
 
-  codify_args$data    <- data
+  codify_args$data     <- data
   codify_args$codedata <- codedata
-  codify_args$id   <- id
-  cod              <- do.call(codify, codify_args)
-  cl               <- classify(cod, cc, cc_args = NULL) # NULL since cc alr. set
+  codify_args$id       <- id
+  cod                  <- do.call(codify, codify_args)
+
+
+  # classify ----------------------------------------------------------------
+
+  cl                   <- classify(cod, cc, cc_args = NULL) # NULL since cc set
 
   data$id_chr <- as.character(data[[id]]) # To be able to merge
   out       <- merge(data, as.data.table(cl),
@@ -90,9 +97,11 @@ categorize <- function(
   id_chr <- NULL # to avoid check note
   data[, id_chr := NULL] # Don't need it any more
 
-  # Add index named index if index not FALSE
-  index_inh <- attr(cc, "indices")
+
+  # index -------------------------------------------------------------------
+
   if (!identical(index, FALSE)) {
+    index_inh <- attr(cc, "indices")
     index <-
       if (is.null(index) && !is.null(index_inh) && length(index_inh) > 0) {
         index_inh
@@ -114,5 +123,10 @@ categorize <- function(
     setnames(indx, setdiff(names(indx), id), ind_names)
     out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
   }
+
+
+  # out ---------------------------------------------------------------------
+
   out[, id_chr := NULL][]
+
 }

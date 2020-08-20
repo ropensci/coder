@@ -34,7 +34,7 @@ test_that("codify", {
 # missing dates
 # Take minimal data set of people and mask one date
 pe <- coder::ex_people[1:2,]
-pe$surgery[1] <- NA
+pe$event[1] <- NA
 
 # Mask half of the dates from ICD10
 icd <- coder::ex_icd10

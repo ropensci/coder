@@ -29,10 +29,10 @@ Suggests:
   rmarkdown,
   writexl
 Imports:
-    data.table,
-    decoder,
-    tibble,
-    magrittr
+  data.table,
+  decoder,
+  tibble,
+  magrittr
 LazyData: TRUE
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
