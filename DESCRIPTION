@@ -31,8 +31,8 @@ Suggests:
 Imports:
   data.table,
   decoder,
-  tibble,
-  magrittr
+  generics,
+  tibble
 LazyData: TRUE
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

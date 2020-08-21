@@ -48,6 +48,6 @@ Other classcodes:
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
-\code{\link{visualize}()}
+\code{\link{visualize.classcodes}()}
 }
 \concept{classcodes}

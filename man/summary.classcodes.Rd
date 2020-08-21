@@ -51,6 +51,6 @@ Other classcodes:
 \code{\link{codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
-\code{\link{visualize}()}
+\code{\link{visualize.classcodes}()}
 }
 \concept{classcodes}
