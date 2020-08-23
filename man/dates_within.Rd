@@ -9,12 +9,12 @@ dates_within(x, from = "1970-01-01", to = Sys.Date())
 \arguments{
 \item{x}{Date vector}
 
-\item{from}{first date of interval to compare with (\code{1970-01-01} by default,
-since we assume that little data was recorded before 'epoch'; this is a bold
-assumption, however, which should be explicitly re-considered for relevant
-applications)}
+\item{from}{lower date limit to filter out irrelevant dates
+(\code{1970-01-01} by default, since we assume that little data was recorded
+before 'epoch'; this is a bold assumption, however, which should be
+explicitly re-considered for relevant applications)}
 
-\item{to}{last date of interval to compare with
+\item{to}{upper date limit to filter out irrelevant dates
 (the current data from \code{\link[=Sys.Date]{Sys.Date()}}, by default,
 since we assume that future events are unknown,
 thus indicating coding errors)}
@@ -29,8 +29,8 @@ Check if dates are within limits
 
 #                 valid         future      too early
 x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
-dates_within(x) # TRUE FALSE FALSE
-dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
+coder:::dates_within(x) # TRUE FALSE FALSE
+coder:::dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
 }
 \seealso{
 Other helper: 
@@ -39,3 +39,4 @@ Other helper:
 \code{\link{spss2date}()}
 }
 \concept{helper}
+\keyword{internal}

@@ -26,7 +26,7 @@ is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=as.codedata]{as.codedata}}
+  Arguments passed on to \code{\link[=as.codedata.data.table]{as.codedata.data.table}}
   \describe{
     \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters?}
   }}

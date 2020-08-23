@@ -8,16 +8,16 @@
 #' @return Object of same class as `x`. If date vector, a filtered vector,
 #' if data frame (with one column named "date"), the same data frame but only
 #' with rows with dates within limits.
-#' @export
 #'
 #' @examples
 #' #                 valid         future      too early
 #' x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
-#' filter_dates(x) # "2017-02-02" NA           NA
-#' filter_dates(x, na.rm = TRUE) # "2017-02-02"
-#' filter_dates(data.frame(date = x, foo  = 1:3))
+#' coder:::filter_dates(x) # "2017-02-02" NA           NA
+#' coder:::filter_dates(x, na.rm = TRUE) # "2017-02-02"
+#' coder:::filter_dates(data.frame(date = x, foo  = 1:3))
 #'
 #' @family helper
+#' @keywords internal
 filter_dates <- function(x, ...) UseMethod("filter_dates", x)
 
 
@@ -43,24 +43,24 @@ filter_dates.Date <- function(x, ..., na.rm = FALSE) {
 #' Check if dates are within limits
 #'
 #' @param x Date vector
-#' @param from first date of interval to compare with (`1970-01-01` by default,
-#' since we assume that little data was recorded before 'epoch'; this is a bold
-#' assumption, however, which should be explicitly re-considered for relevant
-#' applications)
-#' @param to last date of interval to compare with
+#' @param from lower date limit to filter out irrelevant dates
+#' (`1970-01-01` by default, since we assume that little data was recorded
+#' before 'epoch'; this is a bold assumption, however, which should be
+#' explicitly re-considered for relevant applications)
+#' @param to upper date limit to filter out irrelevant dates
 #'   (the current data from [Sys.Date()], by default,
 #'   since we assume that future events are unknown,
 #'   thus indicating coding errors)
 #'
 #' @return Logical vector with `TRUE` if date within limits, `FALSE` otherwise.
-#' @export
 #' @examples
 #'
 #' #                 valid         future      too early
 #' x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
-#' dates_within(x) # TRUE FALSE FALSE
-#' dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
+#' coder:::dates_within(x) # TRUE FALSE FALSE
+#' coder:::dates_within(x, from = "2000-01-01", to = "2100-01-01") #  TRUE  TRUE FALSE
 #' @family helper
+#' @keywords internal
 dates_within <- function(x, from = "1970-01-01", to = Sys.Date()) {
 
   stopifnot(is.Date(x))

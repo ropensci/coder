@@ -2,29 +2,40 @@
 % Please edit documentation in R/codedata.R
 \name{as.codedata}
 \alias{as.codedata}
+\alias{as.codedata.data.table}
 \alias{is.codedata}
 \title{Code data}
 \usage{
-as.codedata(x, ..., .setkeys = TRUE, alnum = FALSE)
+as.codedata(x, ...)
+
+\method{as.codedata}{data.table}(
+  x,
+  id = "id",
+  code = "code",
+  code_date = if (utils::hasName(x, "code_date")) "code_date" else NULL,
+  period = NULL,
+  .setkeys = TRUE,
+  alnum = FALSE,
+  ...
+)
 
 is.codedata(x)
 }
 \arguments{
-\item{x}{\link{data.frame} with columns \code{id} (character), \code{code},
+\item{x}{data table/frame with columns \code{id} (character), \code{code},
 and optional \code{code_date} (Date).}
 
-\item{...}{
-  Arguments passed on to \code{\link[=dates_within]{dates_within}}
-  \describe{
-    \item{\code{from}}{first date of interval to compare with (\code{1970-01-01} by default,
-since we assume that little data was recorded before 'epoch'; this is a bold
-assumption, however, which should be explicitly re-considered for relevant
-applications)}
-    \item{\code{to}}{last date of interval to compare with
-(the current data from \code{\link[=Sys.Date]{Sys.Date()}}, by default,
-since we assume that future events are unknown,
-thus indicating coding errors)}
-  }}
+\item{...}{arguments passed between methods}
+
+\item{id, code}{column names (from \code{x}) with case id:s (character) and
+codes of interest.}
+
+\item{code_date}{optional column name (from \code{x}) with relevant dates
+corresponding to each code. If there is a column named \code{code_date} this will
+be used by default.}
+
+\item{period}{optional date vector of length two with lower and upper limits
+for inclusion period}
 
 \item{.setkeys}{should output be indexed (Beneficial for large data sets.)}
 
@@ -36,20 +47,20 @@ optionally \code{code_date} (Date)
 Possible additional columns from \code{x} are preserved.
 }
 \description{
-Make structured code data set based on \link{data.frame}.
+Make structured code data set.
 }
 \examples{
 
 x <-
   data.frame(
     id               = "1",
-    code_date        = as.Date("2017-02-02"),
+    code_date        = as.Date("2017-01-01"),
     code             = "a",
     stringsAsFactors = FALSE
   )
 as.codedata(x)
 
-# Drop dates outside specified limits
+# Ignore codes for dates outside specified limits
 y <-
   data.frame(
     id               = "2",
@@ -58,7 +69,7 @@ y <-
     stringsAsFactors = FALSE
   )
 z <- rbind(x, y)
-as.codedata(z)
+as.codedata(z, period = c(as.Date("1970-01-01"), Sys.Date()))
 
 }
 \concept{codedata}

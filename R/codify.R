@@ -3,7 +3,7 @@
 #' Enhance case data with code data, possibly limited to relevant period.
 #'
 #' @inheritParams copybig
-#' @inheritDotParams as.codedata alnum
+#' @inheritDotParams as.codedata.data.table alnum
 #' @param data [data.frame] with at least case id, and optional
 #'   date of interest
 #' @param codedata output from [as.codedata()].

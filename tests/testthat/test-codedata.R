@@ -12,7 +12,7 @@ suppressMessages(
     expect_is(as.codedata(as.data.frame(ex_icd10)), "data.table")
 
     expect_true(
-      nrow(as.codedata(ex_icd10, from = "2020-01-01")) <
+      nrow(as.codedata(ex_icd10, period = c(as.Date("2020-01-01"), Sys.Date()))) <
       nrow(as.codedata(ex_icd10))
     )
 
@@ -30,11 +30,14 @@ suppressMessages(
     )
 
     ex_icd102$code_date <- as.character(ex_icd10$code_date)
-    expect_error(as.codedata(ex_icd102), "is.Date(x) is not TRUE", fixed = TRUE)
+    expect_error(
+      as.codedata(ex_icd102),
+      "Column 'code_date' is not of format 'Date'!", fixed = TRUE
+    )
 
+    ex_icd102$code_date <- as.Date(ex_icd102$code_date)
     ex_icd102$id <- as.numeric(as.factor(ex_icd102$id))
     expect_error(as.codedata(ex_icd102), "Column 'id' must be character!")
-
   })
 )
 

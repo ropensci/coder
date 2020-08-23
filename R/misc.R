@@ -38,8 +38,8 @@ copybig <- function(x, .copy = NA) {
 #'
 #' @param x SPSS date
 #' @return Date
-#' @export
 #' @family helper
+#' @keywords internal
 spss2date <- function(x) {
   as.Date(x / 86400, origin = "1582-10-14")
 }

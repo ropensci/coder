@@ -18,11 +18,11 @@ filter_dates(x, ...)
 \item{...}{
   Arguments passed on to \code{\link[=dates_within]{dates_within}}
   \describe{
-    \item{\code{from}}{first date of interval to compare with (\code{1970-01-01} by default,
-since we assume that little data was recorded before 'epoch'; this is a bold
-assumption, however, which should be explicitly re-considered for relevant
-applications)}
-    \item{\code{to}}{last date of interval to compare with
+    \item{\code{from}}{lower date limit to filter out irrelevant dates
+(\code{1970-01-01} by default, since we assume that little data was recorded
+before 'epoch'; this is a bold assumption, however, which should be
+explicitly re-considered for relevant applications)}
+    \item{\code{to}}{upper date limit to filter out irrelevant dates
 (the current data from \code{\link[=Sys.Date]{Sys.Date()}}, by default,
 since we assume that future events are unknown,
 thus indicating coding errors)}
@@ -42,9 +42,9 @@ Filter dates outside specified limits
 \examples{
 #                 valid         future      too early
 x <- as.Date(c("2017-02-02", "2050-02-02", "1969-02-02"))
-filter_dates(x) # "2017-02-02" NA           NA
-filter_dates(x, na.rm = TRUE) # "2017-02-02"
-filter_dates(data.frame(date = x, foo  = 1:3))
+coder:::filter_dates(x) # "2017-02-02" NA           NA
+coder:::filter_dates(x, na.rm = TRUE) # "2017-02-02"
+coder:::filter_dates(data.frame(date = x, foo  = 1:3))
 
 }
 \seealso{
@@ -54,3 +54,4 @@ Other helper:
 \code{\link{spss2date}()}
 }
 \concept{helper}
+\keyword{internal}
