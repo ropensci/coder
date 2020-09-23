@@ -43,6 +43,7 @@
 #' @family classcodes
 #' @importFrom generics visualize
 visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
+  x <- set_classcodes(x, ...)
   if (!is.null(group))
     x <- x[x$group %in% group, ]
   r <- paste0(x$regex, collapse = "|")
@@ -53,7 +54,6 @@ visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
 }
 
 #' @export
-visualize.character <- function(x, group = NULL, show = NULL, ...) {
-  x <- set_classcodes(x, ...)
-  visualize(x, ...)
+visualize.character <- function(x, group = NULL, show = TRUE, ...) {
+  visualize(set_classcodes(x, ...), group = group, show = show)
 }
