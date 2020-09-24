@@ -4,19 +4,34 @@
 \alias{codify}
 \title{Codify elements (within period)}
 \usage{
-codify(data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...)
+codify(
+  data,
+  codedata,
+  id,
+  code,
+  date = NULL,
+  code_date = NULL,
+  days = NULL,
+  alnum = FALSE,
+  .copy = NA
+)
 }
 \arguments{
-\item{data}{\link{data.frame} with at least case id, and optional
-date of interest}
+\item{data}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with at least case id
+(\code{character}), and optional date (\code{\link{Date}}) of interest}
 
-\item{codedata}{output from \code{\link[=as.codedata]{as.codedata()}}.}
+\item{codedata}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with columns
+including case id (\code{character}), code and an optional date (\link{Date}) for
+each code. An optional column \code{condition} might distinguish codes/dates
+with certain characteristics (see example).}
 
-\item{id, date}{column names (from \code{data}) with case id (character)
-and date (class \code{\link{Date}}) of interest (optional).}
+\item{id, date}{column names (from \code{data} and \code{codedata}) with case id
+(\code{character}) and (optional) date (\link{Date}).}
 
 \item{days}{numeric vector of length two with lower and upper bound for range
 of relevant days relative to \code{date}. See "Relevant period".}
+
+\item{alnum}{Should codes be cleaned from all non alphanumeric characters?}
 
 \item{.copy}{Should the object be copied internally by \code{\link[data.table:copy]{data.table::copy()}}?
 \code{NA} (by default) means that objects smaller than 1 GB are copied.
@@ -24,12 +39,6 @@ If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
-
-\item{...}{
-  Arguments passed on to \code{\link[=as.codedata.data.table]{as.codedata.data.table}}
-  \describe{
-    \item{\code{alnum}}{Should codes be cleaned from all non alphanumeric characters?}
-  }}
 }
 \value{
 Object of class \code{codified} (inheriting from \link[data.table:data.table]{data.table::data.table}).
@@ -59,7 +68,7 @@ Useful for adverse events after a surgical procedure.
 }
 
 \examples{
-codify(ex_people, ex_icd10, id = "name", date = "event", days = c(-365, 0))
+codify(ex_people, ex_icd10, id = "name", code = "icd10", date = "event", days = c(-365, 0))
 }
 \seealso{
 Other verbs: 

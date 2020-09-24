@@ -18,8 +18,7 @@ We convert to days from 1970-01-01
 }
 \seealso{
 Other helper: 
-\code{\link{as.keyvalue.classcodes}()},
-\code{\link{dates_within}()},
-\code{\link{filter_dates}()}
+\code{\link{as.keyvalue.classcodes}()}
 }
 \concept{helper}
+\keyword{internal}

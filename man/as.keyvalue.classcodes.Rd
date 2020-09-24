@@ -26,8 +26,6 @@ decoder::as.keyvalue(elixhauser, "icd10se")
 }
 \seealso{
 Other helper: 
-\code{\link{dates_within}()},
-\code{\link{filter_dates}()},
 \code{\link{spss2date}()}
 }
 \concept{helper}

@@ -3,14 +3,20 @@
 \name{classify}
 \alias{classify}
 \alias{classify.default}
+\alias{classify.codified}
 \alias{classify.data.frame}
+\alias{classify.data.table}
 \title{Classify cases based on classcodes}
 \usage{
 classify(codified, cc, ..., cc_args = list())
 
 \method{classify}{default}(codified, cc, ..., cc_args = list())
 
-\method{classify}{data.frame}(codified, cc, ..., id = NULL, code = "code", cc_args = list())
+\method{classify}{codified}(codified, ...)
+
+\method{classify}{data.frame}(codified, ...)
+
+\method{classify}{data.table}(codified, cc, ..., id, code, cc_args = list())
 }
 \arguments{
 \item{codified}{output from \code{\link[=codify]{codify()}}}

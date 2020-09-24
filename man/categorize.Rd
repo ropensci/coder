@@ -7,17 +7,16 @@
 \alias{categorize.codified}
 \title{Categorize cases based on external data and classification scheme}
 \usage{
-categorize(...)
+categorize(x, ...)
 
-\method{categorize}{data.frame}(data, ...)
+\method{categorize}{data.frame}(x, ...)
 
-\method{categorize}{data.table}(data, codedata, cc, id, ..., codify_args = list())
+\method{categorize}{data.table}(x, ..., codedata, id, code, codify_args = list())
 
 \method{categorize}{codified}(
-  codified,
-  cc,
-  id,
+  x,
   ...,
+  cc,
   index = NULL,
   sort = TRUE,
   cc_args = list(),
@@ -25,22 +24,23 @@ categorize(...)
 )
 }
 \arguments{
-\item{...}{arguments passed between methods}
-
-\item{data}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with mandatory id column
+\item{x}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with mandatory id column
 (identified by argument \code{id}),
 and optional column with date of interest
-(identified by argument \code{date} if  \code{days != NULL}).}
+(identified by argument \code{date} if  \code{days != NULL}).
+Alternatively, the output from \code{\link[=codify]{codify()}}}
 
-\item{codedata}{external code data (see \code{\link[=as.codedata]{as.codedata()}})}
+\item{...}{arguments passed between methods}
 
-\item{cc}{\code{\link{classcodes}} object (or name of such object).}
+\item{codedata}{external code data (see \code{\link[=prepare_codedata]{prepare_codedata()}})}
 
 \item{id}{name of code/id columns (in \code{codified}).}
 
+\item{code}{name of code/id columns (in \code{codified}).}
+
 \item{codify_args}{List of named arguments passed to \code{\link[=codify]{codify()}}}
 
-\item{codified}{output from \code{\link[=codify]{codify()}}}
+\item{cc}{\code{\link{classcodes}} object (or name of such object).}
 
 \item{index}{A character vector of index values to calculate (passed to argument
 \code{by} in function \code{\link[=index]{index()}}.

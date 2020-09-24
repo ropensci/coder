@@ -38,38 +38,6 @@
 #' @family verbs
 classify <- function(codified, cc, ..., cc_args = list()) UseMethod("classify")
 
-
-# Evaluate extra conditions -----------------------------------------------
-
-eval_condition <- function(cond, x) {
-  st <- function(e)
-    stop("Classification is conditioned on variables ",
-         "not found in the data set!", call. = FALSE)
-  if (is.na(cond)) !logical(nrow(x))
-  else tryCatch(eval(parse(text = cond), envir = x), error = st)
-}
-
-
-# Find id from object -----------------------------------------------------
-
-find_id <- function(obj, id = NULL, code = NULL) {
-  id <-
-    if (is.null(id) & !is.null(attr(obj, "id"))) attr(obj, "id")
-    else if (is.character(id)) id
-    else if (is.null(id) & "id" %in% names(obj)) "id"
-    else stop("Argument 'id' must be specified!")
-
-  if (!id %in% names(obj))
-    stop(id, " should specify case id but is not a column of x!")
-  if (!code %in% names(obj))
-    stop(code, " should specify codes but is not a column of x!")
-  if (!is.character(obj[[id]]))
-    stop("Id column '", id, "' must be of type character!")
-
-  id
-}
-
-
 # Default method ----------------------------------------------------------
 
 #' @export
@@ -94,18 +62,44 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
   )
 }
 
+#' @export
+#' @rdname classify
+classify.codified <- function(codified, ...) {
+
+  if (methods::hasArg(id) || methods::hasArg(code)) {
+    stop("Arguments `id` and `code` should not be specified in `classify` if
+         already set by a previous call to `codify`!")
+  }
+
+  classify.data.table(
+    codified, ...,
+    id = attr(codified, "id"), code = attr(codified, "code")
+  )
+}
+
+#' @export
+#' @rdname classify
+classify.data.frame <- function(codified, ...) {
+  classify(as.data.table(codified), ...)
+}
 
 # Data frame method -------------------------------------------------------
 
 #' @export
 #' @rdname classify
-classify.data.frame <- function(
-  codified, cc, ..., id = NULL, code = "code", cc_args = list()) {
+classify.data.table <- function(
+  codified, cc, ..., id, code, cc_args = list()) {
+
+  if (!is.character(codified[[id]]))
+    stop("Id column '", id, "' must be of type character!")
 
   # Warning if not called from categorize
   if (!any(grepl("(coder)?categorize",
                  vapply(sys.calls(), function(x) deparse(x[[1]])[[1]], "")))) {
-    warning("'classify' does not preserve row order ('categorize' does!)")
+    warning(
+      "'classify' does not preserve row order ('categorize' does!)"
+      , call. = FALSE
+    )
   }
 
   cc_name <- cc
@@ -115,7 +109,6 @@ classify.data.frame <- function(
     ccargs$cc <- cc
     cc <- do.call(set_classcodes, ccargs)
   }
-  id <- find_id(codified, id, code)
   names(codified)[names(codified) == code] <- "code"
 
   # Codes without class (treated separately for speed): FALSE matrix
@@ -164,6 +157,16 @@ classify.data.frame <- function(
     id         = id,
     class      = c("classified", "matrix")
   )
+}
+
+
+# Evaluate extra conditions -----------------------------------------------
+
+eval_condition <- function(cond, x) {
+  e <- simpleError(
+    "Classification is conditioned on variables not found in the data set!")
+  if (is.na(cond)) !logical(nrow(x))
+  else tryCatch(eval(parse(text = cond), envir = x), error = stop(e))
 }
 
 

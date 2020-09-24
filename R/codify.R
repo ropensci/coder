@@ -3,14 +3,17 @@
 #' Enhance case data with code data, possibly limited to relevant period.
 #'
 #' @inheritParams copybig
-#' @inheritDotParams as.codedata.data.table alnum
-#' @param data [data.frame] with at least case id, and optional
-#'   date of interest
-#' @param codedata output from [as.codedata()].
-#' @param id,date column names (from `data`) with case id (character)
-#'   and date (class [`Date`]) of interest (optional).
+#' @param data [data.frame] or [data.table::data.table] with at least case id
+#'   (`character`), and optional date ([`Date`]) of interest
+#' @param codedata [data.frame] or [data.table::data.table] with columns
+#'   including case id (`character`), code and an optional date ([Date]) for
+#'   each code. An optional column `condition` might distinguish codes/dates
+#'   with certain characteristics (see example).
+#' @param id,date column names (from `data` and `codedata`) with case id
+#'   (`character`) and (optional) date ([Date]).
 #' @param days numeric vector of length two with lower and upper bound for range
 #'   of relevant days relative to `date`. See "Relevant period".
+#' @param alnum Should codes be cleaned from all non alphanumeric characters?
 #'
 #' @return
 #'   Object of class `codified` (inheriting from [data.table::data.table]).
@@ -36,52 +39,81 @@
 #' @export
 #'
 #' @examples
-#' codify(ex_people, ex_icd10, id = "name", date = "event", days = c(-365, 0))
+#' codify(ex_people, ex_icd10, id = "name", code = "icd10", date = "event", days = c(-365, 0))
 #' @family verbs
 codify <- function(
-  data, codedata, id = "id", date = NULL, days = NULL, .copy = NA, ...) {
+  data, codedata, id, code, date = NULL, code_date = NULL,
+  days = NULL, alnum = FALSE, .copy = NA) {
 
-  if (!id %in% names(data))      stop("No id column '", id, "' in data!")
-  if (!is.character(data[[id]])) stop("Id column must be of type character!")
-  if (anyDuplicated(data[[id]])) stop("Non-unique ids!")
+  if (!id %in% names(data))
+    stop("No id column '", id, "' in data!", call. = FALSE)
+  if (!id %in% names(codedata))
+    stop("No id column '", id, "' in codedata!", call. = FALSE)
+  if (!is.character(data[[id]]) || !is.character(codedata[[id]]))
+    stop(id, " must be `character` in 'data' and 'codedata'!", call. = FALSE)
+  if (anyDuplicated(data[[id]]))
+    stop("Non-unique ids!", call. = FALSE)
+  if(!utils::hasName(codedata, code))
+    stop("codedata must have column ", code, call. = FALSE)
 
   # Determine if coding should be limited by time period
   usedate <- !is.null(days)
-  idcols  <- c(id, if (usedate) "date")
-  if (usedate && is.null(date)) {
-    stop("Argument 'date' must be specified if 'days' is not NULL!")
-  } else if (usedate && !is.Date(data[[date]])) {
-    stop("Date column '", date, "' is not of class 'Date'!")
-  } else if (!usedate && !is.null(date)) {
+  idcols  <- c(id, if (usedate) date)
+  if (usedate) {
+    if (is.null(date))
+      stop("Argument 'date' must be specified if 'days' is not NULL!")
+    if (!is.Date(data[[date]]))
+      stop("data column '", date, "' is not of class 'Date'!")
+    if (is.null(code_date))
+      stop("Argument 'code_date' must be specified if 'days' is not NULL!")
+    if (!is.Date(codedata[[code_date]]))
+      stop("codedata column '", date, "' is not of class 'Date'!")
+    }
+  if (!usedate && !is.null(date)) {
     warning("Date column ignored since days = NULL!")
   }
 
-  if (!is.data.table(data)) data <- data.table(data, key = id)
-  x2 <- copybig(data, .copy) # New name to avoid copy complications
-  if (usedate) setnames(x2, date, "date")
-  if (!is.codedata(codedata))
-    codedata <- as.codedata(codedata, .copy = .copy, ...)
+  # Make data.tables 'x1' and 'x2' instead of 'data' and 'codedata'
+  if (!is.data.table(data))
+    data <- data.table(data, key = idcols)
+  if (!is.data.table(codedata))
+    codedata <- data.table(codedata, key = c(id, if (usedate) code_date, code))
+  x1 <- copybig(data, .copy) # New name to avoid copy complications
+  x2 <- copybig(codedata, .copy)
 
-  in_period <- code_date <- NULL # Silly work around to avoid check notes
-  x2_id_date <- x2[, idcols, with = FALSE] # To avoid unique on all data
+  if (alnum) x2[, (code) := gsub("[^[:alnum:]]", "", code)]
 
-  out <-
-    merge(x2_id_date, codedata, by.x = id,
-          by.y = "id", all.x = TRUE, allow.cartesian = TRUE)[,
-      in_period :=
-        if (!usedate) TRUE
-        else between(
-          as.numeric(code_date),
-          as.numeric(date) + min(days),
-          as.numeric(date) + max(days)
+  # Use faster date format
+  if (usedate) {
+    data[, (date) := as.IDate(.SD[[date]])]
+    codedata[, (code_date) := as.IDate(.SD[[code_date]])]
+  }
+
+  in_period <- NULL # Silly work around to avoid check notes
+  x1_id_date <- x1[, idcols, with = FALSE] # To avoid unique on all data
+
+  out <- merge(x1_id_date, x2, by = id, all.x = TRUE, allow.cartesian = TRUE)[,
+    in_period :=
+      if (!usedate) TRUE
+      else {
+        between(
+          .SD[[code_date]],
+          .SD[[date]] + min(days),
+          .SD[[date]] + max(days),
+          NAbounds = NA
         )
-    ][
-      (!in_period), `:=`(code = NA, code_date = NA)][,
-      # If codes within period: keep them all. If not: Keep the first as marker.
-      if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
+      }][
+    # Set codes and their dates to NA if outside relevant time window
+    !(in_period), c(code, code_date)      := NA][,
+    # If codes within period: keep them all. If not: Keep the first as marker.
+    if (any(in_period, na.rm = TRUE)) .SD[in_period] else .SD[1],
       by = idcols
     ]
-  out <- merge(unique(out), x2, by = idcols) # to get back all data
-  if (usedate) setnames(out, "date", date)
-  structure(out, id = id, class = unique(c("codified", class(out))))
+
+  out <- merge(unique(out), x1, by = idcols) # to get back all data
+
+  structure(
+    out, id = id, code = code,
+    class = unique(c("codified", class(out)))
+  )
 }

@@ -1,7 +1,7 @@
 context("index")
 y <-
-  codify(ex_people, ex_icd10, id = "name",
-    date = "event", days = c(-365, 0)) %>%
+  codify(ex_people, ex_icd10, id = "name", code = "icd10",
+    date = "surgery", code_date = "admission", days = c(-365, 0)) %>%
   {suppressWarnings(classify(., "charlson"))}
 
 test_that("Charlson", {
@@ -33,7 +33,8 @@ y <-
       id   = c( "a",    "a",   "b",   "c",     "d",    "d",    "e",    "f"),
       code = c("C01", "C80", "C01", "C80",  "E100", "E102", "E100", "E102"),
       stringsAsFactors = FALSE
-    )
+    ),
+    id = "id", code = "code"
   ) %>%
   {suppressWarnings(classify(., "elixhauser"))}
 

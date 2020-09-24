@@ -9,18 +9,17 @@ N <- n * 10  # How many cases in the codedata set
 ex_people <-
   tibble::tibble(
     name    = randomNames::randomNames(n),
-    event = Sys.Date() - sample(0:365, n, TRUE)
+    surgery = Sys.Date() - sample(0:365, n, TRUE)
 )
 
 
 # Codedata for these (and other) individuals
 ex_icd10 <-
   tibble::tibble(
-    id   = sample(c(ex_people$name, randomNames::randomNames(n)), N, TRUE),
-    code_date = Sys.Date() - sample(0:365, N, TRUE) - 100,
-    code = sample(decoder::icd10cm$key, N, TRUE),
-    hdia = sample(c(TRUE, FALSE), N, TRUE, c(.1, .9))
-  ) %>%
-  coder::as.codedata()
+    name      = sample(c(ex_people$name, randomNames::randomNames(n)), N, TRUE),
+    admission = Sys.Date() - sample(0:365, N, TRUE) - 100,
+    icd10     = sample(decoder::icd10se$key, N, TRUE),
+    hdia      = sample(c(TRUE, FALSE), N, TRUE, c(.1, .9))
+  )
 
 usethis::use_data(ex_people, ex_icd10, overwrite = TRUE)

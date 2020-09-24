@@ -17,11 +17,12 @@
 #' package website \url{https://eribul.github.io/coder}.
 #'
 #'
-#' @param data [data.frame] or [data.table::data.table] with mandatory id column
+#' @param x [data.frame] or [data.table::data.table] with mandatory id column
 #'   (identified by argument `id`),
 #'   and optional column with date of interest
 #'   (identified by argument `date` if  `days != NULL`).
-#' @param codedata external code data (see [as.codedata()])
+#'   Alternatively, the output from [codify()]
+#' @param codedata external code data (see [prepare_codedata()])
 #' @param cc [`classcodes`] object (or name of such object).
 #' @param index
 #'   A character vector of index values to calculate (passed to argument
@@ -64,35 +65,40 @@
 #' )
 #' @family verbs
 #' @name categorize
-categorize <- function(...) UseMethod("categorize")
+categorize <- function(x, ...) UseMethod("categorize")
 
 
 #' @export
 #' @rdname categorize
-categorize.data.frame <- function(data, ...) {
-  categorize(as.data.table(data), ...)
+categorize.data.frame <- function(x, ...) {
+  x <- as.data.table(x)
+  categorize(x, ...)
 }
 
 
 #' @export
 #' @rdname categorize
 categorize.data.table <-
-  function(data, codedata, cc, id, ..., codify_args = list()) {
+  function(x, ..., codedata, id, code, codify_args = list()) {
 
-    codify_args$data     <- data
+    codify_args$data     <- x
     codify_args$codedata <- codedata
     codify_args$id       <- id
+    codify_args$code     <- code
     cod                  <- do.call(codify, codify_args)
 
-    categorize(cod, cc, id, ..., .data_cols = names(data))
+    categorize(cod, ..., id, .data_cols = names(x))
   }
 
 
 #' @export
 #' @rdname categorize
 categorize.codified <- function(
-  codified, cc, id, ..., index = NULL, sort = TRUE,
+  x, ..., cc, index = NULL, sort = TRUE,
   cc_args = list(), .data_cols = NULL) {
+
+  codified <- x
+  id <- attr(codified, "id")
 
   if (is.null(.data_cols)) {
     warning(

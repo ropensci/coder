@@ -2,8 +2,12 @@ context("classify")
 
 
 ex_people$wrong_id <- 1
-x <- codify(ex_people, ex_icd10, id = "name",
-       date = "event", days = c(-365, 0))
+x <-
+  codify(
+    ex_people, ex_icd10, id = "name",
+    date = "surgery", code_date = "admission",
+    code = "icd10", days = c(-365, 0)
+  )
 
 test_that("classify", {
   expect_equal(
@@ -12,22 +16,13 @@ test_that("classify", {
   )
   expect_is(suppressWarnings(classify(x, "elixhauser")), "matrix")
   expect_error(
-    suppressWarnings(classify(x, "hip_ae", id = "name")),
+    suppressWarnings(classify(x, "hip_ae")),
     "Classification is conditioned on variables not found in the data set!"
   )
   expect_error(
     suppressWarnings(classify(x, "elixhauser", id = "wrong")),
-      "wrong should specify case id but is not a column of x!"
   )
-  expect_error(
-    suppressWarnings(classify(x, "elixhauser", id = "wrong_id")),
-    "Id column 'wrong_id' must be of type character!"
-  )
-  expect_error(
-    suppressWarnings(classify(x, "elixhauser", code = "wrong")),
-    "wrong should specify codes but is not a column of x!"
-  )
-  # Result should be matrix even if only one item has multiple codes
+    # Result should be matrix even if only one item has multiple codes
   expect_equal(
     class(suppressWarnings(classify(x, "elixhauser"))),
     class(suppressWarnings(classify(x[1:2], "elixhauser")))
