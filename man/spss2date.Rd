@@ -23,3 +23,4 @@ Other helper:
 \code{\link{filter_dates}()}
 }
 \concept{helper}
+\keyword{internal}
