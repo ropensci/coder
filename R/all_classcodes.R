@@ -1,6 +1,6 @@
 #' Summary data for all default classcodes object in the package
 #'
-#' @return Data frame with columns describing all default classcodes
+#' @return [tibble::tibble] with columns describing all default classcodes
 #'   objects from the package.
 #' @export
 #' @family classcodes
@@ -26,13 +26,9 @@ all_classcodes <- function() {
     rgs[rgs != ""]
   }
 
-  structure(
-    data.frame(
-      classcodes   = names,
-      regex   = vapply(lapply(cl, rgs_short), clps, ""),
-      indices     = vapply(lapply(cl, attr, "indices"), clps, ""),
-      stringsAsFactors = FALSE
-    ),
-    class = c("tbl_df", "tbl", "data.frame")
+  tibble::tibble(
+    classcodes = names,
+    regex      = vapply(lapply(cl, rgs_short), clps, ""),
+    indices    = vapply(lapply(cl, attr, "indices"), clps, "")
   )
 }

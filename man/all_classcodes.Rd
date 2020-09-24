@@ -7,7 +7,7 @@
 all_classcodes()
 }
 \value{
-Data frame with columns describing all default classcodes
+\link[tibble:tibble]{tibble::tibble} with columns describing all default classcodes
 objects from the package.
 }
 \description{
