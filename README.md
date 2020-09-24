@@ -76,7 +76,7 @@ alternative versions). Those `classcodes` objects could be prepared by
 the user, although a number of default `classcodes` are also included in
 the package (table below).
 
-**Index: ** Now, instead of working with tens of thousands of individual
+**Index:** Now, instead of working with tens of thousands of individual
 ICD-codes, each patient might be recognized to have none or some
 familiar comorbidity such as hypertension, cancer or dementia. This
 granularity might be too fine-grained still, wherefore an even simpler
@@ -117,34 +117,44 @@ Assume we have some patients with corresponding dates of interest
 
 ``` r
 library(coder)
-knitr::kable(head(ex_people))
+ex_people
+#> # A tibble: 100 x 2
+#>    name                    surgery   
+#>    <chr>                   <date>    
+#>  1 Miller, Von Buddenbrock 2019-11-29
+#>  2 Enriquez, Anthony       2020-05-12
+#>  3 al-Dib, Farhaan         2020-07-08
+#>  4 Martinez, Alison        2020-04-14
+#>  5 el-Masri, Junaid        2020-02-01
+#>  6 Sam, Niki               2020-07-20
+#>  7 Connors, Jaylyn         2019-12-05
+#>  8 al-Ramadan, Hanoona     2020-02-20
+#>  9 Orozco, Daniel          2019-12-16
+#> 10 Mills, Henry            2020-02-29
+#> # ... with 90 more rows
 ```
-
-| name                    | event      |
-| :---------------------- | :--------- |
-| Miller, Von Buddenbrock | 2019-10-15 |
-| Enriquez, Anthony       | 2020-03-28 |
-| al-Dib, Farhaan         | 2020-05-24 |
-| Martinez, Alison        | 2020-02-29 |
-| el-Masri, Junaid        | 2019-12-18 |
-| Sam, Niki               | 2020-06-05 |
 
 We also have some external medical data: ICD-10-codes (code) recorded at
 previous hospital visits (code date), some of them are main diagnosis
 and some secondary (hdia):
 
 ``` r
-knitr::kable(head(ex_icd10))
+ex_icd10
+#> # A tibble: 1,000 x 4
+#>    name               admission  icd10 hdia 
+#>    <chr>              <date>     <chr> <lgl>
+#>  1 Tapparo, Keishawn  2020-06-15 F602  FALSE
+#>  2 Brunson, Brannon   2019-11-10 B968  FALSE
+#>  3 Perez, Vidal       2019-07-15 W2718 FALSE
+#>  4 al-Ismail, Waleeda 2020-05-07 V4451 FALSE
+#>  5 Morris, Marvin     2020-06-16 V6064 FALSE
+#>  6 Murray, Eric       2019-09-24 R221  FALSE
+#>  7 Apodaca, Lakota    2020-06-03 Y0829 FALSE
+#>  8 Wuertz, Jenny      2020-06-09 Y762  TRUE 
+#>  9 Alexander, Bethany 2019-09-27 B670  FALSE
+#> 10 Quick, Miriah      2019-12-01 N052  FALSE
+#> # ... with 990 more rows
 ```
-
-| id                 | code\_date | code    | hdia  |
-| :----------------- | :--------- | :------ | :---- |
-| Aguilera, Brandon  | 2019-10-29 | O350XX9 | TRUE  |
-| Aguilera, Brandon  | 2020-01-23 | S55101A | TRUE  |
-| Aguilera, Brandon  | 2020-02-23 | A4181   | TRUE  |
-| Alexander, Bethany | 2019-07-09 | S62126K | FALSE |
-| Alexander, Bethany | 2019-08-13 | I70718  | FALSE |
-| Alexander, Bethany | 2019-12-18 | O368124 | FALSE |
 
 Using those two sources, as well as a classification scheme
 (`classcodes` object; see below), we can easily identify all Charlson
@@ -155,7 +165,7 @@ ch <-
   categorize(
     
     # Relevant patients from a national quality register
-    data        = head(ex_people), 
+    ex_people, 
     
     # Corresponding medical data from the national patient register
     codedata    = ex_icd10, 
@@ -165,12 +175,15 @@ ch <-
     
     # Patient names used as id
     id          = "name",
+    code        = "icd10",
     
     # Calculate two versions of combined index values
     index       = c("quan_original", "quan_updated"),
     
     # We only consider ICD-10-codes recorded within one year prior to THA
-    codify_args = list(date = "event", days = c(-365, -1))
+    codify_args = list(date = "surgery", 
+                       code_date = "admission", 
+                       days = c(-365, -1))
   )
 #> Classification based on: regex_icd10
 ```
@@ -184,19 +197,29 @@ visits during the year preceding THA. They receive `NA` scores, which
 could later be substituted with 0.
 
 ``` r
-knitr::kable(
-  dplyr::select(ch, name, quan_original, quan_updated) 
-)
+ch
+#> # A tibble: 100 x 21
+#>    name  surgery    `myocardial inf~ `congestive hea~ `peripheral vas~
+#>    <chr> <date>     <lgl>            <lgl>            <lgl>           
+#>  1 Alex~ 2019-10-03 FALSE            FALSE            FALSE           
+#>  2 Argu~ 2020-06-30 FALSE            FALSE            FALSE           
+#>  3 Aust~ 2020-06-23 FALSE            FALSE            FALSE           
+#>  4 Ball~ 2019-11-10 FALSE            FALSE            FALSE           
+#>  5 Bean~ 2019-12-09 FALSE            FALSE            FALSE           
+#>  6 Beeh~ 2019-10-29 NA               NA               NA              
+#>  7 Bess~ 2020-07-20 FALSE            FALSE            FALSE           
+#>  8 Bish~ 2019-11-02 FALSE            FALSE            FALSE           
+#>  9 Bivi~ 2019-12-30 FALSE            FALSE            FALSE           
+#> 10 Brow~ 2020-03-12 FALSE            FALSE            FALSE           
+#> # ... with 90 more rows, and 16 more variables: `cerebrovascular
+#> #   disease` <lgl>, dementia <lgl>, `chronic pulmonary disease` <lgl>,
+#> #   `rheumatic disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver
+#> #   disease` <lgl>, `diabetes without complication` <lgl>, `hemiplegia or
+#> #   paraplegia` <lgl>, `renal disease` <lgl>, `diabetes complication` <lgl>,
+#> #   malignancy <lgl>, `moderate or severe liver disease` <lgl>, `metastatic
+#> #   solid tumor` <lgl>, `AIDS/HIV` <lgl>, quan_original <dbl>,
+#> #   quan_updated <dbl>
 ```
-
-| name                    | quan\_original | quan\_updated |
-| :---------------------- | -------------: | ------------: |
-| Enriquez, Anthony       |              0 |             0 |
-| Martinez, Alison        |              0 |             0 |
-| Miller, Von Buddenbrock |             NA |            NA |
-| Sam, Niki               |              1 |             0 |
-| al-Dib, Farhaan         |              0 |             0 |
-| el-Masri, Junaid        |              0 |             0 |
 
 ## Classification schemes
 
@@ -215,15 +238,16 @@ Default `classcades` are listed in the table. Each classification
 and have several alternative weighted indices (indices column). Those
 might be combined freely.
 
-| classcodes      | regex                                                                                   | indices                                                                                                                    |
-| :-------------- | :-------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| charlson        | icd10, icd9cm\_deyo, icd9cm\_enhanced, icd10\_rcs, icd8\_brusselaers, icd9\_brusselaers | index\_charlson, index\_deyo\_ramano, index\_dhoore, index\_ghali, index\_quan\_original, index\_quan\_updated             |
-| cps             | icd10                                                                                   | index\_only\_ordinary                                                                                                      |
-| elixhauser      | icd10, icd10\_short, icd9cm, icd9cm\_ahrqweb, icd9cm\_enhanced                          | index\_sum\_all, index\_sum\_all\_ahrq, index\_walraven, index\_sid29, index\_sid30, index\_ahrq\_mort, index\_ahrq\_readm |
-| hip\_ae         | icd10, kva, icd10\_fracture                                                             |                                                                                                                            |
-| hip\_ae\_hailer | icd10, kva                                                                              |                                                                                                                            |
-| knee\_ae        | icd10, kva                                                                              |                                                                                                                            |
-| rxriskv         | pratt, caughey, garland                                                                 | index\_pratt, index\_sum\_all                                                                                              |
+    #> # A tibble: 7 x 3
+    #>   classcodes   regex                           indices                          
+    #>   <chr>        <chr>                           <chr>                            
+    #> 1 charlson     icd10, icd9cm_deyo, icd9cm_enh~ "index_charlson, index_deyo_rama~
+    #> 2 cps          icd10                           "index_only_ordinary"            
+    #> 3 elixhauser   icd10, icd10_short, icd9cm, ic~ "index_sum_all, index_sum_all_ah~
+    #> 4 hip_ae       icd10, kva, icd10_fracture      ""                               
+    #> 5 hip_ae_hail~ icd10, kva                      ""                               
+    #> 6 knee_ae      icd10, kva                      ""                               
+    #> 7 rxriskv      pratt, caughey, garland         "index_pratt, index_sum_all"
 
 # Relation to other packages
 

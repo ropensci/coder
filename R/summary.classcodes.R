@@ -63,7 +63,7 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
     )
 
   structure(
-    list(object = object, summary = res,
+    list(object = object, summary = tibble::as_tibble(res),
          coding = coding, codes_vct = codes_vct),
     class = "summary.classcodes"
   )
@@ -72,15 +72,14 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 #' Print summary for classcodes object
 #'
 #' @param x object of class [summary.classcodes()]
-#' @param n_print maximum characters to print from the `codes` column
-#' @param ... ignored
+#' @inheritDotParams tibble:::print.tbl
 #'
 #' @return Nothing. This function is called for its side effects
 #' @export
 #' @family classcodes
 #' @examples
 #' print(summary(elixhauser, coding = "icd10cm"))
-print.summary.classcodes <- function(x, n_print = 50, ...) {
+print.summary.classcodes <- function(x, ...) {
 
   # List of indices used by the object
   indices <- attr(x$object, "indices")
@@ -92,12 +91,6 @@ print.summary.classcodes <- function(x, n_print = 50, ...) {
   # Print message
   cat("Indices:", indices, "\n\n")
   cat("Recognized codes per group:\n\n")
-  x$summary$codes <-
-    ifelse(
-      nchar(x$summary$codes) <= n_print,
-      x$summary$codes,
-      paste(substr(x$summary$codes, 1, n_print), "...")
-    )
-  print(x$summary, right = FALSE, justify = "left", row.names = FALSE)
+  print(x$summary, ...)
   cat("\n Use function visualize() for a graphical representation.\n\n")
 }

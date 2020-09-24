@@ -1,6 +1,8 @@
 ---
 title: "Classcodes objects"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    df_print: tibble
 vignette: >
   %\VignetteIndexEntry{Classcodes objects}
   %\VignetteEngine{knitr::rmarkdown}
@@ -24,13 +26,11 @@ Classification is implemented by classcodes objects with regular expressions ide
 all_classcodes()$classcodes
 ```
 
-We will have a closer look at one of those objects, `charlson`, to exemplify its content. The object is basically a data frame ...
+We will have a closer look at one of those objects, `charlson`, to exemplify its content. The object is basically a `tibble` (data frame):
 
 
 ```{r}
-knitr::kable(
-  head(charlson, 3) # Display first 3 lines
-)
+charlson
 ```
 
 
@@ -106,10 +106,7 @@ ICD-10 codes identifying myocardial infarction thus starts with `I2` followed by
 An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary` method for classcodes objects. (We here use the print method with `n = 30` to fit the output to the width of the vignette.)
 
 ```{r}
-print(
-  summary(charlson, coding = "icd10cm"),
-  n = 30
-)
+summary(charlson, coding = "icd10cm")
 ```
 
 ## Interpratable codebook
@@ -117,18 +114,14 @@ print(
 Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by the `codebook` function. The main purpose of the function is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a data frame "all_codes":
 
 ```{r}
-knitr::kable(
-  head(codebook(charlson, "icd10cm")$all_codes)
-)
+codebook(charlson, "icd10cm")$all_codes
 ```
 
 Here, the descriptions are based on the ICD-10-CM codes from 2020. 
 Corresponding descriptions in Swedish are retrieved by (`icd10se` instead of `icd10cm`):
 
 ```{r}
-knitr::kable(
-  head(codebook(charlson, "icd10se")$all_codes)
-)
+codebook(charlson, "icd10se")$all_codes
 ```
 
 
@@ -142,12 +135,9 @@ Several codebooks can be combined (exported to a single Excel-file) by the funct
 Examples above use the default regex column (currently ICD-10). If we are interested in another version, for example specified by Deyo et al based on ICD-9-CM, this can be specified by the `regex`-argument passed by the `cc_args` argument to the `set_classcodes` function. Simultaneously, the `coding` argument is set to `icd9cmd` to match the regular expressions to the disease part of ICD-9-CM classifikcation. 
 
 ```{r}
-print(
-  summary(
-    charlson, coding = "icd9cmd",
-    cc_args = list(regex = "regex_icd9cm_deyo")
-  ),
-  n = 30
+summary(
+  charlson, coding = "icd9cmd",
+  cc_args = list(regex = "regex_icd9cm_deyo")
 )
 ```
 
@@ -174,9 +164,7 @@ Group names might seem cumbersome but this will help to distinguish column names
 The original `charlson` object had `r nrow(charlson)` rows, but `charlson_icd8` has only `r nrow(charlson_icd8)`, since not all groups are defined by that version.
 
 ```{r}
-knitr::kable(
-  charlson_icd8[, c("group", "regex")]
-)
+charlson_icd8
 ```
 
 Note that all indices columns remain (although not showed above):

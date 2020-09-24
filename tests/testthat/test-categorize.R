@@ -6,7 +6,10 @@ x <- codify(ex_people, codedata = ex_icd10, id = "name", code = "icd10",
 
 test_that("categorize", {
   expect_message(
-    categorize(ex_people, codedata = ex_icd10, cc = "elixhauser", id = "name", code = "icd10"),
+    categorize(
+      ex_people, codedata = ex_icd10, cc = "elixhauser",
+      id = "name", code = "icd10"
+    ),
     "Classification based on: regex_icd10"
   )
   expect_error(
@@ -60,7 +63,9 @@ test_that("categorize", {
 
   expect_identical(
     suppressWarnings(
-      categorize(x, cc = "charlson")[,-c("hdia", "admission", "icd10")]),
+      categorize(x, cc = "charlson")[, -c("hdia", "admission", "icd10")] %>%
+        tibble::as_tibble()
+    ),
     categorize(
       ex_people, codedata = ex_icd10, cc = "charlson", id = "name",
       code = "icd10",

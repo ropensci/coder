@@ -1,14 +1,3 @@
-# Helper to export to file
-fileif <- function(x, file = NULL) {
-  if (!is.null(file)) {
-    writexl::write_xlsx(x, file)
-    invisible(x)
-  } else {
-    x
-  }
-}
-
-
 #' Make codebook for classcodes object
 #' @inheritParams summary.classcodes
 #' @param file name of Excel file for data export
@@ -60,6 +49,14 @@ codebook <- function(object, coding, ..., file = NULL) {
   fileif(cb, file)
 }
 
+#' @export
+print.codebook <- function(x) {
+  message(
+    "Coodebooks are prefarably exported to Excel using the `file` argument! ",
+    "Use `summary.classcodes()` or `visualize()` for interactive summaries!")
+}
+
+
 #' Combine codebooks for classcodes objects
 #'
 #' @param ... named output from [codebook()]
@@ -82,4 +79,16 @@ codebooks <- function(..., file = NULL) {
   cbs <- cbs[-rdm[-1]] # Rm all readmes except the first
   names(cbs) <- gsub("(.*)(\\.readme)", "README", names(cbs))
   fileif(cbs, file)
+}
+
+
+# Helper to export to file ----------------------------------------------------
+fileif <- function(x, file = NULL) {
+  out <- structure(x, class = "codebook")
+  if (!is.null(file)) {
+    writexl::write_xlsx(x, file)
+    invisible(out)
+  } else {
+    out
+  }
 }

@@ -3,7 +3,8 @@ title: "coder"
 author: "Erik Bulow"
 date: "`r Sys.Date()`"
 output: 
-  rmarkdown::html_vignette
+  rmarkdown::html_vignette:
+    df_print: tibble
 vignette: >
   %\VignetteIndexEntry{coder}
   %\VignetteEngine{knitr::rmarkdown}
@@ -38,10 +39,7 @@ The `coder` package contains some default classcodes objects for co-morbidity:
 library(coder)
 library(tibble)
 
-cl <- coder::all_classcodes()
-knitr::kable(
-  cl[cl$classcodes %in% c("elixhauser", "charlson", "cps", "rxriskv"), ]
-)
+coder::all_classcodes()
 ```
 ## Triad of functions
 
@@ -107,7 +105,7 @@ Let's consider the hypothetical example abow with some more concrete example dat
 `ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received THA surgery at given (random) dates (`event´ column). This data might represent a sample from a national quality register.
 
 ```{r}
-knitr::kable(head(ex_people))
+ex_people
 ```
 Assume we have some external code data from a national prescription register. Such register would likely cover additional patients but let's just consider a small sample with ATC data for patients above, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates.
 
@@ -119,18 +117,19 @@ ex_atc <-
   data.frame(
     
     # Name of patients with ATC codes
-    id        = sample(ex_people$name[1:90], N, replace = TRUE),
+    name     = sample(ex_people$name[1:90], N, replace = TRUE),
     
     # Some random ATC codes from the decoder package
-    code      = sample(decoder::atc$key, N, replace = TRUE),
+    atc      = sample(decoder::atc$key, N, replace = TRUE),
     
     # Assume that each ATC code corresponds to (random) prescription dates 
     # during 10 years before or 1 year after the median date of surgery.
-    code_date = median(ex_people$event) + sample(-3650:365, N, replace = TRUE),
-    stringsAsFactors = FALSE
+    prescription = 
+      median(ex_people$surgery) + 
+      sample(-3650:365, N, replace = TRUE)
   )
 
-knitr::kable(head(ex_atc[order(ex_atc$id), ]))
+ex_atc
 ```
 
 
@@ -139,8 +138,15 @@ knitr::kable(head(ex_atc[order(ex_atc$id), ]))
 A first attempt to calculate the Rx Risk V score for each patient: 
 
 ```{r}
-default <- categorize(ex_people, ex_atc, rxriskv, id = "name")
-knitr::kable(head(default))
+default <- 
+  categorize(
+    ex_people, 
+    codedata = ex_atc, 
+    cc = rxriskv, 
+    id = "name",
+    code = "atc"
+  )
+default
 ```
 
 The first two columns are identical to `ex_people` (except row order, which could be preserved by `sort = FALSE`). Additional columns indicate whether patients had any of the individual comorbidities identified by Rx Risk V. Patients without any ATC data (the 10 excluded above) have `NA` values (which might be substituted by `FALSE`). The last columns contain summarized index values (weighted sums of individual comorbidities). Let's summarize the distribution of `index_pratt` ([Pratt et al.](https://dx.doi.org/10.1136/bmjopen-2017-021122)):
@@ -165,8 +171,17 @@ Note however that some prescriptions might have been filed long before surgery, 
 ```{r}
 hist2(
   categorize(
-    ex_people, ex_atc, rxriskv, id = "name", 
-    codify_args = list(date = "event", days = c(-365, -1))
+    ex_people, 
+    codedata      = ex_atc, 
+    cc            = rxriskv, 
+    id            = "name", 
+    code          = "atc", 
+    codify_args = 
+      list(
+        date      = "surgery", 
+        code_date = "prescription", 
+        days      = c(-365, -1)
+      )
   ) 
 )
   
@@ -182,11 +197,16 @@ Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.10
 hist2(
   categorize(
     ex_people, 
-    ex_atc, 
-    rxriskv, 
-    id          = "name", 
-    codify_args = list(date = "event", days = c(-365, -1)),
-    cc_args     = list(regex = "regex_caughey")
+    codedata      = ex_atc, 
+    cc            = rxriskv, 
+    id            = "name", 
+    code          = "atc",
+    codify_args   = 
+      list(
+        date      = "surgery", 
+        code_date = "prescription",
+        days      = c(-365, -1)),
+    cc_args       = list(regex = "regex_caughey")
   )
 )
 ```
@@ -196,7 +216,15 @@ hist2(
 We did not specify the index above, wherefore all available indices were provided by default. We might go back to Pratt's classification scheme (`regex_pratt`) and only calculate the corresponding index `index_pratt`. Let´s also perform the three computational steps explicitly instead of using the combining `categorize` function and tabulate the result
 
 ```{r}
-codify(ex_people, ex_atc, id = "name", date = "event", days = c(-365, -1)) %>% 
+codify(
+  ex_people, 
+  ex_atc, 
+  id        = "name", 
+  code      = "atc",  
+  date      = "surgery", 
+  code_date = "prescription",
+  days      = c(-365, -1)
+) %>% 
   classify(rxriskv) %>% 
   index("pratt") %>% 
   table()
@@ -218,9 +246,17 @@ ex_atc$code <-
     ex_atc$code, s(LETTERS), s(0:9)
   )
 
-knitr::kable(head(ex_atc))
+ex_atc
 
-sum(categorize(ex_people, ex_atc, rxriskv, id = "name")$index_pratt)
+sum(
+  categorize(
+    ex_people, 
+    codedata = ex_atc, 
+    cc = rxriskv, 
+    id = "name",
+    code = "atc"
+  )$index_pratt
+)
 ```
 
 Thus, no codes are recognized (every one got index = 0). By default, codes are only recognized if found immediate in its corresponding column. This can be controlled by arguments `start` and `stop` specified via `cc_args`:
@@ -228,8 +264,12 @@ Thus, no codes are recognized (every one got index = 0). By default, codes are o
 ```{r}
 hist2(
   categorize(
-    ex_people, ex_atc, rxriskv, id = "name",
-    cc_args = list(start = FALSE, stop = FALSE)
+    ex_people, 
+    codedata = ex_atc, 
+    cc       = rxriskv, 
+    id       = "name",
+    code     = "atc",
+    cc_args  = list(start = FALSE, stop = FALSE)
   )
 )
 ```

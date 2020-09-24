@@ -71,10 +71,14 @@ categorize <- function(x, ...) UseMethod("categorize")
 #' @export
 #' @rdname categorize
 categorize.data.frame <- function(x, ...) {
-  x <- as.data.table(x)
-  categorize(x, ...)
+  as.data.frame(categorize(as.data.table(x), ...))
 }
 
+#' @export
+#' @rdname categorize
+categorize.tbl_df <- function(x, ...) {
+  tibble::as_tibble(categorize(as.data.table(x), ...))
+}
 
 #' @export
 #' @rdname categorize

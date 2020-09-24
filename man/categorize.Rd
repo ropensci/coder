@@ -3,6 +3,7 @@
 \name{categorize}
 \alias{categorize}
 \alias{categorize.data.frame}
+\alias{categorize.tbl_df}
 \alias{categorize.data.table}
 \alias{categorize.codified}
 \title{Categorize cases based on external data and classification scheme}
@@ -10,6 +11,8 @@
 categorize(x, ...)
 
 \method{categorize}{data.frame}(x, ...)
+
+\method{categorize}{tbl_df}(x, ...)
 
 \method{categorize}{data.table}(x, ..., codedata, id, code, codify_args = list())
 
