@@ -65,11 +65,11 @@ codify <- function(
   if (usedate) {
     if (is.null(date))
       stop("Argument 'date' must be specified if 'days' is not NULL!")
-    if (!is.Date(data[[date]]))
+    if (!inherits(data[[date]], "Date"))
       stop("data column '", date, "' is not of class 'Date'!")
     if (is.null(code_date))
       stop("Argument 'code_date' must be specified if 'days' is not NULL!")
-    if (!is.Date(codedata[[code_date]]))
+    if (!inherits(codedata[[code_date]], "Date"))
       stop("codedata column '", date, "' is not of class 'Date'!")
     }
   if (!usedate && !is.null(date)) {
