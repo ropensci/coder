@@ -10,9 +10,6 @@
     <loc>eribul.github.io/coder/reference/all_classcodes.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/as.codedata.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/as.data.frame.classified.html</loc>
   </url>
   <url>
@@ -55,9 +52,6 @@
     <loc>eribul.github.io/coder/reference/cps.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/dates_within.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/elixhauser.html</loc>
   </url>
   <url>
@@ -67,9 +61,6 @@
     <loc>eribul.github.io/coder/reference/ex_people.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/filter_dates.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/hip_ae_hailer.html</loc>
   </url>
   <url>
@@ -77,6 +68,9 @@
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/print.summary.classcodes.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/reference/reexports.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/rxriskv.html</loc>
@@ -91,7 +85,7 @@
     <loc>eribul.github.io/coder/reference/summary.classcodes.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/visualize.html</loc>
+    <loc>eribul.github.io/coder/reference/visualize.classcodes.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/articles/classcodes.html</loc>

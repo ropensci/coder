@@ -41,7 +41,6 @@
 #'  # Get URL for later visualization
 #'  visualize("hip_ae", show = FALSE)
 #' @family classcodes
-#' @importFrom generics visualize
 visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
   x <- set_classcodes(x, ...)
   if (!is.null(group))

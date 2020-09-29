@@ -72,7 +72,7 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 #' Print summary for classcodes object
 #'
 #' @param x object of class [summary.classcodes()]
-#' @inheritDotParams tibble:::print.tbl
+#' @param ... arguments to control the printing of a tibble
 #'
 #' @return Nothing. This function is called for its side effects
 #' @export

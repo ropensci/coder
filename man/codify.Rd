@@ -25,8 +25,10 @@ including case id (\code{character}), code and an optional date (\link{Date}) fo
 each code. An optional column \code{condition} might distinguish codes/dates
 with certain characteristics (see example).}
 
-\item{id, date}{column names (from \code{data} and \code{codedata}) with case id
-(\code{character}) and (optional) date (\link{Date}).}
+\item{id, code, date, code_date}{column names with case id
+(\code{character} from \code{data} and \code{codedata}), \code{code} (from \code{data}) and
+optional date (\link{Date} from \code{data}) and
+\code{code_date} (\link{Date} from \code{codedata}).}
 
 \item{days}{numeric vector of length two with lower and upper bound for range
 of relevant days relative to \code{date}. See "Relevant period".}
@@ -68,7 +70,8 @@ Useful for adverse events after a surgical procedure.
 }
 
 \examples{
-codify(ex_people, ex_icd10, id = "name", code = "icd10", date = "event", days = c(-365, 0))
+codify(ex_people, ex_icd10, id = "name", code = "icd10",
+  date = "surgery", code_date = "admission", days = c(-365, 0))
 }
 \seealso{
 Other verbs: 

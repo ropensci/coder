@@ -255,7 +255,8 @@ sum(
     cc = rxriskv, 
     id = "name",
     code = "atc"
-  )$index_pratt
+  )$index_pratt,
+  na.rm = TRUE
 )
 ```
 

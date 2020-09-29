@@ -40,9 +40,9 @@
 
 
 <meta property="og:title" content="Classcodes for RxRisk V based on ATC codes — rxriskv" />
-<meta property="og:description" content="classcodes object to use with classify.
+<meta property="og:description" content="A classcodes object to use with classify().
 Provided mostly as proof-of-concept. Codes have not been externally
-  validated and desired implementation might differ over time and by country." />
+validated and desired implementation might differ over time and by country." />
 
 
 
@@ -74,7 +74,7 @@ Provided mostly as proof-of-concept. Codes have not been externally
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -134,41 +134,41 @@ Provided mostly as proof-of-concept. Codes have not been externally
     </div>
 
     <div class="ref-description">
-    <p><code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify</a></code>.
+    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify()</a></code>.
 Provided mostly as proof-of-concept. Codes have not been externally
-  validated and desired implementation might differ over time and by country.</p>
+validated and desired implementation might differ over time and by country.</p>
     </div>
 
-    <pre class="usage"><span class='no'>rxriskv</span></pre>
+    <pre class="usage"><span class='va'>rxriskv</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Data frames with 39 rows and 6 variables:</p><dl'>
-  <dt>group</dt><dd><p>medical condition</p></dd>
-  <dt>regex_pratt</dt><dd><p>ATC codes from table 1 in Pratt et al. 2018
-   (ignoring PBS item codes and extra conditions).</p></dd>
-  <dt>regex_garland</dt><dd><p>Modified version by Anne
-  Garland to resemble medical use in Sweden 2016 (Unpublished).</p></dd>
- <dt>regex_caughey</dt><dd><p>From appendix 1 in Caughey et al. 2010</p></dd>
- <dt>index_pratt</dt><dd><p>Mortality weights from table 1 in Pratt et al. 2018</p></dd>
- <dt>index_sum_all</dt><dd><p>Unweighted count of all conditions.</p></dd>
+    <p>Data frames with 39 rows and 6 variables:</p><dl>
+<dt>group</dt><dd><p>medical condition</p></dd>
+<dt>regex_pratt</dt><dd><p>ATC codes from table 1 in Pratt et al. 2018
+(ignoring PBS item codes and extra conditions).</p></dd>
+<dt>regex_garland</dt><dd><p>Modified version by Anne
+Garland to resemble medical use in Sweden 2016 (Unpublished).</p></dd>
+<dt>regex_caughey</dt><dd><p>From appendix 1 in Caughey et al. 2010</p></dd>
+<dt>index_pratt</dt><dd><p>Mortality weights from table 1 in Pratt et al. 2018</p></dd>
+<dt>index_sum_all</dt><dd><p>Unweighted count of all conditions.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.
-  Comorbidity in the elderly with diabetes:
-  Identification of areas of potential treatment conflicts.
-  Diabetes Res Clin Pract 2010;87:385–93.
-  <a href='https://doi.org/10.1016/j.diabres.2009.10.019'>https://doi.org/10.1016/j.diabres.2009.10.019</a>.</p>
+Comorbidity in the elderly with diabetes:
+Identification of areas of potential treatment conflicts.
+Diabetes Res Clin Pract 2010;87:385–93.
+<a href='https://doi.org/10.1016/j.diabres.2009.10.019'>https://doi.org/10.1016/j.diabres.2009.10.019</a>.</p>
 <p>Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
-  Ramsay E, et al.
-  The validity of the Rx-Risk Comorbidity Index using medicines mapped to
-  the Anatomical Therapeutic Chemical (ATC) Classification System.
-  BMJ Open 2018;8.
-  <a href='https://doi.org/10.1136/bmjopen-2017-021122'>https://doi.org/10.1136/bmjopen-2017-021122</a>.</p>
+Ramsay E, et al.
+The validity of the Rx-Risk Comorbidity Index using medicines mapped to
+the Anatomical Therapeutic Chemical (ATC) Classification System.
+BMJ Open 2018;8.
+<a href='https://doi.org/10.1136/bmjopen-2017-021122'>https://doi.org/10.1136/bmjopen-2017-021122</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other default classcodes: 
@@ -193,7 +193,7 @@ Provided mostly as proof-of-concept. Codes have not been externally
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

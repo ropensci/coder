@@ -24,8 +24,8 @@
 #'
 #' # Classify patients by Charlson for comorbidities during
 #' # one year before surgery
-#' x <- codify(ex_people, ex_icd10, id = "name",
-#'   date = "event", days = c(-365, 0))
+#' x <- codify(ex_people, ex_icd10, id = "name", code = "icd10",
+#'   date = "surgery", days = c(-365, 0), code_date = "admission")
 #' y <- classify(x, "charlson")
 #'
 #' # Use tha RCS classification instead and use technical column names
@@ -66,7 +66,7 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
 #' @rdname classify
 classify.codified <- function(codified, ...) {
 
-  if (methods::hasArg(id) || methods::hasArg(code)) {
+  if (methods::hasArg("id") || methods::hasArg("code")) {
     stop("Arguments `id` and `code` should not be specified in `classify` if
          already set by a previous call to `codify`!")
   }

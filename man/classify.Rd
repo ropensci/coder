@@ -44,8 +44,8 @@ classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 
 # Classify patients by Charlson for comorbidities during
 # one year before surgery
-x <- codify(ex_people, ex_icd10, id = "name",
-  date = "event", days = c(-365, 0))
+x <- codify(ex_people, ex_icd10, id = "name", code = "icd10",
+  date = "surgery", days = c(-365, 0), code_date = "admission")
 y <- classify(x, "charlson")
 
 # Use tha RCS classification instead and use technical column names

@@ -35,7 +35,7 @@ Alternatively, the output from \code{\link[=codify]{codify()}}}
 
 \item{...}{arguments passed between methods}
 
-\item{codedata}{external code data (see \code{\link[=prepare_codedata]{prepare_codedata()}})}
+\item{codedata}{external code data}
 
 \item{id}{name of code/id columns (in \code{codified}).}
 
@@ -87,15 +87,17 @@ Relevant arguments are passed to those functions by
 }
 \examples{
 # Add Elixhauser based on all registered ICD10-codes
-categorize(ex_people, ex_icd10, "elixhauser", id = "name")
+categorize(ex_people, codedata = ex_icd10, cc = "elixhauser",
+  id = "name", code = "icd10")
 
 # Add Charlson categories and two versions of a calculated index.
 # Only include recent hospital visits within 30 days before surgery,
 # and use technical variable names to clearly identify the new columns.
-categorize(ex_people, ex_icd10, "charlson",
-  id = "name",
+categorize(ex_people, codedata = ex_icd10, cc = "charlson",
+  id = "name", code = "icd10",
   index = c("quan_original", "quan_updated"),
-  codify_args = list(date = "event", days = c(-30, -1)),
+  codify_args =
+    list(date = "surgery", days = c(-30, -1), code_date = "admission"),
   cc_args = list(tech_names = TRUE)
 )
 }

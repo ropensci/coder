@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
     <p>Decide if large objects should be copied</p>
     </div>
 
-    <pre class="usage"><span class='fu'>copybig</span>(<span class='no'>x</span>, <span class='kw'>.copy</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>copybig</span><span class='op'>(</span><span class='va'>x</span>, .copy <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -146,7 +146,7 @@
     </tr>
     <tr>
       <th>.copy</th>
-      <td><p>Should the object be copied internally by <code>copy</code>?
+      <td><p>Should the object be copied internally by <code><a href='https://Rdatatable.gitlab.io/data.table/reference/copy.html'>data.table::copy()</a></code>?
 <code>NA</code> (by default) means that objects smaller than 1 GB are copied.
 If the size is larger, the argument must be set explicitly. Set <code>TRUE</code>
 to make copies regardless of object size. This is recommended if enough RAM
@@ -174,7 +174,7 @@ but the object will be changed by reference.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -22,7 +22,7 @@
 #'   and optional column with date of interest
 #'   (identified by argument `date` if  `days != NULL`).
 #'   Alternatively, the output from [codify()]
-#' @param codedata external code data (see [prepare_codedata()])
+#' @param codedata external code data
 #' @param cc [`classcodes`] object (or name of such object).
 #' @param index
 #'   A character vector of index values to calculate (passed to argument
@@ -52,15 +52,17 @@
 #'
 #' @examples
 #' # Add Elixhauser based on all registered ICD10-codes
-#' categorize(ex_people, ex_icd10, "elixhauser", id = "name")
+#' categorize(ex_people, codedata = ex_icd10, cc = "elixhauser",
+#'   id = "name", code = "icd10")
 #'
 #' # Add Charlson categories and two versions of a calculated index.
 #' # Only include recent hospital visits within 30 days before surgery,
 #' # and use technical variable names to clearly identify the new columns.
-#' categorize(ex_people, ex_icd10, "charlson",
-#'   id = "name",
+#' categorize(ex_people, codedata = ex_icd10, cc = "charlson",
+#'   id = "name", code = "icd10",
 #'   index = c("quan_original", "quan_updated"),
-#'   codify_args = list(date = "event", days = c(-30, -1)),
+#'   codify_args =
+#'     list(date = "surgery", days = c(-30, -1), code_date = "admission"),
 #'   cc_args = list(tech_names = TRUE)
 #' )
 #' @family verbs

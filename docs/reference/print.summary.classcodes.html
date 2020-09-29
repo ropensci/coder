@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -136,22 +136,18 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for summary.classcodes</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>n_print</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>object of class <code><a href='summary.classcodes.html'>summary.classcodes</a></code></p></td>
-    </tr>
-    <tr>
-      <th>n_print</th>
-      <td><p>maximum characters to print from the <code>codes</code> column</p></td>
+      <td><p>object of class <code><a href='summary.classcodes.html'>summary.classcodes()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>ignored</p></td>
+      <td><p>arguments to control the printing of a tibble</p></td>
     </tr>
     </table>
 
@@ -168,80 +164,31 @@
 <code><a href='codebook.html'>codebook</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
-<code><a href='visualize.html'>visualize</a>()</code></p></div>
+<code><a href='visualize.classcodes.html'>visualize.classcodes</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>elixhauser</span>, <span class='kw'>coding</span> <span class='kw'>=</span> <span class='st'>"icd10cm"</span>))</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; Indices: index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29, index_sid30, index_ahrq_mort, index_ahrq_readm 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, coding <span class='op'>=</span> <span class='st'>"icd10cm"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; Indices: index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29, index_sid30, index_ahrq_mort, index_ahrq_readm 
 #&gt; 
 #&gt; Recognized codes per group:
 #&gt; 
-#&gt;  group                          n  
-#&gt;  AIDS/HIV                         1
-#&gt;  alcohol abuse                  131
-#&gt;  blood loss anemia                1
-#&gt;  cardiac arrhythmias             73
-#&gt;  chronic pulmonary disease       69
-#&gt;  coagulopathy                    27
-#&gt;  congestive heart failure        36
-#&gt;  deficiency anemia               17
-#&gt;  depression                      31
-#&gt;  diabetes complicated           243
-#&gt;  diabetes uncomplicated          13
-#&gt;  drug abuse                     361
-#&gt;  fluid electrolyte disorders     15
-#&gt;  hypertension complicated        13
-#&gt;  hypertension uncomplicated       1
-#&gt;  hypothyroidism                  18
-#&gt;  liver disease                   56
-#&gt;  lymphoma                       373
-#&gt;  metastatic cancer               47
-#&gt;  obesity                          7
-#&gt;  other neurological disorders   115
-#&gt;  paralysis                       45
-#&gt;  peptic ulcer disease             8
-#&gt;  peripheral vascular disorder   274
-#&gt;  psychoses                       20
-#&gt;  pulmonary circulation disorder  24
-#&gt;  renal failure                   16
-#&gt;  rheumatoid arthritis           572
-#&gt;  solid tumor                    485
-#&gt;  valvular disease                61
-#&gt;  weight loss                     10
-#&gt;  codes                                                 
-#&gt;  B20                                                   
-#&gt;  E52, F1010, F1011, F10120, F10121, F10129, F1014,  ...
-#&gt;  D500                                                  
-#&gt;  I441, I442, I4430, I4439, I456, I459, I470, I471,  ...
-#&gt;  I27812, I27822, I27832, I27892, I2792, J40, J410,  ...
-#&gt;  D65, D66, D67, D680, D681, D682, D68311, D68312, D ...
-#&gt;  I099, I1101, I1301, I1321, I255, I420, I425, I4261 ...
-#&gt;  D508, D509, D510, D511, D512, D513, D518, D519, D5 ...
-#&gt;  F3130, F3131, F3132, F314, F3152, F320, F321, F322 ...
-#&gt;  E1021, E1022, E1029, E10311, E10319, E103211, E103 ...
-#&gt;  E1010, E1011, E109, E1100, E1101, E1110, E1111, E1 ...
-#&gt;  F1110, F1111, F11120, F11121, F11122, F11129, F111 ...
-#&gt;  E222, E860, E861, E869, E870, E871, E872, E873, E8 ...
-#&gt;  I1102, I119, I1201, I129, I1302, I13101, I13111, I ...
-#&gt;  I10                                                   
-#&gt;  E000, E001, E002, E009, E010, E011, E012, E018, E0 ...
-#&gt;  B180, B181, B182, B188, B189, I8500, I8501, I8510, ...
-#&gt;  C8100, C8101, C8102, C8103, C8104, C8105, C8106, C ...
-#&gt;  C770, C771, C772, C773, C774, C775, C778, C779, C7 ...
-#&gt;  E6601, E6609, E661, E662, E663, E668, E669            
-#&gt;  G10, G110, G111, G112, G113, G1142, G118, G119, G1 ...
-#&gt;  G041, G1141, G801, G802, G8100, G8101, G8102, G810 ...
-#&gt;  K257, K259, K267, K269, K277, K279, K287, K289        
-#&gt;  I700, I701, I70201, I70202, I70203, I70208, I70209 ...
-#&gt;  F200, F201, F202, F203, F205, F2081, F2089, F209,  ...
-#&gt;  I2601, I2602, I2609, I2690, I2692, I2693, I2694, I ...
-#&gt;  I1202, I13102, I13112, N181, N182, N183, N184, N18 ...
-#&gt;  L940, L941, L943, M0500, M05011, M05012, M05019, M ...
-#&gt;  C000, C001, C002, C003, C004, C005, C006, C008, C0 ...
-#&gt;  A5200, A5201, A5202, A5203, A5204, A5205, A5206, A ...
-#&gt;  E40, E41, E42, E43, E440, E441, E45, E46, R634, R6 ...
+#&gt; <span style='color: #555555;'># A tibble: 31 x 3</span><span>
+#&gt;    group                   n codes                                              
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                              
+#&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                1 B20                                                
+#&gt; </span><span style='color: #555555;'> 2</span><span> alcohol abuse         131 E52, F1010, F1011, F10120, F10121, F10129, F1014, ~
+#&gt; </span><span style='color: #555555;'> 3</span><span> blood loss anemia       1 D500                                               
+#&gt; </span><span style='color: #555555;'> 4</span><span> cardiac arrhythmias    73 I441, I442, I4430, I4439, I456, I459, I470, I471, ~
+#&gt; </span><span style='color: #555555;'> 5</span><span> chronic pulmonary ~    69 I27812, I27822, I27832, I27892, I2792, J40, J410, ~
+#&gt; </span><span style='color: #555555;'> 6</span><span> coagulopathy           27 D65, D66, D67, D680, D681, D682, D68311, D68312, D~
+#&gt; </span><span style='color: #555555;'> 7</span><span> congestive heart f~    36 I099, I1101, I1301, I1321, I255, I420, I425, I4261~
+#&gt; </span><span style='color: #555555;'> 8</span><span> deficiency anemia      17 D508, D509, D510, D511, D512, D513, D518, D519, D5~
+#&gt; </span><span style='color: #555555;'> 9</span><span> depression             31 F3130, F3131, F3132, F314, F3152, F320, F321, F322~
+#&gt; </span><span style='color: #555555;'>10</span><span> diabetes complicat~   243 E1021, E1022, E1029, E10311, E10319, E103211, E103~
+#&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span>
 #&gt; 
 #&gt;  Use function visualize() for a graphical representation.
-#&gt; </div></pre>
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -257,7 +204,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

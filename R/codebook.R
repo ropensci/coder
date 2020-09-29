@@ -50,7 +50,7 @@ codebook <- function(object, coding, ..., file = NULL) {
 }
 
 #' @export
-print.codebook <- function(x) {
+print.codebook <- function(x, ...) {
   message(
     "Coodebooks are prefarably exported to Excel using the `file` argument! ",
     "Use `summary.classcodes()` or `visualize()` for interactive summaries!")

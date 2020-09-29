@@ -42,7 +42,7 @@
 <meta property="og:title" content="Classcodes methods — classcodes" />
 <meta property="og:description" content="&quot;Classcodes&quot; are classifying schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
-part of the triad of case data, code data and classification scheme." />
+part of the triad of case data, code data and a classification scheme." />
 
 
 
@@ -74,7 +74,7 @@ part of the triad of case data, code data and classification scheme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -136,25 +136,26 @@ part of the triad of case data, code data and classification scheme." />
     <div class="ref-description">
     <p>"Classcodes" are classifying schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
-part of the triad of case data, code data and classification scheme.</p>
+part of the triad of case data, code data and a classification scheme.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.classcodes</span>(<span class='no'>x</span>, <span class='kw'>hierarchy</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='no'>x</span>, <span class='st'>"hierarchy"</span>), <span class='kw'>.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+    <pre class="usage"><span class='fu'>as.classcodes</span><span class='op'>(</span><span class='va'>x</span>, hierarchy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"hierarchy"</span><span class='op'>)</span>, .name <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>is.classcodes</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>is.classcodes</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data frame with properties as described in the details section</p></td>
+      <td><p>data frame with columns described in the details section</p></td>
     </tr>
     <tr>
       <th>hierarchy</th>
       <td><p>list of pairwise group names to appear as superior and
 subordinate classes.
-  To be used for indexing when the subordinate class is redundant.</p></td>
+To be used for indexing when the subordinate class is redundant
+(see the details section of <code><a href='elixhauser.html'>elixhauser</a></code> for an example).</p></td>
     </tr>
     <tr>
       <th>.name</th>
@@ -164,37 +165,45 @@ subordinate classes.
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of class "classcodes" (data frame) with attribute <code>code</code>
-specifying the coding used (for example "icd10", or "ATC").
-Could be <code>NULL</code> for unknown or arbitrary coding.</p>
+    <p>Object of class "classcodes" (data frame) with additional attributes:</p><ul>
+<li><p><code>code:</code> the coding used (for example "icd10", or "ATC").
+<code>NULL</code> for unknown/arbitrary coding.</p></li>
+<li><p><code>regexprs:</code> name of columns with regular expressions</p></li>
+<li><p><code>indices:</code> name of columns with (optional) index weights</p></li>
+<li><p><code>hierarchy:</code> list as specified by the <code>hierarchy</code> argument.</p></li>
+<li><p><code>name:</code> name as specified by the <code>.name</code> argument.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A classcodes object is a data frame with columns:</p><dl'>
-<dt>group:</dt><dd><p>unique and non missing class name</p></dd>
-<dt>regex:</dt><dd><p>regular expression defining class membership
-(see <code><a href='https://rdrr.io/r/base/regex.html'>regex</a></code> for details). Occurrences of non unique regular
-expressions will lead to the same class having multiple names. This is
-accepted but will raise a warning.</p></dd>
-<dt>description (optional):</dt><dd><p>description of each category</p></dd>
-<dt>condition (optional):</dt><dd><p>a class might have conditions additional to what
-  is expressed by <code>regex</code>. If so, these should be specified as quoted
-  expressions that can be evaluated within the data frame used by
-  <code><a href='classify.html'>classify</a></code></p></dd>
-<dt>weights (optional):</dt><dd><p>weights for each class used for
-  <code><a href='index_fun.html'>index</a></code> calculation.
-  Could be more than one and could have arbitrary names.</p></dd>
-  <dt>hierarchy</dt><dd><p>pairwise hierarchys for wich only the superior class
-    should be used for indexing</p></dd>
+    <p>A classcodes object is a data frame with mandatory columns:</p><ul>
+<li><p><code>group</code>: unique and non missing class names</p></li>
+<li><p><code>regex_*</code>: regular expressions (<a href='https://rdrr.io/r/base/regex.html'>regex</a>) defining class membership.
+Could be more than one and could have arbitrary names.
+Occurrences of non unique regular expressions will lead to the same class
+having multiple names. This is accepted but will raise a warning.
+Classes do not have to be disjunct;
+the same code can be recognized by more than one <code>regex_*</code>.</p></li>
+</ul>
 
-</dl><p>Note that classes does not have to be disjunct.</p>
-<p>The package have several default classcodes included listed on its index page
-`help(package = "coder")`</p>
+<p>The object can have additional optional columns:</p><ul>
+<li><p><code>description</code>: description of each category</p></li>
+<li><p><code>condition</code>: a class might have conditions additional to what
+is expressed by <code>regex_*</code>. If so, these should be specified as quoted
+expressions that can be evaluated within the data frame used by
+<code><a href='classify.html'>classify()</a></code></p></li>
+<li><p><code>index_*</code>: weights for each class used by
+<code><a href='index_fun.html'>index()</a></code>. Could be more than one and could have arbitrary names.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use <code><a href='visualize.html'>visualize</a></code> to visualize classcodes
-graphically or <code><a href='summary.classcodes.html'>summary.classcodes</a></code> to
-list all codes individually.</p>
+    <div class='dont-index'><p>A vignette provides additional details and examples:
+<code><a href='../articles/classcodes.html'>vignette("classcodes", package = "coder")</a></code></p>
+<p>The package have several default classcodes included, see <code><a href='all_classcodes.html'>all_classcodes()</a></code>.</p>
+<p>Regular expressions used in classcodes can often be quite complex
+and hard to interpret. Use <code><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize()</a></code> to visualize classcodes
+graphically or <code><a href='summary.classcodes.html'>summary.classcodes()</a></code> to list all codes individually.</p>
 <p>Other classcodes: 
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
@@ -203,7 +212,7 @@ list all codes individually.</p>
 <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
-<code><a href='visualize.html'>visualize</a>()</code></p>
+<code><a href='visualize.classcodes.html'>visualize.classcodes</a>()</code></p>
 <p>Other classcodes: 
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
@@ -212,10 +221,11 @@ list all codes individually.</p>
 <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
-<code><a href='visualize.html'>visualize</a>()</code></p></div>
+<code><a href='visualize.classcodes.html'>visualize.classcodes</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span>(<span class='kw pkg'>coder</span><span class='kw ns'>::</span><span class='no'><a href='elixhauser.html'>elixhauser</a></span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 13</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>as.classcodes</span><span class='op'>(</span><span class='fu'>coder</span><span class='fu'>::</span><span class='va'><a href='elixhauser.html'>elixhauser</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 31 x 13</span><span>
 #&gt;    group regex_icd10 regex_icd10_sho~ regex_icd9cm regex_icd9cm_ah~
 #&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
 #&gt; </span><span style='color: #555555;'> 1</span><span> cong~ I(099|1(10~ I(09|1[13]|25|4~ 39891|4(0(2~ 39891|4(0(2[019~
@@ -247,7 +257,7 @@ list all codes individually.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

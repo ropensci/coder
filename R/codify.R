@@ -9,8 +9,10 @@
 #'   including case id (`character`), code and an optional date ([Date]) for
 #'   each code. An optional column `condition` might distinguish codes/dates
 #'   with certain characteristics (see example).
-#' @param id,date column names (from `data` and `codedata`) with case id
-#'   (`character`) and (optional) date ([Date]).
+#' @param id,code,date,code_date column names with case id
+#'   (`character` from `data` and `codedata`), `code` (from `data`) and
+#'   optional date ([Date] from `data`) and
+#'   `code_date` ([Date] from `codedata`).
 #' @param days numeric vector of length two with lower and upper bound for range
 #'   of relevant days relative to `date`. See "Relevant period".
 #' @param alnum Should codes be cleaned from all non alphanumeric characters?
@@ -39,7 +41,8 @@
 #' @export
 #'
 #' @examples
-#' codify(ex_people, ex_icd10, id = "name", code = "icd10", date = "event", days = c(-365, 0))
+#' codify(ex_people, ex_icd10, id = "name", code = "icd10",
+#'   date = "surgery", code_date = "admission", days = c(-365, 0))
 #' @family verbs
 codify <- function(
   data, codedata, id, code, date = NULL, code_date = NULL,

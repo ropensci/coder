@@ -41,12 +41,19 @@
 
 <meta property="og:title" content="coder: Deterministic Categorization of Items Based on External Code Data — coder-package" />
 <meta property="og:description" content="Fast categorization of items based on external code data identified by 
-  regular expressions.
-  It is easy to introduce new classification schemes (by 'classcodes' objects) or  
+  regular expressions. A typical use case considers patient with medically coded 
+  data, such as codes from the International Classification of Diseases (ICD) or 
+  the Anatomic Therapeutic Chemical (ATC) classification system. 
+  Functions of the package relies on a triad of objects: (1) case data with unit 
+  id:s and possible dates of interest; (2) external code data for corresponding 
+  units in (1) and with optional dates of interest and; (3) a classification 
+  scheme ('classcodes' object) with regular expressions to identify and 
+  categorize relevant codes from (2). 
+  It is easy to introduce new classification schemes ('classcodes' objects) or  
   to use default schemes included in the package. Use cases includes patient 
-  categorization based on co-morbidity indices such as Charlson, Elixhauser, 
+  categorization based on comorbidity indices such as Charlson, Elixhauser, 
   RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
-  events after arthroplasty surgery." />
+  events after hip and knee arthroplasty surgery." />
 
 
 
@@ -78,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -139,12 +146,19 @@
 
     <div class="ref-description">
     <p>Fast categorization of items based on external code data identified by 
-  regular expressions.
-  It is easy to introduce new classification schemes (by 'classcodes' objects) or  
+  regular expressions. A typical use case considers patient with medically coded 
+  data, such as codes from the International Classification of Diseases (ICD) or 
+  the Anatomic Therapeutic Chemical (ATC) classification system. 
+  Functions of the package relies on a triad of objects: (1) case data with unit 
+  id:s and possible dates of interest; (2) external code data for corresponding 
+  units in (1) and with optional dates of interest and; (3) a classification 
+  scheme ('classcodes' object) with regular expressions to identify and 
+  categorize relevant codes from (2). 
+  It is easy to introduce new classification schemes ('classcodes' objects) or  
   to use default schemes included in the package. Use cases includes patient 
-  categorization based on co-morbidity indices such as Charlson, Elixhauser, 
+  categorization based on comorbidity indices such as Charlson, Elixhauser, 
   RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
-  events after arthroplasty surgery.</p>
+  events after hip and knee arthroplasty surgery.</p>
     </div>
 
 
@@ -157,6 +171,9 @@
 </ul>
 
 </div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: Erik Bulow <a href='mailto:eriklgb@gmail.com'>eriklgb@gmail.com</a> (<a href='https://orcid.org/0000-0002-9973-456X'>ORCID</a>)</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -173,7 +190,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

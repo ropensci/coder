@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Make keyvalue object from classcodes object — as.keyvalue.classcodes" />
-<meta property="og:description" content="Make keyvalue object from classcodes object" />
+<meta property="og:description" content="S3-method for generic decoder::as.keyvalue()" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
       </span>
     </div>
 
@@ -132,10 +132,11 @@
     </div>
 
     <div class="ref-description">
-    <p>Make keyvalue object from classcodes object</p>
+    <p>S3-method for generic <code><a href='https://rdrr.io/pkg/decoder/man/keyvalue.html'>decoder::as.keyvalue()</a></code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>as.keyvalue.classcodes</span>(<span class='no'>x</span>, <span class='no'>coding</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for classcodes</span>
+<span class='fu'>as.keyvalue</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>coding</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,17 +153,1541 @@ or a name (character vector of length one) keyvalue object from package
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed to <code><a href='summary.classcodes.html'>summary.classcodes</a></code></p></td>
+      <td><p>arguments passed to <code><a href='summary.classcodes.html'>summary.classcodes()</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other helper: 
-<code><a href='dates_within.html'>dates_within</a>()</code>,
-<code><a href='filter_dates.html'>filter_dates</a>()</code>,
 <code><a href='spss2date.html'>spss2date</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># List all codes with corresponding classes as recognized by the Elixhauser</span>
+<span class='co'># comorbidity classification according to the Swedish version of the</span>
+<span class='co'># international classification of diseases version 10 (ICD-10-SE)</span>
+<span class='fu'>decoder</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/decoder/man/keyvalue.html'>as.keyvalue</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, <span class='st'>"icd10se"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt;        key                          value
+#&gt; 1453  A520               valvular disease
+#&gt; 501   B180                  liver disease
+#&gt; 502  B180A                  liver disease
+#&gt; 503  B180B                  liver disease
+#&gt; 504  B180C                  liver disease
+#&gt; 505  B180D                  liver disease
+#&gt; 506  B180E                  liver disease
+#&gt; 507  B180F                  liver disease
+#&gt; 508  B180G                  liver disease
+#&gt; 509  B180H                  liver disease
+#&gt; 510  B180W                  liver disease
+#&gt; 511  B180X                  liver disease
+#&gt; 512   B181                  liver disease
+#&gt; 513  B181A                  liver disease
+#&gt; 514  B181B                  liver disease
+#&gt; 515  B181C                  liver disease
+#&gt; 516  B181D                  liver disease
+#&gt; 517  B181E                  liver disease
+#&gt; 518  B181F                  liver disease
+#&gt; 519  B181G                  liver disease
+#&gt; 520  B181H                  liver disease
+#&gt; 521  B181W                  liver disease
+#&gt; 522  B181X                  liver disease
+#&gt; 523   B182                  liver disease
+#&gt; 524  B182A                  liver disease
+#&gt; 525  B182B                  liver disease
+#&gt; 526  B182C                  liver disease
+#&gt; 527  B182D                  liver disease
+#&gt; 528  B182E                  liver disease
+#&gt; 529  B182F                  liver disease
+#&gt; 530  B182G                  liver disease
+#&gt; 531  B182H                  liver disease
+#&gt; 532  B182W                  liver disease
+#&gt; 533  B182X                  liver disease
+#&gt; 534   B188                  liver disease
+#&gt; 535  B188A                  liver disease
+#&gt; 536  B188B                  liver disease
+#&gt; 537  B188C                  liver disease
+#&gt; 538  B188D                  liver disease
+#&gt; 539  B188E                  liver disease
+#&gt; 540  B188F                  liver disease
+#&gt; 541  B188G                  liver disease
+#&gt; 542  B188H                  liver disease
+#&gt; 543  B188W                  liver disease
+#&gt; 544  B188X                  liver disease
+#&gt; 545   B189                  liver disease
+#&gt; 546  B189A                  liver disease
+#&gt; 547  B189B                  liver disease
+#&gt; 548  B189C                  liver disease
+#&gt; 549  B189D                  liver disease
+#&gt; 550  B189E                  liver disease
+#&gt; 551  B189F                  liver disease
+#&gt; 552  B189G                  liver disease
+#&gt; 553  B189H                  liver disease
+#&gt; 554  B189W                  liver disease
+#&gt; 555  B189X                  liver disease
+#&gt; 1     B200                       AIDS/HIV
+#&gt; 2     B201                       AIDS/HIV
+#&gt; 3     B202                       AIDS/HIV
+#&gt; 4     B203                       AIDS/HIV
+#&gt; 5     B204                       AIDS/HIV
+#&gt; 6     B205                       AIDS/HIV
+#&gt; 7     B206                       AIDS/HIV
+#&gt; 8     B207                       AIDS/HIV
+#&gt; 9     B208                       AIDS/HIV
+#&gt; 10    B209                       AIDS/HIV
+#&gt; 11    B210                       AIDS/HIV
+#&gt; 12    B211                       AIDS/HIV
+#&gt; 13    B212                       AIDS/HIV
+#&gt; 14    B213                       AIDS/HIV
+#&gt; 15    B217                       AIDS/HIV
+#&gt; 16    B218                       AIDS/HIV
+#&gt; 17    B219                       AIDS/HIV
+#&gt; 18    B220                       AIDS/HIV
+#&gt; 19    B221                       AIDS/HIV
+#&gt; 20    B222                       AIDS/HIV
+#&gt; 21    B227                       AIDS/HIV
+#&gt; 22    B249                       AIDS/HIV
+#&gt; 1032  C000                    solid tumor
+#&gt; 1033  C001                    solid tumor
+#&gt; 1034  C002                    solid tumor
+#&gt; 1035  C003                    solid tumor
+#&gt; 1036  C004                    solid tumor
+#&gt; 1037  C005                    solid tumor
+#&gt; 1038  C006                    solid tumor
+#&gt; 1039  C008                    solid tumor
+#&gt; 1040  C009                    solid tumor
+#&gt; 1041  C019                    solid tumor
+#&gt; 1042  C020                    solid tumor
+#&gt; 1043  C021                    solid tumor
+#&gt; 1044  C022                    solid tumor
+#&gt; 1045  C023                    solid tumor
+#&gt; 1046  C024                    solid tumor
+#&gt; 1047  C028                    solid tumor
+#&gt; 1048  C029                    solid tumor
+#&gt; 1049  C030                    solid tumor
+#&gt; 1050  C031                    solid tumor
+#&gt; 1051  C039                    solid tumor
+#&gt; 1052  C040                    solid tumor
+#&gt; 1053  C041                    solid tumor
+#&gt; 1054  C048                    solid tumor
+#&gt; 1055  C049                    solid tumor
+#&gt; 1056  C050                    solid tumor
+#&gt; 1057  C051                    solid tumor
+#&gt; 1058  C052                    solid tumor
+#&gt; 1059  C058                    solid tumor
+#&gt; 1060  C059                    solid tumor
+#&gt; 1061  C060                    solid tumor
+#&gt; 1062  C061                    solid tumor
+#&gt; 1063  C062                    solid tumor
+#&gt; 1064  C068                    solid tumor
+#&gt; 1065  C069                    solid tumor
+#&gt; 1066  C079                    solid tumor
+#&gt; 1067  C080                    solid tumor
+#&gt; 1068  C081                    solid tumor
+#&gt; 1069  C088                    solid tumor
+#&gt; 1070  C089                    solid tumor
+#&gt; 1071  C090                    solid tumor
+#&gt; 1072  C091                    solid tumor
+#&gt; 1073  C098                    solid tumor
+#&gt; 1074  C099                    solid tumor
+#&gt; 1075  C100                    solid tumor
+#&gt; 1076  C101                    solid tumor
+#&gt; 1077  C102                    solid tumor
+#&gt; 1078  C103                    solid tumor
+#&gt; 1079  C104                    solid tumor
+#&gt; 1080  C108                    solid tumor
+#&gt; 1081  C109                    solid tumor
+#&gt; 1082  C110                    solid tumor
+#&gt; 1083  C111                    solid tumor
+#&gt; 1084  C112                    solid tumor
+#&gt; 1085  C113                    solid tumor
+#&gt; 1086  C118                    solid tumor
+#&gt; 1087  C119                    solid tumor
+#&gt; 1088  C129                    solid tumor
+#&gt; 1089  C130                    solid tumor
+#&gt; 1090  C131                    solid tumor
+#&gt; 1091  C132                    solid tumor
+#&gt; 1092  C138                    solid tumor
+#&gt; 1093  C139                    solid tumor
+#&gt; 1094  C140                    solid tumor
+#&gt; 1095  C142                    solid tumor
+#&gt; 1096  C148                    solid tumor
+#&gt; 1097  C153                    solid tumor
+#&gt; 1098  C154                    solid tumor
+#&gt; 1099  C155                    solid tumor
+#&gt; 1100  C158                    solid tumor
+#&gt; 1101  C159                    solid tumor
+#&gt; 1102  C160                    solid tumor
+#&gt; 1103 C160A                    solid tumor
+#&gt; 1104 C160B                    solid tumor
+#&gt; 1105 C160C                    solid tumor
+#&gt; 1106 C160X                    solid tumor
+#&gt; 1107  C161                    solid tumor
+#&gt; 1108  C162                    solid tumor
+#&gt; 1109  C163                    solid tumor
+#&gt; 1110  C164                    solid tumor
+#&gt; 1111  C165                    solid tumor
+#&gt; 1112  C166                    solid tumor
+#&gt; 1113  C168                    solid tumor
+#&gt; 1114  C169                    solid tumor
+#&gt; 1115  C170                    solid tumor
+#&gt; 1116  C171                    solid tumor
+#&gt; 1117  C172                    solid tumor
+#&gt; 1118  C173                    solid tumor
+#&gt; 1119  C178                    solid tumor
+#&gt; 1120  C179                    solid tumor
+#&gt; 1121  C180                    solid tumor
+#&gt; 1122  C181                    solid tumor
+#&gt; 1123  C182                    solid tumor
+#&gt; 1124  C183                    solid tumor
+#&gt; 1125  C184                    solid tumor
+#&gt; 1126  C185                    solid tumor
+#&gt; 1127  C186                    solid tumor
+#&gt; 1128  C187                    solid tumor
+#&gt; 1129  C188                    solid tumor
+#&gt; 1130  C189                    solid tumor
+#&gt; 1131  C199                    solid tumor
+#&gt; 1132  C209                    solid tumor
+#&gt; 1133  C210                    solid tumor
+#&gt; 1134  C211                    solid tumor
+#&gt; 1135  C212                    solid tumor
+#&gt; 1136  C218                    solid tumor
+#&gt; 1137  C220                    solid tumor
+#&gt; 1138  C221                    solid tumor
+#&gt; 1139  C222                    solid tumor
+#&gt; 1140  C223                    solid tumor
+#&gt; 1141  C224                    solid tumor
+#&gt; 1142  C227                    solid tumor
+#&gt; 1143  C229                    solid tumor
+#&gt; 1144  C239                    solid tumor
+#&gt; 1145  C240                    solid tumor
+#&gt; 1146  C241                    solid tumor
+#&gt; 1147  C248                    solid tumor
+#&gt; 1148  C249                    solid tumor
+#&gt; 1149  C250                    solid tumor
+#&gt; 1150  C251                    solid tumor
+#&gt; 1151  C252                    solid tumor
+#&gt; 1152  C253                    solid tumor
+#&gt; 1153  C254                    solid tumor
+#&gt; 1154  C257                    solid tumor
+#&gt; 1155  C258                    solid tumor
+#&gt; 1156  C259                    solid tumor
+#&gt; 1157  C260                    solid tumor
+#&gt; 1158  C261                    solid tumor
+#&gt; 1159  C268                    solid tumor
+#&gt; 1160  C269                    solid tumor
+#&gt; 1161  C300                    solid tumor
+#&gt; 1162  C301                    solid tumor
+#&gt; 1163  C310                    solid tumor
+#&gt; 1164  C311                    solid tumor
+#&gt; 1165  C312                    solid tumor
+#&gt; 1166  C313                    solid tumor
+#&gt; 1167  C318                    solid tumor
+#&gt; 1168  C319                    solid tumor
+#&gt; 1169  C320                    solid tumor
+#&gt; 1170  C321                    solid tumor
+#&gt; 1171  C322                    solid tumor
+#&gt; 1172  C323                    solid tumor
+#&gt; 1173  C328                    solid tumor
+#&gt; 1174  C329                    solid tumor
+#&gt; 1175  C339                    solid tumor
+#&gt; 1176  C340                    solid tumor
+#&gt; 1177  C341                    solid tumor
+#&gt; 1178  C342                    solid tumor
+#&gt; 1179  C343                    solid tumor
+#&gt; 1180  C348                    solid tumor
+#&gt; 1181  C349                    solid tumor
+#&gt; 1182 C349A                    solid tumor
+#&gt; 1183 C349B                    solid tumor
+#&gt; 1184 C349C                    solid tumor
+#&gt; 1185 C349D                    solid tumor
+#&gt; 1186 C349E                    solid tumor
+#&gt; 1187 C349F                    solid tumor
+#&gt; 1188 C349G                    solid tumor
+#&gt; 1189 C349H                    solid tumor
+#&gt; 1190 C349J                    solid tumor
+#&gt; 1191 C349K                    solid tumor
+#&gt; 1192 C349X                    solid tumor
+#&gt; 1193  C379                    solid tumor
+#&gt; 1194  C380                    solid tumor
+#&gt; 1195  C381                    solid tumor
+#&gt; 1196  C382                    solid tumor
+#&gt; 1197  C383                    solid tumor
+#&gt; 1198  C384                    solid tumor
+#&gt; 1199  C388                    solid tumor
+#&gt; 1200  C390                    solid tumor
+#&gt; 1201  C398                    solid tumor
+#&gt; 1202  C399                    solid tumor
+#&gt; 1203  C400                    solid tumor
+#&gt; 1204  C401                    solid tumor
+#&gt; 1205  C402                    solid tumor
+#&gt; 1206  C403                    solid tumor
+#&gt; 1207  C408                    solid tumor
+#&gt; 1208  C409                    solid tumor
+#&gt; 1209  C410                    solid tumor
+#&gt; 1210  C411                    solid tumor
+#&gt; 1211  C412                    solid tumor
+#&gt; 1212  C413                    solid tumor
+#&gt; 1213  C414                    solid tumor
+#&gt; 1214  C418                    solid tumor
+#&gt; 1215  C419                    solid tumor
+#&gt; 1216  C430                    solid tumor
+#&gt; 1217 C430B                    solid tumor
+#&gt; 1218 C430C                    solid tumor
+#&gt; 1219 C430D                    solid tumor
+#&gt; 1220 C430F                    solid tumor
+#&gt; 1221 C430X                    solid tumor
+#&gt; 1222  C431                    solid tumor
+#&gt; 1223 C431B                    solid tumor
+#&gt; 1224 C431C                    solid tumor
+#&gt; 1225 C431D                    solid tumor
+#&gt; 1226 C431F                    solid tumor
+#&gt; 1227 C431X                    solid tumor
+#&gt; 1228  C432                    solid tumor
+#&gt; 1229 C432B                    solid tumor
+#&gt; 1230 C432C                    solid tumor
+#&gt; 1231 C432D                    solid tumor
+#&gt; 1232 C432F                    solid tumor
+#&gt; 1233 C432X                    solid tumor
+#&gt; 1234  C433                    solid tumor
+#&gt; 1235 C433B                    solid tumor
+#&gt; 1236 C433C                    solid tumor
+#&gt; 1237 C433D                    solid tumor
+#&gt; 1238 C433F                    solid tumor
+#&gt; 1239 C433X                    solid tumor
+#&gt; 1240  C434                    solid tumor
+#&gt; 1241 C434B                    solid tumor
+#&gt; 1242 C434C                    solid tumor
+#&gt; 1243 C434D                    solid tumor
+#&gt; 1244 C434F                    solid tumor
+#&gt; 1245 C434X                    solid tumor
+#&gt; 1246  C435                    solid tumor
+#&gt; 1247 C435B                    solid tumor
+#&gt; 1248 C435C                    solid tumor
+#&gt; 1249 C435D                    solid tumor
+#&gt; 1250 C435F                    solid tumor
+#&gt; 1251 C435X                    solid tumor
+#&gt; 1252  C436                    solid tumor
+#&gt; 1253 C436A                    solid tumor
+#&gt; 1254 C436B                    solid tumor
+#&gt; 1255 C436C                    solid tumor
+#&gt; 1256 C436D                    solid tumor
+#&gt; 1257 C436E                    solid tumor
+#&gt; 1258 C436F                    solid tumor
+#&gt; 1259 C436X                    solid tumor
+#&gt; 1260  C437                    solid tumor
+#&gt; 1261 C437A                    solid tumor
+#&gt; 1262 C437B                    solid tumor
+#&gt; 1263 C437C                    solid tumor
+#&gt; 1264 C437D                    solid tumor
+#&gt; 1265 C437E                    solid tumor
+#&gt; 1266 C437F                    solid tumor
+#&gt; 1267 C437X                    solid tumor
+#&gt; 1268  C438                    solid tumor
+#&gt; 1269 C438B                    solid tumor
+#&gt; 1270 C438C                    solid tumor
+#&gt; 1271 C438D                    solid tumor
+#&gt; 1272 C438F                    solid tumor
+#&gt; 1273 C438X                    solid tumor
+#&gt; 1274  C439                    solid tumor
+#&gt; 1275 C439A                    solid tumor
+#&gt; 1276 C439B                    solid tumor
+#&gt; 1277 C439C                    solid tumor
+#&gt; 1278 C439D                    solid tumor
+#&gt; 1279 C439E                    solid tumor
+#&gt; 1280 C439F                    solid tumor
+#&gt; 1281 C439X                    solid tumor
+#&gt; 1282  C450                    solid tumor
+#&gt; 1283  C451                    solid tumor
+#&gt; 1284  C452                    solid tumor
+#&gt; 1285  C457                    solid tumor
+#&gt; 1286  C459                    solid tumor
+#&gt; 1287  C460                    solid tumor
+#&gt; 1288  C461                    solid tumor
+#&gt; 1289  C462                    solid tumor
+#&gt; 1290  C463                    solid tumor
+#&gt; 1291  C467                    solid tumor
+#&gt; 1292  C468                    solid tumor
+#&gt; 1293  C469                    solid tumor
+#&gt; 1294  C470                    solid tumor
+#&gt; 1295  C471                    solid tumor
+#&gt; 1296  C472                    solid tumor
+#&gt; 1297  C473                    solid tumor
+#&gt; 1298  C474                    solid tumor
+#&gt; 1299  C475                    solid tumor
+#&gt; 1300  C476                    solid tumor
+#&gt; 1301  C478                    solid tumor
+#&gt; 1302  C479                    solid tumor
+#&gt; 1303  C480                    solid tumor
+#&gt; 1304  C481                    solid tumor
+#&gt; 1305  C482                    solid tumor
+#&gt; 1306  C488                    solid tumor
+#&gt; 1307  C490                    solid tumor
+#&gt; 1308  C491                    solid tumor
+#&gt; 1309  C492                    solid tumor
+#&gt; 1310  C493                    solid tumor
+#&gt; 1311  C494                    solid tumor
+#&gt; 1312  C495                    solid tumor
+#&gt; 1313  C496                    solid tumor
+#&gt; 1314  C498                    solid tumor
+#&gt; 1315  C499                    solid tumor
+#&gt; 1316 C499A                    solid tumor
+#&gt; 1317 C499B                    solid tumor
+#&gt; 1318 C499C                    solid tumor
+#&gt; 1319 C499D                    solid tumor
+#&gt; 1320 C499E                    solid tumor
+#&gt; 1321 C499F                    solid tumor
+#&gt; 1322 C499G                    solid tumor
+#&gt; 1323 C499H                    solid tumor
+#&gt; 1324 C499J                    solid tumor
+#&gt; 1325 C499K                    solid tumor
+#&gt; 1326 C499L                    solid tumor
+#&gt; 1327 C499M                    solid tumor
+#&gt; 1328 C499N                    solid tumor
+#&gt; 1329 C499W                    solid tumor
+#&gt; 1330 C499X                    solid tumor
+#&gt; 1331  C500                    solid tumor
+#&gt; 1332  C501                    solid tumor
+#&gt; 1333  C502                    solid tumor
+#&gt; 1334  C503                    solid tumor
+#&gt; 1335  C504                    solid tumor
+#&gt; 1336  C505                    solid tumor
+#&gt; 1337  C506                    solid tumor
+#&gt; 1338  C508                    solid tumor
+#&gt; 1339  C509                    solid tumor
+#&gt; 1340  C510                    solid tumor
+#&gt; 1341  C511                    solid tumor
+#&gt; 1342  C512                    solid tumor
+#&gt; 1343  C518                    solid tumor
+#&gt; 1344  C519                    solid tumor
+#&gt; 1345  C529                    solid tumor
+#&gt; 1346  C530                    solid tumor
+#&gt; 1347  C531                    solid tumor
+#&gt; 1348  C538                    solid tumor
+#&gt; 1349  C539                    solid tumor
+#&gt; 1350  C540                    solid tumor
+#&gt; 1351  C541                    solid tumor
+#&gt; 1352  C542                    solid tumor
+#&gt; 1353  C543                    solid tumor
+#&gt; 1354  C548                    solid tumor
+#&gt; 1355  C549                    solid tumor
+#&gt; 1356  C559                    solid tumor
+#&gt; 1357  C569                    solid tumor
+#&gt; 1358  C570                    solid tumor
+#&gt; 1359  C571                    solid tumor
+#&gt; 1360  C572                    solid tumor
+#&gt; 1361  C573                    solid tumor
+#&gt; 1362  C574                    solid tumor
+#&gt; 1363  C577                    solid tumor
+#&gt; 1364  C578                    solid tumor
+#&gt; 1365  C579                    solid tumor
+#&gt; 1366  C589                    solid tumor
+#&gt; 1367  C600                    solid tumor
+#&gt; 1368  C601                    solid tumor
+#&gt; 1369  C602                    solid tumor
+#&gt; 1370  C608                    solid tumor
+#&gt; 1371  C609                    solid tumor
+#&gt; 1372  C619                    solid tumor
+#&gt; 1373  C620                    solid tumor
+#&gt; 1374  C621                    solid tumor
+#&gt; 1375  C629                    solid tumor
+#&gt; 1376 C629A                    solid tumor
+#&gt; 1377 C629B                    solid tumor
+#&gt; 1378 C629X                    solid tumor
+#&gt; 1379  C630                    solid tumor
+#&gt; 1380  C631                    solid tumor
+#&gt; 1381  C632                    solid tumor
+#&gt; 1382  C637                    solid tumor
+#&gt; 1383  C638                    solid tumor
+#&gt; 1384  C639                    solid tumor
+#&gt; 1385  C649                    solid tumor
+#&gt; 1386  C659                    solid tumor
+#&gt; 1387  C669                    solid tumor
+#&gt; 1388  C670                    solid tumor
+#&gt; 1389  C671                    solid tumor
+#&gt; 1390  C672                    solid tumor
+#&gt; 1391  C673                    solid tumor
+#&gt; 1392  C674                    solid tumor
+#&gt; 1393  C675                    solid tumor
+#&gt; 1394  C676                    solid tumor
+#&gt; 1395  C677                    solid tumor
+#&gt; 1396  C678                    solid tumor
+#&gt; 1397  C679                    solid tumor
+#&gt; 1398  C680                    solid tumor
+#&gt; 1399  C681                    solid tumor
+#&gt; 1400  C688                    solid tumor
+#&gt; 1401  C689                    solid tumor
+#&gt; 1402  C690                    solid tumor
+#&gt; 1403  C691                    solid tumor
+#&gt; 1404  C692                    solid tumor
+#&gt; 1405  C693                    solid tumor
+#&gt; 1406  C694                    solid tumor
+#&gt; 1407  C695                    solid tumor
+#&gt; 1408  C696                    solid tumor
+#&gt; 1409  C698                    solid tumor
+#&gt; 1410  C699                    solid tumor
+#&gt; 1411  C700                    solid tumor
+#&gt; 1412  C701                    solid tumor
+#&gt; 1413  C709                    solid tumor
+#&gt; 1414  C710                    solid tumor
+#&gt; 1415  C711                    solid tumor
+#&gt; 1416  C712                    solid tumor
+#&gt; 1417  C713                    solid tumor
+#&gt; 1418  C714                    solid tumor
+#&gt; 1419  C715                    solid tumor
+#&gt; 1420  C716                    solid tumor
+#&gt; 1421  C717                    solid tumor
+#&gt; 1422  C718                    solid tumor
+#&gt; 1423  C719                    solid tumor
+#&gt; 1424  C720                    solid tumor
+#&gt; 1425  C721                    solid tumor
+#&gt; 1426  C722                    solid tumor
+#&gt; 1427  C723                    solid tumor
+#&gt; 1428  C724                    solid tumor
+#&gt; 1429  C725                    solid tumor
+#&gt; 1430  C728                    solid tumor
+#&gt; 1431  C729                    solid tumor
+#&gt; 1432  C739                    solid tumor
+#&gt; 1433  C740                    solid tumor
+#&gt; 1434  C741                    solid tumor
+#&gt; 1435  C749                    solid tumor
+#&gt; 1436  C750                    solid tumor
+#&gt; 1437  C751                    solid tumor
+#&gt; 1438  C752                    solid tumor
+#&gt; 1439  C753                    solid tumor
+#&gt; 1440  C754                    solid tumor
+#&gt; 1441  C755                    solid tumor
+#&gt; 1442  C758                    solid tumor
+#&gt; 1443  C759                    solid tumor
+#&gt; 1444  C760                    solid tumor
+#&gt; 1445  C761                    solid tumor
+#&gt; 1446  C762                    solid tumor
+#&gt; 1447  C763                    solid tumor
+#&gt; 1448  C764                    solid tumor
+#&gt; 1449  C765                    solid tumor
+#&gt; 1450  C767                    solid tumor
+#&gt; 1451  C768                    solid tumor
+#&gt; 660   C770              metastatic cancer
+#&gt; 661   C771              metastatic cancer
+#&gt; 662   C772              metastatic cancer
+#&gt; 663   C773              metastatic cancer
+#&gt; 664   C774              metastatic cancer
+#&gt; 665   C775              metastatic cancer
+#&gt; 666   C778              metastatic cancer
+#&gt; 667   C779              metastatic cancer
+#&gt; 668   C780              metastatic cancer
+#&gt; 669   C781              metastatic cancer
+#&gt; 670   C782              metastatic cancer
+#&gt; 671   C783              metastatic cancer
+#&gt; 672   C784              metastatic cancer
+#&gt; 673   C785              metastatic cancer
+#&gt; 674   C786              metastatic cancer
+#&gt; 675   C787              metastatic cancer
+#&gt; 676   C788              metastatic cancer
+#&gt; 677   C790              metastatic cancer
+#&gt; 678   C791              metastatic cancer
+#&gt; 679   C792              metastatic cancer
+#&gt; 680   C793              metastatic cancer
+#&gt; 681   C794              metastatic cancer
+#&gt; 682   C795              metastatic cancer
+#&gt; 683   C796              metastatic cancer
+#&gt; 684   C797              metastatic cancer
+#&gt; 685   C798              metastatic cancer
+#&gt; 686   C799              metastatic cancer
+#&gt; 687   C800              metastatic cancer
+#&gt; 688   C809              metastatic cancer
+#&gt; 596   C810                       lymphoma
+#&gt; 597   C811                       lymphoma
+#&gt; 598   C812                       lymphoma
+#&gt; 599   C813                       lymphoma
+#&gt; 600   C814                       lymphoma
+#&gt; 601   C817                       lymphoma
+#&gt; 602   C819                       lymphoma
+#&gt; 603   C820                       lymphoma
+#&gt; 604   C821                       lymphoma
+#&gt; 605   C822                       lymphoma
+#&gt; 606   C823                       lymphoma
+#&gt; 607   C824                       lymphoma
+#&gt; 608   C825                       lymphoma
+#&gt; 609   C826                       lymphoma
+#&gt; 610   C827                       lymphoma
+#&gt; 611   C829                       lymphoma
+#&gt; 612   C830                       lymphoma
+#&gt; 613  C830A                       lymphoma
+#&gt; 614  C830B                       lymphoma
+#&gt; 615  C830C                       lymphoma
+#&gt; 616  C830D                       lymphoma
+#&gt; 617   C831                       lymphoma
+#&gt; 618   C833                       lymphoma
+#&gt; 619   C835                       lymphoma
+#&gt; 620  C835A                       lymphoma
+#&gt; 621  C835B                       lymphoma
+#&gt; 622  C835X                       lymphoma
+#&gt; 623   C837                       lymphoma
+#&gt; 624   C838                       lymphoma
+#&gt; 625   C839                       lymphoma
+#&gt; 626   C840                       lymphoma
+#&gt; 627   C841                       lymphoma
+#&gt; 628   C844                       lymphoma
+#&gt; 629   C845                       lymphoma
+#&gt; 630   C846                       lymphoma
+#&gt; 631   C847                       lymphoma
+#&gt; 632   C848                       lymphoma
+#&gt; 633   C849                       lymphoma
+#&gt; 634   C851                       lymphoma
+#&gt; 635  C851A                       lymphoma
+#&gt; 636  C851B                       lymphoma
+#&gt; 637   C852                       lymphoma
+#&gt; 638   C857                       lymphoma
+#&gt; 639   C859                       lymphoma
+#&gt; 640  C859A                       lymphoma
+#&gt; 641  C859B                       lymphoma
+#&gt; 642   C880                       lymphoma
+#&gt; 643   C882                       lymphoma
+#&gt; 644   C883                       lymphoma
+#&gt; 645   C884                       lymphoma
+#&gt; 646   C887                       lymphoma
+#&gt; 647  C887A                       lymphoma
+#&gt; 648  C887W                       lymphoma
+#&gt; 649   C889                       lymphoma
+#&gt; 650   C900                       lymphoma
+#&gt; 651   C902                       lymphoma
+#&gt; 652   C960                       lymphoma
+#&gt; 653   C962                       lymphoma
+#&gt; 654   C964                       lymphoma
+#&gt; 655   C965                       lymphoma
+#&gt; 656   C966                       lymphoma
+#&gt; 657   C967                       lymphoma
+#&gt; 658   C968                       lymphoma
+#&gt; 659   C969                       lymphoma
+#&gt; 1452  C979                    solid tumor
+#&gt; 53    D500              blood loss anemia
+#&gt; 204   D508              deficiency anemia
+#&gt; 205   D509              deficiency anemia
+#&gt; 206   D510              deficiency anemia
+#&gt; 207   D511              deficiency anemia
+#&gt; 208   D512              deficiency anemia
+#&gt; 209   D513              deficiency anemia
+#&gt; 210   D518              deficiency anemia
+#&gt; 211   D519              deficiency anemia
+#&gt; 212   D520              deficiency anemia
+#&gt; 213   D521              deficiency anemia
+#&gt; 214   D528              deficiency anemia
+#&gt; 215   D529              deficiency anemia
+#&gt; 216   D530              deficiency anemia
+#&gt; 217   D531              deficiency anemia
+#&gt; 218   D532              deficiency anemia
+#&gt; 219   D538              deficiency anemia
+#&gt; 220   D539              deficiency anemia
+#&gt; 156   D659                   coagulopathy
+#&gt; 157   D669                   coagulopathy
+#&gt; 158   D679                   coagulopathy
+#&gt; 159   D680                   coagulopathy
+#&gt; 160   D681                   coagulopathy
+#&gt; 161   D682                   coagulopathy
+#&gt; 162   D683                   coagulopathy
+#&gt; 163   D684                   coagulopathy
+#&gt; 164   D685                   coagulopathy
+#&gt; 165  D685A                   coagulopathy
+#&gt; 166  D685B                   coagulopathy
+#&gt; 167  D685C                   coagulopathy
+#&gt; 168  D685D                   coagulopathy
+#&gt; 169  D685E                   coagulopathy
+#&gt; 170  D685W                   coagulopathy
+#&gt; 171  D685X                   coagulopathy
+#&gt; 172   D686                   coagulopathy
+#&gt; 173  D686A                   coagulopathy
+#&gt; 174  D686B                   coagulopathy
+#&gt; 175  D686C                   coagulopathy
+#&gt; 176  D686W                   coagulopathy
+#&gt; 177  D686X                   coagulopathy
+#&gt; 178   D688                   coagulopathy
+#&gt; 179   D689                   coagulopathy
+#&gt; 180   D691                   coagulopathy
+#&gt; 181   D693                   coagulopathy
+#&gt; 182   D694                   coagulopathy
+#&gt; 183   D695                   coagulopathy
+#&gt; 184   D696                   coagulopathy
+#&gt; 480   E000                 hypothyroidism
+#&gt; 481   E001                 hypothyroidism
+#&gt; 482   E002                 hypothyroidism
+#&gt; 483   E009                 hypothyroidism
+#&gt; 484   E010                 hypothyroidism
+#&gt; 485   E011                 hypothyroidism
+#&gt; 486   E012                 hypothyroidism
+#&gt; 487   E018                 hypothyroidism
+#&gt; 488   E029                 hypothyroidism
+#&gt; 489   E030                 hypothyroidism
+#&gt; 490   E031                 hypothyroidism
+#&gt; 491   E032                 hypothyroidism
+#&gt; 492   E033                 hypothyroidism
+#&gt; 493   E034                 hypothyroidism
+#&gt; 494   E035                 hypothyroidism
+#&gt; 495   E038                 hypothyroidism
+#&gt; 496   E039                 hypothyroidism
+#&gt; 336   E100         diabetes uncomplicated
+#&gt; 337  E100A         diabetes uncomplicated
+#&gt; 338  E100B         diabetes uncomplicated
+#&gt; 339  E100C         diabetes uncomplicated
+#&gt; 340  E100D         diabetes uncomplicated
+#&gt; 341  E100X         diabetes uncomplicated
+#&gt; 342   E101         diabetes uncomplicated
+#&gt; 343  E101A         diabetes uncomplicated
+#&gt; 344  E101B         diabetes uncomplicated
+#&gt; 345  E101D         diabetes uncomplicated
+#&gt; 346  E101X         diabetes uncomplicated
+#&gt; 243   E102           diabetes complicated
+#&gt; 244  E102A           diabetes complicated
+#&gt; 245  E102B           diabetes complicated
+#&gt; 246  E102C           diabetes complicated
+#&gt; 247  E102W           diabetes complicated
+#&gt; 248  E102X           diabetes complicated
+#&gt; 249   E103           diabetes complicated
+#&gt; 250  E103A           diabetes complicated
+#&gt; 251  E103B           diabetes complicated
+#&gt; 252  E103C           diabetes complicated
+#&gt; 253  E103D           diabetes complicated
+#&gt; 254  E103E           diabetes complicated
+#&gt; 255  E103F           diabetes complicated
+#&gt; 256  E103W           diabetes complicated
+#&gt; 257  E103X           diabetes complicated
+#&gt; 258   E104           diabetes complicated
+#&gt; 259  E104B           diabetes complicated
+#&gt; 260  E104C           diabetes complicated
+#&gt; 261  E104D           diabetes complicated
+#&gt; 262  E104E           diabetes complicated
+#&gt; 263  E104W           diabetes complicated
+#&gt; 264  E104X           diabetes complicated
+#&gt; 265   E105           diabetes complicated
+#&gt; 266  E105A           diabetes complicated
+#&gt; 267  E105B           diabetes complicated
+#&gt; 268  E105W           diabetes complicated
+#&gt; 269  E105X           diabetes complicated
+#&gt; 270   E106           diabetes complicated
+#&gt; 271  E106A           diabetes complicated
+#&gt; 272  E106D           diabetes complicated
+#&gt; 273  E106E           diabetes complicated
+#&gt; 274  E106F           diabetes complicated
+#&gt; 275  E106G           diabetes complicated
+#&gt; 276  E106W           diabetes complicated
+#&gt; 277   E107           diabetes complicated
+#&gt; 278   E108           diabetes complicated
+#&gt; 347   E109         diabetes uncomplicated
+#&gt; 348   E110         diabetes uncomplicated
+#&gt; 349  E110A         diabetes uncomplicated
+#&gt; 350  E110B         diabetes uncomplicated
+#&gt; 351  E110C         diabetes uncomplicated
+#&gt; 352  E110D         diabetes uncomplicated
+#&gt; 353  E110X         diabetes uncomplicated
+#&gt; 354   E111         diabetes uncomplicated
+#&gt; 355  E111A         diabetes uncomplicated
+#&gt; 356  E111B         diabetes uncomplicated
+#&gt; 357  E111D         diabetes uncomplicated
+#&gt; 358  E111X         diabetes uncomplicated
+#&gt; 279   E112           diabetes complicated
+#&gt; 280  E112A           diabetes complicated
+#&gt; 281  E112B           diabetes complicated
+#&gt; 282  E112C           diabetes complicated
+#&gt; 283  E112W           diabetes complicated
+#&gt; 284  E112X           diabetes complicated
+#&gt; 285   E113           diabetes complicated
+#&gt; 286  E113A           diabetes complicated
+#&gt; 287  E113B           diabetes complicated
+#&gt; 288  E113C           diabetes complicated
+#&gt; 289  E113D           diabetes complicated
+#&gt; 290  E113E           diabetes complicated
+#&gt; 291  E113F           diabetes complicated
+#&gt; 292  E113W           diabetes complicated
+#&gt; 293  E113X           diabetes complicated
+#&gt; 294   E114           diabetes complicated
+#&gt; 295  E114B           diabetes complicated
+#&gt; 296  E114C           diabetes complicated
+#&gt; 297  E114D           diabetes complicated
+#&gt; 298  E114E           diabetes complicated
+#&gt; 299  E114W           diabetes complicated
+#&gt; 300  E114X           diabetes complicated
+#&gt; 301   E115           diabetes complicated
+#&gt; 302  E115A           diabetes complicated
+#&gt; 303  E115B           diabetes complicated
+#&gt; 304  E115W           diabetes complicated
+#&gt; 305  E115X           diabetes complicated
+#&gt; 306   E116           diabetes complicated
+#&gt; 307  E116A           diabetes complicated
+#&gt; 308  E116D           diabetes complicated
+#&gt; 309  E116E           diabetes complicated
+#&gt; 310  E116F           diabetes complicated
+#&gt; 311  E116G           diabetes complicated
+#&gt; 312  E116W           diabetes complicated
+#&gt; 313   E117           diabetes complicated
+#&gt; 314   E118           diabetes complicated
+#&gt; 359   E119         diabetes uncomplicated
+#&gt; 360   E120         diabetes uncomplicated
+#&gt; 361   E121         diabetes uncomplicated
+#&gt; 315   E122           diabetes complicated
+#&gt; 316   E123           diabetes complicated
+#&gt; 317   E124           diabetes complicated
+#&gt; 318   E125           diabetes complicated
+#&gt; 319   E126           diabetes complicated
+#&gt; 320   E127           diabetes complicated
+#&gt; 321   E128           diabetes complicated
+#&gt; 362   E129         diabetes uncomplicated
+#&gt; 363   E130         diabetes uncomplicated
+#&gt; 364   E131         diabetes uncomplicated
+#&gt; 322   E132           diabetes complicated
+#&gt; 323   E133           diabetes complicated
+#&gt; 324   E134           diabetes complicated
+#&gt; 325   E135           diabetes complicated
+#&gt; 326   E136           diabetes complicated
+#&gt; 327   E137           diabetes complicated
+#&gt; 328   E138           diabetes complicated
+#&gt; 365   E139         diabetes uncomplicated
+#&gt; 366   E140         diabetes uncomplicated
+#&gt; 367   E141         diabetes uncomplicated
+#&gt; 329   E142           diabetes complicated
+#&gt; 330   E143           diabetes complicated
+#&gt; 331   E144           diabetes complicated
+#&gt; 332   E145           diabetes complicated
+#&gt; 333   E146           diabetes complicated
+#&gt; 334   E147           diabetes complicated
+#&gt; 335   E148           diabetes complicated
+#&gt; 368   E149         diabetes uncomplicated
+#&gt; 451   E222    fluid electrolyte disorders
+#&gt; 1511  E409                    weight loss
+#&gt; 1512  E419                    weight loss
+#&gt; 1513  E429                    weight loss
+#&gt; 1514  E439                    weight loss
+#&gt; 1515  E440                    weight loss
+#&gt; 1516  E441                    weight loss
+#&gt; 1517  E459                    weight loss
+#&gt; 1518  E469                    weight loss
+#&gt; 23    E529                  alcohol abuse
+#&gt; 689   E660                        obesity
+#&gt; 690   E661                        obesity
+#&gt; 691   E662                        obesity
+#&gt; 692   E668                        obesity
+#&gt; 693   E669                        obesity
+#&gt; 452   E869    fluid electrolyte disorders
+#&gt; 453   E870    fluid electrolyte disorders
+#&gt; 454  E870A    fluid electrolyte disorders
+#&gt; 455  E870B    fluid electrolyte disorders
+#&gt; 456   E871    fluid electrolyte disorders
+#&gt; 457  E871A    fluid electrolyte disorders
+#&gt; 458  E871B    fluid electrolyte disorders
+#&gt; 459   E872    fluid electrolyte disorders
+#&gt; 460   E873    fluid electrolyte disorders
+#&gt; 461   E874    fluid electrolyte disorders
+#&gt; 462   E875    fluid electrolyte disorders
+#&gt; 463   E876    fluid electrolyte disorders
+#&gt; 464   E877    fluid electrolyte disorders
+#&gt; 465   E878    fluid electrolyte disorders
+#&gt; 497   E890                 hypothyroidism
+#&gt; 498  E890A                 hypothyroidism
+#&gt; 499  E890B                 hypothyroidism
+#&gt; 500  E890X                 hypothyroidism
+#&gt; 24    F100                  alcohol abuse
+#&gt; 25    F101                  alcohol abuse
+#&gt; 26    F102                  alcohol abuse
+#&gt; 27   F102A                  alcohol abuse
+#&gt; 28   F102B                  alcohol abuse
+#&gt; 29   F102X                  alcohol abuse
+#&gt; 30    F103                  alcohol abuse
+#&gt; 31    F104                  alcohol abuse
+#&gt; 32    F105                  alcohol abuse
+#&gt; 33    F106                  alcohol abuse
+#&gt; 34    F107                  alcohol abuse
+#&gt; 35   F107A                  alcohol abuse
+#&gt; 36   F107W                  alcohol abuse
+#&gt; 37    F108                  alcohol abuse
+#&gt; 38    F109                  alcohol abuse
+#&gt; 369   F110                     drug abuse
+#&gt; 370   F111                     drug abuse
+#&gt; 371   F112                     drug abuse
+#&gt; 372   F113                     drug abuse
+#&gt; 373   F114                     drug abuse
+#&gt; 374   F115                     drug abuse
+#&gt; 375   F116                     drug abuse
+#&gt; 376   F117                     drug abuse
+#&gt; 377   F118                     drug abuse
+#&gt; 378   F119                     drug abuse
+#&gt; 379   F120                     drug abuse
+#&gt; 380   F121                     drug abuse
+#&gt; 381   F122                     drug abuse
+#&gt; 382   F123                     drug abuse
+#&gt; 383   F124                     drug abuse
+#&gt; 384   F125                     drug abuse
+#&gt; 385   F126                     drug abuse
+#&gt; 386   F127                     drug abuse
+#&gt; 387   F128                     drug abuse
+#&gt; 388   F129                     drug abuse
+#&gt; 389   F130                     drug abuse
+#&gt; 390   F131                     drug abuse
+#&gt; 391   F132                     drug abuse
+#&gt; 392   F133                     drug abuse
+#&gt; 393   F134                     drug abuse
+#&gt; 394   F135                     drug abuse
+#&gt; 395   F136                     drug abuse
+#&gt; 396   F137                     drug abuse
+#&gt; 397   F138                     drug abuse
+#&gt; 398   F139                     drug abuse
+#&gt; 399   F140                     drug abuse
+#&gt; 400   F141                     drug abuse
+#&gt; 401   F142                     drug abuse
+#&gt; 402   F143                     drug abuse
+#&gt; 403   F144                     drug abuse
+#&gt; 404   F145                     drug abuse
+#&gt; 405   F146                     drug abuse
+#&gt; 406   F147                     drug abuse
+#&gt; 407   F148                     drug abuse
+#&gt; 408   F149                     drug abuse
+#&gt; 409   F150                     drug abuse
+#&gt; 410   F151                     drug abuse
+#&gt; 411   F152                     drug abuse
+#&gt; 412   F153                     drug abuse
+#&gt; 413   F154                     drug abuse
+#&gt; 414   F155                     drug abuse
+#&gt; 415   F156                     drug abuse
+#&gt; 416   F157                     drug abuse
+#&gt; 417   F158                     drug abuse
+#&gt; 418   F159                     drug abuse
+#&gt; 419   F160                     drug abuse
+#&gt; 420   F161                     drug abuse
+#&gt; 421   F162                     drug abuse
+#&gt; 422   F163                     drug abuse
+#&gt; 423   F164                     drug abuse
+#&gt; 424   F165                     drug abuse
+#&gt; 425   F166                     drug abuse
+#&gt; 426   F167                     drug abuse
+#&gt; 427   F168                     drug abuse
+#&gt; 428   F169                     drug abuse
+#&gt; 429   F180                     drug abuse
+#&gt; 430   F181                     drug abuse
+#&gt; 431   F182                     drug abuse
+#&gt; 432   F183                     drug abuse
+#&gt; 433   F184                     drug abuse
+#&gt; 434   F185                     drug abuse
+#&gt; 435   F186                     drug abuse
+#&gt; 436   F187                     drug abuse
+#&gt; 437   F188                     drug abuse
+#&gt; 438   F189                     drug abuse
+#&gt; 439   F190                     drug abuse
+#&gt; 440   F191                     drug abuse
+#&gt; 441   F192                     drug abuse
+#&gt; 442   F193                     drug abuse
+#&gt; 443   F194                     drug abuse
+#&gt; 444   F195                     drug abuse
+#&gt; 445   F196                     drug abuse
+#&gt; 446   F197                     drug abuse
+#&gt; 447   F198                     drug abuse
+#&gt; 448   F199                     drug abuse
+#&gt; 872   F200                      psychoses
+#&gt; 873   F201                      psychoses
+#&gt; 874   F202                      psychoses
+#&gt; 875   F203                      psychoses
+#&gt; 876  F2041                      psychoses
+#&gt; 221  F2042                     depression
+#&gt; 877   F205                      psychoses
+#&gt; 878   F206                      psychoses
+#&gt; 879   F208                      psychoses
+#&gt; 880   F209                      psychoses
+#&gt; 881   F220                      psychoses
+#&gt; 882   F228                      psychoses
+#&gt; 883   F229                      psychoses
+#&gt; 884   F230                      psychoses
+#&gt; 885   F231                      psychoses
+#&gt; 886   F232                      psychoses
+#&gt; 887   F233                      psychoses
+#&gt; 888   F238                      psychoses
+#&gt; 889   F239                      psychoses
+#&gt; 890   F249                      psychoses
+#&gt; 891   F250                      psychoses
+#&gt; 892   F251                      psychoses
+#&gt; 893   F252                      psychoses
+#&gt; 894   F258                      psychoses
+#&gt; 895   F259                      psychoses
+#&gt; 896   F289                      psychoses
+#&gt; 897   F299                      psychoses
+#&gt; 898   F302                      psychoses
+#&gt; 899   F312                      psychoses
+#&gt; 222   F313                     depression
+#&gt; 223   F314                     depression
+#&gt; 900  F3151                      psychoses
+#&gt; 224  F3152                     depression
+#&gt; 225   F320                     depression
+#&gt; 226   F321                     depression
+#&gt; 227   F322                     depression
+#&gt; 228   F323                     depression
+#&gt; 229  F323A                     depression
+#&gt; 230  F323W                     depression
+#&gt; 231   F328                     depression
+#&gt; 232   F329                     depression
+#&gt; 233   F330                     depression
+#&gt; 234   F331                     depression
+#&gt; 235   F332                     depression
+#&gt; 236   F333                     depression
+#&gt; 237   F334                     depression
+#&gt; 238   F338                     depression
+#&gt; 239   F339                     depression
+#&gt; 240   F341                     depression
+#&gt; 241   F412                     depression
+#&gt; 242   F432                     depression
+#&gt; 799   G041                      paralysis
+#&gt; 694   G109   other neurological disorders
+#&gt; 695   G110   other neurological disorders
+#&gt; 696   G111   other neurological disorders
+#&gt; 697   G112   other neurological disorders
+#&gt; 698   G113   other neurological disorders
+#&gt; 800  G1141                      paralysis
+#&gt; 699  G1142   other neurological disorders
+#&gt; 700   G118   other neurological disorders
+#&gt; 701   G119   other neurological disorders
+#&gt; 702   G120   other neurological disorders
+#&gt; 703   G121   other neurological disorders
+#&gt; 704  G121A   other neurological disorders
+#&gt; 705  G121B   other neurological disorders
+#&gt; 706  G121W   other neurological disorders
+#&gt; 707   G122   other neurological disorders
+#&gt; 708   G128   other neurological disorders
+#&gt; 709   G129   other neurological disorders
+#&gt; 710   G130   other neurological disorders
+#&gt; 711   G131   other neurological disorders
+#&gt; 712   G132   other neurological disorders
+#&gt; 713   G138   other neurological disorders
+#&gt; 714   G209   other neurological disorders
+#&gt; 715   G210   other neurological disorders
+#&gt; 716   G211   other neurological disorders
+#&gt; 717   G212   other neurological disorders
+#&gt; 718   G213   other neurological disorders
+#&gt; 719   G214   other neurological disorders
+#&gt; 720   G218   other neurological disorders
+#&gt; 721   G219   other neurological disorders
+#&gt; 722   G229   other neurological disorders
+#&gt; 723   G254   other neurological disorders
+#&gt; 724   G255   other neurological disorders
+#&gt; 725   G312   other neurological disorders
+#&gt; 726   G318   other neurological disorders
+#&gt; 727  G318A   other neurological disorders
+#&gt; 728  G318W   other neurological disorders
+#&gt; 729   G319   other neurological disorders
+#&gt; 730   G320   other neurological disorders
+#&gt; 731   G328   other neurological disorders
+#&gt; 732   G359   other neurological disorders
+#&gt; 733   G360   other neurological disorders
+#&gt; 734   G361   other neurological disorders
+#&gt; 735   G368   other neurological disorders
+#&gt; 736   G369   other neurological disorders
+#&gt; 737   G370   other neurological disorders
+#&gt; 738   G371   other neurological disorders
+#&gt; 739   G372   other neurological disorders
+#&gt; 740   G373   other neurological disorders
+#&gt; 741   G374   other neurological disorders
+#&gt; 742   G375   other neurological disorders
+#&gt; 743   G378   other neurological disorders
+#&gt; 744   G379   other neurological disorders
+#&gt; 745   G400   other neurological disorders
+#&gt; 746  G400A   other neurological disorders
+#&gt; 747  G400B   other neurological disorders
+#&gt; 748  G400W   other neurological disorders
+#&gt; 749   G401   other neurological disorders
+#&gt; 750  G401A   other neurological disorders
+#&gt; 751  G401B   other neurological disorders
+#&gt; 752  G401C   other neurological disorders
+#&gt; 753  G401D   other neurological disorders
+#&gt; 754  G401E   other neurological disorders
+#&gt; 755  G401X   other neurological disorders
+#&gt; 756   G402   other neurological disorders
+#&gt; 757  G402A   other neurological disorders
+#&gt; 758  G402B   other neurological disorders
+#&gt; 759  G402C   other neurological disorders
+#&gt; 760  G402D   other neurological disorders
+#&gt; 761  G402E   other neurological disorders
+#&gt; 762  G402F   other neurological disorders
+#&gt; 763  G402X   other neurological disorders
+#&gt; 764   G403   other neurological disorders
+#&gt; 765  G403A   other neurological disorders
+#&gt; 766  G403B   other neurological disorders
+#&gt; 767  G403C   other neurological disorders
+#&gt; 768  G403D   other neurological disorders
+#&gt; 769  G403E   other neurological disorders
+#&gt; 770  G403F   other neurological disorders
+#&gt; 771  G403X   other neurological disorders
+#&gt; 772   G404   other neurological disorders
+#&gt; 773  G404A   other neurological disorders
+#&gt; 774  G404B   other neurological disorders
+#&gt; 775  G404C   other neurological disorders
+#&gt; 776  G404D   other neurological disorders
+#&gt; 777  G404X   other neurological disorders
+#&gt; 778   G405   other neurological disorders
+#&gt; 779   G406   other neurological disorders
+#&gt; 780   G407   other neurological disorders
+#&gt; 781   G408   other neurological disorders
+#&gt; 782   G409   other neurological disorders
+#&gt; 783   G410   other neurological disorders
+#&gt; 784   G411   other neurological disorders
+#&gt; 785   G412   other neurological disorders
+#&gt; 786   G418   other neurological disorders
+#&gt; 787   G419   other neurological disorders
+#&gt; 39    G621                  alcohol abuse
+#&gt; 801   G801                      paralysis
+#&gt; 802  G801A                      paralysis
+#&gt; 803  G801B                      paralysis
+#&gt; 804  G801X                      paralysis
+#&gt; 805   G802                      paralysis
+#&gt; 806   G810                      paralysis
+#&gt; 807   G811                      paralysis
+#&gt; 808   G819                      paralysis
+#&gt; 809   G820                      paralysis
+#&gt; 810   G821                      paralysis
+#&gt; 811   G822                      paralysis
+#&gt; 812   G823                      paralysis
+#&gt; 813   G824                      paralysis
+#&gt; 814   G825                      paralysis
+#&gt; 815   G830                      paralysis
+#&gt; 816   G831                      paralysis
+#&gt; 817   G832                      paralysis
+#&gt; 818   G833                      paralysis
+#&gt; 819   G834                      paralysis
+#&gt; 820   G839                      paralysis
+#&gt; 788   G931   other neurological disorders
+#&gt; 789   G934   other neurological disorders
+#&gt; 1454  I050               valvular disease
+#&gt; 1455  I051               valvular disease
+#&gt; 1456  I052               valvular disease
+#&gt; 1457  I058               valvular disease
+#&gt; 1458  I059               valvular disease
+#&gt; 1459  I060               valvular disease
+#&gt; 1460  I061               valvular disease
+#&gt; 1461  I062               valvular disease
+#&gt; 1462  I068               valvular disease
+#&gt; 1463  I069               valvular disease
+#&gt; 1464  I070               valvular disease
+#&gt; 1465  I071               valvular disease
+#&gt; 1466  I072               valvular disease
+#&gt; 1467  I078               valvular disease
+#&gt; 1468  I079               valvular disease
+#&gt; 1469  I080               valvular disease
+#&gt; 1470  I081               valvular disease
+#&gt; 1471  I082               valvular disease
+#&gt; 1472  I083               valvular disease
+#&gt; 1473  I088               valvular disease
+#&gt; 1474  I089               valvular disease
+#&gt; 1475  I091               valvular disease
+#&gt; 1476  I098               valvular disease
+#&gt; 185   I099       congestive heart failure
+#&gt; 479   I109     hypertension uncomplicated
+#&gt; 186  I1101       congestive heart failure
+#&gt; 466  I1102       hypertension complicated
+#&gt; 467   I119       hypertension complicated
+#&gt; 468  I1201       hypertension complicated
+#&gt; 911  I1202                  renal failure
+#&gt; 469   I129       hypertension complicated
+#&gt; 187  I1301       congestive heart failure
+#&gt; 470  I1302       hypertension complicated
+#&gt; 471  I1311       hypertension complicated
+#&gt; 912  I1312                  renal failure
+#&gt; 188  I1321       congestive heart failure
+#&gt; 472  I1322       hypertension complicated
+#&gt; 473   I139       hypertension complicated
+#&gt; 474   I150       hypertension complicated
+#&gt; 475   I151       hypertension complicated
+#&gt; 476   I152       hypertension complicated
+#&gt; 477   I158       hypertension complicated
+#&gt; 478   I159       hypertension complicated
+#&gt; 189   I255       congestive heart failure
+#&gt; 901   I260 pulmonary circulation disorder
+#&gt; 902   I269 pulmonary circulation disorder
+#&gt; 903   I270 pulmonary circulation disorder
+#&gt; 904   I271 pulmonary circulation disorder
+#&gt; 905   I272 pulmonary circulation disorder
+#&gt; 906  I2781 pulmonary circulation disorder
+#&gt; 99   I2782      chronic pulmonary disease
+#&gt; 907  I2791 pulmonary circulation disorder
+#&gt; 100  I2792      chronic pulmonary disease
+#&gt; 908   I280 pulmonary circulation disorder
+#&gt; 909   I288 pulmonary circulation disorder
+#&gt; 910   I289 pulmonary circulation disorder
+#&gt; 1477  I340               valvular disease
+#&gt; 1478  I341               valvular disease
+#&gt; 1479  I342               valvular disease
+#&gt; 1480  I348               valvular disease
+#&gt; 1481  I349               valvular disease
+#&gt; 1482  I350               valvular disease
+#&gt; 1483  I351               valvular disease
+#&gt; 1484  I352               valvular disease
+#&gt; 1485  I358               valvular disease
+#&gt; 1486  I359               valvular disease
+#&gt; 1487  I360               valvular disease
+#&gt; 1488  I361               valvular disease
+#&gt; 1489  I362               valvular disease
+#&gt; 1490  I368               valvular disease
+#&gt; 1491  I369               valvular disease
+#&gt; 1492  I370               valvular disease
+#&gt; 1493  I371               valvular disease
+#&gt; 1494  I372               valvular disease
+#&gt; 1495  I378               valvular disease
+#&gt; 1496  I379               valvular disease
+#&gt; 1497  I389               valvular disease
+#&gt; 1498  I390               valvular disease
+#&gt; 1499  I391               valvular disease
+#&gt; 1500  I392               valvular disease
+#&gt; 1501  I393               valvular disease
+#&gt; 1502  I394               valvular disease
+#&gt; 1503  I398               valvular disease
+#&gt; 190   I420       congestive heart failure
+#&gt; 191   I425       congestive heart failure
+#&gt; 192  I4261       congestive heart failure
+#&gt; 40   I4262                  alcohol abuse
+#&gt; 193   I427       congestive heart failure
+#&gt; 194   I428       congestive heart failure
+#&gt; 195   I429       congestive heart failure
+#&gt; 196   I430       congestive heart failure
+#&gt; 197   I431       congestive heart failure
+#&gt; 198   I432       congestive heart failure
+#&gt; 199   I438       congestive heart failure
+#&gt; 54    I441            cardiac arrhythmias
+#&gt; 55   I441A            cardiac arrhythmias
+#&gt; 56   I441B            cardiac arrhythmias
+#&gt; 57    I442            cardiac arrhythmias
+#&gt; 58    I443            cardiac arrhythmias
+#&gt; 59    I456            cardiac arrhythmias
+#&gt; 60   I456A            cardiac arrhythmias
+#&gt; 61   I456B            cardiac arrhythmias
+#&gt; 62   I456W            cardiac arrhythmias
+#&gt; 63   I456X            cardiac arrhythmias
+#&gt; 64    I459            cardiac arrhythmias
+#&gt; 65    I470            cardiac arrhythmias
+#&gt; 66    I471            cardiac arrhythmias
+#&gt; 67    I472            cardiac arrhythmias
+#&gt; 68   I472A            cardiac arrhythmias
+#&gt; 69   I472B            cardiac arrhythmias
+#&gt; 70   I472C            cardiac arrhythmias
+#&gt; 71    I479            cardiac arrhythmias
+#&gt; 72    I480            cardiac arrhythmias
+#&gt; 73    I481            cardiac arrhythmias
+#&gt; 74    I482            cardiac arrhythmias
+#&gt; 75    I483            cardiac arrhythmias
+#&gt; 76    I484            cardiac arrhythmias
+#&gt; 77    I489            cardiac arrhythmias
+#&gt; 78    I490            cardiac arrhythmias
+#&gt; 79    I491            cardiac arrhythmias
+#&gt; 80    I492            cardiac arrhythmias
+#&gt; 81    I493            cardiac arrhythmias
+#&gt; 82    I494            cardiac arrhythmias
+#&gt; 83    I495            cardiac arrhythmias
+#&gt; 84   I495A            cardiac arrhythmias
+#&gt; 85   I495B            cardiac arrhythmias
+#&gt; 86   I495C            cardiac arrhythmias
+#&gt; 87    I498            cardiac arrhythmias
+#&gt; 88   I498C            cardiac arrhythmias
+#&gt; 89   I498D            cardiac arrhythmias
+#&gt; 90   I498E            cardiac arrhythmias
+#&gt; 91   I498W            cardiac arrhythmias
+#&gt; 92    I499            cardiac arrhythmias
+#&gt; 200   I500       congestive heart failure
+#&gt; 201   I501       congestive heart failure
+#&gt; 202   I509       congestive heart failure
+#&gt; 829   I700   peripheral vascular disorder
+#&gt; 830  I700A   peripheral vascular disorder
+#&gt; 831  I700B   peripheral vascular disorder
+#&gt; 832  I700X   peripheral vascular disorder
+#&gt; 833   I701   peripheral vascular disorder
+#&gt; 834   I702   peripheral vascular disorder
+#&gt; 835  I702A   peripheral vascular disorder
+#&gt; 836  I702C   peripheral vascular disorder
+#&gt; 837  I702D   peripheral vascular disorder
+#&gt; 838  I702E   peripheral vascular disorder
+#&gt; 839  I702X   peripheral vascular disorder
+#&gt; 840   I708   peripheral vascular disorder
+#&gt; 841   I709   peripheral vascular disorder
+#&gt; 842   I710   peripheral vascular disorder
+#&gt; 843   I711   peripheral vascular disorder
+#&gt; 844   I712   peripheral vascular disorder
+#&gt; 845   I713   peripheral vascular disorder
+#&gt; 846   I714   peripheral vascular disorder
+#&gt; 847   I715   peripheral vascular disorder
+#&gt; 848   I716   peripheral vascular disorder
+#&gt; 849   I718   peripheral vascular disorder
+#&gt; 850   I719   peripheral vascular disorder
+#&gt; 851   I731   peripheral vascular disorder
+#&gt; 852   I738   peripheral vascular disorder
+#&gt; 853  I738A   peripheral vascular disorder
+#&gt; 854  I738B   peripheral vascular disorder
+#&gt; 855  I738C   peripheral vascular disorder
+#&gt; 856  I738D   peripheral vascular disorder
+#&gt; 857  I738W   peripheral vascular disorder
+#&gt; 858   I739   peripheral vascular disorder
+#&gt; 859  I739A   peripheral vascular disorder
+#&gt; 860  I739B   peripheral vascular disorder
+#&gt; 861  I739C   peripheral vascular disorder
+#&gt; 862  I739W   peripheral vascular disorder
+#&gt; 863  I739X   peripheral vascular disorder
+#&gt; 864   I771   peripheral vascular disorder
+#&gt; 865   I790   peripheral vascular disorder
+#&gt; 866   I792   peripheral vascular disorder
+#&gt; 556   I850                  liver disease
+#&gt; 557   I859                  liver disease
+#&gt; 558   I864                  liver disease
+#&gt; 559   I982                  liver disease
+#&gt; 101   J409      chronic pulmonary disease
+#&gt; 102   J410      chronic pulmonary disease
+#&gt; 103   J411      chronic pulmonary disease
+#&gt; 104   J418      chronic pulmonary disease
+#&gt; 105   J429      chronic pulmonary disease
+#&gt; 106   J430      chronic pulmonary disease
+#&gt; 107   J431      chronic pulmonary disease
+#&gt; 108   J432      chronic pulmonary disease
+#&gt; 109   J438      chronic pulmonary disease
+#&gt; 110   J439      chronic pulmonary disease
+#&gt; 111   J440      chronic pulmonary disease
+#&gt; 112   J441      chronic pulmonary disease
+#&gt; 113   J448      chronic pulmonary disease
+#&gt; 114   J449      chronic pulmonary disease
+#&gt; 115   J450      chronic pulmonary disease
+#&gt; 116  J450A      chronic pulmonary disease
+#&gt; 117  J450B      chronic pulmonary disease
+#&gt; 118  J450W      chronic pulmonary disease
+#&gt; 119   J451      chronic pulmonary disease
+#&gt; 120  J451A      chronic pulmonary disease
+#&gt; 121  J451W      chronic pulmonary disease
+#&gt; 122   J458      chronic pulmonary disease
+#&gt; 123   J459      chronic pulmonary disease
+#&gt; 124   J469      chronic pulmonary disease
+#&gt; 125   J479      chronic pulmonary disease
+#&gt; 126   J609      chronic pulmonary disease
+#&gt; 127   J619      chronic pulmonary disease
+#&gt; 128   J620      chronic pulmonary disease
+#&gt; 129   J628      chronic pulmonary disease
+#&gt; 130   J630      chronic pulmonary disease
+#&gt; 131   J631      chronic pulmonary disease
+#&gt; 132   J632      chronic pulmonary disease
+#&gt; 133   J633      chronic pulmonary disease
+#&gt; 134   J634      chronic pulmonary disease
+#&gt; 135   J635      chronic pulmonary disease
+#&gt; 136   J638      chronic pulmonary disease
+#&gt; 137   J649      chronic pulmonary disease
+#&gt; 138   J659      chronic pulmonary disease
+#&gt; 139   J660      chronic pulmonary disease
+#&gt; 140   J661      chronic pulmonary disease
+#&gt; 141   J662      chronic pulmonary disease
+#&gt; 142   J668      chronic pulmonary disease
+#&gt; 143   J670      chronic pulmonary disease
+#&gt; 144   J671      chronic pulmonary disease
+#&gt; 145   J672      chronic pulmonary disease
+#&gt; 146   J673      chronic pulmonary disease
+#&gt; 147   J674      chronic pulmonary disease
+#&gt; 148   J675      chronic pulmonary disease
+#&gt; 149   J676      chronic pulmonary disease
+#&gt; 150   J677      chronic pulmonary disease
+#&gt; 151   J678      chronic pulmonary disease
+#&gt; 152   J679      chronic pulmonary disease
+#&gt; 153   J684      chronic pulmonary disease
+#&gt; 154   J701      chronic pulmonary disease
+#&gt; 155   J703      chronic pulmonary disease
+#&gt; 821   K257           peptic ulcer disease
+#&gt; 822   K259           peptic ulcer disease
+#&gt; 823   K267           peptic ulcer disease
+#&gt; 824   K269           peptic ulcer disease
+#&gt; 825   K277           peptic ulcer disease
+#&gt; 826   K279           peptic ulcer disease
+#&gt; 827   K287           peptic ulcer disease
+#&gt; 828   K289           peptic ulcer disease
+#&gt; 41    K292                  alcohol abuse
+#&gt; 867   K551   peripheral vascular disorder
+#&gt; 868   K558   peripheral vascular disorder
+#&gt; 869   K559   peripheral vascular disorder
+#&gt; 560  K7001                  liver disease
+#&gt; 42   K7002                  alcohol abuse
+#&gt; 561   K701                  liver disease
+#&gt; 562   K702                  liver disease
+#&gt; 563  K7031                  liver disease
+#&gt; 43   K7032                  alcohol abuse
+#&gt; 564   K704                  liver disease
+#&gt; 565  K7091                  liver disease
+#&gt; 44   K7092                  alcohol abuse
+#&gt; 566   K711                  liver disease
+#&gt; 567   K713                  liver disease
+#&gt; 568   K714                  liver disease
+#&gt; 569   K715                  liver disease
+#&gt; 570   K717                  liver disease
+#&gt; 571   K720                  liver disease
+#&gt; 572   K721                  liver disease
+#&gt; 573   K729                  liver disease
+#&gt; 574   K730                  liver disease
+#&gt; 575   K731                  liver disease
+#&gt; 576   K732                  liver disease
+#&gt; 577   K738                  liver disease
+#&gt; 578   K739                  liver disease
+#&gt; 579   K740                  liver disease
+#&gt; 580   K741                  liver disease
+#&gt; 581   K742                  liver disease
+#&gt; 582   K743                  liver disease
+#&gt; 583   K744                  liver disease
+#&gt; 584   K745                  liver disease
+#&gt; 585   K746                  liver disease
+#&gt; 586   K760                  liver disease
+#&gt; 587   K762                  liver disease
+#&gt; 588   K763                  liver disease
+#&gt; 589   K764                  liver disease
+#&gt; 590   K765                  liver disease
+#&gt; 591   K766                  liver disease
+#&gt; 592   K767                  liver disease
+#&gt; 593   K768                  liver disease
+#&gt; 594   K769                  liver disease
+#&gt; 926   L940           rheumatoid arthritis
+#&gt; 927   L941           rheumatoid arthritis
+#&gt; 928   L943           rheumatoid arthritis
+#&gt; 929   M050           rheumatoid arthritis
+#&gt; 930   M051           rheumatoid arthritis
+#&gt; 931   M052           rheumatoid arthritis
+#&gt; 932   M053           rheumatoid arthritis
+#&gt; 933   M058           rheumatoid arthritis
+#&gt; 934  M058A           rheumatoid arthritis
+#&gt; 935  M058B           rheumatoid arthritis
+#&gt; 936  M058C           rheumatoid arthritis
+#&gt; 937  M058D           rheumatoid arthritis
+#&gt; 938  M058F           rheumatoid arthritis
+#&gt; 939  M058G           rheumatoid arthritis
+#&gt; 940  M058H           rheumatoid arthritis
+#&gt; 941  M058L           rheumatoid arthritis
+#&gt; 942  M058M           rheumatoid arthritis
+#&gt; 943  M058N           rheumatoid arthritis
+#&gt; 944  M058X           rheumatoid arthritis
+#&gt; 945   M059           rheumatoid arthritis
+#&gt; 946  M059L           rheumatoid arthritis
+#&gt; 947  M059M           rheumatoid arthritis
+#&gt; 948  M059N           rheumatoid arthritis
+#&gt; 949   M060           rheumatoid arthritis
+#&gt; 950  M060L           rheumatoid arthritis
+#&gt; 951  M060M           rheumatoid arthritis
+#&gt; 952  M060N           rheumatoid arthritis
+#&gt; 953   M061           rheumatoid arthritis
+#&gt; 954   M062           rheumatoid arthritis
+#&gt; 955   M063           rheumatoid arthritis
+#&gt; 956   M064           rheumatoid arthritis
+#&gt; 957   M068           rheumatoid arthritis
+#&gt; 958  M068L           rheumatoid arthritis
+#&gt; 959  M068M           rheumatoid arthritis
+#&gt; 960  M068N           rheumatoid arthritis
+#&gt; 961   M069           rheumatoid arthritis
+#&gt; 962  M069A           rheumatoid arthritis
+#&gt; 963  M069B           rheumatoid arthritis
+#&gt; 964  M069C           rheumatoid arthritis
+#&gt; 965  M069D           rheumatoid arthritis
+#&gt; 966  M069F           rheumatoid arthritis
+#&gt; 967  M069G           rheumatoid arthritis
+#&gt; 968  M069H           rheumatoid arthritis
+#&gt; 969  M069X           rheumatoid arthritis
+#&gt; 970   M080           rheumatoid arthritis
+#&gt; 971  M080B           rheumatoid arthritis
+#&gt; 972  M080C           rheumatoid arthritis
+#&gt; 973  M080D           rheumatoid arthritis
+#&gt; 974  M080F           rheumatoid arthritis
+#&gt; 975  M080G           rheumatoid arthritis
+#&gt; 976  M080H           rheumatoid arthritis
+#&gt; 977  M080X           rheumatoid arthritis
+#&gt; 978   M081           rheumatoid arthritis
+#&gt; 979   M082           rheumatoid arthritis
+#&gt; 980  M082A           rheumatoid arthritis
+#&gt; 981  M082B           rheumatoid arthritis
+#&gt; 982   M083           rheumatoid arthritis
+#&gt; 983   M084           rheumatoid arthritis
+#&gt; 984  M084A           rheumatoid arthritis
+#&gt; 985  M084B           rheumatoid arthritis
+#&gt; 986   M088           rheumatoid arthritis
+#&gt; 987   M089           rheumatoid arthritis
+#&gt; 988   M120           rheumatoid arthritis
+#&gt; 989   M123           rheumatoid arthritis
+#&gt; 990   M300           rheumatoid arthritis
+#&gt; 991   M301           rheumatoid arthritis
+#&gt; 992   M302           rheumatoid arthritis
+#&gt; 993   M303           rheumatoid arthritis
+#&gt; 994   M308           rheumatoid arthritis
+#&gt; 995   M310           rheumatoid arthritis
+#&gt; 996   M311           rheumatoid arthritis
+#&gt; 997   M313           rheumatoid arthritis
+#&gt; 998   M320           rheumatoid arthritis
+#&gt; 999   M321           rheumatoid arthritis
+#&gt; 1000  M328           rheumatoid arthritis
+#&gt; 1001 M328A           rheumatoid arthritis
+#&gt; 1002 M328B           rheumatoid arthritis
+#&gt; 1003 M328C           rheumatoid arthritis
+#&gt; 1004 M328D           rheumatoid arthritis
+#&gt; 1005 M328W           rheumatoid arthritis
+#&gt; 1006  M329           rheumatoid arthritis
+#&gt; 1007  M330           rheumatoid arthritis
+#&gt; 1008  M331           rheumatoid arthritis
+#&gt; 1009  M332           rheumatoid arthritis
+#&gt; 1010  M339           rheumatoid arthritis
+#&gt; 1011  M340           rheumatoid arthritis
+#&gt; 1012  M341           rheumatoid arthritis
+#&gt; 1013  M342           rheumatoid arthritis
+#&gt; 1014  M348           rheumatoid arthritis
+#&gt; 1015  M349           rheumatoid arthritis
+#&gt; 1016  M350           rheumatoid arthritis
+#&gt; 1017 M350A           rheumatoid arthritis
+#&gt; 1018 M350B           rheumatoid arthritis
+#&gt; 1019  M351           rheumatoid arthritis
+#&gt; 1020  M352           rheumatoid arthritis
+#&gt; 1021  M353           rheumatoid arthritis
+#&gt; 1022  M354           rheumatoid arthritis
+#&gt; 1023  M355           rheumatoid arthritis
+#&gt; 1024  M356           rheumatoid arthritis
+#&gt; 1025  M357           rheumatoid arthritis
+#&gt; 1026  M358           rheumatoid arthritis
+#&gt; 1027  M359           rheumatoid arthritis
+#&gt; 1028  M459           rheumatoid arthritis
+#&gt; 1029  M461           rheumatoid arthritis
+#&gt; 1030  M468           rheumatoid arthritis
+#&gt; 1031  M469           rheumatoid arthritis
+#&gt; 913   N181                  renal failure
+#&gt; 914   N182                  renal failure
+#&gt; 915   N183                  renal failure
+#&gt; 916   N184                  renal failure
+#&gt; 917   N185                  renal failure
+#&gt; 918   N189                  renal failure
+#&gt; 919   N199                  renal failure
+#&gt; 920   N250                  renal failure
+#&gt; 203   P290       congestive heart failure
+#&gt; 1504  Q230               valvular disease
+#&gt; 1505  Q231               valvular disease
+#&gt; 1506  Q232               valvular disease
+#&gt; 1507  Q233               valvular disease
+#&gt; 93    R000            cardiac arrhythmias
+#&gt; 94    R001            cardiac arrhythmias
+#&gt; 95    R008            cardiac arrhythmias
+#&gt; 790   R470   other neurological disorders
+#&gt; 791  R470A   other neurological disorders
+#&gt; 792  R470B   other neurological disorders
+#&gt; 793  R470C   other neurological disorders
+#&gt; 794  R470D   other neurological disorders
+#&gt; 795   R560   other neurological disorders
+#&gt; 796   R568   other neurological disorders
+#&gt; 797  R568A   other neurological disorders
+#&gt; 798  R568X   other neurological disorders
+#&gt; 1519  R634                    weight loss
+#&gt; 1520  R649                    weight loss
+#&gt; 45    T510                  alcohol abuse
+#&gt; 46    T511                  alcohol abuse
+#&gt; 47    T512                  alcohol abuse
+#&gt; 48    T513                  alcohol abuse
+#&gt; 49    T518                  alcohol abuse
+#&gt; 50    T519                  alcohol abuse
+#&gt; 96    T821            cardiac arrhythmias
+#&gt; 97    Z450            cardiac arrhythmias
+#&gt; 921   Z490                  renal failure
+#&gt; 922   Z491                  renal failure
+#&gt; 923   Z492                  renal failure
+#&gt; 51    Z714                  alcohol abuse
+#&gt; 449   Z715                     drug abuse
+#&gt; 52    Z721                  alcohol abuse
+#&gt; 450   Z722                     drug abuse
+#&gt; 924   Z940                  renal failure
+#&gt; 595   Z944                  liver disease
+#&gt; 98    Z950            cardiac arrhythmias
+#&gt; 1508  Z952               valvular disease
+#&gt; 1509  Z953               valvular disease
+#&gt; 1510  Z954               valvular disease
+#&gt; 870   Z958   peripheral vascular disorder
+#&gt; 871   Z959   peripheral vascular disorder
+#&gt; 925   Z992                  renal failure</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -178,7 +1703,7 @@ or a name (character vector of length one) keyvalue object from package
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
