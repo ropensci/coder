@@ -45,8 +45,19 @@ codebook <- function(object, coding, ..., file = NULL) {
       )
     )
 
-  cb <- list(readme = readme, summary = s, all_codes = all_codes)
-  fileif(cb, file)
+  cb <- structure(
+    list(readme = readme, summary = s, all_codes = all_codes),
+    class = "codebook"
+  )
+
+  if (!is.null(file)) {
+    writexl::write_xlsx(cb, file)
+    message("codebook saved as ", file)
+    invisible(cb)
+  } else {
+    cb
+  }
+
 }
 
 #' Print codebook
@@ -59,6 +70,7 @@ codebook <- function(object, coding, ..., file = NULL) {
 #' @return `x` (invisible)
 #'
 #' @export
+#' @family classcodes
 #' @examples
 #' codebook(charlson, "icd10cm")
 print.codebook <- function(x, ...) {
@@ -101,17 +113,15 @@ codebooks <- function(..., file = NULL) {
   rdm <- grep(".readme", names(cbs))
   cbs <- cbs[-rdm[-1]] # Rm all readmes except the first
   names(cbs) <- gsub("(.*)(\\.readme)", "README", names(cbs))
-  fileif(cbs, file)
-}
 
-
-# Helper to export to file ----------------------------------------------------
-fileif <- function(x, file = NULL) {
-  out <- structure(x, class = "codebook")
   if (!is.null(file)) {
-    writexl::write_xlsx(x, file)
-    invisible(out)
+    writexl::write_xlsx(cbs, file)
+    message("codebooks saved as ", file)
   } else {
-    out
+    warning(
+      "No file specified! List of codebooks (invisable) returned!",
+      call. = FALSE
+    )
   }
+  invisible(cbs)
 }

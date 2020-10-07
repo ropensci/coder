@@ -1,9 +1,11 @@
+context("codebook")
+
 cb <- codebook(elixhauser, "icd10cm")
 cb2 <- codebook(elixhauser, "icd9cmd",
          cc_args = list(regex = "regex_icd9cm_enhanced")
 )
 
-cbs <- codebooks(cb1 = cb, cb2 = cb2)
+cbs <- suppressWarnings(codebooks(cb1 = cb, cb2 = cb2))
 
 test_that("codebook", {
   expect_is(cb, "codebook")

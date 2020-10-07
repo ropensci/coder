@@ -207,3 +207,14 @@ as.data.table.classified <- function(x, ...) {
     classcodes = attr(x, "classcodes")
   )
 }
+
+#' @export
+print.classified <- function(x, ...) {
+  writeLines(
+    paste0("\nNOTE! The classified data is an object of class: ",
+          paste(class(x), collapse = ", "),
+          ". \nIt is simply previewed here as a tibble for easier overview!\n"
+    )
+  )
+  print(tibble::as_tibble(x))
+}

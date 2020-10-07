@@ -26,7 +26,7 @@ Classification is implemented by classcodes objects with regular expressions ide
 all_classcodes()$classcodes
 ```
 
-We will have a closer look at one of those objects, `charlson`, to exemplify its content. The object is basically a `tibble` (data frame):
+Each of those classcodes are documented. See for example `?charlson` for detailed information regarding the implemented classcodes object for the Charlson comorbidity classification. We might also have a closer look at the classcodes itself to exemplify its content. The object is basically a `tibble` (data frame) ...
 
 ```{r}
 charlson
@@ -40,27 +40,35 @@ attributes(charlson)
 
 # Columns
 
--   The "group" column contains short descriptive names of all groups to classify by. Those names might contain spaces and other special characters which might be transformed when used (argument `tech_names` in `set_classcodes`).
--   Column "description" (optional) provides additional details of each group.
--   All columns with names prefixed by `regex_` (also found by `attr(charlson, "regexprs")`) specify different versions of group identification based on regular expressions (see `?charlson` for details). Those regular expressions only identifies individual codes but this can be controlled further by arguments `start` and `stop` to `set_classcodes`.
--   Columns with names prefixed by `index_` (also found by `attr(charlson, "indices")`) are numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups.
--   Other classcodes objects might have an additional column "condition" for conditional classification (see for example `?hip_ae`).
+First, consider the tibble columns, which have pre-specified names and content:
+
+-   `group`: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities). Might contain spaces and other special characters which might be transformed when used (controlled by `tech_names` in `set_classcodes()`).
+-   `description:` (optional) additional details describing each group.
+-   `regex_*:` regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Those column names are also found by `attr(charlson, "regexprs").`)
+-   `index_*`: numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Those column names are also found by `attr(charlson, "indices")` .)
+-   `condition`: (optional; not used with `charlson`) conditional classification (see for example `?hip_ae`).
 
 # Hierarchy
 
-Some classcodes objects (see for example `?elixhauser`) might have an additional class attribute "hierarchy", controlling hierarchical groups where only one of possibly several groups (occurring simultaneity) should be recognized for calculation of a weighted index sum.
+Some classcodes objects have an additional class attribute "hierarchy", controlling hierarchical groups where only one of possibly several groups (occurring simultaneity) should be recognized for calculation of a weighted index sum. This is true for Elixhauser:\
+
+```{r}
+attr(elixhauser, "hierarchy")
+```
+
+... meaning that patients who have both metastatic cancer and solid tumors should be recognized as such. If such patient is later assigned an aggregated index score, however, only the largest score is used (in this case for a metastatic cancer as superior to a solid tumor). The same is true for patients with both uncomplicated and complicated diabetes, for which only the complicated version is recognized.
 
 # Interpret the regular expressions
 
 ## Visualize graphically
 
-Regular expressions might be difficult to interpret but can be visualized by `visualize()`. This will usually display a web page in the default browser (here suppressed by `show = FALSE`):
+Regular expressions might be difficult to interpret and can therefore be `visualize()`:d, This will display a web page in the default browser (here suppressed by `show = FALSE`):
 
 ```{r}
 url <- visualize(charlson, show = FALSE, regex = "regex_icd10")
 ```
 
-Here, we can open the `url` "manually" by a link to the [JavaScript Regular Expression Parser & Visualizer](%60r%20url%60). The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for `r charlson$group[1]` as codified by `regex_icd9cm_deyo`:
+For this vignette, we can open the `url` "manually" by clicking this link to the [JavaScript Regular Expression Parser & Visualizer](%60r%20url%60). The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for `r charlson$group[1]` as codified by `regex_icd9cm_deyo`:
 
 ```{r}
 visualize(
@@ -92,11 +100,11 @@ knitr::include_graphics("regexp_charlson_ci_icd10.png")
 
 ```
 
-ICD-10 codes identifying myocardial infarction thus starts with `I2` followed by either `1`, `2` or `52`. The vertical bar, `|`, in the regular expression indicates a logical "or" within the parenthesis (as used for expressions longer than single characters).
+ICD-10 codes identifying myocardial infarction thus starts with `I2` followed by either `1`, `2` or `52`. The vertical bar, `|`, in the regular expression indicates a logical "or" within the parenthesis (as used for expressions longer than single characters). See `?regex` for further details.
 
 ## List all codes
 
-An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary` method for classcodes objects. (We here use the print method with `n = 30` to fit the output to the width of the vignette.)
+An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary()` method for classcodes objects.
 
 ```{r}
 summary(charlson, coding = "icd10cm")
@@ -104,7 +112,7 @@ summary(charlson, coding = "icd10cm")
 
 ## Interpretable codebook
 
-Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by the `codebook` function. The main purpose of the function is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a data frame "all\_codes":
+Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by `codebook()`. The main purpose of this function is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a tibble with "all\_codes" explaining the meaning of each code to be recognized by the regular expression:
 
 ```{r}
 codebook(charlson, "icd10cm")
@@ -131,11 +139,13 @@ summary(
 )
 ```
 
-# Set classcodes objects
+# Use classcodes objects
 
-Some functions do not use the classcodes object themselves, but a modified version passed through the `set_classcodes` function. This function can be called directly but is more often invoked by arguments passed by the `cc_args` argument used in other functions (as exemplified above).
+Most functions do not use the classcodes object themselves, but a modified version passed through `set_classcodes()`. This function can be called directly but is more often invoked by arguments passed by the `cc_args` argument used in other functions (as in the example above).
 
-We can modify the `charlson` classcodes object as follows:
+## Explicit use of `set_classcodes()`
+
+We might call `set_classcodes()`directly to prepare a classification scheme to classify patients according to the Charlson comorbidity index. The diagnoses data might be coded by the legacy classification ICD-8 (as suggested by Brusselaers et al. 2015). Such codes might be found in character strings with leading prefixes or in the middle of a more verbatim description. This is controlled by setting the argument `start = FALSE`, meaning that the identified ICD-8 codes do not need to appear in the beginning of each string. We might assume, however, that there is no more information after the code (as specified by `stop = TRUE`).
 
 ```{r}
 charlson_icd8 <- 
@@ -148,16 +158,42 @@ charlson_icd8 <-
   )
 ```
 
-The resulting object has only one `regex`-column. It is based on "regex\_icd8\_brusselaers" but suffixed with `$` (due to `stop = TRUE`). Group names might seem cumbersome but this will help to distinguish column names added by `categorize` if this function is run repeatedly with different classcodes. The original `charlson` object had `r nrow(charlson)` rows, but `charlson_icd8` has only `r nrow(charlson_icd8)`, since not all groups are defined by that version.
+The resulting object has only one `regex`-column (named `regex`). It is based on `regex_icd8_brusselaers` but suffixed with `$` (due to `stop = TRUE`). Group names might seem cumbersome but this will help to distinguish column names added by `categorize()` if this function is run repeatedly with different classcodes (if we prefer to calculate both the Charlson and Elixhauser indices for the same patients). The original `charlson` object had `r nrow(charlson)` rows, but `charlson_icd8` has only `r nrow(charlson_icd8)`, since not all groups are defined by that version.
 
 ```{r}
 charlson_icd8
 ```
 
-Note that all indices columns remain (although not showed above):
+Note that all indices columns remain:
 
 ```{r}
 names(charlson_icd8)
 ```
 
 It is thus possible to combine any categorization with any index, although some combinations might be preferred (such as `regex_icd9cm_deyo` combined with `index_deyo_ramano`).
+
+We can now use `charlson_icd8` in a call to classify:
+
+```{r}
+classify(410, charlson_icd8, tech_names = FALSE)
+```
+
+Thus, the ICD-8 code `410`is recognized only as myocardial infarction.
+
+## Implicit use of `set_classcodes()`
+
+Instead of pre-specifying the `charlson_icd8`, a similar result is achieved by:
+
+```{r}
+classify(
+  410,
+  charlson,
+  cc_args = list(
+    regex = "regex_icd8_brusselaers", 
+    start = FALSE, 
+    stop  = TRUE
+  )
+)
+```
+
+... where we decided to drop the `tech_names = TRUE`, however, since that lead to overly complicated column names.
