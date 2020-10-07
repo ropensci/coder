@@ -24,11 +24,11 @@ The `coder` package simplifies unit classification based on external code data. 
 
 ## Triad of objects
 
-Functions of the package relies on a triad of objects: 
+Functions of the package relies on a triad of objects:
 
-1. Case data with unit id:s and possible dates of interest
-2. External code data for corresponding units in (1) and with optional dates of interest and
-3. A classification scheme ('classcodes' object) with regular expressions to identify and categorize relevant codes from (2). 
+1.  Case data with unit id:s and possible dates of interest
+2.  External code data for corresponding units in (1) and with optional dates of interest and
+3.  A classification scheme ('classcodes' object) with regular expressions to identify and categorize relevant codes from (2).
 
 It is easy to introduce new classification schemes ('classcodes' objects) or to use default schemes included in the package. Use cases includes patient categorization based on comorbidity indices such as Charlson, Elixhauser, RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse events after hip and knee arthroplasty surgery.
 
@@ -41,16 +41,16 @@ library(tibble)
 
 coder::all_classcodes()
 ```
+
 ## Triad of functions
 
 There are three important functions to control the intended work flow of the package:
 
-i. `codify()` will merge object (1) and (2) for a coded data set of the intended format. If optional dates are specified, those will be used to construct time windows in order to filter out only the important dates (i.e. comorbidity during one year before surgery or adverse events 90 days after).
+i.  `codify()` will merge object (1) and (2) for a coded data set of the intended format. If optional dates are specified, those will be used to construct time windows in order to filter out only the important dates (i.e. comorbidity during one year before surgery or adverse events 90 days after).
 ii. `classify()` will then use the coded data and classify it using the `classcodes` object (3) (i.e. to code comorbidity data by the Charlson or Elixhauser comorbidity classifications, see below).
 iii. `index()` is a third optional step to summarize the individual `classcodes` categories to a (possibly weighted) index sum for each coded item (i.e. to calculate the Charlson comorbidity index for each patient).
 
-Those steps could be performed explicitly as `codify() %>% classify() %>% index()` or implicitly by the main function `categorize()` combining all steps automatically.  
-
+Those steps could be performed explicitly as `codify() %>% classify() %>% index()` or implicitly by the main function `categorize()` combining all steps automatically.
 
 # Use case
 
@@ -58,9 +58,9 @@ A typical use case of the `coder` package would consider patient data and comorb
 
 The concept of comorbidity is often attributed to [Feinstein](https://doi.org/10.1016/0021-9681(70)90054-8):
 
-> [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study. 
+> [T]he term co-morbidity will refer to any distinct additional clinical entity that has existed or that may occur during the clinical course of a patient who has the index disease under study.
 
-Let's consider a group of patients with total hip arthroplasty (THA), as identified from a national quality register, which might be large in size. Assume we are interested in those patients pre-surgery comorbidity, which is not captured by the quality register itself. Instead, this data might be codified in a secondary source, such as a national patient register containing all hospital visits and admissions during several years, both before and after the THA-surgery. Each hospital visit/admission might be recorded with one or several medical codes, for example using the International classification of diseases version 10 (ICD-10). Similarly, a medical prescription register might hold records of prescribed drugs with their corresponding codes from the Anatomic therapeutic chemical classification (ATC) system. 
+Let's consider a group of patients with total hip arthroplasty (THA), as identified from a national quality register, which might be large in size. Assume we are interested in those patients pre-surgery comorbidity, which is not captured by the quality register itself. Instead, this data might be codified in a secondary source, such as a national patient register containing all hospital visits and admissions during several years, both before and after the THA-surgery. Each hospital visit/admission might be recorded with one or several medical codes, for example using the International classification of diseases version 10 (ICD-10). Similarly, a medical prescription register might hold records of prescribed drugs with their corresponding codes from the Anatomic therapeutic chemical classification (ATC) system.
 
 Thus, combining the primary and secondary data sets (objects 1-2 above) using some unique patient id, and a possible time window (i.e. to only consider comorbidity as recorded during one year before the THA), is a first step to identify patient comorbidity. This step is performed by the `codify()` function in step (i) above.
 
@@ -68,25 +68,21 @@ We have now gathered all the relevant codes for each patient. Common classificat
 
 We have now reduced the data from tens of thousands of codes to perhaps 10-50 combined categories. This might be sufficient in some cases, although further simplifications might also be needed. It is thus common to simplify comorbidity into a single number, an index score, as the sum of individual comorbidities, possible weighted to differentiate more serious conditions from more trivial. Different weights might be of relevance under different circumstances or in different fields. This is implemented by the `index()` function in step (iii) above.
 
-
-
 # Charlson and Elixhauser
 
-The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](https://www.jstor.org/stable/3766985) comorbidity indices are two  examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.](https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
+The [Charlson](https://doi.org/10.1016/0021-9681(87)90171-8) and [Elixhauser](https://www.jstor.org/stable/3766985) comorbidity indices are two examples used in medical research. Each index consist of several medical conditions, possibly summarized by a (weighted) index. Each condition is defined by a set of medical codes, such as described by [Quan et al.](https://dx.doi.org/10.1097/01.mlr.0000182534.19832.83) and many others. Different versions of the International Classification of Diseases (ICD) codes are often used.
 
 The `coder` package provides substantial functionality for both Charlson and Elixhauser, although we will not focus on those indices here, since several other R packages have similar implementations as well:
 
-- [icd (CRAN)](https://CRAN.R-project.org/package=icd)
-- [comorbidity (CRAN)](https://CRAN.R-project.org/package=comorbidity)
-- [medicalrisk (CRAN)](https://CRAN.R-project.org/package=medicalrisk)
-- [comorbidities.icd10 (GitHub)](https://github.com/gforge/comorbidities.icd10)
-- [icdcoder (GitHub)](https://github.com/wtcooper/icdcoder)
+-   [icd (CRAN)](https://CRAN.R-project.org/package=icd)
+-   [comorbidity (CRAN)](https://CRAN.R-project.org/package=comorbidity)
+-   [medicalrisk (CRAN)](https://CRAN.R-project.org/package=medicalrisk)
+-   [comorbidities.icd10 (GitHub)](https://github.com/gforge/comorbidities.icd10)
+-   [icdcoder (GitHub)](https://github.com/wtcooper/icdcoder)
 
-`icd` and `comorbidity` are both good packages well suited for their purpose based on effective implementations. 
-`medicalrisk` can be used with ICD-9-CM codes but is not up-to-date with the latest version of ICD-10. `comorbidities.icd10` and `icdcoder` are not actively developed or maintained. 
+`icd` and `comorbidity` are both good packages well suited for their purpose based on effective implementations. `medicalrisk` can be used with ICD-9-CM codes but is not up-to-date with the latest version of ICD-10. `comorbidities.icd10` and `icdcoder` are not actively developed or maintained.
 
-One advantage with the `coder` package is the great flexibility for combining different sets of codes (ICD-8, ICD-9, ICD-9-CM and ICD-10 etc as given by the "regex" column above), with different sets of weighted indices. 
-
+One advantage with the `coder` package is the great flexibility for combining different sets of codes (ICD-8, ICD-9, ICD-9-CM and ICD-10 etc as given by the "regex" column above), with different sets of weighted indices.
 
 # Risk Rx V
 
@@ -94,19 +90,18 @@ Another advantage of the `coder` package is the inclusion of additional classifi
 
 As for all classcodes objects in the package, additional information and references are found in the object documentation (`?rxriskv`).
 
-
-
 # Concrete example
 
-Let's consider the hypothetical example abow with some more concrete example data below. 
+Let's consider the hypothetical example above with some more concrete example data below.
 
 ## Patients
 
-`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received THA surgery at given (random) dates (`event´ column). This data might represent a sample from a national quality register.
+`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received THA surgery at given (random) dates (\`event´ column). This data might represent a sample from a national quality register.
 
 ```{r}
 ex_people
 ```
+
 Assume we have some external code data from a national prescription register. Such register would likely cover additional patients but let's just consider a small sample with ATC data for patients above, such that each patient can have zero (the excluded 10 individuals), one, or several codes prescribed at different dates.
 
 ```{r}
@@ -114,7 +109,7 @@ set.seed(123)
 N <- 10000
 
 ex_atc <- 
-  data.frame(
+  tibble(
     
     # Name of patients with ATC codes
     name     = sample(ex_people$name[1:90], N, replace = TRUE),
@@ -132,10 +127,9 @@ ex_atc <-
 ex_atc
 ```
 
-
 # Default categorization
 
-A first attempt to calculate the Rx Risk V score for each patient: 
+A first attempt to calculate the Rx Risk V score for each patient:
 
 ```{r}
 default <- 
@@ -163,7 +157,6 @@ hist2 <- function(x) {
 hist2(default)
 ```
 
-
 # Specified time-window
 
 Note however that some prescriptions might have been filed long before surgery, or even after. Those codes are less relevant for comorbidities present at surgery. We can limit the categorization to a time window of one year prior to surgery.
@@ -189,9 +182,7 @@ hist2(
 
 # Alternative classification
 
-Comorbidities are identified from ATC codes captured by regular expression. 
-Codes identified by `regex_pratt` are used by default.
-Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019) as specified by an argument passed by the `cc_args` argument. 
+Comorbidities are identified from ATC codes captured by regular expression. Codes identified by `regex_pratt` are used by default. Let's use an alternative version adopted from [Caughey](https://dx.doi.org/10.1016/j.diabres.2009.10.019) as specified by an argument passed by the `cc_args` argument.
 
 ```{r}
 hist2(
@@ -230,12 +221,9 @@ codify(
   table()
 ```
 
-
-
-
 # Dirty code data
 
-Let's assume that our code data is not as clean as simulated above. 
+Let's assume that our code data is not as clean as simulated above.
 
 ```{r}
 s <- function(x) sample(x, N, replace = TRUE)

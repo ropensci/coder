@@ -24,12 +24,12 @@ codebook <- function(object, coding, ..., file = NULL) {
   # All codes listed
   kv <- decoder_data(coding)
   all_codes <- suppressMessages(as.keyvalue(object, coding, ...))
-  all_codes <- merge(kv, all_codes, by = "key")
+  all_codes <- tibble::as_tibble(merge(kv, all_codes, by = "key"))
   names(all_codes) <- c("code", "description", "group")
 
   # Readme tab explaining column names from other tabs
   readme <-
-    data.frame(
+    tibble::tibble(
       tab = c(rep("summary", ncol(s)), rep("all_codes", ncol(all_codes))),
       column = c(names(s), names(all_codes)),
       description = c(
@@ -49,11 +49,34 @@ codebook <- function(object, coding, ..., file = NULL) {
   fileif(cb, file)
 }
 
+#' Print codebook
+#'
+#' Print a preview of sheets otherwise exported to Excel
+#'
+#' @param x object of class [codebook]
+#' @param ... arguments passed to `tibble:::print.tbl()`
+#'
+#' @return `x` (invisible)
+#'
 #' @export
+#' @examples
+#' codebook(charlson, "icd10cm")
 print.codebook <- function(x, ...) {
   message(
     "Coodebooks are prefarably exported to Excel using the `file` argument! ",
     "Use `summary.classcodes()` or `visualize()` for interactive summaries!")
+
+  writeLines(
+    "Preview of README sheet specifying columns in following sheets:\n")
+  print(x$readme, ...)
+
+  writeLines("\n\nPreview of summary sheet:\n")
+  print(x$summary, ...)
+
+  writeLines("\n\nPreview of all_codes:\n")
+  print(x$all_codes, ...)
+
+  invisible(x)
 }
 
 
