@@ -3,9 +3,9 @@
 #' Enhance case data with code data, possibly limited to relevant period.
 #'
 #' @inheritParams copybig
-#' @param data [data.frame] or [data.table::data.table] with at least case id
+#' @param data data with at least case id
 #'   (`character`), and optional date ([`Date`]) of interest
-#' @param codedata [data.frame] or [data.table::data.table] with columns
+#' @param codedata additional data with columns
 #'   including case id (`character`), code and an optional date ([Date]) for
 #'   each code. An optional column `condition` might distinguish codes/dates
 #'   with certain characteristics (see example).
@@ -16,7 +16,10 @@
 #' @param days numeric vector of length two with lower and upper bound for range
 #'   of relevant days relative to `date`. See "Relevant period".
 #' @param alnum Should codes be cleaned from all non alphanumeric characters?
-#'
+#' @param n number of rows to preview as tibble.
+#'   The output is technically a [data.table::data.table], which might be an
+#'   unusual format to look at. Use `n = NULL` to print the object as is.
+#' @param ... arguments passed between methods
 #' @return
 #'   Object of class `codified` (inheriting from [data.table::data.table]).
 #'   Essentially `data` with additional columns:
@@ -39,14 +42,21 @@
 #'   - `NULL`: no time limitation at all.
 #'
 #' @export
+#' @name codify
 #'
 #' @examples
 #' codify(ex_people, ex_icd10, id = "name", code = "icd10",
 #'   date = "surgery", code_date = "admission", days = c(-365, 0))
 #' @family verbs
-codify <- function(
-  data, codedata, id, code, date = NULL, code_date = NULL,
-  days = NULL, alnum = FALSE, .copy = NA) {
+codify <- function(data,
+                   codedata,
+                   ...,
+                   id,
+                   code,
+                   date      = NULL,
+                   code_date = NULL,
+                   days      = NULL
+                   ) {
 
   if (!id %in% names(data))
     stop("No id column '", id, "' in data!", call. = FALSE)
@@ -71,20 +81,63 @@ codify <- function(
       stop("Argument 'code_date' must be specified if 'days' is not NULL!")
     if (!inherits(codedata[[code_date]], "Date"))
       stop("codedata column '", date, "' is not of class 'Date'!")
-    }
+  }
   if (!usedate && !is.null(date)) {
     warning("Date column ignored since days = NULL!")
   }
 
-  # Make data.tables 'x1' and 'x2' instead of 'data' and 'codedata'
-  if (!is.data.table(data))
-    data <- data.table(data, key = idcols)
-  if (!is.data.table(codedata))
+  UseMethod("codify")
+}
+
+
+
+#' @export
+#' @rdname codify
+codify.data.frame <- function(data,
+                              ...,
+                              id,
+                              date = NULL,
+                              days = NULL
+                              ) {
+  data <- data.table(data, key = c(id, if (!is.null(days)) date))
+  codify.data.table(data, ..., id = id, date = date, days = days)
+}
+
+
+
+#' @export
+#' @rdname codify
+codify.data.table <- function(data,
+                              codedata,
+                              ...,
+                              id,
+                              code,
+                              date = NULL,
+                              code_date = NULL,
+                              days = NULL,
+                              alnum = FALSE,
+                              .copy = NA
+                              ) {
+
+  usedate <- !is.null(days)
+  idcols  <- c(id, if (usedate) date)
+
+  # data is already data.table but might have the wrong keys if argument
+  # not passed through codify.data.table
+  if (!setequal(key(data), idcols)) {
+    setkeyv(data, idcols)
+  }
+  if (!is.data.table(codedata)) {
     codedata <- data.table(codedata, key = c(id, if (usedate) code_date, code))
+  }
+
+  # Make data.tables 'x1' and 'x2' instead of 'data' and 'codedata'
   x1 <- copybig(data, .copy) # New name to avoid copy complications
   x2 <- copybig(codedata, .copy)
 
-  if (alnum) x2[, (code) := gsub("[^[:alnum:]]", "", code)]
+  if (alnum) {
+    x2[, (code) := gsub("[^[:alnum:]]", "", code)]
+  }
 
   # Use faster date format
   if (usedate) {
@@ -92,7 +145,7 @@ codify <- function(
     codedata[, (code_date) := as.IDate(.SD[[code_date]])]
   }
 
-  in_period <- NULL # Silly work around to avoid check notes
+  in_period  <- NULL # Silly work around to avoid check notes
   x1_id_date <- x1[, idcols, with = FALSE] # To avoid unique on all data
 
   out <- merge(x1_id_date, x2, by = id, all.x = TRUE, allow.cartesian = TRUE)[,
@@ -119,4 +172,24 @@ codify <- function(
     out, id = id, code = code,
     class = unique(c("codified", class(out)))
   )
+}
+
+
+
+#' @export
+#' @rdname codify
+print.codified <- function(x, ..., n = 10) {
+  if (!is.null(n)) {
+    writeLines(
+      paste0("\nThe codified data is an object of class: ",
+             paste(class(x), collapse = ", "),
+             " with ", nrow(x), " rows.",
+             "\nIt is here previewed as a tibble",
+             "\nUse `print(x, n = NULL)` to print as is!\n\n"
+      )
+    )
+    print(tibble::as_tibble(utils::head(x, n)))
+  } else {
+    NextMethod()
+  }
 }

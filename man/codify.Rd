@@ -2,11 +2,28 @@
 % Please edit documentation in R/codify.R
 \name{codify}
 \alias{codify}
+\alias{codify.data.frame}
+\alias{codify.data.table}
+\alias{print.codified}
 \title{Codify elements (within period)}
 \usage{
 codify(
   data,
   codedata,
+  ...,
+  id,
+  code,
+  date = NULL,
+  code_date = NULL,
+  days = NULL
+)
+
+\method{codify}{data.frame}(data, ..., id, date = NULL, days = NULL)
+
+\method{codify}{data.table}(
+  data,
+  codedata,
+  ...,
   id,
   code,
   date = NULL,
@@ -15,6 +32,8 @@ codify(
   alnum = FALSE,
   .copy = NA
 )
+
+\method{print}{codified}(x, ..., n = 10)
 }
 \arguments{
 \item{data}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with at least case id
@@ -24,6 +43,8 @@ codify(
 including case id (\code{character}), code and an optional date (\link{Date}) for
 each code. An optional column \code{condition} might distinguish codes/dates
 with certain characteristics (see example).}
+
+\item{...}{arguments passed between methods}
 
 \item{id, code, date, code_date}{column names with case id
 (\code{character} from \code{data} and \code{codedata}), \code{code} (from \code{data}) and
@@ -41,6 +62,12 @@ If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
 but the object will be changed by reference.}
+
+\item{x}{object (potentially of large size)}
+
+\item{n}{number of rows to preview as tibble.
+The output is technically a \link[data.table:data.table]{data.table::data.table}, which might be an
+unusual format for some users.}
 }
 \value{
 Object of class \code{codified} (inheriting from \link[data.table:data.table]{data.table::data.table}).
