@@ -12,7 +12,7 @@ test_that("codify", {
   expect_equal(
     nrow(codify(ex_people[1, ], ex_icd10, id = "name", code = "icd10",
            date = "surgery", code_date = "admission", days = c(-365, 0))),
-    1
+    8
   )
 
   # Codes within 30 days after (i e adverse events)
@@ -26,7 +26,7 @@ test_that("codify", {
   expect_equal(
     nrow(codify(ex_people[1, ], ex_icd10, id = "name", code = "icd10",
                 date = "surgery", code_date = "admission", days = c(-Inf, Inf))),
-    1
+    8
   )
 
 })
@@ -38,7 +38,7 @@ pe$surgery[1] <- NA
 
 # Mask half of the dates from ICD10
 icd <- coder::ex_icd10
-icd$admission[1:500] <- NA
+icd$admission[1:1500] <- NA
 
 
 test_that("missing dates", {
@@ -52,7 +52,7 @@ test_that("missing dates", {
   expect_equal(
     nrow(codify(pe, icd, id = "name", code = "icd10",
                 date = "surgery", code_date = "admission",  days = c(-Inf, Inf))),
-    2
+    9
   )
 
   # Include all cases, no mather the date
@@ -63,7 +63,7 @@ test_that("missing dates", {
   suppressWarnings(
     expect_equal(
       nrow(codify(pe, icd, id = "name", code = "icd10", date = "event", days = NULL)),
-      3
+      16
     )
   )
 
