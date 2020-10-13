@@ -10,10 +10,17 @@ Data frames with 1,000 rows and 4 variables:
 \item{id}{Random names corresponding to column \code{name} in dataset
 \code{ex_people}}
 \item{date}{random dates corresponding to registered (comorbidity) codes}
-\item{code}{(comorbidity) codes as given by ICD-10}
+\item{code}{ICD-10 codes from the \code{uranium_pathology}
+dataset in the \code{icd.data} package by Jack Wasey originating from the
+United States Transuranium and Uranium Registries,
+published in the public domain.}
 \item{hdia}{boolean marker if corresponding code is the main diagnose of
 the hospital visit (randomly assigned to 10 percent of the codes)}
 }
+}
+\source{
+https://github.com/jackwasey/icd.data
+https://ustur.wsu.edu/about-us/
 }
 \usage{
 ex_icd10

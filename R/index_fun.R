@@ -39,7 +39,10 @@ NULL
 #' @rdname index_fun
 #' @export
 #' @family verbs
-index <- function(classified, ...) UseMethod("index")
+index <- function(classified, ...) {
+  UseMethod("index")
+}
+
 
 #' @export
 #' @rdname index_fun
@@ -50,12 +53,13 @@ index.data.frame <- function(classified, ...) {
   index(y, cc = attr(classified, "classcodes"), ...)
 }
 
+
 #' @rdname index_fun
 #' @export
 index.matrix <- function(classified, index = NULL, cc = NULL, ...) {
 
   # Find classcodes object (NULL is valid if no weights supplied)
-  cc <- set_classcodes(cc, classified)
+  cc <- suppressMessages(set_classcodes(cc, classified))
 
   # clean text to compare colnames if tech_names used
   regularize <- function(x) {

@@ -106,7 +106,7 @@ classify.data.table <- function(
   if (!any(grepl("(coder)?categorize",
                  vapply(sys.calls(), function(x) deparse(x[[1]])[[1]], "")))) {
     warning(
-      "'classify' does not preserve row order ('categorize' does!)"
+      "'classify()' does not preserve row order ('categorize()' does!)"
       , call. = FALSE
     )
   }
@@ -219,11 +219,5 @@ as.data.table.classified <- function(x, ...) {
 
 #' @export
 print.classified <- function(x, ...) {
-  writeLines(
-    paste0("\nNOTE! The classified data is an object of class: ",
-          paste(class(x), collapse = ", "),
-          ". \nIt is simply previewed here as a tibble for easier overview!\n"
-    )
-  )
-  print(tibble::as_tibble(x))
+  print_tibble(x, ...)
 }

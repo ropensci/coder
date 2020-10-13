@@ -179,17 +179,5 @@ codify.data.table <- function(data,
 #' @export
 #' @rdname codify
 print.codified <- function(x, ..., n = 10) {
-  if (!is.null(n)) {
-    writeLines(
-      paste0("\nThe codified data is an object of class: ",
-             paste(class(x), collapse = ", "),
-             " with ", nrow(x), " rows.",
-             "\nIt is here previewed as a tibble",
-             "\nUse `print(x, n = NULL)` to print as is!\n\n"
-      )
-    )
-    print(tibble::as_tibble(utils::head(x, n)))
-  } else {
-    NextMethod()
-  }
+ print_tibble(x, ..., n = n)
 }
