@@ -36,7 +36,9 @@
 #' # id column instead of row names
 #' as.data.frame(y)
 #' @family verbs
-classify <- function(codified, cc, ..., cc_args = list()) UseMethod("classify")
+classify <- function(codified, cc, ..., cc_args = list()) {
+  UseMethod("classify")
+}
 
 # Default method ----------------------------------------------------------
 
@@ -62,6 +64,9 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
   )
 }
 
+
+# codified ----------------------------------------------------------------
+
 #' @export
 #' @rdname classify
 classify.codified <- function(codified, ...) {
@@ -77,13 +82,17 @@ classify.codified <- function(codified, ...) {
   )
 }
 
+
+# data.frame --------------------------------------------------------------
+
 #' @export
 #' @rdname classify
 classify.data.frame <- function(codified, ...) {
   classify(as.data.table(codified), ...)
 }
 
-# Data frame method -------------------------------------------------------
+
+# data.table --------------------------------------------------------------
 
 #' @export
 #' @rdname classify

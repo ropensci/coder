@@ -36,10 +36,10 @@ codify(
 \method{print}{codified}(x, ..., n = 10)
 }
 \arguments{
-\item{data}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with at least case id
-(\code{character}), and optional date (\code{\link{Date}}) of interest}
+\item{data}{a table with columns id (\code{character}), code, and optionally date
+(\code{\link{Date}})}
 
-\item{codedata}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with columns
+\item{codedata}{additional data with columns
 including case id (\code{character}), code and an optional date (\link{Date}) for
 each code. An optional column \code{condition} might distinguish codes/dates
 with certain characteristics (see example).}
@@ -67,7 +67,7 @@ but the object will be changed by reference.}
 
 \item{n}{number of rows to preview as tibble.
 The output is technically a \link[data.table:data.table]{data.table::data.table}, which might be an
-unusual format for some users.}
+unusual format to look at. Use \code{n = NULL} to print the object as is.}
 }
 \value{
 Object of class \code{codified} (inheriting from \link[data.table:data.table]{data.table::data.table}).

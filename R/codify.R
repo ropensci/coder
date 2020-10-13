@@ -3,8 +3,8 @@
 #' Enhance case data with code data, possibly limited to relevant period.
 #'
 #' @inheritParams copybig
-#' @param data data with at least case id
-#'   (`character`), and optional date ([`Date`]) of interest
+#' @param data a table with columns id (`character`), code, and optionally date
+#'   ([`Date`])
 #' @param codedata additional data with columns
 #'   including case id (`character`), code and an optional date ([Date]) for
 #'   each code. An optional column `condition` might distinguish codes/dates
