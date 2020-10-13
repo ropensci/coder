@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -193,162 +193,143 @@ of row names.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Classify individual ICD10-codes by Elixhauser</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span><span class='op'>)</span>, <span class='st'>"elixhauser"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt;              congestive heart failure cardiac arrhythmias valvular disease
-#&gt; C80                             FALSE               FALSE            FALSE
-#&gt; I20                             FALSE               FALSE            FALSE
-#&gt; unvalid_code                    FALSE               FALSE            FALSE
-#&gt;              pulmonary circulation disorder peripheral vascular disorder
-#&gt; C80                                   FALSE                        FALSE
-#&gt; I20                                   FALSE                        FALSE
-#&gt; unvalid_code                          FALSE                        FALSE
-#&gt;              hypertension uncomplicated hypertension complicated paralysis
-#&gt; C80                               FALSE                    FALSE     FALSE
-#&gt; I20                               FALSE                    FALSE     FALSE
-#&gt; unvalid_code                      FALSE                    FALSE     FALSE
-#&gt;              other neurological disorders chronic pulmonary disease
-#&gt; C80                                 FALSE                     FALSE
-#&gt; I20                                 FALSE                     FALSE
-#&gt; unvalid_code                        FALSE                     FALSE
-#&gt;              diabetes uncomplicated diabetes complicated hypothyroidism
-#&gt; C80                           FALSE                FALSE          FALSE
-#&gt; I20                           FALSE                FALSE          FALSE
-#&gt; unvalid_code                  FALSE                FALSE          FALSE
-#&gt;              renal failure liver disease peptic ulcer disease AIDS/HIV lymphoma
-#&gt; C80                  FALSE         FALSE                FALSE    FALSE    FALSE
-#&gt; I20                  FALSE         FALSE                FALSE    FALSE    FALSE
-#&gt; unvalid_code         FALSE         FALSE                FALSE    FALSE    FALSE
-#&gt;              metastatic cancer solid tumor rheumatoid arthritis coagulopathy
-#&gt; C80                       TRUE       FALSE                FALSE        FALSE
-#&gt; I20                      FALSE       FALSE                FALSE        FALSE
-#&gt; unvalid_code             FALSE       FALSE                FALSE        FALSE
-#&gt;              obesity weight loss fluid electrolyte disorders blood loss anemia
-#&gt; C80            FALSE       FALSE                       FALSE             FALSE
-#&gt; I20            FALSE       FALSE                       FALSE             FALSE
-#&gt; unvalid_code   FALSE       FALSE                       FALSE             FALSE
-#&gt;              deficiency anemia alcohol abuse drug abuse psychoses depression
-#&gt; C80                      FALSE         FALSE      FALSE     FALSE      FALSE
-#&gt; I20                      FALSE         FALSE      FALSE     FALSE      FALSE
-#&gt; unvalid_code             FALSE         FALSE      FALSE     FALSE      FALSE
-#&gt; attr(,"classcodes")
-#&gt; [1] "elixhauser"
-#&gt; attr(,"id")
-#&gt; [1] "id"
-#&gt; attr(,"class")
-#&gt; [1] "classified" "matrix"    </div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 3 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; <span style='color: #555555;'># A tibble: 3 x 31</span><span>
+#&gt;   `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>2</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>3</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
+#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid</span><span>
+#&gt; </span><span style='color: #555555;'>#   arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
+#&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 <span class='co'># Classify patients by Charlson for comorbidities during</span>
 <span class='co'># one year before surgery</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>,
   date <span class='op'>=</span> <span class='st'>"surgery"</span>, days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span>, code_date <span class='op'>=</span> <span class='st'>"admission"</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'>
 <span class='co'># Use tha RCS classification instead and use technical column names</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>,
   cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"icd10_rcs"</span>, tech_names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify' does not preserve row order ('categorize' does!)</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='input'>
 <span class='co'># It is possible to convert the output of classify to a data frame with</span>
 <span class='co'># id column instead of row names</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                          name charlson_icd10_rcs_myocardial_infarction
-#&gt; 1              Bivings, Devin                                    FALSE
-#&gt; 2    Cardenas Perez, Gabriela                                    FALSE
-#&gt; 3            Liufau, Sue Lynn                                    FALSE
-#&gt; 4             Mitchell, Dalon                                    FALSE
-#&gt; 5                Perez, Vidal                                    FALSE
-#&gt; 6             Valdez, Antonio                                    FALSE
-#&gt; 7         al-Bashara, Shaahir                                    FALSE
-#&gt; 8             al-Dib, Farhaan                                    FALSE
-#&gt; 9         el-Salehi, Mahuroos                                    FALSE
-#&gt; 10             Beehler, Kelly                                       NA
-#&gt; 11            Connors, Jaylyn                                       NA
-#&gt; 12           Lechuga, Anthony                                       NA
-#&gt; 13          Martinez, Columba                                       NA
-#&gt; 14            Mendoza, Nathan                                       NA
-#&gt; 15    Miller, Von Buddenbrock                                       NA
-#&gt; 16             Orozco, Daniel                                       NA
-#&gt; 17            Snider, Melanie                                       NA
-#&gt; 18     al-Asmar, Abdur Raheem                                    FALSE
-#&gt; 19           al-Dawood, Hasan                                    FALSE
-#&gt; 20         al-Ismail, Waleeda                                    FALSE
-#&gt; 21         al-Jafri, Shaheera                                    FALSE
-#&gt; 22         al-Kader, Siddeeqa                                    FALSE
-#&gt; 23           al-Karam, Ziyaad                                    FALSE
-#&gt; 24        al-Ramadan, Hanoona                                    FALSE
-#&gt; 25          al-Shaban, Mazeed                                    FALSE
-#&gt; 26         Alexander, Bethany                                    FALSE
-#&gt; 27            Arguello, Tommy                                    FALSE
-#&gt; 28              Austin, Maeve                                    FALSE
-#&gt; 29             Ball, Rockelle                                    FALSE
-#&gt; 30             Bean, Haileigh                                    FALSE
-#&gt; 31            Bessard, Marzel                                    FALSE
-#&gt; 32               Bishop, Alec                                    FALSE
-#&gt; 33             Brown, Patrick                                    FALSE
-#&gt; 34              Burges, Amber                                    FALSE
-#&gt; 35             Burton, Martin                                    FALSE
-#&gt; 36            Cannon, Timothy                                    FALSE
-#&gt; 37                Chung, Noor                                    FALSE
-#&gt; 38     Copeland-Doyle, Symone                                    FALSE
-#&gt; 39                  Doan, Sam                                    FALSE
-#&gt; 40          Dominguez, Suriel                                    FALSE
-#&gt; 41             el-Amiri, Jaad                                    FALSE
-#&gt; 42          el-Bashara, Najma                                    FALSE
-#&gt; 43            el-Diab, Nadeem                                    FALSE
-#&gt; 44           el-Faris, Shuaib                                    FALSE
-#&gt; 45           el-Hallal, Uwais                                    FALSE
-#&gt; 46          el-Hamad, Tayyiba                                    FALSE
-#&gt; 47        el-Jamail, Hudhaifa                                    FALSE
-#&gt; 48          el-Khalifa, Nawfa                                    FALSE
-#&gt; 49            el-Khan, Jasoor                                    FALSE
-#&gt; 50           el-Masri, Junaid                                    FALSE
-#&gt; 51         el-Sabir, Mumtaaza                                    FALSE
-#&gt; 52           el-Sadek, Wafaaa                                    FALSE
-#&gt; 53       el-Salih, Farajallah                                    FALSE
-#&gt; 54          el-Sharif, Nadeem                                    FALSE
-#&gt; 55           el-Zaki, Huwaida                                    FALSE
-#&gt; 56          Enriquez, Anthony                                    FALSE
-#&gt; 57       Fitzsimmons, Tabatha                                    FALSE
-#&gt; 58              Grim, Cheanna                                    FALSE
-#&gt; 59                Harder, Rio                                    FALSE
-#&gt; 60                Hood, Dania                                    FALSE
-#&gt; 61            Howard, Marcius                                    FALSE
-#&gt; 62               Huff, Hassan                                    FALSE
-#&gt; 63            Hughey, Darlene                                    FALSE
-#&gt; 64         Hutchinson, Joshua                                    FALSE
-#&gt; 65   Iron Cloud-Gresko, Sadie                                    FALSE
-#&gt; 66        Khamsoulinh, De'Von                                    FALSE
-#&gt; 67          Littlejohn, Kevin                                    FALSE
-#&gt; 68             Martin, Trevor                                    FALSE
-#&gt; 69           Martinez, Alison                                    FALSE
-#&gt; 70           Mendoza, Jessica                                    FALSE
-#&gt; 71               Mills, Henry                                    FALSE
-#&gt; 72               Murray, Eric                                    FALSE
-#&gt; 73              Nguyen, Hoang                                    FALSE
-#&gt; 74               Pappas, Cole                                    FALSE
-#&gt; 75          Pearsall, Deontre                                    FALSE
-#&gt; 76            Pena, Francisco                                    FALSE
-#&gt; 77         Peterson, Brittany                                    FALSE
-#&gt; 78             Polvon, Alicia                                    FALSE
-#&gt; 79              Quick, Miriah                                    FALSE
-#&gt; 80              Raab, Jeannie                                    FALSE
-#&gt; 81              Rice, Jamissa                                    FALSE
-#&gt; 82         Rockwell, Savannah                                    FALSE
-#&gt; 83          Rodriquez, Monica                                    FALSE
-#&gt; 84               Romero, Carl                                    FALSE
-#&gt; 85  Rosales-Marroquin, Monika                                    FALSE
-#&gt; 86                  Sam, Niki                                    FALSE
-#&gt; 87              Sanchez, Ryan                                    FALSE
-#&gt; 88              Sharma, Katie                                    FALSE
-#&gt; 89        Summerhays, Spencer                                    FALSE
-#&gt; 90             Thompson, Trae                                    FALSE
-#&gt; 91  Torres Escalante, Herbert                                    FALSE
-#&gt; 92    Trader-Bankston, J'Quan                                    FALSE
-#&gt; 93                Tram, Medha                                    FALSE
-#&gt; 94             Vaclav, Taylor                                    FALSE
-#&gt; 95            Ventura, Joshua                                    FALSE
-#&gt; 96          Vogltanz, Michael                                    FALSE
-#&gt; 97              Wang, Phillip                                    FALSE
-#&gt; 98           Whitaker, Taylor                                    FALSE
-#&gt; 99                  Wu, Lucas                                    FALSE
-#&gt; 100             Wuertz, Jenny                                    FALSE
+</div><div class='output co'>#&gt;                       name charlson_icd10_rcs_myocardial_infarction
+#&gt; 1          Connelly, Monta                                    FALSE
+#&gt; 2     Garcia Hyett, Brenda                                    FALSE
+#&gt; 3    Martinez Botello, Luz                                    FALSE
+#&gt; 4        Marton, Gabriella                                    FALSE
+#&gt; 5           Mitchell, John                                    FALSE
+#&gt; 6             Nelson, Cory                                    FALSE
+#&gt; 7            Oh, Stephanie                                    FALSE
+#&gt; 8            Terry, Calvin                                    FALSE
+#&gt; 9       Williams, Nickolas                                    FALSE
+#&gt; 10         Young, Mitchell                                    FALSE
+#&gt; 11       Benitez, Veronica                                       NA
+#&gt; 12           Deleon, Isaac                                       NA
+#&gt; 13            Ebat, Kabita                                       NA
+#&gt; 14          Gerber, Alexis                                       NA
+#&gt; 15            Hill, Audrey                                       NA
+#&gt; 16         Howling, Keisha                                       NA
+#&gt; 17        Kauffmann, Kelia                                       NA
+#&gt; 18           Lopez, Daniel                                       NA
+#&gt; 19         Nguyen, Camille                                       NA
+#&gt; 20         Pracht, Derrick                                       NA
+#&gt; 21    Santistevan, Charlie                                       NA
+#&gt; 22          Schmer, Taylor                                       NA
+#&gt; 23    Sommerville, Dominic                                       NA
+#&gt; 24            Winn, Robert                                       NA
+#&gt; 25       el-Kaba, Ghuzaila                                       NA
+#&gt; 26      al-Akhter, Marzooq                                    FALSE
+#&gt; 27     al-Hossain, Zuraara                                    FALSE
+#&gt; 28    al-Koroma, Humaidaan                                    FALSE
+#&gt; 29        al-Vohra, Jamaal                                    FALSE
+#&gt; 30     Archer, Leon Hunter                                    FALSE
+#&gt; 31         Awtrey, Antonio                                    FALSE
+#&gt; 32      Bammesberger, Jozi                                    FALSE
+#&gt; 33          Banks, Silbret                                    FALSE
+#&gt; 34        Begaye, Sullivan                                    FALSE
+#&gt; 35             Bhatt, Yuko                                    FALSE
+#&gt; 36         Boucher, Teresa                                    FALSE
+#&gt; 37          Carnes, Shelby                                    FALSE
+#&gt; 38         Chapa, Nicholas                                    FALSE
+#&gt; 39            Chen, Trevor                                    FALSE
+#&gt; 40            Chin, Nelson                                    FALSE
+#&gt; 41  Christensen, Johnathon                                    FALSE
+#&gt; 42         Cleveland, Mark                                    FALSE
+#&gt; 43        Cornelius, Kelly                                    FALSE
+#&gt; 44        el-Abdoo, Minnah                                    FALSE
+#&gt; 45         el-Mirza, Ismad                                    FALSE
+#&gt; 46         el-Sani, Jawaad                                    FALSE
+#&gt; 47       el-Shahin, Hasnaa                                    FALSE
+#&gt; 48                 Fell, J                                    FALSE
+#&gt; 49        Fuentes, Roberto                                    FALSE
+#&gt; 50            Garza, Kenia                                    FALSE
+#&gt; 51         Glover, Phillip                                    FALSE
+#&gt; 52         Graves, Acineth                                    FALSE
+#&gt; 53        Hammond, Breanna                                    FALSE
+#&gt; 54      Hernandez, Anthony                                    FALSE
+#&gt; 55          Howard, Darius                                    FALSE
+#&gt; 56            Irick, Kevin                                    FALSE
+#&gt; 57          Jaime, Cynthia                                    FALSE
+#&gt; 58     Jefferson, Deontrae                                    FALSE
+#&gt; 59        Johnson, William                                    FALSE
+#&gt; 60              Kang, Xuan                                    FALSE
+#&gt; 61           Lacsina, Ryan                                    FALSE
+#&gt; 62             Lam, Hannah                                    FALSE
+#&gt; 63           Le, Christina                                    FALSE
+#&gt; 64             Le, Soraiya                                    FALSE
+#&gt; 65            Lee, Jaeyeon                                    FALSE
+#&gt; 66            Lehi, Marilu                                    FALSE
+#&gt; 67          Lening, Hannah                                    FALSE
+#&gt; 68             Lor, Vuthdy                                    FALSE
+#&gt; 69           Mahat, Sydney                                    FALSE
+#&gt; 70         Mandakh, Joseph                                    FALSE
+#&gt; 71        Martinez, Magler                                    FALSE
+#&gt; 72         Mcleod, Desmond                                    FALSE
+#&gt; 73           Meier, Hayden                                    FALSE
+#&gt; 74           Murphy, Kevin                                    FALSE
+#&gt; 75             Ngu, Brenda                                    FALSE
+#&gt; 76      Nikolaeff, Brandon                                    FALSE
+#&gt; 77         Norton, Charles                                    FALSE
+#&gt; 78        Packard, Kaitlin                                    FALSE
+#&gt; 79    Perales, Christopher                                    FALSE
+#&gt; 80          Rico, Germaine                                    FALSE
+#&gt; 81        Robinson, Markel                                    FALSE
+#&gt; 82          Rodri, Tiffany                                    FALSE
+#&gt; 83           Rubin, Miriah                                    FALSE
+#&gt; 84       Shuemaker, Lauren                                    FALSE
+#&gt; 85        Simpson, Kenneth                                    FALSE
+#&gt; 86           Slater, Trina                                    FALSE
+#&gt; 87        Steinke, Richard                                    FALSE
+#&gt; 88           Surage, Sydne                                    FALSE
+#&gt; 89         Swimmer, Apryll                                    FALSE
+#&gt; 90         Thumma, Phillip                                    FALSE
+#&gt; 91           Trine, Alyssa                                    FALSE
+#&gt; 92         Trinh, Schuyler                                    FALSE
+#&gt; 93        Trujillo, Olivia                                    FALSE
+#&gt; 94       Trujillo, Yanelly                                    FALSE
+#&gt; 95          Tveten, Austin                                    FALSE
+#&gt; 96       Weddington, Omega                                    FALSE
+#&gt; 97         Williams, Ellen                                    FALSE
+#&gt; 98           Ybarra, Maria                                    FALSE
+#&gt; 99           Yost, Rebecca                                    FALSE
+#&gt; 100            Zhen, Cassa                                    FALSE
 #&gt;     charlson_icd10_rcs_congestive_heart_failure
 #&gt; 1                                         FALSE
 #&gt; 2                                         FALSE
@@ -359,7 +340,7 @@ of row names.</p>
 #&gt; 7                                         FALSE
 #&gt; 8                                         FALSE
 #&gt; 9                                         FALSE
-#&gt; 10                                           NA
+#&gt; 10                                        FALSE
 #&gt; 11                                           NA
 #&gt; 12                                           NA
 #&gt; 13                                           NA
@@ -367,14 +348,14 @@ of row names.</p>
 #&gt; 15                                           NA
 #&gt; 16                                           NA
 #&gt; 17                                           NA
-#&gt; 18                                        FALSE
-#&gt; 19                                        FALSE
-#&gt; 20                                        FALSE
-#&gt; 21                                        FALSE
-#&gt; 22                                        FALSE
-#&gt; 23                                        FALSE
-#&gt; 24                                        FALSE
-#&gt; 25                                        FALSE
+#&gt; 18                                           NA
+#&gt; 19                                           NA
+#&gt; 20                                           NA
+#&gt; 21                                           NA
+#&gt; 22                                           NA
+#&gt; 23                                           NA
+#&gt; 24                                           NA
+#&gt; 25                                           NA
 #&gt; 26                                        FALSE
 #&gt; 27                                        FALSE
 #&gt; 28                                        FALSE
@@ -424,7 +405,7 @@ of row names.</p>
 #&gt; 72                                        FALSE
 #&gt; 73                                        FALSE
 #&gt; 74                                        FALSE
-#&gt; 75                                        FALSE
+#&gt; 75                                         TRUE
 #&gt; 76                                        FALSE
 #&gt; 77                                        FALSE
 #&gt; 78                                        FALSE
@@ -460,7 +441,7 @@ of row names.</p>
 #&gt; 7                                            FALSE
 #&gt; 8                                            FALSE
 #&gt; 9                                            FALSE
-#&gt; 10                                              NA
+#&gt; 10                                           FALSE
 #&gt; 11                                              NA
 #&gt; 12                                              NA
 #&gt; 13                                              NA
@@ -468,14 +449,14 @@ of row names.</p>
 #&gt; 15                                              NA
 #&gt; 16                                              NA
 #&gt; 17                                              NA
-#&gt; 18                                           FALSE
-#&gt; 19                                           FALSE
-#&gt; 20                                           FALSE
-#&gt; 21                                           FALSE
-#&gt; 22                                           FALSE
-#&gt; 23                                           FALSE
-#&gt; 24                                           FALSE
-#&gt; 25                                           FALSE
+#&gt; 18                                              NA
+#&gt; 19                                              NA
+#&gt; 20                                              NA
+#&gt; 21                                              NA
+#&gt; 22                                              NA
+#&gt; 23                                              NA
+#&gt; 24                                              NA
+#&gt; 25                                              NA
 #&gt; 26                                           FALSE
 #&gt; 27                                           FALSE
 #&gt; 28                                           FALSE
@@ -486,7 +467,7 @@ of row names.</p>
 #&gt; 33                                           FALSE
 #&gt; 34                                           FALSE
 #&gt; 35                                           FALSE
-#&gt; 36                                           FALSE
+#&gt; 36                                            TRUE
 #&gt; 37                                           FALSE
 #&gt; 38                                           FALSE
 #&gt; 39                                           FALSE
@@ -521,7 +502,7 @@ of row names.</p>
 #&gt; 68                                           FALSE
 #&gt; 69                                           FALSE
 #&gt; 70                                           FALSE
-#&gt; 71                                           FALSE
+#&gt; 71                                            TRUE
 #&gt; 72                                           FALSE
 #&gt; 73                                           FALSE
 #&gt; 74                                           FALSE
@@ -561,7 +542,7 @@ of row names.</p>
 #&gt; 7                                        FALSE                       FALSE
 #&gt; 8                                        FALSE                       FALSE
 #&gt; 9                                        FALSE                       FALSE
-#&gt; 10                                          NA                          NA
+#&gt; 10                                       FALSE                       FALSE
 #&gt; 11                                          NA                          NA
 #&gt; 12                                          NA                          NA
 #&gt; 13                                          NA                          NA
@@ -569,14 +550,14 @@ of row names.</p>
 #&gt; 15                                          NA                          NA
 #&gt; 16                                          NA                          NA
 #&gt; 17                                          NA                          NA
-#&gt; 18                                       FALSE                       FALSE
-#&gt; 19                                       FALSE                       FALSE
-#&gt; 20                                       FALSE                       FALSE
-#&gt; 21                                       FALSE                       FALSE
-#&gt; 22                                       FALSE                       FALSE
-#&gt; 23                                       FALSE                       FALSE
-#&gt; 24                                       FALSE                       FALSE
-#&gt; 25                                       FALSE                       FALSE
+#&gt; 18                                          NA                          NA
+#&gt; 19                                          NA                          NA
+#&gt; 20                                          NA                          NA
+#&gt; 21                                          NA                          NA
+#&gt; 22                                          NA                          NA
+#&gt; 23                                          NA                          NA
+#&gt; 24                                          NA                          NA
+#&gt; 25                                          NA                          NA
 #&gt; 26                                       FALSE                       FALSE
 #&gt; 27                                       FALSE                       FALSE
 #&gt; 28                                       FALSE                       FALSE
@@ -617,14 +598,14 @@ of row names.</p>
 #&gt; 63                                       FALSE                       FALSE
 #&gt; 64                                       FALSE                       FALSE
 #&gt; 65                                       FALSE                       FALSE
-#&gt; 66                                        TRUE                       FALSE
+#&gt; 66                                       FALSE                       FALSE
 #&gt; 67                                       FALSE                       FALSE
 #&gt; 68                                       FALSE                       FALSE
-#&gt; 69                                        TRUE                       FALSE
+#&gt; 69                                       FALSE                       FALSE
 #&gt; 70                                       FALSE                       FALSE
 #&gt; 71                                       FALSE                       FALSE
 #&gt; 72                                       FALSE                       FALSE
-#&gt; 73                                       FALSE                       FALSE
+#&gt; 73                                        TRUE                       FALSE
 #&gt; 74                                       FALSE                       FALSE
 #&gt; 75                                       FALSE                       FALSE
 #&gt; 76                                       FALSE                       FALSE
@@ -635,7 +616,7 @@ of row names.</p>
 #&gt; 81                                       FALSE                       FALSE
 #&gt; 82                                       FALSE                       FALSE
 #&gt; 83                                       FALSE                       FALSE
-#&gt; 84                                       FALSE                        TRUE
+#&gt; 84                                       FALSE                       FALSE
 #&gt; 85                                       FALSE                       FALSE
 #&gt; 86                                       FALSE                       FALSE
 #&gt; 87                                       FALSE                       FALSE
@@ -662,7 +643,7 @@ of row names.</p>
 #&gt; 7                                          FALSE
 #&gt; 8                                          FALSE
 #&gt; 9                                          FALSE
-#&gt; 10                                            NA
+#&gt; 10                                         FALSE
 #&gt; 11                                            NA
 #&gt; 12                                            NA
 #&gt; 13                                            NA
@@ -670,14 +651,14 @@ of row names.</p>
 #&gt; 15                                            NA
 #&gt; 16                                            NA
 #&gt; 17                                            NA
-#&gt; 18                                         FALSE
-#&gt; 19                                         FALSE
-#&gt; 20                                         FALSE
-#&gt; 21                                         FALSE
-#&gt; 22                                         FALSE
-#&gt; 23                                         FALSE
-#&gt; 24                                         FALSE
-#&gt; 25                                         FALSE
+#&gt; 18                                            NA
+#&gt; 19                                            NA
+#&gt; 20                                            NA
+#&gt; 21                                            NA
+#&gt; 22                                            NA
+#&gt; 23                                            NA
+#&gt; 24                                            NA
+#&gt; 25                                            NA
 #&gt; 26                                         FALSE
 #&gt; 27                                         FALSE
 #&gt; 28                                         FALSE
@@ -734,7 +715,7 @@ of row names.</p>
 #&gt; 79                                         FALSE
 #&gt; 80                                         FALSE
 #&gt; 81                                         FALSE
-#&gt; 82                                          TRUE
+#&gt; 82                                         FALSE
 #&gt; 83                                         FALSE
 #&gt; 84                                         FALSE
 #&gt; 85                                         FALSE
@@ -763,7 +744,7 @@ of row names.</p>
 #&gt; 7                                  FALSE
 #&gt; 8                                  FALSE
 #&gt; 9                                  FALSE
-#&gt; 10                                    NA
+#&gt; 10                                 FALSE
 #&gt; 11                                    NA
 #&gt; 12                                    NA
 #&gt; 13                                    NA
@@ -771,14 +752,14 @@ of row names.</p>
 #&gt; 15                                    NA
 #&gt; 16                                    NA
 #&gt; 17                                    NA
-#&gt; 18                                 FALSE
-#&gt; 19                                 FALSE
-#&gt; 20                                 FALSE
-#&gt; 21                                 FALSE
-#&gt; 22                                 FALSE
-#&gt; 23                                 FALSE
-#&gt; 24                                 FALSE
-#&gt; 25                                 FALSE
+#&gt; 18                                    NA
+#&gt; 19                                    NA
+#&gt; 20                                    NA
+#&gt; 21                                    NA
+#&gt; 22                                    NA
+#&gt; 23                                    NA
+#&gt; 24                                    NA
+#&gt; 25                                    NA
 #&gt; 26                                 FALSE
 #&gt; 27                                 FALSE
 #&gt; 28                                 FALSE
@@ -790,7 +771,7 @@ of row names.</p>
 #&gt; 34                                 FALSE
 #&gt; 35                                 FALSE
 #&gt; 36                                 FALSE
-#&gt; 37                                 FALSE
+#&gt; 37                                  TRUE
 #&gt; 38                                 FALSE
 #&gt; 39                                 FALSE
 #&gt; 40                                 FALSE
@@ -864,7 +845,7 @@ of row names.</p>
 #&gt; 7                                         FALSE
 #&gt; 8                                         FALSE
 #&gt; 9                                         FALSE
-#&gt; 10                                           NA
+#&gt; 10                                        FALSE
 #&gt; 11                                           NA
 #&gt; 12                                           NA
 #&gt; 13                                           NA
@@ -872,14 +853,14 @@ of row names.</p>
 #&gt; 15                                           NA
 #&gt; 16                                           NA
 #&gt; 17                                           NA
-#&gt; 18                                        FALSE
-#&gt; 19                                        FALSE
-#&gt; 20                                        FALSE
-#&gt; 21                                        FALSE
-#&gt; 22                                        FALSE
-#&gt; 23                                        FALSE
-#&gt; 24                                        FALSE
-#&gt; 25                                        FALSE
+#&gt; 18                                           NA
+#&gt; 19                                           NA
+#&gt; 20                                           NA
+#&gt; 21                                           NA
+#&gt; 22                                           NA
+#&gt; 23                                           NA
+#&gt; 24                                           NA
+#&gt; 25                                           NA
 #&gt; 26                                        FALSE
 #&gt; 27                                        FALSE
 #&gt; 28                                        FALSE
@@ -965,7 +946,7 @@ of row names.</p>
 #&gt; 7                              FALSE                                    FALSE
 #&gt; 8                              FALSE                                    FALSE
 #&gt; 9                              FALSE                                    FALSE
-#&gt; 10                                NA                                       NA
+#&gt; 10                             FALSE                                    FALSE
 #&gt; 11                                NA                                       NA
 #&gt; 12                                NA                                       NA
 #&gt; 13                                NA                                       NA
@@ -973,14 +954,14 @@ of row names.</p>
 #&gt; 15                                NA                                       NA
 #&gt; 16                                NA                                       NA
 #&gt; 17                                NA                                       NA
-#&gt; 18                             FALSE                                    FALSE
-#&gt; 19                             FALSE                                    FALSE
-#&gt; 20                             FALSE                                    FALSE
-#&gt; 21                             FALSE                                    FALSE
-#&gt; 22                             FALSE                                    FALSE
-#&gt; 23                             FALSE                                    FALSE
-#&gt; 24                             FALSE                                    FALSE
-#&gt; 25                             FALSE                                    FALSE
+#&gt; 18                                NA                                       NA
+#&gt; 19                                NA                                       NA
+#&gt; 20                                NA                                       NA
+#&gt; 21                                NA                                       NA
+#&gt; 22                                NA                                       NA
+#&gt; 23                                NA                                       NA
+#&gt; 24                                NA                                       NA
+#&gt; 25                                NA                                       NA
 #&gt; 26                             FALSE                                    FALSE
 #&gt; 27                             FALSE                                    FALSE
 #&gt; 28                             FALSE                                    FALSE
@@ -991,12 +972,12 @@ of row names.</p>
 #&gt; 33                             FALSE                                    FALSE
 #&gt; 34                             FALSE                                    FALSE
 #&gt; 35                             FALSE                                    FALSE
-#&gt; 36                             FALSE                                    FALSE
+#&gt; 36                              TRUE                                    FALSE
 #&gt; 37                             FALSE                                    FALSE
 #&gt; 38                             FALSE                                    FALSE
-#&gt; 39                             FALSE                                     TRUE
+#&gt; 39                             FALSE                                    FALSE
 #&gt; 40                             FALSE                                    FALSE
-#&gt; 41                             FALSE                                    FALSE
+#&gt; 41                             FALSE                                     TRUE
 #&gt; 42                             FALSE                                    FALSE
 #&gt; 43                             FALSE                                    FALSE
 #&gt; 44                             FALSE                                    FALSE
@@ -1016,7 +997,7 @@ of row names.</p>
 #&gt; 58                             FALSE                                    FALSE
 #&gt; 59                             FALSE                                    FALSE
 #&gt; 60                             FALSE                                    FALSE
-#&gt; 61                             FALSE                                     TRUE
+#&gt; 61                             FALSE                                    FALSE
 #&gt; 62                             FALSE                                    FALSE
 #&gt; 63                             FALSE                                    FALSE
 #&gt; 64                             FALSE                                    FALSE
@@ -1034,7 +1015,7 @@ of row names.</p>
 #&gt; 76                             FALSE                                    FALSE
 #&gt; 77                             FALSE                                    FALSE
 #&gt; 78                             FALSE                                    FALSE
-#&gt; 79                              TRUE                                    FALSE
+#&gt; 79                             FALSE                                    FALSE
 #&gt; 80                             FALSE                                    FALSE
 #&gt; 81                             FALSE                                    FALSE
 #&gt; 82                             FALSE                                    FALSE
@@ -1048,7 +1029,7 @@ of row names.</p>
 #&gt; 90                             FALSE                                    FALSE
 #&gt; 91                             FALSE                                    FALSE
 #&gt; 92                             FALSE                                    FALSE
-#&gt; 93                             FALSE                                     TRUE
+#&gt; 93                              TRUE                                     TRUE
 #&gt; 94                             FALSE                                    FALSE
 #&gt; 95                             FALSE                                    FALSE
 #&gt; 96                             FALSE                                    FALSE
@@ -1066,7 +1047,7 @@ of row names.</p>
 #&gt; 7                           FALSE
 #&gt; 8                           FALSE
 #&gt; 9                           FALSE
-#&gt; 10                             NA
+#&gt; 10                          FALSE
 #&gt; 11                             NA
 #&gt; 12                             NA
 #&gt; 13                             NA
@@ -1074,19 +1055,19 @@ of row names.</p>
 #&gt; 15                             NA
 #&gt; 16                             NA
 #&gt; 17                             NA
-#&gt; 18                          FALSE
-#&gt; 19                          FALSE
-#&gt; 20                          FALSE
-#&gt; 21                          FALSE
-#&gt; 22                          FALSE
-#&gt; 23                          FALSE
-#&gt; 24                          FALSE
-#&gt; 25                          FALSE
+#&gt; 18                             NA
+#&gt; 19                             NA
+#&gt; 20                             NA
+#&gt; 21                             NA
+#&gt; 22                             NA
+#&gt; 23                             NA
+#&gt; 24                             NA
+#&gt; 25                             NA
 #&gt; 26                          FALSE
 #&gt; 27                          FALSE
 #&gt; 28                          FALSE
-#&gt; 29                          FALSE
-#&gt; 30                           TRUE
+#&gt; 29                           TRUE
+#&gt; 30                          FALSE
 #&gt; 31                          FALSE
 #&gt; 32                          FALSE
 #&gt; 33                          FALSE
@@ -1118,19 +1099,19 @@ of row names.</p>
 #&gt; 59                          FALSE
 #&gt; 60                          FALSE
 #&gt; 61                          FALSE
-#&gt; 62                           TRUE
+#&gt; 62                          FALSE
 #&gt; 63                           TRUE
 #&gt; 64                          FALSE
 #&gt; 65                          FALSE
 #&gt; 66                          FALSE
-#&gt; 67                          FALSE
+#&gt; 67                           TRUE
 #&gt; 68                          FALSE
 #&gt; 69                          FALSE
 #&gt; 70                          FALSE
 #&gt; 71                          FALSE
 #&gt; 72                          FALSE
-#&gt; 73                           TRUE
-#&gt; 74                           TRUE
+#&gt; 73                          FALSE
+#&gt; 74                          FALSE
 #&gt; 75                          FALSE
 #&gt; 76                          FALSE
 #&gt; 77                          FALSE
@@ -1148,7 +1129,7 @@ of row names.</p>
 #&gt; 89                          FALSE
 #&gt; 90                          FALSE
 #&gt; 91                          FALSE
-#&gt; 92                           TRUE
+#&gt; 92                          FALSE
 #&gt; 93                          FALSE
 #&gt; 94                          FALSE
 #&gt; 95                          FALSE
@@ -1156,7 +1137,7 @@ of row names.</p>
 #&gt; 97                          FALSE
 #&gt; 98                          FALSE
 #&gt; 99                          FALSE
-#&gt; 100                          TRUE
+#&gt; 100                         FALSE
 #&gt;     charlson_icd10_rcs_moderate_or_severe_liver_disease
 #&gt; 1                                                 FALSE
 #&gt; 2                                                 FALSE
@@ -1167,7 +1148,7 @@ of row names.</p>
 #&gt; 7                                                 FALSE
 #&gt; 8                                                 FALSE
 #&gt; 9                                                 FALSE
-#&gt; 10                                                   NA
+#&gt; 10                                                FALSE
 #&gt; 11                                                   NA
 #&gt; 12                                                   NA
 #&gt; 13                                                   NA
@@ -1175,14 +1156,14 @@ of row names.</p>
 #&gt; 15                                                   NA
 #&gt; 16                                                   NA
 #&gt; 17                                                   NA
-#&gt; 18                                                FALSE
-#&gt; 19                                                FALSE
-#&gt; 20                                                FALSE
-#&gt; 21                                                FALSE
-#&gt; 22                                                FALSE
-#&gt; 23                                                FALSE
-#&gt; 24                                                FALSE
-#&gt; 25                                                FALSE
+#&gt; 18                                                   NA
+#&gt; 19                                                   NA
+#&gt; 20                                                   NA
+#&gt; 21                                                   NA
+#&gt; 22                                                   NA
+#&gt; 23                                                   NA
+#&gt; 24                                                   NA
+#&gt; 25                                                   NA
 #&gt; 26                                                FALSE
 #&gt; 27                                                FALSE
 #&gt; 28                                                FALSE
@@ -1268,7 +1249,7 @@ of row names.</p>
 #&gt; 7                                       FALSE                       FALSE
 #&gt; 8                                       FALSE                       FALSE
 #&gt; 9                                       FALSE                       FALSE
-#&gt; 10                                         NA                          NA
+#&gt; 10                                      FALSE                       FALSE
 #&gt; 11                                         NA                          NA
 #&gt; 12                                         NA                          NA
 #&gt; 13                                         NA                          NA
@@ -1276,16 +1257,16 @@ of row names.</p>
 #&gt; 15                                         NA                          NA
 #&gt; 16                                         NA                          NA
 #&gt; 17                                         NA                          NA
-#&gt; 18                                       TRUE                       FALSE
-#&gt; 19                                      FALSE                       FALSE
-#&gt; 20                                      FALSE                       FALSE
-#&gt; 21                                      FALSE                       FALSE
-#&gt; 22                                      FALSE                       FALSE
-#&gt; 23                                      FALSE                       FALSE
-#&gt; 24                                      FALSE                       FALSE
-#&gt; 25                                      FALSE                       FALSE
+#&gt; 18                                         NA                          NA
+#&gt; 19                                         NA                          NA
+#&gt; 20                                         NA                          NA
+#&gt; 21                                         NA                          NA
+#&gt; 22                                         NA                          NA
+#&gt; 23                                         NA                          NA
+#&gt; 24                                         NA                          NA
+#&gt; 25                                         NA                          NA
 #&gt; 26                                      FALSE                       FALSE
-#&gt; 27                                      FALSE                       FALSE
+#&gt; 27                                       TRUE                       FALSE
 #&gt; 28                                      FALSE                       FALSE
 #&gt; 29                                      FALSE                       FALSE
 #&gt; 30                                      FALSE                       FALSE
@@ -1297,7 +1278,7 @@ of row names.</p>
 #&gt; 36                                      FALSE                       FALSE
 #&gt; 37                                      FALSE                       FALSE
 #&gt; 38                                      FALSE                       FALSE
-#&gt; 39                                       TRUE                       FALSE
+#&gt; 39                                      FALSE                       FALSE
 #&gt; 40                                      FALSE                       FALSE
 #&gt; 41                                      FALSE                       FALSE
 #&gt; 42                                      FALSE                       FALSE
@@ -1358,7 +1339,7 @@ of row names.</p>
 #&gt; 97                                      FALSE                       FALSE
 #&gt; 98                                      FALSE                       FALSE
 #&gt; 99                                      FALSE                       FALSE
-#&gt; 100                                     FALSE                       FALSE</div></pre>
+#&gt; 100                                     FALSE                       FALSE</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

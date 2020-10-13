@@ -11,14 +11,14 @@ test_that("set_classcodes", {
   expect_equal(set_classcodes(NULL, y), set_classcodes(elixhauser))
   expect_length(set_classcodes("elixhauser"), 9)
   expect_message(
-    set_classcodes("elixhauser"), "Classification based on: regex_icd10")
+    set_classcodes("elixhauser"), "Classification based on: icd10")
   expect_error(
     set_classcodes(elixhauser, tech_names = TRUE),
     "must be refferred by name if"
   )
   expect_equal(
     names(set_classcodes("elixhauser", tech_names = TRUE))[2],
-    "index_sum_all"
+    "sum_all"
   )
   expect_error(
     set_classcodes(elixhauser, regex = "wrong"),

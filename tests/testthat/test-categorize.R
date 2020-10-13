@@ -10,7 +10,7 @@ test_that("categorize", {
       ex_people, codedata = ex_icd10, cc = "elixhauser",
       id = "name", code = "icd10"
     ),
-    "Classification based on: regex_icd10"
+    "Classification based on: icd10"
   )
   expect_error(
     categorize(ex_people, ex_icd10, "elixhauser", id = "wrong")
@@ -30,7 +30,7 @@ test_that("categorize", {
   )
   expect_equal(
     ncol(categorize(ex_people, codedata = ex_icd10, cc = "elixhauser",
-                    id = "name", code = "icd10", index = "index_sid30")),
+                    id = "name", code = "icd10", index = "sid30")),
     34
   )
 
@@ -45,9 +45,9 @@ test_that("categorize", {
       categorize(
         ex_people, codedata = ex_icd10, cc = "elixhauser",
         id = "name", code = "icd10",
-        cc_args = list(regex = "regex_icd10", tech_names = TRUE))
+        cc_args = list(regex = "icd10", tech_names = TRUE))
     )[3],
-    "elixhauser_regex_icd10_congestive_heart_failure"
+    "elixhauser_icd10_congestive_heart_failure"
   )
 
   expect_equal(

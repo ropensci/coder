@@ -15,32 +15,32 @@
 #' @format A data frame with 31 rows and 8 variables:
 #' \describe{
 #'   \item{group}{comorbidity groups}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of
+#'   \item{icd10}{regular expressions identifying ICD-10 codes of
 #'     each group. Corresponds to column 'ICD-10' in table 2
 #'     of Quan et al. (2005).}
-#'   \item{regex_icd10_short}{regular expressions identifying only the first
+#'   \item{icd10_short}{regular expressions identifying only the first
 #'      three characters of ICD-10 codes of each group. This alternative version
 #'      was added only to use in emergency when only the first three digits are
 #'      available. It is not an official version and we do not recommend to
 #'      use it!}
-#'   \item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
+#'   \item{icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
 #'     in table 2 of Quan et al. (2005).}
-#'   \item{regex_icd9cm_ahrqweb}{Corresponds to column
+#'   \item{icd9cm_ahrqweb}{Corresponds to column
 #'     'Elixhauser AHRQ-Web ICD-9-CM' in table 2 of Quan et al. (2005).}
-#'   \item{regex_icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
+#'   \item{icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
 #'     in table 2 of Quan et al. (2005).}
-#'   \item{index_sum_all}{all weights = 1 (thus no weights)}
-#'   \item{index_sum_all_ahrq}{as `sum_all` excluding "cardiac arrhythmia.
-#'     Compare to `regex_icd9cm_ahrqweb` which does not
+#'   \item{sum_all}{all weights = 1 (thus no weights)}
+#'   \item{sum_all_ahrq}{as `sum_all` excluding "cardiac arrhythmia.
+#'     Compare to `icd9cm_ahrqweb` which does not
 #'     consider this condition.}
-#'   \item{index_walraven}{weights suggested by Walraven et al. (2009)}
-#'   \item{index_sid29}{weights suggested by Thompson et al. (2015)
+#'   \item{walraven}{weights suggested by Walraven et al. (2009)}
+#'   \item{sid29}{weights suggested by Thompson et al. (2015)
 #'     based on all conditions except cardiac arrhythmia}
-#'   \item{index_sid30}{weights suggested by Thompson et al. (2015)
+#'   \item{sid30}{weights suggested by Thompson et al. (2015)
 #'     based on all conditions}
-#'  \item{index_ahrq_mort}{weights for in-hospital mortality suggested by
+#'  \item{ahrq_mort}{weights for in-hospital mortality suggested by
 #'    Moore et al. (2017)}
-#'  \item{index_ahrq_readm}{weights for readmissions suggested by
+#'  \item{ahrq_readm}{weights for readmissions suggested by
 #'    Moore et al. (2017)}
 #' }
 #'
@@ -88,37 +88,37 @@
 #'   - `group:` comorbidity groups
 #'   - `description:` Verbal description of codes as described by
 #'     Deyo et al. (1992).
-#'   - `regex_icd10:` regular expressions identifying ICD-10 codes of each
+#'   - `icd10:` regular expressions identifying ICD-10 codes of each
 #'   group as decoded from Quan et al. 2005. Note that this classification was
 #'   not originally used with all weights! To simply use this classification
 #'   table with weights other than `quan_original` and `quan_updated`
 #'   might therefore lead to different results than originally intended for each
 #'   index.
-#'   - `regex_icd9cm_deyo:`Codes from table 1 column "Deyo's ICD-9-CM"
+#'   - `icd9cm_deyo:`Codes from table 1 column "Deyo's ICD-9-CM"
 #'     in Quan et al. (2005).
 #'     Procedure code 38.48 for peripheral vascular disease ignored.
-#'   - `regex_icd9cm_enhanced:` Codes from table 1 column "Enhanced ICD-9-CM"
+#'   - `icd9cm_enhanced:` Codes from table 1 column "Enhanced ICD-9-CM"
 #'     in Quan et al. (2005).
-#'   - `regex_icd10_rcs:` Codification by Armitage (2010).
+#'   - `icd10_rcs:` Codification by Armitage (2010).
 #'     Note that Peptic ulcer disease is not included.
 #'     All liver diseases (including mild) are included in
 #'     "moderate or severe liver disease".
 #'     All diabetes is included in "diabetes complication"
-#'   - `regex_icd8_brusselaers:` Back translated version from ICD-10 to
+#'   - `icd8_brusselaers:` Back translated version from ICD-10 to
 #'     ICD-8 by Brusselaers et al. (2017).
 #'     "Moderate and severe liver disease" contains all liver disease and
 #'     "diabetes complication" contains all diabetes.
-#'   - `regex_icd9_brusselaers:` Back translated version from ICD-10 to
+#'   - `icd9_brusselaers:` Back translated version from ICD-10 to
 #'   ICD-9 by Brusselaers et al. (2017).
 #'     "Moderate and severe liver disease" contains all liver disease and
 #'     "diabetes complication" contains all diabetes.
-#'   - `index_charlson:` original weights as suggested by Charlson et al.
+#'   - `charlson:` original weights as suggested by Charlson et al.
 #'      (1987)*
-#'   - `index_deyo_ramano:` weights suggested by Deyo and Romano*
-#'   - `index_dhoore:` weights suggested by D'Hoore*
-#'   - `index_ghali:` weights suggested by Ghali*
-#'   - `index_quan_original:` weights suggested by Quan (2005)
-#'   - `index_quan_updated:` weights suggested by Quan (2011)
+#'   - `deyo_ramano:` weights suggested by Deyo and Romano*
+#'   - `dhoore:` weights suggested by D'Hoore*
+#'   - `ghali:` weights suggested by Ghali*
+#'   - `quan_original:` weights suggested by Quan (2005)
+#'   - `quan_updated:` weights suggested by Quan (2011)
 #'
 #' * Weights decoded from Yurkovich et al. (2015).
 #'
@@ -164,9 +164,9 @@
 #' \describe{
 #'   \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
 #'   "special" for codes beginning with "UA", "UB" and "UP"}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+#'   \item{icd10}{regular expressions identifying ICD-10 codes of each
 #'     group}
-#'   \item{index_only_ordinary}{index weights, 1 for ordinary and 0 for special}
+#'   \item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 #' }
 #' @references
 #'
@@ -211,12 +211,12 @@
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Different types of adverse events (see reference section)}
-#'   \item{regex_icd10}{regular expressions identifying ICD-10 codes for each
+#'   \item{icd10}{regular expressions identifying ICD-10 codes for each
 #'     group}
-#'  \item{regex_icd10_fracture}{regular expressions for fracture patients.
+#'  \item{icd10_fracture}{regular expressions for fracture patients.
 #'    Essentially the same as `regex` but with some additional codes for
 #'    group "DM1 other"}
-#'  \item{regex_kva}{regular expressions identifying KVA codes}
+#'  \item{kva}{regular expressions identifying KVA codes}
 #'   \item{condition}{special conditions are used, see below.}
 #' }
 #'
@@ -250,8 +250,8 @@
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Infection or dislocation}
-#'   \item{regex_icd10}{regular expressions based on ICD-10}
-#'  \item{regex_kva}{regular expressions based on KVA codes}
+#'   \item{icd10}{regular expressions based on ICD-10}
+#'  \item{kva}{regular expressions based on KVA codes}
 #' }
 #'
 #' @seealso ae
@@ -269,13 +269,13 @@
 #' @format Data frames with 39 rows and 6 variables:
 #' \describe{
 #'   \item{group}{medical condition}
-#'   \item{regex_pratt}{ATC codes from table 1 in Pratt et al. 2018
+#'   \item{pratt}{ATC codes from table 1 in Pratt et al. 2018
 #'    (ignoring PBS item codes and extra conditions).}
-#'   \item{regex_garland}{Modified version by Anne
+#'   \item{garland}{Modified version by Anne
 #'   Garland to resemble medical use in Sweden 2016 (Unpublished).}
-#'  \item{regex_caughey}{From appendix 1 in Caughey et al. 2010}
-#'  \item{index_pratt}{Mortality weights from table 1 in Pratt et al. 2018}
-#'  \item{index_sum_all}{Unweighted count of all conditions.}
+#'  \item{caughey}{From appendix 1 in Caughey et al. 2010}
+#'  \item{pratt}{Mortality weights from table 1 in Pratt et al. 2018}
+#'  \item{sum_all}{Unweighted count of all conditions.}
 #' }
 #'
 #' @references

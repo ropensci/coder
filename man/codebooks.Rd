@@ -21,7 +21,7 @@ Combine codebooks for classcodes objects
 \examples{
 c1 <- codebook(elixhauser, "icd10cm")
 c2 <- codebook(elixhauser, "icd9cmd",
-  cc_args = list(regex = "regex_icd9cm_enhanced")
+  cc_args = list(regex = "icd9cm_enhanced")
   )
 codebooks(elix_icd10 = c1, elix_icd9cm = c2)
 }

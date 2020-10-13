@@ -77,7 +77,7 @@ expressions to identify and categorize relevant codes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -256,19 +256,19 @@ package website <a href='https://eribul.github.io/coder'>https://eribul.github.i
     <pre class="examples"><div class='input'><span class='co'># Add Elixhauser based on all registered ICD10-codes</span>
 <span class='fu'>categorize</span><span class='op'>(</span><span class='va'>ex_people</span>, codedata <span class='op'>=</span> <span class='va'>ex_icd10</span>, cc <span class='op'>=</span> <span class='st'>"elixhauser"</span>,
   id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 100 x 40</span><span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 100 x 40</span><span>
 #&gt;    name  surgery    `congestive hea~ `cardiac arrhyt~ `valvular disea~
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> Alex~ 2019-10-08 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 2</span><span> Argu~ 2020-07-05 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 3</span><span> Aust~ 2020-06-28 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 4</span><span> Ball~ 2019-11-15 FALSE            TRUE             FALSE           
-#&gt; </span><span style='color: #555555;'> 5</span><span> Bean~ 2019-12-14 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 6</span><span> Beeh~ 2019-11-03 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 7</span><span> Bess~ 2020-07-25 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 8</span><span> Bish~ 2019-11-07 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 9</span><span> Bivi~ 2020-01-04 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'>10</span><span> Brow~ 2020-03-17 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 1</span><span> Arch~ 2020-05-25 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 2</span><span> Awtr~ 2020-09-20 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 3</span><span> Bamm~ 2020-03-25 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 4</span><span> Bank~ 2020-06-18 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 5</span><span> Bega~ 2020-06-19 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 6</span><span> Beni~ 2020-02-24 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bhat~ 2020-10-12 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bouc~ 2020-09-04 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 9</span><span> Carn~ 2020-09-11 FALSE            FALSE            TRUE            
+#&gt; </span><span style='color: #555555;'>10</span><span> Chap~ 2020-05-18 FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'># ... with 90 more rows, and 35 more variables: `pulmonary circulation</span><span>
 #&gt; </span><span style='color: #555555;'>#   disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension</span><span>
 #&gt; </span><span style='color: #555555;'>#   uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
@@ -280,9 +280,8 @@ package website <a href='https://eribul.github.io/coder'>https://eribul.github.i
 #&gt; </span><span style='color: #555555;'>#   coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `fluid electrolyte</span><span>
 #&gt; </span><span style='color: #555555;'>#   disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, index_sum_all </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, index_sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   index_walraven </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, index_sid29 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, index_sid30 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   index_ahrq_mort </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, index_ahrq_readm </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, sum_all </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, walraven </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   sid29 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sid30 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_mort </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_readm </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Add Charlson categories and two versions of a calculated index.</span>
 <span class='co'># Only include recent hospital visits within 30 days before surgery,</span>
 <span class='co'># and use technical variable names to clearly identify the new columns.</span>
@@ -293,36 +292,35 @@ package website <a href='https://eribul.github.io/coder'>https://eribul.github.i
     <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>date <span class='op'>=</span> <span class='st'>"surgery"</span>, days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>30</span>, <span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>, code_date <span class='op'>=</span> <span class='st'>"admission"</span><span class='op'>)</span>,
   cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>tech_names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 100 x 21</span><span>
-#&gt;    name  surgery    charlson_regex_~ charlson_regex_~ charlson_regex_~
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 100 x 21</span><span>
+#&gt;    name  surgery    charlson_icd10_~ charlson_icd10_~ charlson_icd10_~
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
-#&gt; </span><span style='color: #555555;'> 1</span><span> Alex~ 2019-10-08 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 2</span><span> Argu~ 2020-07-05 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'> 3</span><span> Aust~ 2020-06-28 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'> 4</span><span> Ball~ 2019-11-15 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 5</span><span> Bean~ 2019-12-14 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'> 6</span><span> Beeh~ 2019-11-03 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'> 7</span><span> Bess~ 2020-07-25 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'> 8</span><span> Bish~ 2019-11-07 FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'> 9</span><span> Bivi~ 2020-01-04 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'>10</span><span> Brow~ 2020-03-17 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 1</span><span> Arch~ 2020-05-25 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'> 2</span><span> Awtr~ 2020-09-20 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 3</span><span> Bamm~ 2020-03-25 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 4</span><span> Bank~ 2020-06-18 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 5</span><span> Bega~ 2020-06-19 FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 6</span><span> Beni~ 2020-02-24 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bhat~ 2020-10-12 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bouc~ 2020-09-04 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'> 9</span><span> Carn~ 2020-09-11 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'>10</span><span> Chap~ 2020-05-18 </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
 #&gt; </span><span style='color: #555555;'># ... with 90 more rows, and 16 more variables:</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_cerebrovascular_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_dementia </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_chronic_pulmonary_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_rheumatic_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_peptic_ulcer_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_mild_liver_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_diabetes_without_complication </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_hemiplegia_or_paraplegia </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_renal_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_diabetes_complication </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_moderate_or_severe_liver_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_metastatic_solid_tumor </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_aids_hiv </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_index_quan_original </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   charlson_regex_icd10_index_quan_updated </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_cerebrovascular_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_dementia </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_chronic_pulmonary_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_rheumatic_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_peptic_ulcer_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_mild_liver_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_diabetes_without_complication </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_hemiplegia_or_paraplegia </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_renal_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_diabetes_complication </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_moderate_or_severe_liver_disease </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_metastatic_solid_tumor </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, charlson_icd10_aids_hiv </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_index_quan_original </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   charlson_icd10_index_quan_updated </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

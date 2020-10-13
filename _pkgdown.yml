@@ -14,10 +14,6 @@ reference:
   desc: Default classification schemes for comorbidity and adverse events
   contents:
   - has_concept("default classcodes")
-- title: Codedata
-  desc: Functions to handle data set with code data
-  contents:
-  - has_concept("codedata")
 - title: Example data
   desc:
   contents:

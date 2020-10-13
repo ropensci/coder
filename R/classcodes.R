@@ -27,6 +27,7 @@
 #'
 #' @param x data frame with columns described in the details section
 #' @param hierarchy list of pairwise group names to appear as superior and
+#' @param ... arguments passed between methods
 #' subordinate classes.
 #'   To be used for indexing when the subordinate class is redundant
 #'   (see the details section of [`elixhauser`] for an example).
@@ -56,30 +57,61 @@
 #' @examples
 #' as.classcodes(coder::elixhauser)
 #' @family classcodes
-as.classcodes <- function(x, hierarchy = attr(x, "hierarchy"), .name = NULL) {
+as.classcodes <- function(x, ...) {
+  UseMethod("as.classcodes")
+}
+
+#' @export
+#' @rdname classcodes
+as.classcodes.classcodes <- function(x, ...) {
+  attr(x, "regexprs") <- intersect(attr(x, "regexprs"), names(x))
+  attr(x, "indices") <- intersect(attr(x, "indices"), names(x))
+  check_classcodes(x)
+  x
+}
+
+#' @export
+#' @rdname classcodes
+as.classcodes.default <- function(x, ..., hierarchy = attr(x, "hierarchy"), .name = NULL) {
 
   # To avoid infinite recursive looping due to `$<-.classcodes` method
   class(x) <- setdiff(class(x), "classcodes")
 
+  check_classcodes(x)
+
+
+  rgs  <- colnames(x)[startsWith(colnames(x), "regex_")]
+  indx <- colnames(x)[startsWith(colnames(x), "index_")]
+  names(x) <- gsub("(reg|ind)ex_", "", names(x))
+
+  structure(
+    tibble::as_tibble(x),
+    class       = unique(c("classcodes", class(x))),
+    regexprs    = gsub("regex_", "", rgs),
+    indices     = gsub("index_", "", indx),
+    hierarchy   = hierarchy,
+    name        = .name
+  )
+}
+
+
+check_classcodes <- function(x) {
   stopifnot(
     is.data.frame(x),
     "group" %in% names(x),
-    any(startsWith(names(x), "regex")),
     !anyNA(x$group),
     !any(x$group == ""),
     !any(duplicated(x$group))
   )
 
-  rgs <- colnames(x)[startsWith(colnames(x), "regex")]
-  structure(
-    tibble::as_tibble(x),
-    class       = unique(c("classcodes", class(x))),
-    regexprs    = colnames(x)[startsWith(colnames(x), "regex")],
-    indices     = colnames(x)[startsWith(colnames(x), "index")],
-    hierarchy   = hierarchy,
-    name        = .name
-  )
+  rg <- attr(x, "regexprs")
+
+  if (!any(startsWith(names(x), "regex")) &&
+      (is.null(rg) || length(rg) == 0)) {
+    stop("classcodes must have column with regular expression!")
+  }
 }
+
 
 #' @export
 #' @rdname classcodes
@@ -104,3 +136,27 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 `$<-.classcodes` <- function(x, name, value) {
   as.classcodes(NextMethod(), .name = attr(x, "name", exact = TRUE))
 }
+
+#' @export
+print.classcodes <- function(x, ...) {
+  at <- function(y) paste(attr(x, y), collapse = ", ")
+  writeLines(paste(
+    "\nClasscodes object\n",
+    "\nRegular expressions:\n  ", at("regexprs"),
+    if (!is.null(attr(x, "indices")))
+      "\nIndices:\n  ", at("indices"),
+    if (!is.null(attr(x, "hierarchy")))
+      "\nHierarchy:\n  ",
+    paste(names(attr(x, "hierarchy")), collapse = ", "),
+    "\n"
+  ))
+
+  NextMethod()
+}
+
+#' @export
+as.data.frame.classcodes <- function(x, ...) {
+  class(x) <- setdiff(class(x), "classcodes")
+  NextMethod()
+}
+

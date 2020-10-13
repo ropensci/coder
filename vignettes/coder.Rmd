@@ -148,7 +148,7 @@ The first two columns are identical to `ex_people` (except row order, which coul
 ```{r}
 hist2 <- function(x) {
   hist(
-    x$index_pratt, 
+    x$pratt, 
     main = NULL, 
     xlab = "RxRisk V", 
     col  = "lightblue"
@@ -197,7 +197,7 @@ hist2(
         date      = "surgery", 
         code_date = "prescription",
         days      = c(-365, -1)),
-    cc_args       = list(regex = "regex_caughey")
+    cc_args       = list(regex = "caughey")
   )
 )
 ```

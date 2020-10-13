@@ -9,9 +9,9 @@ A data frame with 2 rows and 2 variables:
 \describe{
 \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
 "special" for codes beginning with "UA", "UB" and "UP"}
-\item{regex_icd10}{regular expressions identifying ICD-10 codes of each
+\item{icd10}{regular expressions identifying ICD-10 codes of each
 group}
-\item{index_only_ordinary}{index weights, 1 for ordinary and 0 for special}
+\item{only_ordinary}{index weights, 1 for ordinary and 0 for special}
 }
 }
 \usage{

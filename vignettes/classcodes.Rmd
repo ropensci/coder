@@ -44,8 +44,8 @@ First, consider the tibble columns, which have pre-specified names and content:
 
 -   `group`: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities). Might contain spaces and other special characters which might be transformed when used (controlled by `tech_names` in `set_classcodes()`).
 -   `description:` (optional) additional details describing each group.
--   `regex_*:` regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Those column names are also found by `attr(charlson, "regexprs").`)
--   `index_*`: numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Those column names are also found by `attr(charlson, "indices")` .)
+-   regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Those column names are identified by `attr(charlson, "regexprs").`)
+-   numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Those column names are identified by by `attr(charlson, "indices")` .)
 -   `condition`: (optional; not used with `charlson`) conditional classification (see for example `?hip_ae`).
 
 # Hierarchy
@@ -65,7 +65,7 @@ attr(elixhauser, "hierarchy")
 Regular expressions might be difficult to interpret and can therefore be `visualize()`:d, This will display a web page in the default browser (here suppressed by `show = FALSE`):
 
 ```{r}
-url <- visualize(charlson, show = FALSE, regex = "regex_icd10")
+url <- visualize(charlson, show = FALSE, regex = "icd10")
 ```
 
 For this vignette, we can open the `url` "manually" by clicking this link to the [JavaScript Regular Expression Parser & Visualizer](%60r%20url%60). The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for `r charlson$group[1]` as codified by `regex_icd9cm_deyo`:
@@ -75,7 +75,7 @@ visualize(
   charlson, 
   group    = "myocardial infarction", 
   show     = FALSE, 
-  regex    = "regex_icd9cm_deyo"
+  regex    = "icd9cm_deyo"
 )
 ```
 
@@ -91,7 +91,7 @@ visualize(
   charlson, 
   group    = "myocardial infarction", 
   show     = FALSE, 
-  regex    = "regex_icd10"
+  regex    = "icd10"
 )
 ```
 
@@ -135,7 +135,7 @@ Examples above use the default regex column (currently ICD-10). If we are intere
 ```{r}
 summary(
   charlson, coding = "icd9cmd",
-  cc_args = list(regex = "regex_icd9cm_deyo")
+  cc_args = list(regex = "icd9cm_deyo")
 )
 ```
 
@@ -151,7 +151,7 @@ We might call `set_classcodes()`directly to prepare a classification scheme to c
 charlson_icd8 <- 
   set_classcodes(
     "charlson",
-    regex = "regex_icd8_brusselaers", # Version based on ICD-8
+    regex = "icd8_brusselaers", # Version based on ICD-8
     start = FALSE, # Codes do not have to occur in the beginning of a vector
     stop = TRUE, # Code vector must end with the specified codes
     tech_names = TRUE # Use long but unique and descriptive variable names
@@ -189,7 +189,7 @@ classify(
   410,
   charlson,
   cc_args = list(
-    regex = "regex_icd8_brusselaers", 
+    regex = "icd8_brusselaers", 
     start = FALSE, 
     stop  = TRUE
   )

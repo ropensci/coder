@@ -34,7 +34,7 @@ codebook(elixhauser, "icd10cm")
 
 # All codes from ICD-9-CM Disease part used by Elixhauser enhanced version
 codebook(elixhauser, "icd9cmd",
-  cc_args = list(regex = "regex_icd9cm_enhanced")
+  cc_args = list(regex = "icd9cm_enhanced")
 )
 }
 \seealso{

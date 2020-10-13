@@ -7,7 +7,7 @@ test_that("summary.classcodes", {
   expect_equal(x$coding, "icd10cm")
   expect_message(
     summary(elixhauser, "icd10cm"),
-    "Classification based on: regex_icd10"
+    "Classification based on: icd10"
   )
 
   expect_error(summary(elixhauser, coding = "hej"), "'coding' should be one of")
@@ -21,7 +21,7 @@ test_that("summary.classcodes", {
 test_that("print.summary.classcodes", {
   expect_output(
     print(x),
-    "Indices: index_sum_all, index_sum_all_ahrq, index_walraven, index_sid29",
+    "Indices: sum_all, sum_all_ahrq, walraven, sid29",
     fixed = TRUE
   )
 })

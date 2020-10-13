@@ -57,7 +57,8 @@ clean <- function(x) gsub("\\W", "_", tolower(x), perl = TRUE)
 clean_text <- function(x_name, x) {
   if (!is.character(x_name)) {
     stop("Object ", deparse(substitute(x_name)),
-         " must be refferred by name if 'tech_names = TRUE'!"
+         " must be refferred by name if 'tech_names = TRUE'!",
+         call. = FALSE
     )
   }
    paste(x_name, clean(x), sep = "_")

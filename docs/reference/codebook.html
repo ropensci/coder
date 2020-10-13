@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -175,6 +175,7 @@ between groups and individual codes</p>
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
 <code><a href='classcodes.html'>classcodes</a></code>,
 <code><a href='codebooks.html'>codebooks</a>()</code>,
+<code><a href='print.codebook.html'>print.codebook</a>()</code>,
 <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
@@ -183,12 +184,104 @@ between groups and individual codes</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># All codes from ICD-10-CM used by Elixhauser</span>
 <span class='fu'>codebook</span><span class='op'>(</span><span class='va'>elixhauser</span>, <span class='st'>"icd10cm"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; <span class='message'>Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; <span class='message'>Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span></div><div class='output co'>#&gt; Preview of README sheet specifying columns in following sheets:
+#&gt; 
+#&gt; <span style='color: #555555;'># A tibble: 6 x 3</span><span>
+#&gt;   tab       column      description                                       
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                             
+#&gt; </span><span style='color: #555555;'>1</span><span> summary   group       Group to categorize by                            
+#&gt; </span><span style='color: #555555;'>2</span><span> summary   n           Number of identified codes contained in this group
+#&gt; </span><span style='color: #555555;'>3</span><span> summary   codes       Comma separated list of individual codes in group 
+#&gt; </span><span style='color: #555555;'>4</span><span> all_codes code        Individual code                                   
+#&gt; </span><span style='color: #555555;'>5</span><span> all_codes description Description of individual code                    
+#&gt; </span><span style='color: #555555;'>6</span><span> all_codes group       Group to categorize by                            
+#&gt; 
+#&gt; 
+#&gt; Preview of summary sheet:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 31 x 3</span><span>
+#&gt;    group                   n codes                                              
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                              
+#&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                1 B20                                                
+#&gt; </span><span style='color: #555555;'> 2</span><span> alcohol abuse         131 E52, F1010, F1011, F10120, F10121, F10129, F1014, ~
+#&gt; </span><span style='color: #555555;'> 3</span><span> blood loss anemia       1 D500                                               
+#&gt; </span><span style='color: #555555;'> 4</span><span> cardiac arrhythmias    73 I441, I442, I4430, I4439, I456, I459, I470, I471, ~
+#&gt; </span><span style='color: #555555;'> 5</span><span> chronic pulmonary ~    69 I27812, I27822, I27832, I27892, I2792, J40, J410, ~
+#&gt; </span><span style='color: #555555;'> 6</span><span> coagulopathy           27 D65, D66, D67, D680, D681, D682, D68311, D68312, D~
+#&gt; </span><span style='color: #555555;'> 7</span><span> congestive heart f~    36 I099, I1101, I1301, I1321, I255, I420, I425, I4261~
+#&gt; </span><span style='color: #555555;'> 8</span><span> deficiency anemia      17 D508, D509, D510, D511, D512, D513, D518, D519, D5~
+#&gt; </span><span style='color: #555555;'> 9</span><span> depression             31 F3130, F3131, F3132, F314, F3152, F320, F321, F322~
+#&gt; </span><span style='color: #555555;'>10</span><span> diabetes complicat~   243 E1021, E1022, E1029, E10311, E10319, E103211, E103~
+#&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span>
+#&gt; 
+#&gt; 
+#&gt; Preview of all_codes:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 3,127 x 3</span><span>
+#&gt;    code  description                                   group           
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'> 1</span><span> A5200 Cardiovascular syphilis, unspecified          valvular disease
+#&gt; </span><span style='color: #555555;'> 2</span><span> A5201 Syphilitic aneurysm of aorta                  valvular disease
+#&gt; </span><span style='color: #555555;'> 3</span><span> A5202 Syphilitic aortitis                           valvular disease
+#&gt; </span><span style='color: #555555;'> 4</span><span> A5203 Syphilitic endocarditis                       valvular disease
+#&gt; </span><span style='color: #555555;'> 5</span><span> A5204 Syphilitic cerebral arteritis                 valvular disease
+#&gt; </span><span style='color: #555555;'> 6</span><span> A5205 Other cerebrovascular syphilis                valvular disease
+#&gt; </span><span style='color: #555555;'> 7</span><span> A5206 Other syphilitic heart involvement            valvular disease
+#&gt; </span><span style='color: #555555;'> 8</span><span> A5209 Other cardiovascular syphilis                 valvular disease
+#&gt; </span><span style='color: #555555;'> 9</span><span> B180  Chronic viral hepatitis B with delta-agent    liver disease   
+#&gt; </span><span style='color: #555555;'>10</span><span> B181  Chronic viral hepatitis B without delta-agent liver disease   
+#&gt; </span><span style='color: #555555;'># ... with 3,117 more rows</span><span></div><div class='input'>
 <span class='co'># All codes from ICD-9-CM Disease part used by Elixhauser enhanced version</span>
 <span class='fu'>codebook</span><span class='op'>(</span><span class='va'>elixhauser</span>, <span class='st'>"icd9cmd"</span>,
-  cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"regex_icd9cm_enhanced"</span><span class='op'>)</span>
+  cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"icd9cm_enhanced"</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span></div><div class='output co'>#&gt; Preview of README sheet specifying columns in following sheets:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 6 x 3</span><span>
+#&gt;   tab       column      description                                       
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                             
+#&gt; </span><span style='color: #555555;'>1</span><span> summary   group       Group to categorize by                            
+#&gt; </span><span style='color: #555555;'>2</span><span> summary   n           Number of identified codes contained in this group
+#&gt; </span><span style='color: #555555;'>3</span><span> summary   codes       Comma separated list of individual codes in group 
+#&gt; </span><span style='color: #555555;'>4</span><span> all_codes code        Individual code                                   
+#&gt; </span><span style='color: #555555;'>5</span><span> all_codes description Description of individual code                    
+#&gt; </span><span style='color: #555555;'>6</span><span> all_codes group       Group to categorize by                            
+#&gt; 
+#&gt; 
+#&gt; Preview of summary sheet:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 31 x 3</span><span>
+#&gt;    group                   n codes                                              
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                              
+#&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                1 042                                                
+#&gt; </span><span style='color: #555555;'> 2</span><span> alcohol abuse          36 2652, 2911, 2912, 2913, 2915, 29181, 29182, 29189,~
+#&gt; </span><span style='color: #555555;'> 3</span><span> blood loss anemia       1 2800                                               
+#&gt; </span><span style='color: #555555;'> 4</span><span> cardiac arrhythmias    42 4260, 42610, 42611, 42612, 42613, 4262, 4263, 4264~
+#&gt; </span><span style='color: #555555;'> 5</span><span> chronic pulmonary ~    16 41682, 41692, 490, 500, 501, 502, 503, 504, 505, 5~
+#&gt; </span><span style='color: #555555;'> 6</span><span> coagulopathy           20 2860, 2861, 2862, 2863, 2864, 28652, 28653, 28659,~
+#&gt; </span><span style='color: #555555;'> 7</span><span> congestive heart f~    32 39891, 402011, 402111, 402911, 404011, 404031, 404~
+#&gt; </span><span style='color: #555555;'> 8</span><span> deficiency anemia      10 2801, 2808, 2809, 2810, 2811, 2812, 2813, 2814, 28~
+#&gt; </span><span style='color: #555555;'> 9</span><span> depression             38 29620, 29621, 29622, 29623, 29624, 29625, 29626, 2~
+#&gt; </span><span style='color: #555555;'>10</span><span> diabetes complicat~    24 25040, 25041, 25042, 25043, 25050, 25051, 25052, 2~
+#&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span>
+#&gt; 
+#&gt; 
+#&gt; Preview of all_codes:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 1,251 x 3</span><span>
+#&gt;    code  description              group                       
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                       
+#&gt; </span><span style='color: #555555;'> 1</span><span> 042   Human immuno virus dis   AIDS/HIV                    
+#&gt; </span><span style='color: #555555;'> 2</span><span> 07022 Hpt B chrn coma wo dlta  liver disease               
+#&gt; </span><span style='color: #555555;'> 3</span><span> 07023 Hpt B chrn coma w dlta   liver disease               
+#&gt; </span><span style='color: #555555;'> 4</span><span> 07032 Hpt B chrn wo cm wo dlta liver disease               
+#&gt; </span><span style='color: #555555;'> 5</span><span> 07033 Hpt B chrn wo cm w dlta  liver disease               
+#&gt; </span><span style='color: #555555;'> 6</span><span> 07044 Chrnc hpt C w hepat Coma liver disease               
+#&gt; </span><span style='color: #555555;'> 7</span><span> 07054 Chrnc hpt C wo hpat coma liver disease               
+#&gt; </span><span style='color: #555555;'> 8</span><span> 0706  Viral hepat NOS w coma   liver disease               
+#&gt; </span><span style='color: #555555;'> 9</span><span> 0709  Viral hepat NOS w/o coma liver disease               
+#&gt; </span><span style='color: #555555;'>10</span><span> 0930  Aortic aneurysm, syphil  peripheral vascular disorder
+#&gt; </span><span style='color: #555555;'># ... with 1,241 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

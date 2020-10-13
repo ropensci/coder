@@ -3,20 +3,28 @@
 \name{classcodes}
 \alias{classcodes}
 \alias{as.classcodes}
+\alias{as.classcodes.classcodes}
+\alias{as.classcodes.default}
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
-as.classcodes(x, hierarchy = attr(x, "hierarchy"), .name = NULL)
+as.classcodes(x, ...)
+
+\method{as.classcodes}{classcodes}(x, ...)
+
+\method{as.classcodes}{default}(x, ..., hierarchy = attr(x, "hierarchy"), .name = NULL)
 
 is.classcodes(x)
 }
 \arguments{
 \item{x}{data frame with columns described in the details section}
 
-\item{hierarchy}{list of pairwise group names to appear as superior and
+\item{...}{arguments passed between methods
 subordinate classes.
 To be used for indexing when the subordinate class is redundant
 (see the details section of \code{\link{elixhauser}} for an example).}
+
+\item{hierarchy}{list of pairwise group names to appear as superior and}
 
 \item{.name}{used internally for name dispatch}
 }

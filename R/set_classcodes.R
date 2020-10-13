@@ -24,7 +24,7 @@
 #' set_classcodes(charlson)
 #'
 #' # Same as above but based on regular expressions for ICD-8
-#' set_classcodes(charlson, regex = "regex_icd8_brusselaers")
+#' set_classcodes(charlson, regex = "icd8_brusselaers")
 set_classcodes <- function(
   cc, classified = NULL, regex = NULL,
   start = TRUE, stop = FALSE, tech_names = FALSE) {
@@ -49,10 +49,13 @@ set_classcodes <- function(
       stop("No classcodes object found!")
     }
 
-  obj <-
-    as.classcodes(obj, .name =
-      if (is.character(cc)) cc else attr(cc, "name", exact = TRUE)
-    )
+  # Fix name attribute if not already set
+  nm <- if (is.character(cc)) cc else attr(cc, "name", exact = TRUE)
+  if (is.classcodes(obj)) {
+    attr(obj, "name") <- nm
+  } else {
+    obj <- as.classcodes(obj, .name = nm)
+  }
 
   if (tech_names) {
     obj$group <- clean_text(
@@ -75,7 +78,8 @@ set_classcodes <- function(
   # Change "regex" column to the one specified
   obj$regex <- obj[[regex]]
   # Remove all alternative regexs and keep only rows with regex
-  obj <- obj[!is.na(obj[[regex]]), !grepl("regex_", names(obj))]
+  obj <- obj[!is.na(obj[[regex]]), !names(obj) %in% setdiff(attr(obj, "regexpr"), "regex")]
+  attr(obj, "regexprs") <- "regex"
   # Save original name of regex to use with tech_names = TRUE
   attr(obj, "regex_name") <- regex
 

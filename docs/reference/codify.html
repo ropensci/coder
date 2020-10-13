@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -138,6 +138,22 @@
     <pre class="usage"><span class='fu'>codify</span><span class='op'>(</span>
   <span class='va'>data</span>,
   <span class='va'>codedata</span>,
+  <span class='va'>...</span>,
+  <span class='va'>id</span>,
+  <span class='va'>code</span>,
+  date <span class='op'>=</span> <span class='cn'>NULL</span>,
+  code_date <span class='op'>=</span> <span class='cn'>NULL</span>,
+  days <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for data.frame</span>
+<span class='fu'>codify</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>...</span>, <span class='va'>id</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, days <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+
+<span class='co'># S3 method for data.table</span>
+<span class='fu'>codify</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>codedata</span>,
+  <span class='va'>...</span>,
   <span class='va'>id</span>,
   <span class='va'>code</span>,
   date <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -145,22 +161,29 @@
   days <span class='op'>=</span> <span class='cn'>NULL</span>,
   alnum <span class='op'>=</span> <span class='cn'>FALSE</span>,
   .copy <span class='op'>=</span> <span class='cn'>NA</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span>
+
+<span class='co'># S3 method for codified</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> or <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a> with at least case id
-(<code>character</code>), and optional date (<code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code>) of interest</p></td>
+      <td><p>a table with columns id (<code>character</code>), code, and optionally date
+(<code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code>)</p></td>
     </tr>
     <tr>
       <th>codedata</th>
-      <td><p><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> or <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a> with columns
+      <td><p>additional data with columns
 including case id (<code>character</code>), code and an optional date (<a href='https://rdrr.io/r/base/Dates.html'>Date</a>) for
 each code. An optional column <code>condition</code> might distinguish codes/dates
 with certain characteristics (see example).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed between methods</p></td>
     </tr>
     <tr>
       <th>id, code, date, code_date</th>
@@ -186,6 +209,16 @@ If the size is larger, the argument must be set explicitly. Set <code>TRUE</code
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to <code>FALSE</code>, calculations might be carried out
 but the object will be changed by reference.</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>object (potentially of large size)</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>number of rows to preview as tibble.
+The output is technically a <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a>, which might be an
+unusual format to look at. Use <code>n = NULL</code> to print the object as is.</p></td>
     </tr>
     </table>
 
@@ -222,18 +255,25 @@ Useful for adverse events after a surgical procedure.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>,
   date <span class='op'>=</span> <span class='st'>"surgery"</span>, code_date <span class='op'>=</span> <span class='st'>"admission"</span>, days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                    name    surgery  admission icd10  hdia in_period
-#&gt;   1: Alexander, Bethany 2019-10-08 2019-08-28 L988C FALSE      TRUE
-#&gt;   2: Alexander, Bethany 2019-10-08 2019-10-02  B670 FALSE      TRUE
-#&gt;   3:    Arguello, Tommy 2020-07-05 2019-07-17 E888A FALSE      TRUE
-#&gt;   4:    Arguello, Tommy 2020-07-05 2019-12-16 V3811 FALSE      TRUE
-#&gt;   5:    Arguello, Tommy 2020-07-05 2020-03-23 X5214 FALSE      TRUE
-#&gt;  ---                                                               
-#&gt; 365:   el-Zaki, Huwaida 2020-07-23 2019-09-09 V3533 FALSE      TRUE
-#&gt; 366:   el-Zaki, Huwaida 2020-07-23 2019-09-09 V4103 FALSE      TRUE
-#&gt; 367:   el-Zaki, Huwaida 2020-07-23 2019-11-24  F058 FALSE      TRUE
-#&gt; 368:   el-Zaki, Huwaida 2020-07-23 2020-01-11  E748 FALSE      TRUE
-#&gt; 369:   el-Zaki, Huwaida 2020-07-23 2020-06-19 Y2623 FALSE      TRUE</div></pre>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame. It has 378 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; <span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                surgery    admission  icd10 hdia  in_period
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-05-25 2019-12-06 E012  FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2020-05-25 2019-12-28 V8698 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-05-25 2020-01-17 X4128 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-05-25 2020-01-18 X3403 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2020-05-25 2020-02-03 Z752  FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-05-25 2020-02-11 V7413 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 7</span><span> Awtrey, Antonio     2020-09-20 2020-01-14 X3322 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 8</span><span> Awtrey, Antonio     2020-09-20 2020-04-05 Y1614 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-20 2020-04-08 X7564 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-09-20 2020-05-26 X6542 FALSE TRUE     </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

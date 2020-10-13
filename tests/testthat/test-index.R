@@ -17,7 +17,7 @@ test_that("Charlson", {
   expect_message(index(as.data.frame(y)), "column 'name' used as id!")
 
   expect_error(
-    index(y, "index_sid30", cc = elixhauser),
+    index(y, "sid30", cc = elixhauser),
     "Data non consistent with specified classcodes!"
   )
 })

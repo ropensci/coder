@@ -75,7 +75,7 @@ superior classes if index specified with argument index." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -189,18 +189,18 @@ and/or if index calculated without weights.</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># Calculate Elixhauser comorbidity index</span>
 <span class='va'>cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I20"</span><span class='op'>)</span>, <span class='st'>"elixhauser"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; C80 I20 
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>index calculated as number of relevant categories</span></div><div class='output co'>#&gt; C80 I20 
 #&gt;   1   0 </div><div class='input'>
 <span class='co'># Calculate Charlson-index using original weights</span>
 <span class='va'>cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I21"</span><span class='op'>)</span>, <span class='st'>"charlson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span>, <span class='st'>"quan_original"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; C80 I21 
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span>, <span class='st'>"quan_original"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; C80 I21 
 #&gt;   6   1 </div><div class='input'>
 <span class='co'># Calculate Charlson-index using updated weights</span>
 <span class='va'>cl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I21"</span><span class='op'>)</span>, <span class='st'>"charlson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span>, <span class='st'>"quan_updated"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: regex_icd10</span></div><div class='output co'>#&gt; C80 I21 
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='fu'>index</span><span class='op'>(</span><span class='va'>cl</span>, <span class='st'>"quan_updated"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; C80 I21 
 #&gt;   6   0 </div><div class='input'>
 </div></pre>
   </div>

@@ -2,7 +2,7 @@ context("codebook")
 
 cb <- codebook(elixhauser, "icd10cm")
 cb2 <- codebook(elixhauser, "icd9cmd",
-         cc_args = list(regex = "regex_icd9cm_enhanced")
+         cc_args = list(regex = "icd9cm_enhanced")
 )
 
 cbs <- suppressWarnings(codebooks(cb1 = cb, cb2 = cb2))

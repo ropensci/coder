@@ -22,7 +22,7 @@ all_classcodes <- function() {
 
   # Remove prefix "regex" to only present alternatives
   rgs_short <- function(x) {
-    rgs <- gsub("regex_?", "", attr(x, "regexprs"))
+    rgs <- attr(x, "regexprs")
     rgs[rgs != ""]
   }
 

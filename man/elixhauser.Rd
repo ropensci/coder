@@ -8,32 +8,32 @@
 A data frame with 31 rows and 8 variables:
 \describe{
 \item{group}{comorbidity groups}
-\item{regex_icd10}{regular expressions identifying ICD-10 codes of
+\item{icd10}{regular expressions identifying ICD-10 codes of
 each group. Corresponds to column 'ICD-10' in table 2
 of Quan et al. (2005).}
-\item{regex_icd10_short}{regular expressions identifying only the first
+\item{icd10_short}{regular expressions identifying only the first
 three characters of ICD-10 codes of each group. This alternative version
 was added only to use in emergency when only the first three digits are
 available. It is not an official version and we do not recommend to
 use it!}
-\item{regex_icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
+\item{icd9cm}{Corresponds to column 'Elixhauser's Original ICD-9-CM'
 in table 2 of Quan et al. (2005).}
-\item{regex_icd9cm_ahrqweb}{Corresponds to column
+\item{icd9cm_ahrqweb}{Corresponds to column
 'Elixhauser AHRQ-Web ICD-9-CM' in table 2 of Quan et al. (2005).}
-\item{regex_icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
+\item{icd9cm_enhanced}{Corresponds to column 'Enhanced ICD-9-CM'
 in table 2 of Quan et al. (2005).}
-\item{index_sum_all}{all weights = 1 (thus no weights)}
-\item{index_sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmia.
-Compare to \code{regex_icd9cm_ahrqweb} which does not
+\item{sum_all}{all weights = 1 (thus no weights)}
+\item{sum_all_ahrq}{as \code{sum_all} excluding "cardiac arrhythmia.
+Compare to \code{icd9cm_ahrqweb} which does not
 consider this condition.}
-\item{index_walraven}{weights suggested by Walraven et al. (2009)}
-\item{index_sid29}{weights suggested by Thompson et al. (2015)
+\item{walraven}{weights suggested by Walraven et al. (2009)}
+\item{sid29}{weights suggested by Thompson et al. (2015)
 based on all conditions except cardiac arrhythmia}
-\item{index_sid30}{weights suggested by Thompson et al. (2015)
+\item{sid30}{weights suggested by Thompson et al. (2015)
 based on all conditions}
-\item{index_ahrq_mort}{weights for in-hospital mortality suggested by
+\item{ahrq_mort}{weights for in-hospital mortality suggested by
 Moore et al. (2017)}
-\item{index_ahrq_readm}{weights for readmissions suggested by
+\item{ahrq_readm}{weights for readmissions suggested by
 Moore et al. (2017)}
 }
 }

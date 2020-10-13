@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
       </span>
     </div>
 
@@ -149,6 +149,7 @@ objects from the package.</p>
 <code><a href='classcodes.html'>classcodes</a></code>,
 <code><a href='codebooks.html'>codebooks</a>()</code>,
 <code><a href='codebook.html'>codebook</a>()</code>,
+<code><a href='print.codebook.html'>print.codebook</a>()</code>,
 <code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
@@ -157,15 +158,15 @@ objects from the package.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>all_classcodes</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 7 x 3</span><span>
-#&gt;   classcodes   regex                           indices                          
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                            
-#&gt; </span><span style='color: #555555;'>1</span><span> charlson     icd10, icd9cm_deyo, icd9cm_enh~ </span><span style='color: #555555;'>"</span><span>index_charlson, index_deyo_rama~
-#&gt; </span><span style='color: #555555;'>2</span><span> cps          icd10                           </span><span style='color: #555555;'>"</span><span>index_only_ordinary</span><span style='color: #555555;'>"</span><span>            
-#&gt; </span><span style='color: #555555;'>3</span><span> elixhauser   icd10, icd10_short, icd9cm, ic~ </span><span style='color: #555555;'>"</span><span>index_sum_all, index_sum_all_ah~
-#&gt; </span><span style='color: #555555;'>4</span><span> hip_ae       icd10, kva, icd10_fracture      </span><span style='color: #555555;'>""</span><span>                               
-#&gt; </span><span style='color: #555555;'>5</span><span> hip_ae_hail~ icd10, kva                      </span><span style='color: #555555;'>""</span><span>                               
-#&gt; </span><span style='color: #555555;'>6</span><span> knee_ae      icd10, kva                      </span><span style='color: #555555;'>""</span><span>                               
-#&gt; </span><span style='color: #555555;'>7</span><span> rxriskv      pratt, caughey, garland         </span><span style='color: #555555;'>"</span><span>index_pratt, index_sum_all</span><span style='color: #555555;'>"</span><span>     </div></span></pre>
+#&gt;   classcodes   regex                             indices                        
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                          
+#&gt; </span><span style='color: #555555;'>1</span><span> charlson     icd10, icd9cm_deyo, icd9cm_enhan~ </span><span style='color: #555555;'>"</span><span>charlson, deyo_ramano, dhoore~
+#&gt; </span><span style='color: #555555;'>2</span><span> cps          icd10                             </span><span style='color: #555555;'>"</span><span>only_ordinary</span><span style='color: #555555;'>"</span><span>                
+#&gt; </span><span style='color: #555555;'>3</span><span> elixhauser   icd10, icd10_short, icd9cm, icd9~ </span><span style='color: #555555;'>"</span><span>sum_all, sum_all_ahrq, walrav~
+#&gt; </span><span style='color: #555555;'>4</span><span> hip_ae       icd10, kva, icd10_fracture        </span><span style='color: #555555;'>""</span><span>                             
+#&gt; </span><span style='color: #555555;'>5</span><span> hip_ae_hail~ icd10, kva                        </span><span style='color: #555555;'>""</span><span>                             
+#&gt; </span><span style='color: #555555;'>6</span><span> knee_ae      icd10, kva                        </span><span style='color: #555555;'>""</span><span>                             
+#&gt; </span><span style='color: #555555;'>7</span><span> rxriskv      atc_pratt, atc_caughey, atc_garl~ </span><span style='color: #555555;'>"</span><span>pratt, sum_all</span><span style='color: #555555;'>"</span><span>               </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
