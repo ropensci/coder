@@ -64,52 +64,65 @@ remotes::install_github("eribul/coder")
 
 ## Usage
 
-Assume we have some patients with corresponding dates of interest (i.e. dates of  total hip arthroplasty; THA):
+Assume we have some patients with surgery at specified dates:
 ```{r}
 library(coder)
 ex_people
 ```
-We also have some external medical data: ICD-10-codes (code) recorded at previous hospital visits (code date), some of them are main diagnosis and some secondary (hdia):
+Those patietns (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
 
 ```{r}
 ex_icd10
 ```
 
-Using those two sources, as well as a classification scheme (`classcodes` object; see below), we can easily identify all Charlson co-morbidities during one year prior to the event of interest. 
+Using those two data sets, as well as a classification scheme (`classcodes` object; see below), we can easily identify all Charlson comorbidities for each patient:
+
 
 ```{r}
 ch <- 
   categorize(
+  ex_people,                  # patients of interest 
+  codedata = ex_icd10,        # Medical codes from national patient register
+  cc = "charlson",            # Calculate Charlson comorbidity
+  id = "name", code = "icd10" # Specify column names
+  )
+
+ch
+```
+How many patietns were diagnosed with malignancy?
+```{r}
+sum(ch$malignancy)
+```
+What is the distribution of the combined comorbidity index for each patient?
+```{r}
+hist(ch$index_charlson, main = "Charlson comorbidity index")
+```
+
+There are in many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery: 
+
+```{r}
+ch <- 
+  categorize(
+    ex_people, codedata = ex_icd10, cc = "charlson", id = "name", code = "icd10",
     
-    # Relevant patients from a national quality register
-    ex_people, 
-    
-    # Corresponding medical data from the national patient register
-    codedata    = ex_icd10, 
-    
-    # Estimate comorbidity based on the Charlson comorbidity index
-    cc          = "charlson",
-    
-    # Patient names used as id
-    id          = "name",
-    code        = "icd10",
-    
-    # Calculate two versions of combined index values
+    # Additional arguments
     index       = c("quan_original", "quan_updated"),
-    
-    # We only consider ICD-10-codes recorded within one year prior to THA
-    codify_args = list(date = "surgery", 
-                       code_date = "admission", 
-                       days = c(-365, -1))
+    codify_args = list(
+      date = "surgery", code_date = "admission", # Specify date columns 
+      days = c(-90, -1) # Time window
+    )
   )
 ```
 
-The result is a dataset with columns for each recognized comorbidity and (optional) each weighted index as displayed here for the interest of space (`quan_original` as proposed by Charlson et al. in 1987 and the `quan_updated` from Quan et al. in 2011). Most of the patients are healthy with an index score of 0. Some patients had no recorded hospital visits during the year preceding THA. They receive `NA` scores, which could later be substituted with 0. 
-
+Number of malignancies during this period?
 ```{r}
-ch
+sum(ch$malignancy, na.rm = TRUE)
 ```
 
+Distribution of the index as proposed by QUan et al 2011 during the 90 day period:
+```{r}
+hist(ch$quan_updated, main = "COmorbidity index by Quan et al. 2011")
+```
 
 
 ## Classification schemes
@@ -120,7 +133,7 @@ The package includes default `classcodes` for medical patient data based on the 
 
 Default `classcades` are listed in the table. Each classification (classcodes column) can be based on several code systems (regex column) and have several alternative weighted indices (indices column). Those might be combined freely. 
 
-```{r, echo = FALSE}
+```{r}
 coder::all_classcodes()
 ```
 
