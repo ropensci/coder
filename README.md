@@ -121,19 +121,19 @@ Assume we have some patients with surgery at specified dates:
 library(coder)
 ex_people
 #> # A tibble: 100 x 2
-#>    name                    surgery   
-#>    <chr>                   <date>    
-#>  1 Miller, Von Buddenbrock 2019-12-04
-#>  2 Enriquez, Anthony       2020-05-17
-#>  3 al-Dib, Farhaan         2020-07-13
-#>  4 Martinez, Alison        2020-04-19
-#>  5 el-Masri, Junaid        2020-02-06
-#>  6 Sam, Niki               2020-07-25
-#>  7 Connors, Jaylyn         2019-12-10
-#>  8 al-Ramadan, Hanoona     2020-02-25
-#>  9 Orozco, Daniel          2019-12-21
-#> 10 Mills, Henry            2020-03-05
-#> # ... with 90 more rows
+#>    name              surgery   
+#>    <chr>             <date>    
+#>  1 Chen, Trevor      2020-09-29
+#>  2 Graves, Acineth   2020-06-21
+#>  3 Trujillo, Yanelly 2020-06-08
+#>  4 Simpson, Kenneth  2020-09-10
+#>  5 Chin, Nelson      2020-08-24
+#>  6 Le, Christina     2020-03-28
+#>  7 Kang, Xuan        2020-06-30
+#>  8 Shuemaker, Lauren 2020-03-29
+#>  9 Boucher, Teresa   2020-09-04
+#> 10 Le, Soraiya       2020-08-09
+#> # … with 90 more rows
 ```
 
 Those patietns (among others) were also recorded in a national patient
@@ -142,20 +142,20 @@ the International Classification of Diseases (ICD) version 10:
 
 ``` r
 ex_icd10
-#> # A tibble: 1,000 x 4
-#>    name               admission  icd10 hdia 
-#>    <chr>              <date>     <chr> <lgl>
-#>  1 Tapparo, Keishawn  2020-06-20 F602  FALSE
-#>  2 Brunson, Brannon   2019-11-15 B968  FALSE
-#>  3 Perez, Vidal       2019-07-20 W2718 FALSE
-#>  4 al-Ismail, Waleeda 2020-05-12 V4451 FALSE
-#>  5 Morris, Marvin     2020-06-21 V6064 FALSE
-#>  6 Murray, Eric       2019-09-29 R221  FALSE
-#>  7 Apodaca, Lakota    2020-06-08 Y0829 FALSE
-#>  8 Wuertz, Jenny      2020-06-14 Y762  TRUE 
-#>  9 Alexander, Bethany 2019-10-02 B670  FALSE
-#> 10 Quick, Miriah      2019-12-06 N052  FALSE
-#> # ... with 990 more rows
+#> # A tibble: 2,376 x 4
+#>    name                 admission  icd10 hdia 
+#>    <chr>                <date>     <chr> <lgl>
+#>  1 Tran, Kenneth        2020-04-12 S134A FALSE
+#>  2 Tran, Kenneth        2020-09-26 W3319 FALSE
+#>  3 Tran, Kenneth        2020-09-05 Y0262 TRUE 
+#>  4 Tran, Kenneth        2020-07-29 X0488 FALSE
+#>  5 Sommerville, Dominic 2020-09-17 V8104 FALSE
+#>  6 Sommerville, Dominic 2020-04-28 B853  FALSE
+#>  7 Sommerville, Dominic 2020-09-12 Q174  FALSE
+#>  8 Sommerville, Dominic 2020-05-03 A227  FALSE
+#>  9 Sommerville, Dominic 2020-09-07 H702  FALSE
+#> 10 Sommerville, Dominic 2019-12-31 X6051 TRUE 
+#> # … with 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme
@@ -174,34 +174,34 @@ ch <-
 
 ch
 #> # A tibble: 100 x 25
-#>    name  surgery    `myocardial inf~ `congestive hea~ `peripheral vas~
+#>    name  surgery    `myocardial inf… `congestive hea… `peripheral vas…
 #>    <chr> <date>     <lgl>            <lgl>            <lgl>           
-#>  1 Alex~ 2019-10-08 FALSE            FALSE            FALSE           
-#>  2 Argu~ 2020-07-05 FALSE            FALSE            FALSE           
-#>  3 Aust~ 2020-06-28 FALSE            FALSE            FALSE           
-#>  4 Ball~ 2019-11-15 FALSE            FALSE            FALSE           
-#>  5 Bean~ 2019-12-14 FALSE            FALSE            FALSE           
-#>  6 Beeh~ 2019-11-03 FALSE            FALSE            FALSE           
-#>  7 Bess~ 2020-07-25 FALSE            FALSE            FALSE           
-#>  8 Bish~ 2019-11-07 FALSE            FALSE            FALSE           
-#>  9 Bivi~ 2020-01-04 FALSE            FALSE            FALSE           
-#> 10 Brow~ 2020-03-17 FALSE            FALSE            FALSE           
-#> # ... with 90 more rows, and 20 more variables: `cerebrovascular
-#> #   disease` <lgl>, dementia <lgl>, `chronic pulmonary disease` <lgl>,
-#> #   `rheumatic disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver
-#> #   disease` <lgl>, `diabetes without complication` <lgl>, `hemiplegia or
-#> #   paraplegia` <lgl>, `renal disease` <lgl>, `diabetes complication` <lgl>,
-#> #   malignancy <lgl>, `moderate or severe liver disease` <lgl>, `metastatic
-#> #   solid tumor` <lgl>, `AIDS/HIV` <lgl>, index_charlson <dbl>,
-#> #   index_deyo_ramano <dbl>, index_dhoore <dbl>, index_ghali <dbl>,
-#> #   index_quan_original <dbl>, index_quan_updated <dbl>
+#>  1 Arch… 2020-05-25 FALSE            FALSE            FALSE           
+#>  2 Awtr… 2020-09-20 FALSE            FALSE            FALSE           
+#>  3 Bamm… 2020-03-25 FALSE            FALSE            FALSE           
+#>  4 Bank… 2020-06-18 FALSE            FALSE            FALSE           
+#>  5 Bega… 2020-06-19 FALSE            FALSE            FALSE           
+#>  6 Beni… 2020-02-24 FALSE            FALSE            FALSE           
+#>  7 Bhat… 2020-10-12 FALSE            FALSE            FALSE           
+#>  8 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
+#>  9 Carn… 2020-09-11 FALSE            FALSE            FALSE           
+#> 10 Chap… 2020-05-18 FALSE            FALSE            FALSE           
+#> # … with 90 more rows, and 20 more variables: `cerebrovascular disease` <lgl>,
+#> #   dementia <lgl>, `chronic pulmonary disease` <lgl>, `rheumatic
+#> #   disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver disease` <lgl>,
+#> #   `diabetes without complication` <lgl>, `hemiplegia or paraplegia` <lgl>,
+#> #   `renal disease` <lgl>, `diabetes complication` <lgl>, malignancy <lgl>,
+#> #   `moderate or severe liver disease` <lgl>, `metastatic solid tumor` <lgl>,
+#> #   `AIDS/HIV` <lgl>, index_charlson <dbl>, index_deyo_ramano <dbl>,
+#> #   index_dhoore <dbl>, index_ghali <dbl>, index_quan_original <dbl>,
+#> #   index_quan_updated <dbl>
 ```
 
 How many patietns were diagnosed with malignancy?
 
 ``` r
 sum(ch$malignancy)
-#> [1] 10
+#> [1] 5
 ```
 
 What is the distribution of the combined comorbidity index for each
@@ -236,13 +236,14 @@ Number of malignancies during this period?
 
 ``` r
 sum(ch$malignancy, na.rm = TRUE)
-#> [1] 2
+#> [1] 3
 ```
 
-Distribution of the index as proposed by QUan et al 2011:
+Distribution of the index as proposed by QUan et al 2011 during the 90
+day period:
 
 ``` r
-hist(ch$quan_updated)
+hist(ch$quan_updated, main = "COmorbidity index by Quan et al. 2011")
 ```
 
 <img src="man/figures/READMEunnamed-chunk-8-1.png" width="100%" />
@@ -264,16 +265,19 @@ Default `classcades` are listed in the table. Each classification
 and have several alternative weighted indices (indices column). Those
 might be combined freely.
 
-    #> # A tibble: 7 x 3
-    #>   classcodes   regex                           indices                          
-    #>   <chr>        <chr>                           <chr>                            
-    #> 1 charlson     icd10, icd9cm_deyo, icd9cm_enh~ "index_charlson, index_deyo_rama~
-    #> 2 cps          icd10                           "index_only_ordinary"            
-    #> 3 elixhauser   icd10, icd10_short, icd9cm, ic~ "index_sum_all, index_sum_all_ah~
-    #> 4 hip_ae       icd10, kva, icd10_fracture      ""                               
-    #> 5 hip_ae_hail~ icd10, kva                      ""                               
-    #> 6 knee_ae      icd10, kva                      ""                               
-    #> 7 rxriskv      pratt, caughey, garland         "index_pratt, index_sum_all"
+``` r
+coder::all_classcodes()
+#> # A tibble: 7 x 3
+#>   classcodes   regex                           indices                          
+#>   <chr>        <chr>                           <chr>                            
+#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enh… "index_charlson, index_deyo_rama…
+#> 2 cps          icd10                           "index_only_ordinary"            
+#> 3 elixhauser   icd10, icd10_short, icd9cm, ic… "index_sum_all, index_sum_all_ah…
+#> 4 hip_ae       icd10, kva, icd10_fracture      ""                               
+#> 5 hip_ae_hail… icd10, kva                      ""                               
+#> 6 knee_ae      icd10, kva                      ""                               
+#> 7 rxriskv      pratt, caughey, garland         "index_pratt, index_sum_all"
+```
 
 # Relation to other packages
 
