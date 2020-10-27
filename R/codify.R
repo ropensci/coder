@@ -139,13 +139,14 @@ codify.data.table <- function(data,
     x2[, (code) := gsub("[^[:alnum:]]", "", code)]
   }
 
+  ..date <- ..code_date <- in_period  <- NULL # to avoid check notes
+
   # Use faster date format
   if (usedate) {
     data[, (date) := as.IDate(.SD[[date]])]
-    codedata[, (code_date) := as.IDate(.SD[[code_date]])]
+    codedata[, (code_date) := as.IDate(.SD[[..code_date]])]
   }
 
-  in_period  <- NULL # Silly work around to avoid check notes
   x1_id_date <- x1[, idcols, with = FALSE] # To avoid unique on all data
 
   out <- merge(x1_id_date, x2, by = id, all.x = TRUE, allow.cartesian = TRUE)[,
@@ -153,9 +154,9 @@ codify.data.table <- function(data,
       if (!usedate) TRUE
       else {
         between(
-          .SD[[code_date]],
-          .SD[[date]] + min(days),
-          .SD[[date]] + max(days),
+          .SD[[..code_date]],
+          .SD[[..date]] + min(days),
+          .SD[[..date]] + max(days),
           NAbounds = NA
         )
       }][
