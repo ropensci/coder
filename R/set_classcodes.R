@@ -14,6 +14,8 @@
 #'   colnames are taken directly from group names of `by`, if `TRUE`,
 #'   these are changed to more technical names avoiding special characters and
 #'   are prefixed by the name of the classification scheme.
+#'   `NULL` (by default) preserves previously set names
+#'   (fall backs to `FALSE` if not already set).
 #'
 #' @return [`classcodes`] object.
 #' @family classcodes
@@ -27,7 +29,7 @@
 #' set_classcodes(charlson, regex = "icd8_brusselaers")
 set_classcodes <- function(
   cc, classified = NULL, regex = NULL,
-  start = TRUE, stop = FALSE, tech_names = FALSE) {
+  start = TRUE, stop = FALSE, tech_names = NULL) {
 
   # Possible inherited classcodes
   inh <- attr(classified, "classcodes")
@@ -57,23 +59,33 @@ set_classcodes <- function(
     obj <- as.classcodes(obj, .name = nm)
   }
 
-  if (tech_names) {
+  if (!is.null(tech_names)) {
+    already_tn <- attr(obj, "tech_names")
+    if (!tech_names && !is.null(already_tn) && already_tn) {
+      stop("classcodes object has technical names. ",
+           "Either re-specify the classcodes object ",
+           "or change/drop the `tech_names` argument!", call. = FALSE)
+    } else if (tech_names && is.null(already_tn)) {
 
-    long_names <- function(x) {
-      clean_text(
-        attr(obj, "name", exact = TRUE),
-        paste(
-          if (is.null(regex)) attr(obj, "regexpr")[1] else regex,
-          x,
-          sep = "_"
+      long_names <- function(x) {
+        clean_text(
+          attr(obj, "name", exact = TRUE),
+          paste(
+            if (is.null(regex)) attr(obj, "regexpr")[1] else regex,
+            x,
+            sep = "_"
+          )
         )
-      )
-    }
+      }
 
-    hi <- attr(obj, "hierarchy")
-    if (!is.null(hi))
-      attr(obj, "hierarchy") <- lapply(hi, long_names)
-    obj$group <- long_names(obj$group)
+      hi <- attr(obj, "hierarchy")
+      if (!is.null(hi))
+        attr(obj, "hierarchy") <- lapply(hi, long_names)
+      obj$group <- long_names(obj$group)
+
+      # indicate that tech_names are used in order to not add again
+      attr(obj, "tech_names") <- TRUE
+    }
   }
 
   # identify regex column from regex attributes

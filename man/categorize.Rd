@@ -23,11 +23,12 @@ categorize(x, ...)
   index = NULL,
   sort = TRUE,
   cc_args = list(),
+  check.names = TRUE,
   .data_cols = NULL
 )
 }
 \arguments{
-\item{x}{\link{data.frame} or \link[data.table:data.table]{data.table::data.table} with mandatory id column
+\item{x}{data set with mandatory id column
 (identified by argument \code{id}),
 and optional column with date of interest
 (identified by argument \code{date} if  \code{days != NULL}).
@@ -41,15 +42,10 @@ Alternatively, the output from \code{\link[=codify]{codify()}}}
 
 \item{code}{name of code/id columns (in \code{codified}).}
 
-\item{codify_args}{List of named arguments passed to \code{\link[=codify]{codify()}}}
-
 \item{cc}{\code{\link{classcodes}} object (or name of such object).}
 
-\item{index}{A character vector of index values to calculate (passed to argument
-\code{by} in function \code{\link[=index]{index()}}.
-
+\item{index}{A character vector of index values to calculate (passed to \code{\link[=index]{index()}}.
 Set to \code{FALSE} if no index should be calculated.
-
 If \code{NULL}, the default, all available indices (from \code{attr(cc, "indices")})
 are provided. A message lists the indices so that you can check they're
 correct; suppress the message by supplying \code{index} explicitly.}
@@ -60,14 +56,21 @@ Data is sorted by 'id' internally. It is therefore faster to keep the
 output sorted this way, but this might be inconvenient if the original
 order was important.)}
 
-\item{cc_args}{List with named arguments passed to
-\code{\link[=set_classcodes]{set_classcodes()}}}
+\item{cc_args, codify_args}{List of named arguments passed to
+\code{\link[=set_classcodes]{set_classcodes()}} and  \code{\link[=codify]{codify()}}}
+
+\item{check.names}{Column names are based on \code{cc$group}, which might include
+spaces. Those names are changed to syntactically correct names by
+\code{check.names = TRUE}. Syntactically invalid, but grammatically correct
+names might be preferred for presentation of the data as achieved by
+\code{check.names = FALSE}. Alternatively, if \code{categorize} is called repeatedly,
+longer informative names might be created by \code{cc_args = list(tech_names = TRUE)}.}
 
 \item{.data_cols}{used internally}
 }
 \value{
-Object of class \code{data.table} made from \code{data} combined with
-logical columns indicating membership of categories identified by the
+Object of the same class as \code{x} with additional logical columns
+indicating membership of categories identified by the
 \code{classcodes} object (the \code{cc} argument).
 Indices are also included if specified by the 'index' argument.
 }
@@ -84,6 +87,7 @@ The function combines the three underlying steps performed by
 \code{\link[=codify]{codify()}}, \code{\link[=classify]{classify()}} and \code{\link[=index]{index()}}.
 Relevant arguments are passed to those functions by
 \code{codify_args} and \code{cc_args}.
+index
 }
 \examples{
 # Add Elixhauser based on all registered ICD10-codes
@@ -102,10 +106,6 @@ categorize(ex_people, codedata = ex_icd10, cc = "charlson",
 )
 }
 \seealso{
-For more details see the help vignette:
-\code{vignette("coder", package = "coder")} and the
-package website \url{https://eribul.github.io/coder}.
-
 Other verbs: 
 \code{\link{classify}()},
 \code{\link{codify}()},

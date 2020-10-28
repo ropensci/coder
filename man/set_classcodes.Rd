@@ -10,7 +10,7 @@ set_classcodes(
   regex = NULL,
   start = TRUE,
   stop = FALSE,
-  tech_names = FALSE
+  tech_names = NULL
 )
 }
 \arguments{
@@ -31,7 +31,9 @@ by \verb{^/$}.}
 \item{tech_names}{should technical column names be used? If \code{FALSE},
 colnames are taken directly from group names of \code{by}, if \code{TRUE},
 these are changed to more technical names avoiding special characters and
-are prefixed by the name of the classification scheme.}
+are prefixed by the name of the classification scheme.
+\code{NULL} (by default) preserves previously set names
+(fall backs to \code{FALSE} if not already set).}
 }
 \value{
 \code{\link{classcodes}} object.

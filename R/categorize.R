@@ -11,13 +11,8 @@
 #' [codify()], [classify()] and [index()].
 #'  Relevant arguments are passed to those functions by
 #'  `codify_args` and `cc_args`.
-#'
-#' @seealso For more details see the help vignette:
-#' `vignette("coder", package = "coder")` and the
-#' package website \url{https://eribul.github.io/coder}.
-#'
-#'
-#' @param x [data.frame] or [data.table::data.table] with mandatory id column
+#'index
+#' @param x data set with mandatory id column
 #'   (identified by argument `id`),
 #'   and optional column with date of interest
 #'   (identified by argument `date` if  `days != NULL`).
@@ -25,11 +20,8 @@
 #' @param codedata external code data
 #' @param cc [`classcodes`] object (or name of such object).
 #' @param index
-#'   A character vector of index values to calculate (passed to argument
-#'   `by` in function [index()].
-#'
+#'   A character vector of index values to calculate (passed to [index()].
 #'   Set to `FALSE` if no index should be calculated.
-#'
 #'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`)
 #'   are provided. A message lists the indices so that you can check they're
 #'   correct; suppress the message by supplying `index` explicitly.
@@ -38,13 +30,21 @@
 #'   Data is sorted by 'id' internally. It is therefore faster to keep the
 #'   output sorted this way, but this might be inconvenient if the original
 #'   order was important.)
-#' @param codify_args List of named arguments passed to [codify()]
+#' @param cc_args,codify_args List of named arguments passed to
+#'   [set_classcodes()] and  [codify()]
 #' @param ... arguments passed between methods
+#' @param check.names
+#'   Column names are based on `cc$group`, which might include
+#'   spaces. Those names are changed to syntactically correct names by
+#'   `check.names = TRUE`. Syntactically invalid, but grammatically correct
+#'   names might be preferred for presentation of the data as achieved by
+#'   `check.names = FALSE`. Alternatively, if `categorize` is called repeatedly,
+#'   longer informative names might be created by `cc_args = list(tech_names = TRUE)`.
 #' @param .data_cols used internally
 #' @inheritParams classify
 #'
-#' @return Object of class `data.table` made from `data` combined with
-#' logical columns indicating membership of categories identified by the
+#' @return Object of the same class as `x` with additional logical columns
+#'  indicating membership of categories identified by the
 #' `classcodes` object (the `cc` argument).
 #' Indices are also included if specified by the 'index' argument.
 #'
@@ -73,13 +73,15 @@ categorize <- function(x, ...) UseMethod("categorize")
 #' @export
 #' @rdname categorize
 categorize.data.frame <- function(x, ...) {
-  as.data.frame(categorize(as.data.table(x), ...))
+  data.frame(categorize(as.data.table(x), ...))
 }
 
 #' @export
 #' @rdname categorize
 categorize.tbl_df <- function(x, ...) {
-  tibble::as_tibble(categorize(as.data.table(x), ...))
+  tibble::as_tibble(
+    categorize(as.data.table(x), ...)
+  )
 }
 
 #' @export
@@ -101,7 +103,7 @@ categorize.data.table <-
 #' @rdname categorize
 categorize.codified <- function(
   x, ..., cc, index = NULL, sort = TRUE,
-  cc_args = list(), .data_cols = NULL) {
+  cc_args = list(), check.names = TRUE, .data_cols = NULL) {
 
   codified <- x
   id <- attr(codified, "id")
@@ -117,7 +119,6 @@ categorize.codified <- function(
   cc_args$cc  <- cc_name <- cc
   cc          <- do.call(set_classcodes, cc_args)
   cl          <- classify(codified, cc, cc_args = NULL) # NULL since cc set
-  ...data_cols <- NULL # to avoid check notes
   data        <- unique(codified, by = id)[, ...data_cols]
   data$id_chr <- as.character(data[[id]]) # To be able to merge
   out         <- merge(data, as.data.table(cl),
@@ -150,5 +151,8 @@ categorize.codified <- function(
     out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
   }
 
+if (check.names) {
+  setnames(out, make.names(names(out)))
+}
  out[, id_chr := NULL][]
 }
