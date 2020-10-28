@@ -58,11 +58,22 @@ set_classcodes <- function(
   }
 
   if (tech_names) {
-    obj$group <- clean_text(
-      attr(obj, "name", exact = TRUE),
-      paste(if (is.null(regex)) attr(obj, "regexpr")[1] else regex,
-      obj$group, sep = "_")
-    )
+
+    long_names <- function(x) {
+      clean_text(
+        attr(obj, "name", exact = TRUE),
+        paste(
+          if (is.null(regex)) attr(obj, "regexpr")[1] else regex,
+          x,
+          sep = "_"
+        )
+      )
+    }
+
+    hi <- attr(obj, "hierarchy")
+    if (!is.null(hi))
+      attr(obj, "hierarchy") <- lapply(hi, long_names)
+    obj$group <- long_names(obj$group)
   }
 
   # identify regex column from regex attributes
@@ -75,24 +86,23 @@ set_classcodes <- function(
     regex <- objrgs[objrgs == regex | endsWith(objrgs, regex)]
   }
   if (length(regex) != 1) stop("Column with regular expression not found!")
-  # Change "regex" column to the one specified
-  obj$regex <- obj[[regex]]
   # Remove all alternative regexs and keep only rows with regex
-  obj <- obj[!is.na(obj[[regex]]), !names(obj) %in% setdiff(attr(obj, "regexpr"), "regex")]
-  attr(obj, "regexprs") <- "regex"
+  obj <- obj[!is.na(obj[[regex]]),
+             !names(obj) %in% setdiff(attr(obj, "regexpr"), regex)]
+  attr(obj, "regexprs") <- regex
   # Save original name of regex to use with tech_names = TRUE
   attr(obj, "regex_name") <- regex
 
   # Add prefix/suffix if specified
-  obj$regex <-
+  obj[[regex]] <-
     if (start & !stop) {
-      paste0("^(", obj$regex, ")")
+      paste0("^(", obj[[regex]], ")")
     } else if (!start & stop) {
-      paste0("(", obj$regex, ")$")
+      paste0("(", obj[[regex]], ")$")
     } else if (start & stop) {
-      paste0("^(", obj$regex, ")$")
+      paste0("^(", obj[[regex]], ")$")
     } else {
-      obj$regex
+      obj[[regex]]
     }
 
   obj

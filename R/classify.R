@@ -52,8 +52,14 @@ classify.default <- function(codified, cc, ..., cc_args = list()) {
     ccargs$cc <- cc
     cc  <- do.call(set_classcodes, ccargs)
   }
-  y   <- vapply(
-    cc$regex, grepl, logical(length(codified)), x = as.character(codified))
+
+  y <-
+    vapply(
+      cc[[attr(cc, "regexpr")]],
+      grepl,
+      logical(length(codified)),
+      x = as.character(codified)
+    )
 
   structure(
     if (length(codified) == 1) as.matrix(t(y)) else y,
@@ -122,7 +128,8 @@ classify.data.table <- function(
 
   # Codes without class (treated separately for speed): FALSE matrix
   i_nocl           <- !is.na(codified$code) &
-                      !grepl(paste(cc$regex, collapse = "|"), codified$code)
+                      !grepl(paste(cc[[attr(cc, "regexpr")]],
+                                   collapse = "|"), codified$code)
   i_na             <- is.na(codified$code)
   nocl             <- matrix(FALSE, sum(i_nocl), nrow(cc))
   rownames(nocl)   <- codified[[id]][i_nocl]

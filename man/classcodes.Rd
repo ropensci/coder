@@ -10,9 +10,22 @@
 \usage{
 as.classcodes(x, ...)
 
-\method{as.classcodes}{classcodes}(x, ...)
+\method{as.classcodes}{classcodes}(
+  x,
+  ...,
+  regex = attr(x, "regexpr"),
+  indices = attr(x, "indices"),
+  hierarchy = attr(x, "hierarchy")
+)
 
-\method{as.classcodes}{default}(x, ..., hierarchy = attr(x, "hierarchy"), .name = NULL)
+\method{as.classcodes}{default}(
+  x,
+  ...,
+  regex = NULL,
+  indices = NULL,
+  hierarchy = attr(x, "hierarchy"),
+  .name = NULL
+)
 
 is.classcodes(x)
 }
@@ -24,7 +37,11 @@ subordinate classes.
 To be used for indexing when the subordinate class is redundant
 (see the details section of \code{\link{elixhauser}} for an example).}
 
-\item{hierarchy}{list of pairwise group names to appear as superior and}
+\item{regex, indices}{character vector with names of columns in \code{x} containing
+regular expressions/indices.}
+
+\item{hierarchy}{named list of pairwise group names to appear as superior and
+subordinate for indices. See \link{elixhauser} for a possible application.}
 
 \item{.name}{used internally for name dispatch}
 }
@@ -68,7 +85,46 @@ expressions that can be evaluated within the data frame used by
 }
 }
 \examples{
-as.classcodes(coder::elixhauser)
+# The Elixhauser comorbidity classification is already a classcodes object
+is.classcodes(coder::elixhauser)
+
+# Strip its class attributes to use in examples
+df <- as.data.frame(coder::elixhauser)
+
+# Specify which columns store regular expressions and indices
+# (assume no hierarchy)
+elix <-
+  as.classcodes(
+    df,
+    regex = c(
+      "icd10",
+      "icd10_short",
+      "icd9cm",
+      "icd9cm_ahrqweb",
+      "icd9cm_enhanced"
+    ),
+    indices = c(
+      "sum_all",
+      "sum_all_ahrq",
+      "walraven",
+      "sid29",
+      "sid30",
+      "ahrq_mort",
+      "ahrq_readm"
+    ),
+    hierarchy = NULL
+  )
+elix
+
+# Specify hierarchy for patients with different types of cancer and diabetes
+# See `?elixhauser` for details
+as.classcodes(
+  elix,
+  hierarchy = list(
+    cancer   = c("metastatic cancer", "solid tumor"),
+    diabetes = c("diabetes complicated", "diabetes uncomplicated")
+  )
+)
 }
 \seealso{
 A vignette provides additional details and examples:
@@ -85,6 +141,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{codebooks}()},
 \code{\link{codebook}()},
+\code{\link{print.classcodes}()},
 \code{\link{print.codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
@@ -96,6 +153,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{codebooks}()},
 \code{\link{codebook}()},
+\code{\link{print.classcodes}()},
 \code{\link{print.codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},

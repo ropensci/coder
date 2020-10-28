@@ -45,7 +45,7 @@ visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
   x <- set_classcodes(x, ...)
   if (!is.null(group))
     x <- x[x$group %in% group, ]
-  r <- paste0(x$regex, collapse = "|")
+  r <- paste0(x[[attr(x, "regexpr")]], collapse = "|")
   r <- utils::URLencode(r)
   u <- paste0("https://jex.im/regulex/#!embed=true&flags=&re=", r)
   if (show) utils::browseURL(u)

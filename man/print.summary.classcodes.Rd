@@ -27,6 +27,7 @@ Other classcodes:
 \code{\link{classcodes}},
 \code{\link{codebooks}()},
 \code{\link{codebook}()},
+\code{\link{print.classcodes}()},
 \code{\link{print.codebook}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},

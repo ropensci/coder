@@ -18,26 +18,26 @@ test_that("set_classcodes", {
   )
   expect_equal(
     names(set_classcodes("elixhauser", tech_names = TRUE))[2],
-    "sum_all"
+    "icd10"
   )
   expect_error(
     set_classcodes(elixhauser, regex = "wrong"),
     "Column with regular expression not found!")
 
   expect_equal(
-    set_classcodes("elixhauser", start = TRUE, stop = FALSE)$regex[1],
+    set_classcodes("elixhauser", start = TRUE, stop = FALSE)$icd10[1],
     "^(I(099|1(10|3[02])|255|4(2[05-9]|3)|50)|P290)"
   )
   expect_equal(
-    set_classcodes("elixhauser", start = TRUE, stop = TRUE)$regex[1],
+    set_classcodes("elixhauser", start = TRUE, stop = TRUE)$icd10[1],
     "^(I(099|1(10|3[02])|255|4(2[05-9]|3)|50)|P290)$"
   )
   expect_equal(
-    set_classcodes("elixhauser", start = FALSE, stop = FALSE)$regex[1],
+    set_classcodes("elixhauser", start = FALSE, stop = FALSE)$icd10[1],
     "I(099|1(10|3[02])|255|4(2[05-9]|3)|50)|P290"
   )
   expect_equal(
-    set_classcodes("elixhauser", start = FALSE, stop = TRUE)$regex[1],
+    set_classcodes("elixhauser", start = FALSE, stop = TRUE)$icd10[1],
     "(I(099|1(10|3[02])|255|4(2[05-9]|3)|50)|P290)$"
   )
 })

@@ -45,6 +45,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
 \code{\link{codebooks}()},
+\code{\link{print.classcodes}()},
 \code{\link{print.codebook}()},
 \code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
