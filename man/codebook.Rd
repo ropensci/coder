@@ -2,9 +2,15 @@
 % Please edit documentation in R/codebook.R
 \name{codebook}
 \alias{codebook}
-\title{Make codebook for classcodes object}
+\alias{print.codebook}
+\alias{codebooks}
+\title{codebook(s) for classcodes object}
 \usage{
 codebook(object, coding, ..., file = NULL)
+
+\method{print}{codebook}(x, ...)
+
+codebooks(..., file = NULL)
 }
 \arguments{
 \item{object}{classcodes object}
@@ -13,41 +19,85 @@ codebook(object, coding, ..., file = NULL)
 or a name (character vector of length one) keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
-\item{...}{
-  Arguments passed on to \code{\link[=summary.classcodes]{summary.classcodes}}
-  \describe{
-    \item{\code{cc_args}}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
-  }}
+\item{...}{Additional arguments for each function:
+\itemize{
+\item \code{codebook()}: arguments passed to \code{\link[=summary.classcodes]{summary.classcodes()}}
+\item \code{codebooks()}: multiple named outputs from \code{\link[=codebook]{codebook()}}
+\item \code{print.codebook()}: arguments passed to \code{tibble:::print.tbl()}
+}}
 
-\item{file}{name of Excel file for data export}
+\item{file}{name/path to Excel file for data export}
+
+\item{x}{output from \code{codebook()}}
 }
 \value{
-List of data frames describing relationship
+Functions are primarily called for their side effects (exporting data to
+Excel or printing to screen). In addition:
+\itemize{
+\item \code{codebook()}returns list of data frames describing relationship
 between groups and individual codes
+\item \code{codebooks()} returns a concatenated list with output from \code{codebook()}.
+Only one 'README' object is kept however and renamed as such.
+\item \code{print.codebook()}returns \code{x} (invisible)
+}
 }
 \description{
-Make codebook for classcodes object
+\code{\link[=summary.classcodes]{summary.classcodes()}} and \code{\link[=visualize.classcodes]{visualize.classcodes()}} are used to
+summarize/visualize classcodes in R. A codebook, on the other hand,
+is an exported summary
+saved in an Excel spreadsheet to use in collaboration with non R-users.
+Several codebooks might be combined into a single Excel document with
+several sheets (one for each codebook).
 }
 \examples{
-# All codes from ICD-10-CM used by Elixhauser
-codebook(elixhauser, "icd10cm")
+# codebook() --------------------------------------------------------------
+\dontrun{
+# Export codebook (to temporary file) with all codes identified by the
+# Elixhauser comorbidity classification based on ICD-10-CM
+codebook(elixhauser, "icd10cm", file = tempfile("codebook", fileext = ".xlsx"))
 
 # All codes from ICD-9-CM Disease part used by Elixhauser enhanced version
 codebook(elixhauser, "icd9cmd",
-  cc_args = list(regex = "icd9cm_enhanced")
+  cc_args = list(regex = "icd9cm_enhanced",
+  file = tempfile("codebook", fileext = ".xlsx"))
 )
+
+# The codebook returns a list with three objects.
+# Access a dictionary table with translates of each code to text:
+codebook(charlson, "icd10cm")$all_codes
+}
+
+# print.codebook() --------------------------------------------------------
+
+# If argument `file` is unspecified, a preview of each sheet of the codebook is
+# printed to the screen
+(cb <- codebook(charlson, "icd10cm"))
+
+# The preview can be modified by arguments to the print-method
+print(cb, n = 20)
+
+
+# codebooks() -------------------------------------------------------------
+
+# Combine codebooks based on different versions of the regular expressions
+# and export to a single (temporary) Excel file
+c1 <- codebook(elixhauser, "icd10cm")
+c2 <- codebook(elixhauser, "icd9cmd",
+  cc_args = list(regex = "icd9cm_enhanced")
+  )
+
+codebooks(
+  elix_icd10 = c1, elix_icd9cm = c2,
+  file = tempfile("codebooks", fileext = ".xlsx")
+)
+
 }
 \seealso{
-codebooks
-
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
-\code{\link{codebooks}()},
 \code{\link{print.classcodes}()},
-\code{\link{print.codebook}()},
-\code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize.classcodes}()}

@@ -2,9 +2,12 @@
 % Please edit documentation in R/summary.classcodes.R
 \name{summary.classcodes}
 \alias{summary.classcodes}
+\alias{print.summary.classcodes}
 \title{Summarizing a classcodes object}
 \usage{
 \method{summary}{classcodes}(object, coding, ..., cc_args = list())
+
+\method{print}{summary.classcodes}(x, ...)
 }
 \arguments{
 \item{object}{classcodes object}
@@ -13,21 +16,24 @@
 or a name (character vector of length one) keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
-\item{...}{ignored}
+\item{...}{\itemize{
+\item \code{summary.classcodes()}: ignored
+\item \code{print.summary.classcodes()}: arguments passed to \code{tibble:::print.tbl()}
+}}
 
 \item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
+
+\item{x}{output from \code{summary.classcodes()}}
 }
 \value{
-List (invisible) with objects:
+Methods primarily called for their side effects (printing to the screen) but
+with additional invisable objects returned:
 \itemize{
-\item \code{object}: input \code{object}
-\item \verb{summary:} a data frame with columns:
-\itemize{
-\item \code{group}: Groups identified by \code{object}.
-\item \code{n}: The number of codes to be recognized for each group.
-\item \code{codes}: Individual codes within each group.
-}
-\item \code{coding}: input \code{coding}
+\item \code{summary.classcodes()}: list with input arguments \code{object} and \code{coding}
+unchanged, as well as a data frame (\code{summary}) with columns for groups
+identified (\code{group}); the number of codes to be recognized for each group
+(\code{n}) and individual codes within each group (\code{codes}).
+\item \code{print.summary.classcodes()}: argument \code{x} unchanged
 }
 }
 \description{
@@ -37,21 +43,42 @@ grasp. Use this function to present all individual codes identified for each
 group in the classification.
 }
 \examples{
+
+# summary.classcodes() ----------------------------------------------------
+
+# Summarize all ICD-10-CM codes identified by the Elixhauser
+# comorbidity classification
+# See `?decoder::icd10cm` for details
 summary(elixhauser, coding = "icd10cm")
+
+# Is there a difference if instead considering the Swedish ICD-10-SE?
+# See `?decoder::icd10se` for details
+summary(elixhauser, coding = "icd10se")
+
+# Which ICD-9-CM diagnostics codes are recognized by Charlson according to
+# Brusselears et al. 2017 (see `?charlson`)
+summary(
+  charlson, coding = "icd9cmd",
+  cc_args = list(regex = "icd9_brusselaers")
+)
+
+
+# print.summary.classcodes() ----------------------------------------------
+
+# Print all 31 lines of the summarized Elixhauser classcodes object
+print(
+  summary(elixhauser, coding = "icd10cm"),
+  n = 31
+)
+
 }
 \seealso{
-\code{\link[=visualize]{visualize()}} for a graphical representation of the
-classcodes objects.
-
 Other classcodes: 
 \code{\link{all_classcodes}()},
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
-\code{\link{codebooks}()},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
-\code{\link{print.codebook}()},
-\code{\link{print.summary.classcodes}()},
 \code{\link{set_classcodes}()},
 \code{\link{visualize.classcodes}()}
 }

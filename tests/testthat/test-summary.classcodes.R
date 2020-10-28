@@ -21,7 +21,7 @@ test_that("summary.classcodes", {
 test_that("print.summary.classcodes", {
   expect_output(
     print(x),
-    "Indices: sum_all, sum_all_ahrq, walraven, sid29",
+    "Summary of classcodes object",
     fixed = TRUE
   )
 })

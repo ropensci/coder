@@ -9,25 +9,27 @@
 #' @param coding either a vector with codes from the original classification,
 #'   or a name (character vector of length one) keyvalue object from package
 #'   "decoder" (for example "icd10cm" or "atc")
-#' @param ... ignored
+#' @param ...
+#' - `summary.classcodes()`: ignored
+#' - `print.summary.classcodes()`: arguments passed to `tibble:::print.tbl()`
 #' @param cc_args List of named arguments passed to [set_classcodes()]
+#' @param x output from `summary.classcodes()`
 #'
-#' @return List (invisible) with objects:
+#' @return
 #'
-#' - `object`: input `object`
-#' - `summary:` a data frame with columns:
-#'   - `group`: Groups identified by `object`.
-#'   - `n`: The number of codes to be recognized for each group.
-#'   - `codes`: Individual codes within each group.
-#' - `coding`: input `coding`
+#' Methods primarily called for their side effects (printing to the screen) but
+#' with additional invisable objects returned:
+#'
+#' - `summary.classcodes()`: list with input arguments `object` and `coding`
+#'   unchanged, as well as a data frame (`summary`) with columns for groups
+#'   identified (`group`); the number of codes to be recognized for each group
+#'   (`n`) and individual codes within each group (`codes`).
+#' - `print.summary.classcodes()`: argument `x` unchanged
 #'
 #' @export
-#' @seealso [visualize()] for a graphical representation of the
-#'   classcodes objects.
 #' @family classcodes
-#'
-#' @examples
-#' summary(elixhauser, coding = "icd10cm")
+#' @name summary.classcodes
+#' @example man/examples/summary.classcodes.R
 summary.classcodes <- function(object, coding, ..., cc_args = list()) {
 
   cl <-
@@ -69,28 +71,12 @@ summary.classcodes <- function(object, coding, ..., cc_args = list()) {
   )
 }
 
-#' Print summary for classcodes object
-#'
-#' @param x object of class [summary.classcodes()]
-#' @param ... arguments to control the printing of a tibble
-#'
-#' @return Nothing. This function is called for its side effects
+#' @rdname summary.classcodes
 #' @export
-#' @family classcodes
-#' @examples
-#' print(summary(elixhauser, coding = "icd10cm"))
 print.summary.classcodes <- function(x, ...) {
-
-  # List of indices used by the object
-  indices <- attr(x$object, "indices")
-  indices <-
-    if (is.null(indices) || identical(indices, character(0)))
-       "(Sum of categories)"
-    else paste(indices, collapse = ", ")
-
-  # Print message
-  cat("Indices:", indices, "\n\n")
-  cat("Recognized codes per group:\n\n")
+  writeLines("\nSummary of classcodes object\n")
+  writeLines("Recognized codes per group:\n")
   print(x$summary, ...)
-  cat("\n Use function visualize() for a graphical representation.\n\n")
+  writeLines("\n Use function visualize() for a graphical representation.")
+  invisible(x)
 }

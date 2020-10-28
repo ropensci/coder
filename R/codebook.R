@@ -1,21 +1,37 @@
-#' Make codebook for classcodes object
-#' @inheritParams summary.classcodes
-#' @param file name of Excel file for data export
-#' @inheritDotParams summary.classcodes
+#' codebook(s) for classcodes object
 #'
-#' @return List of data frames describing relationship
-#' between groups and individual codes
-#' @seealso codebooks
+#' [summary.classcodes()] and [visualize.classcodes()] are used to
+#' summarize/visualize classcodes in R. A codebook, on the other hand,
+#' is an exported summary
+#' saved in an Excel spreadsheet to use in collaboration with non R-users.
+#' Several codebooks might be combined into a single Excel document with
+#' several sheets (one for each codebook).
+#'
+#'
+#' @inheritParams summary.classcodes
+#' @param x output from `codebook()`
+#' @param file name/path to Excel file for data export
+#' @param ... Additional arguments for each function:
+#'
+#' - `codebook()`: arguments passed to [summary.classcodes()]
+#' - `codebooks()`: multiple named outputs from [codebook()]
+#' - `print.codebook()`: arguments passed to `tibble:::print.tbl()`
+#'
+#' @return
+#'
+#' Functions are primarily called for their side effects (exporting data to
+#' Excel or printing to screen). In addition:
+#'
+#' - `codebook()`returns list of data frames describing relationship
+#'   between groups and individual codes
+#' - `codebooks()` returns a concatenated list with output from `codebook()`.
+#'   Only one 'README' object is kept however and renamed as such.
+#' - `print.codebook()`returns `x` (invisible)
+#'
 #' @export
 #' @family classcodes
-#' @examples
-#' # All codes from ICD-10-CM used by Elixhauser
-#' codebook(elixhauser, "icd10cm")
-#'
-#' # All codes from ICD-9-CM Disease part used by Elixhauser enhanced version
-#' codebook(elixhauser, "icd9cmd",
-#'   cc_args = list(regex = "icd9cm_enhanced")
-#' )
+#' @example man/examples/codebook.R
+#' @name codebook
 codebook <- function(object, coding, ..., file = NULL) {
 
   # Summary tab
@@ -60,19 +76,9 @@ codebook <- function(object, coding, ..., file = NULL) {
 
 }
 
-#' Print codebook
-#'
-#' Print a preview of sheets otherwise exported to Excel
-#'
-#' @param x object of class [codebook]
-#' @param ... arguments passed to `tibble:::print.tbl()`
-#'
-#' @return `x` (invisible)
-#'
+
 #' @export
-#' @family classcodes
-#' @examples
-#' codebook(charlson, "icd10cm")
+#' @rdname codebook
 print.codebook <- function(x, ...) {
   message(
     "Coodebooks are prefarably exported to Excel using the `file` argument! ",
@@ -92,22 +98,8 @@ print.codebook <- function(x, ...) {
 }
 
 
-#' Combine codebooks for classcodes objects
-#'
-#' @param ... named output from [codebook()]
-#' @param file name of Excel file for data export
-#'
-#' @return Concatenated list with output from [codebook()].
-#' Only one 'README' object is kept however and renamed as such.
+#' @rdname codebook
 #' @export
-#' @seealso codebook
-#' @family classcodes
-#' @examples
-#' c1 <- codebook(elixhauser, "icd10cm")
-#' c2 <- codebook(elixhauser, "icd9cmd",
-#'   cc_args = list(regex = "icd9cm_enhanced")
-#'   )
-#' codebooks(elix_icd10 = c1, elix_icd9cm = c2)
 codebooks <- function(..., file = NULL) {
   cbs <- unlist(list(...), FALSE)
   rdm <- grep(".readme", names(cbs))
