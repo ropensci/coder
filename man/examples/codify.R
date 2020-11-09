@@ -29,7 +29,7 @@ codify(
 # Dirty code data ---------------------------------------------------------
 
 # Assume that codes contain unwanted "dirty" characters
-# Those could for example be a dot usd by ICD-10 (i.e. X12.3 instead of X123)
+# Those could for example be a dot used by ICD-10 (i.e. X12.3 instead of X123)
 dirt <- c(strsplit(c("½!#¤%&/()=?`,.-_"), split = ""), recursive = TRUE)
 rdirt <- function(x) sample(x, nrow(ex_icd10), replace = TRUE)
 sub <- function(i) substr(ex_icd10$icd10, i, i)
@@ -68,7 +68,7 @@ codify(ex_people, x2, id = "name", code = "icd10", alnum = TRUE, .copy = FALSE)
 head(x2)
 
 # Hence, the `.copy` argument should only be used if necessary
-# and  if so, with caution!
+# and if so, with caution!
 
 
 # print.codify() ----------------------------------------------------------
