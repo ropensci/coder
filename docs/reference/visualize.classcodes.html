@@ -8,6 +8,13 @@
 
 <title>Visualize classification scheme in web browser — visualize.classcodes • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -44,6 +51,7 @@
 The visualization does not give any details on group names, conditions or
 weights but might be useful both for understanding of a classification scheme
 in use, and during the creation and debugging of such." />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -75,7 +83,7 @@ in use, and during the creation and debugging of such." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -142,7 +150,7 @@ in use, and during the creation and debugging of such.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classcodes</span>
-<span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='va'>x</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, show <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='va'>x</span>, group <span class='op'>=</span> <span class='cn'>NULL</span>, show <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,38 +192,44 @@ in the package.</p></dd>
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
 <code><a href='classcodes.html'>classcodes</a></code>,
-<code><a href='codebooks.html'>codebooks</a>()</code>,
 <code><a href='codebook.html'>codebook</a>()</code>,
-<code><a href='print.codebook.html'>print.codebook</a>()</code>,
-<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='print.classcodes.html'>print.classcodes</a>()</code>,
+<code><a href='print.classified.html'>print.classified</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># The default behavior is to open a visualization in the default web browser</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
  <span class='co'># How is depression classified according to Elixhauser?</span>
- <span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"elixhauser"</span>, <span class='st'>"depression"</span><span class='op'>)</span>
+ <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"elixhauser"</span>, <span class='st'>"depression"</span><span class='op'>)</span>
 
  <span class='co'># Compare the two diabetes groups according to Charlson</span>
- <span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span>,
+ <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span>,
    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"diabetes without complication"</span>, <span class='st'>"diabetes complication"</span><span class='op'>)</span><span class='op'>)</span>
 
  <span class='co'># Is this different from the "Royal College of Surgeons classification?</span>
  <span class='co'># Yes, there is only one group for diabetes</span>
- <span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span>,
+ <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span>,
    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"diabetes without complication"</span>, <span class='st'>"diabetes complication"</span><span class='op'>)</span>,
    regex <span class='op'>=</span> <span class='st'>"rcs"</span>
  <span class='op'>)</span>
 
  <span class='co'># Show all groups from Charlson</span>
- <span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span><span class='op'>)</span>
+ <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"charlson"</span><span class='op'>)</span>
 
+ <span class='co'># It is also possible to visualize an arbitrary regular expression</span>
+ <span class='co'># from a character string</span>
+ <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"I2([12]|52)"</span><span class='op'>)</span>
 <span class='op'>}</span>
 
- <span class='co'># Get URL for later visualization</span>
- <span class='fu'><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"hip_ae"</span>, show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div></pre>
+ <span class='co'># The URL is always returned (invisable) but the visual display can</span>
+ <span class='co'># also be omitted</span>
+<span class='va'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"hip_ae"</span>, show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='va'>url</span>
+</div><div class='output co'>#&gt; [1] "https://jex.im/regulex/#!embed=true&amp;flags=&amp;re=%5E(%5E(G(97[89])%7CM96(6F%7C[89])%7C(T8((1([02-9]%7C8W))%7C(4([03578]F?)%7C[49])%7C(8[89])))))%7C%5E(%5E(G57[0-2]%7CM((00(0F?%7C[289]F))%7C(24(3%7C4F?)))%7CS7([4-6]%7C30)))%7C%5E(%5E(M(24[056]F%7C6(10%7C21%7C6[23])F%7C8((43%7C6[01])F%7C66F?%7C95E))))%7C%5E(%5E(I((2([14]%7C6[09]))%7C4(6[019]%7C90)%7C6([0-35-6]%7C49)%7C7([24]%7C7[0-2])%7C8(19%7C2)%7C97[89])%7CJ8[01]9%7CT811))%7C%5E(%5E(I80%7CJ((1[3-8])%7C9(5[23589]%7C6%7C81))%7CK2[5-7]%7CL89%7CN(99[089]%7C(17))%7CR339))%7C%5E(%5E(J2[0-2]%7CK(590%7C29)%7CN991))"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

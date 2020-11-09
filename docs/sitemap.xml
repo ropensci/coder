@@ -34,9 +34,6 @@
     <loc>eribul.github.io/coder/reference/codebook.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/codebooks.html</loc>
-  </url>
-  <url>
     <loc>eribul.github.io/coder/reference/coder-package.html</loc>
   </url>
   <url>
@@ -67,10 +64,10 @@
     <loc>eribul.github.io/coder/reference/index_fun.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/print.codebook.html</loc>
+    <loc>eribul.github.io/coder/reference/print.classcodes.html</loc>
   </url>
   <url>
-    <loc>eribul.github.io/coder/reference/print.summary.classcodes.html</loc>
+    <loc>eribul.github.io/coder/reference/print.classified.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/reexports.html</loc>
@@ -80,9 +77,6 @@
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/set_classcodes.html</loc>
-  </url>
-  <url>
-    <loc>eribul.github.io/coder/reference/spss2date.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/reference/summary.classcodes.html</loc>

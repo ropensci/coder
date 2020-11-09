@@ -17,24 +17,7 @@
 #'
 #' @export
 #' @name classify
-#'
-#' @examples
-#' # Classify individual ICD10-codes by Elixhauser
-#' classify(c("C80", "I20", "unvalid_code"), "elixhauser")
-#'
-#' # Classify patients by Charlson for comorbidities during
-#' # one year before surgery
-#' x <- codify(ex_people, ex_icd10, id = "name", code = "icd10",
-#'   date = "surgery", days = c(-365, 0), code_date = "admission")
-#' y <- classify(x, "charlson")
-#'
-#' # Use tha RCS classification instead and use technical column names
-#' y <- classify(x, "charlson",
-#'   cc_args = list(regex = "icd10_rcs", tech_names = TRUE))
-#'
-#' # It is possible to convert the output of classify to a data frame with
-#' # id column instead of row names
-#' as.data.frame(y)
+#' @example man/examples/classify.R
 #' @family verbs
 classify <- function(codified, cc, ..., cc_args = list()) {
   UseMethod("classify")
@@ -188,20 +171,30 @@ eval_condition <- function(cond, x) {
 
 # Convert output to data.frame --------------------------------------------
 
-#' Convert output matrix from classify to data frame or data.table
+#' Convert output from classify() to matrix/data.frame/data.table
 #'
 #' @param x output from [classify()]
 #' @param ... ignored
-#' @return data frame with:
+#' @return data frame/data table with:
 #'
 #' - first column named as "id" column specified as input
 #'   to [classify()] and with data from `row.names(x)`
 #' - all columns from `classified`
 #' - no row names
 #'
+#' or simply the input matrix without additional attributes
 #'
 #' @export
 #' @family classcodes
+#' @examples
+#' x <- classify(c("C80", "I20", "unvalid_code"), "elixhauser")
+#'
+#' as.matrix(x)
+#' as.data.frame(x)
+#' data.table::as.data.table(x)
+#'
+#' # `as_tibble()` works automatically due to internal use of `as.data.frame()`.
+#' tibble::as_tibble(x)
 as.data.frame.classified <- function(x, ...) {
   y            <- NextMethod()
   id           <- attr(x, "id")
@@ -225,6 +218,35 @@ as.data.table.classified <- function(x, ...) {
 }
 
 #' @export
+#' @rdname as.data.frame.classified
+as.matrix.classified <- function(x, ...) {
+  class(x) <- setdiff("classified", class(x))
+  mostattributes(x) <- NULL
+  x
+}
+
+
+# print classified --------------------------------------------------------
+
+#' Printing classified data
+#'
+#' Preview first `n` rows as tibble
+#'
+#' @param x output from [classify()]
+#' @param ... additional arguments passed to printing method for a `tibble`.
+#'    `n` is the number of rows to preview. Set `n = NULL` to disable the `tibble`
+#'    preview and print the object as is (a matrix).
+#' @export
+#' @family classcodes
+#' @examples
+#' # Preview all output
+#'classify(c("C80", "I20", "unvalid_code"), "elixhauser")
+#'
+#'# Preview only the first row
+#' print(classify(c("C80", "I20", "unvalid_code"), "elixhauser"), n = 1)
+#'
+#' # Print object as is (matrix)
+#' print(classify(c("C80", "I20", "unvalid_code"), "elixhauser"), n = NULL)
 print.classified <- function(x, ...) {
   print_tibble(x, ...)
 }

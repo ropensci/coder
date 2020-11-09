@@ -79,6 +79,7 @@ Other classcodes:
 \code{\link{classcodes}},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{visualize.classcodes}()}
 }

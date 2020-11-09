@@ -27,6 +27,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{classcodes}},
 \code{\link{codebook}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize.classcodes}()}

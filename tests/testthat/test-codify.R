@@ -1,5 +1,3 @@
-context("codify")
-
 x <- codify(ex_people, ex_icd10, id = "name", code = "icd10",
             date = "surgery", code_date = "admission", days = c(-365, 0))
 

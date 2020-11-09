@@ -8,6 +8,13 @@
 
 <title>Summarizing a classcodes object — summary.classcodes • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -44,6 +51,7 @@
 classcodes objects. These are computationally effective but sometimes hard to
 grasp. Use this function to present all individual codes identified for each
 group in the classification." />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -75,7 +83,7 @@ group in the classification." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -142,7 +150,10 @@ group in the classification.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classcodes</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>coding</span>, <span class='va'>...</span>, cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>coding</span>, <span class='va'>...</span>, cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># S3 method for summary.classcodes</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,43 +170,52 @@ or a name (character vector of length one) keyvalue object from package
     </tr>
     <tr>
       <th>...</th>
-      <td><p>ignored</p></td>
+      <td><ul>
+<li><p><code>summary.classcodes()</code>: ignored</p></li>
+<li><p><code>print.summary.classcodes()</code>: arguments passed to <code>tibble:::print.tbl()</code></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>cc_args</th>
       <td><p>List of named arguments passed to <code><a href='set_classcodes.html'>set_classcodes()</a></code></p></td>
     </tr>
+    <tr>
+      <th>x</th>
+      <td><p>output from <code>summary.classcodes()</code></p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List (invisible) with objects:</p><ul>
-<li><p><code>object</code>: input <code>object</code></p></li>
-<li><p><code>summary:</code> a data frame with columns:</p><ul>
-<li><p><code>group</code>: Groups identified by <code>object</code>.</p></li>
-<li><p><code>n</code>: The number of codes to be recognized for each group.</p></li>
-<li><p><code>codes</code>: Individual codes within each group.</p></li>
-</ul></li>
-<li><p><code>coding</code>: input <code>coding</code></p></li>
+    <p>Methods primarily called for their side effects (printing to the screen) but
+with additional invisable objects returned:</p><ul>
+<li><p><code>summary.classcodes()</code>: list with input arguments <code>object</code> and <code>coding</code>
+unchanged, as well as a data frame (<code>summary</code>) with columns for groups
+identified (<code>group</code>); the number of codes to be recognized for each group
+(<code>n</code>) and individual codes within each group (<code>codes</code>).</p></li>
+<li><p><code>print.summary.classcodes()</code>: argument <code>x</code> unchanged</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/generics/man/visualize.html'>visualize()</a></code> for a graphical representation of the
-classcodes objects.</p>
-<p>Other classcodes: 
+    <div class='dont-index'><p>Other classcodes: 
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
 <code><a href='classcodes.html'>classcodes</a></code>,
-<code><a href='codebooks.html'>codebooks</a>()</code>,
 <code><a href='codebook.html'>codebook</a>()</code>,
-<code><a href='print.codebook.html'>print.codebook</a>()</code>,
-<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='print.classcodes.html'>print.classcodes</a>()</code>,
+<code><a href='print.classified.html'>print.classified</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='visualize.classcodes.html'>visualize.classcodes</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, coding <span class='op'>=</span> <span class='st'>"icd10cm"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># summary.classcodes() ----------------------------------------------------</span>
+
+<span class='co'># Summarize all ICD-10-CM codes identified by the Elixhauser</span>
+<span class='co'># comorbidity classification</span>
+<span class='co'># See `?decoder::icd10cm` for details</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, coding <span class='op'>=</span> <span class='st'>"icd10cm"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; Indices: sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
 #&gt; 
 #&gt; Recognized codes per group:
@@ -216,7 +236,110 @@ classcodes objects.</p>
 #&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span>
 #&gt; 
 #&gt;  Use function visualize() for a graphical representation.
-#&gt; </div></span></pre>
+#&gt; </div><div class='input'>
+<span class='co'># Is there a difference if instead considering the Swedish ICD-10-SE?</span>
+<span class='co'># See `?decoder::icd10se` for details</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, coding <span class='op'>=</span> <span class='st'>"icd10se"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; Indices: sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
+#&gt; 
+#&gt; Recognized codes per group:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 31 x 3</span><span>
+#&gt;    group                   n codes                                              
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                              
+#&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV               22 B200, B201, B202, B203, B204, B205, B206, B207, B2~
+#&gt; </span><span style='color: #555555;'> 2</span><span> alcohol abuse          30 E529, F100, F101, F102, F102A, F102B, F102X, F103,~
+#&gt; </span><span style='color: #555555;'> 3</span><span> blood loss anemia       1 D500                                               
+#&gt; </span><span style='color: #555555;'> 4</span><span> cardiac arrhythmias    45 I441, I441A, I441B, I442, I443, I456, I456A, I456B~
+#&gt; </span><span style='color: #555555;'> 5</span><span> chronic pulmonary ~    57 I2782, I2792, J409, J410, J411, J418, J429, J430, ~
+#&gt; </span><span style='color: #555555;'> 6</span><span> coagulopathy           29 D659, D669, D679, D680, D681, D682, D683, D684, D6~
+#&gt; </span><span style='color: #555555;'> 7</span><span> congestive heart f~    19 I099, I1101, I1301, I1321, I255, I420, I425, I4261~
+#&gt; </span><span style='color: #555555;'> 8</span><span> deficiency anemia      17 D508, D509, D510, D511, D512, D513, D518, D519, D5~
+#&gt; </span><span style='color: #555555;'> 9</span><span> depression             22 F2042, F313, F314, F3152, F320, F321, F322, F323, ~
+#&gt; </span><span style='color: #555555;'>10</span><span> diabetes complicat~    93 E102, E102A, E102B, E102C, E102W, E102X, E103, E10~
+#&gt; </span><span style='color: #555555;'># ... with 21 more rows</span><span>
+#&gt; 
+#&gt;  Use function visualize() for a graphical representation.
+#&gt; </div><div class='input'>
+<span class='co'># Which ICD-9-CM diagnostics codes are recognized by Charlson according to</span>
+<span class='co'># Brusselears et al. 2017 (see `?charlson`)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span>
+  <span class='va'>charlson</span>, coding <span class='op'>=</span> <span class='st'>"icd9cmd"</span>,
+  cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"icd9_brusselaers"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; Indices: charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated 
+#&gt; 
+#&gt; Recognized codes per group:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 13 x 3</span><span>
+#&gt;    group                    n codes                                             
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                             
+#&gt; </span><span style='color: #555555;'> 1</span><span> cerebrovascular dis~    69 430, 431, 4320, 4321, 4329, 43300, 43301, 43310, ~
+#&gt; </span><span style='color: #555555;'> 2</span><span> chronic pulmonary d~    48 4160, 4161, 4162, 4168, 4169, 490, 4910, 4911, 49~
+#&gt; </span><span style='color: #555555;'> 3</span><span> congestive heart fa~    45 40200, 40201, 40210, 40211, 40290, 40291, 4250, 4~
+#&gt; </span><span style='color: #555555;'> 4</span><span> dementia                21 2900, 29010, 29011, 29012, 29013, 29020, 29021, 2~
+#&gt; </span><span style='color: #555555;'> 5</span><span> diabetes complicati~    31 1960, 1961, 1962, 1963, 1965, 1966, 1968, 1969, 1~
+#&gt; </span><span style='color: #555555;'> 6</span><span> diabetes without co~    40 25000, 25001, 25002, 25003, 25010, 25011, 25012, ~
+#&gt; </span><span style='color: #555555;'> 7</span><span> hemiplegia or parap~   628 1400, 1401, 1403, 1404, 1405, 1406, 1408, 1409, 1~
+#&gt; </span><span style='color: #555555;'> 8</span><span> mild liver disease      67 40300, 40301, 40310, 40311, 40390, 40391, 40400, ~
+#&gt; </span><span style='color: #555555;'> 9</span><span> myocardial infarcti~    31 41000, 41001, 41002, 41010, 41011, 41012, 41020, ~
+#&gt; </span><span style='color: #555555;'>10</span><span> peptic ulcer disease    39 34200, 34201, 34202, 34210, 34211, 34212, 34280, ~
+#&gt; </span><span style='color: #555555;'>11</span><span> peripheral vascular~    82 4400, 4401, 44020, 44021, 44022, 44023, 44024, 44~
+#&gt; </span><span style='color: #555555;'>12</span><span> renal disease           50 0700, 0701, 07020, 07021, 07022, 07023, 07030, 07~
+#&gt; </span><span style='color: #555555;'>13</span><span> rheumatic disease      179 7100, 7101, 7102, 7103, 7104, 7105, 7108, 7109, 7~
+#&gt; 
+#&gt;  Use function visualize() for a graphical representation.
+#&gt; </div><div class='input'>
+
+<span class='co'># print.summary.classcodes() ----------------------------------------------</span>
+
+<span class='co'># Print all 31 lines of the summarized Elixhauser classcodes object</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>elixhauser</span>, coding <span class='op'>=</span> <span class='st'>"icd10cm"</span><span class='op'>)</span>,
+  n <span class='op'>=</span> <span class='fl'>31</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; Indices: sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
+#&gt; 
+#&gt; Recognized codes per group:
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 31 x 3</span><span>
+#&gt;    group                     n codes                                            
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                            
+#&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                  1 B20                                              
+#&gt; </span><span style='color: #555555;'> 2</span><span> alcohol abuse           131 E52, F1010, F1011, F10120, F10121, F10129, F1014~
+#&gt; </span><span style='color: #555555;'> 3</span><span> blood loss anemia         1 D500                                             
+#&gt; </span><span style='color: #555555;'> 4</span><span> cardiac arrhythmias      73 I441, I442, I4430, I4439, I456, I459, I470, I471~
+#&gt; </span><span style='color: #555555;'> 5</span><span> chronic pulmonary di~    69 I27812, I27822, I27832, I27892, I2792, J40, J410~
+#&gt; </span><span style='color: #555555;'> 6</span><span> coagulopathy             27 D65, D66, D67, D680, D681, D682, D68311, D68312,~
+#&gt; </span><span style='color: #555555;'> 7</span><span> congestive heart fai~    36 I099, I1101, I1301, I1321, I255, I420, I425, I42~
+#&gt; </span><span style='color: #555555;'> 8</span><span> deficiency anemia        17 D508, D509, D510, D511, D512, D513, D518, D519, ~
+#&gt; </span><span style='color: #555555;'> 9</span><span> depression               31 F3130, F3131, F3132, F314, F3152, F320, F321, F3~
+#&gt; </span><span style='color: #555555;'>10</span><span> diabetes complicated    243 E1021, E1022, E1029, E10311, E10319, E103211, E1~
+#&gt; </span><span style='color: #555555;'>11</span><span> diabetes uncomplicat~    13 E1010, E1011, E109, E1100, E1101, E1110, E1111, ~
+#&gt; </span><span style='color: #555555;'>12</span><span> drug abuse              361 F1110, F1111, F11120, F11121, F11122, F11129, F1~
+#&gt; </span><span style='color: #555555;'>13</span><span> fluid electrolyte di~    15 E222, E860, E861, E869, E870, E871, E872, E873, ~
+#&gt; </span><span style='color: #555555;'>14</span><span> hypertension complic~    13 I1102, I119, I1201, I129, I1302, I13101, I13111,~
+#&gt; </span><span style='color: #555555;'>15</span><span> hypertension uncompl~     1 I10                                              
+#&gt; </span><span style='color: #555555;'>16</span><span> hypothyroidism           18 E000, E001, E002, E009, E010, E011, E012, E018, ~
+#&gt; </span><span style='color: #555555;'>17</span><span> liver disease            56 B180, B181, B182, B188, B189, I8500, I8501, I851~
+#&gt; </span><span style='color: #555555;'>18</span><span> lymphoma                373 C8100, C8101, C8102, C8103, C8104, C8105, C8106,~
+#&gt; </span><span style='color: #555555;'>19</span><span> metastatic cancer        47 C770, C771, C772, C773, C774, C775, C778, C779, ~
+#&gt; </span><span style='color: #555555;'>20</span><span> obesity                   7 E6601, E6609, E661, E662, E663, E668, E669       
+#&gt; </span><span style='color: #555555;'>21</span><span> other neurological d~   115 G10, G110, G111, G112, G113, G1142, G118, G119, ~
+#&gt; </span><span style='color: #555555;'>22</span><span> paralysis                45 G041, G1141, G801, G802, G8100, G8101, G8102, G8~
+#&gt; </span><span style='color: #555555;'>23</span><span> peptic ulcer disease      8 K257, K259, K267, K269, K277, K279, K287, K289   
+#&gt; </span><span style='color: #555555;'>24</span><span> peripheral vascular ~   274 I700, I701, I70201, I70202, I70203, I70208, I702~
+#&gt; </span><span style='color: #555555;'>25</span><span> psychoses                20 F200, F201, F202, F203, F205, F2081, F2089, F209~
+#&gt; </span><span style='color: #555555;'>26</span><span> pulmonary circulatio~    24 I2601, I2602, I2609, I2690, I2692, I2693, I2694,~
+#&gt; </span><span style='color: #555555;'>27</span><span> renal failure            16 I1202, I13102, I13112, N181, N182, N183, N184, N~
+#&gt; </span><span style='color: #555555;'>28</span><span> rheumatoid arthritis    572 L940, L941, L943, M0500, M05011, M05012, M05019,~
+#&gt; </span><span style='color: #555555;'>29</span><span> solid tumor             485 C000, C001, C002, C003, C004, C005, C006, C008, ~
+#&gt; </span><span style='color: #555555;'>30</span><span> valvular disease         61 A5200, A5201, A5202, A5203, A5204, A5205, A5206,~
+#&gt; </span><span style='color: #555555;'>31</span><span> weight loss              10 E40, E41, E42, E43, E440, E441, E45, E46, R634, ~
+#&gt; 
+#&gt;  Use function visualize() for a graphical representation.
+#&gt; </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

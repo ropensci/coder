@@ -17,21 +17,7 @@
 #'
 #' @return Named numeric index vector with names corresponding to
 #'   `rownames(x)`
-#'
-#' @examples
-#'
-#' # Calculate Elixhauser comorbidity index
-#' cl <- classify(c("C80", "I20"), "elixhauser")
-#' index(cl)
-#'
-#' # Calculate Charlson-index using original weights
-#' cl <- classify(c("C80", "I21"), "charlson")
-#' index(cl, "quan_original")
-#'
-#' # Calculate Charlson-index using updated weights
-#' cl <- classify(c("C80", "I21"), "charlson")
-#' index(cl, "quan_updated")
-#'
+#' @example man/examples/index.R
 #' @name index_fun
 NULL
 

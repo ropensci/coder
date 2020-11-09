@@ -3,11 +3,14 @@
 \name{as.data.frame.classified}
 \alias{as.data.frame.classified}
 \alias{as.data.table.classified}
-\title{Convert output matrix from classify to data frame or data.table}
+\alias{as.matrix.classified}
+\title{Convert output from classify() to matrix/data.frame/data.table}
 \usage{
 \method{as.data.frame}{classified}(x, ...)
 
 \method{as.data.table}{classified}(x, ...)
+
+\method{as.matrix}{classified}(x, ...)
 }
 \arguments{
 \item{x}{output from \code{\link[=classify]{classify()}}}
@@ -15,16 +18,28 @@
 \item{...}{ignored}
 }
 \value{
-data frame with:
+data frame/data table with:
 \itemize{
 \item first column named as "id" column specified as input
 to \code{\link[=classify]{classify()}} and with data from \code{row.names(x)}
 \item all columns from \code{classified}
 \item no row names
 }
+
+or simply the input matrix without additional attributes
 }
 \description{
-Convert output matrix from classify to data frame or data.table
+Convert output from classify() to matrix/data.frame/data.table
+}
+\examples{
+x <- classify(c("C80", "I20", "unvalid_code"), "elixhauser")
+
+as.matrix(x)
+as.data.frame(x)
+data.table::as.data.table(x)
+
+# `as_tibble()` works automatically due to internal use of `as.data.frame()`.
+tibble::as_tibble(x)
 }
 \seealso{
 Other classcodes: 
@@ -32,6 +47,7 @@ Other classcodes:
 \code{\link{classcodes}},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize.classcodes}()}

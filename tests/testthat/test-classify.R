@@ -1,6 +1,3 @@
-context("classify")
-
-
 ex_people$wrong_id <- 1
 x <-
   codify(

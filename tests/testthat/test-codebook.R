@@ -1,5 +1,3 @@
-context("codebook")
-
 cb <- codebook(elixhauser, "icd10cm")
 cb2 <- codebook(elixhauser, "icd9cmd",
          cc_args = list(regex = "icd9cm_enhanced")

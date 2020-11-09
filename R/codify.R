@@ -2,6 +2,8 @@
 #'
 #' Enhance case data with code data, possibly limited to relevant period.
 #'
+#' See the example section for a warning on using the `.copy` argument!
+#'
 #' @inheritParams copybig
 #' @param data a table with columns id (`character`), code, and optionally date
 #'   ([`Date`])
@@ -44,9 +46,7 @@
 #' @export
 #' @name codify
 #'
-#' @examples
-#' codify(ex_people, ex_icd10, id = "name", code = "icd10",
-#'   date = "surgery", code_date = "admission", days = c(-365, 0))
+#' @example man/examples/codify.R
 #' @family verbs
 codify <- function(data,
                    codedata,
@@ -136,7 +136,7 @@ codify.data.table <- function(data,
   x2 <- copybig(codedata, .copy)
 
   if (alnum) {
-    x2[, (code) := gsub("[^[:alnum:]]", "", code)]
+    x2[, (code) := gsub("[^[:alnum:]]", "", .SD[[..code]])]
   }
 
   ..date <- ..code_date <- in_period  <- NULL # to avoid check notes

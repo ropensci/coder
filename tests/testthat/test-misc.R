@@ -1,5 +1,3 @@
-context("misc")
-
 test_that("misc", {
   expect_equal(iris, copybig(iris, FALSE))
 

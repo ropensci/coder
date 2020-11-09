@@ -125,6 +125,12 @@ as.classcodes(
     diabetes = c("diabetes complicated", "diabetes uncomplicated")
   )
 )
+
+# Several checks are performed to not allow any erroneous classcodes object
+\dontrun{
+  as.classcodes(iris)
+  as.classcodes(iris, regex = "Species")
+}
 }
 \seealso{
 A vignette provides additional details and examples:
@@ -141,6 +147,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize.classcodes}()}
@@ -150,6 +157,7 @@ Other classcodes:
 \code{\link{as.data.frame.classified}()},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()},
 \code{\link{visualize.classcodes}()}

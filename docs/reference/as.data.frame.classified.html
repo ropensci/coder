@@ -6,8 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert output matrix from classify to data frame or data.table — as.data.frame.classified • coder</title>
+<title>Convert output from classify() to matrix/data.frame/data.table — as.data.frame.classified • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -39,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Convert output matrix from classify to data frame or data.table — as.data.frame.classified" />
-<meta property="og:description" content="Convert output matrix from classify to data frame or data.table" />
+<meta property="og:title" content="Convert output from classify() to matrix/data.frame/data.table — as.data.frame.classified" />
+<meta property="og:description" content="Convert output from classify() to matrix/data.frame/data.table" />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -126,20 +134,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert output matrix from classify to data frame or data.table</h1>
+    <h1>Convert output from classify() to matrix/data.frame/data.table</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/classify.R'><code>R/classify.R</code></a></small>
     <div class="hidden name"><code>as.data.frame.classified.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert output matrix from classify to data frame or data.table</p>
+    <p>Convert output from classify() to matrix/data.frame/data.table</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classified</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for classified</span>
-<span class='fu'>as.data.table</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>as.data.table</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='co'># S3 method for classified</span>
+<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,26 +167,146 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame with:</p><ul>
+    <p>data frame/data table with:</p><ul>
 <li><p>first column named as "id" column specified as input
 to <code><a href='classify.html'>classify()</a></code> and with data from <code><a href='https://rdrr.io/r/base/row.names.html'>row.names(x)</a></code></p></li>
 <li><p>all columns from <code>classified</code></p></li>
 <li><p>no row names</p></li>
 </ul>
 
+<p>or simply the input matrix without additional attributes</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other classcodes: 
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='classcodes.html'>classcodes</a></code>,
-<code><a href='codebooks.html'>codebooks</a>()</code>,
 <code><a href='codebook.html'>codebook</a>()</code>,
-<code><a href='print.codebook.html'>print.codebook</a>()</code>,
-<code><a href='print.summary.classcodes.html'>print.summary.classcodes</a>()</code>,
+<code><a href='print.classcodes.html'>print.classcodes</a>()</code>,
+<code><a href='print.classified.html'>print.classified</a>()</code>,
 <code><a href='set_classcodes.html'>set_classcodes</a>()</code>,
 <code><a href='summary.classcodes.html'>summary.classcodes</a>()</code>,
 <code><a href='visualize.classcodes.html'>visualize.classcodes</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='classify.html'>classify</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span><span class='op'>)</span>, <span class='st'>"elixhauser"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 3 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; <span style='color: #555555;'># A tibble: 3 x 31</span><span>
+#&gt;   `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'>1</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>2</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>3</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
+#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid</span><span>
+#&gt; </span><span style='color: #555555;'>#   arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
+#&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;             id congestive heart failure cardiac arrhythmias valvular disease
+#&gt; 1          C80                    FALSE               FALSE            FALSE
+#&gt; 2          I20                    FALSE               FALSE            FALSE
+#&gt; 3 unvalid_code                    FALSE               FALSE            FALSE
+#&gt;   pulmonary circulation disorder peripheral vascular disorder
+#&gt; 1                          FALSE                        FALSE
+#&gt; 2                          FALSE                        FALSE
+#&gt; 3                          FALSE                        FALSE
+#&gt;   hypertension uncomplicated hypertension complicated paralysis
+#&gt; 1                      FALSE                    FALSE     FALSE
+#&gt; 2                      FALSE                    FALSE     FALSE
+#&gt; 3                      FALSE                    FALSE     FALSE
+#&gt;   other neurological disorders chronic pulmonary disease diabetes uncomplicated
+#&gt; 1                        FALSE                     FALSE                  FALSE
+#&gt; 2                        FALSE                     FALSE                  FALSE
+#&gt; 3                        FALSE                     FALSE                  FALSE
+#&gt;   diabetes complicated hypothyroidism renal failure liver disease
+#&gt; 1                FALSE          FALSE         FALSE         FALSE
+#&gt; 2                FALSE          FALSE         FALSE         FALSE
+#&gt; 3                FALSE          FALSE         FALSE         FALSE
+#&gt;   peptic ulcer disease AIDS/HIV lymphoma metastatic cancer solid tumor
+#&gt; 1                FALSE    FALSE    FALSE              TRUE       FALSE
+#&gt; 2                FALSE    FALSE    FALSE             FALSE       FALSE
+#&gt; 3                FALSE    FALSE    FALSE             FALSE       FALSE
+#&gt;   rheumatoid arthritis coagulopathy obesity weight loss
+#&gt; 1                FALSE        FALSE   FALSE       FALSE
+#&gt; 2                FALSE        FALSE   FALSE       FALSE
+#&gt; 3                FALSE        FALSE   FALSE       FALSE
+#&gt;   fluid electrolyte disorders blood loss anemia deficiency anemia alcohol abuse
+#&gt; 1                       FALSE             FALSE             FALSE         FALSE
+#&gt; 2                       FALSE             FALSE             FALSE         FALSE
+#&gt; 3                       FALSE             FALSE             FALSE         FALSE
+#&gt;   drug abuse psychoses depression
+#&gt; 1      FALSE     FALSE      FALSE
+#&gt; 2      FALSE     FALSE      FALSE
+#&gt; 3      FALSE     FALSE      FALSE</div><div class='input'><span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;              id congestive heart failure cardiac arrhythmias valvular disease
+#&gt; 1:          C80                    FALSE               FALSE            FALSE
+#&gt; 2:          I20                    FALSE               FALSE            FALSE
+#&gt; 3: unvalid_code                    FALSE               FALSE            FALSE
+#&gt;    pulmonary circulation disorder peripheral vascular disorder
+#&gt; 1:                          FALSE                        FALSE
+#&gt; 2:                          FALSE                        FALSE
+#&gt; 3:                          FALSE                        FALSE
+#&gt;    hypertension uncomplicated hypertension complicated paralysis
+#&gt; 1:                      FALSE                    FALSE     FALSE
+#&gt; 2:                      FALSE                    FALSE     FALSE
+#&gt; 3:                      FALSE                    FALSE     FALSE
+#&gt;    other neurological disorders chronic pulmonary disease
+#&gt; 1:                        FALSE                     FALSE
+#&gt; 2:                        FALSE                     FALSE
+#&gt; 3:                        FALSE                     FALSE
+#&gt;    diabetes uncomplicated diabetes complicated hypothyroidism renal failure
+#&gt; 1:                  FALSE                FALSE          FALSE         FALSE
+#&gt; 2:                  FALSE                FALSE          FALSE         FALSE
+#&gt; 3:                  FALSE                FALSE          FALSE         FALSE
+#&gt;    liver disease peptic ulcer disease AIDS/HIV lymphoma metastatic cancer
+#&gt; 1:         FALSE                FALSE    FALSE    FALSE              TRUE
+#&gt; 2:         FALSE                FALSE    FALSE    FALSE             FALSE
+#&gt; 3:         FALSE                FALSE    FALSE    FALSE             FALSE
+#&gt;    solid tumor rheumatoid arthritis coagulopathy obesity weight loss
+#&gt; 1:       FALSE                FALSE        FALSE   FALSE       FALSE
+#&gt; 2:       FALSE                FALSE        FALSE   FALSE       FALSE
+#&gt; 3:       FALSE                FALSE        FALSE   FALSE       FALSE
+#&gt;    fluid electrolyte disorders blood loss anemia deficiency anemia
+#&gt; 1:                       FALSE             FALSE             FALSE
+#&gt; 2:                       FALSE             FALSE             FALSE
+#&gt; 3:                       FALSE             FALSE             FALSE
+#&gt;    alcohol abuse drug abuse psychoses depression
+#&gt; 1:         FALSE      FALSE     FALSE      FALSE
+#&gt; 2:         FALSE      FALSE     FALSE      FALSE
+#&gt; 3:         FALSE      FALSE     FALSE      FALSE</div><div class='input'>
+<span class='co'># `as_tibble()` works automatically due to internal use of `as.data.frame()`.</span>
+<span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 31</span><span>
+#&gt;   `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'>1</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>2</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>3</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `hypertension</span><span>
+#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, paralysis </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `other neurological</span><span>
+#&gt; </span><span style='color: #555555;'>#   disorders` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
+#&gt; </span><span style='color: #555555;'>#   uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `diabetes complicated` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `liver</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `rheumatoid arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `deficiency anemia` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, `drug</span><span>
+#&gt; </span><span style='color: #555555;'>#   abuse` </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span style='color: #555555;'>, depression </span><span style='color: #555555;font-style: italic;'>&lt;classifd&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

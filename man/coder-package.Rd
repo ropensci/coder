@@ -6,6 +6,8 @@
 \alias{coder-package}
 \title{coder: Deterministic Categorization of Items Based on External Code Data}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Fast categorization of items based on external code data identified by 
   regular expressions. A typical use case considers patient with medically coded 
   data, such as codes from the International Classification of Diseases (ICD) or 

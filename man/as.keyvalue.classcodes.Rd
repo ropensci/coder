@@ -4,7 +4,7 @@
 \alias{as.keyvalue.classcodes}
 \title{Make keyvalue object from classcodes object}
 \usage{
-\method{as.keyvalue}{classcodes}(x, coding, ...)
+\method{as.keyvalue}{classcodes}(x, coding, cc_args = list())
 }
 \arguments{
 \item{x}{classcodes object}
@@ -13,7 +13,13 @@
 or a name (character vector of length one) keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
-\item{...}{arguments passed to \code{\link[=summary.classcodes]{summary.classcodes()}}}
+\item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
+}
+\value{
+Object of class \code{keyvalue} where \code{key} is the subset of codes from
+\code{object$key}identified by the regular expression from \code{x} and where
+\code{value} is the corresponding \code{x$group}. Hence, note that the original
+\code{object$value} is not used in the output.
 }
 \description{
 S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
@@ -23,5 +29,18 @@ S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
 # comorbidity classification according to the Swedish version of the
 # international classification of diseases version 10 (ICD-10-SE)
 decoder::as.keyvalue(elixhauser, "icd10se")
+
+# Similar but with the American ICD-10-CM instead
+# Note that the `value` column is similar as above (with names from `x$group`) and not
+# from `object$value`
+decoder::as.keyvalue(elixhauser, "icd10cm")
+
+# Codes identified by regular expressions based on ICD-9-CM and found in
+# the Swedish version of ICD-9 used within the national cancer register
+# (thus, a subset of the whole classification).
+decoder::as.keyvalue(
+  elixhauser, "icd9",
+  cc_args = list(regex = "icd9cm")
+)
 }
 \concept{helper}

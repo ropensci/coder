@@ -130,13 +130,15 @@ find_attr <- function(x, arg, what, prefix, must) {
 }
 
 check_classcodes <- function(x) {
-  stopifnot(
-    is.data.frame(x),
-    "group" %in% names(x),
-    !anyNA(x$group),
-    !any(x$group == ""),
-    !any(duplicated(x$group))
-  )
+
+  if (!is.data.frame(x))
+    stop("Classcodes objects must inherit from data.frame!")
+  if (!"group" %in% names(x))
+    stop("classcodes object must have a column named `group`!")
+  if (anyNA(x$group) || any(x$group == ""))
+    stop("`x$group` have missing values (NA or ''). This is not allowed!")
+  if (any(duplicated(x$group)))
+    stop("All values of `x$group` must be unique!")
 
   # Check that regex exist
   rg <- attr(x, "regexprs")

@@ -1,5 +1,5 @@
-coder
-================
+
+# coder <img src="man/figures/logo.png" align="right" />
 
 [![R build
 status](https://github.com/eribul/coder/workflows/R-CMD-check/badge.svg)](https://github.com/eribul/coder/actions)
@@ -133,7 +133,7 @@ ex_people
 #>  8 Shuemaker, Lauren 2020-03-29
 #>  9 Boucher, Teresa   2020-09-04
 #> 10 Le, Soraiya       2020-08-09
-#> # … with 90 more rows
+#> # ... with 90 more rows
 ```
 
 Those patietns (among others) were also recorded in a national patient
@@ -155,7 +155,7 @@ ex_icd10
 #>  8 Sommerville, Dominic 2020-05-03 A227  FALSE
 #>  9 Sommerville, Dominic 2020-09-07 H702  FALSE
 #> 10 Sommerville, Dominic 2019-12-31 X6051 TRUE 
-#> # … with 2,366 more rows
+#> # ... with 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme
@@ -170,31 +170,30 @@ ch <-
   cc = "charlson",            # Calculate Charlson comorbidity
   id = "name", code = "icd10" # Specify column names
   )
-#> Classification based on: regex_icd10
+#> Classification based on: icd10
 
 ch
 #> # A tibble: 100 x 25
-#>    name  surgery    `myocardial inf… `congestive hea… `peripheral vas…
+#>    name  surgery    `myocardial inf~ `congestive hea~ `peripheral vas~
 #>    <chr> <date>     <lgl>            <lgl>            <lgl>           
-#>  1 Arch… 2020-05-25 FALSE            FALSE            FALSE           
-#>  2 Awtr… 2020-09-20 FALSE            FALSE            FALSE           
-#>  3 Bamm… 2020-03-25 FALSE            FALSE            FALSE           
-#>  4 Bank… 2020-06-18 FALSE            FALSE            FALSE           
-#>  5 Bega… 2020-06-19 FALSE            FALSE            FALSE           
-#>  6 Beni… 2020-02-24 FALSE            FALSE            FALSE           
-#>  7 Bhat… 2020-10-12 FALSE            FALSE            FALSE           
-#>  8 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
-#>  9 Carn… 2020-09-11 FALSE            FALSE            FALSE           
-#> 10 Chap… 2020-05-18 FALSE            FALSE            FALSE           
-#> # … with 90 more rows, and 20 more variables: `cerebrovascular disease` <lgl>,
-#> #   dementia <lgl>, `chronic pulmonary disease` <lgl>, `rheumatic
-#> #   disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver disease` <lgl>,
-#> #   `diabetes without complication` <lgl>, `hemiplegia or paraplegia` <lgl>,
-#> #   `renal disease` <lgl>, `diabetes complication` <lgl>, malignancy <lgl>,
-#> #   `moderate or severe liver disease` <lgl>, `metastatic solid tumor` <lgl>,
-#> #   `AIDS/HIV` <lgl>, index_charlson <dbl>, index_deyo_ramano <dbl>,
-#> #   index_dhoore <dbl>, index_ghali <dbl>, index_quan_original <dbl>,
-#> #   index_quan_updated <dbl>
+#>  1 Arch~ 2020-05-25 FALSE            FALSE            FALSE           
+#>  2 Awtr~ 2020-09-20 FALSE            FALSE            FALSE           
+#>  3 Bamm~ 2020-03-25 FALSE            FALSE            FALSE           
+#>  4 Bank~ 2020-06-18 FALSE            FALSE            FALSE           
+#>  5 Bega~ 2020-06-19 FALSE            FALSE            FALSE           
+#>  6 Beni~ 2020-02-24 FALSE            FALSE            FALSE           
+#>  7 Bhat~ 2020-10-12 FALSE            FALSE            FALSE           
+#>  8 Bouc~ 2020-09-04 FALSE            FALSE            TRUE            
+#>  9 Carn~ 2020-09-11 FALSE            FALSE            FALSE           
+#> 10 Chap~ 2020-05-18 FALSE            FALSE            FALSE           
+#> # ... with 90 more rows, and 20 more variables: `cerebrovascular
+#> #   disease` <lgl>, dementia <lgl>, `chronic pulmonary disease` <lgl>,
+#> #   `rheumatic disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver
+#> #   disease` <lgl>, `diabetes without complication` <lgl>, `hemiplegia or
+#> #   paraplegia` <lgl>, `renal disease` <lgl>, `diabetes complication` <lgl>,
+#> #   malignancy <lgl>, `moderate or severe liver disease` <lgl>, `metastatic
+#> #   solid tumor` <lgl>, `AIDS/HIV` <lgl>, charlson <dbl>, deyo_ramano <dbl>,
+#> #   dhoore <dbl>, ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
 ```
 
 How many patietns were diagnosed with malignancy?
@@ -208,7 +207,12 @@ What is the distribution of the combined comorbidity index for each
 patient?
 
 ``` r
-hist(ch$index_charlson, main = "Charlson comorbidity index")
+hist(
+  ch$charlson, 
+  col = "lightblue",
+  main = "Patient comorbidity",
+  xlab = "Charlson comorbidity index"
+)
 ```
 
 <img src="man/figures/READMEunnamed-chunk-5-1.png" width="100%" />
@@ -229,7 +233,7 @@ ch <-
       days = c(-90, -1) # Time window
     )
   )
-#> Classification based on: regex_icd10
+#> Classification based on: icd10
 ```
 
 Number of malignancies during this period?
@@ -268,15 +272,15 @@ might be combined freely.
 ``` r
 coder::all_classcodes()
 #> # A tibble: 7 x 3
-#>   classcodes   regex                           indices                          
-#>   <chr>        <chr>                           <chr>                            
-#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enh… "index_charlson, index_deyo_rama…
-#> 2 cps          icd10                           "index_only_ordinary"            
-#> 3 elixhauser   icd10, icd10_short, icd9cm, ic… "index_sum_all, index_sum_all_ah…
-#> 4 hip_ae       icd10, kva, icd10_fracture      ""                               
-#> 5 hip_ae_hail… icd10, kva                      ""                               
-#> 6 knee_ae      icd10, kva                      ""                               
-#> 7 rxriskv      pratt, caughey, garland         "index_pratt, index_sum_all"
+#>   classcodes   regex                             indices                        
+#>   <chr>        <chr>                             <chr>                          
+#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enhan~ "charlson, deyo_ramano, dhoore~
+#> 2 cps          icd10                             "only_ordinary"                
+#> 3 elixhauser   icd10, icd10_short, icd9cm, icd9~ "sum_all, sum_all_ahrq, walrav~
+#> 4 hip_ae       icd10, kva, icd10_fracture        ""                             
+#> 5 hip_ae_hail~ icd10, kva                        ""                             
+#> 6 knee_ae      icd10, kva                        ""                             
+#> 7 rxriskv      atc_pratt, atc_caughey, atc_garl~ "pratt, sum_all"
 ```
 
 # Relation to other packages

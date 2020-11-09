@@ -91,6 +91,7 @@ print_tibble <- function(x, ..., n = 10) {
     )
     print(tibble::as_tibble(utils::head(x, n)))
   } else {
-    NextMethod()
+    class(x) <- class(x)[-1]
+    print(x, ...)
   }
 }

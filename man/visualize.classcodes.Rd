@@ -20,10 +20,8 @@ Set to \code{FALSE} to just retrieve a URL for later use.}
   Arguments passed on to \code{\link[=set_classcodes]{set_classcodes}}
   \describe{
     \item{\code{regex}}{name of column with regular expressions to use for
-classification, either with or without prefix \code{regex_}.
-\code{NULL} (default) uses the first classcodes column with prefix "regex".
-This should be a sensible choice for default classcodes object included
-in the package.}
+classification.
+\code{NULL} (default) uses \code{attr(obj, "regexpr")[1]}.}
   }}
 }
 \value{
@@ -36,6 +34,8 @@ weights but might be useful both for understanding of a classification scheme
 in use, and during the creation and debugging of such.
 }
 \examples{
+
+# The default behavior is to open a visualization in the default web browser
 \dontrun{
 
  # How is depression classified according to Elixhauser?
@@ -55,10 +55,15 @@ in use, and during the creation and debugging of such.
  # Show all groups from Charlson
  visualize("charlson")
 
+ # It is also possible to visualize an arbitrary regular expression
+ # from a character string
+ visualize("I2([12]|52)")
 }
 
- # Get URL for later visualization
- visualize("hip_ae", show = FALSE)
+ # The URL is always returned (invisable) but the visual display can
+ # also be omitted
+url <- visualize("hip_ae", show = FALSE)
+url
 }
 \seealso{
 Other classcodes: 
@@ -67,6 +72,7 @@ Other classcodes:
 \code{\link{classcodes}},
 \code{\link{codebook}()},
 \code{\link{print.classcodes}()},
+\code{\link{print.classified}()},
 \code{\link{set_classcodes}()},
 \code{\link{summary.classcodes}()}
 }

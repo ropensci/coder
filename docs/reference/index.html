@@ -8,6 +8,13 @@
 
 <title>Function reference • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -227,19 +235,6 @@ based on ICD-10 and KVA codes</p></td>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-codedata" class="hasAnchor"><a href="#section-codedata" class="anchor"></a>Codedata</h2>
-          <p class="section-desc"><p>Functions to handle data set with code data</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
           <h2 id="section-example-data" class="hasAnchor"><a href="#section-example-data" class="anchor"></a>Example data</h2>
           <p class="section-desc"></p>
         </th>
@@ -283,9 +278,9 @@ based on ICD-10 and KVA codes</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="as.data.frame.classified.html">as.data.frame(<i>&lt;classified&gt;</i>)</a></code> <code><a href="as.data.frame.classified.html">as.data.table(<i>&lt;classified&gt;</i>)</a></code> </p>
+          <p><code><a href="as.data.frame.classified.html">as.data.frame(<i>&lt;classified&gt;</i>)</a></code> <code><a href="as.data.frame.classified.html">as.data.table(<i>&lt;classified&gt;</i>)</a></code> <code><a href="as.data.frame.classified.html">as.matrix(<i>&lt;classified&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Convert output matrix from classify to data frame or data.table</p></td>
+        <td><p>Convert output from classify() to matrix/data.frame/data.table</p></td>
       </tr><tr>
         
         <td>
@@ -295,27 +290,21 @@ based on ICD-10 and KVA codes</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="codebook.html">codebook()</a></code> </p>
+          <p><code><a href="codebook.html">codebook()</a></code> <code><a href="codebook.html">print(<i>&lt;codebook&gt;</i>)</a></code> <code><a href="codebook.html">codebooks()</a></code> </p>
         </td>
-        <td><p>Make codebook for classcodes object</p></td>
+        <td><p>codebook(s) for classcodes object</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="codebooks.html">codebooks()</a></code> </p>
+          <p><code><a href="print.classcodes.html">print(<i>&lt;classcodes&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Combine codebooks for classcodes objects</p></td>
+        <td><p>Print classcodes object</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="print.codebook.html">print(<i>&lt;codebook&gt;</i>)</a></code> </p>
+          <p><code><a href="print.classified.html">print(<i>&lt;classified&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print codebook</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.summary.classcodes.html">print(<i>&lt;summary.classcodes&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print summary for classcodes object</p></td>
+        <td><p>Printing classified data</p></td>
       </tr><tr>
         
         <td>
@@ -325,7 +314,7 @@ based on ICD-10 and KVA codes</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="summary.classcodes.html">summary(<i>&lt;classcodes&gt;</i>)</a></code> </p>
+          <p><code><a href="summary.classcodes.html">summary(<i>&lt;classcodes&gt;</i>)</a></code> <code><a href="summary.classcodes.html">print(<i>&lt;summary.classcodes&gt;</i>)</a></code> </p>
         </td>
         <td><p>Summarizing a classcodes object</p></td>
       </tr><tr>

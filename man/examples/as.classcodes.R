@@ -38,3 +38,9 @@ as.classcodes(
     diabetes = c("diabetes complicated", "diabetes uncomplicated")
   )
 )
+
+# Several checks are performed to not allow any erroneous classcodes object
+\dontrun{
+  as.classcodes(iris)
+  as.classcodes(iris, regex = "Species")
+}

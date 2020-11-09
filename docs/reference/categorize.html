@@ -8,6 +8,13 @@
 
 <title>Categorize cases based on external data and classification scheme — categorize • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -46,6 +53,7 @@
 units and with optional dates of interest and;
 (3) a classification scheme (classcodes object; cc) with regular
 expressions to identify and categorize relevant codes." />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -77,7 +85,7 @@ expressions to identify and categorize relevant codes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -164,6 +172,7 @@ expressions to identify and categorize relevant codes.</p>
   index <span class='op'>=</span> <span class='cn'>NULL</span>,
   sort <span class='op'>=</span> <span class='cn'>TRUE</span>,
   cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  check.names <span class='op'>=</span> <span class='cn'>TRUE</span>,
   .data_cols <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
@@ -172,7 +181,7 @@ expressions to identify and categorize relevant codes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> or <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a> with mandatory id column
+      <td><p>data set with mandatory id column
 (identified by argument <code>id</code>),
 and optional column with date of interest
 (identified by argument <code>date</code> if  <code>days != NULL</code>).
@@ -195,19 +204,14 @@ Alternatively, the output from <code><a href='codify.html'>codify()</a></code></
       <td><p>name of code/id columns (in <code>codified</code>).</p></td>
     </tr>
     <tr>
-      <th>codify_args</th>
-      <td><p>List of named arguments passed to <code><a href='codify.html'>codify()</a></code></p></td>
-    </tr>
-    <tr>
       <th>cc</th>
       <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of such object).</p></td>
     </tr>
     <tr>
       <th>index</th>
-      <td><p>A character vector of index values to calculate (passed to argument
-<code>by</code> in function <code><a href='index_fun.html'>index()</a></code>.</p>
-<p>Set to <code>FALSE</code> if no index should be calculated.</p>
-<p>If <code>NULL</code>, the default, all available indices (from <code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "indices")</a></code>)
+      <td><p>A character vector of index values to calculate (passed to <code><a href='index_fun.html'>index()</a></code>.
+Set to <code>FALSE</code> if no index should be calculated.
+If <code>NULL</code>, the default, all available indices (from <code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "indices")</a></code>)
 are provided. A message lists the indices so that you can check they're
 correct; suppress the message by supplying <code>index</code> explicitly.</p></td>
     </tr>
@@ -220,9 +224,18 @@ output sorted this way, but this might be inconvenient if the original
 order was important.)</p></td>
     </tr>
     <tr>
-      <th>cc_args</th>
-      <td><p>List with named arguments passed to
-<code><a href='set_classcodes.html'>set_classcodes()</a></code></p></td>
+      <th>cc_args, codify_args</th>
+      <td><p>List of named arguments passed to
+<code><a href='set_classcodes.html'>set_classcodes()</a></code> and  <code><a href='codify.html'>codify()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>check.names</th>
+      <td><p>Column names are based on <code>cc$group</code>, which might include
+spaces. Those names are changed to syntactically correct names by
+<code>check.names = TRUE</code>. Syntactically invalid, but grammatically correct
+names might be preferred for presentation of the data as achieved by
+<code>check.names = FALSE</code>. Alternatively, if <code>categorize</code> is called repeatedly,
+longer informative names might be created by <code>cc_args = list(tech_names = TRUE)</code>.</p></td>
     </tr>
     <tr>
       <th>.data_cols</th>
@@ -232,8 +245,8 @@ order was important.)</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of class <code>data.table</code> made from <code>data</code> combined with
-logical columns indicating membership of categories identified by the
+    <p>Object of the same class as <code>x</code> with additional logical columns
+indicating membership of categories identified by the
 <code>classcodes</code> object (the <code>cc</code> argument).
 Indices are also included if specified by the 'index' argument.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -241,13 +254,11 @@ Indices are also included if specified by the 'index' argument.</p>
     <p>The function combines the three underlying steps performed by
 <code><a href='codify.html'>codify()</a></code>, <code><a href='classify.html'>classify()</a></code> and <code><a href='index_fun.html'>index()</a></code>.
 Relevant arguments are passed to those functions by
-<code>codify_args</code> and <code>cc_args</code>.</p>
+<code>codify_args</code> and <code>cc_args</code>.
+index</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>For more details see the help vignette:
-<code><a href='../articles/coder.html'>vignette("coder", package = "coder")</a></code> and the
-package website <a href='https://eribul.github.io/coder'>https://eribul.github.io/coder</a>.</p>
-<p>Other verbs: 
+    <div class='dont-index'><p>Other verbs: 
 <code><a href='classify.html'>classify</a>()</code>,
 <code><a href='codify.html'>codify</a>()</code>,
 <code><a href='index_fun.html'>index_fun</a></code></p></div>

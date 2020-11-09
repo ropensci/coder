@@ -3,10 +3,8 @@
 #' @param cc [`classcodes`] object or name of such
 #' @param classified object that classcodes could be inherited from
 #' @param regex name of column with regular expressions to use for
-#'   classification, either with or without prefix `regex_`.
-#'   `NULL` (default) uses the first classcodes column with prefix "regex".
-#'   This should be a sensible choice for default classcodes object included
-#'   in the package.
+#'   classification.
+#'   `NULL` (default) uses `attr(obj, "regexpr")[1]`.
 #' @param start,stop should codes start/end with the specified regular
 #'   expressions? If `TRUE`, column "regex" is prefixed/suffixed
 #'   by `^/$`.
@@ -20,13 +18,7 @@
 #' @return [`classcodes`] object.
 #' @family classcodes
 #' @export
-#' @examples
-#' # Prepare a classcodes object for the Charlson comorbidity classification
-#' # based on the default regular expressions
-#' set_classcodes(charlson)
-#'
-#' # Same as above but based on regular expressions for ICD-8
-#' set_classcodes(charlson, regex = "icd8_brusselaers")
+#' @example man/examples/set_classcodes.R
 set_classcodes <- function(
   cc, classified = NULL, regex = NULL,
   start = TRUE, stop = FALSE, tech_names = NULL) {

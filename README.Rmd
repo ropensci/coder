@@ -1,10 +1,8 @@
 ---
-title: "coder"
-output: 
-  github_document:
-    df_print: tibble
+output: github_document
 ---
 
+# coder <img src="man/figures/logo.png" align="right" />
 [![R build status](https://github.com/eribul/coder/workflows/R-CMD-check/badge.svg)](https://github.com/eribul/coder/actions)
 [![codecov](https://codecov.io/gh/eribul/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/eribul/coder)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -95,7 +93,12 @@ sum(ch$malignancy)
 ```
 What is the distribution of the combined comorbidity index for each patient?
 ```{r}
-hist(ch$index_charlson, main = "Charlson comorbidity index")
+hist(
+  ch$charlson, 
+  col = "lightblue",
+  main = "Patient comorbidity",
+  xlab = "Charlson comorbidity index"
+)
 ```
 
 There are in many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery: 

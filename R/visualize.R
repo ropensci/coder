@@ -15,31 +15,7 @@
 #' @inheritDotParams set_classcodes regex
 #' @return URL to website with visualization (invisible)
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#'
-#'  # How is depression classified according to Elixhauser?
-#'  visualize("elixhauser", "depression")
-#'
-#'  # Compare the two diabetes groups according to Charlson
-#'  visualize("charlson",
-#'    c("diabetes without complication", "diabetes complication"))
-#'
-#'  # Is this different from the "Royal College of Surgeons classification?
-#'  # Yes, there is only one group for diabetes
-#'  visualize("charlson",
-#'    c("diabetes without complication", "diabetes complication"),
-#'    regex = "rcs"
-#'  )
-#'
-#'  # Show all groups from Charlson
-#'  visualize("charlson")
-#'
-#' }
-#'
-#'  # Get URL for later visualization
-#'  visualize("hip_ae", show = FALSE)
+#' @example man/examples/visualize.R
 #' @family classcodes
 visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
   x <- set_classcodes(x, ...)

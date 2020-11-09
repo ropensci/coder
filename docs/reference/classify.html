@@ -8,6 +8,13 @@
 
 <title>Classify cases based on classcodes — classify • coder</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Classify cases based on classcodes — classify" />
 <meta property="og:description" content="Classify cases based on classcodes" />
+<meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
 
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
       </span>
     </div>
 
@@ -191,7 +199,11 @@ of row names.</p>
 <code><a href='index_fun.html'>index_fun</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Classify individual ICD10-codes by Elixhauser</span>
+    <pre class="examples"><div class='input'>
+
+<span class='co'># classify.default() ------------------------------------------------------</span>
+
+<span class='co'># Classify individual ICD10-codes by Elixhauser</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span><span class='op'>)</span>, <span class='st'>"elixhauser"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
 #&gt; The printed data is of class: classified, matrix. It has 3 rows.
@@ -216,1130 +228,232 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
 #&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
-<span class='co'># Classify patients by Charlson for comorbidities during</span>
-<span class='co'># one year before surgery</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='codify.html'>codify</a></span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>,
-  date <span class='op'>=</span> <span class='st'>"surgery"</span>, days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span>, code_date <span class='op'>=</span> <span class='st'>"admission"</span><span class='op'>)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'>
-<span class='co'># Use tha RCS classification instead and use technical column names</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>,
-  cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"icd10_rcs"</span>, tech_names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+
+<span class='co'># classify.codified() -----------------------------------------------------</span>
+
+<span class='co'># Prepare some codified data with ICD-10 codes during 1 year (365 days)</span>
+<span class='co'># before surgery</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='codify.html'>codify</a></span><span class='op'>(</span>
+    <span class='va'>ex_people</span>,
+    <span class='va'>ex_icd10</span>,
+    id        <span class='op'>=</span> <span class='st'>"name"</span>,
+    code      <span class='op'>=</span> <span class='st'>"icd10"</span>,
+    date      <span class='op'>=</span> <span class='st'>"surgery"</span>,
+    days      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span>,
+    code_date <span class='op'>=</span> <span class='st'>"admission"</span>
+  <span class='op'>)</span>
+
+<span class='co'># Classify those patients by the Charlson and Elixhasuer comorbidity indices</span>
+<span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span><span class='op'>)</span>        <span class='co'># classcodes object by name ...</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
+#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 3</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 4</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 5</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 6</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 7</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'>coder</span><span class='fu'>::</span><span class='va'><a href='elixhauser.html'>elixhauser</a></span><span class='op'>)</span> <span class='co'># ... or by the object itself</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 31</span><span>
+#&gt;    `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
+#&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 3</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 4</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 5</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 6</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 7</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE           
+#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
+#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
+#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid</span><span>
+#&gt; </span><span style='color: #555555;'>#   arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
+#&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+
+<span class='co'># -- start/stop --</span>
+<span class='co'># Assume that a prefix "ICD-10 = " is used for all codes and that some</span>
+<span class='co'># additional numbers are added to the end</span>
+<span class='va'>x</span><span class='op'>$</span><span class='va'>icd10</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"ICD-10 = "</span>, <span class='va'>x</span><span class='op'>$</span><span class='va'>icd10</span><span class='op'>)</span>
+
+<span class='co'># Set start = FALSE to identify codes which are not necessarily found in the</span>
+<span class='co'># beginning of the string</span>
+<span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>, cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>start <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
+#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 3</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 4</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 5</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 6</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 7</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
+
+<span class='co'># -- regex --</span>
+<span class='co'># Use a different version of Charlson (as formulated by regular expressions</span>
+<span class='co'># according to the Royal College of Surgeons (RCS) by passing arguments to</span>
+<span class='co'># `set_classcodes()` using the `cc_args` argument</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span>
+  <span class='fu'>classify</span><span class='op'>(</span>
+    <span class='va'>x</span>,
+    <span class='st'>"charlson"</span>,
+    cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>regex <span class='op'>=</span> <span class='st'>"icd10_rcs"</span><span class='op'>)</span>
+  <span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='input'>
-<span class='co'># It is possible to convert the output of classify to a data frame with</span>
-<span class='co'># id column instead of row names</span>
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                       name charlson_icd10_rcs_myocardial_infarction
-#&gt; 1          Connelly, Monta                                    FALSE
-#&gt; 2     Garcia Hyett, Brenda                                    FALSE
-#&gt; 3    Martinez Botello, Luz                                    FALSE
-#&gt; 4        Marton, Gabriella                                    FALSE
-#&gt; 5           Mitchell, John                                    FALSE
-#&gt; 6             Nelson, Cory                                    FALSE
-#&gt; 7            Oh, Stephanie                                    FALSE
-#&gt; 8            Terry, Calvin                                    FALSE
-#&gt; 9       Williams, Nickolas                                    FALSE
-#&gt; 10         Young, Mitchell                                    FALSE
-#&gt; 11       Benitez, Veronica                                       NA
-#&gt; 12           Deleon, Isaac                                       NA
-#&gt; 13            Ebat, Kabita                                       NA
-#&gt; 14          Gerber, Alexis                                       NA
-#&gt; 15            Hill, Audrey                                       NA
-#&gt; 16         Howling, Keisha                                       NA
-#&gt; 17        Kauffmann, Kelia                                       NA
-#&gt; 18           Lopez, Daniel                                       NA
-#&gt; 19         Nguyen, Camille                                       NA
-#&gt; 20         Pracht, Derrick                                       NA
-#&gt; 21    Santistevan, Charlie                                       NA
-#&gt; 22          Schmer, Taylor                                       NA
-#&gt; 23    Sommerville, Dominic                                       NA
-#&gt; 24            Winn, Robert                                       NA
-#&gt; 25       el-Kaba, Ghuzaila                                       NA
-#&gt; 26      al-Akhter, Marzooq                                    FALSE
-#&gt; 27     al-Hossain, Zuraara                                    FALSE
-#&gt; 28    al-Koroma, Humaidaan                                    FALSE
-#&gt; 29        al-Vohra, Jamaal                                    FALSE
-#&gt; 30     Archer, Leon Hunter                                    FALSE
-#&gt; 31         Awtrey, Antonio                                    FALSE
-#&gt; 32      Bammesberger, Jozi                                    FALSE
-#&gt; 33          Banks, Silbret                                    FALSE
-#&gt; 34        Begaye, Sullivan                                    FALSE
-#&gt; 35             Bhatt, Yuko                                    FALSE
-#&gt; 36         Boucher, Teresa                                    FALSE
-#&gt; 37          Carnes, Shelby                                    FALSE
-#&gt; 38         Chapa, Nicholas                                    FALSE
-#&gt; 39            Chen, Trevor                                    FALSE
-#&gt; 40            Chin, Nelson                                    FALSE
-#&gt; 41  Christensen, Johnathon                                    FALSE
-#&gt; 42         Cleveland, Mark                                    FALSE
-#&gt; 43        Cornelius, Kelly                                    FALSE
-#&gt; 44        el-Abdoo, Minnah                                    FALSE
-#&gt; 45         el-Mirza, Ismad                                    FALSE
-#&gt; 46         el-Sani, Jawaad                                    FALSE
-#&gt; 47       el-Shahin, Hasnaa                                    FALSE
-#&gt; 48                 Fell, J                                    FALSE
-#&gt; 49        Fuentes, Roberto                                    FALSE
-#&gt; 50            Garza, Kenia                                    FALSE
-#&gt; 51         Glover, Phillip                                    FALSE
-#&gt; 52         Graves, Acineth                                    FALSE
-#&gt; 53        Hammond, Breanna                                    FALSE
-#&gt; 54      Hernandez, Anthony                                    FALSE
-#&gt; 55          Howard, Darius                                    FALSE
-#&gt; 56            Irick, Kevin                                    FALSE
-#&gt; 57          Jaime, Cynthia                                    FALSE
-#&gt; 58     Jefferson, Deontrae                                    FALSE
-#&gt; 59        Johnson, William                                    FALSE
-#&gt; 60              Kang, Xuan                                    FALSE
-#&gt; 61           Lacsina, Ryan                                    FALSE
-#&gt; 62             Lam, Hannah                                    FALSE
-#&gt; 63           Le, Christina                                    FALSE
-#&gt; 64             Le, Soraiya                                    FALSE
-#&gt; 65            Lee, Jaeyeon                                    FALSE
-#&gt; 66            Lehi, Marilu                                    FALSE
-#&gt; 67          Lening, Hannah                                    FALSE
-#&gt; 68             Lor, Vuthdy                                    FALSE
-#&gt; 69           Mahat, Sydney                                    FALSE
-#&gt; 70         Mandakh, Joseph                                    FALSE
-#&gt; 71        Martinez, Magler                                    FALSE
-#&gt; 72         Mcleod, Desmond                                    FALSE
-#&gt; 73           Meier, Hayden                                    FALSE
-#&gt; 74           Murphy, Kevin                                    FALSE
-#&gt; 75             Ngu, Brenda                                    FALSE
-#&gt; 76      Nikolaeff, Brandon                                    FALSE
-#&gt; 77         Norton, Charles                                    FALSE
-#&gt; 78        Packard, Kaitlin                                    FALSE
-#&gt; 79    Perales, Christopher                                    FALSE
-#&gt; 80          Rico, Germaine                                    FALSE
-#&gt; 81        Robinson, Markel                                    FALSE
-#&gt; 82          Rodri, Tiffany                                    FALSE
-#&gt; 83           Rubin, Miriah                                    FALSE
-#&gt; 84       Shuemaker, Lauren                                    FALSE
-#&gt; 85        Simpson, Kenneth                                    FALSE
-#&gt; 86           Slater, Trina                                    FALSE
-#&gt; 87        Steinke, Richard                                    FALSE
-#&gt; 88           Surage, Sydne                                    FALSE
-#&gt; 89         Swimmer, Apryll                                    FALSE
-#&gt; 90         Thumma, Phillip                                    FALSE
-#&gt; 91           Trine, Alyssa                                    FALSE
-#&gt; 92         Trinh, Schuyler                                    FALSE
-#&gt; 93        Trujillo, Olivia                                    FALSE
-#&gt; 94       Trujillo, Yanelly                                    FALSE
-#&gt; 95          Tveten, Austin                                    FALSE
-#&gt; 96       Weddington, Omega                                    FALSE
-#&gt; 97         Williams, Ellen                                    FALSE
-#&gt; 98           Ybarra, Maria                                    FALSE
-#&gt; 99           Yost, Rebecca                                    FALSE
-#&gt; 100            Zhen, Cassa                                    FALSE
-#&gt;     charlson_icd10_rcs_congestive_heart_failure
-#&gt; 1                                         FALSE
-#&gt; 2                                         FALSE
-#&gt; 3                                         FALSE
-#&gt; 4                                         FALSE
-#&gt; 5                                         FALSE
-#&gt; 6                                         FALSE
-#&gt; 7                                         FALSE
-#&gt; 8                                         FALSE
-#&gt; 9                                         FALSE
-#&gt; 10                                        FALSE
-#&gt; 11                                           NA
-#&gt; 12                                           NA
-#&gt; 13                                           NA
-#&gt; 14                                           NA
-#&gt; 15                                           NA
-#&gt; 16                                           NA
-#&gt; 17                                           NA
-#&gt; 18                                           NA
-#&gt; 19                                           NA
-#&gt; 20                                           NA
-#&gt; 21                                           NA
-#&gt; 22                                           NA
-#&gt; 23                                           NA
-#&gt; 24                                           NA
-#&gt; 25                                           NA
-#&gt; 26                                        FALSE
-#&gt; 27                                        FALSE
-#&gt; 28                                        FALSE
-#&gt; 29                                        FALSE
-#&gt; 30                                        FALSE
-#&gt; 31                                        FALSE
-#&gt; 32                                        FALSE
-#&gt; 33                                        FALSE
-#&gt; 34                                        FALSE
-#&gt; 35                                        FALSE
-#&gt; 36                                        FALSE
-#&gt; 37                                        FALSE
-#&gt; 38                                        FALSE
-#&gt; 39                                        FALSE
-#&gt; 40                                        FALSE
-#&gt; 41                                        FALSE
-#&gt; 42                                        FALSE
-#&gt; 43                                        FALSE
-#&gt; 44                                        FALSE
-#&gt; 45                                        FALSE
-#&gt; 46                                        FALSE
-#&gt; 47                                        FALSE
-#&gt; 48                                        FALSE
-#&gt; 49                                        FALSE
-#&gt; 50                                        FALSE
-#&gt; 51                                        FALSE
-#&gt; 52                                        FALSE
-#&gt; 53                                        FALSE
-#&gt; 54                                        FALSE
-#&gt; 55                                        FALSE
-#&gt; 56                                        FALSE
-#&gt; 57                                        FALSE
-#&gt; 58                                        FALSE
-#&gt; 59                                        FALSE
-#&gt; 60                                        FALSE
-#&gt; 61                                        FALSE
-#&gt; 62                                        FALSE
-#&gt; 63                                        FALSE
-#&gt; 64                                        FALSE
-#&gt; 65                                        FALSE
-#&gt; 66                                        FALSE
-#&gt; 67                                        FALSE
-#&gt; 68                                        FALSE
-#&gt; 69                                        FALSE
-#&gt; 70                                        FALSE
-#&gt; 71                                        FALSE
-#&gt; 72                                        FALSE
-#&gt; 73                                        FALSE
-#&gt; 74                                        FALSE
-#&gt; 75                                         TRUE
-#&gt; 76                                        FALSE
-#&gt; 77                                        FALSE
-#&gt; 78                                        FALSE
-#&gt; 79                                        FALSE
-#&gt; 80                                        FALSE
-#&gt; 81                                        FALSE
-#&gt; 82                                        FALSE
-#&gt; 83                                        FALSE
-#&gt; 84                                        FALSE
-#&gt; 85                                        FALSE
-#&gt; 86                                        FALSE
-#&gt; 87                                        FALSE
-#&gt; 88                                        FALSE
-#&gt; 89                                        FALSE
-#&gt; 90                                        FALSE
-#&gt; 91                                        FALSE
-#&gt; 92                                        FALSE
-#&gt; 93                                        FALSE
-#&gt; 94                                        FALSE
-#&gt; 95                                        FALSE
-#&gt; 96                                        FALSE
-#&gt; 97                                        FALSE
-#&gt; 98                                        FALSE
-#&gt; 99                                        FALSE
-#&gt; 100                                       FALSE
-#&gt;     charlson_icd10_rcs_peripheral_vascular_disease
-#&gt; 1                                            FALSE
-#&gt; 2                                            FALSE
-#&gt; 3                                            FALSE
-#&gt; 4                                            FALSE
-#&gt; 5                                            FALSE
-#&gt; 6                                            FALSE
-#&gt; 7                                            FALSE
-#&gt; 8                                            FALSE
-#&gt; 9                                            FALSE
-#&gt; 10                                           FALSE
-#&gt; 11                                              NA
-#&gt; 12                                              NA
-#&gt; 13                                              NA
-#&gt; 14                                              NA
-#&gt; 15                                              NA
-#&gt; 16                                              NA
-#&gt; 17                                              NA
-#&gt; 18                                              NA
-#&gt; 19                                              NA
-#&gt; 20                                              NA
-#&gt; 21                                              NA
-#&gt; 22                                              NA
-#&gt; 23                                              NA
-#&gt; 24                                              NA
-#&gt; 25                                              NA
-#&gt; 26                                           FALSE
-#&gt; 27                                           FALSE
-#&gt; 28                                           FALSE
-#&gt; 29                                           FALSE
-#&gt; 30                                           FALSE
-#&gt; 31                                           FALSE
-#&gt; 32                                           FALSE
-#&gt; 33                                           FALSE
-#&gt; 34                                           FALSE
-#&gt; 35                                           FALSE
-#&gt; 36                                            TRUE
-#&gt; 37                                           FALSE
-#&gt; 38                                           FALSE
-#&gt; 39                                           FALSE
-#&gt; 40                                           FALSE
-#&gt; 41                                           FALSE
-#&gt; 42                                           FALSE
-#&gt; 43                                           FALSE
-#&gt; 44                                           FALSE
-#&gt; 45                                           FALSE
-#&gt; 46                                           FALSE
-#&gt; 47                                           FALSE
-#&gt; 48                                           FALSE
-#&gt; 49                                           FALSE
-#&gt; 50                                           FALSE
-#&gt; 51                                           FALSE
-#&gt; 52                                           FALSE
-#&gt; 53                                           FALSE
-#&gt; 54                                           FALSE
-#&gt; 55                                           FALSE
-#&gt; 56                                           FALSE
-#&gt; 57                                           FALSE
-#&gt; 58                                           FALSE
-#&gt; 59                                           FALSE
-#&gt; 60                                           FALSE
-#&gt; 61                                           FALSE
-#&gt; 62                                           FALSE
-#&gt; 63                                           FALSE
-#&gt; 64                                           FALSE
-#&gt; 65                                           FALSE
-#&gt; 66                                           FALSE
-#&gt; 67                                           FALSE
-#&gt; 68                                           FALSE
-#&gt; 69                                           FALSE
-#&gt; 70                                           FALSE
-#&gt; 71                                            TRUE
-#&gt; 72                                           FALSE
-#&gt; 73                                           FALSE
-#&gt; 74                                           FALSE
-#&gt; 75                                           FALSE
-#&gt; 76                                           FALSE
-#&gt; 77                                           FALSE
-#&gt; 78                                           FALSE
-#&gt; 79                                           FALSE
-#&gt; 80                                           FALSE
-#&gt; 81                                           FALSE
-#&gt; 82                                           FALSE
-#&gt; 83                                           FALSE
-#&gt; 84                                           FALSE
-#&gt; 85                                           FALSE
-#&gt; 86                                           FALSE
-#&gt; 87                                           FALSE
-#&gt; 88                                           FALSE
-#&gt; 89                                           FALSE
-#&gt; 90                                           FALSE
-#&gt; 91                                           FALSE
-#&gt; 92                                           FALSE
-#&gt; 93                                           FALSE
-#&gt; 94                                           FALSE
-#&gt; 95                                           FALSE
-#&gt; 96                                           FALSE
-#&gt; 97                                           FALSE
-#&gt; 98                                           FALSE
-#&gt; 99                                           FALSE
-#&gt; 100                                          FALSE
-#&gt;     charlson_icd10_rcs_cerebrovascular_disease charlson_icd10_rcs_dementia
-#&gt; 1                                        FALSE                       FALSE
-#&gt; 2                                        FALSE                       FALSE
-#&gt; 3                                        FALSE                       FALSE
-#&gt; 4                                        FALSE                       FALSE
-#&gt; 5                                        FALSE                       FALSE
-#&gt; 6                                        FALSE                       FALSE
-#&gt; 7                                        FALSE                       FALSE
-#&gt; 8                                        FALSE                       FALSE
-#&gt; 9                                        FALSE                       FALSE
-#&gt; 10                                       FALSE                       FALSE
-#&gt; 11                                          NA                          NA
-#&gt; 12                                          NA                          NA
-#&gt; 13                                          NA                          NA
-#&gt; 14                                          NA                          NA
-#&gt; 15                                          NA                          NA
-#&gt; 16                                          NA                          NA
-#&gt; 17                                          NA                          NA
-#&gt; 18                                          NA                          NA
-#&gt; 19                                          NA                          NA
-#&gt; 20                                          NA                          NA
-#&gt; 21                                          NA                          NA
-#&gt; 22                                          NA                          NA
-#&gt; 23                                          NA                          NA
-#&gt; 24                                          NA                          NA
-#&gt; 25                                          NA                          NA
-#&gt; 26                                       FALSE                       FALSE
-#&gt; 27                                       FALSE                       FALSE
-#&gt; 28                                       FALSE                       FALSE
-#&gt; 29                                       FALSE                       FALSE
-#&gt; 30                                       FALSE                       FALSE
-#&gt; 31                                       FALSE                       FALSE
-#&gt; 32                                       FALSE                       FALSE
-#&gt; 33                                       FALSE                       FALSE
-#&gt; 34                                       FALSE                       FALSE
-#&gt; 35                                       FALSE                       FALSE
-#&gt; 36                                       FALSE                       FALSE
-#&gt; 37                                       FALSE                       FALSE
-#&gt; 38                                       FALSE                       FALSE
-#&gt; 39                                       FALSE                       FALSE
-#&gt; 40                                       FALSE                       FALSE
-#&gt; 41                                       FALSE                       FALSE
-#&gt; 42                                       FALSE                       FALSE
-#&gt; 43                                       FALSE                       FALSE
-#&gt; 44                                       FALSE                       FALSE
-#&gt; 45                                       FALSE                       FALSE
-#&gt; 46                                       FALSE                       FALSE
-#&gt; 47                                       FALSE                       FALSE
-#&gt; 48                                       FALSE                       FALSE
-#&gt; 49                                       FALSE                       FALSE
-#&gt; 50                                       FALSE                       FALSE
-#&gt; 51                                       FALSE                       FALSE
-#&gt; 52                                       FALSE                       FALSE
-#&gt; 53                                       FALSE                       FALSE
-#&gt; 54                                       FALSE                       FALSE
-#&gt; 55                                       FALSE                       FALSE
-#&gt; 56                                       FALSE                       FALSE
-#&gt; 57                                       FALSE                       FALSE
-#&gt; 58                                       FALSE                       FALSE
-#&gt; 59                                       FALSE                       FALSE
-#&gt; 60                                       FALSE                       FALSE
-#&gt; 61                                       FALSE                       FALSE
-#&gt; 62                                       FALSE                       FALSE
-#&gt; 63                                       FALSE                       FALSE
-#&gt; 64                                       FALSE                       FALSE
-#&gt; 65                                       FALSE                       FALSE
-#&gt; 66                                       FALSE                       FALSE
-#&gt; 67                                       FALSE                       FALSE
-#&gt; 68                                       FALSE                       FALSE
-#&gt; 69                                       FALSE                       FALSE
-#&gt; 70                                       FALSE                       FALSE
-#&gt; 71                                       FALSE                       FALSE
-#&gt; 72                                       FALSE                       FALSE
-#&gt; 73                                        TRUE                       FALSE
-#&gt; 74                                       FALSE                       FALSE
-#&gt; 75                                       FALSE                       FALSE
-#&gt; 76                                       FALSE                       FALSE
-#&gt; 77                                       FALSE                       FALSE
-#&gt; 78                                       FALSE                       FALSE
-#&gt; 79                                       FALSE                       FALSE
-#&gt; 80                                       FALSE                       FALSE
-#&gt; 81                                       FALSE                       FALSE
-#&gt; 82                                       FALSE                       FALSE
-#&gt; 83                                       FALSE                       FALSE
-#&gt; 84                                       FALSE                       FALSE
-#&gt; 85                                       FALSE                       FALSE
-#&gt; 86                                       FALSE                       FALSE
-#&gt; 87                                       FALSE                       FALSE
-#&gt; 88                                       FALSE                       FALSE
-#&gt; 89                                       FALSE                       FALSE
-#&gt; 90                                       FALSE                       FALSE
-#&gt; 91                                       FALSE                       FALSE
-#&gt; 92                                       FALSE                       FALSE
-#&gt; 93                                       FALSE                       FALSE
-#&gt; 94                                       FALSE                       FALSE
-#&gt; 95                                       FALSE                       FALSE
-#&gt; 96                                       FALSE                       FALSE
-#&gt; 97                                       FALSE                       FALSE
-#&gt; 98                                       FALSE                       FALSE
-#&gt; 99                                       FALSE                       FALSE
-#&gt; 100                                      FALSE                       FALSE
-#&gt;     charlson_icd10_rcs_chronic_pulmonary_disease
-#&gt; 1                                          FALSE
-#&gt; 2                                          FALSE
-#&gt; 3                                          FALSE
-#&gt; 4                                          FALSE
-#&gt; 5                                          FALSE
-#&gt; 6                                          FALSE
-#&gt; 7                                          FALSE
-#&gt; 8                                          FALSE
-#&gt; 9                                          FALSE
-#&gt; 10                                         FALSE
-#&gt; 11                                            NA
-#&gt; 12                                            NA
-#&gt; 13                                            NA
-#&gt; 14                                            NA
-#&gt; 15                                            NA
-#&gt; 16                                            NA
-#&gt; 17                                            NA
-#&gt; 18                                            NA
-#&gt; 19                                            NA
-#&gt; 20                                            NA
-#&gt; 21                                            NA
-#&gt; 22                                            NA
-#&gt; 23                                            NA
-#&gt; 24                                            NA
-#&gt; 25                                            NA
-#&gt; 26                                         FALSE
-#&gt; 27                                         FALSE
-#&gt; 28                                         FALSE
-#&gt; 29                                         FALSE
-#&gt; 30                                         FALSE
-#&gt; 31                                         FALSE
-#&gt; 32                                         FALSE
-#&gt; 33                                         FALSE
-#&gt; 34                                         FALSE
-#&gt; 35                                         FALSE
-#&gt; 36                                         FALSE
-#&gt; 37                                         FALSE
-#&gt; 38                                         FALSE
-#&gt; 39                                         FALSE
-#&gt; 40                                         FALSE
-#&gt; 41                                         FALSE
-#&gt; 42                                         FALSE
-#&gt; 43                                         FALSE
-#&gt; 44                                         FALSE
-#&gt; 45                                         FALSE
-#&gt; 46                                         FALSE
-#&gt; 47                                         FALSE
-#&gt; 48                                         FALSE
-#&gt; 49                                         FALSE
-#&gt; 50                                         FALSE
-#&gt; 51                                         FALSE
-#&gt; 52                                         FALSE
-#&gt; 53                                         FALSE
-#&gt; 54                                         FALSE
-#&gt; 55                                         FALSE
-#&gt; 56                                         FALSE
-#&gt; 57                                         FALSE
-#&gt; 58                                         FALSE
-#&gt; 59                                         FALSE
-#&gt; 60                                         FALSE
-#&gt; 61                                         FALSE
-#&gt; 62                                         FALSE
-#&gt; 63                                         FALSE
-#&gt; 64                                         FALSE
-#&gt; 65                                         FALSE
-#&gt; 66                                         FALSE
-#&gt; 67                                         FALSE
-#&gt; 68                                         FALSE
-#&gt; 69                                         FALSE
-#&gt; 70                                         FALSE
-#&gt; 71                                         FALSE
-#&gt; 72                                         FALSE
-#&gt; 73                                         FALSE
-#&gt; 74                                         FALSE
-#&gt; 75                                         FALSE
-#&gt; 76                                         FALSE
-#&gt; 77                                         FALSE
-#&gt; 78                                         FALSE
-#&gt; 79                                         FALSE
-#&gt; 80                                         FALSE
-#&gt; 81                                         FALSE
-#&gt; 82                                         FALSE
-#&gt; 83                                         FALSE
-#&gt; 84                                         FALSE
-#&gt; 85                                         FALSE
-#&gt; 86                                         FALSE
-#&gt; 87                                         FALSE
-#&gt; 88                                         FALSE
-#&gt; 89                                         FALSE
-#&gt; 90                                         FALSE
-#&gt; 91                                         FALSE
-#&gt; 92                                         FALSE
-#&gt; 93                                         FALSE
-#&gt; 94                                         FALSE
-#&gt; 95                                         FALSE
-#&gt; 96                                         FALSE
-#&gt; 97                                         FALSE
-#&gt; 98                                         FALSE
-#&gt; 99                                         FALSE
-#&gt; 100                                        FALSE
-#&gt;     charlson_icd10_rcs_rheumatic_disease
-#&gt; 1                                  FALSE
-#&gt; 2                                  FALSE
-#&gt; 3                                  FALSE
-#&gt; 4                                  FALSE
-#&gt; 5                                  FALSE
-#&gt; 6                                  FALSE
-#&gt; 7                                  FALSE
-#&gt; 8                                  FALSE
-#&gt; 9                                  FALSE
-#&gt; 10                                 FALSE
-#&gt; 11                                    NA
-#&gt; 12                                    NA
-#&gt; 13                                    NA
-#&gt; 14                                    NA
-#&gt; 15                                    NA
-#&gt; 16                                    NA
-#&gt; 17                                    NA
-#&gt; 18                                    NA
-#&gt; 19                                    NA
-#&gt; 20                                    NA
-#&gt; 21                                    NA
-#&gt; 22                                    NA
-#&gt; 23                                    NA
-#&gt; 24                                    NA
-#&gt; 25                                    NA
-#&gt; 26                                 FALSE
-#&gt; 27                                 FALSE
-#&gt; 28                                 FALSE
-#&gt; 29                                 FALSE
-#&gt; 30                                 FALSE
-#&gt; 31                                 FALSE
-#&gt; 32                                 FALSE
-#&gt; 33                                 FALSE
-#&gt; 34                                 FALSE
-#&gt; 35                                 FALSE
-#&gt; 36                                 FALSE
-#&gt; 37                                  TRUE
-#&gt; 38                                 FALSE
-#&gt; 39                                 FALSE
-#&gt; 40                                 FALSE
-#&gt; 41                                 FALSE
-#&gt; 42                                 FALSE
-#&gt; 43                                 FALSE
-#&gt; 44                                 FALSE
-#&gt; 45                                 FALSE
-#&gt; 46                                 FALSE
-#&gt; 47                                 FALSE
-#&gt; 48                                 FALSE
-#&gt; 49                                 FALSE
-#&gt; 50                                 FALSE
-#&gt; 51                                 FALSE
-#&gt; 52                                 FALSE
-#&gt; 53                                 FALSE
-#&gt; 54                                 FALSE
-#&gt; 55                                 FALSE
-#&gt; 56                                 FALSE
-#&gt; 57                                 FALSE
-#&gt; 58                                 FALSE
-#&gt; 59                                 FALSE
-#&gt; 60                                 FALSE
-#&gt; 61                                 FALSE
-#&gt; 62                                 FALSE
-#&gt; 63                                 FALSE
-#&gt; 64                                 FALSE
-#&gt; 65                                 FALSE
-#&gt; 66                                 FALSE
-#&gt; 67                                 FALSE
-#&gt; 68                                 FALSE
-#&gt; 69                                 FALSE
-#&gt; 70                                 FALSE
-#&gt; 71                                 FALSE
-#&gt; 72                                 FALSE
-#&gt; 73                                 FALSE
-#&gt; 74                                 FALSE
-#&gt; 75                                 FALSE
-#&gt; 76                                 FALSE
-#&gt; 77                                 FALSE
-#&gt; 78                                 FALSE
-#&gt; 79                                 FALSE
-#&gt; 80                                 FALSE
-#&gt; 81                                 FALSE
-#&gt; 82                                 FALSE
-#&gt; 83                                 FALSE
-#&gt; 84                                 FALSE
-#&gt; 85                                 FALSE
-#&gt; 86                                 FALSE
-#&gt; 87                                 FALSE
-#&gt; 88                                 FALSE
-#&gt; 89                                 FALSE
-#&gt; 90                                 FALSE
-#&gt; 91                                 FALSE
-#&gt; 92                                 FALSE
-#&gt; 93                                 FALSE
-#&gt; 94                                 FALSE
-#&gt; 95                                 FALSE
-#&gt; 96                                 FALSE
-#&gt; 97                                 FALSE
-#&gt; 98                                 FALSE
-#&gt; 99                                 FALSE
-#&gt; 100                                FALSE
-#&gt;     charlson_icd10_rcs_hemiplegia_or_paraplegia
-#&gt; 1                                         FALSE
-#&gt; 2                                         FALSE
-#&gt; 3                                         FALSE
-#&gt; 4                                         FALSE
-#&gt; 5                                         FALSE
-#&gt; 6                                         FALSE
-#&gt; 7                                         FALSE
-#&gt; 8                                         FALSE
-#&gt; 9                                         FALSE
-#&gt; 10                                        FALSE
-#&gt; 11                                           NA
-#&gt; 12                                           NA
-#&gt; 13                                           NA
-#&gt; 14                                           NA
-#&gt; 15                                           NA
-#&gt; 16                                           NA
-#&gt; 17                                           NA
-#&gt; 18                                           NA
-#&gt; 19                                           NA
-#&gt; 20                                           NA
-#&gt; 21                                           NA
-#&gt; 22                                           NA
-#&gt; 23                                           NA
-#&gt; 24                                           NA
-#&gt; 25                                           NA
-#&gt; 26                                        FALSE
-#&gt; 27                                        FALSE
-#&gt; 28                                        FALSE
-#&gt; 29                                        FALSE
-#&gt; 30                                        FALSE
-#&gt; 31                                        FALSE
-#&gt; 32                                        FALSE
-#&gt; 33                                        FALSE
-#&gt; 34                                        FALSE
-#&gt; 35                                        FALSE
-#&gt; 36                                        FALSE
-#&gt; 37                                        FALSE
-#&gt; 38                                        FALSE
-#&gt; 39                                        FALSE
-#&gt; 40                                        FALSE
-#&gt; 41                                        FALSE
-#&gt; 42                                        FALSE
-#&gt; 43                                        FALSE
-#&gt; 44                                        FALSE
-#&gt; 45                                        FALSE
-#&gt; 46                                        FALSE
-#&gt; 47                                        FALSE
-#&gt; 48                                        FALSE
-#&gt; 49                                        FALSE
-#&gt; 50                                        FALSE
-#&gt; 51                                        FALSE
-#&gt; 52                                        FALSE
-#&gt; 53                                        FALSE
-#&gt; 54                                        FALSE
-#&gt; 55                                        FALSE
-#&gt; 56                                        FALSE
-#&gt; 57                                        FALSE
-#&gt; 58                                        FALSE
-#&gt; 59                                        FALSE
-#&gt; 60                                        FALSE
-#&gt; 61                                        FALSE
-#&gt; 62                                        FALSE
-#&gt; 63                                        FALSE
-#&gt; 64                                        FALSE
-#&gt; 65                                        FALSE
-#&gt; 66                                        FALSE
-#&gt; 67                                        FALSE
-#&gt; 68                                        FALSE
-#&gt; 69                                        FALSE
-#&gt; 70                                        FALSE
-#&gt; 71                                        FALSE
-#&gt; 72                                        FALSE
-#&gt; 73                                        FALSE
-#&gt; 74                                        FALSE
-#&gt; 75                                        FALSE
-#&gt; 76                                        FALSE
-#&gt; 77                                        FALSE
-#&gt; 78                                        FALSE
-#&gt; 79                                        FALSE
-#&gt; 80                                        FALSE
-#&gt; 81                                        FALSE
-#&gt; 82                                        FALSE
-#&gt; 83                                        FALSE
-#&gt; 84                                        FALSE
-#&gt; 85                                        FALSE
-#&gt; 86                                        FALSE
-#&gt; 87                                        FALSE
-#&gt; 88                                        FALSE
-#&gt; 89                                        FALSE
-#&gt; 90                                        FALSE
-#&gt; 91                                        FALSE
-#&gt; 92                                        FALSE
-#&gt; 93                                        FALSE
-#&gt; 94                                        FALSE
-#&gt; 95                                        FALSE
-#&gt; 96                                        FALSE
-#&gt; 97                                        FALSE
-#&gt; 98                                        FALSE
-#&gt; 99                                        FALSE
-#&gt; 100                                       FALSE
-#&gt;     charlson_icd10_rcs_renal_disease charlson_icd10_rcs_diabetes_complication
-#&gt; 1                              FALSE                                    FALSE
-#&gt; 2                              FALSE                                    FALSE
-#&gt; 3                              FALSE                                    FALSE
-#&gt; 4                              FALSE                                    FALSE
-#&gt; 5                              FALSE                                    FALSE
-#&gt; 6                              FALSE                                    FALSE
-#&gt; 7                              FALSE                                    FALSE
-#&gt; 8                              FALSE                                    FALSE
-#&gt; 9                              FALSE                                    FALSE
-#&gt; 10                             FALSE                                    FALSE
-#&gt; 11                                NA                                       NA
-#&gt; 12                                NA                                       NA
-#&gt; 13                                NA                                       NA
-#&gt; 14                                NA                                       NA
-#&gt; 15                                NA                                       NA
-#&gt; 16                                NA                                       NA
-#&gt; 17                                NA                                       NA
-#&gt; 18                                NA                                       NA
-#&gt; 19                                NA                                       NA
-#&gt; 20                                NA                                       NA
-#&gt; 21                                NA                                       NA
-#&gt; 22                                NA                                       NA
-#&gt; 23                                NA                                       NA
-#&gt; 24                                NA                                       NA
-#&gt; 25                                NA                                       NA
-#&gt; 26                             FALSE                                    FALSE
-#&gt; 27                             FALSE                                    FALSE
-#&gt; 28                             FALSE                                    FALSE
-#&gt; 29                             FALSE                                    FALSE
-#&gt; 30                             FALSE                                    FALSE
-#&gt; 31                             FALSE                                    FALSE
-#&gt; 32                             FALSE                                    FALSE
-#&gt; 33                             FALSE                                    FALSE
-#&gt; 34                             FALSE                                    FALSE
-#&gt; 35                             FALSE                                    FALSE
-#&gt; 36                              TRUE                                    FALSE
-#&gt; 37                             FALSE                                    FALSE
-#&gt; 38                             FALSE                                    FALSE
-#&gt; 39                             FALSE                                    FALSE
-#&gt; 40                             FALSE                                    FALSE
-#&gt; 41                             FALSE                                     TRUE
-#&gt; 42                             FALSE                                    FALSE
-#&gt; 43                             FALSE                                    FALSE
-#&gt; 44                             FALSE                                    FALSE
-#&gt; 45                             FALSE                                    FALSE
-#&gt; 46                             FALSE                                    FALSE
-#&gt; 47                             FALSE                                    FALSE
-#&gt; 48                             FALSE                                    FALSE
-#&gt; 49                             FALSE                                    FALSE
-#&gt; 50                             FALSE                                    FALSE
-#&gt; 51                             FALSE                                    FALSE
-#&gt; 52                             FALSE                                    FALSE
-#&gt; 53                             FALSE                                    FALSE
-#&gt; 54                             FALSE                                    FALSE
-#&gt; 55                             FALSE                                    FALSE
-#&gt; 56                             FALSE                                    FALSE
-#&gt; 57                             FALSE                                    FALSE
-#&gt; 58                             FALSE                                    FALSE
-#&gt; 59                             FALSE                                    FALSE
-#&gt; 60                             FALSE                                    FALSE
-#&gt; 61                             FALSE                                    FALSE
-#&gt; 62                             FALSE                                    FALSE
-#&gt; 63                             FALSE                                    FALSE
-#&gt; 64                             FALSE                                    FALSE
-#&gt; 65                             FALSE                                    FALSE
-#&gt; 66                             FALSE                                    FALSE
-#&gt; 67                             FALSE                                    FALSE
-#&gt; 68                             FALSE                                    FALSE
-#&gt; 69                             FALSE                                    FALSE
-#&gt; 70                             FALSE                                    FALSE
-#&gt; 71                             FALSE                                    FALSE
-#&gt; 72                             FALSE                                    FALSE
-#&gt; 73                             FALSE                                    FALSE
-#&gt; 74                             FALSE                                    FALSE
-#&gt; 75                             FALSE                                    FALSE
-#&gt; 76                             FALSE                                    FALSE
-#&gt; 77                             FALSE                                    FALSE
-#&gt; 78                             FALSE                                    FALSE
-#&gt; 79                             FALSE                                    FALSE
-#&gt; 80                             FALSE                                    FALSE
-#&gt; 81                             FALSE                                    FALSE
-#&gt; 82                             FALSE                                    FALSE
-#&gt; 83                             FALSE                                    FALSE
-#&gt; 84                             FALSE                                    FALSE
-#&gt; 85                             FALSE                                    FALSE
-#&gt; 86                             FALSE                                    FALSE
-#&gt; 87                             FALSE                                    FALSE
-#&gt; 88                             FALSE                                    FALSE
-#&gt; 89                             FALSE                                    FALSE
-#&gt; 90                             FALSE                                    FALSE
-#&gt; 91                             FALSE                                    FALSE
-#&gt; 92                             FALSE                                    FALSE
-#&gt; 93                              TRUE                                     TRUE
-#&gt; 94                             FALSE                                    FALSE
-#&gt; 95                             FALSE                                    FALSE
-#&gt; 96                             FALSE                                    FALSE
-#&gt; 97                             FALSE                                    FALSE
-#&gt; 98                             FALSE                                    FALSE
-#&gt; 99                             FALSE                                    FALSE
-#&gt; 100                            FALSE                                    FALSE
-#&gt;     charlson_icd10_rcs_malignancy
-#&gt; 1                           FALSE
-#&gt; 2                           FALSE
-#&gt; 3                           FALSE
-#&gt; 4                           FALSE
-#&gt; 5                           FALSE
-#&gt; 6                           FALSE
-#&gt; 7                           FALSE
-#&gt; 8                           FALSE
-#&gt; 9                           FALSE
-#&gt; 10                          FALSE
-#&gt; 11                             NA
-#&gt; 12                             NA
-#&gt; 13                             NA
-#&gt; 14                             NA
-#&gt; 15                             NA
-#&gt; 16                             NA
-#&gt; 17                             NA
-#&gt; 18                             NA
-#&gt; 19                             NA
-#&gt; 20                             NA
-#&gt; 21                             NA
-#&gt; 22                             NA
-#&gt; 23                             NA
-#&gt; 24                             NA
-#&gt; 25                             NA
-#&gt; 26                          FALSE
-#&gt; 27                          FALSE
-#&gt; 28                          FALSE
-#&gt; 29                           TRUE
-#&gt; 30                          FALSE
-#&gt; 31                          FALSE
-#&gt; 32                          FALSE
-#&gt; 33                          FALSE
-#&gt; 34                          FALSE
-#&gt; 35                          FALSE
-#&gt; 36                          FALSE
-#&gt; 37                          FALSE
-#&gt; 38                          FALSE
-#&gt; 39                          FALSE
-#&gt; 40                          FALSE
-#&gt; 41                          FALSE
-#&gt; 42                          FALSE
-#&gt; 43                          FALSE
-#&gt; 44                          FALSE
-#&gt; 45                          FALSE
-#&gt; 46                          FALSE
-#&gt; 47                          FALSE
-#&gt; 48                          FALSE
-#&gt; 49                           TRUE
-#&gt; 50                          FALSE
-#&gt; 51                          FALSE
-#&gt; 52                          FALSE
-#&gt; 53                          FALSE
-#&gt; 54                          FALSE
-#&gt; 55                          FALSE
-#&gt; 56                          FALSE
-#&gt; 57                          FALSE
-#&gt; 58                          FALSE
-#&gt; 59                          FALSE
-#&gt; 60                          FALSE
-#&gt; 61                          FALSE
-#&gt; 62                          FALSE
-#&gt; 63                           TRUE
-#&gt; 64                          FALSE
-#&gt; 65                          FALSE
-#&gt; 66                          FALSE
-#&gt; 67                           TRUE
-#&gt; 68                          FALSE
-#&gt; 69                          FALSE
-#&gt; 70                          FALSE
-#&gt; 71                          FALSE
-#&gt; 72                          FALSE
-#&gt; 73                          FALSE
-#&gt; 74                          FALSE
-#&gt; 75                          FALSE
-#&gt; 76                          FALSE
-#&gt; 77                          FALSE
-#&gt; 78                          FALSE
-#&gt; 79                          FALSE
-#&gt; 80                          FALSE
-#&gt; 81                          FALSE
-#&gt; 82                          FALSE
-#&gt; 83                          FALSE
-#&gt; 84                          FALSE
-#&gt; 85                          FALSE
-#&gt; 86                          FALSE
-#&gt; 87                          FALSE
-#&gt; 88                          FALSE
-#&gt; 89                          FALSE
-#&gt; 90                          FALSE
-#&gt; 91                          FALSE
-#&gt; 92                          FALSE
-#&gt; 93                          FALSE
-#&gt; 94                          FALSE
-#&gt; 95                          FALSE
-#&gt; 96                          FALSE
-#&gt; 97                          FALSE
-#&gt; 98                          FALSE
-#&gt; 99                          FALSE
-#&gt; 100                         FALSE
-#&gt;     charlson_icd10_rcs_moderate_or_severe_liver_disease
-#&gt; 1                                                 FALSE
-#&gt; 2                                                 FALSE
-#&gt; 3                                                 FALSE
-#&gt; 4                                                 FALSE
-#&gt; 5                                                 FALSE
-#&gt; 6                                                 FALSE
-#&gt; 7                                                 FALSE
-#&gt; 8                                                 FALSE
-#&gt; 9                                                 FALSE
-#&gt; 10                                                FALSE
-#&gt; 11                                                   NA
-#&gt; 12                                                   NA
-#&gt; 13                                                   NA
-#&gt; 14                                                   NA
-#&gt; 15                                                   NA
-#&gt; 16                                                   NA
-#&gt; 17                                                   NA
-#&gt; 18                                                   NA
-#&gt; 19                                                   NA
-#&gt; 20                                                   NA
-#&gt; 21                                                   NA
-#&gt; 22                                                   NA
-#&gt; 23                                                   NA
-#&gt; 24                                                   NA
-#&gt; 25                                                   NA
-#&gt; 26                                                FALSE
-#&gt; 27                                                FALSE
-#&gt; 28                                                FALSE
-#&gt; 29                                                FALSE
-#&gt; 30                                                FALSE
-#&gt; 31                                                FALSE
-#&gt; 32                                                FALSE
-#&gt; 33                                                FALSE
-#&gt; 34                                                FALSE
-#&gt; 35                                                FALSE
-#&gt; 36                                                FALSE
-#&gt; 37                                                FALSE
-#&gt; 38                                                FALSE
-#&gt; 39                                                FALSE
-#&gt; 40                                                FALSE
-#&gt; 41                                                FALSE
-#&gt; 42                                                FALSE
-#&gt; 43                                                FALSE
-#&gt; 44                                                FALSE
-#&gt; 45                                                FALSE
-#&gt; 46                                                FALSE
-#&gt; 47                                                FALSE
-#&gt; 48                                                FALSE
-#&gt; 49                                                FALSE
-#&gt; 50                                                FALSE
-#&gt; 51                                                FALSE
-#&gt; 52                                                FALSE
-#&gt; 53                                                FALSE
-#&gt; 54                                                FALSE
-#&gt; 55                                                FALSE
-#&gt; 56                                                FALSE
-#&gt; 57                                                FALSE
-#&gt; 58                                                FALSE
-#&gt; 59                                                FALSE
-#&gt; 60                                                FALSE
-#&gt; 61                                                FALSE
-#&gt; 62                                                FALSE
-#&gt; 63                                                FALSE
-#&gt; 64                                                FALSE
-#&gt; 65                                                FALSE
-#&gt; 66                                                FALSE
-#&gt; 67                                                FALSE
-#&gt; 68                                                FALSE
-#&gt; 69                                                FALSE
-#&gt; 70                                                FALSE
-#&gt; 71                                                FALSE
-#&gt; 72                                                FALSE
-#&gt; 73                                                FALSE
-#&gt; 74                                                FALSE
-#&gt; 75                                                FALSE
-#&gt; 76                                                FALSE
-#&gt; 77                                                FALSE
-#&gt; 78                                                FALSE
-#&gt; 79                                                FALSE
-#&gt; 80                                                FALSE
-#&gt; 81                                                FALSE
-#&gt; 82                                                FALSE
-#&gt; 83                                                FALSE
-#&gt; 84                                                FALSE
-#&gt; 85                                                FALSE
-#&gt; 86                                                FALSE
-#&gt; 87                                                FALSE
-#&gt; 88                                                FALSE
-#&gt; 89                                                FALSE
-#&gt; 90                                                FALSE
-#&gt; 91                                                FALSE
-#&gt; 92                                                FALSE
-#&gt; 93                                                FALSE
-#&gt; 94                                                FALSE
-#&gt; 95                                                FALSE
-#&gt; 96                                                FALSE
-#&gt; 97                                                FALSE
-#&gt; 98                                                FALSE
-#&gt; 99                                                FALSE
-#&gt; 100                                               FALSE
-#&gt;     charlson_icd10_rcs_metastatic_solid_tumor charlson_icd10_rcs_aids_hiv
-#&gt; 1                                       FALSE                       FALSE
-#&gt; 2                                       FALSE                       FALSE
-#&gt; 3                                       FALSE                       FALSE
-#&gt; 4                                       FALSE                       FALSE
-#&gt; 5                                       FALSE                       FALSE
-#&gt; 6                                       FALSE                       FALSE
-#&gt; 7                                       FALSE                       FALSE
-#&gt; 8                                       FALSE                       FALSE
-#&gt; 9                                       FALSE                       FALSE
-#&gt; 10                                      FALSE                       FALSE
-#&gt; 11                                         NA                          NA
-#&gt; 12                                         NA                          NA
-#&gt; 13                                         NA                          NA
-#&gt; 14                                         NA                          NA
-#&gt; 15                                         NA                          NA
-#&gt; 16                                         NA                          NA
-#&gt; 17                                         NA                          NA
-#&gt; 18                                         NA                          NA
-#&gt; 19                                         NA                          NA
-#&gt; 20                                         NA                          NA
-#&gt; 21                                         NA                          NA
-#&gt; 22                                         NA                          NA
-#&gt; 23                                         NA                          NA
-#&gt; 24                                         NA                          NA
-#&gt; 25                                         NA                          NA
-#&gt; 26                                      FALSE                       FALSE
-#&gt; 27                                       TRUE                       FALSE
-#&gt; 28                                      FALSE                       FALSE
-#&gt; 29                                      FALSE                       FALSE
-#&gt; 30                                      FALSE                       FALSE
-#&gt; 31                                      FALSE                       FALSE
-#&gt; 32                                      FALSE                       FALSE
-#&gt; 33                                      FALSE                       FALSE
-#&gt; 34                                      FALSE                       FALSE
-#&gt; 35                                      FALSE                       FALSE
-#&gt; 36                                      FALSE                       FALSE
-#&gt; 37                                      FALSE                       FALSE
-#&gt; 38                                      FALSE                       FALSE
-#&gt; 39                                      FALSE                       FALSE
-#&gt; 40                                      FALSE                       FALSE
-#&gt; 41                                      FALSE                       FALSE
-#&gt; 42                                      FALSE                       FALSE
-#&gt; 43                                      FALSE                       FALSE
-#&gt; 44                                      FALSE                       FALSE
-#&gt; 45                                      FALSE                       FALSE
-#&gt; 46                                      FALSE                       FALSE
-#&gt; 47                                      FALSE                       FALSE
-#&gt; 48                                      FALSE                       FALSE
-#&gt; 49                                      FALSE                       FALSE
-#&gt; 50                                      FALSE                       FALSE
-#&gt; 51                                      FALSE                       FALSE
-#&gt; 52                                      FALSE                       FALSE
-#&gt; 53                                      FALSE                       FALSE
-#&gt; 54                                      FALSE                       FALSE
-#&gt; 55                                      FALSE                       FALSE
-#&gt; 56                                      FALSE                       FALSE
-#&gt; 57                                      FALSE                       FALSE
-#&gt; 58                                      FALSE                       FALSE
-#&gt; 59                                      FALSE                       FALSE
-#&gt; 60                                      FALSE                       FALSE
-#&gt; 61                                      FALSE                       FALSE
-#&gt; 62                                      FALSE                       FALSE
-#&gt; 63                                      FALSE                       FALSE
-#&gt; 64                                      FALSE                       FALSE
-#&gt; 65                                      FALSE                       FALSE
-#&gt; 66                                      FALSE                       FALSE
-#&gt; 67                                      FALSE                       FALSE
-#&gt; 68                                      FALSE                       FALSE
-#&gt; 69                                      FALSE                       FALSE
-#&gt; 70                                      FALSE                       FALSE
-#&gt; 71                                      FALSE                       FALSE
-#&gt; 72                                      FALSE                       FALSE
-#&gt; 73                                      FALSE                       FALSE
-#&gt; 74                                      FALSE                       FALSE
-#&gt; 75                                      FALSE                       FALSE
-#&gt; 76                                      FALSE                       FALSE
-#&gt; 77                                      FALSE                       FALSE
-#&gt; 78                                      FALSE                       FALSE
-#&gt; 79                                      FALSE                       FALSE
-#&gt; 80                                      FALSE                       FALSE
-#&gt; 81                                      FALSE                       FALSE
-#&gt; 82                                      FALSE                       FALSE
-#&gt; 83                                      FALSE                       FALSE
-#&gt; 84                                      FALSE                       FALSE
-#&gt; 85                                      FALSE                       FALSE
-#&gt; 86                                      FALSE                       FALSE
-#&gt; 87                                      FALSE                       FALSE
-#&gt; 88                                      FALSE                       FALSE
-#&gt; 89                                      FALSE                       FALSE
-#&gt; 90                                      FALSE                       FALSE
-#&gt; 91                                      FALSE                       FALSE
-#&gt; 92                                      FALSE                       FALSE
-#&gt; 93                                      FALSE                       FALSE
-#&gt; 94                                      FALSE                       FALSE
-#&gt; 95                                      FALSE                       FALSE
-#&gt; 96                                      FALSE                       FALSE
-#&gt; 97                                      FALSE                       FALSE
-#&gt; 98                                      FALSE                       FALSE
-#&gt; 99                                      FALSE                       FALSE
-#&gt; 100                                     FALSE                       FALSE</div></span></pre>
+
+<span class='co'># -- tech_names --</span>
+<span class='co'># Assume that we want to compare the results using the default ICD-10</span>
+<span class='co'># formulations (from Quan et al. 2005) and the RCS version and that the result</span>
+<span class='co'># should be put into the same data frame. We can use `tech_names = TRUE`</span>
+<span class='co'># to distinguish variables with otherwise similar names</span>
+<span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>tech_names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># Prepare sommon settings</span>
+<span class='va'>compare</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span>
+  <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>, cc_args <span class='op'>=</span> <span class='va'>cc</span><span class='op'>)</span>,
+  <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>, cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>cc</span>, regex <span class='op'>=</span> <span class='st'>"icd10_rcs"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>compare</span><span class='op'>)</span> <span class='co'># long but informative and distinguishable column names</span>
+</div><div class='output co'>#&gt;  [1] "name"                                               
+#&gt;  [2] "charlson_icd10_myocardial_infarction"               
+#&gt;  [3] "charlson_icd10_congestive_heart_failure"            
+#&gt;  [4] "charlson_icd10_peripheral_vascular_disease"         
+#&gt;  [5] "charlson_icd10_cerebrovascular_disease"             
+#&gt;  [6] "charlson_icd10_dementia"                            
+#&gt;  [7] "charlson_icd10_chronic_pulmonary_disease"           
+#&gt;  [8] "charlson_icd10_rheumatic_disease"                   
+#&gt;  [9] "charlson_icd10_peptic_ulcer_disease"                
+#&gt; [10] "charlson_icd10_mild_liver_disease"                  
+#&gt; [11] "charlson_icd10_diabetes_without_complication"       
+#&gt; [12] "charlson_icd10_hemiplegia_or_paraplegia"            
+#&gt; [13] "charlson_icd10_renal_disease"                       
+#&gt; [14] "charlson_icd10_diabetes_complication"               
+#&gt; [15] "charlson_icd10_malignancy"                          
+#&gt; [16] "charlson_icd10_moderate_or_severe_liver_disease"    
+#&gt; [17] "charlson_icd10_metastatic_solid_tumor"              
+#&gt; [18] "charlson_icd10_aids_hiv"                            
+#&gt; [19] "charlson_icd10_rcs_myocardial_infarction"           
+#&gt; [20] "charlson_icd10_rcs_congestive_heart_failure"        
+#&gt; [21] "charlson_icd10_rcs_peripheral_vascular_disease"     
+#&gt; [22] "charlson_icd10_rcs_cerebrovascular_disease"         
+#&gt; [23] "charlson_icd10_rcs_dementia"                        
+#&gt; [24] "charlson_icd10_rcs_chronic_pulmonary_disease"       
+#&gt; [25] "charlson_icd10_rcs_rheumatic_disease"               
+#&gt; [26] "charlson_icd10_rcs_hemiplegia_or_paraplegia"        
+#&gt; [27] "charlson_icd10_rcs_renal_disease"                   
+#&gt; [28] "charlson_icd10_rcs_diabetes_complication"           
+#&gt; [29] "charlson_icd10_rcs_malignancy"                      
+#&gt; [30] "charlson_icd10_rcs_moderate_or_severe_liver_disease"
+#&gt; [31] "charlson_icd10_rcs_metastatic_solid_tumor"          
+#&gt; [32] "charlson_icd10_rcs_aids_hiv"                        </div><div class='input'>
+
+
+<span class='co'># classify.data.frame() / classify.data.table() ------------------------</span>
+
+<span class='co'># Assume that `x` is a data.frame/data.table without additional attributes</span>
+<span class='co'># from `codify()` ...</span>
+<span class='va'>xdf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>xdt</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+
+<span class='co'># ... then the `id` and `code` columns must be specified explicitly</span>
+<span class='fu'>classify</span><span class='op'>(</span><span class='va'>xdf</span>, <span class='st'>"charlson"</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
+#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 3</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 4</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 5</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 6</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 7</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='fu'>classify</span><span class='op'>(</span><span class='va'>xdt</span>, <span class='st'>"charlson"</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
+#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
+#&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 3</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 4</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 5</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 6</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 7</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
+#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
