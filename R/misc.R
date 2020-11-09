@@ -31,19 +31,6 @@ copybig <- function(x, .copy = NA) {
   }
 }
 
-#' Convert SPSS date to valid date
-#'
-#' Dates from SPSS are stored as seconds from 1582-10-14.
-#' We convert to days from 1970-01-01
-#'
-#' @param x SPSS date
-#' @return Date
-#' @family helper
-#' @keywords internal
-spss2date <- function(x) {
-  as.Date(x / 86400, origin = "1582-10-14")
-}
-
 
 clean <- function(x) gsub("\\W", "_", tolower(x), perl = TRUE)
 

@@ -24,8 +24,4 @@ S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
 # international classification of diseases version 10 (ICD-10-SE)
 decoder::as.keyvalue(elixhauser, "icd10se")
 }
-\seealso{
-Other helper: 
-\code{\link{spss2date}()}
-}
 \concept{helper}
