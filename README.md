@@ -1,5 +1,5 @@
 
-# coder <img src="man/figures/logo.png" align="right" />
+# coder <img src="man/figures/logo.png" align="right"/>
 
 [![R build
 status](https://github.com/eribul/coder/workflows/R-CMD-check/badge.svg)](https://github.com/eribul/coder/actions)
@@ -176,16 +176,16 @@ ch
 #> # A tibble: 100 x 25
 #>    name  surgery    myocardial.infa… congestive.hear… peripheral.vasc…
 #>    <chr> <date>     <lgl>            <lgl>            <lgl>           
-#>  1 Arch… 2020-05-25 FALSE            FALSE            FALSE           
-#>  2 Awtr… 2020-09-20 FALSE            FALSE            FALSE           
-#>  3 Bamm… 2020-03-25 FALSE            FALSE            FALSE           
-#>  4 Bank… 2020-06-18 FALSE            FALSE            FALSE           
-#>  5 Bega… 2020-06-19 FALSE            FALSE            FALSE           
-#>  6 Beni… 2020-02-24 FALSE            FALSE            FALSE           
-#>  7 Bhat… 2020-10-12 FALSE            FALSE            FALSE           
-#>  8 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
-#>  9 Carn… 2020-09-11 FALSE            FALSE            FALSE           
-#> 10 Chap… 2020-05-18 FALSE            FALSE            FALSE           
+#>  1 Chen… 2020-09-29 FALSE            FALSE            FALSE           
+#>  2 Grav… 2020-06-21 FALSE            FALSE            FALSE           
+#>  3 Truj… 2020-06-08 FALSE            FALSE            FALSE           
+#>  4 Simp… 2020-09-10 FALSE            FALSE            FALSE           
+#>  5 Chin… 2020-08-24 FALSE            FALSE            FALSE           
+#>  6 Le, … 2020-03-28 FALSE            FALSE            FALSE           
+#>  7 Kang… 2020-06-30 FALSE            FALSE            FALSE           
+#>  8 Shue… 2020-03-29 FALSE            FALSE            FALSE           
+#>  9 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
+#> 10 Le, … 2020-08-09 FALSE            FALSE            FALSE           
 #> # … with 90 more rows, and 20 more variables: cerebrovascular.disease <lgl>,
 #> #   dementia <lgl>, chronic.pulmonary.disease <lgl>, rheumatic.disease <lgl>,
 #> #   peptic.ulcer.disease <lgl>, mild.liver.disease <lgl>,
