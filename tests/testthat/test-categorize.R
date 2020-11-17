@@ -64,12 +64,15 @@ test_that("categorize", {
   expect_identical(
     suppressWarnings(
       categorize(x, cc = "charlson")[, -c("hdia", "admission", "icd10")] %>%
-        tibble::as_tibble()
+        tibble::as_tibble() %>%
+        {.[order(.$name), ]}
     ),
     categorize(
       ex_people, codedata = ex_icd10, cc = "charlson", id = "name",
       code = "icd10",
-      codify_args = list(date = "surgery", code_date = "admission", days = c(-365, 0))
-    )
+      codify_args = list(
+        date = "surgery", code_date = "admission", days = c(-365, 0))
+    ) %>%
+    {.[order(.$name), ]}
   )
 })

@@ -25,11 +25,6 @@
 #'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`)
 #'   are provided. A message lists the indices so that you can check they're
 #'   correct; suppress the message by supplying `index` explicitly.
-#' @param sort logical. Should output be sorted by the 'id' column?
-#'   (This could affect computational speed for large data sets.
-#'   Data is sorted by 'id' internally. It is therefore faster to keep the
-#'   output sorted this way, but this might be inconvenient if the original
-#'   order was important.)
 #' @param cc_args,codify_args List of named arguments passed to
 #'   [set_classcodes()] and  [codify()]
 #' @param ... arguments passed between methods
@@ -75,6 +70,9 @@ categorize.tbl_df <- function(x, ...) {
 categorize.data.table <-
   function(x, ..., codedata, id, code, codify_args = list()) {
 
+    # Store original row order for later sorting
+    x$.original_order <- as.numeric(rownames(x))
+
     codify_args$data     <- x
     codify_args$codedata <- codedata
     codify_args$id       <- id
@@ -88,8 +86,14 @@ categorize.data.table <-
 #' @export
 #' @rdname categorize
 categorize.codified <- function(
-  x, ..., cc, index = NULL, sort = TRUE,
-  cc_args = list(), check.names = TRUE, .data_cols = NULL) {
+  x, ..., cc, index = NULL, cc_args = list(), check.names = TRUE, .data_cols = NULL) {
+
+  # Store original row order for later sorting
+  # This is already done for the data.table method but is here set for
+  # already codified data as well
+  if (!".original_order" %in% names(x)) {
+    x$.original_order <- as.numeric(rownames(x))
+  }
 
   codified <- x
   id <- attr(codified, "id")
@@ -107,8 +111,7 @@ categorize.codified <- function(
   cl          <- classify(codified, cc, cc_args = NULL) # NULL since cc set
   data        <- unique(codified, by = id)[, ...data_cols]
   data$id_chr <- as.character(data[[id]]) # To be able to merge
-  out         <- merge(data, as.data.table(cl),
-                     by.x = "id_chr", by.y = id, sort = sort)
+  out         <- merge(data, as.data.table(cl), by.x = "id_chr", by.y = id)
   id_chr      <- NULL # to avoid check note
   data[, id_chr := NULL] # Don't need it any more
 
@@ -129,16 +132,24 @@ categorize.codified <- function(
     if (!is.null(cc_args$tech_names) && cc_args$tech_names) {
       ind_names <-
         clean_text(
-          cc_name, paste0(attr(cc, "regex_name"), "_index_",
-                          # we always want one "index_", not two if index name already prefixed
-                          gsub("index_", "", ind_names)))
+          cc_name,
+          paste0(attr(cc, "regex_name"), "_index_",
+            # we always want one "index_", not two if index name already prefixed
+            gsub("index_", "", ind_names)
+          )
+        )
     }
-    setnames(indx, setdiff(names(indx), id), ind_names)
-    out <- merge(out, indx,  by.x = "id_chr", by.y = id, sort = sort)
+    data.table::setnames(indx, setdiff(names(indx), id), ind_names)
+    out <- merge(out, indx,  by.x = "id_chr", by.y = id)
   }
 
-if (check.names) {
-  setnames(out, make.names(names(out)))
-}
- out[, id_chr := NULL][]
+  # Make syntactically correct names
+  if (check.names) {
+    setnames(out, make.names(names(out)))
+  }
+
+  data.table::setorderv(out, ".original_order")
+  .original_order <- NULL
+  out[, .original_order := NULL]
+  out[, id_chr := NULL][]
 }

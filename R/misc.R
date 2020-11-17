@@ -83,7 +83,7 @@ print_tibble <- function(x, ..., n = 10) {
     writeLines(
       paste0("\nThe printed data is of class: ",
              paste(class(x), collapse = ", "),
-             ". It has ", nrow(x), " rows.",
+             ".\nIt has ", nrow(x), " rows.",
              "\nIt is here previewed as a tibble",
              "\nUse `print(x, n = NULL)` to print as is ",
              "(or use `n` to specify the number of rows to preview)!\n\n"
