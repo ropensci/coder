@@ -247,7 +247,12 @@ Distribution of the index as proposed by QUan et al 2011 during the 90
 day period:
 
 ``` r
-hist(ch$quan_updated, main = "COmorbidity index by Quan et al. 2011")
+hist(
+  ch$quan_updated, 
+  col = "lightblue",
+  main = "Charlson comorbidity",
+  xlab = "Comorbidity index by Quan et al. 2011"
+)
 ```
 
 <img src="man/figures/READMEunnamed-chunk-8-1.png" width="100%" />
