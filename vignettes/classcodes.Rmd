@@ -20,33 +20,59 @@ knitr::opts_chunk$set(
 library(coder)
 ```
 
-Classification is implemented by classcodes objects with regular expressions identifying different groups. Default classcodes object included in the package are:
+# Motivating example
+
+Let's consider some patients (from a research study) ...\
 
 ```{r}
-all_classcodes()$classcodes
+ex_people
 ```
 
-Each of those classcodes are documented. See for example `?charlson` for detailed information regarding the implemented classcodes object for the Charlson comorbidity classification. We might also have a closer look at the classcodes itself to exemplify its content. The object is basically a `tibble` (data frame) ...
+... and their corresponding diagnostics data (from a national patient register):\
+
+```{r}
+ex_icd10
+```
+
+Lets categorize those patients by their Charlson comorbidity:
+
+```{r}
+categorize(
+  ex_people, 
+  codedata = ex_icd10, 
+  cc   = charlson, 
+  id   = "name", 
+  code = "icd10"
+)
+```
+
+Here, `charlson` (as supplied by the `cc` argument) is a "classcodes" object containing a classification scheme matching patient codes (from `codedata`) to groups (comorbidity conditions) by regular expressions.
+
+# Default classcodes
+
+There are `r nrow(all_classcodes())` default "classcodes" objects in the package (`classcodes` column below). Each of them might have several versions of regular expressions (`regex`) and weighted indices (`indices`):
+
+```{r}
+all_classcodes()
+```
+
+# classcodes object
+
+Each of those classcodes are documented (see for example `?charlson`). The object is basically a `tibble` (data frame) with some additional attributes (and a print method to present those):
 
 ```{r}
 charlson
 ```
 
-... with some additional attributes:
+Columns have pre-specified names and content:
 
-```{r}
-attributes(charlson)
-```
-
-# Columns
-
-First, consider the tibble columns, which have pre-specified names and content:
-
--   `group`: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities). Might contain spaces and other special characters which might be transformed when used (controlled by `tech_names` in `set_classcodes()`).
+-   `group`: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities).
 -   `description:` (optional) additional details describing each group.
--   regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Those column names are identified by `attr(charlson, "regexprs").`)
--   numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Those column names are identified by by `attr(charlson, "indices")` .)
+-   regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Column names are arbitrary but identified by `attr(., "regexprs").`)
+-   numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Column names are arbitrary but identified by `attr(., "indices")` .)
 -   `condition`: (optional; not used with `charlson`) conditional classification (see for example `?hip_ae`).
+
+In the example above, we did not specify which version of regular expression to use. We see from the printed output above (or by `attr(charlson, "regexprs")`), however, that the first listed regular expression (which is used by default) is "icd10". We have ICD-10 codes recorded in our code data set (`ex_icd10`). We could therefore use the alternative "icd10\_rcs" as well. Other versions might be relevant if the medical data is coded by other classifications (such as earlier versions of ICD). We will show below how to alter this setting in practice.
 
 # Hierarchy
 
