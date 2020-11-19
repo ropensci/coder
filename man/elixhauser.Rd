@@ -41,15 +41,13 @@ Moore et al. (2017)}
 elixhauser
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
-}
-\details{
 Solid tumors are subordinate to metastatic cancer. A patient with both
 conditions will still be classified as such but a possible (weighted)
 index value will only account for metastatic cancer. The same is true for
 "diabetes uncomplicated", which is subordinate of "diabetes complicated".
 See Elixhauser et al. (1998).
-
+}
+\details{
 Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
 is not handled by the coder package. This should instead be considered as
 an additional pre- or post-processing step!

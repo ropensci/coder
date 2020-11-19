@@ -50,7 +50,7 @@ ICD-9 by Brusselaers et al. (2017).
 charlson
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
+Classcodes for Charlson comorbidity based on ICD-codes
 }
 \references{
 Armitage, J. N., & van der Meulen, J. H. (2010).

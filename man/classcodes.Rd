@@ -65,23 +65,23 @@ part of the triad of case data, code data and a classification scheme.
 A classcodes object is a data frame with mandatory columns:
 \itemize{
 \item \code{group}: unique and non missing class names
-\item \verb{regex_*}: regular expressions (\link{regex}) defining class membership.
-Could be more than one and could have arbitrary names.
+\item \verb{At least one column with regular expressions ([regex] without Perl-like versions) defining class membership. Those columns can have arbitrary names (as specified by the }regex`argument).
 Occurrences of non unique regular expressions will lead to the same class
 having multiple names. This is accepted but will raise a warning.
-Classes do not have to be disjunct;
-the same code can be recognized by more than one \verb{regex_*}.
+Classes do not have to be disjunct.
 }
 
 The object can have additional optional columns:
 \itemize{
 \item \code{description}: description of each category
 \item \code{condition}: a class might have conditions additional to what
-is expressed by \verb{regex_*}. If so, these should be specified as quoted
+is expressed by the regular expressions.
+If so, these should be specified as quoted
 expressions that can be evaluated within the data frame used by
 \code{\link[=classify]{classify()}}
-\item \verb{index_*}: weights for each class used by
-\code{\link[=index]{index()}}. Could be more than one and could have arbitrary names.
+\item weights for each class used by
+\code{\link[=index]{index()}}. Could be more than one and could have arbitrary names
+(as specified by the \code{indices}argument).
 }
 }
 \examples{

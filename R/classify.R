@@ -165,7 +165,7 @@ eval_condition <- function(cond, x) {
   e <- simpleError(
     "Classification is conditioned on variables not found in the data set!")
   if (is.na(cond)) !logical(nrow(x))
-  else tryCatch(eval(parse(text = cond), envir = x), error = stop(e))
+  else tryCatch(eval(parse(text = cond), envir = x), error = function(e) stop(e))
 }
 
 

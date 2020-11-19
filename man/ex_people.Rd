@@ -8,7 +8,7 @@
 Data frames with 100 rows and 2 variables:
 \describe{
 \item{name}{random person names}
-\item{event}{random dates for a relevant event}
+\item{surgery}{random dates for a relevant event}
 }
 }
 \usage{
@@ -19,6 +19,7 @@ Example data for fictive people to use for testing and in examples.
 }
 \seealso{
 Other example data: 
+\code{\link{ex_atc}},
 \code{\link{ex_icd10}}
 }
 \concept{example data}

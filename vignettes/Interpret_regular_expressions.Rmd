@@ -1,0 +1,115 @@
+---
+title: "Interpret regular expressions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Interpret regular expressions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: references.bib
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(coder)
+```
+
+Classcodes objects (as described in `vignette("classcodes")`) use regular expressions to classify/categorize individual codes into groups (i.e. comorbidity conditions). Those regular expressions might be hard to interpret on their own. Several methods are therefore available to aid such interpretation of the classcodes objects.
+
+# `visualize()`
+
+A graphical representation of a classcodes object is created by `visualize()`. It will be showed in the default web browser (requires an Internet connection; not available within this vignette).
+
+```{r, eval = FALSE}
+visualize(charlson)
+```
+
+Visualization of all groups (comorbidity conditions) simultaneously might lead to complex figures. We can focus on a specific group (comorbidity) by the `group` argument. How is `r charlson$group[1]` codified by `regex_icd9cm_deyo`?
+
+```{r, eval = FALSE}
+visualize(charlson, "myocardial infarction", regex    = "icd9cm_deyo")
+```
+
+```{r, echo = FALSE}
+knitr::include_graphics("regexp_charlson_ci_icd9.png")
+
+```
+
+Hence, all ICD-9 codes starting with `41` followed by either `0` or `2` will be recognized as myocardial infarction according to `icd9cm_deyo`. The corresponding regular expression for ICD-10 is:
+
+```{r, eval = FALSE}
+visualize(charlson, "myocardial infarction", regex = "icd10")
+```
+
+```{r, echo = FALSE}
+knitr::include_graphics("regexp_charlson_ci_icd10.png")
+
+```
+
+Such codes should start with `I2` followed by either `1`, `2` or `52`. The vertical bar `|` (in the regular expression of the heading) indicates a logical "or". See `?regex` for more details on how to use regular expressions in R (Perl-like versions are currently not allowed).
+
+# `summary()`
+
+An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary()` method for classcodes objects. Note, however, that the regular expressions are stand alone in each classcodes object. Hence, there are no static look-up-tables to map individual codes to each group. We therefore need to specify a code list/dictionary of all possible codes to be recognized by those regular expressions. Then `summary()` will categorize those and display the result. Common code lists are found in the [decoder](https://cancercentrum.bitbucket.io/decoder/) package and are accessed automatically through the `coding` argument to `summary()`. Hence, there is a "keyvalue" object `icd10cm` with all ICD-10-CM codes in `{decoder}:`
+
+```{r}
+head(decoder::icd10cm)
+
+```
+
+We can use this code list to identify all codes recognized by `charlson` with its default classification based on "icd10". The printed result (see `?print.summary.classcodes`) is a tibble with each group and a comma separated code list.
+
+```{r}
+s <- summary(charlson, coding = "icd10cm")
+s
+```
+
+A list with all code vectors (to use for programmatic purposes) is also returned (invisible) and accessed by `s$codes_vct`.
+
+Now, compare the result above with the output based on a different code list, namely ICD-10-SE, the Swedish version of ICD-10, instead of ICD-10-CM:
+
+```{r}
+summary(charlson, coding = "icd10se")
+```
+
+There are some noticeable differences. AIDS/HIV for example has only one code deemed clinically relevant in the USA (thus included in the CM-version of ICD-10), although there are 22 different codes potentially used in the Swedish national patient register. There are additional differences concerning the fifth code position (digits in ICD-10-CM and characters in ICD-10-SE). Those mark national modifications to the original ICD-10 codes, which has only 4 positions (one character and three digits). For this example, the `charlson$icd10` column was based on ICD-10-CM [@Quan2005]. The comparison above thus highlights potential differences when using this classification in a setting based on another classification (such as with data from the Swedish national patient register).
+
+If we are interested in another code version, for example as specified by ICD-9-CM [@Deyo1992] , this can be specified by the `regex`-argument passed by the `cc_args` argument to the `set_classcodes` function. Simultaneously, the `coding` argument is set to `icd9cmd` to match the regular expressions to the disease part of ICD-9-CM classification.
+
+```{r}
+summary(
+  charlson, coding = "icd9cmd",
+  cc_args = list(regex = "icd9cm_deyo")
+)
+```
+
+# 
+
+# `codebook()`
+
+Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by the `codebook()` function in the `{coder}` package.
+
+The main purpose is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a tibble with "all_codes" explaining the meaning of each code.
+
+We can compare the codes recognized as AIDS/HIV by either ICD-10-CM or ICD-10-SE:
+
+```{r}
+
+cm <- codebook(charlson, "icd10cm")$all_codes
+cm[cm$group == "AIDS/HIV", ]
+
+se <- codebook(charlson, "icd10se")$all_codes
+se[se$group == "AIDS/HIV", ]
+
+```
+
+# `codebooks()`
+
+Several codebooks can be combined (exported to a single Excel-file) by the function `codebooks()` (note the plural s). This is difficult to illustrate in a vignette but examples are provided in `?codebooks`
+
+# Bibliography

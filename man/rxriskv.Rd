@@ -21,7 +21,6 @@ Garland to resemble medical use in Sweden 2016 (Unpublished).}
 rxriskv
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
 Provided mostly as proof-of-concept. Codes have not been externally
 validated and desired implementation might differ over time and by country.
 }

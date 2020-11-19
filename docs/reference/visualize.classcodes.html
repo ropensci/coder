@@ -83,7 +83,7 @@ in use, and during the creation and debugging of such." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -109,7 +109,13 @@ in use, and during the creation and debugging of such." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -174,10 +180,8 @@ Set to <code>FALSE</code> to just retrieve a URL for later use.</p></td>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='set_classcodes.html'>set_classcodes</a></code></p><dl>
     <dt><code>regex</code></dt><dd><p>name of column with regular expressions to use for
-classification, either with or without prefix <code>regex_</code>.
-<code>NULL</code> (default) uses the first classcodes column with prefix "regex".
-This should be a sensible choice for default classcodes object included
-in the package.</p></dd>
+classification.
+<code>NULL</code> (default) uses <code>attr(obj, "regexpr")[1]</code>.</p></dd>
   
 </dl></td>
     </tr>
@@ -228,7 +232,7 @@ in the package.</p></dd>
  <span class='co'># The URL is always returned (invisable) but the visual display can</span>
  <span class='co'># also be omitted</span>
 <span class='va'>url</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/visualize.html'>visualize</a></span><span class='op'>(</span><span class='st'>"hip_ae"</span>, show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='va'>url</span>
+</div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='input'><span class='va'>url</span>
 </div><div class='output co'>#&gt; [1] "https://jex.im/regulex/#!embed=true&amp;flags=&amp;re=%5E(%5E(G(97[89])%7CM96(6F%7C[89])%7C(T8((1([02-9]%7C8W))%7C(4([03578]F?)%7C[49])%7C(8[89])))))%7C%5E(%5E(G57[0-2]%7CM((00(0F?%7C[289]F))%7C(24(3%7C4F?)))%7CS7([4-6]%7C30)))%7C%5E(%5E(M(24[056]F%7C6(10%7C21%7C6[23])F%7C8((43%7C6[01])F%7C66F?%7C95E))))%7C%5E(%5E(I((2([14]%7C6[09]))%7C4(6[019]%7C90)%7C6([0-35-6]%7C49)%7C7([24]%7C7[0-2])%7C8(19%7C2)%7C97[89])%7CJ8[01]9%7CT811))%7C%5E(%5E(I80%7CJ((1[3-8])%7C9(5[23589]%7C6%7C81))%7CK2[5-7]%7CL89%7CN(99[089]%7C(17))%7CR339))%7C%5E(%5E(J2[0-2]%7CK(590%7C29)%7CN991))"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

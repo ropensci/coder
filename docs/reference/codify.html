@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -106,7 +106,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -240,6 +246,9 @@ had at least one code within the specified period.</p>
 <p>The output has one row for each combination of "id" from <code>data</code> and
 "code" from <code>codedata</code>. Rows from <code>data</code> might be repeated
 accordingly.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>See the example section for a warning on using the <code>.copy</code> argument!</p>
     <h2 class="hasAnchor" id="relevant-period"><a class="anchor" href="#relevant-period"></a>Relevant period</h2>
 
     
@@ -261,15 +270,48 @@ Useful for adverse events after a surgical procedure.</p></li>
 <code><a href='index_fun.html'>index_fun</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>,
-  date <span class='op'>=</span> <span class='st'>"surgery"</span>, code_date <span class='op'>=</span> <span class='st'>"admission"</span>, days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># Codify all patients from `ex_people` with their ICD-10 codes from `ex_icd10`</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
+<span class='va'>x</span>
 </div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: codified, data.table, data.frame. It has 378 rows.
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; <span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-25 N608  FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-07-28 W0341 FALSE TRUE      2020-09-20</div><div class='input'>
+<span class='co'># Only consider codes if recorded at hospital admissions within one year prior</span>
+<span class='co'># to surgery</span>
+<span class='fu'>codify</span><span class='op'>(</span>
+  <span class='va'>ex_people</span>,
+  <span class='va'>ex_icd10</span>,
+  id        <span class='op'>=</span> <span class='st'>"name"</span>,
+  code      <span class='op'>=</span> <span class='st'>"icd10"</span>,
+  date      <span class='op'>=</span> <span class='st'>"surgery"</span>,
+  code_date <span class='op'>=</span> <span class='st'>"admission"</span>,
+  days      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>365</span>, <span class='fl'>0</span><span class='op'>)</span>   <span class='co'># admission during one year before surgery</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 378 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                surgery    admission  icd10 hdia  in_period
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
 #&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-05-25 2019-12-06 E012  FALSE TRUE     
@@ -281,7 +323,206 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; </span><span style='color: #555555;'> 7</span><span> Awtrey, Antonio     2020-09-20 2020-01-14 X3322 FALSE TRUE     
 #&gt; </span><span style='color: #555555;'> 8</span><span> Awtrey, Antonio     2020-09-20 2020-04-05 Y1614 FALSE TRUE     
 #&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-20 2020-04-08 X7564 FALSE TRUE     
-#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-09-20 2020-05-26 X6542 FALSE TRUE     </div></span></pre>
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-09-20 2020-05-26 X6542 FALSE TRUE     </div><div class='input'>
+<span class='co'># Only consider codes if recorded after surgery</span>
+<span class='fu'>codify</span><span class='op'>(</span>
+  <span class='va'>ex_people</span>,
+  <span class='va'>ex_icd10</span>,
+  id        <span class='op'>=</span> <span class='st'>"name"</span>,
+  code      <span class='op'>=</span> <span class='st'>"icd10"</span>,
+  date      <span class='op'>=</span> <span class='st'>"surgery"</span>,
+  code_date <span class='op'>=</span> <span class='st'>"admission"</span>,
+  days      <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='cn'>Inf</span><span class='op'>)</span>     <span class='co'># admission any time after surgery</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 355 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                surgery    admission  icd10 hdia  in_period
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-05-25 2020-07-28 B469  FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2020-05-25 2020-08-14 R900  FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 3</span><span> Awtrey, Antonio     2020-09-20 2020-09-25 N608  FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 4</span><span> Bammesberger, Jozi  2020-03-25 2020-04-28 V4931 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 5</span><span> Bammesberger, Jozi  2020-03-25 2020-05-12 V4960 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 6</span><span> Bammesberger, Jozi  2020-03-25 2020-07-02 X6414 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 7</span><span> Bammesberger, Jozi  2020-03-25 2020-07-21 Y1513 FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 8</span><span> Bammesberger, Jozi  2020-03-25 2020-10-09 P293A FALSE TRUE     
+#&gt; </span><span style='color: #555555;'> 9</span><span> Banks, Silbret      2020-06-18 2020-07-06 D229D FALSE TRUE     
+#&gt; </span><span style='color: #555555;'>10</span><span> Banks, Silbret      2020-06-18 2020-07-26 V7452 TRUE  TRUE     </div><div class='input'>
+
+<span class='co'># Dirty code data ---------------------------------------------------------</span>
+
+<span class='co'># Assume that codes contain unwanted "dirty" characters</span>
+<span class='co'># Those could for example be a dot used by ICD-10 (i.e. X12.3 instead of X123)</span>
+<span class='va'>dirt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strsplit.html'>strsplit</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"½!#¤%&amp;/()=?`,.-_"</span><span class='op'>)</span>, split <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>rdirt</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>)</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>sub</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>$</span><span class='va'>icd10</span>, <span class='va'>i</span>, <span class='va'>i</span><span class='op'>)</span>
+<span class='va'>ex_icd10</span><span class='op'>$</span><span class='va'>icd10</span> <span class='op'>&lt;-</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
+    <span class='fu'>rdirt</span><span class='op'>(</span><span class='va'>dirt</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>,
+    <span class='fu'>rdirt</span><span class='op'>(</span><span class='va'>dirt</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>,
+    <span class='fu'>rdirt</span><span class='op'>(</span><span class='va'>dirt</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>,
+    <span class='fu'>rdirt</span><span class='op'>(</span><span class='va'>dirt</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>,
+    <span class='fu'>rdirt</span><span class='op'>(</span><span class='va'>dirt</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
+#&gt;   name                 admission  icd10      hdia 
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Tran, Kenneth        2020-04-12 ,S/1-3!4&amp;A FALSE
+#&gt; </span><span style='color: #555555;'>2</span><span> Tran, Kenneth        2020-09-26 /W)3#3,1-9 FALSE
+#&gt; </span><span style='color: #555555;'>3</span><span> Tran, Kenneth        2020-09-05 `Y(0&amp;2%6?2 TRUE 
+#&gt; </span><span style='color: #555555;'>4</span><span> Tran, Kenneth        2020-07-29 -X`0&amp;4&amp;8_8 FALSE
+#&gt; </span><span style='color: #555555;'>5</span><span> Sommerville, Dominic 2020-09-17 %V.8_1-0`4 FALSE
+#&gt; </span><span style='color: #555555;'>6</span><span> Sommerville, Dominic 2020-04-28 &amp;B#8#5,3_  FALSE</div><div class='input'>
+<span class='co'># Use `alnum = TRUE` to ignore non alphanumeric characters</span>
+<span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>, alnum <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-05-26 X6542 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-08-28 X4078 FALSE TRUE      2020-09-20</div><div class='input'>
+
+
+<span class='co'># Big data ----------------------------------------------------------------</span>
+
+<span class='co'># If `data` or `codedata` are large compared to available</span>
+<span class='co'># Random Access Memory (RAM) it might not be possible to make internal copies</span>
+<span class='co'># of those objects. Setting `.copy = FALSE` might help to overcome such problems</span>
+
+<span class='co'># If no copies are made internally, however, the input objects (if data tables)</span>
+<span class='co'># would change in the global environment</span>
+<span class='va'>x2</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span> <span class='co'># Look at the "icd10" column (with dirty data)</span>
+</div><div class='output co'>#&gt;                    name  admission      icd10  hdia
+#&gt; 1:        Tran, Kenneth 2020-04-12 ,S/1-3!4&amp;A FALSE
+#&gt; 2:        Tran, Kenneth 2020-09-26 /W)3#3,1-9 FALSE
+#&gt; 3:        Tran, Kenneth 2020-09-05 `Y(0&amp;2%6?2  TRUE
+#&gt; 4:        Tran, Kenneth 2020-07-29 -X`0&amp;4&amp;8_8 FALSE
+#&gt; 5: Sommerville, Dominic 2020-09-17 %V.8_1-0`4 FALSE
+#&gt; 6: Sommerville, Dominic 2020-04-28  &amp;B#8#5,3_ FALSE</div><div class='input'>
+<span class='co'># Use `alnum = TRUE` combined with `.copy = FALSE`</span>
+<span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>x2</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>, alnum <span class='op'>=</span> <span class='cn'>TRUE</span>, .copy <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-05-26 X6542 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-08-28 X4078 FALSE TRUE      2020-09-20</div><div class='input'>
+<span class='co'># Even though no explicit assignment was specified</span>
+<span class='co'># (neither for the output of codify(), nor to explicitly alter `x2`,</span>
+<span class='co'># the `x2` object has changed (look at the "icd10" column!):</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                    name  admission icd10  hdia
+#&gt; 1:        Tran, Kenneth 2020-04-12 S134A FALSE
+#&gt; 2:        Tran, Kenneth 2020-09-26 W3319 FALSE
+#&gt; 3:        Tran, Kenneth 2020-09-05 Y0262  TRUE
+#&gt; 4:        Tran, Kenneth 2020-07-29 X0488 FALSE
+#&gt; 5: Sommerville, Dominic 2020-09-17 V8104 FALSE
+#&gt; 6: Sommerville, Dominic 2020-04-28  B853 FALSE</div><div class='input'>
+<span class='co'># Hence, the `.copy` argument should only be used if necessary</span>
+<span class='co'># and if so, with caution!</span>
+
+
+<span class='co'># print.codify() ----------------------------------------------------------</span>
+
+<span class='va'>x</span> <span class='co'># Preview first 10 rows as a tibble</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-25 N608  FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-07-28 W0341 FALSE TRUE      2020-09-20</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span> <span class='co'># Preview first 20 rows as a tibble</span>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 20 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-25 N608  FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-07-28 W0341 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>11</span><span> Awtrey, Antonio     2020-01-14 X3322 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>12</span><span> Awtrey, Antonio     2020-08-28 X4078 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>13</span><span> Awtrey, Antonio     2020-05-26 X6542 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>14</span><span> Awtrey, Antonio     2020-04-08 X7564 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>15</span><span> Awtrey, Antonio     2020-07-22 Y0492 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>16</span><span> Awtrey, Antonio     2020-04-05 Y1614 FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>17</span><span> Bammesberger, Jozi  2020-10-09 P293A FALSE TRUE      2020-03-25
+#&gt; </span><span style='color: #555555;'>18</span><span> Bammesberger, Jozi  2019-11-21 V1051 FALSE TRUE      2020-03-25
+#&gt; </span><span style='color: #555555;'>19</span><span> Bammesberger, Jozi  2020-01-28 V1392 FALSE TRUE      2020-03-25
+#&gt; </span><span style='color: #555555;'>20</span><span> Bammesberger, Jozi  2020-04-28 V4931 FALSE TRUE      2020-03-25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='co'># Print as data.table (ignoring the 'classified' class)</span>
+</div><div class='output co'>#&gt;                     name  admission icd10  hdia in_period    surgery
+#&gt;   1: Archer, Leon Hunter 2020-07-28  B469 FALSE      TRUE 2020-05-25
+#&gt;   2: Archer, Leon Hunter 2019-12-06  E012 FALSE      TRUE 2020-05-25
+#&gt;   3: Archer, Leon Hunter 2020-08-14  R900 FALSE      TRUE 2020-05-25
+#&gt;   4: Archer, Leon Hunter 2020-02-11 V7413 FALSE      TRUE 2020-05-25
+#&gt;   5: Archer, Leon Hunter 2019-12-28 V8698 FALSE      TRUE 2020-05-25
+#&gt;  ---                                                                
+#&gt; 696:     el-Sani, Jawaad 2020-08-02  Y989  TRUE      TRUE 2020-08-30
+#&gt; 697:   el-Shahin, Hasnaa 2020-04-20 E711B FALSE      TRUE 2020-03-14
+#&gt; 698:   el-Shahin, Hasnaa 2019-10-28 X5144 FALSE      TRUE 2020-03-14
+#&gt; 699:   el-Shahin, Hasnaa 2020-01-28 Y586W FALSE      TRUE 2020-03-14
+#&gt; 700:   el-Shahin, Hasnaa 2020-02-14  Z888 FALSE      TRUE 2020-03-14</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

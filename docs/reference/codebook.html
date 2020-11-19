@@ -85,7 +85,7 @@ several sheets (one for each codebook)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -111,7 +111,13 @@ several sheets (one for each codebook)." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -256,22 +262,22 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 #&gt;    group                      n codes                                           
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                           
 #&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                   1 B20                                             
-#&gt; </span><span style='color: #555555;'> 2</span><span> cerebrovascular disea~   430 G450, G451, G452, G453, G454, G458, G459, G460,~
-#&gt; </span><span style='color: #555555;'> 3</span><span> chronic pulmonary dis~    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4~
-#&gt; </span><span style='color: #555555;'> 4</span><span> congestive heart fail~    36 I099, I110, I130, I132, I255, I420, I425, I426,~
-#&gt; </span><span style='color: #555555;'> 5</span><span> dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,~
-#&gt; </span><span style='color: #555555;'> 6</span><span> diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E~
-#&gt; </span><span style='color: #555555;'> 7</span><span> diabetes without comp~    52 E1010, E1011, E10610, E10618, E10620, E10621, E~
-#&gt; </span><span style='color: #555555;'> 8</span><span> hemiplegia or paraple~    45 G041, G114, G801, G802, G8100, G8101, G8102, G8~
-#&gt; </span><span style='color: #555555;'> 9</span><span> malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,~
-#&gt; </span><span style='color: #555555;'>10</span><span> metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,~
-#&gt; </span><span style='color: #555555;'>11</span><span> mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701~
-#&gt; </span><span style='color: #555555;'>12</span><span> moderate or severe li~    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,~
-#&gt; </span><span style='color: #555555;'>13</span><span> myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129~
-#&gt; </span><span style='color: #555555;'>14</span><span> peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,~
-#&gt; </span><span style='color: #555555;'>15</span><span> peripheral vascular d~   274 I700, I701, I70201, I70202, I70203, I70208, I70~
-#&gt; </span><span style='color: #555555;'>16</span><span> renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03~
-#&gt; </span><span style='color: #555555;'>17</span><span> rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, ~
+#&gt; </span><span style='color: #555555;'> 2</span><span> cerebrovascular disea…   430 G450, G451, G452, G453, G454, G458, G459, G460,…
+#&gt; </span><span style='color: #555555;'> 3</span><span> chronic pulmonary dis…    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4…
+#&gt; </span><span style='color: #555555;'> 4</span><span> congestive heart fail…    36 I099, I110, I130, I132, I255, I420, I425, I426,…
+#&gt; </span><span style='color: #555555;'> 5</span><span> dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,…
+#&gt; </span><span style='color: #555555;'> 6</span><span> diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E…
+#&gt; </span><span style='color: #555555;'> 7</span><span> diabetes without comp…    52 E1010, E1011, E10610, E10618, E10620, E10621, E…
+#&gt; </span><span style='color: #555555;'> 8</span><span> hemiplegia or paraple…    45 G041, G114, G801, G802, G8100, G8101, G8102, G8…
+#&gt; </span><span style='color: #555555;'> 9</span><span> malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,…
+#&gt; </span><span style='color: #555555;'>10</span><span> metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,…
+#&gt; </span><span style='color: #555555;'>11</span><span> mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701…
+#&gt; </span><span style='color: #555555;'>12</span><span> moderate or severe li…    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,…
+#&gt; </span><span style='color: #555555;'>13</span><span> myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129…
+#&gt; </span><span style='color: #555555;'>14</span><span> peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,…
+#&gt; </span><span style='color: #555555;'>15</span><span> peripheral vascular d…   274 I700, I701, I70201, I70202, I70203, I70208, I70…
+#&gt; </span><span style='color: #555555;'>16</span><span> renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03…
+#&gt; </span><span style='color: #555555;'>17</span><span> rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, …
 #&gt; 
 #&gt; 
 #&gt; Preview of all_codes:
@@ -289,7 +295,7 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 #&gt; </span><span style='color: #555555;'> 8</span><span> C001  Malignant neoplasm of external lower lip        malignancy        
 #&gt; </span><span style='color: #555555;'> 9</span><span> C002  Malignant neoplasm of external lip, unspecified malignancy        
 #&gt; </span><span style='color: #555555;'>10</span><span> C003  Malignant neoplasm of upper lip, inner aspect   malignancy        
-#&gt; </span><span style='color: #555555;'># ... with 2,602 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'># … with 2,602 more rows</span><span></div><div class='input'>
 <span class='co'># The preview can be modified by arguments to the print-method</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>cb</span>, n <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span></div><div class='output co'>#&gt; Preview of README sheet specifying columns in following sheets:
@@ -311,22 +317,22 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 #&gt;    group                      n codes                                           
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                           
 #&gt; </span><span style='color: #555555;'> 1</span><span> AIDS/HIV                   1 B20                                             
-#&gt; </span><span style='color: #555555;'> 2</span><span> cerebrovascular disea~   430 G450, G451, G452, G453, G454, G458, G459, G460,~
-#&gt; </span><span style='color: #555555;'> 3</span><span> chronic pulmonary dis~    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4~
-#&gt; </span><span style='color: #555555;'> 4</span><span> congestive heart fail~    36 I099, I110, I130, I132, I255, I420, I425, I426,~
-#&gt; </span><span style='color: #555555;'> 5</span><span> dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,~
-#&gt; </span><span style='color: #555555;'> 6</span><span> diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E~
-#&gt; </span><span style='color: #555555;'> 7</span><span> diabetes without comp~    52 E1010, E1011, E10610, E10618, E10620, E10621, E~
-#&gt; </span><span style='color: #555555;'> 8</span><span> hemiplegia or paraple~    45 G041, G114, G801, G802, G8100, G8101, G8102, G8~
-#&gt; </span><span style='color: #555555;'> 9</span><span> malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,~
-#&gt; </span><span style='color: #555555;'>10</span><span> metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,~
-#&gt; </span><span style='color: #555555;'>11</span><span> mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701~
-#&gt; </span><span style='color: #555555;'>12</span><span> moderate or severe li~    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,~
-#&gt; </span><span style='color: #555555;'>13</span><span> myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129~
-#&gt; </span><span style='color: #555555;'>14</span><span> peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,~
-#&gt; </span><span style='color: #555555;'>15</span><span> peripheral vascular d~   274 I700, I701, I70201, I70202, I70203, I70208, I70~
-#&gt; </span><span style='color: #555555;'>16</span><span> renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03~
-#&gt; </span><span style='color: #555555;'>17</span><span> rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, ~
+#&gt; </span><span style='color: #555555;'> 2</span><span> cerebrovascular disea…   430 G450, G451, G452, G453, G454, G458, G459, G460,…
+#&gt; </span><span style='color: #555555;'> 3</span><span> chronic pulmonary dis…    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4…
+#&gt; </span><span style='color: #555555;'> 4</span><span> congestive heart fail…    36 I099, I110, I130, I132, I255, I420, I425, I426,…
+#&gt; </span><span style='color: #555555;'> 5</span><span> dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,…
+#&gt; </span><span style='color: #555555;'> 6</span><span> diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E…
+#&gt; </span><span style='color: #555555;'> 7</span><span> diabetes without comp…    52 E1010, E1011, E10610, E10618, E10620, E10621, E…
+#&gt; </span><span style='color: #555555;'> 8</span><span> hemiplegia or paraple…    45 G041, G114, G801, G802, G8100, G8101, G8102, G8…
+#&gt; </span><span style='color: #555555;'> 9</span><span> malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,…
+#&gt; </span><span style='color: #555555;'>10</span><span> metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,…
+#&gt; </span><span style='color: #555555;'>11</span><span> mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701…
+#&gt; </span><span style='color: #555555;'>12</span><span> moderate or severe li…    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,…
+#&gt; </span><span style='color: #555555;'>13</span><span> myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129…
+#&gt; </span><span style='color: #555555;'>14</span><span> peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,…
+#&gt; </span><span style='color: #555555;'>15</span><span> peripheral vascular d…   274 I700, I701, I70201, I70202, I70203, I70208, I70…
+#&gt; </span><span style='color: #555555;'>16</span><span> renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03…
+#&gt; </span><span style='color: #555555;'>17</span><span> rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, …
 #&gt; 
 #&gt; 
 #&gt; Preview of all_codes:
@@ -334,11 +340,11 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 #&gt; </span><span style='color: #555555;'># A tibble: 2,612 x 3</span><span>
 #&gt;    code  description                                              group         
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         
-#&gt; </span><span style='color: #555555;'> 1</span><span> B180  Chronic viral hepatitis B with delta-agent               mild liver di~
-#&gt; </span><span style='color: #555555;'> 2</span><span> B181  Chronic viral hepatitis B without delta-agent            mild liver di~
-#&gt; </span><span style='color: #555555;'> 3</span><span> B182  Chronic viral hepatitis C                                mild liver di~
-#&gt; </span><span style='color: #555555;'> 4</span><span> B188  Other chronic viral hepatitis                            mild liver di~
-#&gt; </span><span style='color: #555555;'> 5</span><span> B189  Chronic viral hepatitis, unspecified                     mild liver di~
+#&gt; </span><span style='color: #555555;'> 1</span><span> B180  Chronic viral hepatitis B with delta-agent               mild liver di…
+#&gt; </span><span style='color: #555555;'> 2</span><span> B181  Chronic viral hepatitis B without delta-agent            mild liver di…
+#&gt; </span><span style='color: #555555;'> 3</span><span> B182  Chronic viral hepatitis C                                mild liver di…
+#&gt; </span><span style='color: #555555;'> 4</span><span> B188  Other chronic viral hepatitis                            mild liver di…
+#&gt; </span><span style='color: #555555;'> 5</span><span> B189  Chronic viral hepatitis, unspecified                     mild liver di…
 #&gt; </span><span style='color: #555555;'> 6</span><span> B20   Human immunodeficiency virus [HIV] disease               AIDS/HIV      
 #&gt; </span><span style='color: #555555;'> 7</span><span> C000  Malignant neoplasm of external upper lip                 malignancy    
 #&gt; </span><span style='color: #555555;'> 8</span><span> C001  Malignant neoplasm of external lower lip                 malignancy    
@@ -353,8 +359,8 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 #&gt; </span><span style='color: #555555;'>17</span><span> C020  Malignant neoplasm of dorsal surface of tongue           malignancy    
 #&gt; </span><span style='color: #555555;'>18</span><span> C021  Malignant neoplasm of border of tongue                   malignancy    
 #&gt; </span><span style='color: #555555;'>19</span><span> C022  Malignant neoplasm of ventral surface of tongue          malignancy    
-#&gt; </span><span style='color: #555555;'>20</span><span> C023  Malignant neoplasm of anterior two-thirds of tongue, pa~ malignancy    
-#&gt; </span><span style='color: #555555;'># ... with 2,592 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #555555;'>20</span><span> C023  Malignant neoplasm of anterior two-thirds of tongue, pa… malignancy    
+#&gt; </span><span style='color: #555555;'># … with 2,592 more rows</span><span></div><div class='input'>
 
 <span class='co'># codebooks() -------------------------------------------------------------</span>
 
@@ -369,7 +375,7 @@ Only one 'README' object is kept however and renamed as such.</p></li>
   elix_icd10 <span class='op'>=</span> <span class='va'>c1</span>, elix_icd9cm <span class='op'>=</span> <span class='va'>c2</span>,
   file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='st'>"codebooks"</span>, fileext <span class='op'>=</span> <span class='st'>".xlsx"</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>codebooks saved as C:\Users\erik_\AppData\Local\Temp\Rtmp25nuCw\codebooks43d8705562e5.xlsx</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>codebooks saved as /var/folders/dd/z0l8zzy51jv48ywmfrv8yqt40000gp/T//Rtmp7uM2Ye/codebooks15bcd41e9b219.xlsx</span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

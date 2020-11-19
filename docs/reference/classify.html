@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -106,7 +106,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -206,27 +212,28 @@ of row names.</p>
 <span class='co'># Classify individual ICD10-codes by Elixhauser</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"C80"</span>, <span class='st'>"I20"</span>, <span class='st'>"unvalid_code"</span><span class='op'>)</span>, <span class='st'>"elixhauser"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 3 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 3 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; <span style='color: #555555;'># A tibble: 3 x 31</span><span>
-#&gt;   `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;   `congestive hea… `cardiac arrhyt… `valvular disea… `pulmonary circ…
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
 #&gt; </span><span style='color: #555555;'>1</span><span> FALSE            FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'>2</span><span> FALSE            FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'>3</span><span> FALSE            FALSE            FALSE            FALSE           
-#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary</span><span>
-#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
-#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver</span><span>
-#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid</span><span>
-#&gt; </span><span style='color: #555555;'>#   arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
-#&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'># … with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension</span><span>
+#&gt; </span><span style='color: #555555;'>#   uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic</span><span>
+#&gt; </span><span style='color: #555555;'>#   ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `fluid electrolyte</span><span>
+#&gt; </span><span style='color: #555555;'>#   disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 
 
@@ -248,13 +255,14 @@ of row names.</p>
 <span class='co'># Classify those patients by the Charlson and Elixhasuer comorbidity indices</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span><span class='op'>)</span>        <span class='co'># classcodes object by name ...</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 100 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
-#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    `myocardial inf… `congestive hea… `peripheral vas… `cerebrovascula… dementia
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
 #&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
@@ -266,20 +274,21 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
 #&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'>coder</span><span class='fu'>::</span><span class='va'><a href='elixhauser.html'>elixhauser</a></span><span class='op'>)</span> <span class='co'># ... or by the object itself</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 100 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 31</span><span>
-#&gt;    `congestive hea~ `cardiac arrhyt~ `valvular disea~ `pulmonary circ~
+#&gt;    `congestive hea… `cardiac arrhyt… `valvular disea… `pulmonary circ…
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>           
 #&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE           
@@ -291,16 +300,16 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE           
 #&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>               </span><span style='color: #BB0000;'>NA</span><span>              
-#&gt; </span><span style='color: #555555;'># ... with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   `hypertension uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary</span><span>
-#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes</span><span>
-#&gt; </span><span style='color: #555555;'>#   complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver</span><span>
-#&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid</span><span>
-#&gt; </span><span style='color: #555555;'>#   arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   `fluid electrolyte disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency</span><span>
-#&gt; </span><span style='color: #555555;'>#   anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'># … with 27 more variables: `peripheral vascular disorder` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension</span><span>
+#&gt; </span><span style='color: #555555;'>#   uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hypertension complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, paralysis </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `other neurological disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `diabetes uncomplicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complicated` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   hypothyroidism </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `renal failure` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic</span><span>
+#&gt; </span><span style='color: #555555;'>#   ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, lymphoma </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic</span><span>
+#&gt; </span><span style='color: #555555;'>#   cancer` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatoid arthritis` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   coagulopathy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, obesity </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `weight loss` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `fluid electrolyte</span><span>
+#&gt; </span><span style='color: #555555;'>#   disorders` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `blood loss anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `deficiency anemia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   `alcohol abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `drug abuse` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, psychoses </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   depression </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'>
 
 <span class='co'># -- start/stop --</span>
@@ -312,13 +321,14 @@ of row names.</p>
 <span class='co'># beginning of the string</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"charlson"</span>, cc_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>start <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 100 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
-#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    `myocardial inf… `congestive hea… `peripheral vas… `cerebrovascula… dementia
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
 #&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
@@ -330,7 +340,7 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
 #&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
@@ -405,13 +415,14 @@ of row names.</p>
 <span class='co'># ... then the `id` and `code` columns must be specified explicitly</span>
 <span class='fu'>classify</span><span class='op'>(</span><span class='va'>xdf</span>, <span class='st'>"charlson"</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 100 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
-#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    `myocardial inf… `congestive hea… `peripheral vas… `cerebrovascula… dementia
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
 #&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
@@ -423,20 +434,21 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
 #&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `moderate or severe liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `metastatic solid tumor` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `AIDS/HIV` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div><div class='input'><span class='fu'>classify</span><span class='op'>(</span><span class='va'>xdt</span>, <span class='st'>"charlson"</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: 'classify()' does not preserve row order ('categorize()' does!)</span></div><div class='output co'>#&gt; <span class='message'>Classification based on: icd10</span></div><div class='output co'>#&gt; 
-#&gt; The printed data is of class: classified, matrix. It has 100 rows.
+#&gt; The printed data is of class: classified, matrix.
+#&gt; It has 100 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 17</span><span>
-#&gt;    `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia
+#&gt;    `myocardial inf… `congestive hea… `peripheral vas… `cerebrovascula… dementia
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>   
 #&gt; </span><span style='color: #555555;'> 1</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 2</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
@@ -448,7 +460,7 @@ of row names.</p>
 #&gt; </span><span style='color: #555555;'> 8</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'> 9</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
 #&gt; </span><span style='color: #555555;'>10</span><span> FALSE            FALSE            FALSE            FALSE            FALSE   
-#&gt; </span><span style='color: #555555;'># ... with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
+#&gt; </span><span style='color: #555555;'># … with 12 more variables: `chronic pulmonary disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `rheumatic</span><span>
 #&gt; </span><span style='color: #555555;'>#   disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `peptic ulcer disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `mild liver disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `diabetes without complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `hemiplegia or paraplegia` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   `renal disease` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, `diabetes complication` </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, malignancy </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>

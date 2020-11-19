@@ -12,7 +12,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ## Aim of the package
 
-The goal of `coder` is to classify items from one dataset, using codes
+The goal of `{coder}` is to classify items from one dataset, using codes
 from a secondary source with classification schemes based on regular
 expressions and weighted indices.
 
@@ -34,8 +34,8 @@ remotes::install_github("eribul/coder")
 
 ## Typical use case
 
-  - Determining comorbidities before clinical trials
-  - Discovering adverse events after surgery
+-   Determining comorbidities before clinical trials
+-   Discovering adverse events after surgery
 
 **Patient data:** The initial rationale for the package was to classify
 patient data based on medical coding. A typical use case would consider
@@ -217,9 +217,10 @@ hist(
 
 <img src="man/figures/READMEunnamed-chunk-5-1.png" width="100%" />
 
-There are in many versions of the Charlson comorbidity index, which
-might be controlled by the `index` argument. We might also be interested
-only in diagnoses from 90 days before surgery:
+There are many versions of the Charlson comorbidity index, which might
+be controlled by the `index` argument. We might also be interested only
+in diagnoses from 90 days before surgery as specified with an argument
+list `codify_args`as passed to `codify()`:
 
 ``` r
 ch <- 
@@ -227,10 +228,11 @@ ch <-
     ex_people, codedata = ex_icd10, cc = "charlson", id = "name", code = "icd10",
     
     # Additional arguments
-    index       = c("quan_original", "quan_updated"),
+    index       = c("quan_original", "quan_updated"), # Indices
     codify_args = list(
-      date = "surgery", code_date = "admission", # Specify date columns 
-      days = c(-90, -1) # Time window
+      date      = "surgery",   # Name of column with index dates
+      code_date = "admission", # Name of column with code dates
+      days      = c(-90, -1)   # Time window
     )
   )
 #> Classification based on: icd10
@@ -249,7 +251,7 @@ day period:
 ``` r
 hist(
   ch$quan_updated, 
-  col = "lightblue",
+  col  = "lightblue",
   main = "Charlson comorbidity",
   xlab = "Comorbidity index by Quan et al. 2011"
 )
@@ -259,10 +261,11 @@ hist(
 
 ## Classification schemes
 
-Classification schemes (`classcodes` objects) are based on regular
-expressions for computational speed, but their content can be summarized
-and visualized for clarity. Arbitrary `classcodes` objects can also be
-specified by the user.
+Classification schemes (`classcodes` objects, see
+`vignette("classcodes")`) are based on regular expressions for
+computational speed (see `vignette("Interpret_regular_expressions")`),
+but their content can be summarized and visualized for clarity.
+Arbitrary `classcodes` objects can also be specified by the user.
 
 The package includes default `classcodes` for medical patient data based
 on the international classification of diseases version 8, 9 and 10

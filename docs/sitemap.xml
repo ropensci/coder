@@ -52,6 +52,9 @@
     <loc>eribul.github.io/coder/reference/elixhauser.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/reference/ex_atc.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/reference/ex_icd10.html</loc>
   </url>
   <url>
@@ -85,9 +88,15 @@
     <loc>eribul.github.io/coder/reference/visualize.classcodes.html</loc>
   </url>
   <url>
+    <loc>eribul.github.io/coder/articles/Interpret_regular_expressions.html</loc>
+  </url>
+  <url>
     <loc>eribul.github.io/coder/articles/classcodes.html</loc>
   </url>
   <url>
     <loc>eribul.github.io/coder/articles/coder.html</loc>
+  </url>
+  <url>
+    <loc>eribul.github.io/coder/articles/ex_data.html</loc>
   </url>
 </urlset>

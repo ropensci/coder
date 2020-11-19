@@ -47,7 +47,11 @@
 
 
 <meta property="og:title" content="Classcodes for Elixhauser based on ICD-codes — elixhauser" />
-<meta property="og:description" content="A classcodes object to use with classify()." />
+<meta property="og:description" content="Solid tumors are subordinate to metastatic cancer. A patient with both
+conditions will still be classified as such but a possible (weighted)
+index value will only account for metastatic cancer. The same is true for
+&quot;diabetes uncomplicated&quot;, which is subordinate of &quot;diabetes complicated&quot;.
+See Elixhauser et al. (1998)." />
 <meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
@@ -80,7 +84,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -106,7 +110,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -140,7 +150,11 @@
     </div>
 
     <div class="ref-description">
-    <p>A <code><a href='classcodes.html'>classcodes</a></code> object to use with <code><a href='classify.html'>classify()</a></code>.</p>
+    <p>Solid tumors are subordinate to metastatic cancer. A patient with both
+conditions will still be classified as such but a possible (weighted)
+index value will only account for metastatic cancer. The same is true for
+"diabetes uncomplicated", which is subordinate of "diabetes complicated".
+See Elixhauser et al. (1998).</p>
     </div>
 
     <pre class="usage"><span class='va'>elixhauser</span></pre>
@@ -182,12 +196,7 @@ Moore et al. (2017)</p></dd>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Solid tumors are subordinate to metastatic cancer. A patient with both
-conditions will still be classified as such but a possible (weighted)
-index value will only account for metastatic cancer. The same is true for
-"diabetes uncomplicated", which is subordinate of "diabetes complicated".
-See Elixhauser et al. (1998).</p>
-<p>Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
+    <p>Note that "DRG screen" as proposed in table 1 of Elixhauser et al. (1998)
 is not handled by the coder package. This should instead be considered as
 an additional pre- or post-processing step!</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

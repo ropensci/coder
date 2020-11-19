@@ -18,7 +18,7 @@ group}
 cps
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
+Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes
 }
 \references{
 Stawicki, Stanislaw P., et al.

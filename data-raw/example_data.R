@@ -18,4 +18,18 @@ ex_people <-
   )
 
 
-usethis::use_data(ex_people, ex_icd10, overwrite = TRUE)
+N <- 10000
+
+ex_atc <-
+  tibble::tibble(
+    name     = sample(ex_people$name[1:90], N, replace = TRUE),
+    atc      = sample(decoder::atc$key, N, replace = TRUE),
+
+    # Assume that each ATC code corresponds to (random) prescription dates
+    # during 10 years before or 1 year after the median date of surgery.
+    prescription =
+      median(ex_people$surgery) +
+      sample(-3650:365, N, replace = TRUE)
+  )
+
+usethis::use_data(ex_people, ex_icd10, ex_atc, overwrite = TRUE)

@@ -1,0 +1,50 @@
+---
+title: "Example data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Example data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(coder)
+```
+
+This vignette contains some example data used in the other vignettes.
+
+# Patients
+
+`ex_people` contains 100 patients (with random names from the [`randomNames`](https://centerforassessment.github.io/randomNames/) package) who received THA surgery at given (random) dates (`surgery` column). This data might represent a sample from a national quality register.
+
+See also `?ex_people`.
+
+```{r}
+ex_people
+```
+
+# Diagnoses data
+
+We are interested in comorbidity for the patients above and have collected some diagnostics data (`ex_icd10`) from a national patient register. Patients have one entry for every combination of recorded diagnoses codes according to the International classification of diseases version 10, `icd10`, and corresponding dates of hospital `admission`s for which those codes were recorded. (Column `hdia` is `TRUE` for main diagnoses and `FALSE` for underlying/less relevant codes).
+
+See also `?ex_icd10`.
+
+```{r}
+ex_icd10
+```
+
+# Medical data
+
+Assume we have some external code data from a national prescription register. Such register would likely cover additional patients but let's just consider a small sample with ATC codes for patients above, such that each patient can have zero, one, or several codes prescribed at different dates.
+
+```{r}
+ex_atc
+
+```

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Classcodes objects • coder</title>
+<title>Classcodes • coder</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Classcodes objects">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Classcodes">
 <meta property="og:description" content="coder">
 <meta property="og:image" content="eribul.github.io/coder/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -64,7 +64,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -89,11 +95,11 @@
 
       
 
-      </header><script src="classcodes_files/header-attrs-2.5/header-attrs.js"></script><script src="classcodes_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="classcodes_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+      </header><script src="classcodes_files/header-attrs-2.5/header-attrs.js"></script><link href="classcodes_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
 <script src="classcodes_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Classcodes objects</h1>
+      <h1 data-toc-skip>Classcodes</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/eribul/coder/blob/master/vignettes/classcodes.Rmd"><code>vignettes/classcodes.Rmd</code></a></small>
@@ -105,13 +111,59 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://eribul.github.io/coder">coder</a></span><span class="op">)</span></code></pre></div>
-<p>Classification is implemented by classcodes objects with regular expressions identifying different groups. Default classcodes object included in the package are:</p>
+<div id="motivating-example" class="section level1">
+<h1 class="hasAnchor">
+<a href="#motivating-example" class="anchor"></a>Motivating example</h1>
+<p>Let’s consider some example data (<code>ex_peopple</code> and <code>ex_icd10</code>) from <code><a href="../articles/ex_data.html">vignette("ex_data")</a></code>.</p>
+<p>Let’s categorize those patients by their Charlson comorbidity:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/all_classcodes.html">all_classcodes</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">classcodes</span>
-<span class="co">#&gt; [1] "charlson"      "cps"           "elixhauser"    "hip_ae"       </span>
-<span class="co">#&gt; [5] "hip_ae_hailer" "knee_ae"       "rxriskv"</span></code></pre></div>
-<p>Each of those classcodes are documented. See for example <code><a href="../reference/charlson.html">?charlson</a></code> for detailed information regarding the implemented classcodes object for the Charlson comorbidity classification. We might also have a closer look at the classcodes itself to exemplify its content. The object is basically a <code>tibble</code> (data frame) …</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/categorize.html">categorize</a></span><span class="op">(</span><span class="va">ex_people</span>, codedata <span class="op">=</span> <span class="va">ex_icd10</span>, cc <span class="op">=</span> <span class="va">charlson</span>, id <span class="op">=</span> <span class="st">"name"</span>, code <span class="op">=</span> <span class="st">"icd10"</span><span class="op">)</span>
+<span class="co">#&gt; Classification based on: icd10</span>
+<span class="co">#&gt; # A tibble: 100 x 25</span>
+<span class="co">#&gt;    name  surgery    myocardial.infa… congestive.hear… peripheral.vasc…</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;date&gt;     &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;           </span>
+<span class="co">#&gt;  1 Chen… 2020-09-29 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  2 Grav… 2020-06-21 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  3 Truj… 2020-06-08 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  4 Simp… 2020-09-10 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  5 Chin… 2020-08-24 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  6 Le, … 2020-03-28 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  7 Kang… 2020-06-30 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  8 Shue… 2020-03-29 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt;  9 Bouc… 2020-09-04 FALSE            FALSE            TRUE            </span>
+<span class="co">#&gt; 10 Le, … 2020-08-09 FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt; # … with 90 more rows, and 20 more variables: cerebrovascular.disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   dementia &lt;lgl&gt;, chronic.pulmonary.disease &lt;lgl&gt;, rheumatic.disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   peptic.ulcer.disease &lt;lgl&gt;, mild.liver.disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   diabetes.without.complication &lt;lgl&gt;, hemiplegia.or.paraplegia &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   renal.disease &lt;lgl&gt;, diabetes.complication &lt;lgl&gt;, malignancy &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   moderate.or.severe.liver.disease &lt;lgl&gt;, metastatic.solid.tumor &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   AIDS.HIV &lt;lgl&gt;, charlson &lt;dbl&gt;, deyo_ramano &lt;dbl&gt;, dhoore &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   ghali &lt;dbl&gt;, quan_original &lt;dbl&gt;, quan_updated &lt;dbl&gt;</span></code></pre></div>
+<p>Here, <code>charlson</code> (as supplied by the <code>cc</code> argument) is a “classcodes” object containing a classification scheme. This is the specification of how to match <code>ex_icd10$icd10</code> to each condition recognized by the Charlson comorbidity classification. It is based on regular expressions (see <code><a href="https://rdrr.io/r/base/regex.html">?regex</a></code>).</p>
+</div>
+<div id="default-classcodes" class="section level1">
+<h1 class="hasAnchor">
+<a href="#default-classcodes" class="anchor"></a>Default classcodes</h1>
+<p>There are 7 default “classcodes” objects in the package (<code>classcodes</code> column below). Each of them might have several versions of regular expressions (column <code>regex</code>) and weighted indices (column <code>indices</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/all_classcodes.html">all_classcodes</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 7 x 3</span>
+<span class="co">#&gt;   classcodes   regex                             indices                        </span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;                             &lt;chr&gt;                          </span>
+<span class="co">#&gt; 1 charlson     icd10, icd9cm_deyo, icd9cm_enhan… "charlson, deyo_ramano, dhoore…</span>
+<span class="co">#&gt; 2 cps          icd10                             "only_ordinary"                </span>
+<span class="co">#&gt; 3 elixhauser   icd10, icd10_short, icd9cm, icd9… "sum_all, sum_all_ahrq, walrav…</span>
+<span class="co">#&gt; 4 hip_ae       icd10, kva, icd10_fracture        ""                             </span>
+<span class="co">#&gt; 5 hip_ae_hail… icd10, kva                        ""                             </span>
+<span class="co">#&gt; 6 knee_ae      icd10, kva                        ""                             </span>
+<span class="co">#&gt; 7 rxriskv      atc_pratt, atc_caughey, atc_garl… "pratt, sum_all"</span></code></pre></div>
+</div>
+<div id="classcodes-object" class="section level1">
+<h1 class="hasAnchor">
+<a href="#classcodes-object" class="anchor"></a>classcodes object</h1>
+<p>Each of those classcodes objects are documented (see for example <code><a href="../reference/charlson.html">?charlson</a></code>). Those objects are basically tibbles (data frames) with some additional attributes:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">charlson</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Classcodes object</span>
@@ -123,261 +175,146 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # A tibble: 17 x 14</span>
 <span class="co">#&gt;    group description icd10 icd9cm_deyo icd9cm_enhanced icd10_rcs</span>
-<span class="co">#&gt;  * &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 myoc~ Acute myoc~ I2([~ 41[02]      41[02]          "I2([1-3~</span>
-<span class="co">#&gt;  2 cong~ Heart fail~ I(09~ 428         39891|4(0(2([0~ "I(1[13]~</span>
-<span class="co">#&gt;  3 peri~ Peripheral~ I7([~ 44(39|1)|7~ 0930|4(373|4[0~ "(I7([0-~</span>
-<span class="co">#&gt;  4 cere~ Cerebrovas~ G4[5~ 43[0-8]     36234|43[0-8]   "G4[56]|~</span>
-<span class="co">#&gt;  5 deme~ Senile and~ F0([~ 290         29(0|41)|3312   "A810|F0~</span>
-<span class="co">#&gt;  6 chro~ Chronic ob~ (I27~ 490|50([0-~ 4(16[89]|9)|50~ "(I2[67]~</span>
-<span class="co">#&gt;  7 rheu~ Systemic l~ M(0[~ 7(1(0[014]~ 4465|7(1(0[0-4~ "M(0[569~</span>
-<span class="co">#&gt;  8 pept~ Gastric, d~ K2[5~ 53[1-4]     53[1-4]          &lt;NA&gt;    </span>
-<span class="co">#&gt;  9 mild~ Alcoholic ~ B18|~ 571[24-6]   070([23]{2}|[4~  &lt;NA&gt;    </span>
-<span class="co">#&gt; 10 diab~ Diabetes w~ E1[0~ 250[0-37]   250[0-389]       &lt;NA&gt;    </span>
-<span class="co">#&gt; 11 hemi~ Paraplegia~ G(04~ 34(41|2)    3(341|4([23]|4~ "G(114|8~</span>
-<span class="co">#&gt; 12 rena~ Chronic gl~ I1(2~ 58([2568]|~ 40(3([019]1)|4~ "I1[23]|~</span>
-<span class="co">#&gt; 13 diab~ Diabetes w~ E1[0~ 250[4-6]    250[4-7]        "E1[0-4]"</span>
-<span class="co">#&gt; 14 mali~ Malignant ~ C([0~ (1([4-68]|~ 1([4-68]|7[0-2~ "C([01]|~</span>
-<span class="co">#&gt; 15 mode~ Hepatic co~ I(8(~ 456[01]|57~ 456[0-2]|572[2~ "B18|I(8~</span>
-<span class="co">#&gt; 16 meta~ Secondary ~ C(7[~ 19([6-8]|9~ 19[6-9]         "C(7[7-9~</span>
-<span class="co">#&gt; 17 AIDS~ HIV infect~ B2[0~ 04[2-4]     04[2-4]         "B2[0-4]"</span>
-<span class="co">#&gt; # ... with 8 more variables: icd8_brusselaers &lt;chr&gt;, icd9_brusselaers &lt;chr&gt;,</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 myoc… Acute myoc… I2([… 41[02]      41[02]          "I2([1-3…</span>
+<span class="co">#&gt;  2 cong… Heart fail… I(09… 428         39891|4(0(2([0… "I(1[13]…</span>
+<span class="co">#&gt;  3 peri… Peripheral… I7([… 44(39|1)|7… 0930|4(373|4[0… "(I7([0-…</span>
+<span class="co">#&gt;  4 cere… Cerebrovas… G4[5… 43[0-8]     36234|43[0-8]   "G4[56]|…</span>
+<span class="co">#&gt;  5 deme… Senile and… F0([… 290         29(0|41)|3312   "A810|F0…</span>
+<span class="co">#&gt;  6 chro… Chronic ob… (I27… 490|50([0-… 4(16[89]|9)|50… "(I2[67]…</span>
+<span class="co">#&gt;  7 rheu… Systemic l… M(0[… 7(1(0[014]… 4465|7(1(0[0-4… "M(0[569…</span>
+<span class="co">#&gt;  8 pept… Gastric, d… K2[5… 53[1-4]     53[1-4]          &lt;NA&gt;    </span>
+<span class="co">#&gt;  9 mild… Alcoholic … B18|… 571[24-6]   070([23]{2}|[4…  &lt;NA&gt;    </span>
+<span class="co">#&gt; 10 diab… Diabetes w… E1[0… 250[0-37]   250[0-389]       &lt;NA&gt;    </span>
+<span class="co">#&gt; 11 hemi… Paraplegia… G(04… 34(41|2)    3(341|4([23]|4… "G(114|8…</span>
+<span class="co">#&gt; 12 rena… Chronic gl… I1(2… 58([2568]|… 40(3([019]1)|4… "I1[23]|…</span>
+<span class="co">#&gt; 13 diab… Diabetes w… E1[0… 250[4-6]    250[4-7]        "E1[0-4]"</span>
+<span class="co">#&gt; 14 mali… Malignant … C([0… (1([4-68]|… 1([4-68]|7[0-2… "C([01]|…</span>
+<span class="co">#&gt; 15 mode… Hepatic co… I(8(… 456[01]|57… 456[0-2]|572[2… "B18|I(8…</span>
+<span class="co">#&gt; 16 meta… Secondary … C(7[… 19([6-8]|9… 19[6-9]         "C(7[7-9…</span>
+<span class="co">#&gt; 17 AIDS… HIV infect… B2[0… 04[2-4]     04[2-4]         "B2[0-4]"</span>
+<span class="co">#&gt; # … with 8 more variables: icd8_brusselaers &lt;chr&gt;, icd9_brusselaers &lt;chr&gt;,</span>
 <span class="co">#&gt; #   charlson &lt;dbl&gt;, deyo_ramano &lt;dbl&gt;, dhoore &lt;dbl&gt;, ghali &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   quan_original &lt;dbl&gt;, quan_updated &lt;dbl&gt;</span></code></pre></div>
-<p>… with some additional attributes:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">charlson</span><span class="op">)</span>
-<span class="co">#&gt; $names</span>
-<span class="co">#&gt;  [1] "group"            "description"      "icd10"            "icd9cm_deyo"     </span>
-<span class="co">#&gt;  [5] "icd9cm_enhanced"  "icd10_rcs"        "icd8_brusselaers" "icd9_brusselaers"</span>
-<span class="co">#&gt;  [9] "charlson"         "deyo_ramano"      "dhoore"           "ghali"           </span>
-<span class="co">#&gt; [13] "quan_original"    "quan_updated"    </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $row.names</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $class</span>
-<span class="co">#&gt; [1] "classcodes" "tbl_df"     "tbl"        "data.frame"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $regexprs</span>
-<span class="co">#&gt; [1] "icd10"            "icd9cm_deyo"      "icd9cm_enhanced"  "icd10_rcs"       </span>
-<span class="co">#&gt; [5] "icd8_brusselaers" "icd9_brusselaers"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $indices</span>
-<span class="co">#&gt; [1] "charlson"      "deyo_ramano"   "dhoore"        "ghali"        </span>
-<span class="co">#&gt; [5] "quan_original" "quan_updated"</span></code></pre></div>
-<div id="columns" class="section level1">
-<h1 class="hasAnchor">
-<a href="#columns" class="anchor"></a>Columns</h1>
-<p>First, consider the tibble columns, which have pre-specified names and content:</p>
+<p>Columns have pre-specified names and/or content:</p>
 <ul>
 <li>
-<code>group</code>: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities). Might contain spaces and other special characters which might be transformed when used (controlled by <code>tech_names</code> in <code><a href="../reference/set_classcodes.html">set_classcodes()</a></code>).</li>
+<code>group</code>: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities in the Charlson case)</li>
 <li>
-<code>description:</code> (optional) additional details describing each group.</li>
-<li>regular expressions identifying each group (see <code><a href="../reference/charlson.html">?charlson</a></code> for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Those column names are identified by <code>attr(charlson, "regexprs").</code>)</li>
-<li>numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Those column names are identified by by <code><a href="https://rdrr.io/r/base/attr.html">attr(charlson, "indices")</a></code> .)</li>
+<code>description:</code> (optional) details describing each group</li>
+<li>regular expressions identifying each group (see <code><a href="../articles/Interpret_regular_expressions.html">vignette("Interpret_regular_expressions")</a></code> for details and <code><a href="../reference/charlson.html">?charlson</a></code> for concrete examples). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10) or as suggested by different sources/authors. (Column names are arbitrary but identified by <code><a href="https://rdrr.io/r/base/attr.html">attr(., "regexprs")</a></code> and specified by argument <code>regex</code> in <code><a href="../reference/classcodes.html">as.classcodes()</a></code>).</li>
+<li>numeric vectors used as weights when calculating index sums based on all (or a subset of) individual groups. (Column names are arbitrary but identified by <code><a href="https://rdrr.io/r/base/attr.html">attr(., "indices")</a></code> and specified by argument <code>indices</code> in <code><a href="../reference/classcodes.html">as.classcodes()</a></code>.)</li>
 <li>
-<code>condition</code>: (optional; not used with <code>charlson</code>) conditional classification (see for example <code><a href="../reference/ae.html">?hip_ae</a></code>).</li>
+<code>condition</code>: (optional) conditional classification (not used with <code>charlson</code> but see example below).</li>
 </ul>
+<p>In the example above, we did not specify which version of the regular expressions to use. We see from the printed output above (or by <code><a href="https://rdrr.io/r/base/attr.html">attr(charlson, "regexprs")</a></code>), that the first regular expression is “icd10.” This will be used by default. We have ICD-10 codes recorded in our code data set (<code>ex_icd10$icd10</code>). We might therefore use either “icd10” or the alternative “icd10_rcs.” Other versions might be relevant if the medical data is coded by other codes (such as earlier versions of ICD). We will show below how to alter this setting in practice.</p>
 </div>
 <div id="hierarchy" class="section level1">
 <h1 class="hasAnchor">
 <a href="#hierarchy" class="anchor"></a>Hierarchy</h1>
-<p>Some classcodes objects have an additional class attribute “hierarchy”, controlling hierarchical groups where only one of possibly several groups (occurring simultaneity) should be recognized for calculation of a weighted index sum. This is true for Elixhauser:<br></p>
+<p>Some classcodes objects have an additional class attribute “hierarchy,” controlling hierarchical groups where only one of possibly several groups should be used in weighted index sums. The classcodes object for the Elixhauser comorbidity classification has this property:<br></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">elixhauser</span>, <span class="st">"hierarchy"</span><span class="op">)</span>
-<span class="co">#&gt; $cancer</span>
-<span class="co">#&gt; [1] "metastatic cancer" "solid tumor"      </span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">elixhauser</span>, n <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="co"># preview 0 rows but present the attributes</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $diabetes</span>
-<span class="co">#&gt; [1] "diabetes uncomplicated" "diabetes complicated"</span></code></pre></div>
-<p>… meaning that patients who have both metastatic cancer and solid tumors should be recognized as such. If such patient is later assigned an aggregated index score, however, only the largest score is used (in this case for a metastatic cancer as superior to a solid tumor). The same is true for patients with both uncomplicated and complicated diabetes, for which only the complicated version is recognized.</p>
-</div>
-<div id="interpret-the-regular-expressions" class="section level1">
-<h1 class="hasAnchor">
-<a href="#interpret-the-regular-expressions" class="anchor"></a>Interpret the regular expressions</h1>
-<div id="visualize-graphically" class="section level2">
-<h2 class="hasAnchor">
-<a href="#visualize-graphically" class="anchor"></a>Visualize graphically</h2>
-<p>Regular expressions might be difficult to interpret and can therefore be <code><a href="https://generics.r-lib.org/reference/visualize.html">visualize()</a></code>:d, This will display a web page in the default browser (here suppressed by <code>show = FALSE</code>):</p>
+<span class="co">#&gt; Classcodes object</span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Regular expressions:</span>
+<span class="co">#&gt;    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced </span>
+<span class="co">#&gt; Indices:</span>
+<span class="co">#&gt;    sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm </span>
+<span class="co">#&gt; Hierarchy:</span>
+<span class="co">#&gt;    c("metastatic cancer", "solid tumor"),</span>
+<span class="co">#&gt;    c("diabetes uncomplicated", "diabetes complicated")</span></code></pre></div>
+<p>This means that patients who have both metastatic cancer and solid tumors should be recognized as such if classified. If such patient are assigned an aggregated index score, however, only the largest score is used (in this case for a metastatic cancer as superior to a solid tumor). The same is true for patients diagnosed with both uncomplicated and complicated diabetes.</p>
+<p>Consider a patient Alice with some diagnoses:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/visualize.html">visualize</a></span><span class="op">(</span><span class="va">charlson</span>, show <span class="op">=</span> <span class="cn">FALSE</span>, regex <span class="op">=</span> <span class="st">"icd10"</span><span class="op">)</span></code></pre></div>
-<p>For this vignette, we can open the <code>url</code> “manually” by clicking this link to the <a href="%60r%20url%60">JavaScript Regular Expression Parser &amp; Visualizer</a>. The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for myocardial infarction as codified by <code>regex_icd9cm_deyo</code>:</p>
+<code class="sourceCode R"><span class="va">pat</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"Alice"</span><span class="op">)</span>
+<span class="va">diags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C01"</span>, <span class="st">"C801"</span>, <span class="st">"E1010"</span>, <span class="st">"E1021"</span><span class="op">)</span>
+<span class="fu">decoder</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/decoder/man/decode.html">decode</a></span><span class="op">(</span><span class="va">diags</span>, <span class="fu">decoder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/decoder/man/icd10cm.html">icd10cm</a></span><span class="op">)</span>
+<span class="co">#&gt; [1] "Malignant neoplasm of base of tongue"                   </span>
+<span class="co">#&gt; [2] "Malignant (primary) neoplasm, unspecified"              </span>
+<span class="co">#&gt; [3] "Type 1 diabetes mellitus with ketoacidosis without coma"</span>
+<span class="co">#&gt; [4] "Type 1 diabetes mellitus with diabetic nephropathy"</span></code></pre></div>
+<p>According to Elixhauser, poor Alice has both a solid tumor and a metastatic cancer, as well as diabetes both with and without complications. The (unweighted) index “sum_all,” however will not equal 4 but 2, since metastatic cancer and diabetes with complications subsume solid tumors and diabetes without complications.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/visualize.html">visualize</a></span><span class="op">(</span>
-  <span class="va">charlson</span>, 
-  group    <span class="op">=</span> <span class="st">"myocardial infarction"</span>, 
-  show     <span class="op">=</span> <span class="cn">FALSE</span>, 
-  regex    <span class="op">=</span> <span class="st">"icd9cm_deyo"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="regexp_charlson_ci_icd9.png" width="188"></p>
-<p>Here <code><a href="https://rdrr.io/r/base/Arithmetic.html">^</a></code> indicates the beginning of the character string, followed by a literal <code>41</code> and either a <code>0</code> or <code>2</code>. The corresponding code according to ICD-10 is:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/visualize.html">visualize</a></span><span class="op">(</span>
-  <span class="va">charlson</span>, 
-  group    <span class="op">=</span> <span class="st">"myocardial infarction"</span>, 
-  show     <span class="op">=</span> <span class="cn">FALSE</span>, 
-  regex    <span class="op">=</span> <span class="st">"icd10"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="regexp_charlson_ci_icd10.png" width="233"></p>
-<p>ICD-10 codes identifying myocardial infarction thus starts with <code>I2</code> followed by either <code>1</code>, <code>2</code> or <code>52</code>. The vertical bar, <code><a href="https://rdrr.io/r/base/Logic.html">|</a></code>, in the regular expression indicates a logical “or” within the parenthesis (as used for expressions longer than single characters). See <code><a href="https://rdrr.io/r/base/regex.html">?regex</a></code> for further details.</p>
-</div>
-<div id="list-all-codes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#list-all-codes" class="anchor"></a>List all codes</h2>
-<p>An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> method for classcodes objects.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">charlson</span>, coding <span class="op">=</span> <span class="st">"icd10cm"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">icd10</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"Alice"</span>, icd10 <span class="op">=</span> <span class="va">diags</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/categorize.html">categorize</a></span><span class="op">(</span><span class="va">pat</span>, codedata <span class="op">=</span> <span class="va">icd10</span>, cc <span class="op">=</span> <span class="va">elixhauser</span>, 
+                id <span class="op">=</span> <span class="st">"id"</span>, code <span class="op">=</span> <span class="st">"icd10"</span>, index <span class="op">=</span> <span class="st">"sum_all"</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt; Classification based on: icd10</span>
-<span class="co">#&gt; Indices: charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Recognized codes per group:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; # A tibble: 17 x 3</span>
-<span class="co">#&gt;    group                      n codes                                           </span>
-<span class="co">#&gt;    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                                           </span>
-<span class="co">#&gt;  1 AIDS/HIV                   1 B20                                             </span>
-<span class="co">#&gt;  2 cerebrovascular disea~   430 G450, G451, G452, G453, G454, G458, G459, G460,~</span>
-<span class="co">#&gt;  3 chronic pulmonary dis~    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4~</span>
-<span class="co">#&gt;  4 congestive heart fail~    36 I099, I110, I130, I132, I255, I420, I425, I426,~</span>
-<span class="co">#&gt;  5 dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,~</span>
-<span class="co">#&gt;  6 diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E~</span>
-<span class="co">#&gt;  7 diabetes without comp~    52 E1010, E1011, E10610, E10618, E10620, E10621, E~</span>
-<span class="co">#&gt;  8 hemiplegia or paraple~    45 G041, G114, G801, G802, G8100, G8101, G8102, G8~</span>
-<span class="co">#&gt;  9 malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,~</span>
-<span class="co">#&gt; 10 metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,~</span>
-<span class="co">#&gt; 11 mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701~</span>
-<span class="co">#&gt; 12 moderate or severe li~    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,~</span>
-<span class="co">#&gt; 13 myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129~</span>
-<span class="co">#&gt; 14 peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,~</span>
-<span class="co">#&gt; 15 peripheral vascular d~   274 I700, I701, I70201, I70202, I70203, I70208, I70~</span>
-<span class="co">#&gt; 16 renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03~</span>
-<span class="co">#&gt; 17 rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, ~</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  Use function visualize() for a graphical representation.</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="co">#&gt;                                [,1]   </span>
+<span class="co">#&gt; id                             "Alice"</span>
+<span class="co">#&gt; congestive heart failure       "FALSE"</span>
+<span class="co">#&gt; cardiac arrhythmias            "FALSE"</span>
+<span class="co">#&gt; valvular disease               "FALSE"</span>
+<span class="co">#&gt; pulmonary circulation disorder "FALSE"</span>
+<span class="co">#&gt; peripheral vascular disorder   "FALSE"</span>
+<span class="co">#&gt; hypertension uncomplicated     "FALSE"</span>
+<span class="co">#&gt; hypertension complicated       "FALSE"</span>
+<span class="co">#&gt; paralysis                      "FALSE"</span>
+<span class="co">#&gt; other neurological disorders   "FALSE"</span>
+<span class="co">#&gt; chronic pulmonary disease      "FALSE"</span>
+<span class="co">#&gt; diabetes uncomplicated         "TRUE" </span>
+<span class="co">#&gt; diabetes complicated           "TRUE" </span>
+<span class="co">#&gt; hypothyroidism                 "FALSE"</span>
+<span class="co">#&gt; renal failure                  "FALSE"</span>
+<span class="co">#&gt; liver disease                  "FALSE"</span>
+<span class="co">#&gt; peptic ulcer disease           "FALSE"</span>
+<span class="co">#&gt; AIDS/HIV                       "FALSE"</span>
+<span class="co">#&gt; lymphoma                       "FALSE"</span>
+<span class="co">#&gt; metastatic cancer              "TRUE" </span>
+<span class="co">#&gt; solid tumor                    "TRUE" </span>
+<span class="co">#&gt; rheumatoid arthritis           "FALSE"</span>
+<span class="co">#&gt; coagulopathy                   "FALSE"</span>
+<span class="co">#&gt; obesity                        "FALSE"</span>
+<span class="co">#&gt; weight loss                    "FALSE"</span>
+<span class="co">#&gt; fluid electrolyte disorders    "FALSE"</span>
+<span class="co">#&gt; blood loss anemia              "FALSE"</span>
+<span class="co">#&gt; deficiency anemia              "FALSE"</span>
+<span class="co">#&gt; alcohol abuse                  "FALSE"</span>
+<span class="co">#&gt; drug abuse                     "FALSE"</span>
+<span class="co">#&gt; psychoses                      "FALSE"</span>
+<span class="co">#&gt; depression                     "FALSE"</span>
+<span class="co">#&gt; sum_all                        "2"</span></code></pre></div>
 </div>
-<div id="interpretable-codebook" class="section level2">
-<h2 class="hasAnchor">
-<a href="#interpretable-codebook" class="anchor"></a>Interpretable codebook</h2>
-<p>Even with individual codes summarized, those might still be hard to interpret on their own. The <a href="https://cancercentrum.bitbucket.io/decoder/">decoder</a> package can help to translate codes to readable names/description. This is facilitated by <code><a href="../reference/codebook.html">codebook()</a></code>. The main purpose of this function is to export an Excel-file (if path specified by argument <code>file</code>). The output is otherwise a list, including both a summary table (described above) and a tibble with “all_codes” explaining the meaning of each code to be recognized by the regular expression:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/codebook.html">codebook</a></span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"icd10cm"</span><span class="op">)</span>
-<span class="co">#&gt; Classification based on: icd10</span>
-<span class="co">#&gt; Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span>
-<span class="co">#&gt; Preview of README sheet specifying columns in following sheets:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; # A tibble: 6 x 3</span>
-<span class="co">#&gt;   tab       column      description                                       </span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;                                             </span>
-<span class="co">#&gt; 1 summary   group       Group to categorize by                            </span>
-<span class="co">#&gt; 2 summary   n           Number of identified codes contained in this group</span>
-<span class="co">#&gt; 3 summary   codes       Comma separated list of individual codes in group </span>
-<span class="co">#&gt; 4 all_codes code        Individual code                                   </span>
-<span class="co">#&gt; 5 all_codes description Description of individual code                    </span>
-<span class="co">#&gt; 6 all_codes group       Group to categorize by                            </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Preview of summary sheet:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; # A tibble: 17 x 3</span>
-<span class="co">#&gt;    group                      n codes                                           </span>
-<span class="co">#&gt;    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                                           </span>
-<span class="co">#&gt;  1 AIDS/HIV                   1 B20                                             </span>
-<span class="co">#&gt;  2 cerebrovascular disea~   430 G450, G451, G452, G453, G454, G458, G459, G460,~</span>
-<span class="co">#&gt;  3 chronic pulmonary dis~    69 I2781, I2782, I2783, I2789, I279, J40, J410, J4~</span>
-<span class="co">#&gt;  4 congestive heart fail~    36 I099, I110, I130, I132, I255, I420, I425, I426,~</span>
-<span class="co">#&gt;  5 dementia                  11 F0150, F0151, F0280, F0281, F0390, F0391, G300,~</span>
-<span class="co">#&gt;  6 diabetes complication    204 E1021, E1022, E1029, E10311, E10319, E103211, E~</span>
-<span class="co">#&gt;  7 diabetes without comp~    52 E1010, E1011, E10610, E10618, E10620, E10621, E~</span>
-<span class="co">#&gt;  8 hemiplegia or paraple~    45 G041, G114, G801, G802, G8100, G8101, G8102, G8~</span>
-<span class="co">#&gt;  9 malignancy               961 C000, C001, C002, C003, C004, C005, C006, C008,~</span>
-<span class="co">#&gt; 10 metastatic solid tumor    47 C770, C771, C772, C773, C774, C775, C778, C779,~</span>
-<span class="co">#&gt; 11 mild liver disease        38 B180, B181, B182, B188, B189, K700, K7010, K701~</span>
-<span class="co">#&gt; 12 moderate or severe li~    14 I8500, I8501, I864, K7040, K7041, K7110, K7111,~</span>
-<span class="co">#&gt; 13 myocardial infarction     18 I2101, I2102, I2109, I2111, I2119, I2121, I2129~</span>
-<span class="co">#&gt; 14 peptic ulcer disease      36 K250, K251, K252, K253, K254, K255, K256, K257,~</span>
-<span class="co">#&gt; 15 peripheral vascular d~   274 I700, I701, I70201, I70202, I70203, I70208, I70~</span>
-<span class="co">#&gt; 16 renal disease             28 I120, I1310, I1311, N032, N033, N034, N035, N03~</span>
-<span class="co">#&gt; 17 rheumatic disease        348 M0500, M05011, M05012, M05019, M05021, M05022, ~</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Preview of all_codes:</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; # A tibble: 2,612 x 3</span>
-<span class="co">#&gt;    code  description                                     group             </span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;                                           &lt;chr&gt;             </span>
-<span class="co">#&gt;  1 B180  Chronic viral hepatitis B with delta-agent      mild liver disease</span>
-<span class="co">#&gt;  2 B181  Chronic viral hepatitis B without delta-agent   mild liver disease</span>
-<span class="co">#&gt;  3 B182  Chronic viral hepatitis C                       mild liver disease</span>
-<span class="co">#&gt;  4 B188  Other chronic viral hepatitis                   mild liver disease</span>
-<span class="co">#&gt;  5 B189  Chronic viral hepatitis, unspecified            mild liver disease</span>
-<span class="co">#&gt;  6 B20   Human immunodeficiency virus [HIV] disease      AIDS/HIV          </span>
-<span class="co">#&gt;  7 C000  Malignant neoplasm of external upper lip        malignancy        </span>
-<span class="co">#&gt;  8 C001  Malignant neoplasm of external lower lip        malignancy        </span>
-<span class="co">#&gt;  9 C002  Malignant neoplasm of external lip, unspecified malignancy        </span>
-<span class="co">#&gt; 10 C003  Malignant neoplasm of upper lip, inner aspect   malignancy        </span>
-<span class="co">#&gt; # ... with 2,602 more rows</span></code></pre></div>
-<p>Here, the descriptions are based on the ICD-10-CM codes from 2020. Corresponding descriptions in Swedish are retrieved by (<code>icd10se</code> instead of <code>icd10cm</code>):</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/codebook.html">codebook</a></span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"icd10se"</span><span class="op">)</span><span class="op">$</span><span class="va">all_codes</span>
-<span class="co">#&gt; Classification based on: icd10</span>
-<span class="co">#&gt; # A tibble: 1,183 x 3</span>
-<span class="co">#&gt;    code  description                                               group        </span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;                                                     &lt;chr&gt;        </span>
-<span class="co">#&gt;  1 B180  Kronisk (virus)hepatit B med hepatit D (coinfection)      mild liver d~</span>
-<span class="co">#&gt;  2 B180A Kronisk hepatit B med hepatit D (coinfection), normal le~ mild liver d~</span>
-<span class="co">#&gt;  3 B180B Kronisk hepatit B med hepatit D (coinfection), ospecifik~ mild liver d~</span>
-<span class="co">#&gt;  4 B180C Kronisk hepatit B med hepatit D (coinfection), kronisk p~ mild liver d~</span>
-<span class="co">#&gt;  5 B180D Kronisk hepatit B med hepatit D (coinfection), kronisk a~ mild liver d~</span>
-<span class="co">#&gt;  6 B180E Kronisk hepatit B med hepatit D (coinfection), kronisk a~ mild liver d~</span>
-<span class="co">#&gt;  7 B180F Kronisk hepatit B med hepatit D (coinfection), fibros     mild liver d~</span>
-<span class="co">#&gt;  8 B180G Kronisk hepatit B med hepatit D (coinfection), cirros     mild liver d~</span>
-<span class="co">#&gt;  9 B180H Kronisk hepatit B med hepatit D (coinfection), steatos    mild liver d~</span>
-<span class="co">#&gt; 10 B180W Kronisk hepatit B med hepatit D (coinfection), annat his~ mild liver d~</span>
-<span class="co">#&gt; # ... with 1,173 more rows</span></code></pre></div>
-</div>
-<div id="combined-codebooks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combined-codebooks" class="anchor"></a>Combined codebooks</h2>
-<p>Several codebooks can be combined (exported to a single Excel-file) by the function <code>codebooks</code> (note the plural s).</p>
-</div>
-</div>
-<div id="alternative-classifications" class="section level1">
+<div id="conditions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#alternative-classifications" class="anchor"></a>Alternative classifications</h1>
-<p>Examples above use the default regex column (currently ICD-10). If we are interested in another version, for example specified by Deyo et al. based on ICD-9-CM, this can be specified by the <code>regex</code>-argument passed by the <code>cc_args</code> argument to the <code>set_classcodes</code> function. Simultaneously, the <code>coding</code> argument is set to <code>icd9cmd</code> to match the regular expressions to the disease part of ICD-9-CM classification.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span>
-  <span class="va">charlson</span>, coding <span class="op">=</span> <span class="st">"icd9cmd"</span>,
-  cc_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"icd9cm_deyo"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="co">#&gt; Indices: charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated </span>
+<a href="#conditions" class="anchor"></a>Conditions</h1>
+<p>Consider Alice once more. Suppose she got a THA and had some surgical procedure codes recorded at hospital visits either before, during or after her index surgery. Those codes are recorded by the Nomesco classification of surgical procedures (also known as KVA codes in Swedish). Here, “post_op” indicates whether the code was recorded after surgery or not. This information is not always accessible by pure date stamps (if so, the approach illustrated in <code><a href="../articles/coder.html">vignette("coder")</a></code> could be used instead).</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">nomesco</span> <span class="op">&lt;-</span> 
+  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    id      <span class="op">=</span> <span class="st">"Alice"</span>,
+    kva     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AA01"</span>, <span class="st">"NFC01"</span><span class="op">)</span>,
+    post_op <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p>Thus, the “post_op” column is a Boolean/logical vector with a name recognized from the “condition” column in <code>hip_ae</code>, a classcodes object used to identify adverse events after THA (the use of <code><a href="../reference/set_classcodes.html">set_classcodes()</a></code> is further explained below and is used here since <code>hip_ae</code> includes codes for both ICD and NOMESCO/KVA).</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/set_classcodes.html">set_classcodes</a></span><span class="op">(</span><span class="va">hip_ae</span>, regex <span class="op">=</span> <span class="st">"kva"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Recognized codes per group:</span>
+<span class="co">#&gt; Classcodes object</span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; Regular expressions:</span>
+<span class="co">#&gt;    kva </span>
+<span class="co">#&gt; Indices:</span>
+<span class="co">#&gt;       </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; # A tibble: 17 x 3</span>
-<span class="co">#&gt;    group                      n codes                                           </span>
-<span class="co">#&gt;    &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                                           </span>
-<span class="co">#&gt;  1 AIDS/HIV                   1 042                                             </span>
-<span class="co">#&gt;  2 cerebrovascular disea~    69 430, 431, 4320, 4321, 4329, 43300, 43301, 43310~</span>
-<span class="co">#&gt;  3 chronic pulmonary dis~     8 490, 500, 501, 502, 503, 504, 505, 5064         </span>
-<span class="co">#&gt;  4 congestive heart fail~    15 4280, 4281, 42820, 42821, 42822, 42823, 42830, ~</span>
-<span class="co">#&gt;  5 dementia                  14 2900, 29010, 29011, 29012, 29013, 29020, 29021,~</span>
-<span class="co">#&gt;  6 diabetes complication     12 25040, 25041, 25042, 25043, 25050, 25051, 25052~</span>
-<span class="co">#&gt;  7 diabetes without comp~    20 25000, 25001, 25002, 25003, 25010, 25011, 25012~</span>
-<span class="co">#&gt;  8 hemiplegia or paraple~    13 34200, 34201, 34202, 34210, 34211, 34212, 34280~</span>
-<span class="co">#&gt;  9 malignancy               628 1400, 1401, 1403, 1404, 1405, 1406, 1408, 1409,~</span>
-<span class="co">#&gt; 10 metastatic solid tumor    30 1960, 1961, 1962, 1963, 1965, 1966, 1968, 1969,~</span>
-<span class="co">#&gt; 11 mild liver disease         7 5712, 57140, 57141, 57142, 57149, 5715, 5716    </span>
-<span class="co">#&gt; 12 moderate or severe li~     6 4560, 4561, 5722, 5723, 5724, 5728              </span>
-<span class="co">#&gt; 13 myocardial infarction     31 41000, 41001, 41002, 41010, 41011, 41012, 41020~</span>
-<span class="co">#&gt; 14 peptic ulcer disease      72 53100, 53101, 53110, 53111, 53120, 53121, 53130~</span>
-<span class="co">#&gt; 15 peripheral vascular d~    15 44100, 44101, 44102, 44103, 4411, 4412, 4413, 4~</span>
-<span class="co">#&gt; 16 renal disease             26 5820, 5821, 5822, 5824, 58281, 58289, 5829, 583~</span>
-<span class="co">#&gt; 17 rheumatic disease          8 7100, 7101, 7104, 7140, 7141, 7142, 71481, 725  </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;  Use function visualize() for a graphical representation.</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="co">#&gt;   group kva                                                            condition</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;                                                          &lt;chr&gt;    </span>
+<span class="co">#&gt; 1 KVA   ^(NF([CF-HJ-MS-TW]|A(02|1[12]|2[0-2])|Q09|U[013489]9)|QD(A10|… post_op</span></code></pre></div>
+<p>A code from <code>nomesco$kva</code> will only be recognized as an adverse events if 1) the code is matched by the relevant regular expression, and 2) the extra condition (from <code>nomesco$post_op</code>) is <code>TRUE.</code></p>
+<p>We need to specify that codes are based on regular expressions matching NOMESCO codes. We do this by the <code>regex</code> argument passed to <code><a href="../reference/set_classcodes.html">set_classcodes()</a></code> by the <code>cc_args</code> argument.</p>
+<p>In the data set (<code>nomesco</code>), “AA01” was recorded after surgery but does not indicate a potential adverse event. “NFC01” is a potential adverse event but was recorded already before surgery. Therefore, no adverse event will be recognized in this case.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/categorize.html">categorize</a></span><span class="op">(</span><span class="va">pat</span>, codedata <span class="op">=</span> <span class="va">nomesco</span>, cc <span class="op">=</span> <span class="va">hip_ae</span>, id <span class="op">=</span> <span class="st">"id"</span>, code <span class="op">=</span> <span class="st">"kva"</span>,
+           cc_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"kva"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; index calculated as number of relevant categories</span>
+<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="co">#&gt;   id    KVA   index</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;lgl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Alice FALSE     0</span></code></pre></div>
 </div>
 <div id="use-classcodes-objects" class="section level1">
 <h1 class="hasAnchor">
@@ -387,65 +324,61 @@
 <h2 class="hasAnchor">
 <a href="#explicit-use-of-set_classcodes" class="anchor"></a>Explicit use of <code>set_classcodes()</code>
 </h2>
-<p>We might call <code><a href="../reference/set_classcodes.html">set_classcodes()</a></code>directly to prepare a classification scheme to classify patients according to the Charlson comorbidity index. The diagnoses data might be coded by the legacy classification ICD-8 (as suggested by Brusselaers et al. 2015). Such codes might be found in character strings with leading prefixes or in the middle of a more verbatim description. This is controlled by setting the argument <code>start = FALSE</code>, meaning that the identified ICD-8 codes do not need to appear in the beginning of each string. We might assume, however, that there is no more information after the code (as specified by <code>stop = TRUE</code>).</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p>We might use <code><a href="../reference/set_classcodes.html">set_classcodes()</a></code> to prepare a classification scheme according to the Charlson comorbidity index based on ICD-8 <span class="citation">(Brusselaers and Lagergren 2017)</span>. Assume that such codes might be found in character strings with leading prefixes or in the middle of a more verbatim description. This is controlled by setting the argument <code>start = FALSE</code>, meaning that the identified ICD-8 codes do not need to appear in the beginning of the character string. We might assume, however, that there is no more information after the code (as specified by <code>stop = TRUE</code>). We can also use some more specific and unique group names as specified by <code>tech_names</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">charlson_icd8</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="../reference/set_classcodes.html">set_classcodes</a></span><span class="op">(</span>
     <span class="st">"charlson"</span>,
-    regex <span class="op">=</span> <span class="st">"icd8_brusselaers"</span>, <span class="co"># Version based on ICD-8</span>
-    start <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Codes do not have to occur in the beginning of a vector</span>
-    stop <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># Code vector must end with the specified codes</span>
-    tech_names <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># Use long but unique and descriptive variable names</span>
+    regex      <span class="op">=</span> <span class="st">"icd8_brusselaers"</span>, <span class="co"># Version based on ICD-8</span>
+    start      <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Codes do not have to occur in the beginning of a vector</span>
+    stop       <span class="op">=</span> <span class="cn">TRUE</span>,  <span class="co"># Code vector must end with the specified codes</span>
+    tech_names <span class="op">=</span> <span class="cn">TRUE</span>   <span class="co"># Use long but unique and descriptive variable names</span>
   <span class="op">)</span></code></pre></div>
-<p>The resulting object has only one <code>regex</code>-column (named <code>regex</code>). It is based on <code>regex_icd8_brusselaers</code> but suffixed with <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> (due to <code>stop = TRUE</code>). Group names might seem cumbersome but this will help to distinguish column names added by <code><a href="../reference/categorize.html">categorize()</a></code> if this function is run repeatedly with different classcodes (if we prefer to calculate both the Charlson and Elixhauser indices for the same patients). The original <code>charlson</code> object had 17 rows, but <code>charlson_icd8</code> has only 13, since not all groups are defined by that version.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<p>The resulting object has only one version of regular expressions (<code>icd8_brusselaers</code> as specified). Each regular expression is suffixed with <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> (due to <code>stop = TRUE</code>). Group names might seem cumbersome but this will help to distinguish column names added by <code><a href="../reference/categorize.html">categorize()</a></code> if this function is run repeatedly with different classcodes (i.e. if we calculate both Charlson and Elixhauser indices for the same patients). The original <code>charlson</code> object had 17 rows, but <code>charlson_icd8</code> has only 13, since not all groups are used in this version.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">charlson_icd8</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Classcodes object</span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt; Regular expressions:</span>
-<span class="co">#&gt;    regex </span>
+<span class="co">#&gt;    icd8_brusselaers </span>
 <span class="co">#&gt; Indices:</span>
 <span class="co">#&gt;    charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated   </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # A tibble: 13 x 9</span>
-<span class="co">#&gt;    group description charlson deyo_ramano dhoore ghali quan_original</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 char~ Acute myoc~        1           1      1     1             1</span>
-<span class="co">#&gt;  2 char~ Heart fail~        1           1      1     4             1</span>
-<span class="co">#&gt;  3 char~ Peripheral~        1           1      1     2             1</span>
-<span class="co">#&gt;  4 char~ Cerebrovas~        1           1      1     1             1</span>
-<span class="co">#&gt;  5 char~ Senile and~        1           1      1     0             1</span>
-<span class="co">#&gt;  6 char~ Chronic ob~        1           1      1     0             1</span>
-<span class="co">#&gt;  7 char~ Systemic l~        1           1      1     0             1</span>
-<span class="co">#&gt;  8 char~ Paraplegia~        2           1      1     0             2</span>
-<span class="co">#&gt;  9 char~ Chronic gl~        2           1      1     3             2</span>
-<span class="co">#&gt; 10 char~ Diabetes w~        2           1      1     0             2</span>
-<span class="co">#&gt; 11 char~ Malignant ~        2           1      1     0             2</span>
-<span class="co">#&gt; 12 char~ Hepatic co~        3           1      1     0             3</span>
-<span class="co">#&gt; 13 char~ Secondary ~        6           1      1     0             6</span>
-<span class="co">#&gt; # ... with 2 more variables: quan_updated &lt;dbl&gt;, regex &lt;chr&gt;</span></code></pre></div>
-<p>Note that all indices columns remain:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">charlson_icd8</span><span class="op">)</span>
-<span class="co">#&gt; [1] "group"         "description"   "charlson"      "deyo_ramano"  </span>
-<span class="co">#&gt; [5] "dhoore"        "ghali"         "quan_original" "quan_updated" </span>
-<span class="co">#&gt; [9] "regex"</span></code></pre></div>
-<p>It is thus possible to combine any categorization with any index, although some combinations might be preferred (such as <code>regex_icd9cm_deyo</code> combined with <code>index_deyo_ramano</code>).</p>
-<p>We can now use <code>charlson_icd8</code> in a call to classify:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span><span class="fl">410</span>, <span class="va">charlson_icd8</span>, tech_names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt;    group description icd8_brusselaers charlson deyo_ramano dhoore ghali</span>
+<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 char… Acute myoc… (41[0-2])$              1           1      1     1</span>
+<span class="co">#&gt;  2 char… Heart fail… (4270|428)$             1           1      1     4</span>
+<span class="co">#&gt;  3 char… Peripheral… (44[0-5])$              1           1      1     2</span>
+<span class="co">#&gt;  4 char… Cerebrovas… (43[0-8])$              1           1      1     1</span>
+<span class="co">#&gt;  5 char… Senile and… (290[01])$              1           1      1     0</span>
+<span class="co">#&gt;  6 char… Chronic ob… (49[0-3]|51[5-8…        1           1      1     0</span>
+<span class="co">#&gt;  7 char… Systemic l… (7(1[0-2]|34))$         1           1      1     0</span>
+<span class="co">#&gt;  8 char… Paraplegia… (344)$                  2           1      1     0</span>
+<span class="co">#&gt;  9 char… Chronic gl… (40[34]|58[0-3]…        2           1      1     3</span>
+<span class="co">#&gt; 10 char… Diabetes w… (250)$                  2           1      1     0</span>
+<span class="co">#&gt; 11 char… Malignant … (1([4-68][0-9]|…        2           1      1     0</span>
+<span class="co">#&gt; 12 char… Hepatic co… (070|4560|51[1-…        3           1      1     0</span>
+<span class="co">#&gt; 13 char… Secondary … (19[6-9])$              6           1      1     0</span>
+<span class="co">#&gt; # … with 2 more variables: quan_original &lt;dbl&gt;, quan_updated &lt;dbl&gt;</span></code></pre></div>
+<p>Note that all index columns remain in the tibble. It is thus possible to combine any categorization with any index, although some combinations might be preferred (such as <code>regex_icd9cm_deyo</code> combined with <code>index_deyo_ramano</code>).</p>
+<p>We can now use <code>charlson_icd8</code> for classification:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span><span class="fl">410</span>, <span class="va">charlson_icd8</span><span class="op">)</span>
+<span class="co">#&gt; Classification based on: icd8_brusselaers</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; The printed data is of class: classified, matrix. It has 1 rows.</span>
+<span class="co">#&gt; The printed data is of class: classified, matrix.</span>
+<span class="co">#&gt; It has 1 row(s).</span>
 <span class="co">#&gt; It is here previewed as a tibble</span>
 <span class="co">#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # A tibble: 1 x 13</span>
-<span class="co">#&gt;   charlson_icd8_b~ charlson_icd8_b~ charlson_icd8_b~ charlson_icd8_b~</span>
+<span class="co">#&gt;   charlson_icd8_b… charlson_icd8_b… charlson_icd8_b… charlson_icd8_b…</span>
 <span class="co">#&gt;   &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;           </span>
 <span class="co">#&gt; 1 TRUE             FALSE            FALSE            FALSE           </span>
-<span class="co">#&gt; # ... with 9 more variables: charlson_icd8_brusselaers_dementia &lt;lgl&gt;,</span>
+<span class="co">#&gt; # … with 9 more variables: charlson_icd8_brusselaers_dementia &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   charlson_icd8_brusselaers_chronic_pulmonary_disease &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   charlson_icd8_brusselaers_rheumatic_disease &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   charlson_icd8_brusselaers_hemiplegia_or_paraplegia &lt;lgl&gt;,</span>
@@ -454,38 +387,53 @@
 <span class="co">#&gt; #   charlson_icd8_brusselaers_malignancy &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   charlson_icd8_brusselaers_moderate_or_severe_liver_disease &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   charlson_icd8_brusselaers_metastatic_solid_tumor &lt;lgl&gt;</span></code></pre></div>
-<p>Thus, the ICD-8 code <code>410</code>is recognized only as myocardial infarction.</p>
+<p>The ICD-8 code <code>410</code>is recognized as (only) myocardial infarction.</p>
 </div>
 <div id="implicit-use-of-set_classcodes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#implicit-use-of-set_classcodes" class="anchor"></a>Implicit use of <code>set_classcodes()</code>
 </h2>
 <p>Instead of pre-specifying the <code>charlson_icd8</code>, a similar result is achieved by:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/classify.html">classify</a></span><span class="op">(</span>
   <span class="fl">410</span>,
-  <span class="va">charlson</span>,
+  <span class="st">"charlson"</span>,
   cc_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    regex <span class="op">=</span> <span class="st">"icd8_brusselaers"</span>, 
-    start <span class="op">=</span> <span class="cn">FALSE</span>, 
-    stop  <span class="op">=</span> <span class="cn">TRUE</span>
+    regex      <span class="op">=</span> <span class="st">"icd8_brusselaers"</span>, 
+    start      <span class="op">=</span> <span class="cn">FALSE</span>, 
+    stop       <span class="op">=</span> <span class="cn">TRUE</span>,
+    tech_names <span class="op">=</span> <span class="cn">TRUE</span>
   <span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; The printed data is of class: classified, matrix. It has 1 rows.</span>
+<span class="co">#&gt; The printed data is of class: classified, matrix.</span>
+<span class="co">#&gt; It has 1 row(s).</span>
 <span class="co">#&gt; It is here previewed as a tibble</span>
 <span class="co">#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; # A tibble: 1 x 13</span>
-<span class="co">#&gt;   `myocardial inf~ `congestive hea~ `peripheral vas~ `cerebrovascula~ dementia</span>
-<span class="co">#&gt;   &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;   </span>
-<span class="co">#&gt; 1 TRUE             FALSE            FALSE            FALSE            FALSE   </span>
-<span class="co">#&gt; # ... with 8 more variables: `chronic pulmonary disease` &lt;lgl&gt;, `rheumatic</span>
-<span class="co">#&gt; #   disease` &lt;lgl&gt;, `hemiplegia or paraplegia` &lt;lgl&gt;, `renal disease` &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   `diabetes complication` &lt;lgl&gt;, malignancy &lt;lgl&gt;, `moderate or severe liver</span>
-<span class="co">#&gt; #   disease` &lt;lgl&gt;, `metastatic solid tumor` &lt;lgl&gt;</span></code></pre></div>
-<p>… where we decided to drop the <code>tech_names = TRUE</code>, however, since that lead to overly complicated column names.</p>
+<span class="co">#&gt;   charlson_icd8_b… charlson_icd8_b… charlson_icd8_b… charlson_icd8_b…</span>
+<span class="co">#&gt;   &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;            &lt;lgl&gt;           </span>
+<span class="co">#&gt; 1 TRUE             FALSE            FALSE            FALSE           </span>
+<span class="co">#&gt; # … with 9 more variables: charlson_icd8_brusselaers_dementia &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_chronic_pulmonary_disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_rheumatic_disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_hemiplegia_or_paraplegia &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_renal_disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_diabetes_complication &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_malignancy &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_moderate_or_severe_liver_disease &lt;lgl&gt;,</span>
+<span class="co">#&gt; #   charlson_icd8_brusselaers_metastatic_solid_tumor &lt;lgl&gt;</span></code></pre></div>
+</div>
+</div>
+<div id="bibliography" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#bibliography" class="anchor"></a>Bibliography</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Brusselaers2017" class="csl-entry">
+Brusselaers, Nele, and Jesper Lagergren. 2017. <span>“The Charlson Comorbidity Index in Registry-Based Research.”</span> <em>Methods of Information in Medicine</em> 56 (05): 401–6. <a href="https://doi.org/10.3414/ME17-01-0051">https://doi.org/10.3414/ME17-01-0051</a>.
+</div>
 </div>
 </div>
   </div>

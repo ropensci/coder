@@ -132,7 +132,7 @@ codify(
 
 # Assume that codes contain unwanted "dirty" characters
 # Those could for example be a dot used by ICD-10 (i.e. X12.3 instead of X123)
-dirt <- c(strsplit(c("Â½!#Â¤\%&/()=?`,.-_"), split = ""), recursive = TRUE)
+dirt <- c(strsplit(c("½!#¤\%&/()=?`,.-_"), split = ""), recursive = TRUE)
 rdirt <- function(x) sample(x, nrow(ex_icd10), replace = TRUE)
 sub <- function(i) substr(ex_icd10$icd10, i, i)
 ex_icd10$icd10 <-

@@ -31,6 +31,7 @@ in examples.
 }
 \seealso{
 Other example data: 
+\code{\link{ex_atc}},
 \code{\link{ex_people}}
 }
 \concept{example data}

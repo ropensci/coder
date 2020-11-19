@@ -1,7 +1,5 @@
 #' Classcodes for Elixhauser based on ICD-codes
 #'
-#' A [`classcodes`] object to use with [classify()].
-#'
 #' Solid tumors are subordinate to metastatic cancer. A patient with both
 #' conditions will still be classified as such but a possible (weighted)
 #' index value will only account for metastatic cancer. The same is true for
@@ -81,8 +79,6 @@
 
 #' Classcodes for Charlson comorbidity based on ICD-codes
 #'
-#' A [`classcodes`] object to use with [classify()].
-#'
 #' @format A data frame with 17 rows and 8 variables:
 #'
 #'   - `group:` comorbidity groups
@@ -158,8 +154,6 @@
 
 #' Classcodes for the comorbidity-polypharmacy score (CPS) based on ICD-10 codes
 #'
-#' A [`classcodes`] object to use with [classify()].
-#'
 #' @format A data frame with 2 rows and 2 variables:
 #' \describe{
 #'   \item{group}{comorbidity groups, either "ordinary" for most ICD-10-codes or
@@ -182,8 +176,6 @@
 
 #' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
 #' and KVA codes
-#'
-#' A [`classcodes`] object to use with [classify()].
 #'
 #' ICD-10 group names are prefixed by two letters as given by the references.
 #' Two groups (DB and DM) are split into two due to different conditions.
@@ -245,8 +237,6 @@
 #' Classcodes for infection and dislocation after hip arthroplasty
 #' based on ICD-10 and KVA codes
 #'
-#' A [`classcodes`] object to use with [classify()].
-#'
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Infection or dislocation}
@@ -261,8 +251,6 @@
 
 #' Classcodes for RxRisk V based on ATC codes
 #'
-#' A [`classcodes`] object to use with [classify()].
-
 #' Provided mostly as proof-of-concept. Codes have not been externally
 #'   validated and desired implementation might differ over time and by country.
 #'
@@ -311,12 +299,28 @@
 #' @format Data frames with 100 rows and 2 variables:
 #' \describe{
 #'   \item{name}{random person names}
-#'   \item{event}{random dates for a relevant event}
+#'   \item{surgery}{random dates for a relevant event}
 #' }
 #'
 #' @family example data
 "ex_people"
 
+
+#' Example data for random ATC codes
+#'
+#' Example data for fictive people to use for testing and in examples.
+#'
+#' @format Data frames with 100 rows and 2 variables:
+#' \describe{
+#'   \item{name}{random person names}
+#'   \item{atc}{Random codes from the Anatomic Therapeutic Chemical
+#'   classification (ATC) system.}
+#'   \item{prescription}{random dates of prescription of medications with c
+#'   oresponding ATC codes}
+#' }
+#'
+#' @family example data
+"ex_atc"
 
 
 #' Example data for random codes assigned to random people

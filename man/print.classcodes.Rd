@@ -4,10 +4,12 @@
 \alias{print.classcodes}
 \title{Print classcodes object}
 \usage{
-\method{print}{classcodes}(x, ...)
+\method{print}{classcodes}(x, n = NULL, ...)
 }
 \arguments{
 \item{x}{object of type classcodes}
+
+\item{n}{number of rows to preview (\code{n = 0} is allowed)}
 
 \item{...}{arguments passed to print method for tibble}
 }

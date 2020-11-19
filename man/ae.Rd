@@ -33,9 +33,6 @@ knee_ae
 hip_ae
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
-}
-\details{
 ICD-10 group names are prefixed by two letters as given by the references.
 Two groups (DB and DM) are split into two due to different conditions.
 }

@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
       </span>
     </div>
 
@@ -106,7 +106,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/classcodes.html">Classcodes objects</a>
+      <a href="../articles/Interpret_regular_expressions.html">Interpret regular expressions</a>
+    </li>
+    <li>
+      <a href="../articles/classcodes.html">Classcodes</a>
+    </li>
+    <li>
+      <a href="../articles/ex_data.html">Example data</a>
     </li>
   </ul>
 </li>
@@ -144,7 +150,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for classcodes</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,6 +158,10 @@
     <tr>
       <th>x</th>
       <td><p>object of type classcodes</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>number of rows to preview (<code>n = 0</code> is allowed)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -182,22 +192,23 @@
 #&gt; Indices:
 #&gt;    sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
 #&gt; Hierarchy:
-#&gt;    cancer, diabetes 
+#&gt;    c("metastatic cancer", "solid tumor"),
+#&gt;    c("diabetes uncomplicated", "diabetes complicated") 
 #&gt; 
 #&gt; <span style='color: #555555;'># A tibble: 31 x 13</span><span>
 #&gt;    group icd10 icd10_short icd9cm icd9cm_ahrqweb icd9cm_enhanced sum_all
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> cong~ I(09~ I(09|1[13]~ 39891~ 39891|4(0(2[0~ 39891|4(0(2[01~       1
-#&gt; </span><span style='color: #555555;'> 2</span><span> card~ I(44~ I(4[457-9]~ 42(6(~ </span><span style='color: #BB0000;'>NA</span><span>             42(6([079|1[02~       1
-#&gt; </span><span style='color: #555555;'> 3</span><span> valv~ A520~ A52|I(0[5-~ 0932|~ 0932|39([4-6]~ 0932|39[4-7]|4~       1
-#&gt; </span><span style='color: #555555;'> 4</span><span> pulm~ I(2(~ I2[678]     41(6|~ 41(6|79)       41(5[01]|6|7[0~       1
-#&gt; </span><span style='color: #555555;'> 5</span><span> peri~ I7([~ I7[01389]|~ 44(0|~ 44([0-2]|3[1-~ 0930|4(373|4([~       1
-#&gt; </span><span style='color: #555555;'> 6</span><span> hype~ I10   I10         401[1~ 401[19]|6420   401                   1
-#&gt; </span><span style='color: #555555;'> 7</span><span> hype~ I1[1~ I1[1-35]    40([2~ 40(10|[2-5])|~ 40[2-5]               1
-#&gt; </span><span style='color: #555555;'> 8</span><span> para~ G(04~ G(04|11|8[~ 34(2[~ 34[2-4]|438[2~ 3(341|4([23]|4~       1
-#&gt; </span><span style='color: #555555;'> 9</span><span> othe~ G(1[~ G(1[0-3]|2~ 3(3(1~ 3(3([0145]|20~ 3(3(19|2[01]|3~       1
-#&gt; </span><span style='color: #555555;'>10</span><span> chro~ (I27~ I27|(J([46~ 49(([~ 49|50([0-5]|6~ 4(16[89]|90)|5~       1
-#&gt; </span><span style='color: #555555;'># ... with 21 more rows, and 6 more variables: sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> cong… I(09… I(09|1[13]… 39891… 39891|4(0(2[0… 39891|4(0(2[01…       1
+#&gt; </span><span style='color: #555555;'> 2</span><span> card… I(44… I(4[457-9]… 42(6(… </span><span style='color: #BB0000;'>NA</span><span>             42(6([079|1[02…       1
+#&gt; </span><span style='color: #555555;'> 3</span><span> valv… A520… A52|I(0[5-… 0932|… 0932|39([4-6]… 0932|39[4-7]|4…       1
+#&gt; </span><span style='color: #555555;'> 4</span><span> pulm… I(2(… I2[678]     41(6|… 41(6|79)       41(5[01]|6|7[0…       1
+#&gt; </span><span style='color: #555555;'> 5</span><span> peri… I7([… I7[01389]|… 44(0|… 44([0-2]|3[1-… 0930|4(373|4([…       1
+#&gt; </span><span style='color: #555555;'> 6</span><span> hype… I10   I10         401[1… 401[19]|6420   401                   1
+#&gt; </span><span style='color: #555555;'> 7</span><span> hype… I1[1… I1[1-35]    40([2… 40(10|[2-5])|… 40[2-5]               1
+#&gt; </span><span style='color: #555555;'> 8</span><span> para… G(04… G(04|11|8[… 34(2[… 34[2-4]|438[2… 3(341|4([23]|4…       1
+#&gt; </span><span style='color: #555555;'> 9</span><span> othe… G(1[… G(1[0-3]|2… 3(3(1… 3(3([0145]|20… 3(3(19|2[01]|3…       1
+#&gt; </span><span style='color: #555555;'>10</span><span> chro… (I27… I27|(J([46… 49(([… 49|50([0-5]|6… 4(16[89]|90)|5…       1
+#&gt; </span><span style='color: #555555;'># … with 21 more rows, and 6 more variables: sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   walraven </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sid29 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sid30 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_mort </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_readm </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Print all rows</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>coder</span><span class='fu'>::</span><span class='va'><a href='elixhauser.html'>elixhauser</a></span>, n <span class='op'>=</span> <span class='fl'>31</span><span class='op'>)</span>
@@ -209,43 +220,44 @@
 #&gt; Indices:
 #&gt;    sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm 
 #&gt; Hierarchy:
-#&gt;    cancer, diabetes 
+#&gt;    c("metastatic cancer", "solid tumor"),
+#&gt;    c("diabetes uncomplicated", "diabetes complicated") 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 31 x 13</span><span>
 #&gt;    group icd10 icd10_short icd9cm icd9cm_ahrqweb icd9cm_enhanced sum_all
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> cong~ I(09~ I(09|1[13]~ 39891~ 39891|4(0(2[0~ 39891|4(0(2[01~       1
-#&gt; </span><span style='color: #555555;'> 2</span><span> card~ I(44~ I(4[457-9]~ 42(6(~ </span><span style='color: #BB0000;'>NA</span><span>             42(6([079|1[02~       1
-#&gt; </span><span style='color: #555555;'> 3</span><span> valv~ A520~ A52|I(0[5-~ 0932|~ 0932|39([4-6]~ 0932|39[4-7]|4~       1
-#&gt; </span><span style='color: #555555;'> 4</span><span> pulm~ I(2(~ I2[678]     41(6|~ 41(6|79)       41(5[01]|6|7[0~       1
-#&gt; </span><span style='color: #555555;'> 5</span><span> peri~ I7([~ I7[01389]|~ 44(0|~ 44([0-2]|3[1-~ 0930|4(373|4([~       1
-#&gt; </span><span style='color: #555555;'> 6</span><span> hype~ I10   I10         401[1~ 401[19]|6420   401                   1
-#&gt; </span><span style='color: #555555;'> 7</span><span> hype~ I1[1~ I1[1-35]    40([2~ 40(10|[2-5])|~ 40[2-5]               1
-#&gt; </span><span style='color: #555555;'> 8</span><span> para~ G(04~ G(04|11|8[~ 34(2[~ 34[2-4]|438[2~ 3(341|4([23]|4~       1
-#&gt; </span><span style='color: #555555;'> 9</span><span> othe~ G(1[~ G(1[0-3]|2~ 3(3(1~ 3(3([0145]|20~ 3(3(19|2[01]|3~       1
-#&gt; </span><span style='color: #555555;'>10</span><span> chro~ (I27~ I27|(J([46~ 49(([~ 49|50([0-5]|6~ 4(16[89]|90)|5~       1
-#&gt; </span><span style='color: #555555;'>11</span><span> diab~ E1[0~ E1[0-4]     250[0~ 250[0-3]|6480  250[0-3]              1
-#&gt; </span><span style='color: #555555;'>12</span><span> diab~ E1[0~ E1[0-4]     250[4~ 250[4-9]|7751  250[4-9]              1
-#&gt; </span><span style='color: #555555;'>13</span><span> hypo~ E(0[~ E(0[0-3]|8~ 24(3|~ 24(3|4[0-2]|4~ 24(09|[34]|6[1~       1
-#&gt; </span><span style='color: #555555;'>14</span><span> rena~ I(12~ I(1[23])|N~ 40(3(~ 40(3([019]1)|~ 40(3([019]1)|4~       1
-#&gt; </span><span style='color: #555555;'>15</span><span> live~ B18|~ B18|I(8[56~ 070(3~ 070([23]{2}|[~ 070([23]{2}|[4~       1
-#&gt; </span><span style='color: #555555;'>16</span><span> pept~ K2[5~ K2[5-8]     53([1~ 53([1-4]([4-6~ 53[1-4][79]           1
-#&gt; </span><span style='color: #555555;'>17</span><span> AIDS~ B2[0~ B2[0-24]    04[2-~ 04[2-4]        04[2-4]               1
-#&gt; </span><span style='color: #555555;'>18</span><span> lymp~ C(8[~ C(8[1-58]|~ 2(0([~ 2(0([01]|2[0-~ 2(0([0-2]|30)|~       1
-#&gt; </span><span style='color: #555555;'>19</span><span> meta~ C(7[~ C(7[7-9]|8~ 19[6-~ 19[6-9]        19[6-9]               1
-#&gt; </span><span style='color: #555555;'>20</span><span> soli~ C([0~ C([01]|2[0~ 1([4-~ 1([4-68]|7([0~ 1([4-68]|7[0-2~       1
-#&gt; </span><span style='color: #555555;'>21</span><span> rheu~ L94[~ L94|M(0[56~ 7(010~ 7(010|1[04]|2~ 446|7(010|1(0[~       1
-#&gt; </span><span style='color: #555555;'>22</span><span> coag~ D6([~ D6[5-9]     28(6|~ 28(6|7[13-5])  28(6|7[13-5])         1
-#&gt; </span><span style='color: #555555;'>23</span><span> obes~ E66   E66         2780   2780           2780                  1
-#&gt; </span><span style='color: #555555;'>24</span><span> weig~ E4[0~ E4[0-6]|R6~ 26[0-~ 26[0-3]|7832   26[0-3]|7(832|~       1
-#&gt; </span><span style='color: #555555;'>25</span><span> flui~ E(22~ E(22|8[67]) 276    276            2(53|7)6              1
-#&gt; </span><span style='color: #555555;'>26</span><span> bloo~ D500  D50         2800   2800|6482      2800                  1
-#&gt; </span><span style='color: #555555;'>27</span><span> defi~ D5(0~ D5[0-3]     28(0[~ 28(0[1-9]|1|5~ 28(0[1-9]|1)          1
-#&gt; </span><span style='color: #555555;'>28</span><span> alco~ F10|~ F10|E52|G6~ 29(1[~ 291[0-3589]|3~ 2(652|9(1[1-35~       1
-#&gt; </span><span style='color: #555555;'>29</span><span> drug~ F1[1~ F1[1-689]|~ 292(0~ 292(0|8[2-9]|~ 292|30(4|5[2-9~       1
-#&gt; </span><span style='color: #555555;'>30</span><span> psyc~ F(2[~ F(2[02-589~ 29([5~ 29([5-8]|91)   29(38|9([578]|~       1
-#&gt; </span><span style='color: #555555;'>31</span><span> depr~ F(20~ F(20|3[1-4~ 3(0(0~ 3(0(04|112|9[~ 29(6[235])|3(0~      </span><span style='color: #BB0000;'>NA</span><span>
-#&gt; </span><span style='color: #555555;'># ... with 6 more variables: sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, walraven </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sid29 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> cong… I(09… I(09|1[13]… 39891… 39891|4(0(2[0… 39891|4(0(2[01…       1
+#&gt; </span><span style='color: #555555;'> 2</span><span> card… I(44… I(4[457-9]… 42(6(… </span><span style='color: #BB0000;'>NA</span><span>             42(6([079|1[02…       1
+#&gt; </span><span style='color: #555555;'> 3</span><span> valv… A520… A52|I(0[5-… 0932|… 0932|39([4-6]… 0932|39[4-7]|4…       1
+#&gt; </span><span style='color: #555555;'> 4</span><span> pulm… I(2(… I2[678]     41(6|… 41(6|79)       41(5[01]|6|7[0…       1
+#&gt; </span><span style='color: #555555;'> 5</span><span> peri… I7([… I7[01389]|… 44(0|… 44([0-2]|3[1-… 0930|4(373|4([…       1
+#&gt; </span><span style='color: #555555;'> 6</span><span> hype… I10   I10         401[1… 401[19]|6420   401                   1
+#&gt; </span><span style='color: #555555;'> 7</span><span> hype… I1[1… I1[1-35]    40([2… 40(10|[2-5])|… 40[2-5]               1
+#&gt; </span><span style='color: #555555;'> 8</span><span> para… G(04… G(04|11|8[… 34(2[… 34[2-4]|438[2… 3(341|4([23]|4…       1
+#&gt; </span><span style='color: #555555;'> 9</span><span> othe… G(1[… G(1[0-3]|2… 3(3(1… 3(3([0145]|20… 3(3(19|2[01]|3…       1
+#&gt; </span><span style='color: #555555;'>10</span><span> chro… (I27… I27|(J([46… 49(([… 49|50([0-5]|6… 4(16[89]|90)|5…       1
+#&gt; </span><span style='color: #555555;'>11</span><span> diab… E1[0… E1[0-4]     250[0… 250[0-3]|6480  250[0-3]              1
+#&gt; </span><span style='color: #555555;'>12</span><span> diab… E1[0… E1[0-4]     250[4… 250[4-9]|7751  250[4-9]              1
+#&gt; </span><span style='color: #555555;'>13</span><span> hypo… E(0[… E(0[0-3]|8… 24(3|… 24(3|4[0-2]|4… 24(09|[34]|6[1…       1
+#&gt; </span><span style='color: #555555;'>14</span><span> rena… I(12… I(1[23])|N… 40(3(… 40(3([019]1)|… 40(3([019]1)|4…       1
+#&gt; </span><span style='color: #555555;'>15</span><span> live… B18|… B18|I(8[56… 070(3… 070([23]{2}|[… 070([23]{2}|[4…       1
+#&gt; </span><span style='color: #555555;'>16</span><span> pept… K2[5… K2[5-8]     53([1… 53([1-4]([4-6… 53[1-4][79]           1
+#&gt; </span><span style='color: #555555;'>17</span><span> AIDS… B2[0… B2[0-24]    04[2-… 04[2-4]        04[2-4]               1
+#&gt; </span><span style='color: #555555;'>18</span><span> lymp… C(8[… C(8[1-58]|… 2(0([… 2(0([01]|2[0-… 2(0([0-2]|30)|…       1
+#&gt; </span><span style='color: #555555;'>19</span><span> meta… C(7[… C(7[7-9]|8… 19[6-… 19[6-9]        19[6-9]               1
+#&gt; </span><span style='color: #555555;'>20</span><span> soli… C([0… C([01]|2[0… 1([4-… 1([4-68]|7([0… 1([4-68]|7[0-2…       1
+#&gt; </span><span style='color: #555555;'>21</span><span> rheu… L94[… L94|M(0[56… 7(010… 7(010|1[04]|2… 446|7(010|1(0[…       1
+#&gt; </span><span style='color: #555555;'>22</span><span> coag… D6([… D6[5-9]     28(6|… 28(6|7[13-5])  28(6|7[13-5])         1
+#&gt; </span><span style='color: #555555;'>23</span><span> obes… E66   E66         2780   2780           2780                  1
+#&gt; </span><span style='color: #555555;'>24</span><span> weig… E4[0… E4[0-6]|R6… 26[0-… 26[0-3]|7832   26[0-3]|7(832|…       1
+#&gt; </span><span style='color: #555555;'>25</span><span> flui… E(22… E(22|8[67]) 276    276            2(53|7)6              1
+#&gt; </span><span style='color: #555555;'>26</span><span> bloo… D500  D50         2800   2800|6482      2800                  1
+#&gt; </span><span style='color: #555555;'>27</span><span> defi… D5(0… D5[0-3]     28(0[… 28(0[1-9]|1|5… 28(0[1-9]|1)          1
+#&gt; </span><span style='color: #555555;'>28</span><span> alco… F10|… F10|E52|G6… 29(1[… 291[0-3589]|3… 2(652|9(1[1-35…       1
+#&gt; </span><span style='color: #555555;'>29</span><span> drug… F1[1… F1[1-689]|… 292(0… 292(0|8[2-9]|… 292|30(4|5[2-9…       1
+#&gt; </span><span style='color: #555555;'>30</span><span> psyc… F(2[… F(2[02-589… 29([5… 29([5-8]|91)   29(38|9([578]|…       1
+#&gt; </span><span style='color: #555555;'>31</span><span> depr… F(20… F(20|3[1-4… 3(0(0… 3(0(04|112|9[… 29(6[235])|3(0…      </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'># … with 6 more variables: sum_all_ahrq </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, walraven </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, sid29 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   sid30 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_mort </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ahrq_readm </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

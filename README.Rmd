@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Aim of the package
 
-The goal of `coder` is to classify items from one dataset, using codes from a secondary source with classification schemes based on regular expressions and weighted indices.
+The goal of `{coder}` is to classify items from one dataset, using codes from a secondary source with classification schemes based on regular expressions and weighted indices.
 
 ## Installation
 
@@ -101,7 +101,7 @@ hist(
 )
 ```
 
-There are in many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery:
+There are many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery as specified with an argument list `codify_args`as passed to `codify()`:
 
 ```{r}
 ch <- 
@@ -109,10 +109,11 @@ ch <-
     ex_people, codedata = ex_icd10, cc = "charlson", id = "name", code = "icd10",
     
     # Additional arguments
-    index       = c("quan_original", "quan_updated"),
+    index       = c("quan_original", "quan_updated"), # Indices
     codify_args = list(
-      date = "surgery", code_date = "admission", # Specify date columns 
-      days = c(-90, -1) # Time window
+      date      = "surgery",   # Name of column with index dates
+      code_date = "admission", # Name of column with code dates
+      days      = c(-90, -1)   # Time window
     )
   )
 ```
@@ -128,7 +129,7 @@ Distribution of the index as proposed by QUan et al 2011 during the 90 day perio
 ```{r}
 hist(
   ch$quan_updated, 
-  col = "lightblue",
+  col  = "lightblue",
   main = "Charlson comorbidity",
   xlab = "Comorbidity index by Quan et al. 2011"
 )
@@ -136,7 +137,7 @@ hist(
 
 ## Classification schemes
 
-Classification schemes (`classcodes` objects) are based on regular expressions for computational speed, but their content can be summarized and visualized for clarity. Arbitrary `classcodes` objects can also be specified by the user.
+Classification schemes (`classcodes` objects, see `vignette("classcodes")`) are based on regular expressions for computational speed (see `vignette("Interpret_regular_expressions")`), but their content can be summarized and visualized for clarity. Arbitrary `classcodes` objects can also be specified by the user.
 
 The package includes default `classcodes` for medical patient data based on the international classification of diseases version 8, 9 and 10 (ICD-8/9/10), as well as the Anatomical Therapeutic Chemical Classification System (ATC) for medical prescription data.
 

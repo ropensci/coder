@@ -17,7 +17,8 @@ Data frame with 3 columns:
 hip_ae_hailer
 }
 \description{
-A \code{\link{classcodes}} object to use with \code{\link[=classify]{classify()}}.
+Classcodes for infection and dislocation after hip arthroplasty
+based on ICD-10 and KVA codes
 }
 \seealso{
 ae
