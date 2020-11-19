@@ -7,6 +7,7 @@ vignette: >
   %\VignetteIndexEntry{Classcodes objects}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: references.bib
 ---
 
 ```{r, include = FALSE}
@@ -46,11 +47,11 @@ categorize(
 )
 ```
 
-Here, `charlson` (as supplied by the `cc` argument) is a "classcodes" object containing a classification scheme matching patient codes (from `codedata`) to groups (comorbidity conditions) by regular expressions.
+Here, `charlson` (as supplied by the `cc` argument) is a "classcodes" object containing a classification scheme. This is the specification of how to match patient codes (from `codedata`) to groups (comorbidity conditions). It is based on regular expressions which recognize all codes for each group.
 
 # Default classcodes
 
-There are `r nrow(all_classcodes())` default "classcodes" objects in the package (`classcodes` column below). Each of them might have several versions of regular expressions (`regex`) and weighted indices (`indices`):
+There are `r nrow(all_classcodes())` default "classcodes" objects in the package (`classcodes` column below). Each of them might have several versions of regular expressions (column `regex`) and weighted indices (column `indices`):
 
 ```{r}
 all_classcodes()
@@ -58,49 +59,48 @@ all_classcodes()
 
 # classcodes object
 
-Each of those classcodes are documented (see for example `?charlson`). The object is basically a `tibble` (data frame) with some additional attributes (and a print method to present those):
+Each of those classcodes objects are documented (see for example `?charlson`). The object is basically a `tibble` (data frame) with some additional attributes (and a print method to present those):
 
 ```{r}
 charlson
 ```
 
-Columns have pre-specified names and content:
+Columns have pre-specified names and/or content:
 
 -   `group`: short descriptive names of all groups to classify by (i.e. medical conditions/comorbidities).
 -   `description:` (optional) additional details describing each group.
 -   regular expressions identifying each group (see `?charlson` for details). Multiple versions might be used if combined with different code sets (i.e. ICD-9 versus ICD-10). (Column names are arbitrary but identified by `attr(., "regexprs").`)
--   numeric variables used as weights when calculating index sums based on all (or a subset of) individual groups. (Column names are arbitrary but identified by `attr(., "indices")` .)
+-   numeric vectors used as weights when calculating index sums based on all (or a subset of) individual groups. (Column names are arbitrary but identified by `attr(., "indices")`.)
 -   `condition`: (optional; not used with `charlson`) conditional classification (see for example `?hip_ae`).
 
-In the example above, we did not specify which version of regular expression to use. We see from the printed output above (or by `attr(charlson, "regexprs")`), however, that the first listed regular expression (which is used by default) is "icd10". We have ICD-10 codes recorded in our code data set (`ex_icd10`). We could therefore use the alternative "icd10\_rcs" as well. Other versions might be relevant if the medical data is coded by other classifications (such as earlier versions of ICD). We will show below how to alter this setting in practice.
+In the example above, we did not specify which version of regular expression to use. We see from the printed output above (or by `attr(charlson, "regexprs")`), that the first regular expression is "icd10". This will be used by default. We have ICD-10 codes recorded in our code data set (`ex_icd10$icd10`). We might therefore use either "icd10" or "icd10\_rcs" to classify those. Other versions might be relevant if the medical data is coded by other codes (such as earlier versions of ICD). We will show below how to alter this setting in practice.
 
 # Hierarchy
 
-Some classcodes objects have an additional class attribute "hierarchy", controlling hierarchical groups where only one of possibly several groups (occurring simultaneity) should be recognized for calculation of a weighted index sum. This is true for Elixhauser:\
+Some classcodes objects have an additional class attribute "hierarchy", controlling hierarchical groups where only one of possibly several groups (occurring simultaneity) should be used in weighted index sums. This is true for Elixhauser:\
 
 ```{r}
-attr(elixhauser, "hierarchy")
+print(elixhauser, n = 0) # preview 0 rows
 ```
 
-... meaning that patients who have both metastatic cancer and solid tumors should be recognized as such. If such patient is later assigned an aggregated index score, however, only the largest score is used (in this case for a metastatic cancer as superior to a solid tumor). The same is true for patients with both uncomplicated and complicated diabetes, for which only the complicated version is recognized.
+This means that patients who have both metastatic cancer and solid tumors should be recognized as such if classified. If such patient are assigned an aggregated index score, however, only the largest score is used (in this case for a metastatic cancer as superior to a solid tumor). The same is true for patients diagnosed with both uncomplicated and complicated diabetes.
 
-# Interpret the regular expressions
+# Interpret regular expressions
 
-## Visualize graphically
+## Visualize
 
-Regular expressions might be difficult to interpret and can therefore be `visualize()`:d, This will display a web page in the default browser (here suppressed by `show = FALSE`):
+Regular expressions might be difficult to interpret and can therefore be `visualize()`:d. This will open a web page in the default browser (not displayed here).
 
-```{r}
-url <- visualize(charlson, show = FALSE, regex = "icd10")
+```{r, eval = FALSE}
+visualize(charlson)
 ```
 
-For this vignette, we can open the `url` "manually" by clicking this link to the [JavaScript Regular Expression Parser & Visualizer](%60r%20url%60). The displayed visualization is rather complex, however, wherefore a further simplification might be needed before actual understanding of the concept. We can chose to inspect the regular expression for `r charlson$group[1]` as codified by `regex_icd9cm_deyo`:
+Visualization of all groups simultaneously might lead to complex figures. We can focus on a specific group (comorbidity) by the `group` argument. How is `r charlson$group[1]` codified by `regex_icd9cm_deyo`?
 
-```{r}
+```{r, eval = FALSE}
 visualize(
   charlson, 
   group    = "myocardial infarction", 
-  show     = FALSE, 
   regex    = "icd9cm_deyo"
 )
 ```
@@ -110,13 +110,12 @@ knitr::include_graphics("regexp_charlson_ci_icd9.png")
 
 ```
 
-Here `^` indicates the beginning of the character string, followed by a literal `41` and either a `0` or `2`. The corresponding code according to ICD-10 is:
+Hence, all codes starting with `41` followed by either `0` or `2` will be recognized as myocardial infarction according to `icd9cm_deyo`. The corresponding regular expression for ICD-10 is:
 
-```{r}
+```{r, eval = FALSE}
 visualize(
   charlson, 
-  group    = "myocardial infarction", 
-  show     = FALSE, 
+  group    = "myocardial infarction",
   regex    = "icd10"
 )
 ```
@@ -126,33 +125,55 @@ knitr::include_graphics("regexp_charlson_ci_icd10.png")
 
 ```
 
-ICD-10 codes identifying myocardial infarction thus starts with `I2` followed by either `1`, `2` or `52`. The vertical bar, `|`, in the regular expression indicates a logical "or" within the parenthesis (as used for expressions longer than single characters). See `?regex` for further details.
+Such codes should start with `I2` followed by either `1`, `2` or `52`. The vertical bar `|` (in the regular expression of the heading) indicates a logical "or". See `?regex` for more details on how to use regular expressions in R (not that Perl-like versions are currently not allowed).
 
 ## List all codes
 
-An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary()` method for classcodes objects.
+An alternative representation is to list all relevant codes identified by each regular expression. This is implemented by the `summary()` method for classcodes objects. Note, however, that the regular expressions are stand alone in each classcodes object. Hence, there are no static look-up-tables to map individual codes to each group. We therefore need to specify a code list/dictionary of all possible codes to be recognized by those regular expressions. Then `summary()`will categorize those and display the result. Common code lists are found in the `{decoder}` package ([https://cancercentrum.bitbucket.io/decoder/)](https://cancercentrum.bitbucket.io/decoder/)) and are accessed automatically through the `coding` argument to `summary()`. Hence, there is a " keyvalue" object with all ICD-10-CM codes in `{decoder}:`
 
 ```{r}
-summary(charlson, coding = "icd10cm")
+decoder::icd10cm
+
 ```
 
-## Interpretable codebook
-
-Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by `codebook()`. The main purpose of this function is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a tibble with "all\_codes" explaining the meaning of each code to be recognized by the regular expression:
+We can use this code list to identify all codes recognized by `charlson` (and its default classification based on "icd10"). The printed result (see `? print.summary.classcodes`) is a tibble with each group and a comma separated code list.
 
 ```{r}
-codebook(charlson, "icd10cm")
+s <- summary(charlson, coding = "icd10cm")
+s
 ```
 
-Here, the descriptions are based on the ICD-10-CM codes from 2020. Corresponding descriptions in Swedish are retrieved by (`icd10se` instead of `icd10cm`):
+A list with all code vectors (to use for programmatic purposes) is also returned (invisible) and accessed by `s$codes_vct`.
+
+Now, compare the result above with the output based on a different code list, namely ICD-10-SE, the Swedish version of ICD-10, instead of ICD-10-CM:
 
 ```{r}
-codebook(charlson, "icd10se")$all_codes
+summary(charlson, coding = "icd10se")
+```
+
+There are some noticeable differences. AIDS/HIV for example has only one code deemed clinically relevant in the USA (thus included in the CM-version of ICD-10), although there are 22 different codes potentially used in the Swedish national patient register. There are additional differences concerning the fifth code position (digits in ICD-10-CM and characters in ICD-10-SE). Those mark national modifications to the original ICD-10 codes, which has only 4 positions (one character and three digits). For this example, the `charlson$icd10` column was based on ICD-10-CM [@Quan2005]. The comparison above thus highlights potential differences when using this classification in a setting based on another classification (such as with data from the Swedish national patient register).
+
+## Codebooks
+
+Even with individual codes summarized, those might still be hard to interpret on their own. The [decoder](https://cancercentrum.bitbucket.io/decoder/) package can help to translate codes to readable names/description. This is facilitated by the `codebook()` function in the `{coder}`package.
+
+The main purpose is to export an Excel-file (if path specified by argument `file`). The output is otherwise a list, including both a summary table (described above) and a tibble with "all\_codes" explaining the meaning of each code to be recognized by the regular expression.
+
+We can compare the codes recognized as AIDS/HIV by either ICD-10-CM or ICD-10-SE:
+
+```{r}
+
+cm <- codebook(charlson, "icd10cm")$all_codes
+cm[cm$group == "AIDS/HIV", ]
+
+se <- codebook(charlson, "icd10se")$all_codes
+se[se$group == "AIDS/HIV", ]
+
 ```
 
 ## Combined codebooks
 
-Several codebooks can be combined (exported to a single Excel-file) by the function `codebooks` (note the plural s).
+Several codebooks can be combined (exported to a single Excel-file) by the function `codebooks()` (note the plural s).
 
 # Alternative classifications
 

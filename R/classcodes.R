@@ -7,22 +7,25 @@
 #' A classcodes object is a data frame with mandatory columns:
 #'
 #' - `group`: unique and non missing class names
-#' - `regex_*`: regular expressions ([regex]) defining class membership.
-#'    Could be more than one and could have arbitrary names.
+#' - `At least one column with regular expressions
+#'    ([regex] without Perl-like versions) defining class
+#'    membership. Those columns can have arbitrary names
+#'    (as specified by the `regex`argument).
 #'    Occurrences of non unique regular expressions will lead to the same class
 #'    having multiple names. This is accepted but will raise a warning.
-#'    Classes do not have to be disjunct;
-#'    the same code can be recognized by more than one `regex_*`.
+#'    Classes do not have to be disjunct.
 #'
 #' The object can have additional optional columns:
 #'
 #' - `description`: description of each category
 #' - `condition`: a class might have conditions additional to what
-#'   is expressed by `regex_*`. If so, these should be specified as quoted
+#'   is expressed by the regular expressions.
+#'   If so, these should be specified as quoted
 #'   expressions that can be evaluated within the data frame used by
 #'   [classify()]
-#' - `index_*`: weights for each class used by
-#'   [index()]. Could be more than one and could have arbitrary names.
+#' - weights for each class used by
+#'   [index()]. Could be more than one and could have arbitrary names
+#'   (as specified by the `indices`argument).
 #'
 #'
 #' @param x data frame with columns described in the details section
@@ -189,6 +192,7 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 #' Print classcodes object
 #'
 #' @param x object of type classcodes
+#' @param n number of rows to preview (`n = 0` is allowed)
 #' @param ... arguments passed to print method for tibble
 #' @export
 #' @family classcodes
@@ -198,7 +202,7 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 #'
 #' # Print all rows
 #' print(coder::elixhauser, n = 31)
-print.classcodes <- function(x, ...) {
+print.classcodes <- function(x, n = NULL, ...) {
   at <- function(y) paste(attr(x, y), collapse = ", ")
   writeLines(paste(
     "\nClasscodes object\n",
@@ -210,8 +214,9 @@ print.classcodes <- function(x, ...) {
     paste(attr(x, "hierarchy"), collapse = ",\n   "),
     "\n"
   ))
-
-  print(tibble::as_tibble(x), ...)
+  if (is.null(n) || n != 0) {
+    print(tibble::as_tibble(x), n = n, ...)
+  }
 }
 
 #' @export
