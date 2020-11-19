@@ -5,8 +5,7 @@
 \alias{ae}
 \alias{knee_ae}
 \alias{hip_ae}
-\title{Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
-and KVA codes}
+\title{Classcodes for adverse events after knee and hip arthroplasty}
 \format{
 Data frame with 3 columns:
 \describe{
@@ -38,8 +37,8 @@ Two groups (DB and DM) are split into two due to different conditions.
 }
 \section{Hip fractures}{
 
-AE codes for hip fractures are based on codes for elective cases but with
-some additional codes for DM 1 (N300, N308, N309 and N390).
+Adverse events (AE) codes for hip fractures are based on codes for elective
+cases but with some additional codes for DM 1 (N300, N308, N309 and N390).
 }
 
 \section{Conditions}{

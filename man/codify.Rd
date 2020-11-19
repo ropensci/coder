@@ -5,23 +5,14 @@
 \alias{codify.data.frame}
 \alias{codify.data.table}
 \alias{print.codified}
-\title{Codify elements (within period)}
+\title{Codify case data with external code data (within specified time frames)}
 \usage{
-codify(
-  data,
-  codedata,
-  ...,
-  id,
-  code,
-  date = NULL,
-  code_date = NULL,
-  days = NULL
-)
+codify(x, codedata, ..., id, code, date = NULL, code_date = NULL, days = NULL)
 
-\method{codify}{data.frame}(data, ..., id, date = NULL, days = NULL)
+\method{codify}{data.frame}(x, ..., id, date = NULL, days = NULL)
 
 \method{codify}{data.table}(
-  data,
+  x,
   codedata,
   ...,
   id,
@@ -36,8 +27,11 @@ codify(
 \method{print}{codified}(x, ..., n = 10)
 }
 \arguments{
-\item{data}{a table with columns id (\code{character}), code, and optionally date
-(\code{\link{Date}})}
+\item{x}{data set with mandatory character id column
+(identified by argument \code{id = "<col_name>"}),
+and optional \code{\link{Date}}  of interest
+(identified by argument \code{date = "<col_name>"}).
+Alternatively, the output from \code{\link[=codify]{codify()}}}
 
 \item{codedata}{additional data with columns
 including case id (\code{character}), code and an optional date (\link{Date}) for
@@ -47,8 +41,8 @@ with certain characteristics (see example).}
 \item{...}{arguments passed between methods}
 
 \item{id, code, date, code_date}{column names with case id
-(\code{character} from \code{data} and \code{codedata}), \code{code} (from \code{data}) and
-optional date (\link{Date} from \code{data}) and
+(\code{character} from \code{x} and \code{codedata}), \code{code} (from \code{x}) and
+optional date (\link{Date} from \code{x}) and
 \code{code_date} (\link{Date} from \code{codedata}).}
 
 \item{days}{numeric vector of length two with lower and upper bound for range
@@ -61,9 +55,9 @@ of relevant days relative to \code{date}. See "Relevant period".}
 If the size is larger, the argument must be set explicitly. Set \code{TRUE}
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to \code{FALSE}, calculations might be carried out
-but the object will be changed by reference.}
-
-\item{x}{object (potentially of large size)}
+but the object will be changed by reference.
+IMPORTANT! This might lead to undesired consequences and should only be used
+if absolutely necessary!}
 
 \item{n}{number of rows to preview as tibble.
 The output is technically a \link[data.table:data.table]{data.table::data.table}, which might be an
@@ -71,30 +65,30 @@ unusual format to look at. Use \code{n = NULL} to print the object as is.}
 }
 \value{
 Object of class \code{codified} (inheriting from \link[data.table:data.table]{data.table::data.table}).
-Essentially \code{data} with additional columns:
+Essentially \code{x} with additional columns:
 \verb{code, code_date}: left joined from \code{codedata} or \code{NA}
 if no match within period. \code{in_period}: Boolean indicator if the case
 had at least one code within the specified period.
 
-The output has one row for each combination of "id" from \code{data} and
-"code" from \code{codedata}. Rows from \code{data} might be repeated
+The output has one row for each combination of "id" from \code{x} and
+"code" from \code{codedata}. Rows from \code{x} might be repeated
 accordingly.
 }
 \description{
-Enhance case data with code data, possibly limited to relevant period.
-}
-\details{
-See the example section for a warning on using the \code{.copy} argument!
+This is the first step of \code{codify() \%>\% classify() \%>\% index()}.
+The function combines case data from one data set with related code data from
+a second source, possibly limited to codes valid at certain time points
+relative to case dates.
 }
 \section{Relevant period}{
 
 Some examples for argument \code{days}:
 \itemize{
 \item \code{c(-365, -1)}: window of one year prior to the \code{date}
-column of \code{data}. Useful for patient co-morbidity.
+column of \code{x}. Useful for patient comorbidity.
 \item \code{c(1, 30)}: window of 30 days after \code{date}.
 Useful for adverse events after a surgical procedure.
-\item \code{c(-Inf, Inf)}: no limitation on non missing dates.
+\item \code{c(-Inf, Inf)}: no limitation on non-missing dates.
 \item \code{NULL}: no time limitation at all.
 }
 }
@@ -132,7 +126,7 @@ codify(
 
 # Assume that codes contain unwanted "dirty" characters
 # Those could for example be a dot used by ICD-10 (i.e. X12.3 instead of X123)
-dirt <- c(strsplit(c("½!#¤\%&/()=?`,.-_"), split = ""), recursive = TRUE)
+dirt <- c(strsplit(c("!#\%&/()=?`,.-_"), split = ""), recursive = TRUE)
 rdirt <- function(x) sample(x, nrow(ex_icd10), replace = TRUE)
 sub <- function(i) substr(ex_icd10$icd10, i, i)
 ex_icd10$icd10 <-

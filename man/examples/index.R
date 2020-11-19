@@ -12,13 +12,13 @@ x <-
     code_date = "admission"
   )
 
-# Classify those patients by the Charlson and Elixhasuer comorbidity indices
+# Classify those patients by the Charlson comorbidity indices
 cl <- classify(x, "charlson")
 
 # Calculate (weighted) index values
-index(cl)                  # Un-weighted sum/no of conditions for each patient
-index(cl, "quan_original") # Weighted index (Quan et al. 2005; see `?charlson`)
-index(cl, "quan_updated")  # Weighted index (Quan et al. 2011; see `?charlson`)
+head(index(cl))                  # Un-weighted sum/no of conditions for each patient
+head(index(cl, "quan_original")) # Weighted index (Quan et al. 2005; see `?charlson`)
+head(index(cl, "quan_updated"))  # Weighted index (Quan et al. 2011; see `?charlson`)
 
 # Tabulate index for all patients.
 # As expected, most patients are healthy and have index = 0/NA,
@@ -30,4 +30,4 @@ table(index(cl, "quan_original"), useNA = "always")
 # If `cl` is a matrix without additional attributes (as imposed by `codify()`)
 # an explicit classcodes object must be specified by the `cc` argument
 cl2 <- as.matrix(cl)
-index(cl2, cc = "charlson")
+head(index(cl2, cc = "charlson"))

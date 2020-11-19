@@ -27,30 +27,42 @@ categorize(x, ...)
 )
 }
 \arguments{
-\item{x}{data set with mandatory id column
-(identified by argument \code{id}),
-and optional column with date of interest
-(identified by argument \code{date} if  \code{days != NULL}).
+\item{x}{data set with mandatory character id column
+(identified by argument \code{id = "<col_name>"}),
+and optional \code{\link{Date}}  of interest
+(identified by argument \code{date = "<col_name>"}).
 Alternatively, the output from \code{\link[=codify]{codify()}}}
 
 \item{...}{arguments passed between methods}
 
-\item{codedata}{external code data}
+\item{codedata}{external code data with mandatory character id column
+(identified by \code{id = "<col_name>"}),
+code column (identified by argument \code{code = "<col_name>"})
+and optional \code{\link{Date}} column
+(identified by \code{codify_args = list(code_date = "<col_name>")}).
+@param id name of unique character id column found in both \code{x}and \code{codedata}.
+(where it must not be unique).
+@param code name of code column in \code{codedata}.}
 
 \item{id}{name of code/id columns (in \code{codified}).}
 
 \item{code}{name of code/id columns (in \code{codified}).}
 
-\item{cc}{\code{\link{classcodes}} object (or name of such object).}
+\item{codify_args}{Lists of named arguments passed to \code{\link[=codify]{codify()}}}
 
-\item{index}{A character vector of index values to calculate (passed to \code{\link[=index]{index()}}.
+\item{cc}{\code{\link{classcodes}} object (or name of a default object from
+\code{\link[=all_classcodes]{all_classcodes()}}).}
+
+\item{index}{Argument passed to \code{\link[=index]{index()}}.
+A character vector of names of columns with index weights from the
+corresponding classcodes object (as supplied by the \code{cc}argument).
+See \code{attr(cc, "indices")} for available options.
 Set to \code{FALSE} if no index should be calculated.
 If \code{NULL}, the default, all available indices (from \code{attr(cc, "indices")})
-are provided. A message lists the indices so that you can check they're
-correct; suppress the message by supplying \code{index} explicitly.}
+are provided.}
 
-\item{cc_args, codify_args}{List of named arguments passed to
-\code{\link[=set_classcodes]{set_classcodes()}} and  \code{\link[=codify]{codify()}}}
+\item{cc_args}{List with named arguments passed to
+\code{\link[=set_classcodes]{set_classcodes()}}}
 
 \item{check.names}{Column names are based on \code{cc$group}, which might include
 spaces. Those names are changed to syntactically correct names by
@@ -63,9 +75,9 @@ longer informative names might be created by \code{cc_args = list(tech_names = T
 }
 \value{
 Object of the same class as \code{x} with additional logical columns
-indicating membership of categories identified by the
+indicating membership of groups identified by the
 \code{classcodes} object (the \code{cc} argument).
-Indices are also included if specified by the 'index' argument.
+Numeric indices are also included if requested by the \code{index} argument.
 }
 \description{
 This is the main function of the package, which relies of a triad of objects:
@@ -74,13 +86,10 @@ This is the main function of the package, which relies of a triad of objects:
 units and with optional dates of interest and;
 (3) a classification scheme (\code{\link{classcodes}} object; \code{cc}) with regular
 expressions to identify and categorize relevant codes.
-}
-\details{
 The function combines the three underlying steps performed by
 \code{\link[=codify]{codify()}}, \code{\link[=classify]{classify()}} and \code{\link[=index]{index()}}.
 Relevant arguments are passed to those functions by
 \code{codify_args} and \code{cc_args}.
-index
 }
 \examples{
 # For some patient data (ex_people) and related hospital visit code data

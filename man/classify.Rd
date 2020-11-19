@@ -6,7 +6,7 @@
 \alias{classify.codified}
 \alias{classify.data.frame}
 \alias{classify.data.table}
-\title{Classify cases based on classcodes}
+\title{Classify codified data}
 \usage{
 classify(codified, cc, ..., cc_args = list())
 
@@ -21,7 +21,8 @@ classify(codified, cc, ..., cc_args = list())
 \arguments{
 \item{codified}{output from \code{\link[=codify]{codify()}}}
 
-\item{cc}{\code{\link{classcodes}} object or name of such}
+\item{cc}{\code{\link{classcodes}} object (or name of a default object from
+\code{\link[=all_classcodes]{all_classcodes()}}).}
 
 \item{...}{arguments passed between methods}
 
@@ -31,12 +32,17 @@ classify(codified, cc, ..., cc_args = list())
 \item{code, id}{name of code/id columns (in \code{codified}).}
 }
 \value{
-Boolean matrix with one row for each element/row of \code{codified}
+Object of class "classified". Inheriting from a Boolean matrix with
+one row for each element/row of \code{codified}
 and columns for each class with corresponding class names (according to the
-\code{\link{classcodes}} object).
+\code{\link{classcodes}} object). Note, however, that \code{\link[=print.classified]{print.classified()}} preview
+this output as a tibble.
 }
 \description{
-Classify cases based on classcodes
+This is the second step of \code{codify() \%>\% classify() \%>\% index()}.
+Hence, the function takes a codified data set and classify each case based on
+relevant codes as identified by the classification scheme provided by a
+\code{classcodes} object.
 }
 \examples{
 
@@ -117,9 +123,8 @@ classify(xdf, "charlson", id = "name", code = "icd10")
 classify(xdt, "charlson", id = "name", code = "icd10")
 }
 \seealso{
-\code{\link[=as.data.frame.classified]{as.data.frame.classified()}} for a convenience function to
-convert the output of \code{\link[=classify]{classify()}} to a data frame with id column instead
-of row names.
+\code{\link[=as.data.frame.classified]{as.data.frame.classified()}}, \code{\link[=as.data.table.classified]{as.data.table.classified()}} and
+\code{\link[=as.matrix.classified]{as.matrix.classified()}}, \code{\link[=print.classified]{print.classified()}}
 
 Other verbs: 
 \code{\link{categorize}()},

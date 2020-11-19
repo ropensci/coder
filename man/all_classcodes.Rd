@@ -11,7 +11,8 @@ all_classcodes()
 objects from the package.
 }
 \description{
-Summary data for all default classcodes object in the package
+Tabulate object names and list all related versions of implemented regular expressions
+and index weights.
 }
 \examples{
 all_classcodes()

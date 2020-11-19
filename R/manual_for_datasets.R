@@ -174,15 +174,14 @@
 "cps"
 
 
-#' Classcodes for adverse events after knee and hip arthroplasty based on ICD-10
-#' and KVA codes
+#' Classcodes for adverse events after knee and hip arthroplasty
 #'
 #' ICD-10 group names are prefixed by two letters as given by the references.
 #' Two groups (DB and DM) are split into two due to different conditions.
 #'
 #' @section Hip fractures:
-#' AE codes for hip fractures are based on codes for elective cases but with
-#' some additional codes for DM 1 (N300, N308, N309 and N390).
+#' Adverse events (AE) codes for hip fractures are based on codes for elective
+#' cases but with some additional codes for DM 1 (N300, N308, N309 and N390).
 #'
 #' @section Conditions:
 #' Special conditions apply to all categories.
@@ -235,13 +234,12 @@
 
 
 #' Classcodes for infection and dislocation after hip arthroplasty
-#' based on ICD-10 and KVA codes
 #'
 #' @format Data frame with 3 columns:
 #' \describe{
 #'   \item{group}{Infection or dislocation}
 #'   \item{icd10}{regular expressions based on ICD-10}
-#'  \item{kva}{regular expressions based on KVA codes}
+#'  \item{kva}{regular expressions based on NOMESCO/KVA codes}
 #' }
 #'
 #' @seealso ae
@@ -251,10 +249,9 @@
 
 #' Classcodes for RxRisk V based on ATC codes
 #'
-#' Provided mostly as proof-of-concept. Codes have not been externally
-#'   validated and desired implementation might differ over time and by country.
+#' Note that desired implementation might differ over time and by country.
 #'
-#' @format Data frames with 39 rows and 6 variables:
+#' @format Data frames with 46 rows and 6 variables:
 #' \describe{
 #'   \item{group}{medical condition}
 #'   \item{pratt}{ATC codes from table 1 in Pratt et al. 2018

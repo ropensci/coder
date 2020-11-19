@@ -14,7 +14,8 @@ set_classcodes(
 )
 }
 \arguments{
-\item{cc}{\code{\link{classcodes}} object or name of such}
+\item{cc}{\code{\link{classcodes}} object (or name of a default object from
+\code{\link[=all_classcodes]{all_classcodes()}}).}
 
 \item{classified}{object that classcodes could be inherited from}
 

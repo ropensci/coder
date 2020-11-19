@@ -19,19 +19,23 @@ index(classified, ...)
 \item{...}{used internally}
 
 \item{index}{name of column with 'weights' from corresponding
-\code{\link{classcodes}} object. Can be \code{NULL} if the index is just a
-count of relevant classes.}
+\code{\link{classcodes}} object. Can be \code{NULL} if the index is just a unweighted
+count of all identified groups.}
 
-\item{cc}{\code{\link{classcodes}} object. Can be \code{NULL} if information
-already present as attribute of \code{classified} (which is often the case)
-and/or if index calculated without weights.}
+\item{cc}{\code{\link{classcodes}} object. Can be \code{NULL} if a \code{classcodes} object is
+already available as an attribute of \code{classified} (which is often the case)
+and/or if \code{index = NULL}.}
 }
 \value{
 Named numeric index vector with names corresponding to
-\code{rownames(x)}
+\code{rownames(classified)}
 }
 \description{
-(Weighted) sum of all identified classes for each case.
+This is the third step of \code{codify() \%>\% classify() \%>\% index()}.
+The function takes classified case data and calculates
+(weighted) index sums as specified by weights from a \code{classcodes} object.
+}
+\details{
 Index weights for subordinate hierarchical classes
 (as identified by \code{attr(cc, "hierarchy")}) are excluded in presence of
 superior classes if index specified with argument \code{index}.
@@ -51,13 +55,13 @@ x <-
     code_date = "admission"
   )
 
-# Classify those patients by the Charlson and Elixhasuer comorbidity indices
+# Classify those patients by the Charlson comorbidity indices
 cl <- classify(x, "charlson")
 
 # Calculate (weighted) index values
-index(cl)                  # Un-weighted sum/no of conditions for each patient
-index(cl, "quan_original") # Weighted index (Quan et al. 2005; see `?charlson`)
-index(cl, "quan_updated")  # Weighted index (Quan et al. 2011; see `?charlson`)
+head(index(cl))                  # Un-weighted sum/no of conditions for each patient
+head(index(cl, "quan_original")) # Weighted index (Quan et al. 2005; see `?charlson`)
+head(index(cl, "quan_updated"))  # Weighted index (Quan et al. 2011; see `?charlson`)
 
 # Tabulate index for all patients.
 # As expected, most patients are healthy and have index = 0/NA,
@@ -69,7 +73,7 @@ table(index(cl, "quan_original"), useNA = "always")
 # If `cl` is a matrix without additional attributes (as imposed by `codify()`)
 # an explicit classcodes object must be specified by the `cc` argument
 cl2 <- as.matrix(cl)
-index(cl2, cc = "charlson")
+head(index(cl2, cc = "charlson"))
 }
 \seealso{
 Other verbs: 

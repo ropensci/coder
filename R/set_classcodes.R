@@ -1,6 +1,10 @@
 #' Set classcodes object
 #'
-#' @param cc [`classcodes`] object or name of such
+#' Prepare a `classcodes`object by specifying the regular expressions
+#' to use for classification.
+#'
+#' @param cc [`classcodes`] object (or name of a default object from
+#'  [all_classcodes()]).
 #' @param classified object that classcodes could be inherited from
 #' @param regex name of column with regular expressions to use for
 #'   classification.
@@ -9,11 +13,11 @@
 #'   expressions? If `TRUE`, column "regex" is prefixed/suffixed
 #'   by `^/$`.
 #' @param tech_names should technical column names be used? If `FALSE`,
-#'   colnames are taken directly from group names of `by`, if `TRUE`,
+#'   colnames are taken directly from group names of `cc`, if `TRUE`,
 #'   these are changed to more technical names avoiding special characters and
 #'   are prefixed by the name of the classification scheme.
-#'   `NULL` (by default) preserves previously set names
-#'   (fall backs to `FALSE` if not already set).
+#'   `NULL` (by default) preserves previous names if `cc` is inherited from
+#'   `classified` (fall backs to `FALSE` if not already set).
 #'
 #' @return [`classcodes`] object.
 #' @family classcodes

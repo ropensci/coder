@@ -28,19 +28,21 @@ S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
 # List all codes with corresponding classes as recognized by the Elixhauser
 # comorbidity classification according to the Swedish version of the
 # international classification of diseases version 10 (ICD-10-SE)
-decoder::as.keyvalue(elixhauser, "icd10se")
+head(decoder::as.keyvalue(elixhauser, "icd10se"))
 
 # Similar but with the American ICD-10-CM instead
 # Note that the `value` column is similar as above (with names from `x$group`) and not
 # from `object$value`
-decoder::as.keyvalue(elixhauser, "icd10cm")
+head(decoder::as.keyvalue(elixhauser, "icd10cm"))
 
 # Codes identified by regular expressions based on ICD-9-CM and found in
 # the Swedish version of ICD-9 used within the national cancer register
 # (thus, a subset of the whole classification).
-decoder::as.keyvalue(
-  elixhauser, "icd9",
-  cc_args = list(regex = "icd9cm")
+head(
+  decoder::as.keyvalue(
+    elixhauser, "icd9",
+    cc_args = list(regex = "icd9cm")
+  )
 )
 }
 \concept{helper}

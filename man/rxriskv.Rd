@@ -5,7 +5,7 @@
 \alias{rxriskv}
 \title{Classcodes for RxRisk V based on ATC codes}
 \format{
-Data frames with 39 rows and 6 variables:
+Data frames with 46 rows and 6 variables:
 \describe{
 \item{group}{medical condition}
 \item{pratt}{ATC codes from table 1 in Pratt et al. 2018
@@ -21,8 +21,7 @@ Garland to resemble medical use in Sweden 2016 (Unpublished).}
 rxriskv
 }
 \description{
-Provided mostly as proof-of-concept. Codes have not been externally
-validated and desired implementation might differ over time and by country.
+Note that desired implementation might differ over time and by country.
 }
 \references{
 Caughey GE, Roughead EE, Vitry AI, McDermott RA, Shakib S, Gilbert AL.

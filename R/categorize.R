@@ -6,27 +6,33 @@
 #' units and with optional dates of interest and;
 #' (3) a classification scheme ([`classcodes`] object; `cc`) with regular
 #' expressions to identify and categorize relevant codes.
-#'
 #' The function combines the three underlying steps performed by
 #' [codify()], [classify()] and [index()].
 #'  Relevant arguments are passed to those functions by
 #'  `codify_args` and `cc_args`.
-#'index
-#' @param x data set with mandatory id column
-#'   (identified by argument `id`),
-#'   and optional column with date of interest
-#'   (identified by argument `date` if  `days != NULL`).
+#'
+#' @param x data set with mandatory character id column
+#'   (identified by argument `id = "<col_name>"`),
+#'   and optional [`Date`]  of interest
+#'   (identified by argument `date = "<col_name>"`).
 #'   Alternatively, the output from [codify()]
-#' @param codedata external code data
-#' @param cc [`classcodes`] object (or name of such object).
+#' @param codedata external code data with mandatory character id column
+#'   (identified by `id = "<col_name>"`),
+#'   code column (identified by argument `code = "<col_name>"`)
+#'   and optional [`Date`] column
+#'   (identified by `codify_args = list(code_date = "<col_name>")`).
+#'  @param id name of unique character id column found in both `x`and `codedata`.
+#'  (where it must not be unique).
+#'  @param code name of code column in `codedata`.
 #' @param index
-#'   A character vector of index values to calculate (passed to [index()].
+#'   Argument passed to [index()].
+#'   A character vector of names of columns with index weights from the
+#'   corresponding classcodes object (as supplied by the `cc`argument).
+#'   See `attr(cc, "indices")` for available options.
 #'   Set to `FALSE` if no index should be calculated.
 #'   If `NULL`, the default, all available indices (from `attr(cc, "indices")`)
-#'   are provided. A message lists the indices so that you can check they're
-#'   correct; suppress the message by supplying `index` explicitly.
-#' @param cc_args,codify_args List of named arguments passed to
-#'   [set_classcodes()] and  [codify()]
+#'   are provided.
+#' @param codify_args Lists of named arguments passed to [codify()]
 #' @param ... arguments passed between methods
 #' @param check.names
 #'   Column names are based on `cc$group`, which might include
@@ -39,9 +45,9 @@
 #' @inheritParams classify
 #'
 #' @return Object of the same class as `x` with additional logical columns
-#'  indicating membership of categories identified by the
+#'  indicating membership of groups identified by the
 #' `classcodes` object (the `cc` argument).
-#' Indices are also included if specified by the 'index' argument.
+#' Numeric indices are also included if requested by the `index` argument.
 #'
 #' @export
 #'
@@ -73,7 +79,7 @@ categorize.data.table <-
     # Store original row order for later sorting
     x$.original_order <- as.numeric(rownames(x))
 
-    codify_args$data     <- x
+    codify_args$x        <- x
     codify_args$codedata <- codedata
     codify_args$id       <- id
     codify_args$code     <- code

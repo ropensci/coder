@@ -30,34 +30,37 @@ as.classcodes(x, ...)
 is.classcodes(x)
 }
 \arguments{
-\item{x}{data frame with columns described in the details section}
+\item{x}{data frame with columns described in the details section.
+Alternatively a \code{classcodes} object to be modified.}
 
-\item{...}{arguments passed between methods
-subordinate classes.
-To be used for indexing when the subordinate class is redundant
-(see the details section of \code{\link{elixhauser}} for an example).}
+\item{...}{arguments passed between methods#'}
 
 \item{regex, indices}{character vector with names of columns in \code{x} containing
 regular expressions/indices.}
 
 \item{hierarchy}{named list of pairwise group names to appear as superior and
-subordinate for indices. See \link{elixhauser} for a possible application.}
+subordinate for indices.
+To be used for indexing when the subordinate class is redundant
+(see the details section of \code{\link{elixhauser}} for an example).}
 
 \item{.name}{used internally for name dispatch}
 }
 \value{
-Object of class "classcodes" (data frame) with additional attributes:
+Object of class \code{classcodes} (inheriting from data frame)
+with additional attributes:
 \itemize{
 \item \verb{code:} the coding used (for example "icd10", or "ATC").
 \code{NULL} for unknown/arbitrary coding.
 \item \verb{regexprs:} name of columns with regular expressions
+(as specified by the \code{regex}argument)
 \item \verb{indices:} name of columns with (optional) index weights
+(as specified by the \code{indices}argument)
 \item \verb{hierarchy:} list as specified by the \code{hierarchy} argument.
 \item \verb{name:} name as specified by the \code{.name} argument.
 }
 }
 \description{
-"Classcodes" are classifying schemes based on regular expression stored in
+\code{classcodes} are classification schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and a classification scheme.
 }
@@ -65,7 +68,10 @@ part of the triad of case data, code data and a classification scheme.
 A classcodes object is a data frame with mandatory columns:
 \itemize{
 \item \code{group}: unique and non missing class names
-\item \verb{At least one column with regular expressions ([regex] without Perl-like versions) defining class membership. Those columns can have arbitrary names (as specified by the }regex`argument).
+\item At least one column with regular expressions
+(\link{regex} without Perl-like versions) defining class
+membership. Those columns can have arbitrary names
+(as specified by the \code{regex} argument).
 Occurrences of non unique regular expressions will lead to the same class
 having multiple names. This is accepted but will raise a warning.
 Classes do not have to be disjunct.
@@ -96,22 +102,9 @@ df <- as.data.frame(coder::elixhauser)
 elix <-
   as.classcodes(
     df,
-    regex = c(
-      "icd10",
-      "icd10_short",
-      "icd9cm",
-      "icd9cm_ahrqweb",
-      "icd9cm_enhanced"
-    ),
-    indices = c(
-      "sum_all",
-      "sum_all_ahrq",
-      "walraven",
-      "sid29",
-      "sid30",
-      "ahrq_mort",
-      "ahrq_readm"
-    ),
+    regex     = c("icd10", "icd10_short", "icd9cm", "icd9cm_ahrqweb", "icd9cm_enhanced"),
+    indices   = c("sum_all", "sum_all_ahrq", "walraven",
+                "sid29", "sid30", "ahrq_mort", "ahrq_readm"),
     hierarchy = NULL
   )
 elix
@@ -133,14 +126,9 @@ as.classcodes(
 }
 }
 \seealso{
-A vignette provides additional details and examples:
-\code{vignette("classcodes", package = "coder")}
-
+\code{vignette("classcodes")}
+\code{vignette("Interpret_regular_expressions")}
 The package have several default classcodes included, see \code{\link[=all_classcodes]{all_classcodes()}}.
-
-Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use \code{\link[=visualize]{visualize()}} to visualize classcodes
-graphically or \code{\link[=summary.classcodes]{summary.classcodes()}} to list all codes individually.
 
 Other classcodes: 
 \code{\link{all_classcodes}()},

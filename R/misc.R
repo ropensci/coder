@@ -11,6 +11,8 @@ NULL
 #' to make copies regardless of object size. This is recommended if enough RAM
 #' is available. If set to `FALSE`, calculations might be carried out
 #' but the object will be changed by reference.
+#' IMPORTANT! This might lead to undesired consequences and should only be used
+#' if absolutely necessary!
 #'
 #' @return Either `x` unchanged, or a fresh copy of `x`.
 #' @keywords internal

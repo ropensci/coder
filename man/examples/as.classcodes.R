@@ -9,22 +9,9 @@ df <- as.data.frame(coder::elixhauser)
 elix <-
   as.classcodes(
     df,
-    regex = c(
-      "icd10",
-      "icd10_short",
-      "icd9cm",
-      "icd9cm_ahrqweb",
-      "icd9cm_enhanced"
-    ),
-    indices = c(
-      "sum_all",
-      "sum_all_ahrq",
-      "walraven",
-      "sid29",
-      "sid30",
-      "ahrq_mort",
-      "ahrq_readm"
-    ),
+    regex     = c("icd10", "icd10_short", "icd9cm", "icd9cm_ahrqweb", "icd9cm_enhanced"),
+    indices   = c("sum_all", "sum_all_ahrq", "walraven",
+                "sid29", "sid30", "ahrq_mort", "ahrq_readm"),
     hierarchy = NULL
   )
 elix

@@ -1,22 +1,25 @@
 #' Calculate index based on classification scheme
 #'
-#' (Weighted) sum of all identified classes for each case.
+#' This is the third step of `codify() %>% classify() %>% index()`.
+#' The function takes classified case data and calculates
+#' (weighted) index sums as specified by weights from a `classcodes` object.
+#'
 #' Index weights for subordinate hierarchical classes
 #' (as identified by `attr(cc, "hierarchy")`) are excluded in presence of
 #' superior classes if index specified with argument `index`.
 #'
 #' @param classified output from [classify()]
 #' @param index name of column with 'weights' from corresponding
-#'   [`classcodes`] object. Can be `NULL` if the index is just a
-#'   count of relevant classes.
-#' @param cc [`classcodes`] object. Can be `NULL` if information
-#'   already present as attribute of `classified` (which is often the case)
-#'   and/or if index calculated without weights.
+#'   [`classcodes`] object. Can be `NULL` if the index is just a unweighted
+#'   count of all identified groups.
+#' @param cc [`classcodes`] object. Can be `NULL` if a `classcodes` object is
+#'   already available as an attribute of `classified` (which is often the case)
+#'   and/or if `index = NULL`.
 #'
 #' @param ... used internally
 #'
 #' @return Named numeric index vector with names corresponding to
-#'   `rownames(x)`
+#'   `rownames(classified)`
 #' @example man/examples/index.R
 #' @name index_fun
 NULL

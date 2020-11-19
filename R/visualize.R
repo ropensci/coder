@@ -1,6 +1,7 @@
 #' Visualize classification scheme in web browser
 #'
-#' Classes are visualized by their regular expressions in a web browser.
+#' Groups from a `classcodes` object are visualized by their regular expressions
+#' in the default web browser.
 #' The visualization does not give any details on group names, conditions or
 #' weights but might be useful both for understanding of a classification scheme
 #' in use, and during the creation and debugging of such.
@@ -8,9 +9,9 @@
 #' @param x [classcodes] object or name of such object included in the package
 #' (see [all_classcodes()]).
 #' @inheritParams set_classcodes
-#' @param group names (as character vector) of groups to visualize
-#' (all groups if `NULL`)
-#' @param show should a visualization be shown in a web browser.
+#' @param group names (as character vector) of groups to visualize (subset of `rownames(x)`).
+#' (All groups if `NULL`.)
+#' @param show should a visualization be shown in the default web browser.
 #' Set to `FALSE` to just retrieve a URL for later use.
 #' @inheritDotParams set_classcodes regex
 #' @return URL to website with visualization (invisible)

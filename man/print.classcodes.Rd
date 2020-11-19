@@ -18,10 +18,13 @@ Print classcodes object
 }
 \examples{
 # Default printing
-coder::elixhauser
+elixhauser
 
 # Print all rows
-print(coder::elixhauser, n = 31)
+print(elixhauser, n = 31)
+
+# Print attributes data but no data preview
+print(elixhauser, n = 0)
 }
 \seealso{
 Other classcodes: 

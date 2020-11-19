@@ -1,16 +1,16 @@
 #' Classcodes methods
 #'
-#' "Classcodes" are classifying schemes based on regular expression stored in
+#' `classcodes` are classification schemes based on regular expression stored in
 #' data frames. These are essential to the package and constitute the third
 #' part of the triad of case data, code data and a classification scheme.
 #'
 #' A classcodes object is a data frame with mandatory columns:
 #'
 #' - `group`: unique and non missing class names
-#' - `At least one column with regular expressions
+#' - At least one column with regular expressions
 #'    ([regex] without Perl-like versions) defining class
 #'    membership. Those columns can have arbitrary names
-#'    (as specified by the `regex`argument).
+#'    (as specified by the `regex` argument).
 #'    Occurrences of non unique regular expressions will lead to the same class
 #'    having multiple names. This is accepted but will raise a warning.
 #'    Classes do not have to be disjunct.
@@ -28,35 +28,33 @@
 #'   (as specified by the `indices`argument).
 #'
 #'
-#' @param x data frame with columns described in the details section
+#' @param x data frame with columns described in the details section.
+#'   Alternatively a `classcodes` object to be modified.
 #' @param regex,indices character vector with names of columns in `x` containing
 #'   regular expressions/indices.
 #' @param hierarchy named list of pairwise group names to appear as superior and
-#'   subordinate for indices. See [elixhauser] for a possible application.
-#' @param ... arguments passed between methods
-#' subordinate classes.
+#'   subordinate for indices.
 #'   To be used for indexing when the subordinate class is redundant
 #'   (see the details section of [`elixhauser`] for an example).
+#' @param ... arguments passed between methods#'
 #' @param .name used internally for name dispatch
 #'
-#' @return Object of class "classcodes" (data frame) with additional attributes:
+#' @return Object of class `classcodes` (inheriting from data frame)
+#'   with additional attributes:
 #'
 #' - `code:` the coding used (for example "icd10", or "ATC").
 #'    `NULL` for unknown/arbitrary coding.
 #' - `regexprs:` name of columns with regular expressions
+#'      (as specified by the `regex`argument)
 #' - `indices:` name of columns with (optional) index weights
+#'     (as specified by the `indices`argument)
 #' - `hierarchy:` list as specified by the `hierarchy` argument.
 #' - `name:` name as specified by the `.name` argument.
 #'
 #' @seealso
-#' A vignette provides additional details and examples:
-#' `vignette("classcodes", package = "coder")`
-#'
+#' `vignette("classcodes")`
+#' `vignette("Interpret_regular_expressions")`
 #' The package have several default classcodes included, see [all_classcodes()].
-#'
-#' Regular expressions used in classcodes can often be quite complex
-#' and hard to interpret. Use [visualize()] to visualize classcodes
-#' graphically or [summary.classcodes()] to list all codes individually.
 #'
 #' @export
 #' @name classcodes
@@ -198,10 +196,13 @@ is.classcodes <- function(x) inherits(x, "classcodes")
 #' @family classcodes
 #' @examples
 #' # Default printing
-#' coder::elixhauser
+#' elixhauser
+#'
+#' # Print attributes data but no data preview
+#' print(elixhauser, n = 0)
 #'
 #' # Print all rows
-#' print(coder::elixhauser, n = 31)
+#' print(elixhauser, n = 31)
 print.classcodes <- function(x, n = NULL, ...) {
   at <- function(y) paste(attr(x, y), collapse = ", ")
   writeLines(paste(

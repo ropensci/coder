@@ -1,4 +1,9 @@
-#' Classify cases based on classcodes
+#' Classify codified data
+#'
+#' This is the second step of `codify() %>% classify() %>% index()`.
+#' Hence, the function takes a codified data set and classify each case based on
+#' relevant codes as identified by the classification scheme provided by a
+#' `classcodes` object.
 #'
 #' @inheritParams set_classcodes
 #' @param codified output from [codify()]
@@ -7,13 +12,14 @@
 #'   [set_classcodes()]
 #' @param ... arguments passed between methods
 #'
-#' @return Boolean matrix with one row for each element/row of `codified`
+#' @return Object of class "classified". Inheriting from a Boolean matrix with
+#'   one row for each element/row of `codified`
 #'   and columns for each class with corresponding class names (according to the
-#'   [`classcodes`] object).
+#'   [`classcodes`] object). Note, however, that [print.classified()] preview
+#'   this output as a tibble.
 #'
-#' @seealso [as.data.frame.classified()] for a convenience function to
-#' convert the output of [classify()] to a data frame with id column instead
-#' of row names.
+#' @seealso [as.data.frame.classified()], [as.data.table.classified()] and
+#' [as.matrix.classified()], [print.classified()]
 #'
 #' @export
 #' @name classify
@@ -162,10 +168,10 @@ classify.data.table <- function(
 # Evaluate extra conditions -----------------------------------------------
 
 eval_condition <- function(cond, x) {
-  e <- simpleError(
-    "Classification is conditioned on variables not found in the data set!")
   if (is.na(cond)) !logical(nrow(x))
-  else tryCatch(eval(parse(text = cond), envir = x), error = function(e) stop(e))
+  else tryCatch(eval(parse(text = cond), envir = x), error = function(e) stop(
+    "Classification is conditioned on variables not found in the data set!")
+    )
 }
 
 
@@ -189,9 +195,9 @@ eval_condition <- function(cond, x) {
 #' @examples
 #' x <- classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 #'
-#' as.matrix(x)
-#' as.data.frame(x)
-#' data.table::as.data.table(x)
+#' as.matrix(x)[, 1:3]
+#' as.data.frame(x)[, 1:3]
+#' data.table::as.data.table(x)[, 1:3]
 #'
 #' # `as_tibble()` works automatically due to internal use of `as.data.frame()`.
 #' tibble::as_tibble(x)

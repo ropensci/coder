@@ -34,9 +34,9 @@ Convert output from classify() to matrix/data.frame/data.table
 \examples{
 x <- classify(c("C80", "I20", "unvalid_code"), "elixhauser")
 
-as.matrix(x)
-as.data.frame(x)
-data.table::as.data.table(x)
+as.matrix(x)[, 1:3]
+as.data.frame(x)[, 1:3]
+data.table::as.data.table(x)[, 1:3]
 
 # `as_tibble()` works automatically due to internal use of `as.data.frame()`.
 tibble::as_tibble(x)
