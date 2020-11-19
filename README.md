@@ -34,8 +34,8 @@ remotes::install_github("eribul/coder")
 
 ## Typical use case
 
--   Determining comorbidities before clinical trials
--   Discovering adverse events after surgery
+  - Determining comorbidities before clinical trials
+  - Discovering adverse events after surgery
 
 **Patient data:** The initial rationale for the package was to classify
 patient data based on medical coding. A typical use case would consider
