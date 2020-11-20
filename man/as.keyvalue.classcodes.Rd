@@ -10,8 +10,8 @@
 \item{x}{classcodes object}
 
 \item{coding}{either a vector with codes from the original classification,
-or a name (character vector of length one) of a keyvalue object from package
-"decoder" (for example "icd10cm" or "atc")}
+or a name (character vector of length one) of a keyvalue object
+from package "decoder" (for example "icd10cm" or "atc")}
 
 \item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
 }
@@ -31,7 +31,8 @@ S3-method for generic \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}
 head(decoder::as.keyvalue(elixhauser, "icd10se"))
 
 # Similar but with the American ICD-10-CM instead
-# Note that the `value` column is similar as above (with names from `x$group`) and not
+# Note that the `value` column is similar as above
+(with names from `x$group`) and not
 # from `object$value`
 head(decoder::as.keyvalue(elixhauser, "icd10cm"))
 

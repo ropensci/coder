@@ -86,7 +86,8 @@ test_that("categorize", {
   )
 })
 
-# COmbination of cc without indices and index argument unspecified should yield unweighted index
+# COmbination of cc without indices and index argument unspecified should
+# yield unweighted index
 ch <- as.classcodes(charlson, indices = NULL)
 test_that("unspecified indices", {
   expect_message(

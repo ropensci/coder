@@ -16,8 +16,8 @@ codebooks(..., file = NULL)
 \item{object}{classcodes object}
 
 \item{coding}{either a vector with codes from the original classification,
-or a name (character vector of length one) of a keyvalue object from package
-"decoder" (for example "icd10cm" or "atc")}
+or a name (character vector of length one) of a keyvalue object
+from package "decoder" (for example "icd10cm" or "atc")}
 
 \item{...}{Additional arguments for each function:
 \itemize{

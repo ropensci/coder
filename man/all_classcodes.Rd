@@ -11,7 +11,8 @@ all_classcodes()
 objects from the package.
 }
 \description{
-Tabulate object names and list all related versions of implemented regular expressions
+Tabulate object names and list all related versions of implemented regular
+expressions
 and index weights.
 }
 \examples{

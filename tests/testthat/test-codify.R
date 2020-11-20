@@ -23,7 +23,7 @@ test_that("codify", {
   # all codes
   expect_equal(
     nrow(codify(ex_people[1, ], ex_icd10, id = "name", code = "icd10",
-                date = "surgery", code_date = "admission", days = c(-Inf, Inf))),
+        date = "surgery", code_date = "admission", days = c(-Inf, Inf))),
     8
   )
 

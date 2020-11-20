@@ -240,7 +240,8 @@ as.matrix.classified <- function(x, ...) {
 #'
 #' @param x output from [classify()]
 #' @param ... additional arguments passed to printing method for a `tibble`.
-#'    `n` is the number of rows to preview. Set `n = NULL` to disable the `tibble`
+#'    `n` is the number of rows to preview.
+#'    Set `n = NULL` to disable the `tibble`
 #'    preview and print the object as is (a matrix).
 #' @export
 #' @family classcodes

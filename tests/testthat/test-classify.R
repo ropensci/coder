@@ -32,12 +32,16 @@ test_that("classify", {
 
   expect_equivalent(
     suppressWarnings(classify(x, "elixhauser")),
-    suppressWarnings(classify(as.data.frame(x), "elixhauser", id = "name", code = "icd10"))
+    suppressWarnings(
+      classify(as.data.frame(x), "elixhauser", id = "name", code = "icd10"))
   )
 
   x_wrong_id <- x
   x_wrong_id$name <- as.numeric(as.factor(x_wrong_id$name))
-  expect_error(classify(x_wrong_id, "elixhauer"), "Id column 'name' must be of type character!")
+  expect_error(
+    classify(x_wrong_id, "elixhauer"),
+    "Id column 'name' must be of type character!"
+  )
 })
 
 

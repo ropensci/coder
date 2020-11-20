@@ -1,0 +1,320 @@
+---
+title: "Review"
+author: "Erik Bülow"
+date: "11/20/2020"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Thank you!
+
+First of all, I would like to express my gratitude, both for the impressive work performed for the review, but also for letting me take the time to address the raised concerns! I have now (finally) been able to (hopefully) make all the changes and improvements as requested. I will address each comment in a point-by point manner below!
+
+# Zabore
+
+## Review Comments
+
+> I have had to classify patients based on data that contained a variety of types of ICD codes in the past and it was incredibly cumbersome, so a package that automates this process for some standard use cases and with customization possible is a great contribution!
+
+Thank you very much for your kind words and appreciation!
+
+### README
+
+> The statement of need could be fleshed out more. As a biostatistician working in the medical field, I was able to get a sense of what the package is meant to do since I'm familiar with ICD codes and co-morbidity indices such as Charlson. But some more details about the problem this solves, and who it is meant to help, could be usefully added. I believe that the package can take a dataset where patients have various codes, such as ICD codes, with associated dates, and it then uses regular expressions to identify specific codes of interest for creating, for example, the Charlson comorbidity index. Is that right? I understand that you are trying to be vague since the package could be used generally for any application, but I find that in not being specific about the medical application at all times it is harder to understand the core functionality. A key to clarity of purpose may lie in terminology, and clearly defining the different pieces of information this package can bring together.
+
+**A:** I agree and have expanded this section of the README.
+
+> There are currently some errors printed in the output on the README. Those errors were not replicated when I ran the code locally. But the README needs to be updated without errors.
+
+**A:** Thanks for noticing! This has now been fixed in later versions!
+
+### coder vignette
+
+> I would have preferred that the trivial example from the vignette coder actually be a simple example of classifying patients into groups based on ICD codes, rather than an unrelated example based on car makes and models. You could also show in this vignette how the ex_carbrands classcodes object was created. I found myself wondering that as I read the vignette.
+
+**A:** I agree! The vignettes have been extensively rewritten and reorganized. Examples with car data have been removed. `vignette("coder")` now includes examples based on the RxRisk V classification. Additional examples with Charlson and Elixhauser comorbidity are also included in other vignettes.
+
+> Under the "Interpretation" section, the listed names are mostly not in line with the actual output printed above. I assume you changed the contents of the example datasets and did not change the corresponding vignette text so this should be updated.
+
+**A:** The vignette has been completely rewritten wherefore I hope this is no longer an issue.
+
+> What was the index based on in this example? i.e. how did the function categorize() know that the index should be a sum of the matched cars owned by each person? In the documentation for the function categorize it says that a value of NULL would lead to the use of all available indices, but what does that mean exactly? Available from where?
+
+**A:** The vignette is rewritten and the documentation for the `index` argument used by `categorize()` has been updated:
+
+    Argument passed to index(). A character vector of names of columns with index weights from the corresponding classcodes object (as supplied by the cc argument). See attr(cc, "indices") for available options. Set to FALSE if no index should be calculated. If NULL, the default, all available indices (from attr(cc, "indices")) are provided.
+
+> In fact, the example on the README page is much more relevant and could easily be expanded to demonstrate the functionality in place of the car brand example. Maybe both are not needed.
+
+**A:** I agree, and have done so!
+
+### classcodes vignette
+
+> I liked the output of the visualize() function, but seeing an example of an ICD code that would be identified by the given regular expression could be helpful to the less experienced reader. Presumably many users are familiar with ICD codes generally, but for the less experienced user this would be valuable.
+
+**A:** I agree! I have introduced a new `vignette("Interpret_regular_expressions")` where I have also presented a new `summary.classcodes()` method as well as two functions `coodebook()`and `codebooks()`. Using those, it is much easier to get an overview of all codes being recognized by the relevant regular expressions.
+
+> I found the classcodes vignette a little hard to follow and found myself wondering throughout, "when would I use this?" and wishing for a concrete example that was used throughout demonstrating: this is what I want to do, and here is how I use these functions to do it.
+
+A: I have re-organized all vignettes and have tried to include some concrete use cases.
+
+## Comorbidity vignette
+
+> The link to the Elixhauser co-morbidity index is broken
+
+A: Thank you! I have changed the link to a formal citation of the relevant paper.
+
+> In the Risk Rx V example you mention creating dataframe ex_atc in which patients could have zero, one, or several codes prescribed. However, the way you create the data each patient in fact has at least one code. Either alter the example to match (preferable to demonstrate how patients without codes are handled) or alter the text.
+
+**A:** Good point! I have updated to only include 90 out of the 100 patients. This (as well as the other example data sets) are now presented in `vignette("ex_data")`. The data set `ex_atc` has also been included in the package. The code to generate the sample is therefore no longer presented (but is available in `data-raw/example_data.R`
+
+> You mention surgery dates farther down in the vignette, but at the beginning only refer to a vague event date. This example would be improved by making it more specific. Who are the patients, what are the dates, what are we trying to do, and why?
+
+**A:** I agree and have changed "event" to "surgery".
+
+> I noticed that when the default categorization was used, a nice message was printed in the R console stating what the classification was based on. This is a great use of messages. However, when a different classification was specified using cc_args this message was no longer printed. This could be standardized as I think the messaging is nice, and especially important when the user is changing it from some default.
+
+**A:** You are correct that the message is only displayed if relying on the default setting. This was inspired by the `join`-functions from the dplyr package, as described for the `by` argument in the manual:
+
+    `If NULL, the default, *_join() will perform a natural join, using all variables in common across x and y. A message lists the variables so that you can check they're correct; suppress the message by supplying by explicitly.`.
+
+This design pattern is also described and recommended in chap 15 of the Tidyverse design manual ([https://design.tidyverse.org/def-inform.html).](https://design.tidyverse.org/def-inform.html).)
+
+I like this approach since I think the message is less needed if the user explicitly specified the setting. I have nevertheless borrowed the text above for the manual to be more transparent considering the underlying motif for this behavior.
+
+### Documentation/Examples
+
+> Both the DESCRIPTION file and coder help file link only to the GitHub repo, even though this package does have a website. Make the link to the website easier to find since it's the best place for new users to start.
+
+**A:** Thank you for noticing. This has been updated!
+
+> Good use of multiple points of entry. I found descriptions of the package through the help file, the README, the website.
+
+**A: Thank you :-)**
+
+> The help file for classcodes mentions the "triad of case data, code data, and classification data." I found this to be a real "aha!" moment for understanding your package but this was the first place I saw this particular description. I think you could usefully focus more on this three-piece idea throughout the README, help files, and vignettes, with consistent terminology used throughout. Also, perhaps function and argument names could be altered/unified to reflect the trinity of information sources. I didn't find the names particularly intuitive as they are and was constantly having to reference them again when I was testing the functions.
+
+**A:** Thanks for the suggestion! This is now (I hope) better explained in the package README, DESCRIPTION, main vignette and in the manual page for `categorize()`.
+
+> I'd like to see examples that utilize every option available in each function, rather than only simple examples. I often find myself wanting to use a non-default option in a function and not finding any example that helps me understand how to specify the option. Having simple examples is essential, but also including a more complex example that utilizes more than just the basic function arguments will really help users with more complex problems or more advanced users. For example, the example given in the classcodes help file isn't very useful. The object you pass to as.classcodes() in the example is already a classcodes object. How would I use the argument hierarchy? I don't know because you haven't given an example.
+
+**A:** I agree and have added examples which now should cover the use of all arguments etc.
+
+> Many Roxygen comments went beyond my 80 character line, making readability difficult. You could use carriage returns to improve readability of comments.
+
+**A:** I agree and have changed accordingly.
+
+> Code is formatted well, and in line with tidy style guidelines.
+
+**A:** Thank you very much!
+
+> First, the documentation for filter_dates should note that there is a default lower date limit. I had to go to the documentation of dates_within before I could understand the default behavior of filter_dates. Second, why is the default lower limit set to 1970-01-01? Does that have something to do with the coding schemes available within the package?
+
+**A:** Those functions have been removed due to suggestions from @drgtwo (see below).
+
+> No example was included in the help file for set_classcodes No example was included in the help file for as.keyvalue.classcodes
+
+**A:** All examples have been rewritten (see comment above). They should now cover all functions and arguments.
+
+> I see that codify throws an error if the values specified in the date argument aren't of class "Date". However I didn't see anywhere in the documentation information for the user specifying that dates need to be formatted specially. Typically when I read clinical data into R I end up with date columns that are formatted as character and so I would need to convert them to use these functions, so it might be worthwhile to include this detail somewhere.
+
+**A:** Good point! This has now been specified!
+
+### Tests
+
+> There's an issue with the test-as.keyvalue file. It is currently saved as "test-as.keyvalueR" rather than "test-as.keyvalue.R". Also, this test file has an error. I believe instead of a \<- as.keyvalue.classcodes(elixhauser, "icd10se") you should have a \<- decoder::as.keyvalue(elixhauser, "icd10se"). And similarly within the test.
+
+**A:** Thank you for noticing! I have changed the file name and the code!
+
+> There are at least two tests named "multiplication works" that are unrelated to multiplication: test-all_classcodes, test-as.keyvalue
+
+**A:** Thank you! I have now removed all `context()`-lines from the test files in accordance with the latest version of the testthat package.
+
+### Functionality/performance
+
+> The use of 365 days to indicate a year is not exact. Depending on the year, some dates could be missed due to leap years. I see that using windows in units of days is an easy coding solution here, but perhaps some more complex options for when time windows are specified in months or years, rather than days, could be supplied as well.
+
+**A:** I agree in theory, although I think this is a rather complex issue. Rules for leap years are different depending on whether the year is divisible by 4, 100 and 400 for example. Adding leap seconds makes it even more difficult. Also the week numbers are treated differently in different parts of the world (a year might have 53 weeks in some countries but only 52 in others). Further complexity might consider different time zones (including some regions with 30 minutes intervals, summer times etc). The length of the year is also different in different religions (although the christian/Gregorian calender might of course be the norm :-). Altogether, I think more complicated time windows are better handled by dedicated date packages, which could be used explicitly by the user. A better approximation for the number of days of a year might be 365.241 (as advocated by some), but in this setting it does not really matter since time points were only recorded as dates (not time of day). I have therefore left this example as is.
+
+> I thought it was strange that codify did not return the same variable name for the date of interest as specified in data. Using your example data, ex_people has a date called event but when I combine it with ex_icd10 using codify the resulting data frame has a date variable named date rather than event. I would prefer to maintain the original variable name. This behavior does not occur in other functions; for example, categorize returns the original date variable name even when arguments are passed to codify.
+
+**A:** I agree! This was a bug which is now fixed!
+
+> I expected categorize to be able to take the results of a call to codify as input. This could be a useful alternative specification option, and is being done internally anyhow
+
+**A:** This is a good point, wherefore `categorize` has now been made S3-generic with a dedicated method for objects of class `codified` (a new class introduced for the output from `codify()`)
+
+> I didn't have a large dataset of the type that might be used in this setting to realistically test the claim that the performance is fast.
+
+**A:** Thank you nevertheless for the throughout review regarding all other aspects :-)
+
+### Package check notes:
+
+> I got the following notes about example time and file size when I ran check on my local Windows machine:
+
+         installed size is 37.0Mb
+         sub-directories of 1Mb or more:
+           Meta   8.0Mb
+           R      3.0Mb
+           data   3.0Mb
+           doc   10.0Mb
+           help   5.0Mb
+           html   2.0Mb
+       Examples with CPU (user + system) or elapsed time > 5s
+                  user system elapsed
+       codebooks  1.39   2.53   57.08
+       codebook   1.39   2.41   59.13
+       categorize 0.23   1.05   22.28
+       classify   0.13   0.28    7.01
+
+**A:** I was not able to reproduce this, neither locally, nor by the GitHub actions set up for Windows, Mac or Ubunto. When I check the file sizes of the whole repo (excluding Git-related files) I have approximately 6 MB in total. The R folder for example is 94 KB. Wen I build the package locally I get a 349 KB source archive. I therefore leave this as is for now.
+
+# drgtwo
+
+> `coder` takes a set of patients, links them to diagnosis codes, and links those to healthcare indices. From my brief experience in healthcare I know this is an important use case with many applications. While other packages (which the author cites perfectly in the JOSS manuscript) include tools for calculating , the ability to match many diagnosis codes at once, and to calculate multiple indices in the same way, make the coder package an important contribution to the field. Great job!
+>
+> The package follows the ROpenSci guidelines, is thoroughly tested and has chosen a high-performance approach. I've installed and checked it, and outside of the one bug described below (duplicate names to `codify()`) I found it to work for me on use cases.
+>
+> I have some recommendations for specific changes below, but I'm of course I'm open to dialogue.
+
+**A:** Thank you very much! I really appreciate your throughout review and all the time and energy invested in it!
+
+#### **Documentation on a "real" use case**
+
+> One thing that's missing from the documentation (for functions, the README, and the vignettes) is an example of what someone would do with the *output* of the package. The example in the "coder" vignette isn't healthcare-related, instead focused on a toy example involving patient cars. Perhaps replace it with a vignette that works through a "real" example, and shows at least one result from it that would be similar to what your next typical step would be. Besides being more interesting, it serves as documentation for the output: if you created a histogram of Charlson indices, it brings the user's attention to the importance of that column.
+
+**A:** I agree! I have removed the toy example with car brands and have tried to include more realistic examples in the README and vignettes. Some histograms (or at least bar plots) with Charlson (and Rx Risk V) indices are also provided.
+
+> You could add something from the result of your `ex_people` and `ex_icd10`, but that join has only a single positive result (one patient with peripheral vascular disease). Of course real healthcare data is necessarily private, but you could instead consider taking a small sample of rows and columns from the [SynPUF](https://www.cms.gov/Research-Statistics-Data-and-Systems/Downloadable-Public-Use-Files/SynPUFs/DE_Syn_PUF) data, which is synthetic emergency room data including admissions and diagnoses. After using coder to determine what diagnoses occurred after an emergency room visit, the vignette could get one or two results from the data (e.g. showing the average Charlson comorbidity index of emergency room admissions over time, creating a histogram of them, or showing the most common diagnoses within the window). This would help communicate why it's helpful to annotate a dataset in this way.
+>
+> (You don't need to use a sample from SynPUF if you don't want to; you could also just construct the simulated data to have more joined diagnoses).
+
+**A:** Thank you for really good suggestions! Unfortunately, I was not able to include the SynPUF data but I did find a previsously exported data set `icd.data::uranium_pathology` which I have now modified as part of the internal example data sets `ex_icd10` and `ex_people`. I think those data sets should be more realistic.
+
+> The README is solid, but does jumps immediately into examples of simulated data, without discussing why someone might want to join diagnoses in the previous year. This doesn't have to take much text; it could be a short bulleted list of use cases like "Discovering adverse events after surgery"/"Determining comorbidities before clinical trials." It's likely that users already know their use case, but an example lets them recognize it and think "this package is for me!"
+
+**A:** I agree and have substantially expanded the README. The suggested sentences are now also included under the "Typical use case" section.
+
+> A second piece of advice with the README is to start with an example that doesn't include a date column before showing the one that does, to ease the user into the use of the `categorize` function with relatively few arguments.
+
+**A:** Thanks for the suggestion, which has now been included in the README!
+
+> The comorbidities vignette and the JOSS paper are very well done in terms of giving the appropriate level of background and describing the use case.
+
+**A:** Thank you very much! I appreciate it!
+
+#### **Duplicate names to codify**
+
+> If there are duplicate names in the `data` passed to `codify()`, it returns a data.table error that isn't informative toward fixing the problem. (`categorize()` does catch this with "Non-unique ids!" but not `codify()`).
+
+    people_doubled <- rbind(ex_people, ex_people)
+    codify(people_doubled, ex_icd10, id = "name", date = "event", days = c(-365, 0))
+
+A: Thank you for noticing! The message should now be the same as for `categorize()`.
+
+> More importantly, don't there exist use cases for `categorize` where there are multiple events for the same patient, with different dates? Examples could include adverse events after starting multiple lines of therapy, or comorbidities before multiple diagnoses. In those cases, doesn't it make sense to return one row for each event, even if there are multiple for a patient? Should the check only error out when there are duplicate name/date **pairs**?
+
+**A:** I agree that such a feature is relevant. The problem, however, is that unit data is matched to code data based on the index variable and that I cannot perform such matching based on the date column (which would be a non-equi-join, as allowed for some `data.table` operations but not in `merge` which is currently used). Although this would be possible after some factoring of internal functions, I think it is currently better to perform such operations using standard functionality outside the package, such as with `x %>% group_by(y) %>% codify(...)` for `dplyr` or `x[, codify(...), by = y]` with `data.table`.
+
+#### **as.codedata**
+
+> I think the `as.codedata()` approach can be improved to make the package more understandable and usable. Some issues:
+>
+> -   By convention `as.X` functions in R return an object of class X, but this returns a data.table.
+>
+> -   `codify()` describes the second argument as "output from as.codedata", but the function still works if given a data frame, data.table, or tibble.
+>
+> -   By default, `as.codedata()` filters out dates in the future and dates before 1970. I assume this is meant to remove bad data, but isn't it better to leave such data quality filters to the user? As it is, the user must go through a few pages of documentation (codify/categorize -\> as.codedata -\> dates_within) to learn about this behavior. And in any case where there's a date window, the extreme date values won't affect the coding anyway.
+>
+> It looks to me like the main reason for `as.codedata()` is to speed up the function by making it a data.table and setting keys. But you could do this within `codify()` as well; the only advantage this provides is if you run many codings with different ids/dates (or different arguments) while keeping the code data the same. I've done some benchmarking and it looks like the improvements become visible (in tens of milliseconds) when there are around million coded events.
+>
+> Do we expect it to be common for users to run the package with millions of coding events, where the codedata stays the same while the input events change, and in an environment where fractions of a second matter? Is this common enough to be worth imposing extra instructions on every user of the package?
+
+> My recommendation is
+>
+> -   Don't export `as.codedata`, and instead do the preprocessing/checking of codedata within the codify function instead of suggesting that the user use `as.codedata`
+
+A: I agree and have now integrated `as.codedata()` into `codify()` as suggested!
+
+> -   In the documentation for `codify` and `classify`, as well as your documentation examples, describe the codedata input as "a table with columns `id`, `code`, and optionally `date`."
+
+**A:** The documentation has been improved. I have changed the requirements that the codedata must have columns named `id`, `code` and `code_date`. Instead, the names of corresponding columns should now be specified as arguments in relevant functions.
+
+> -   If you're very confident that performance when keeping the codedata the same and trying many different datasets is important, you could add a function called `classcodes_prepare` or `prepare_classcodes` that does the conversion to data.table and sets the indices, and could describe that in the `details` section of the documentation. But I'd want to understand why that's a typical use case.
+
+**A:** See previous comment (`as.codedata()` removed in favor of a re-factored `codify()`).
+
+> Relatedly, I recommend removing (or at least making internal) `dates_within()` and `filter_dates()`. Their purpose (applying a filter on dates with some defaults) has no relationship to the rest of the package, and is something the user can do themselves with tools they're accustomed to (base R, data.table, or dplyr).
+
+**A:** I agree and have removed those functions. They were previously included since I was unaware of `data.table::IDate` and that `data.table::between` is optimized for date comparisons. The problem with normal date comparisons is that those can be really slow for big data.
+
+> #### **regex\_ in column names when tech_names = TRUE**
+>
+> The output of `categorize()` on a table returns columns with spaces in their names. This isn't well set up for additional analysis, since it makes it difficult to do any kind of programming with them, including using data.table to filter for one diagnosis or to aggregate the percentage of patients (perhaps within each group) that have a condition. It's nice for displaying the names in a table, but is it a common use case to display individual patients in a table (as opposed to aggregated statistics?)
+>
+> It seems like the `tech_names` argument is designed to fix this, but it leaves prefixes like `charlson_regex_` on every column name, which will need to be removed for meaningful downstream analysis. How about removing the `charlson_regex_`, or at least the `regex_`, in these cases? (Indeed, is there a reason that the `charlson` classcodes object itself has to have the `regex_` prefixes? It already has an attribute `regexprs` that includes those column names). Besides which, perhaps consider leaving `tech_names` to default to TRUE for the reasons described above.
+
+**A:** Good point! I have made several changes:
+
+-   `classcodes` object no longer have column prefixes `(reg|ind)ex_`.
+
+-   I have introduced a new `print.classcodes()` method for a better default display of classcodes where regex and indices are identified by a heading and not by column names prefixes
+
+-   `categorize()` has a new argument `check.names` (same as `data.frame`/`data.table`). This argument is `TRUE` by default, making the column names syntactically correct (using dots instead of spaces). The original names (possibly with spaces) are received by `check.names = FALSE`, which might sometimes be useful.
+
+The reason for the long names implied by `tech_names` is that `categorize` is sometimes used multiple times, for example to enhance a data set with both comorbidity and adverse events. To group such variable names by common and descriptive prefixes might then be useful (due to tab completion etc). But the `(reg|ind)ex_` part is no longer included and the need to use those longer names has probably decreased by the use of the `check.names` argument.
+
+> #### **tibbles and data.tables**
+>
+> Your examples like `ex_people` are tibbles, but when `categorize()` or `codify()` is passed a tibble, it returns a data.table. This would be a surprising behavior for people using these packages within a tidyverse workflow. I think data.table is a terrific package, but there's not a reason to surprise users with the data type if they're not accustomed to it. (And the fact that the example datasets are tibbles rather than data.frames or data.tables adds to the inconsistency a bit).
+>
+> I recommend ending the functions with something like
+>
+>     # Where data was the argument passed in, and ret is what's about to be returned
+>     if (tibble::is_tibble(data)) {
+>       ret <- tibble::as_tibble(ret)
+>     }
+>
+> This would mean that it returns a data.table when it's passed a data.frame or data.table, but a tibble if and only if it's passed a tibble. Admittedly, this requires adding an import for tibble (which perhaps is why it wasn't done), but since tibble is imported by 800 CRAN packages (including dplyr + ggplot2, each depended on by \~2000 packages) it's a fairly low-impact dependency. This also doesn't strike me as a utility package that will frequently be installed in production systems; it's a scientific package that would typically used with other data analysis tools. I think there are some useful thoughts on tibble dependencies [here](https://www.tidyverse.org/blog/2019/05/itdepends/).
+
+**A:** I agree and have made the following changes:
+
+-   included tibble as a dependency
+
+-   `all_classcodes()` now returns a tibble.
+
+-   `categorize()` has been re-factored into an S3-generic and returns data sets of the same class as the input (data.table/data.frame/tibble).
+
+-   `as.classcodes()` returns as tibble with an additional class attribute.
+
+-   `codify()` is often used to return large data sets (several millions of rows) which should be used in a following step by `classify()`. I therefore think that the `data.table` format is preferred here. I have re-factored the function into S3-methods, however, to treat input as data.frame/data.table/tibble in a better way. I have also implemented a `print.codified()` method, which prints the first `n` rows as a tibble (possible to override with `print(..., n = NULL)`, which will print the object as is [a data.table]). I think this might be a good compromise for most users. I have also clearly stated that the preview is simply a preview as part of the output from the print method.
+
+-   `classify()` returns a matrix for efficiency, since this object is always logical/boolean. I think this should be kept as is. The two methods `as.data.frame.classified()` and `as.data.table.classified()` should make it relatively simple to convert the output if desired (including to tibbles inhereting from data.frame).
+
+-   `summary.classcodes()` returns a tibble, which is also printed as such through `print.summary.classcodes()`.
+
+> Relatedly (though less important), the example datasets don't print as tibbles by default. If you follow the instructions in `usethis::use_tibble()`, you could support printing it as a tibble even when the tibble/dplyr packages aren't loaded. The additional advantage of this is that you could get rid of most of the uses of `head()` in the README, making your examples more concise and focused on your use case.
+
+**A: I agree and have changed accordingly!**
+
+> #### **Naming**
+>
+> -   `index` and especially `visualize` are very generic names for very specific functions, and doesn't give any hints about what they're used for. How about `visualize_classcodes`?
+
+**A:** The name `visualize` was actually a half-baked S3-method for `generics::visualize()` with the aim to "Visualize a data set or object". It has now been changed into an actual S3-method to fit with this generic.
+
+I am less confident that the `index()` function is that specific since its meaning will differ depending on different `classcodes` object. The terminology is borrowed from the typical use case of calculating a comorbidity index, which was the initial motif for developing the package ( "Charlson comorbidity index", etc). Similar verbs would be for example "aggregate", "count" or "summarize" but those would both be uninformative and collide with other common functions. `index()` on the other hand is not used in any widely used package as from what I have seen. I guess `calculate_index()` or similar would work as well but it just seems longer without any convincing reason :-)
+
+> -   An alternative for function naming is to have a common prefix for functions, e.g., `coder_classify`, `coder_categorize`, `coder_index`, `coder_codify`, `coder_visualize`. This has both the advantage of ensuring it doesn't overlap with other packages and making it easy to find codify-related functions with autocomplete. But that's just a suggestion.
+
+**A:** Thank you for the suggestion! I agree that this convention can be useful. I do think it is almost as simple to use autocomplete with the `coder::` prefix instead of `coder_`, however. The difference is just one additional key stroke :-) and I would prefer shorter names without this redundancy `coder::coder_xxx`.\
+This naming convention is also discussed in the Tidyverse design guide, section 5.2 (<https://design.tidyverse.org/function-names.html#function-families>) with the following paragraph:
+
+    Not sure about common prefixes for a package. Works well for stringr (esp. with stringi), forcats, xml2, and rvest. But there’s only a limited number of short prefixes and I think it would break down if every package did it.
+
+> I agree with Noam that coder isn't an ideal package name, if only because it makes the online resources a bit harder for users to find. Try Googling "coder", "R coder", or "R coder github"! But if it's too late to change the name, I don't consider it a dealbreaker.
+
+**A:** Thank yo for the suggestion. I do understand the possible downsides of the name and I partially agree. On the other hand, try Googling the "sister" package "CRAN decoder", which does find the `decoder` package easily. Consider also some popular RStudio packages such as: `generics`, `baguette`, `glue`, `haven`, `parsnip`, `tune`, `reciepies`, `dials`, `workflows` and `yardstick`, none of which are very Googlable on their own. I thus hope that a later CRAN release will make Googling simpler :-)

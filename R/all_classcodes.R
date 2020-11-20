@@ -1,6 +1,7 @@
 #' Summary data for all default classcodes object in the package
 #'
-#' Tabulate object names and list all related versions of implemented regular expressions
+#' Tabulate object names and list all related versions of implemented regular
+#' expressions
 #' and index weights.
 #'
 #' @return [tibble::tibble] with columns describing all default classcodes

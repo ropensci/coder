@@ -3,8 +3,8 @@
 # Hon har dock blandat flera olika varianter, varför jag gör detsamma
 #
 # Jag borde förstås även kolla det omvända, dvs att jag inte har fler koder
-# som inte borde finnas. Detta har dock inte gjorts då hennes koder är dels exakta,
-# dels en nivå upp.
+# som inte borde finnas. Detta har dock inte gjorts då hennes koder är
+# dels exakta, dels en nivå upp.
 # Jag har heller inte kollat så rätt kod klassas i rätt kategori.
 
 

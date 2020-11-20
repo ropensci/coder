@@ -79,7 +79,7 @@ test_that("print.classcodes", {
   expect_output(print(charlson), "Classcodes object")
   expect_output(
     print(charlson),
-    "icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers"
+    "icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers"
   )
   expect_output(
     print(charlson),

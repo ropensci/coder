@@ -39,14 +39,13 @@ Alternatively, the output from \code{\link[=codify]{codify()}}}
 (identified by \code{id = "<col_name>"}),
 code column (identified by argument \code{code = "<col_name>"})
 and optional \code{\link{Date}} column
-(identified by \code{codify_args = list(code_date = "<col_name>")}).
-@param id name of unique character id column found in both \code{x}and \code{codedata}.
-(where it must not be unique).
-@param code name of code column in \code{codedata}.}
+(identified by \code{codify_args = list(code_date = "<col_name>")}).}
 
-\item{id}{name of code/id columns (in \code{codified}).}
+\item{id}{name of unique character id column found in
+both \code{x}and \code{codedata}.
+(where it must not be unique).}
 
-\item{code}{name of code/id columns (in \code{codified}).}
+\item{code}{name of code column in \code{codedata}.}
 
 \item{codify_args}{Lists of named arguments passed to \code{\link[=codify]{codify()}}}
 
@@ -69,7 +68,8 @@ spaces. Those names are changed to syntactically correct names by
 \code{check.names = TRUE}. Syntactically invalid, but grammatically correct
 names might be preferred for presentation of the data as achieved by
 \code{check.names = FALSE}. Alternatively, if \code{categorize} is called repeatedly,
-longer informative names might be created by \code{cc_args = list(tech_names = TRUE)}.}
+longer informative names might be created by
+\code{cc_args = list(tech_names = TRUE)}.}
 
 \item{.data_cols}{used internally}
 }

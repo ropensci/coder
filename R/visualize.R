@@ -9,8 +9,8 @@
 #' @param x [classcodes] object or name of such object included in the package
 #' (see [all_classcodes()]).
 #' @inheritParams set_classcodes
-#' @param group names (as character vector) of groups to visualize (subset of `rownames(x)`).
-#' (All groups if `NULL`.)
+#' @param group names (as character vector) of groups to visualize
+#'   (subset of `rownames(x)`). (All groups if `NULL`.)
 #' @param show should a visualization be shown in the default web browser.
 #' Set to `FALSE` to just retrieve a URL for later use.
 #' @inheritDotParams set_classcodes regex

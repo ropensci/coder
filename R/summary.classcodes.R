@@ -7,8 +7,8 @@
 #'
 #' @param object classcodes object
 #' @param coding either a vector with codes from the original classification,
-#'   or a name (character vector of length one) of a keyvalue object from package
-#'   "decoder" (for example "icd10cm" or "atc")
+#'   or a name (character vector of length one) of a keyvalue object
+#'   from package "decoder" (for example "icd10cm" or "atc")
 #' @param ...
 #' - `summary.classcodes()`: ignored
 #' - `print.summary.classcodes()`: arguments passed to `tibble:::print.tbl()`

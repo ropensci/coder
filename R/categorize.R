@@ -21,9 +21,10 @@
 #'   code column (identified by argument `code = "<col_name>"`)
 #'   and optional [`Date`] column
 #'   (identified by `codify_args = list(code_date = "<col_name>")`).
-#'  @param id name of unique character id column found in both `x`and `codedata`.
-#'  (where it must not be unique).
-#'  @param code name of code column in `codedata`.
+#' @param id name of unique character id column found in
+#'   both `x`and `codedata`.
+#'   (where it must not be unique).
+#' @param code name of code column in `codedata`.
 #' @param index
 #'   Argument passed to [index()].
 #'   A character vector of names of columns with index weights from the
@@ -40,7 +41,8 @@
 #'   `check.names = TRUE`. Syntactically invalid, but grammatically correct
 #'   names might be preferred for presentation of the data as achieved by
 #'   `check.names = FALSE`. Alternatively, if `categorize` is called repeatedly,
-#'   longer informative names might be created by `cc_args = list(tech_names = TRUE)`.
+#'   longer informative names might be created by
+#'   `cc_args = list(tech_names = TRUE)`.
 #' @param .data_cols used internally
 #' @inheritParams classify
 #'
@@ -91,8 +93,13 @@ categorize.data.table <-
 
 #' @export
 #' @rdname categorize
-categorize.codified <- function(
-  x, ..., cc, index = NULL, cc_args = list(), check.names = TRUE, .data_cols = NULL) {
+categorize.codified <- function(x,
+                                ...,
+                                cc,
+                                index = NULL,
+                                cc_args = list(),
+                                check.names = TRUE,
+                                .data_cols = NULL) {
 
   # Store original row order for later sorting
   # This is already done for the data.table method but is here set for
@@ -140,7 +147,7 @@ categorize.codified <- function(
         clean_text(
           cc_name,
           paste0(attr(cc, "regex_name"), "_index_",
-            # we always want one "index_", not two if index name already prefixed
+            # we want one "index_", not two if index name already prefixed
             gsub("index_", "", ind_names)
           )
         )

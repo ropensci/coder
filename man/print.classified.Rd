@@ -10,7 +10,8 @@
 \item{x}{output from \code{\link[=classify]{classify()}}}
 
 \item{...}{additional arguments passed to printing method for a \code{tibble}.
-\code{n} is the number of rows to preview. Set \code{n = NULL} to disable the \code{tibble}
+\code{n} is the number of rows to preview.
+Set \code{n = NULL} to disable the \code{tibble}
 preview and print the object as is (a matrix).}
 }
 \description{
