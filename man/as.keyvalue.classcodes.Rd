@@ -32,7 +32,7 @@ head(decoder::as.keyvalue(elixhauser, "icd10se"))
 
 # Similar but with the American ICD-10-CM instead
 # Note that the `value` column is similar as above
-(with names from `x$group`) and not
+# (with names from `x$group`) and not
 # from `object$value`
 head(decoder::as.keyvalue(elixhauser, "icd10cm"))
 
