@@ -209,7 +209,7 @@ patient?
 ``` r
 hist(
   ch$charlson, 
-  col = "lightblue",
+  col = "orange",
   main = "Patient comorbidity",
   xlab = "Charlson comorbidity index"
 )
@@ -251,7 +251,7 @@ day period:
 ``` r
 hist(
   ch$quan_updated, 
-  col  = "lightblue",
+  col  = "orange",
   main = "Charlson comorbidity",
   xlab = "Comorbidity index by Quan et al. 2011"
 )
