@@ -10,10 +10,10 @@
 \item{x}{\link{classcodes} object or name of such object included in the package
 (see \code{\link[=all_classcodes]{all_classcodes()}}).}
 
-\item{group}{names (as character vector) of groups to visualize
-(all groups if \code{NULL})}
+\item{group}{names (as character vector) of groups to visualize (subset of \code{rownames(x)}).
+(All groups if \code{NULL}.)}
 
-\item{show}{should a visualization be shown in a web browser.
+\item{show}{should a visualization be shown in the default web browser.
 Set to \code{FALSE} to just retrieve a URL for later use.}
 
 \item{...}{
@@ -28,7 +28,8 @@ classification.
 URL to website with visualization (invisible)
 }
 \description{
-Classes are visualized by their regular expressions in a web browser.
+Groups from a \code{classcodes} object are visualized by their regular expressions
+in the default web browser.
 The visualization does not give any details on group names, conditions or
 weights but might be useful both for understanding of a classification scheme
 in use, and during the creation and debugging of such.

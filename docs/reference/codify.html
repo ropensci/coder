@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Codify elements (within period) — codify • coder</title>
+<title>Codify case data with external code data (within specified time frames) — codify • coder</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -19,8 +19,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Codify elements (within period) — codify" />
-<meta property="og:description" content="Enhance case data with code data, possibly limited to relevant period." />
+<meta property="og:title" content="Codify case data with external code data (within specified time frames) — codify" />
+<meta property="og:description" content="This is the first step of codify() %&amp;gt;% classify() %&amp;gt;% index().
+The function combines case data from one data set with related code data from
+a second source, possibly limited to codes valid at certain time points
+relative to case dates." />
 <meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
@@ -80,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -140,32 +143,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Codify elements (within period)</h1>
+    <h1>Codify case data with external code data (within specified time frames)</h1>
     <small class="dont-index">Source: <a href='https://github.com/eribul/coder/blob/master/R/codify.R'><code>R/codify.R</code></a></small>
     <div class="hidden name"><code>codify.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Enhance case data with code data, possibly limited to relevant period.</p>
+    <p>This is the first step of <code>codify() %&gt;% classify() %&gt;% index()</code>.
+The function combines case data from one data set with related code data from
+a second source, possibly limited to codes valid at certain time points
+relative to case dates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>codify</span><span class='op'>(</span>
-  <span class='va'>data</span>,
-  <span class='va'>codedata</span>,
-  <span class='va'>...</span>,
-  <span class='va'>id</span>,
-  <span class='va'>code</span>,
-  date <span class='op'>=</span> <span class='cn'>NULL</span>,
-  code_date <span class='op'>=</span> <span class='cn'>NULL</span>,
-  days <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>codify</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>codedata</span>, <span class='va'>...</span>, <span class='va'>id</span>, <span class='va'>code</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, code_date <span class='op'>=</span> <span class='cn'>NULL</span>, days <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'>codify</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>...</span>, <span class='va'>id</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, days <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='fu'>codify</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, <span class='va'>id</span>, date <span class='op'>=</span> <span class='cn'>NULL</span>, days <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
 <span class='co'># S3 method for data.table</span>
 <span class='fu'>codify</span><span class='op'>(</span>
-  <span class='va'>data</span>,
+  <span class='va'>x</span>,
   <span class='va'>codedata</span>,
   <span class='va'>...</span>,
   <span class='va'>id</span>,
@@ -184,9 +181,12 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>a table with columns id (<code>character</code>), code, and optionally date
-(<code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code>)</p></td>
+      <th>x</th>
+      <td><p>data set with mandatory character id column
+(identified by argument <code>id = "&lt;col_name&gt;"</code>),
+and optional <code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code>  of interest
+(identified by argument <code>date = "&lt;col_name&gt;"</code>).
+Alternatively, the output from <code>codify()</code></p></td>
     </tr>
     <tr>
       <th>codedata</th>
@@ -202,8 +202,8 @@ with certain characteristics (see example).</p></td>
     <tr>
       <th>id, code, date, code_date</th>
       <td><p>column names with case id
-(<code>character</code> from <code>data</code> and <code>codedata</code>), <code>code</code> (from <code>data</code>) and
-optional date (<a href='https://rdrr.io/r/base/Dates.html'>Date</a> from <code>data</code>) and
+(<code>character</code> from <code>x</code> and <code>codedata</code>), <code>code</code> (from <code>x</code>) and
+optional date (<a href='https://rdrr.io/r/base/Dates.html'>Date</a> from <code>x</code>) and
 <code>code_date</code> (<a href='https://rdrr.io/r/base/Dates.html'>Date</a> from <code>codedata</code>).</p></td>
     </tr>
     <tr>
@@ -222,11 +222,9 @@ of relevant days relative to <code>date</code>. See "Relevant period".</p></td>
 If the size is larger, the argument must be set explicitly. Set <code>TRUE</code>
 to make copies regardless of object size. This is recommended if enough RAM
 is available. If set to <code>FALSE</code>, calculations might be carried out
-but the object will be changed by reference.</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>object (potentially of large size)</p></td>
+but the object will be changed by reference.
+IMPORTANT! This might lead to undesired consequences and should only be used
+if absolutely necessary!</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -239,26 +237,23 @@ unusual format to look at. Use <code>n = NULL</code> to print the object as is.<
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Object of class <code>codified</code> (inheriting from <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table::data.table</a>).
-Essentially <code>data</code> with additional columns:
+Essentially <code>x</code> with additional columns:
 <code>code, code_date</code>: left joined from <code>codedata</code> or <code>NA</code>
 if no match within period. <code>in_period</code>: Boolean indicator if the case
 had at least one code within the specified period.</p>
-<p>The output has one row for each combination of "id" from <code>data</code> and
-"code" from <code>codedata</code>. Rows from <code>data</code> might be repeated
+<p>The output has one row for each combination of "id" from <code>x</code> and
+"code" from <code>codedata</code>. Rows from <code>x</code> might be repeated
 accordingly.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>See the example section for a warning on using the <code>.copy</code> argument!</p>
     <h2 class="hasAnchor" id="relevant-period"><a class="anchor" href="#relevant-period"></a>Relevant period</h2>
 
     
 
 <p>Some examples for argument <code>days</code>:</p><ul>
 <li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-365, -1)</a></code>: window of one year prior to the <code>date</code>
-column of <code>data</code>. Useful for patient co-morbidity.</p></li>
+column of <code>x</code>. Useful for patient comorbidity.</p></li>
 <li><p><code><a href='https://rdrr.io/r/base/c.html'>c(1, 30)</a></code>: window of 30 days after <code>date</code>.
 Useful for adverse events after a surgical procedure.</p></li>
-<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-Inf, Inf)</a></code>: no limitation on non missing dates.</p></li>
+<li><p><code><a href='https://rdrr.io/r/base/c.html'>c(-Inf, Inf)</a></code>: no limitation on non-missing dates.</p></li>
 <li><p><code>NULL</code>: no time limitation at all.</p></li>
 </ul>
 
@@ -278,7 +273,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It has 700 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
-#&gt; 
 #&gt; 
 #&gt; <span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                admission  icd10 hdia  in_period surgery   
@@ -310,7 +304,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
-#&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                surgery    admission  icd10 hdia  in_period
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
@@ -340,7 +333,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
-#&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                surgery    admission  icd10 hdia  in_period
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>    
@@ -359,7 +351,7 @@ Useful for adverse events after a surgical procedure.</p></li>
 
 <span class='co'># Assume that codes contain unwanted "dirty" characters</span>
 <span class='co'># Those could for example be a dot used by ICD-10 (i.e. X12.3 instead of X123)</span>
-<span class='va'>dirt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strsplit.html'>strsplit</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"½!#¤%&amp;/()=?`,.-_"</span><span class='op'>)</span>, split <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>dirt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/strsplit.html'>strsplit</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"!#%&amp;/()=?`,.-_"</span><span class='op'>)</span>, split <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>rdirt</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>)</span>, replace <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='va'>sub</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>$</span><span class='va'>icd10</span>, <span class='va'>i</span>, <span class='va'>i</span><span class='op'>)</span>
 <span class='va'>ex_icd10</span><span class='op'>$</span><span class='va'>icd10</span> <span class='op'>&lt;-</span>
@@ -374,12 +366,12 @@ Useful for adverse events after a surgical procedure.</p></li>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 6 x 4</span><span>
 #&gt;   name                 admission  icd10      hdia 
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Tran, Kenneth        2020-04-12 ,S/1-3!4&amp;A FALSE
-#&gt; </span><span style='color: #555555;'>2</span><span> Tran, Kenneth        2020-09-26 /W)3#3,1-9 FALSE
-#&gt; </span><span style='color: #555555;'>3</span><span> Tran, Kenneth        2020-09-05 `Y(0&amp;2%6?2 TRUE 
-#&gt; </span><span style='color: #555555;'>4</span><span> Tran, Kenneth        2020-07-29 -X`0&amp;4&amp;8_8 FALSE
-#&gt; </span><span style='color: #555555;'>5</span><span> Sommerville, Dominic 2020-09-17 %V.8_1-0`4 FALSE
-#&gt; </span><span style='color: #555555;'>6</span><span> Sommerville, Dominic 2020-04-28 &amp;B#8#5,3_  FALSE</div><div class='input'>
+#&gt; </span><span style='color: #555555;'>1</span><span> Tran, Kenneth        2020-04-12 -S_1_3,4.A FALSE
+#&gt; </span><span style='color: #555555;'>2</span><span> Tran, Kenneth        2020-09-26 )W/3(3&amp;1)9 FALSE
+#&gt; </span><span style='color: #555555;'>3</span><span> Tran, Kenneth        2020-09-05 .Y_0%2?6?2 TRUE 
+#&gt; </span><span style='color: #555555;'>4</span><span> Tran, Kenneth        2020-07-29 /X-0/4%8-8 FALSE
+#&gt; </span><span style='color: #555555;'>5</span><span> Sommerville, Dominic 2020-09-17 (V!8-1)0?4 FALSE
+#&gt; </span><span style='color: #555555;'>6</span><span> Sommerville, Dominic 2020-04-28 &amp;B=8_5%3-  FALSE</div><div class='input'>
 <span class='co'># Use `alnum = TRUE` to ignore non alphanumeric characters</span>
 <span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>ex_icd10</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>, alnum <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
@@ -388,20 +380,19 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
-#&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                admission  icd10 hdia  in_period surgery   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
 #&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
 #&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
-#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-05-26 X6542 FALSE TRUE      2020-09-20
-#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-08-28 X4078 FALSE TRUE      2020-09-20</div><div class='input'>
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-25 N608  FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-07-28 W0341 FALSE TRUE      2020-09-20</div><div class='input'>
 
 
 <span class='co'># Big data ----------------------------------------------------------------</span>
@@ -415,12 +406,12 @@ Useful for adverse events after a surgical procedure.</p></li>
 <span class='va'>x2</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/as.data.table.html'>as.data.table</a></span><span class='op'>(</span><span class='va'>ex_icd10</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>)</span> <span class='co'># Look at the "icd10" column (with dirty data)</span>
 </div><div class='output co'>#&gt;                    name  admission      icd10  hdia
-#&gt; 1:        Tran, Kenneth 2020-04-12 ,S/1-3!4&amp;A FALSE
-#&gt; 2:        Tran, Kenneth 2020-09-26 /W)3#3,1-9 FALSE
-#&gt; 3:        Tran, Kenneth 2020-09-05 `Y(0&amp;2%6?2  TRUE
-#&gt; 4:        Tran, Kenneth 2020-07-29 -X`0&amp;4&amp;8_8 FALSE
-#&gt; 5: Sommerville, Dominic 2020-09-17 %V.8_1-0`4 FALSE
-#&gt; 6: Sommerville, Dominic 2020-04-28  &amp;B#8#5,3_ FALSE</div><div class='input'>
+#&gt; 1:        Tran, Kenneth 2020-04-12 -S_1_3,4.A FALSE
+#&gt; 2:        Tran, Kenneth 2020-09-26 )W/3(3&amp;1)9 FALSE
+#&gt; 3:        Tran, Kenneth 2020-09-05 .Y_0%2?6?2  TRUE
+#&gt; 4:        Tran, Kenneth 2020-07-29 /X-0/4%8-8 FALSE
+#&gt; 5: Sommerville, Dominic 2020-09-17 (V!8-1)0?4 FALSE
+#&gt; 6: Sommerville, Dominic 2020-04-28  &amp;B=8_5%3- FALSE</div><div class='input'>
 <span class='co'># Use `alnum = TRUE` combined with `.copy = FALSE`</span>
 <span class='fu'>codify</span><span class='op'>(</span><span class='va'>ex_people</span>, <span class='va'>x2</span>, id <span class='op'>=</span> <span class='st'>"name"</span>, code <span class='op'>=</span> <span class='st'>"icd10"</span>, alnum <span class='op'>=</span> <span class='cn'>TRUE</span>, .copy <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
@@ -428,7 +419,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It has 700 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
-#&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                admission  icd10 hdia  in_period surgery   
@@ -467,7 +457,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
 #&gt; 
-#&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
 #&gt;    name                admission  icd10 hdia  in_period surgery   
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
@@ -486,7 +475,6 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; It has 700 row(s).
 #&gt; It is here previewed as a tibble
 #&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
-#&gt; 
 #&gt; 
 #&gt; </span><span style='color: #555555;'># A tibble: 20 x 6</span><span>
 #&gt;    name                admission  icd10 hdia  in_period surgery   
@@ -511,18 +499,25 @@ Useful for adverse events after a surgical procedure.</p></li>
 #&gt; </span><span style='color: #555555;'>18</span><span> Bammesberger, Jozi  2019-11-21 V1051 FALSE TRUE      2020-03-25
 #&gt; </span><span style='color: #555555;'>19</span><span> Bammesberger, Jozi  2020-01-28 V1392 FALSE TRUE      2020-03-25
 #&gt; </span><span style='color: #555555;'>20</span><span> Bammesberger, Jozi  2020-04-28 V4931 FALSE TRUE      2020-03-25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, n <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='co'># Print as data.table (ignoring the 'classified' class)</span>
-</div><div class='output co'>#&gt;                     name  admission icd10  hdia in_period    surgery
-#&gt;   1: Archer, Leon Hunter 2020-07-28  B469 FALSE      TRUE 2020-05-25
-#&gt;   2: Archer, Leon Hunter 2019-12-06  E012 FALSE      TRUE 2020-05-25
-#&gt;   3: Archer, Leon Hunter 2020-08-14  R900 FALSE      TRUE 2020-05-25
-#&gt;   4: Archer, Leon Hunter 2020-02-11 V7413 FALSE      TRUE 2020-05-25
-#&gt;   5: Archer, Leon Hunter 2019-12-28 V8698 FALSE      TRUE 2020-05-25
-#&gt;  ---                                                                
-#&gt; 696:     el-Sani, Jawaad 2020-08-02  Y989  TRUE      TRUE 2020-08-30
-#&gt; 697:   el-Shahin, Hasnaa 2020-04-20 E711B FALSE      TRUE 2020-03-14
-#&gt; 698:   el-Shahin, Hasnaa 2019-10-28 X5144 FALSE      TRUE 2020-03-14
-#&gt; 699:   el-Shahin, Hasnaa 2020-01-28 Y586W FALSE      TRUE 2020-03-14
-#&gt; 700:   el-Shahin, Hasnaa 2020-02-14  Z888 FALSE      TRUE 2020-03-14</div></span></pre>
+</div><div class='output co'>#&gt; 
+#&gt; The printed data is of class: codified, data.table, data.frame.
+#&gt; It has 700 row(s).
+#&gt; It is here previewed as a tibble
+#&gt; Use `print(x, n = NULL)` to print as is (or use `n` to specify the number of rows to preview)!
+#&gt; 
+#&gt; </span><span style='color: #555555;'># A tibble: 10 x 6</span><span>
+#&gt;    name                admission  icd10 hdia  in_period surgery   
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Archer, Leon Hunter 2020-07-28 B469  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 2</span><span> Archer, Leon Hunter 2019-12-06 E012  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 3</span><span> Archer, Leon Hunter 2020-08-14 R900  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 4</span><span> Archer, Leon Hunter 2020-02-11 V7413 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 5</span><span> Archer, Leon Hunter 2019-12-28 V8698 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 6</span><span> Archer, Leon Hunter 2020-01-18 X3403 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 7</span><span> Archer, Leon Hunter 2020-01-17 X4128 FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 8</span><span> Archer, Leon Hunter 2020-02-03 Z752  FALSE TRUE      2020-05-25
+#&gt; </span><span style='color: #555555;'> 9</span><span> Awtrey, Antonio     2020-09-25 N608  FALSE TRUE      2020-09-20
+#&gt; </span><span style='color: #555555;'>10</span><span> Awtrey, Antonio     2020-07-28 W0341 FALSE TRUE      2020-09-20</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

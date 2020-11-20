@@ -19,8 +19,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -52,7 +52,11 @@
 (2) codedata for corresponding
 units and with optional dates of interest and;
 (3) a classification scheme (classcodes object; cc) with regular
-expressions to identify and categorize relevant codes." />
+expressions to identify and categorize relevant codes.
+The function combines the three underlying steps performed by
+codify(), classify() and index().
+Relevant arguments are passed to those functions by
+codify_args and cc_args." />
 <meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
@@ -85,7 +89,7 @@ expressions to identify and categorize relevant codes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -156,7 +160,11 @@ expressions to identify and categorize relevant codes." />
 (2) <code>codedata</code> for corresponding
 units and with optional dates of interest and;
 (3) a classification scheme (<code><a href='classcodes.html'>classcodes</a></code> object; <code>cc</code>) with regular
-expressions to identify and categorize relevant codes.</p>
+expressions to identify and categorize relevant codes.
+The function combines the three underlying steps performed by
+<code><a href='codify.html'>codify()</a></code>, <code><a href='classify.html'>classify()</a></code> and <code><a href='index_fun.html'>index()</a></code>.
+Relevant arguments are passed to those functions by
+<code>codify_args</code> and <code>cc_args</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>categorize</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -186,10 +194,10 @@ expressions to identify and categorize relevant codes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data set with mandatory id column
-(identified by argument <code>id</code>),
-and optional column with date of interest
-(identified by argument <code>date</code> if  <code>days != NULL</code>).
+      <td><p>data set with mandatory character id column
+(identified by argument <code>id = "&lt;col_name&gt;"</code>),
+and optional <code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code>  of interest
+(identified by argument <code>date = "&lt;col_name&gt;"</code>).
 Alternatively, the output from <code><a href='codify.html'>codify()</a></code></p></td>
     </tr>
     <tr>
@@ -198,7 +206,14 @@ Alternatively, the output from <code><a href='codify.html'>codify()</a></code></
     </tr>
     <tr>
       <th>codedata</th>
-      <td><p>external code data</p></td>
+      <td><p>external code data with mandatory character id column
+(identified by <code>id = "&lt;col_name&gt;"</code>),
+code column (identified by argument <code>code = "&lt;col_name&gt;"</code>)
+and optional <code><a href='https://rdrr.io/r/base/Dates.html'>Date</a></code> column
+(identified by <code>codify_args = list(code_date = "&lt;col_name&gt;")</code>).
+@param id name of unique character id column found in both <code>x</code>and <code>codedata</code>.
+(where it must not be unique).
+@param code name of code column in <code>codedata</code>.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -209,21 +224,28 @@ Alternatively, the output from <code><a href='codify.html'>codify()</a></code></
       <td><p>name of code/id columns (in <code>codified</code>).</p></td>
     </tr>
     <tr>
+      <th>codify_args</th>
+      <td><p>Lists of named arguments passed to <code><a href='codify.html'>codify()</a></code></p></td>
+    </tr>
+    <tr>
       <th>cc</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of such object).</p></td>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of a default object from
+<code><a href='all_classcodes.html'>all_classcodes()</a></code>).</p></td>
     </tr>
     <tr>
       <th>index</th>
-      <td><p>A character vector of index values to calculate (passed to <code><a href='index_fun.html'>index()</a></code>.
+      <td><p>Argument passed to <code><a href='index_fun.html'>index()</a></code>.
+A character vector of names of columns with index weights from the
+corresponding classcodes object (as supplied by the <code>cc</code>argument).
+See <code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "indices")</a></code> for available options.
 Set to <code>FALSE</code> if no index should be calculated.
 If <code>NULL</code>, the default, all available indices (from <code><a href='https://rdrr.io/r/base/attr.html'>attr(cc, "indices")</a></code>)
-are provided. A message lists the indices so that you can check they're
-correct; suppress the message by supplying <code>index</code> explicitly.</p></td>
+are provided.</p></td>
     </tr>
     <tr>
-      <th>cc_args, codify_args</th>
-      <td><p>List of named arguments passed to
-<code><a href='set_classcodes.html'>set_classcodes()</a></code> and  <code><a href='codify.html'>codify()</a></code></p></td>
+      <th>cc_args</th>
+      <td><p>List with named arguments passed to
+<code><a href='set_classcodes.html'>set_classcodes()</a></code></p></td>
     </tr>
     <tr>
       <th>check.names</th>
@@ -243,16 +265,9 @@ longer informative names might be created by <code>cc_args = list(tech_names = T
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Object of the same class as <code>x</code> with additional logical columns
-indicating membership of categories identified by the
+indicating membership of groups identified by the
 <code>classcodes</code> object (the <code>cc</code> argument).
-Indices are also included if specified by the 'index' argument.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The function combines the three underlying steps performed by
-<code><a href='codify.html'>codify()</a></code>, <code><a href='classify.html'>classify()</a></code> and <code><a href='index_fun.html'>index()</a></code>.
-Relevant arguments are passed to those functions by
-<code>codify_args</code> and <code>cc_args</code>.
-index</p>
+Numeric indices are also included if requested by the <code>index</code> argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other verbs: 

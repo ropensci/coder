@@ -12,5 +12,17 @@ test_that("codebook", {
     cbs,
     c("README", "cb1.summary", "cb1.all_codes", "cb2.summary", "cb2.all_codes")
   )
+
+  expect_message(
+    codebook(elixhauser, "icd10cm", file = tempfile()),
+    "codebook saved as"
+  )
+
+  expect_message(
+    codebooks(cb1 = cb, cb2 = cb2, file = tempfile()),
+    "codebooks saved as"
+  )
+
+  expect_output(print(cb), "Preview of ")
 })
 

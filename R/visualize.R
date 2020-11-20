@@ -31,5 +31,8 @@ visualize.classcodes <- function(x, group = NULL, show = TRUE, ...) {
 
 #' @export
 visualize.character <- function(x, group = NULL, show = TRUE, ...) {
-  visualize(set_classcodes(x, ...), group = group, show = show)
+  visualize(
+    suppressMessages(set_classcodes(x, ...)),
+    group = group, show = show
+  )
 }

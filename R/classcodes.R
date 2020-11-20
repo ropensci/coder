@@ -81,7 +81,7 @@ as.classcodes.classcodes <- function(x,
 
 #' @export
 #' @rdname classcodes
-as.classcodes.default <- function(x,
+as.classcodes.data.frame <- function(x,
                                   ...,
                                   regex     = NULL,
                                   indices   = NULL,
@@ -131,9 +131,6 @@ find_attr <- function(x, arg, what, prefix, must) {
 }
 
 check_classcodes <- function(x) {
-
-  if (!is.data.frame(x))
-    stop("Classcodes objects must inherit from data.frame!")
   if (!"group" %in% names(x))
     stop("classcodes object must have a column named `group`!")
   if (anyNA(x$group) || any(x$group == ""))

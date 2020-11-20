@@ -4,7 +4,7 @@
 \alias{classcodes}
 \alias{as.classcodes}
 \alias{as.classcodes.classcodes}
-\alias{as.classcodes.default}
+\alias{as.classcodes.data.frame}
 \alias{is.classcodes}
 \title{Classcodes methods}
 \usage{
@@ -18,7 +18,7 @@ as.classcodes(x, ...)
   hierarchy = attr(x, "hierarchy")
 )
 
-\method{as.classcodes}{default}(
+\method{as.classcodes}{data.frame}(
   x,
   ...,
   regex = NULL,

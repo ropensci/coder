@@ -49,7 +49,8 @@ test_that("missing dates", {
   # Include all dates except missing
   expect_equal(
     nrow(codify(pe, icd, id = "name", code = "icd10",
-                date = "surgery", code_date = "admission",  days = c(-Inf, Inf))),
+                date = "surgery", code_date = "admission",
+                days = c(-Inf, Inf))),
     9
   )
 
@@ -60,11 +61,23 @@ test_that("missing dates", {
   expect_silent(codify(pe, icd, id = "name", code = "icd10"))
   suppressWarnings(
     expect_equal(
-      nrow(codify(pe, icd, id = "name", code = "icd10", date = "event", days = NULL)),
+      nrow(codify(pe, icd, id = "name", code = "icd10",
+                  date = "event", days = NULL)),
       16
     )
   )
 
+  expe <- ex_people
+  expe$name <- as.numeric(as.factor(expe$name))
+  expect_error(
+    codify(expe, ex_icd10, id = "name", date = "event"),
+    "name must be `character` in 'data' and 'codedata'!"
+  )
+
+  expect_error(
+    codify(ex_people, ex_icd10, id = "name", code = "missing"),
+    "codedata must have column missing"
+  )
 
   expect_error(
     codify(ex_people, ex_icd10, id = "wrong", date = "event"),
@@ -83,7 +96,30 @@ test_that("missing dates", {
   expect_error(
     codify(ex_people, ex_icd10, id = "name", code = "icd10",
            date = "wrong_date", days = c(-10, 10)),
-    "data column 'wrong_date' is not of class 'Date'!"
+    "wrong_date is not a `Date` column of 'x'!"
   )
+
+  expect_error(
+    codify(ex_people, ex_icd10, id = "name", code = "icd10",
+           date = "surgery", days = c(-10, 10)),
+    "Argument 'code_date' must be specified if 'days' is not NULL!"
+  )
+
+  expect_error(
+    codify(ex_people, ex_icd10, id = "name", code = "icd10",
+           date = "surgery", code_date = "hej", days = c(-10, 10)),
+    "hej' is not a `Date` column in 'codedata'!"
+  )
+
+  # alnum
+  codes <- ex_icd10
+  codes$icd10 <-
+    paste0("-", substr(codes$icd10, 1, 3), ".", substr(codes$icd10, 4, 5))
+  expect_equivalent(
+    codify(ex_people, codes,    id = "name", code = "icd10", alnum = TRUE),
+    codify(ex_people, ex_icd10, id = "name", code = "icd10")
+  )
+
+  expect_output(print(x), "It has 378 row")
 })
 

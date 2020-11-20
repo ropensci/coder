@@ -28,17 +28,18 @@ expressions? If \code{TRUE}, column "regex" is prefixed/suffixed
 by \verb{^/$}.}
 
 \item{tech_names}{should technical column names be used? If \code{FALSE},
-colnames are taken directly from group names of \code{by}, if \code{TRUE},
+colnames are taken directly from group names of \code{cc}, if \code{TRUE},
 these are changed to more technical names avoiding special characters and
 are prefixed by the name of the classification scheme.
-\code{NULL} (by default) preserves previously set names
-(fall backs to \code{FALSE} if not already set).}
+\code{NULL} (by default) preserves previous names if \code{cc} is inherited from
+\code{classified} (fall backs to \code{FALSE} if not already set).}
 }
 \value{
 \code{\link{classcodes}} object.
 }
 \description{
-Set classcodes object
+Prepare a \code{classcodes}object by specifying the regular expressions
+to use for classification.
 }
 \examples{
 # Prepare a classcodes object for the Charlson comorbidity classification

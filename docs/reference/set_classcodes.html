@@ -19,8 +19,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -47,7 +47,8 @@
 
 
 <meta property="og:title" content="Set classcodes object — set_classcodes" />
-<meta property="og:description" content="Set classcodes object" />
+<meta property="og:description" content="Prepare a classcodesobject by specifying the regular expressions
+to use for classification." />
 <meta property="og:image" content="eribul.github.io/coder/logo.png" />
 
 
@@ -80,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -146,7 +147,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Set classcodes object</p>
+    <p>Prepare a <code>classcodes</code>object by specifying the regular expressions
+to use for classification.</p>
     </div>
 
     <pre class="usage"><span class='fu'>set_classcodes</span><span class='op'>(</span>
@@ -163,7 +165,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>cc</th>
-      <td><p><code><a href='classcodes.html'>classcodes</a></code> object or name of such</p></td>
+      <td><p><code><a href='classcodes.html'>classcodes</a></code> object (or name of a default object from
+<code><a href='all_classcodes.html'>all_classcodes()</a></code>).</p></td>
     </tr>
     <tr>
       <th>classified</th>
@@ -184,11 +187,11 @@ by <code>^/$</code>.</p></td>
     <tr>
       <th>tech_names</th>
       <td><p>should technical column names be used? If <code>FALSE</code>,
-colnames are taken directly from group names of <code>by</code>, if <code>TRUE</code>,
+colnames are taken directly from group names of <code>cc</code>, if <code>TRUE</code>,
 these are changed to more technical names avoiding special characters and
 are prefixed by the name of the classification scheme.
-<code>NULL</code> (by default) preserves previously set names
-(fall backs to <code>FALSE</code> if not already set).</p></td>
+<code>NULL</code> (by default) preserves previous names if <code>cc</code> is inherited from
+<code>classified</code> (fall backs to <code>FALSE</code> if not already set).</p></td>
     </tr>
     </table>
 

@@ -1,10 +1,19 @@
-
-
 x <- codify(ex_people, codedata = ex_icd10, id = "name", code = "icd10",
             date = "surgery", code_date = "admission", days = c(-365, 0))
 
 
 test_that("categorize", {
+
+  expect_equivalent(
+    categorize(
+      ex_people, codedata = ex_icd10, cc = "elixhauser",
+      id = "name", code = "icd10"
+    ),
+    categorize(
+      as.data.frame(ex_people), codedata = ex_icd10, cc = "elixhauser",
+      id = "name", code = "icd10"
+    )
+  )
   expect_message(
     categorize(
       ex_people, codedata = ex_icd10, cc = "elixhauser",
@@ -74,5 +83,14 @@ test_that("categorize", {
         date = "surgery", code_date = "admission", days = c(-365, 0))
     ) %>%
     {.[order(.$name), ]}
+  )
+})
+
+# COmbination of cc without indices and index argument unspecified should yield unweighted index
+ch <- as.classcodes(charlson, indices = NULL)
+test_that("unspecified indices", {
+  expect_message(
+    suppressWarnings(categorize(x, cc = ch)),
+    "index calculated as number of relevant categories"
   )
 })

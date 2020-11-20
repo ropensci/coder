@@ -43,8 +43,8 @@ set_classcodes <- function(
                inh %in% utils::data(package = "coder")$results[, "Item"]) {
       utils::data(list = inh, package = "coder", envir = environment())
       get(inh, envir = environment())
-    } else {
-      stop("No classcodes object found!")
+    } else if (!is.classcodes(cc)) {
+      stop("cc is not a classcodes object! Try `as.classcodes(cc)`!")
     }
 
   # Fix name attribute if not already set
@@ -52,6 +52,9 @@ set_classcodes <- function(
   if (is.classcodes(obj)) {
     attr(obj, "name") <- nm
   } else {
+    # This is likely not used in practice but might work as extra safety if the
+    # package will later include data which are not classcodes.
+    # (There is currently no need to test this)
     obj <- as.classcodes(obj, .name = nm)
   }
 

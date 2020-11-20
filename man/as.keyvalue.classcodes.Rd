@@ -10,7 +10,7 @@
 \item{x}{classcodes object}
 
 \item{coding}{either a vector with codes from the original classification,
-or a name (character vector of length one) keyvalue object from package
+or a name (character vector of length one) of a keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
 \item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}

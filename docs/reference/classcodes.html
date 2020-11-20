@@ -19,8 +19,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Classcodes methods — classcodes" />
-<meta property="og:description" content="&quot;Classcodes&quot; are classifying schemes based on regular expression stored in
+<meta property="og:description" content="classcodes are classification schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and a classification scheme." />
 <meta property="og:image" content="eribul.github.io/coder/logo.png" />
@@ -82,7 +82,7 @@ part of the triad of case data, code data and a classification scheme." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11.17</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.12.1</span>
       </span>
     </div>
 
@@ -148,7 +148,7 @@ part of the triad of case data, code data and a classification scheme." />
     </div>
 
     <div class="ref-description">
-    <p>"Classcodes" are classifying schemes based on regular expression stored in
+    <p><code>classcodes</code> are classification schemes based on regular expression stored in
 data frames. These are essential to the package and constitute the third
 part of the triad of case data, code data and a classification scheme.</p>
     </div>
@@ -164,7 +164,7 @@ part of the triad of case data, code data and a classification scheme.</p>
   hierarchy <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"hierarchy"</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='co'># S3 method for default</span>
+<span class='co'># S3 method for data.frame</span>
 <span class='fu'>as.classcodes</span><span class='op'>(</span>
   <span class='va'>x</span>,
   <span class='va'>...</span>,
@@ -181,14 +181,12 @@ part of the triad of case data, code data and a classification scheme.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>data frame with columns described in the details section</p></td>
+      <td><p>data frame with columns described in the details section.
+Alternatively a <code>classcodes</code> object to be modified.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments passed between methods
-subordinate classes.
-To be used for indexing when the subordinate class is redundant
-(see the details section of <code><a href='elixhauser.html'>elixhauser</a></code> for an example).</p></td>
+      <td><p>arguments passed between methods#'</p></td>
     </tr>
     <tr>
       <th>regex, indices</th>
@@ -198,7 +196,9 @@ regular expressions/indices.</p></td>
     <tr>
       <th>hierarchy</th>
       <td><p>named list of pairwise group names to appear as superior and
-subordinate for indices. See <a href='elixhauser.html'>elixhauser</a> for a possible application.</p></td>
+subordinate for indices.
+To be used for indexing when the subordinate class is redundant
+(see the details section of <code><a href='elixhauser.html'>elixhauser</a></code> for an example).</p></td>
     </tr>
     <tr>
       <th>.name</th>
@@ -208,11 +208,14 @@ subordinate for indices. See <a href='elixhauser.html'>elixhauser</a> for a poss
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of class "classcodes" (data frame) with additional attributes:</p><ul>
+    <p>Object of class <code>classcodes</code> (inheriting from data frame)
+with additional attributes:</p><ul>
 <li><p><code>code:</code> the coding used (for example "icd10", or "ATC").
 <code>NULL</code> for unknown/arbitrary coding.</p></li>
-<li><p><code>regexprs:</code> name of columns with regular expressions</p></li>
-<li><p><code>indices:</code> name of columns with (optional) index weights</p></li>
+<li><p><code>regexprs:</code> name of columns with regular expressions
+(as specified by the <code>regex</code>argument)</p></li>
+<li><p><code>indices:</code> name of columns with (optional) index weights
+(as specified by the <code>indices</code>argument)</p></li>
 <li><p><code>hierarchy:</code> list as specified by the <code>hierarchy</code> argument.</p></li>
 <li><p><code>name:</code> name as specified by the <code>.name</code> argument.</p></li>
 </ul>
@@ -221,7 +224,10 @@ subordinate for indices. See <a href='elixhauser.html'>elixhauser</a> for a poss
 
     <p>A classcodes object is a data frame with mandatory columns:</p><ul>
 <li><p><code>group</code>: unique and non missing class names</p></li>
-<li><p><code>At least one column with regular expressions ([regex] without Perl-like versions) defining class membership. Those columns can have arbitrary names (as specified by the </code>regex`argument).
+<li><p>At least one column with regular expressions
+(<a href='https://rdrr.io/r/base/regex.html'>regex</a> without Perl-like versions) defining class
+membership. Those columns can have arbitrary names
+(as specified by the <code>regex</code> argument).
 Occurrences of non unique regular expressions will lead to the same class
 having multiple names. This is accepted but will raise a warning.
 Classes do not have to be disjunct.</p></li>
@@ -241,12 +247,9 @@ expressions that can be evaluated within the data frame used by
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>A vignette provides additional details and examples:
-<code><a href='../articles/classcodes.html'>vignette("classcodes", package = "coder")</a></code></p>
-<p>The package have several default classcodes included, see <code><a href='all_classcodes.html'>all_classcodes()</a></code>.</p>
-<p>Regular expressions used in classcodes can often be quite complex
-and hard to interpret. Use <code><a href='https://generics.r-lib.org/reference/visualize.html'>visualize()</a></code> to visualize classcodes
-graphically or <code><a href='summary.classcodes.html'>summary.classcodes()</a></code> to list all codes individually.</p>
+    <div class='dont-index'><p><code><a href='../articles/classcodes.html'>vignette("classcodes")</a></code>
+<code><a href='../articles/Interpret_regular_expressions.html'>vignette("Interpret_regular_expressions")</a></code>
+The package have several default classcodes included, see <code><a href='all_classcodes.html'>all_classcodes()</a></code>.</p>
 <p>Other classcodes: 
 <code><a href='all_classcodes.html'>all_classcodes</a>()</code>,
 <code><a href='as.data.frame.classified.html'>as.data.frame.classified</a>()</code>,
@@ -278,22 +281,9 @@ graphically or <code><a href='summary.classcodes.html'>summary.classcodes()</a><
 <span class='va'>elix</span> <span class='op'>&lt;-</span>
   <span class='fu'>as.classcodes</span><span class='op'>(</span>
     <span class='va'>df</span>,
-    regex <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-      <span class='st'>"icd10"</span>,
-      <span class='st'>"icd10_short"</span>,
-      <span class='st'>"icd9cm"</span>,
-      <span class='st'>"icd9cm_ahrqweb"</span>,
-      <span class='st'>"icd9cm_enhanced"</span>
-    <span class='op'>)</span>,
-    indices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-      <span class='st'>"sum_all"</span>,
-      <span class='st'>"sum_all_ahrq"</span>,
-      <span class='st'>"walraven"</span>,
-      <span class='st'>"sid29"</span>,
-      <span class='st'>"sid30"</span>,
-      <span class='st'>"ahrq_mort"</span>,
-      <span class='st'>"ahrq_readm"</span>
-    <span class='op'>)</span>,
+    regex     <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"icd10"</span>, <span class='st'>"icd10_short"</span>, <span class='st'>"icd9cm"</span>, <span class='st'>"icd9cm_ahrqweb"</span>, <span class='st'>"icd9cm_enhanced"</span><span class='op'>)</span>,
+    indices   <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sum_all"</span>, <span class='st'>"sum_all_ahrq"</span>, <span class='st'>"walraven"</span>,
+                <span class='st'>"sid29"</span>, <span class='st'>"sid30"</span>, <span class='st'>"ahrq_mort"</span>, <span class='st'>"ahrq_readm"</span><span class='op'>)</span>,
     hierarchy <span class='op'>=</span> <span class='cn'>NULL</span>
   <span class='op'>)</span>
 <span class='va'>elix</span>

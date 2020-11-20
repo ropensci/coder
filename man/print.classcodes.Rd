@@ -20,11 +20,11 @@ Print classcodes object
 # Default printing
 elixhauser
 
-# Print all rows
-print(elixhauser, n = 31)
-
 # Print attributes data but no data preview
 print(elixhauser, n = 0)
+
+# Print all rows
+print(elixhauser, n = 31)
 }
 \seealso{
 Other classcodes: 

@@ -1,5 +1,8 @@
 destination: docs
 url: eribul.github.io/coder
+template:
+  params:
+    bootswatch: united
 
 authors:
   Erik Bulow:

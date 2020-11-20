@@ -13,7 +13,7 @@
 \item{object}{classcodes object}
 
 \item{coding}{either a vector with codes from the original classification,
-or a name (character vector of length one) keyvalue object from package
+or a name (character vector of length one) of a keyvalue object from package
 "decoder" (for example "icd10cm" or "atc")}
 
 \item{...}{\itemize{
@@ -39,8 +39,8 @@ identified (\code{group}); the number of codes to be recognized for each group
 \description{
 Classification schemes are formalized by regular expressions within the
 classcodes objects. These are computationally effective but sometimes hard to
-grasp. Use this function to present all individual codes identified for each
-group in the classification.
+interpret. Use this function to list all codes identified for each
+group.
 }
 \examples{
 

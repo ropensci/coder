@@ -45,3 +45,51 @@ test_that("indices", {
   )
   expect_equal(attr(cl2, "indices"), "test2")
 })
+
+
+# Objects with missing columns/attributes should not work
+test_that("check_classcodes", {
+
+  # No group
+  ch <- as.data.frame(charlson)
+  ch$group <- NULL
+  expect_error(
+    as.classcodes(ch, regex = "icd10"),
+    "classcodes object must have a column named `group`!"
+  )
+
+  # Missing group
+  ch <- as.data.frame(charlson)
+  ch$group[1] <- NA
+  expect_error(
+    as.classcodes(ch, regex = "icd10"),
+    "have missing values"
+  )
+
+  # Non-unique group
+  ch <- as.data.frame(charlson)
+  ch$group[2] <- ch$group[1]
+  expect_error(
+    as.classcodes(ch, regex = "icd10"),
+    "must be unique!"
+  )
+})
+
+test_that("print.classcodes", {
+  expect_output(print(charlson), "Classcodes object")
+  expect_output(
+    print(charlson),
+    "icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers"
+  )
+  expect_output(
+    print(charlson),
+    "charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated"
+  )
+  expect_output(
+    print(elixhauser), "Hierarchy"
+  )
+})
+
+test_that("as_tibble.classcodes", {
+  expect_s3_class( as_tibble(charlson), "tbl_df")
+})

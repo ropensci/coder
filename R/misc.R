@@ -88,12 +88,12 @@ print_tibble <- function(x, ..., n = 10) {
              ".\nIt has ", nrow(x), " row(s).",
              "\nIt is here previewed as a tibble",
              "\nUse `print(x, n = NULL)` to print as is ",
-             "(or use `n` to specify the number of rows to preview)!\n\n"
+             "(or use `n` to specify the number of rows to preview)!\n"
       )
     )
     print(tibble::as_tibble(utils::head(x, n)))
   } else {
-    class(x) <- class(x)[-1]
+    class(x) <- setdiff(class(x), c("tbl_df", "tbl"))
     print(x, ...)
   }
 }
