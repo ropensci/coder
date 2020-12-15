@@ -18,7 +18,7 @@
 #' @return
 #'
 #' Methods primarily called for their side effects (printing to the screen) but
-#' with additional invisable objects returned:
+#' with additional invisible objects returned:
 #'
 #' - `summary.classcodes()`: list with input arguments `object` and `coding`
 #'   unchanged, as well as a data frame (`summary`) with columns for groups

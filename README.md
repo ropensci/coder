@@ -136,7 +136,7 @@ ex_people
 #> # … with 90 more rows
 ```
 
-Those patietns (among others) were also recorded in a national patient
+Those patients (among others) were also recorded in a national patient
 register with date of hospital admissions and diagnoses codes coded by
 the International Classification of Diseases (ICD) version 10:
 
@@ -196,7 +196,7 @@ ch
 #> #   ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
 ```
 
-How many patietns were diagnosed with malignancy?
+How many patients were diagnosed with malignancy?
 
 ``` r
 sum(ch$malignancy)
