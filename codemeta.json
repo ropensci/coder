@@ -7,16 +7,16 @@
   "identifier": "coder",
   "description": "\n  Fast categorization of items based on external code data identified by \n  regular expressions. A typical use case considers patient with medically coded \n  data, such as codes from the International Classification of Diseases (ICD) or \n  the Anatomic Therapeutic Chemical (ATC) classification system. \n  Functions of the package relies on a triad of objects: (1) case data with unit \n  id:s and possible dates of interest; (2) external code data for corresponding \n  units in (1) and with optional dates of interest and; (3) a classification \n  scheme ('classcodes' object) with regular expressions to identify and \n  categorize relevant codes from (2). \n  It is easy to introduce new classification schemes ('classcodes' objects) or  \n  to use default schemes included in the package. Use cases includes patient \n  categorization based on comorbidity indices such as Charlson, Elixhauser, \n  RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse \n  events after hip and knee arthroplasty surgery.",
   "name": "coder: Deterministic Categorization of Items Based on External Code Data",
-  "codeRepository": "https://github.com/eribul/coder",
-  "issueTracker": "https://github.com/eribul/coder/issues",
+  "codeRepository": "https://github.com/ropensci/coder",
+  "issueTracker": "https://github.com/ropensci/coder/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.11.11",
+  "version": "0.12.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "author": [
     {
       "@type": "Person",
@@ -158,9 +158,9 @@
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     }
   ],
-  "readme": "https://github.com/eribul/coder/blob/master/README.md",
-  "fileSize": "5189.452KB",
-  "contIntegration": "https://codecov.io/gh/eribul/coder",
+  "readme": "https://github.com/ropensci/coder/blob/master/README.md",
+  "fileSize": "1117.802KB",
+  "contIntegration": "https://codecov.io/gh/ropensci/coder",
   "keywords": [
     "r",
     "package",
@@ -169,10 +169,10 @@
     "icd-10",
     "rstats"
   ],
-  "releaseNotes": "https://github.com/eribul/coder/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
   "developmentStatus": "https://www.repostatus.org/#active",
   "contributor": {},
   "copyrightHolder": {},
   "funder": {},
-  "relatedLink": "https://eribul.github.io/coder"
+  "relatedLink": "https://ropensci.github.io/coder"
 }

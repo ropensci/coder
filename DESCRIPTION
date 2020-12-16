@@ -39,7 +39,7 @@ RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: 
   knitr
-URL: https://eribul.github.io/coder
-BugReports: https://github.com/eribul/coder/issues
+URL: https://ropensci.github.io/coder
+BugReports: https://github.com/ropensci/coder/issues
 Encoding: UTF-8
 Language: en-US

@@ -2,7 +2,7 @@
 # coder <img src="man/figures/logo.png" align="right"/>
 
 [![R build
-status](https://github.com/eribul/coder/workflows/R-CMD-check/badge.svg)](https://github.com/eribul/coder/actions)
+status](https://github.com/ropensci/coder/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/coder/actions)
 [![codecov](https://codecov.io/gh/eribul/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/eribul/coder)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively

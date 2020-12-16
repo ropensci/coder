@@ -1,9 +1,9 @@
 destination: docs
-url: eribul.github.io/coder
+url: ropensci.github.io/coder
 
 authors:
   Erik Bulow:
-    href: https://github.com/eribul
+    href: https://github.com/ropensci
 
 reference:
 - title: Classify data

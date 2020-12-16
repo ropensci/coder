@@ -47,7 +47,7 @@ Those steps could be performed explicitly as `codify() %>% classify() %>% index(
 
 # Use case
 
-A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://eribul.github.io/coder/).
+A typical use case of the `coder` package would consider patient data and comorbidity as described in the package [readme](https://ropensci.github.io/coder/).
 
 The concept of comorbidity is often attributed to Feinstein [-@Feinstein1970]:
 
