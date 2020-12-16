@@ -30,10 +30,13 @@ Registry based research and the use of real world evidence (RWE) and data (RWD) 
 Codes and classifications are maintained and developed by several international bodies, such as The World Health Organization [(WHO)](https://www.who.int/classifications/), [SNOMED International](snomed.org), and the Nordic Medico-Statistical Committee [(NOMESCO)](http://nowbase.org/). 
 
 
-# Challanges in applied research
+# Challanges 
 
 Common classifications such as the International Classification of Diseases (ICD) or the Anatomical Therapeutic Chemical Classification System (ATC) entails thousands of codes which are hard to use and interpret in applied research. This is often solved by an abstraction layer combining individual codes into broader categories, sometimes further simplified by a single index value based on a weighted sum of individual categories [@Charlson1987; @Elixhauser1998; @Quan2005; @Sloan2003; @Pratt2018]. 
  
+ 
+# Statement of Need
+
 Large and long-standing national databases often contain millions of entries and span several Gigabytes (GB) in size. This leads to high computational burden and a time-consuming data managing process, a cumbersome but necessary prerequisite before any relevant analysis can be performed. There are several R-packages with a deliberate focus on comorbidity data coded by ICD and summarized by the Charlson or Elixhauser comorbidity indices ([icd](https://jackwasey.github.io/icd), [comorbidity](https://ellessenne.github.io/comorbidity/) [@Gasparini2018] and [medicalrisk](https://github.com/patrickmdnet/medicalrisk)). The `coder` package includes such capabilities as well, but takes a more general approach to deterministic item classification and categorization.
 
 
