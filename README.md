@@ -7,6 +7,7 @@ status](https://github.com/ropensci/coder/workflows/R-CMD-check/badge.svg)](http
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![DOI](https://zenodo.org/badge/65975808.svg)](https://zenodo.org/badge/latestdoi/65975808)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -34,8 +35,8 @@ remotes::install_github("eribul/coder")
 
 ## Typical use case
 
--   Determining comorbidities before clinical trials
--   Discovering adverse events after surgery
+  - Determining comorbidities before clinical trials
+  - Discovering adverse events after surgery
 
 **Patient data:** The initial rationale for the package was to classify
 patient data based on medical coding. A typical use case would consider
@@ -133,7 +134,7 @@ ex_people
 #>  8 Shuemaker, Lauren 2020-03-29
 #>  9 Boucher, Teresa   2020-09-04
 #> 10 Le, Soraiya       2020-08-09
-#> # … with 90 more rows
+#> # ... with 90 more rows
 ```
 
 Those patients (among others) were also recorded in a national patient
@@ -155,7 +156,7 @@ ex_icd10
 #>  8 Sommerville, Dominic 2020-05-03 A227  FALSE
 #>  9 Sommerville, Dominic 2020-09-07 H702  FALSE
 #> 10 Sommerville, Dominic 2019-12-31 X6051 TRUE 
-#> # … with 2,366 more rows
+#> # ... with 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme
@@ -174,26 +175,26 @@ ch <-
 
 ch
 #> # A tibble: 100 x 25
-#>    name  surgery    myocardial.infa… congestive.hear… peripheral.vasc…
+#>    name  surgery    `myocardial inf~ `congestive hea~ `peripheral vas~
 #>    <chr> <date>     <lgl>            <lgl>            <lgl>           
-#>  1 Chen… 2020-09-29 FALSE            FALSE            FALSE           
-#>  2 Grav… 2020-06-21 FALSE            FALSE            FALSE           
-#>  3 Truj… 2020-06-08 FALSE            FALSE            FALSE           
-#>  4 Simp… 2020-09-10 FALSE            FALSE            FALSE           
-#>  5 Chin… 2020-08-24 FALSE            FALSE            FALSE           
-#>  6 Le, … 2020-03-28 FALSE            FALSE            FALSE           
-#>  7 Kang… 2020-06-30 FALSE            FALSE            FALSE           
-#>  8 Shue… 2020-03-29 FALSE            FALSE            FALSE           
-#>  9 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
-#> 10 Le, … 2020-08-09 FALSE            FALSE            FALSE           
-#> # … with 90 more rows, and 20 more variables: cerebrovascular.disease <lgl>,
-#> #   dementia <lgl>, chronic.pulmonary.disease <lgl>, rheumatic.disease <lgl>,
-#> #   peptic.ulcer.disease <lgl>, mild.liver.disease <lgl>,
-#> #   diabetes.without.complication <lgl>, hemiplegia.or.paraplegia <lgl>,
-#> #   renal.disease <lgl>, diabetes.complication <lgl>, malignancy <lgl>,
-#> #   moderate.or.severe.liver.disease <lgl>, metastatic.solid.tumor <lgl>,
-#> #   AIDS.HIV <lgl>, charlson <dbl>, deyo_ramano <dbl>, dhoore <dbl>,
-#> #   ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
+#>  1 Arch~ 2020-05-25 FALSE            FALSE            FALSE           
+#>  2 Awtr~ 2020-09-20 FALSE            FALSE            FALSE           
+#>  3 Bamm~ 2020-03-25 FALSE            FALSE            FALSE           
+#>  4 Bank~ 2020-06-18 FALSE            FALSE            FALSE           
+#>  5 Bega~ 2020-06-19 FALSE            FALSE            FALSE           
+#>  6 Beni~ 2020-02-24 FALSE            FALSE            FALSE           
+#>  7 Bhat~ 2020-10-12 FALSE            FALSE            FALSE           
+#>  8 Bouc~ 2020-09-04 FALSE            FALSE            TRUE            
+#>  9 Carn~ 2020-09-11 FALSE            FALSE            FALSE           
+#> 10 Chap~ 2020-05-18 FALSE            FALSE            FALSE           
+#> # ... with 90 more rows, and 20 more variables: `cerebrovascular
+#> #   disease` <lgl>, dementia <lgl>, `chronic pulmonary disease` <lgl>,
+#> #   `rheumatic disease` <lgl>, `peptic ulcer disease` <lgl>, `mild liver
+#> #   disease` <lgl>, `diabetes without complication` <lgl>, `hemiplegia or
+#> #   paraplegia` <lgl>, `renal disease` <lgl>, `diabetes complication` <lgl>,
+#> #   malignancy <lgl>, `moderate or severe liver disease` <lgl>, `metastatic
+#> #   solid tumor` <lgl>, `AIDS/HIV` <lgl>, charlson <dbl>, deyo_ramano <dbl>,
+#> #   dhoore <dbl>, ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
 ```
 
 How many patients were diagnosed with malignancy?
@@ -272,13 +273,13 @@ coder::all_classcodes()
 #> # A tibble: 7 x 3
 #>   classcodes   regex                             indices                        
 #>   <chr>        <chr>                             <chr>                          
-#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enhan… "charlson, deyo_ramano, dhoore…
+#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enhan~ "charlson, deyo_ramano, dhoore~
 #> 2 cps          icd10                             "only_ordinary"                
-#> 3 elixhauser   icd10, icd10_short, icd9cm, icd9… "sum_all, sum_all_ahrq, walrav…
+#> 3 elixhauser   icd10, icd10_short, icd9cm, icd9~ "sum_all, sum_all_ahrq, walrav~
 #> 4 hip_ae       icd10, kva, icd10_fracture        ""                             
-#> 5 hip_ae_hail… icd10, kva                        ""                             
+#> 5 hip_ae_hail~ icd10, kva                        ""                             
 #> 6 knee_ae      icd10, kva                        ""                             
-#> 7 rxriskv      atc_pratt, atc_caughey, atc_garl… "pratt, sum_all"
+#> 7 rxriskv      atc_pratt, atc_caughey, atc_garl~ "pratt, sum_all"
 ```
 
 # Relation to other packages
