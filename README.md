@@ -165,10 +165,10 @@ comorbidities for each patient:
 ``` r
 ch <- 
   categorize(
-  ex_people,                  # patients of interest 
-  codedata = ex_icd10,        # Medical codes from national patient register
-  cc = "charlson",            # Calculate Charlson comorbidity
-  id = "name", code = "icd10" # Specify column names
+    ex_people,                  # patients of interest 
+    codedata = ex_icd10,        # Medical codes from national patient register
+    cc = "charlson",            # Calculate Charlson comorbidity
+    id = "name", code = "icd10" # Specify column names
   )
 #> Classification based on: icd10
 
@@ -207,12 +207,7 @@ What is the distribution of the combined comorbidity index for each
 patient?
 
 ``` r
-hist(
-  ch$charlson, 
-  col = "orange",
-  main = "Patient comorbidity",
-  xlab = "Charlson comorbidity index"
-)
+barplot(table(ch$charlson))
 ```
 
 <img src="man/figures/READMEunnamed-chunk-5-1.png" width="100%" />
@@ -245,16 +240,11 @@ sum(ch$malignancy, na.rm = TRUE)
 #> [1] 3
 ```
 
-Distribution of the index as proposed by QUan et al 2011 during the 90
+Distribution of the index as proposed by Quan et al 2011 during the 90
 day period:
 
 ``` r
-hist(
-  ch$quan_updated, 
-  col  = "orange",
-  main = "Charlson comorbidity",
-  xlab = "Comorbidity index by Quan et al. 2011"
-)
+barplot(table(ch$quan_updated))
 ```
 
 <img src="man/figures/READMEunnamed-chunk-8-1.png" width="100%" />
