@@ -10,8 +10,8 @@ Data frames with 100 rows and 2 variables:
 \item{name}{random person names}
 \item{atc}{Random codes from the Anatomic Therapeutic Chemical
 classification (ATC) system.}
-\item{prescription}{random dates of prescription of medications with c
-oresponding ATC codes}
+\item{prescription}{random dates of prescription of medications with
+corresponding ATC codes}
 }
 }
 \usage{

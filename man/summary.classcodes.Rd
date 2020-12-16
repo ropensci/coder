@@ -27,7 +27,7 @@ from package "decoder" (for example "icd10cm" or "atc")}
 }
 \value{
 Methods primarily called for their side effects (printing to the screen) but
-with additional invisable objects returned:
+with additional invisible objects returned:
 \itemize{
 \item \code{summary.classcodes()}: list with input arguments \code{object} and \code{coding}
 unchanged, as well as a data frame (\code{summary}) with columns for groups
