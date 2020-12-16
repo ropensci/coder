@@ -1,10 +1,17 @@
 Package: coder
 Type: Package
 Title: Deterministic Categorization of Items Based on External Code Data
-Version: 0.13.1
-Authors@R: person("Erik", "Bulow", email = "eriklgb@gmail.com",
-                  role = c("aut", "cre"),
-                  comment = c(ORCID = "0000-0002-9973-456X"))
+Version: 0.13.2
+Authors@R: 
+  c(
+    person("Erik", "Bulow", email = "eriklgb@gmail.com",
+          role = c("aut", "cre"),
+          comment = c(ORCID = "0000-0002-9973-456X")),
+  person("Emely C", "Zabore", role = "rev",
+    comment = "Emily reviewed the package (v. 0.12.1) for rOpenSci, see <https://github.com/ropensci/software-review/issues/381>"),
+  person("David", "Robinson", role = "rev",
+    comment = "David reviewed the package (v. 0.12.1) for rOpenSci, see <https://github.com/ropensci/software-review/issues/381>")
+  )
 Description: 
   Fast categorization of items based on external code data identified by 
   regular expressions. A typical use case considers patient with medically coded 

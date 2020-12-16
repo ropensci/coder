@@ -26,13 +26,19 @@ Fast categorization of items based on external code data identified by
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ropensci.github.io/coder}
+  \item \url{https://docs.ropensci.org/coder}
   \item Report bugs at \url{https://github.com/ropensci/coder/issues}
 }
 
 }
 \author{
 \strong{Maintainer}: Erik Bulow \email{eriklgb@gmail.com} (\href{https://orcid.org/0000-0002-9973-456X}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Emely C Zabore (Emily reviewed the package (v. 0.12.1) for rOpenSci, see <https://github.com/ropensci/software-review/issues/381>) [reviewer]
+  \item David Robinson (David reviewed the package (v. 0.12.1) for rOpenSci, see <https://github.com/ropensci/software-review/issues/381>) [reviewer]
+}
 
 }
 \keyword{internal}
