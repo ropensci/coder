@@ -3,7 +3,7 @@
 
 [![R build
 status](https://github.com/ropensci/coder/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/coder/actions)
-[![codecov](https://codecov.io/gh/eribul/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/eribul/coder)
+[![codecov](https://codecov.io/gh/ropensci/coder/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/coder)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -34,8 +34,8 @@ remotes::install_github("eribul/coder")
 
 ## Typical use case
 
--   Determining comorbidities before clinical trials
--   Discovering adverse events after surgery
+  - Determining comorbidities before clinical trials
+  - Discovering adverse events after surgery
 
 **Patient data:** The initial rationale for the package was to classify
 patient data based on medical coding. A typical use case would consider
@@ -120,20 +120,20 @@ Assume we have some patients with surgery at specified dates:
 ``` r
 library(coder)
 ex_people
-#> # A tibble: 100 x 2
+#> [90m# A tibble: 100 x 2[39m
 #>    name              surgery   
-#>    <chr>             <date>    
-#>  1 Chen, Trevor      2020-09-29
-#>  2 Graves, Acineth   2020-06-21
-#>  3 Trujillo, Yanelly 2020-06-08
-#>  4 Simpson, Kenneth  2020-09-10
-#>  5 Chin, Nelson      2020-08-24
-#>  6 Le, Christina     2020-03-28
-#>  7 Kang, Xuan        2020-06-30
-#>  8 Shuemaker, Lauren 2020-03-29
-#>  9 Boucher, Teresa   2020-09-04
-#> 10 Le, Soraiya       2020-08-09
-#> # … with 90 more rows
+#>    [3m[90m<chr>[39m[23m             [3m[90m<date>[39m[23m    
+#> [90m 1[39m Chen, Trevor      2020-09-29
+#> [90m 2[39m Graves, Acineth   2020-06-21
+#> [90m 3[39m Trujillo, Yanelly 2020-06-08
+#> [90m 4[39m Simpson, Kenneth  2020-09-10
+#> [90m 5[39m Chin, Nelson      2020-08-24
+#> [90m 6[39m Le, Christina     2020-03-28
+#> [90m 7[39m Kang, Xuan        2020-06-30
+#> [90m 8[39m Shuemaker, Lauren 2020-03-29
+#> [90m 9[39m Boucher, Teresa   2020-09-04
+#> [90m10[39m Le, Soraiya       2020-08-09
+#> [90m# … with 90 more rows[39m
 ```
 
 Those patients (among others) were also recorded in a national patient
@@ -142,20 +142,20 @@ the International Classification of Diseases (ICD) version 10:
 
 ``` r
 ex_icd10
-#> # A tibble: 2,376 x 4
+#> [90m# A tibble: 2,376 x 4[39m
 #>    name                 admission  icd10 hdia 
-#>    <chr>                <date>     <chr> <lgl>
-#>  1 Tran, Kenneth        2020-04-12 S134A FALSE
-#>  2 Tran, Kenneth        2020-09-26 W3319 FALSE
-#>  3 Tran, Kenneth        2020-09-05 Y0262 TRUE 
-#>  4 Tran, Kenneth        2020-07-29 X0488 FALSE
-#>  5 Sommerville, Dominic 2020-09-17 V8104 FALSE
-#>  6 Sommerville, Dominic 2020-04-28 B853  FALSE
-#>  7 Sommerville, Dominic 2020-09-12 Q174  FALSE
-#>  8 Sommerville, Dominic 2020-05-03 A227  FALSE
-#>  9 Sommerville, Dominic 2020-09-07 H702  FALSE
-#> 10 Sommerville, Dominic 2019-12-31 X6051 TRUE 
-#> # … with 2,366 more rows
+#>    [3m[90m<chr>[39m[23m                [3m[90m<date>[39m[23m     [3m[90m<chr>[39m[23m [3m[90m<lgl>[39m[23m
+#> [90m 1[39m Tran, Kenneth        2020-04-12 S134A FALSE
+#> [90m 2[39m Tran, Kenneth        2020-09-26 W3319 FALSE
+#> [90m 3[39m Tran, Kenneth        2020-09-05 Y0262 TRUE 
+#> [90m 4[39m Tran, Kenneth        2020-07-29 X0488 FALSE
+#> [90m 5[39m Sommerville, Dominic 2020-09-17 V8104 FALSE
+#> [90m 6[39m Sommerville, Dominic 2020-04-28 B853  FALSE
+#> [90m 7[39m Sommerville, Dominic 2020-09-12 Q174  FALSE
+#> [90m 8[39m Sommerville, Dominic 2020-05-03 A227  FALSE
+#> [90m 9[39m Sommerville, Dominic 2020-09-07 H702  FALSE
+#> [90m10[39m Sommerville, Dominic 2019-12-31 X6051 TRUE 
+#> [90m# … with 2,366 more rows[39m
 ```
 
 Using those two data sets, as well as a classification scheme
@@ -173,27 +173,27 @@ ch <-
 #> Classification based on: icd10
 
 ch
-#> # A tibble: 100 x 25
+#> [90m# A tibble: 100 x 25[39m
 #>    name  surgery    myocardial.infa… congestive.hear… peripheral.vasc…
-#>    <chr> <date>     <lgl>            <lgl>            <lgl>           
-#>  1 Chen… 2020-09-29 FALSE            FALSE            FALSE           
-#>  2 Grav… 2020-06-21 FALSE            FALSE            FALSE           
-#>  3 Truj… 2020-06-08 FALSE            FALSE            FALSE           
-#>  4 Simp… 2020-09-10 FALSE            FALSE            FALSE           
-#>  5 Chin… 2020-08-24 FALSE            FALSE            FALSE           
-#>  6 Le, … 2020-03-28 FALSE            FALSE            FALSE           
-#>  7 Kang… 2020-06-30 FALSE            FALSE            FALSE           
-#>  8 Shue… 2020-03-29 FALSE            FALSE            FALSE           
-#>  9 Bouc… 2020-09-04 FALSE            FALSE            TRUE            
-#> 10 Le, … 2020-08-09 FALSE            FALSE            FALSE           
-#> # … with 90 more rows, and 20 more variables: cerebrovascular.disease <lgl>,
-#> #   dementia <lgl>, chronic.pulmonary.disease <lgl>, rheumatic.disease <lgl>,
-#> #   peptic.ulcer.disease <lgl>, mild.liver.disease <lgl>,
-#> #   diabetes.without.complication <lgl>, hemiplegia.or.paraplegia <lgl>,
-#> #   renal.disease <lgl>, diabetes.complication <lgl>, malignancy <lgl>,
-#> #   moderate.or.severe.liver.disease <lgl>, metastatic.solid.tumor <lgl>,
-#> #   AIDS.HIV <lgl>, charlson <dbl>, deyo_ramano <dbl>, dhoore <dbl>,
-#> #   ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
+#>    [3m[90m<chr>[39m[23m [3m[90m<date>[39m[23m     [3m[90m<lgl>[39m[23m            [3m[90m<lgl>[39m[23m            [3m[90m<lgl>[39m[23m           
+#> [90m 1[39m Chen… 2020-09-29 FALSE            FALSE            FALSE           
+#> [90m 2[39m Grav… 2020-06-21 FALSE            FALSE            FALSE           
+#> [90m 3[39m Truj… 2020-06-08 FALSE            FALSE            FALSE           
+#> [90m 4[39m Simp… 2020-09-10 FALSE            FALSE            FALSE           
+#> [90m 5[39m Chin… 2020-08-24 FALSE            FALSE            FALSE           
+#> [90m 6[39m Le, … 2020-03-28 FALSE            FALSE            FALSE           
+#> [90m 7[39m Kang… 2020-06-30 FALSE            FALSE            FALSE           
+#> [90m 8[39m Shue… 2020-03-29 FALSE            FALSE            FALSE           
+#> [90m 9[39m Bouc… 2020-09-04 FALSE            FALSE            TRUE            
+#> [90m10[39m Le, … 2020-08-09 FALSE            FALSE            FALSE           
+#> [90m# … with 90 more rows, and 20 more variables: cerebrovascular.disease [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   dementia [3m[90m<lgl>[90m[23m, chronic.pulmonary.disease [3m[90m<lgl>[90m[23m, rheumatic.disease [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   peptic.ulcer.disease [3m[90m<lgl>[90m[23m, mild.liver.disease [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   diabetes.without.complication [3m[90m<lgl>[90m[23m, hemiplegia.or.paraplegia [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   renal.disease [3m[90m<lgl>[90m[23m, diabetes.complication [3m[90m<lgl>[90m[23m, malignancy [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   moderate.or.severe.liver.disease [3m[90m<lgl>[90m[23m, metastatic.solid.tumor [3m[90m<lgl>[90m[23m,[39m
+#> [90m#   AIDS.HIV [3m[90m<lgl>[90m[23m, charlson [3m[90m<dbl>[90m[23m, deyo_ramano [3m[90m<dbl>[90m[23m, dhoore [3m[90m<dbl>[90m[23m,[39m
+#> [90m#   ghali [3m[90m<dbl>[90m[23m, quan_original [3m[90m<dbl>[90m[23m, quan_updated [3m[90m<dbl>[90m[23m[39m
 ```
 
 How many patients were diagnosed with malignancy?
@@ -269,16 +269,16 @@ might be combined freely.
 
 ``` r
 coder::all_classcodes()
-#> # A tibble: 7 x 3
+#> [90m# A tibble: 7 x 3[39m
 #>   classcodes   regex                             indices                        
-#>   <chr>        <chr>                             <chr>                          
-#> 1 charlson     icd10, icd9cm_deyo, icd9cm_enhan… "charlson, deyo_ramano, dhoore…
-#> 2 cps          icd10                             "only_ordinary"                
-#> 3 elixhauser   icd10, icd10_short, icd9cm, icd9… "sum_all, sum_all_ahrq, walrav…
-#> 4 hip_ae       icd10, kva, icd10_fracture        ""                             
-#> 5 hip_ae_hail… icd10, kva                        ""                             
-#> 6 knee_ae      icd10, kva                        ""                             
-#> 7 rxriskv      atc_pratt, atc_caughey, atc_garl… "pratt, sum_all"
+#>   [3m[90m<chr>[39m[23m        [3m[90m<chr>[39m[23m                             [3m[90m<chr>[39m[23m                          
+#> [90m1[39m charlson     icd10, icd9cm_deyo, icd9cm_enhan… [90m"[39mcharlson, deyo_ramano, dhoore…
+#> [90m2[39m cps          icd10                             [90m"[39monly_ordinary[90m"[39m                
+#> [90m3[39m elixhauser   icd10, icd10_short, icd9cm, icd9… [90m"[39msum_all, sum_all_ahrq, walrav…
+#> [90m4[39m hip_ae       icd10, kva, icd10_fracture        [90m"[39m[90m"[39m                             
+#> [90m5[39m hip_ae_hail… icd10, kva                        [90m"[39m[90m"[39m                             
+#> [90m6[39m knee_ae      icd10, kva                        [90m"[39m[90m"[39m                             
+#> [90m7[39m rxriskv      atc_pratt, atc_caughey, atc_garl… [90m"[39mpratt, sum_all[90m"[39m
 ```
 
 # Relation to other packages
@@ -293,10 +293,8 @@ Charlson and Elixhauser co-morbidity based on ICD-codes
 [icdcoder](https://github.com/wtcooper/icdcoder)). The `coder` package
 includes similar functionalities but has a wider scope.
 
-# Contribution
+# Code of conduct
 
-Contributions to this package are welcome. The preferred method of
-contribution is through a github pull request. Feel free to contact me
-by creating an issue. Please note that this project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in
-this project you agree to abide by its terms.
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.
