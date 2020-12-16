@@ -75,10 +75,10 @@ Using those two data sets, as well as a classification scheme (`classcodes` obje
 ```{r}
 ch <- 
   categorize(
-  ex_people,                  # patients of interest 
-  codedata = ex_icd10,        # Medical codes from national patient register
-  cc = "charlson",            # Calculate Charlson comorbidity
-  id = "name", code = "icd10" # Specify column names
+    ex_people,                  # patients of interest 
+    codedata = ex_icd10,        # Medical codes from national patient register
+    cc = "charlson",            # Calculate Charlson comorbidity
+    id = "name", code = "icd10" # Specify column names
   )
 
 ch
@@ -93,12 +93,7 @@ sum(ch$malignancy)
 What is the distribution of the combined comorbidity index for each patient?
 
 ```{r}
-hist(
-  ch$charlson, 
-  col = "orange",
-  main = "Patient comorbidity",
-  xlab = "Charlson comorbidity index"
-)
+barplot(table(ch$charlson))
 ```
 
 There are many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery as specified with an argument list `codify_args`as passed to `codify()`:
@@ -124,15 +119,10 @@ Number of malignancies during this period?
 sum(ch$malignancy, na.rm = TRUE)
 ```
 
-Distribution of the index as proposed by QUan et al 2011 during the 90 day period:
+Distribution of the index as proposed by Quan et al 2011 during the 90 day period:
 
 ```{r}
-hist(
-  ch$quan_updated, 
-  col  = "orange",
-  main = "Charlson comorbidity",
-  xlab = "Comorbidity index by Quan et al. 2011"
-)
+barplot(table(ch$quan_updated))
 ```
 
 ## Classification schemes
