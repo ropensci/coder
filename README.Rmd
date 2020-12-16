@@ -64,7 +64,7 @@ library(coder)
 ex_people
 ```
 
-Those patietns (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
+Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
 
 ```{r}
 ex_icd10
@@ -84,7 +84,7 @@ ch <-
 ch
 ```
 
-How many patietns were diagnosed with malignancy?
+How many patients were diagnosed with malignancy?
 
 ```{r}
 sum(ch$malignancy)

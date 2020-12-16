@@ -111,7 +111,7 @@ codebooks <- function(..., file = NULL) {
     message("codebooks saved as ", file)
   } else {
     warning(
-      "No file specified! List of codebooks (invisable) returned!",
+      "No file specified! List of codebooks (invisible) returned!",
       call. = FALSE
     )
   }
