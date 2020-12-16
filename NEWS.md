@@ -1,3 +1,7 @@
+# coder 0.13.1
+
+Release candidate submitted to JOSS.
+
 # coder 0.5.5
 
 * Include Walraven score for Elixhauser comorbidity index
