@@ -12,7 +12,7 @@ authors:
 affiliations:
  - name: The Swedish Arthroplasty Register, Registercentrum Västra Götaland, Gothenburg, Sweden
    index: 1
- - name: Department of orthopaedics, institute of clinical sciences, Sahlgrenska Academy, University of Gothenburg, Gothenburg, Sweden
+ - name: Department of Orthopaedics, Institute of Clinical Sciences, Sahlgrenska Academy, University of Gothenburg, Gothenburg, Sweden
    index: 2
 date: 16 December 2020
 bibliography: paper.bib
