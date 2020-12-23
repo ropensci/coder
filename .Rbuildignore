@@ -24,3 +24,5 @@ library.bib
 ^tests/jv/*
 ^doc$
 ^Meta$
+^cran-comments\.md$
+^references.bib$
