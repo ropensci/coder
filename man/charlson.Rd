@@ -57,17 +57,17 @@ Armitage, J. N., & van der Meulen, J. H. (2010).
 Identifying co-morbidity in surgical patients using administrative data
 with the Royal College of Surgeons Charlson Score.
 British Journal of Surgery, 97(5), 772–781.
-\url{http://doi.org/10.1002/bjs.6930}
+\doi{10.1002/bjs.6930}
 
 Brusselaers N, Lagergren J. (2017)
 The Charlson Comorbidity Index in Registry-based Research.
-Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.
+Methods Inf Med 2017;56:401–6. \doi{10.3414/ME17-01-0051}.
 
 Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
 Adapting a clinical comorbidity index for use with ICD-9-CM
 administrative databases.
 Journal of Clinical Epidemiology, 45(6), 613–619.
-\url{https://doi.org/10.1016/0895-4356(92)90133-8}
+\doi{10.1016/0895-4356(92)90133-8}
 
 Quan Hude et al. (2005). Coding algorithms for defining
 comorbidities in ICD-9-CM and ICD-10 administrative data.

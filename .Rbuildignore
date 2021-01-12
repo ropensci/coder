@@ -25,4 +25,4 @@ library.bib
 ^doc$
 ^Meta$
 ^cran-comments\.md$
-^references.bib$
+^references.bib

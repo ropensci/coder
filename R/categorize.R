@@ -122,7 +122,7 @@ categorize.codified <- function(x,
   cc_args$cc  <- cc_name <- cc
   cc          <- do.call(set_classcodes, cc_args)
   cl          <- classify(codified, cc, cc_args = NULL) # NULL since cc set
-  data        <- unique(codified, by = id)[, ...data_cols]
+  data        <- unique(codified, by = id)[, .data_cols, with = FALSE]
   data$id_chr <- as.character(data[[id]]) # To be able to merge
   out         <- merge(data, as.data.table(cl), by.x = "id_chr", by.y = id)
   id_chr      <- NULL # to avoid check note

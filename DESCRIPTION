@@ -1,7 +1,7 @@
 Package: coder
 Type: Package
 Title: Deterministic Categorization of Items Based on External Code Data
-Version: 0.13.2
+Version: 0.13.3
 Authors@R: 
   c(
     person("Erik", "Bulow", email = "eriklgb@gmail.com",
@@ -15,8 +15,8 @@ Authors@R:
 Description: 
   Fast categorization of items based on external code data identified by 
   regular expressions. A typical use case considers patient with medically coded 
-  data, such as codes from the International Classification of Diseases (ICD) or 
-  the Anatomic Therapeutic Chemical (ATC) classification system. 
+  data, such as codes from the International Classification of Diseases ('ICD') or 
+  the Anatomic Therapeutic Chemical ('ATC') classification system. 
   Functions of the package relies on a triad of objects: (1) case data with unit 
   id:s and possible dates of interest; (2) external code data for corresponding 
   units in (1) and with optional dates of interest and; (3) a classification 
@@ -24,9 +24,9 @@ Description:
   categorize relevant codes from (2). 
   It is easy to introduce new classification schemes ('classcodes' objects) or  
   to use default schemes included in the package. Use cases includes patient 
-  categorization based on comorbidity indices such as Charlson, Elixhauser, 
-  RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse 
-  events after hip and knee arthroplasty surgery.
+  categorization based on 'comorbidity indices' such as 'Charlson', 'Elixhauser', 
+  'RxRisk V', or the 'comorbidity-polypharmacy' score (CPS), as well as adverse 
+  events after hip and knee replacement surgery.
 License: MIT + file LICENSE
 Depends: R (>= 3.3)
 Suggests:
@@ -46,7 +46,7 @@ RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: 
   knitr
-URL: https://docs.ropensci.org/coder
+URL: https://docs.ropensci.org/coder/
 BugReports: https://github.com/ropensci/coder/issues
 Encoding: UTF-8
 Language: en-US

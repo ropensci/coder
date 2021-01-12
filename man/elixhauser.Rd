@@ -61,7 +61,7 @@ Moore, B. J., White, S., Washington, R., Coenen, N., & Elixhauser, A. (2017).
 Identifying Increased Risk of Readmission and In-hospital Mortality Using
 Hospital Administrative Data.
 Medical Care, 55(7), 698–705.
-\url{http://doi.org/10.1097/MLR.0000000000000735}
+\doi{10.1097/MLR.0000000000000735}
 
 Quan Hude et al. (2005). Coding algorithms for defining
 comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -72,7 +72,7 @@ Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
 Vadera, S., & Griffith, S. D. (2015).
 A new Elixhauser-based comorbidity summary measure to predict in-hospital
 mortality. Med Care, 53(4), 374–379.
-\url{http://doi.org/10.1097/MLR.0000000000000326}
+\doi{10.1097/MLR.0000000000000326}
 
 Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
 C. Van, … Jennings, A. (2009).

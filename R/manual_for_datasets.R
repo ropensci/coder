@@ -52,7 +52,7 @@
 #'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
 #'   Hospital Administrative Data.
 #'   Medical Care, 55(7), 698–705.
-#'   \url{http://doi.org/10.1097/MLR.0000000000000735}
+#'   \doi{10.1097/MLR.0000000000000735}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -63,7 +63,7 @@
 #'   Vadera, S., & Griffith, S. D. (2015).
 #'   A new Elixhauser-based comorbidity summary measure to predict in-hospital
 #'   mortality. Med Care, 53(4), 374–379.
-#'   \url{http://doi.org/10.1097/MLR.0000000000000326}
+#'   \doi{10.1097/MLR.0000000000000326}
 #'
 #' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
 #'   C. Van, … Jennings, A. (2009).
@@ -123,18 +123,18 @@
 #'    Identifying co-morbidity in surgical patients using administrative data
 #'    with the Royal College of Surgeons Charlson Score.
 #'    British Journal of Surgery, 97(5), 772–781.
-#'    \url{http://doi.org/10.1002/bjs.6930}
+#'    \doi{10.1002/bjs.6930}
 #'
 #'  Brusselaers N, Lagergren J. (2017)
 #'    The Charlson Comorbidity Index in Registry-based Research.
-#'    Methods Inf Med 2017;56:401–6. doi:10.3414/ME17-01-0051.
+#'    Methods Inf Med 2017;56:401–6. \doi{10.3414/ME17-01-0051}.
 #'
 #'
 #'  Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
 #'    Adapting a clinical comorbidity index for use with ICD-9-CM
 #'    administrative databases.
 #'    Journal of Clinical Epidemiology, 45(6), 613–619.
-#'    \url{https://doi.org/10.1016/0895-4356(92)90133-8}
+#'    \doi{10.1016/0895-4356(92)90133-8}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
@@ -268,14 +268,14 @@
 #'   Comorbidity in the elderly with diabetes:
 #'   Identification of areas of potential treatment conflicts.
 #'   Diabetes Res Clin Pract 2010;87:385–93.
-#'   \url{https://doi.org/10.1016/j.diabres.2009.10.019}.
+#'   \doi{10.1016/j.diabres.2009.10.019}.
 #'
 #' Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
 #'   Ramsay E, et al.
 #'   The validity of the Rx-Risk Comorbidity Index using medicines mapped to
 #'   the Anatomical Therapeutic Chemical (ATC) Classification System.
 #'   BMJ Open 2018;8.
-#'   \url{https://doi.org/10.1136/bmjopen-2017-021122}.
+#'   \doi{10.1136/bmjopen-2017-021122}.
 #'
 #' @family default classcodes
 "rxriskv"

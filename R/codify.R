@@ -1,3 +1,7 @@
+# To avoid CRAN check notes for undefined global variables
+# https://www.r-bloggers.com/2019/08/no-visible-binding-for-global-variable/
+utils::globalVariables(c("..code_date", "..code"))
+
 #' Codify case data with external code data (within specified time frames)
 #'
 #' This is the first step of `codify() %>% classify() %>% index()`.
@@ -141,7 +145,7 @@ codify.data.table <- function(x,
   x2 <- copybig(codedata, .copy)
 
   if (alnum) {
-    x2[, (code) := gsub("[^[:alnum:]]", "", .SD[[..code]])]
+    x2[, (code) := gsub("[^[:alnum:]]", "", .SD[[1]]), .SDcols = code]
   }
 
   ..date <- ..code_date <- in_period  <- NULL # to avoid check notes
@@ -149,7 +153,7 @@ codify.data.table <- function(x,
   # Use faster date format
   if (usedate) {
     x[, (date) := as.IDate(.SD[[date]])]
-    codedata[, (code_date) := as.IDate(.SD[[..code_date]])]
+    codedata[, (code_date) := as.IDate(.SD[[1]]), .SDcols = code_date]
   }
 
   x1_id_date <- x1[, idcols, with = FALSE] # To avoid unique on all data
