@@ -27,7 +27,7 @@ Description:
   categorization based on 'comorbidity indices' such as 'Charlson', 'Elixhauser', 
   'RxRisk V', or the 'comorbidity-polypharmacy' score (CPS), as well as adverse 
   events after hip and knee replacement surgery.
-License: MIT + file LICENSE
+License: GPL-2
 Depends: R (>= 3.3)
 Suggests:
   covr,

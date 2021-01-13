@@ -168,7 +168,7 @@
 #'   "Comorbidity polypharmacy score and its clinical utility: A pragmatic
 #'   practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
 #'   (2015): 224.
-#'   \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+#'   \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 #'
 #' @family default classcodes
 "cps"
@@ -217,7 +217,7 @@
 #'     Validation of adverse events after hip arthroplasty:
 #'     a Swedish multi-centre cohort study.
 #'     BMJ Open. 2019 Mar 7;9(3):e023773.
-#'     Available from: \url{http://www.ncbi.nlm.nih.gov/pubmed/30850403}
+#'     Available from: \url{https://www.ncbi.nlm.nih.gov/pubmed/30850403/}
 #'
 #' @source
 #' Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
@@ -275,7 +275,6 @@
 #'   The validity of the Rx-Risk Comorbidity Index using medicines mapped to
 #'   the Anatomical Therapeutic Chemical (ATC) Classification System.
 #'   BMJ Open 2018;8.
-#'   \doi{10.1136/bmjopen-2017-021122}.
 #'
 #' @family default classcodes
 "rxriskv"
