@@ -25,7 +25,7 @@ Stawicki, Stanislaw P., et al.
 "Comorbidity polypharmacy score and its clinical utility: A pragmatic
 practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
 (2015): 224.
-\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
+\url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 }
 \seealso{
 Other default classcodes: 

@@ -35,7 +35,6 @@ Ramsay E, et al.
 The validity of the Rx-Risk Comorbidity Index using medicines mapped to
 the Anatomical Therapeutic Chemical (ATC) Classification System.
 BMJ Open 2018;8.
-\doi{10.1136/bmjopen-2017-021122}.
 }
 \seealso{
 Other default classcodes: 
