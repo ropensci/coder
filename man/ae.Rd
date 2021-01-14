@@ -64,7 +64,7 @@ Magneli M, Unbeck M, Rogmark C, Rolfson O, Hommel A, Samuelsson B, et al.
 Validation of adverse events after hip arthroplasty:
 a Swedish multi-centre cohort study.
 BMJ Open. 2019 Mar 7;9(3):e023773.
-Available from: \url{https://www.ncbi.nlm.nih.gov/pubmed/30850403/}
+Available from: \url{https://pubmed.ncbi.nlm.nih.gov/30850403/}
 }
 \seealso{
 hip_ae_hailer

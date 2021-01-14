@@ -217,7 +217,7 @@
 #'     Validation of adverse events after hip arthroplasty:
 #'     a Swedish multi-centre cohort study.
 #'     BMJ Open. 2019 Mar 7;9(3):e023773.
-#'     Available from: \url{https://www.ncbi.nlm.nih.gov/pubmed/30850403/}
+#'     Available from: \url{https://pubmed.ncbi.nlm.nih.gov/30850403/}
 #'
 #' @source
 #' Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
