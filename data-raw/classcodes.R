@@ -52,4 +52,3 @@ usethis::use_data(
 )
 
 rm(list = ls())
-.print

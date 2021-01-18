@@ -8,7 +8,7 @@ setwd("coder")
 
 unlink("data", TRUE)
 dir.create("data")
-file.remove("R/sysdata.rda")
+# file.remove("R/sysdata.rda")
 library(tidyverse)
 library(data.table)
 devtools::load_all()
