@@ -17,7 +17,6 @@ for (file in dir("data-raw", pattern = ".R")) {
 }
 
 # Rebuild documentation
-unlink("man", TRUE)
 file.remove("NAMESPACE")
 devtools::document()
 devtools::install()
