@@ -1,22 +1,25 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "coder",
-  "description": "\n  Fast categorization of items based on external code data identified by \n  regular expressions. A typical use case considers patient with medically coded \n  data, such as codes from the International Classification of Diseases (ICD) or \n  the Anatomic Therapeutic Chemical (ATC) classification system. \n  Functions of the package relies on a triad of objects: (1) case data with unit \n  id:s and possible dates of interest; (2) external code data for corresponding \n  units in (1) and with optional dates of interest and; (3) a classification \n  scheme ('classcodes' object) with regular expressions to identify and \n  categorize relevant codes from (2). \n  It is easy to introduce new classification schemes ('classcodes' objects) or  \n  to use default schemes included in the package. Use cases includes patient \n  categorization based on comorbidity indices such as Charlson, Elixhauser, \n  RxRisk V, or the co-morbidity-polypharmacy score (CPS), as well as adverse \n  events after hip and knee arthroplasty surgery.",
+  "description": " Fast categorization of items based on external code data identified by regular expressions. A typical use case considers patient with medically coded data, such as codes from the International Classification of Diseases ('ICD') or the Anatomic Therapeutic Chemical ('ATC') classification system. Functions of the package relies on a triad of objects: (1) case data with unit id:s and possible dates of interest; (2) external code data for corresponding units in (1) and with optional dates of interest and; (3) a classification scheme ('classcodes' object) with regular expressions to identify and categorize relevant codes from (2). It is easy to introduce new classification schemes ('classcodes' objects) or to use default schemes included in the package. Use cases includes patient categorization based on 'comorbidity indices' such as 'Charlson', 'Elixhauser', 'RxRisk V', or the 'comorbidity-polypharmacy' score (CPS), as well as adverse events after hip and knee replacement surgery.",
   "name": "coder: Deterministic Categorization of Items Based on External Code Data",
   "codeRepository": "https://github.com/ropensci/coder",
   "issueTracker": "https://github.com/ropensci/coder/issues",
-  "license": "https://spdx.org/licenses/MIT",
-  "version": "0.12.1",
+  "license": "https://spdx.org/licenses/GPL-2.0",
+  "version": "0.13.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.2.1 (2022-06-23 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -97,14 +100,14 @@
       "sameAs": "https://CRAN.R-project.org/package=writexl"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.3"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "data.table",
       "name": "data.table",
@@ -116,7 +119,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "decoder",
       "name": "decoder",
@@ -128,7 +131,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=decoder"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "generics",
       "name": "generics",
@@ -140,12 +143,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=generics"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -156,23 +159,14 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
-    }
-  ],
-  "readme": "https://github.com/ropensci/coder/blob/master/README.md",
-  "fileSize": "1117.802KB",
-  "contIntegration": "https://codecov.io/gh/ropensci/coder",
-  "keywords": [
-    "r",
-    "package",
-    "r-package",
-    "classification",
-    "icd-10",
-    "rstats"
-  ],
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "335.696KB",
+  "relatedLink": ["https://docs.ropensci.org/coder/", "https://CRAN.R-project.org/package=coder"],
   "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/coder/blob/master/README.md",
+  "contIntegration": ["https://github.com/ropensci/coder/actions", "https://codecov.io/gh/ropensci/coder"],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
-  "relatedLink": "https://ropensci.github.io/coder"
+  "keywords": ["r", "package", "r-package", "classification", "icd-10", "rstats"]
 }

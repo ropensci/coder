@@ -1,7 +1,7 @@
 Package: coder
 Type: Package
 Title: Deterministic Categorization of Items Based on External Code Data
-Version: 0.13.7
+Version: 0.13.8
 Authors@R: 
   c(
     person("Erik", "Bulow", email = "eriklgb@gmail.com",
@@ -42,7 +42,7 @@ Imports:
   methods,
   tibble
 LazyData: TRUE
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: 
   knitr

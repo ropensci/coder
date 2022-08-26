@@ -6,20 +6,9 @@
 \alias{coder-package}
 \title{coder: Deterministic Categorization of Items Based on External Code Data}
 \description{
-Fast categorization of items based on external code data identified by 
-  regular expressions. A typical use case considers patient with medically coded 
-  data, such as codes from the International Classification of Diseases ('ICD') or 
-  the Anatomic Therapeutic Chemical ('ATC') classification system. 
-  Functions of the package relies on a triad of objects: (1) case data with unit 
-  id:s and possible dates of interest; (2) external code data for corresponding 
-  units in (1) and with optional dates of interest and; (3) a classification 
-  scheme ('classcodes' object) with regular expressions to identify and 
-  categorize relevant codes from (2). 
-  It is easy to introduce new classification schemes ('classcodes' objects) or  
-  to use default schemes included in the package. Use cases includes patient 
-  categorization based on 'comorbidity indices' such as 'Charlson', 'Elixhauser', 
-  'RxRisk V', or the 'comorbidity-polypharmacy' score (CPS), as well as adverse 
-  events after hip and knee replacement surgery.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Fast categorization of items based on external code data identified by regular expressions. A typical use case considers patient with medically coded data, such as codes from the International Classification of Diseases ('ICD') or the Anatomic Therapeutic Chemical ('ATC') classification system. Functions of the package relies on a triad of objects: (1) case data with unit id:s and possible dates of interest; (2) external code data for corresponding units in (1) and with optional dates of interest and; (3) a classification scheme ('classcodes' object) with regular expressions to identify and categorize relevant codes from (2). It is easy to introduce new classification schemes ('classcodes' objects) or to use default schemes included in the package. Use cases includes patient categorization based on 'comorbidity indices' such as 'Charlson', 'Elixhauser', 'RxRisk V', or the 'comorbidity-polypharmacy' score (CPS), as well as adverse events after hip and knee replacement surgery.
 }
 \seealso{
 Useful links:

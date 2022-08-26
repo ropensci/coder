@@ -20,8 +20,8 @@ mutate(
 # There are some additional ICD-10 codes used for hip fractures.
 # https://registercentrum.blob.core.windows.net/shpr/r/-rsrapport-2017-S1xKMzsAwX.pdf
 # p. 149
-# I do not want to make a manual copy of all those codes but simply add a fracture column based on
-# existing codes.
+# I do not want to make a manual copy of all those codes but simply add a
+# fracture column based on existing codes.
 hip_ae$icd10_fracture <-
   if_else(
     hip_ae$group == "DM1 other",
