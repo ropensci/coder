@@ -27,3 +27,4 @@ library.bib
 ^cran-comments\.md$
 ^references.bib
 ^CRAN-RELEASE$
+^CRAN-SUBMISSION$
