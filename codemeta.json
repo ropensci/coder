@@ -162,11 +162,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "335.696KB",
+  "fileSize": "335.73KB",
   "relatedLink": ["https://docs.ropensci.org/coder/", "https://CRAN.R-project.org/package=coder"],
   "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/coder/blob/master/README.md",
-  "contIntegration": ["https://github.com/ropensci/coder/actions", "https://codecov.io/gh/ropensci/coder"],
+  "contIntegration": ["https://github.com/ropensci/coder/actions", "https://app.codecov.io/gh/ropensci/coder"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "keywords": ["r", "package", "r-package", "classification", "icd-10", "rstats"]
 }
