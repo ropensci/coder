@@ -4,7 +4,7 @@
 \alias{as.keyvalue.classcodes}
 \title{Make keyvalue object from classcodes object}
 \usage{
-\method{as.keyvalue}{classcodes}(x, coding, cc_args = list())
+\method{as.keyvalue}{classcodes}(x, coding, cc_args = list(), ...)
 }
 \arguments{
 \item{x}{classcodes object}
@@ -14,6 +14,8 @@ or a name (character vector of length one) of a keyvalue object
 from package "decoder" (for example "icd10cm" or "atc")}
 
 \item{cc_args}{List of named arguments passed to \code{\link[=set_classcodes]{set_classcodes()}}}
+
+\item{...}{additional arguments passed to \code{\link[decoder:keyvalue]{decoder::as.keyvalue()}}}
 }
 \value{
 Object of class \code{keyvalue} where \code{key} is the subset of codes from

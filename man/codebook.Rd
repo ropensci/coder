@@ -65,7 +65,7 @@ codebook(elixhauser, "icd9cmd",
 # The codebook returns a list with three objects.
 # Access a dictionary table with translates of each code to text:
 codebook(charlson, "icd10cm")$all_codes
-}
+
 
 # print.codebook() --------------------------------------------------------
 
@@ -90,7 +90,7 @@ codebooks(
   elix_icd10 = c1, elix_icd9cm = c2,
   file = tempfile("codebooks", fileext = ".xlsx")
 )
-
+}
 }
 \seealso{
 Other classcodes: 

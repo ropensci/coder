@@ -13,7 +13,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23 ucrt)",
+  "runtimePlatform": "R version 4.2.0 (2022-04-22 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -162,7 +162,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "335.73KB",
+  "fileSize": "333.488KB",
   "relatedLink": ["https://docs.ropensci.org/coder/", "https://CRAN.R-project.org/package=coder"],
   "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/coder/blob/master/README.md",

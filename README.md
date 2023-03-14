@@ -60,20 +60,20 @@ Assume we have some patients with surgery at specified dates:
 ```r
 library(coder)
 ex_people
-#> # A tibble: 100 × 2
+#> # A tibble: 100 x 2
 #>    name              surgery   
 #>    <chr>             <date>    
-#>  1 Chen, Trevor      2022-08-12
-#>  2 Graves, Acineth   2022-05-04
-#>  3 Trujillo, Yanelly 2022-04-21
-#>  4 Simpson, Kenneth  2022-07-24
-#>  5 Chin, Nelson      2022-07-07
-#>  6 Le, Christina     2022-02-08
-#>  7 Kang, Xuan        2022-05-13
-#>  8 Shuemaker, Lauren 2022-02-09
-#>  9 Boucher, Teresa   2022-07-18
-#> 10 Le, Soraiya       2022-06-22
-#> # … with 90 more rows
+#>  1 Chen, Trevor      2023-02-28
+#>  2 Graves, Acineth   2022-11-20
+#>  3 Trujillo, Yanelly 2022-11-07
+#>  4 Simpson, Kenneth  2023-02-09
+#>  5 Chin, Nelson      2023-01-23
+#>  6 Le, Christina     2022-08-27
+#>  7 Kang, Xuan        2022-11-29
+#>  8 Shuemaker, Lauren 2022-08-28
+#>  9 Boucher, Teresa   2023-02-03
+#> 10 Le, Soraiya       2023-01-08
+#> # ... with 90 more rows
 ```
 
 Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
@@ -81,20 +81,20 @@ Those patients (among others) were also recorded in a national patient register 
 
 ```r
 ex_icd10
-#> # A tibble: 2,376 × 4
+#> # A tibble: 2,376 x 4
 #>    name                 admission  icd10 hdia 
 #>    <chr>                <date>     <chr> <lgl>
-#>  1 Tran, Kenneth        2022-02-23 S134A FALSE
-#>  2 Tran, Kenneth        2022-08-09 W3319 FALSE
-#>  3 Tran, Kenneth        2022-07-19 Y0262 TRUE 
-#>  4 Tran, Kenneth        2022-06-11 X0488 FALSE
-#>  5 Sommerville, Dominic 2022-07-31 V8104 FALSE
-#>  6 Sommerville, Dominic 2022-03-11 B853  FALSE
-#>  7 Sommerville, Dominic 2022-07-26 Q174  FALSE
-#>  8 Sommerville, Dominic 2022-03-16 A227  FALSE
-#>  9 Sommerville, Dominic 2022-07-21 H702  FALSE
-#> 10 Sommerville, Dominic 2021-11-12 X6051 TRUE 
-#> # … with 2,366 more rows
+#>  1 Tran, Kenneth        2022-09-11 S134A FALSE
+#>  2 Tran, Kenneth        2023-02-25 W3319 FALSE
+#>  3 Tran, Kenneth        2023-02-04 Y0262 TRUE 
+#>  4 Tran, Kenneth        2022-12-28 X0488 FALSE
+#>  5 Sommerville, Dominic 2023-02-16 V8104 FALSE
+#>  6 Sommerville, Dominic 2022-09-27 B853  FALSE
+#>  7 Sommerville, Dominic 2023-02-11 Q174  FALSE
+#>  8 Sommerville, Dominic 2022-10-02 A227  FALSE
+#>  9 Sommerville, Dominic 2023-02-06 H702  FALSE
+#> 10 Sommerville, Dominic 2022-05-31 X6051 TRUE 
+#> # ... with 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme (`classcodes` object; see below), we can easily identify all Charlson comorbidities for each patient:
@@ -111,21 +111,26 @@ ch <-
 #> Classification based on: icd10
 
 ch
-#> # A tibble: 100 × 25
-#>    name              surgery    myocardial.infarction congestive.heart.failure peripheral.vascular.disease cerebrovascular.dise…¹ demen…² chron…³ rheum…⁴ pepti…⁵ mild.…⁶ diabe…⁷ hemip…⁸ renal…⁹ diabe…˟ malig…˟ moder…˟ metas…˟ AIDS.…˟ charl…˟ deyo_…˟ dhoore ghali quan_…˟ quan_…˟
-#>    <chr>             <date>     <lgl>                 <lgl>                    <lgl>                       <lgl>                  <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>     <dbl>   <dbl>  <dbl> <dbl>   <dbl>   <dbl>
-#>  1 Chen, Trevor      2022-08-12 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  2 Graves, Acineth   2022-05-04 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  3 Trujillo, Yanelly 2022-04-21 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  4 Simpson, Kenneth  2022-07-24 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  5 Chin, Nelson      2022-07-07 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  6 Le, Christina     2022-02-08 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE         2       1      1     0       2       2
-#>  7 Kang, Xuan        2022-05-13 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#>  8 Shuemaker, Lauren 2022-02-09 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         1       1      1     0       1       1
-#>  9 Boucher, Teresa   2022-07-18 FALSE                 FALSE                    TRUE                        FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         1       1      1     2       1       0
-#> 10 Le, Soraiya       2022-06-22 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0
-#> # … with 90 more rows, and abbreviated variable names ¹​cerebrovascular.disease, ²​dementia, ³​chronic.pulmonary.disease, ⁴​rheumatic.disease, ⁵​peptic.ulcer.disease, ⁶​mild.liver.disease, ⁷​diabetes.without.complication, ⁸​hemiplegia.or.paraplegia, ⁹​renal.disease,
-#> #   ˟​diabetes.complication, ˟​malignancy, ˟​moderate.or.severe.liver.disease, ˟​metastatic.solid.tumor, ˟​AIDS.HIV, ˟​charlson, ˟​deyo_ramano, ˟​quan_original, ˟​quan_updated
+#> # A tibble: 100 x 25
+#>    name    surgery    myoca~1 conge~2 perip~3 cereb~4 demen~5 chron~6 rheum~7 pepti~8 mild.~9 diabe~* hemip~* renal~*
+#>    <chr>   <date>     <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
+#>  1 Chen, ~ 2023-02-28 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  2 Graves~ 2022-11-20 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  3 Trujil~ 2022-11-07 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  4 Simpso~ 2023-02-09 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  5 Chin, ~ 2023-01-23 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  6 Le, Ch~ 2022-08-27 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  7 Kang, ~ 2022-11-29 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  8 Shuema~ 2022-08-28 FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#>  9 Bouche~ 2023-02-03 FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#> 10 Le, So~ 2023-01-08 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
+#> # ... with 90 more rows, 11 more variables: diabetes.complication <lgl>, malignancy <lgl>,
+#> #   moderate.or.severe.liver.disease <lgl>, metastatic.solid.tumor <lgl>, AIDS.HIV <lgl>, charlson <dbl>,
+#> #   deyo_ramano <dbl>, dhoore <dbl>, ghali <dbl>, quan_original <dbl>, quan_updated <dbl>, and abbreviated variable
+#> #   names 1: myocardial.infarction, 2: congestive.heart.failure, 3: peripheral.vascular.disease,
+#> #   4: cerebrovascular.disease, 5: dementia, 6: chronic.pulmonary.disease, 7: rheumatic.disease,
+#> #   8: peptic.ulcer.disease, 9: mild.liver.disease, *: diabetes.without.complication, *: hemiplegia.or.paraplegia,
+#> #   *: renal.disease
 ```
 
 How many patients were diagnosed with malignancy?
@@ -192,15 +197,15 @@ Default `classcades` are listed in the table. Each classification (classcodes co
 
 ```r
 coder::all_classcodes()
-#> # A tibble: 7 × 3
-#>   classcodes    regex                                                                              indices                                                               
-#>   <chr>         <chr>                                                                              <chr>                                                                 
-#> 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated"   
-#> 2 cps           icd10                                                                              "only_ordinary"                                                       
-#> 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm"
-#> 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                                                                    
-#> 5 hip_ae_hailer icd10, kva                                                                         ""                                                                    
-#> 6 knee_ae       icd10, kva                                                                         ""                                                                    
+#> # A tibble: 7 x 3
+#>   classcodes    regex                                                                              indices           
+#>   <chr>         <chr>                                                                              <chr>             
+#> 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_r~
+#> 2 cps           icd10                                                                              "only_ordinary"   
+#> 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all~
+#> 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                
+#> 5 hip_ae_hailer icd10, kva                                                                         ""                
+#> 6 knee_ae       icd10, kva                                                                         ""                
 #> 7 rxriskv       atc_pratt, atc_caughey, atc_garland                                                "pratt, sum_all"
 ```
 

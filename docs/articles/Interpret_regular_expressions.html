@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.9</span>
       </span>
     </div>
 
@@ -128,14 +128,14 @@ might lead to complex figures. We can focus on a specific group
 infarction codified by <code>regex_icd9cm_deyo</code>?</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/visualize.html" class="external-link">visualize</a></span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"myocardial infarction"</span>, regex    <span class="op">=</span> <span class="st">"icd9cm_deyo"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="regexp_charlson_ci_icd9.png"><!-- --></p>
+<p><img src="regexp_charlson_ci_icd9.png" width="188"></p>
 <p>Hence, all ICD-9 codes starting with <code>41</code> followed by
 either <code>0</code> or <code>2</code> will be recognized as myocardial
 infarction according to <code>icd9cm_deyo</code>. The corresponding
 regular expression for ICD-10 is:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://generics.r-lib.org/reference/visualize.html" class="external-link">visualize</a></span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"myocardial infarction"</span>, regex <span class="op">=</span> <span class="st">"icd10"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="regexp_charlson_ci_icd10.png"><!-- --></p>
+<p><img src="regexp_charlson_ci_icd10.png" width="233"></p>
 <p>Such codes should start with <code>I2</code> followed by either
 <code>1</code>, <code>2</code> or <code>52</code>. The vertical bar
 <code>|</code> (in the regular expression of the heading) indicates a
@@ -384,7 +384,7 @@ Data.”</span> <em>Medical Care</em> 43 (11): 1130–39. <a href="https://doi.o
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

@@ -3,6 +3,7 @@
 #' S3-method for generic [decoder::as.keyvalue()]
 #'
 #' @param x classcodes object
+#' @param ... additional arguments passed to [decoder::as.keyvalue()]
 #' @inheritParams summary.classcodes
 #'
 #' @return
@@ -35,6 +36,6 @@
 #'     cc_args = list(regex = "icd9cm")
 #'   )
 #' )
-as.keyvalue.classcodes <- function(x, coding, cc_args = list()) {
+as.keyvalue.classcodes <- function(x, coding, cc_args = list(), ...) {
   decoder::as.keyvalue(summary(x, coding, cc_args = cc_args)$codes_vct)
 }

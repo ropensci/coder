@@ -52,18 +52,15 @@
 #'   Identifying Increased Risk of Readmission and In-hospital Mortality Using
 #'   Hospital Administrative Data.
 #'   Medical Care, 55(7), 698–705.
-#'   \doi{10.1097/MLR.0000000000000735}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
-#'   \url{https://www.jstor.org/stable/3768193}
 #'
 #' Thompson, N. R., Fan, Y., Dalton, J. E., Jehi, L., Rosenbaum, B. P.,
 #'   Vadera, S., & Griffith, S. D. (2015).
 #'   A new Elixhauser-based comorbidity summary measure to predict in-hospital
 #'   mortality. Med Care, 53(4), 374–379.
-#'   \doi{10.1097/MLR.0000000000000326}
 #'
 #' Walraven, C. Van, Austin, P. C., Jennings, A., Quan, H., Alan, J., Walraven,
 #'   C. Van, … Jennings, A. (2009).
@@ -123,23 +120,20 @@
 #'    Identifying co-morbidity in surgical patients using administrative data
 #'    with the Royal College of Surgeons Charlson Score.
 #'    British Journal of Surgery, 97(5), 772–781.
-#'    \doi{10.1002/bjs.6930}
 #'
 #'  Brusselaers N, Lagergren J. (2017)
 #'    The Charlson Comorbidity Index in Registry-based Research.
-#'    Methods Inf Med 2017;56:401–6. \doi{10.3414/ME17-01-0051}.
+#'    Methods Inf Med 2017;56:401–6.
 #'
 #'
 #'  Deyo, R. A., Cherkin, D. C., & Ciol, M. A. (1992).
 #'    Adapting a clinical comorbidity index for use with ICD-9-CM
 #'    administrative databases.
 #'    Journal of Clinical Epidemiology, 45(6), 613–619.
-#'    \doi{10.1016/0895-4356(92)90133-8}
 #'
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.
-#' \url{https://www.jstor.org/stable/3768193}
 #'
 #' Yurkovich, M., Avina-Zubieta, J. A., Thomas, J., Gorenchtein, M., & Lacaille,
 #'   D. (2015). A systematic review identifies valid comorbidity indices derived
@@ -168,7 +162,6 @@
 #'   "Comorbidity polypharmacy score and its clinical utility: A pragmatic
 #'   practitioner's perspective." Journal of emergencies, trauma, and shock 8.4
 #'   (2015): 224.
-#'   \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4626940/}
 #'
 #' @family default classcodes
 "cps"
@@ -217,12 +210,6 @@
 #'     Validation of adverse events after hip arthroplasty:
 #'     a Swedish multi-centre cohort study.
 #'     BMJ Open. 2019 Mar 7;9(3):e023773.
-#'     Available from: \url{https://pubmed.ncbi.nlm.nih.gov/30850403/}
-#'
-#' @source
-#' Knee (p. 83): \url{http://www.myknee.se/pdf/SVK-2016_1.1.pdf}.
-#'
-#' Hip (p. 162): \url{https://registercentrum.blob.core.windows.net/shpr/r/Arsrapport_2018_Hoftprotes_final_web-rJgg8LvkOB.pdf}
 #'
 #' @name ae
 #' @family default classcodes
@@ -268,7 +255,6 @@
 #'   Comorbidity in the elderly with diabetes:
 #'   Identification of areas of potential treatment conflicts.
 #'   Diabetes Res Clin Pract 2010;87:385–93.
-#'   \doi{10.1016/j.diabres.2009.10.019}.
 #'
 #' Pratt NL, Kerr M, Barratt JD, Kemp-Casey A, Kalisch Ellett LM,
 #'   Ramsay E, et al.

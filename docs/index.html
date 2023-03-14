@@ -54,7 +54,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.9</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@
 <div class="section level1">
 <div class="page-header"><h1 id="coder-">coder <img src="reference/figures/logo.png" align="right"><a class="anchor" aria-label="anchor" href="#coder-"></a>
 </h1></div>
-
+<p><a href="https://github.com/ropensci/coder/actions" class="external-link"><img src="https://github.com/ropensci/coder/workflows/R-CMD-check/badge.svg" alt="R build status"></a> <a href="https://app.codecov.io/gh/ropensci/coder" class="external-link"><img src="https://codecov.io/gh/ropensci/coder/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a> <a href="https://zenodo.org/badge/latestdoi/65975808" class="external-link"><img src="https://zenodo.org/badge/65975808.svg" alt="DOI"></a> <a href="https://joss.theoj.org/papers/10.21105/joss.02916" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.02916/status.svg" alt="status"></a> <a href="https://CRAN.R-project.org/package=coder" class="external-link"><img src="https://www.r-pkg.org/badges/version/coder" alt="CRAN status"></a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/coder" alt="CRAN downloads"></p>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div class="section level2">
 <h2 id="aim-of-the-package">Aim of the package<a class="anchor" aria-label="anchor" href="#aim-of-the-package"></a>
@@ -151,37 +151,37 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/coder/" class="external-link">coder</a></span><span class="op">)</span></span>
 <span><span class="va">ex_people</span></span>
-<span><span class="co">#&gt; # A tibble: 100 × 2</span></span>
+<span><span class="co">#&gt; # A tibble: 100 x 2</span></span>
 <span><span class="co">#&gt;    name              surgery   </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;             &lt;date&gt;    </span></span>
-<span><span class="co">#&gt;  1 Chen, Trevor      2022-08-12</span></span>
-<span><span class="co">#&gt;  2 Graves, Acineth   2022-05-04</span></span>
-<span><span class="co">#&gt;  3 Trujillo, Yanelly 2022-04-21</span></span>
-<span><span class="co">#&gt;  4 Simpson, Kenneth  2022-07-24</span></span>
-<span><span class="co">#&gt;  5 Chin, Nelson      2022-07-07</span></span>
-<span><span class="co">#&gt;  6 Le, Christina     2022-02-08</span></span>
-<span><span class="co">#&gt;  7 Kang, Xuan        2022-05-13</span></span>
-<span><span class="co">#&gt;  8 Shuemaker, Lauren 2022-02-09</span></span>
-<span><span class="co">#&gt;  9 Boucher, Teresa   2022-07-18</span></span>
-<span><span class="co">#&gt; 10 Le, Soraiya       2022-06-22</span></span>
-<span><span class="co">#&gt; # … with 90 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;  1 Chen, Trevor      2023-02-28</span></span>
+<span><span class="co">#&gt;  2 Graves, Acineth   2022-11-20</span></span>
+<span><span class="co">#&gt;  3 Trujillo, Yanelly 2022-11-07</span></span>
+<span><span class="co">#&gt;  4 Simpson, Kenneth  2023-02-09</span></span>
+<span><span class="co">#&gt;  5 Chin, Nelson      2023-01-23</span></span>
+<span><span class="co">#&gt;  6 Le, Christina     2022-08-27</span></span>
+<span><span class="co">#&gt;  7 Kang, Xuan        2022-11-29</span></span>
+<span><span class="co">#&gt;  8 Shuemaker, Lauren 2022-08-28</span></span>
+<span><span class="co">#&gt;  9 Boucher, Teresa   2023-02-03</span></span>
+<span><span class="co">#&gt; 10 Le, Soraiya       2023-01-08</span></span>
+<span><span class="co">#&gt; # ... with 90 more rows</span></span></code></pre></div>
 <p>Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex_icd10</span></span>
-<span><span class="co">#&gt; # A tibble: 2,376 × 4</span></span>
+<span><span class="co">#&gt; # A tibble: 2,376 x 4</span></span>
 <span><span class="co">#&gt;    name                 admission  icd10 hdia </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;                &lt;date&gt;     &lt;chr&gt; &lt;lgl&gt;</span></span>
-<span><span class="co">#&gt;  1 Tran, Kenneth        2022-02-23 S134A FALSE</span></span>
-<span><span class="co">#&gt;  2 Tran, Kenneth        2022-08-09 W3319 FALSE</span></span>
-<span><span class="co">#&gt;  3 Tran, Kenneth        2022-07-19 Y0262 TRUE </span></span>
-<span><span class="co">#&gt;  4 Tran, Kenneth        2022-06-11 X0488 FALSE</span></span>
-<span><span class="co">#&gt;  5 Sommerville, Dominic 2022-07-31 V8104 FALSE</span></span>
-<span><span class="co">#&gt;  6 Sommerville, Dominic 2022-03-11 B853  FALSE</span></span>
-<span><span class="co">#&gt;  7 Sommerville, Dominic 2022-07-26 Q174  FALSE</span></span>
-<span><span class="co">#&gt;  8 Sommerville, Dominic 2022-03-16 A227  FALSE</span></span>
-<span><span class="co">#&gt;  9 Sommerville, Dominic 2022-07-21 H702  FALSE</span></span>
-<span><span class="co">#&gt; 10 Sommerville, Dominic 2021-11-12 X6051 TRUE </span></span>
-<span><span class="co">#&gt; # … with 2,366 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;  1 Tran, Kenneth        2022-09-11 S134A FALSE</span></span>
+<span><span class="co">#&gt;  2 Tran, Kenneth        2023-02-25 W3319 FALSE</span></span>
+<span><span class="co">#&gt;  3 Tran, Kenneth        2023-02-04 Y0262 TRUE </span></span>
+<span><span class="co">#&gt;  4 Tran, Kenneth        2022-12-28 X0488 FALSE</span></span>
+<span><span class="co">#&gt;  5 Sommerville, Dominic 2023-02-16 V8104 FALSE</span></span>
+<span><span class="co">#&gt;  6 Sommerville, Dominic 2022-09-27 B853  FALSE</span></span>
+<span><span class="co">#&gt;  7 Sommerville, Dominic 2023-02-11 Q174  FALSE</span></span>
+<span><span class="co">#&gt;  8 Sommerville, Dominic 2022-10-02 A227  FALSE</span></span>
+<span><span class="co">#&gt;  9 Sommerville, Dominic 2023-02-06 H702  FALSE</span></span>
+<span><span class="co">#&gt; 10 Sommerville, Dominic 2022-05-31 X6051 TRUE </span></span>
+<span><span class="co">#&gt; # ... with 2,366 more rows</span></span></code></pre></div>
 <p>Using those two data sets, as well as a classification scheme (<code>classcodes</code> object; see below), we can easily identify all Charlson comorbidities for each patient:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ch</span> <span class="op">&lt;-</span> </span>
@@ -194,21 +194,26 @@
 <span><span class="co">#&gt; Classification based on: icd10</span></span>
 <span></span>
 <span><span class="va">ch</span></span>
-<span><span class="co">#&gt; # A tibble: 100 × 25</span></span>
-<span><span class="co">#&gt;    name              surgery    myocardial.infarction congestive.heart.failure peripheral.vascular.disease cerebrovascular.dise…¹ demen…² chron…³ rheum…⁴ pepti…⁵ mild.…⁶ diabe…⁷ hemip…⁸ renal…⁹ diabe…˟ malig…˟ moder…˟ metas…˟ AIDS.…˟ charl…˟ deyo_…˟ dhoore ghali quan_…˟ quan_…˟</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;             &lt;date&gt;     &lt;lgl&gt;                 &lt;lgl&gt;                    &lt;lgl&gt;                       &lt;lgl&gt;                  &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt;  1 Chen, Trevor      2022-08-12 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  2 Graves, Acineth   2022-05-04 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  3 Trujillo, Yanelly 2022-04-21 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  4 Simpson, Kenneth  2022-07-24 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  5 Chin, Nelson      2022-07-07 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  6 Le, Christina     2022-02-08 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE         2       1      1     0       2       2</span></span>
-<span><span class="co">#&gt;  7 Kang, Xuan        2022-05-13 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt;  8 Shuemaker, Lauren 2022-02-09 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         1       1      1     0       1       1</span></span>
-<span><span class="co">#&gt;  9 Boucher, Teresa   2022-07-18 FALSE                 FALSE                    TRUE                        FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         1       1      1     2       1       0</span></span>
-<span><span class="co">#&gt; 10 Le, Soraiya       2022-06-22 FALSE                 FALSE                    FALSE                       FALSE                  FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE         0       0      0     0       0       0</span></span>
-<span><span class="co">#&gt; # … with 90 more rows, and abbreviated variable names ¹​cerebrovascular.disease, ²​dementia, ³​chronic.pulmonary.disease, ⁴​rheumatic.disease, ⁵​peptic.ulcer.disease, ⁶​mild.liver.disease, ⁷​diabetes.without.complication, ⁸​hemiplegia.or.paraplegia, ⁹​renal.disease,</span></span>
-<span><span class="co">#&gt; #   ˟​diabetes.complication, ˟​malignancy, ˟​moderate.or.severe.liver.disease, ˟​metastatic.solid.tumor, ˟​AIDS.HIV, ˟​charlson, ˟​deyo_ramano, ˟​quan_original, ˟​quan_updated</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 100 x 25</span></span>
+<span><span class="co">#&gt;    name    surgery    myoca~1 conge~2 perip~3 cereb~4 demen~5 chron~6 rheum~7 pepti~8 mild.~9 diabe~* hemip~* renal~*</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;  </span></span>
+<span><span class="co">#&gt;  1 Chen, ~ 2023-02-28 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  2 Graves~ 2022-11-20 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  3 Trujil~ 2022-11-07 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  4 Simpso~ 2023-02-09 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  5 Chin, ~ 2023-01-23 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  6 Le, Ch~ 2022-08-27 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  7 Kang, ~ 2022-11-29 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  8 Shuema~ 2022-08-28 FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  9 Bouche~ 2023-02-03 FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt; 10 Le, So~ 2023-01-08 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
+<span><span class="co">#&gt; # ... with 90 more rows, 11 more variables: diabetes.complication &lt;lgl&gt;, malignancy &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   moderate.or.severe.liver.disease &lt;lgl&gt;, metastatic.solid.tumor &lt;lgl&gt;, AIDS.HIV &lt;lgl&gt;, charlson &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   deyo_ramano &lt;dbl&gt;, dhoore &lt;dbl&gt;, ghali &lt;dbl&gt;, quan_original &lt;dbl&gt;, quan_updated &lt;dbl&gt;, and abbreviated variable</span></span>
+<span><span class="co">#&gt; #   names 1: myocardial.infarction, 2: congestive.heart.failure, 3: peripheral.vascular.disease,</span></span>
+<span><span class="co">#&gt; #   4: cerebrovascular.disease, 5: dementia, 6: chronic.pulmonary.disease, 7: rheumatic.disease,</span></span>
+<span><span class="co">#&gt; #   8: peptic.ulcer.disease, 9: mild.liver.disease, *: diabetes.without.complication, *: hemiplegia.or.paraplegia,</span></span>
+<span><span class="co">#&gt; #   *: renal.disease</span></span></code></pre></div>
 <p>How many patients were diagnosed with malignancy?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">malignancy</span><span class="op">)</span></span>
@@ -249,15 +254,15 @@
 <p>Default <code>classcades</code> are listed in the table. Each classification (classcodes column) can be based on several code systems (regex column) and have several alternative weighted indices (indices column). Those might be combined freely.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">coder</span><span class="fu">::</span><span class="fu"><a href="reference/all_classcodes.html">all_classcodes</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 7 × 3</span></span>
-<span><span class="co">#&gt;   classcodes    regex                                                                              indices                                                               </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                                                                              &lt;chr&gt;                                                                 </span></span>
-<span><span class="co">#&gt; 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_ramano, dhoore, ghali, quan_original, quan_updated"   </span></span>
-<span><span class="co">#&gt; 2 cps           icd10                                                                              "only_ordinary"                                                       </span></span>
-<span><span class="co">#&gt; 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all_ahrq, walraven, sid29, sid30, ahrq_mort, ahrq_readm"</span></span>
-<span><span class="co">#&gt; 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                                                                    </span></span>
-<span><span class="co">#&gt; 5 hip_ae_hailer icd10, kva                                                                         ""                                                                    </span></span>
-<span><span class="co">#&gt; 6 knee_ae       icd10, kva                                                                         ""                                                                    </span></span>
+<span><span class="co">#&gt; # A tibble: 7 x 3</span></span>
+<span><span class="co">#&gt;   classcodes    regex                                                                              indices           </span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                                                                              &lt;chr&gt;             </span></span>
+<span><span class="co">#&gt; 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_r~</span></span>
+<span><span class="co">#&gt; 2 cps           icd10                                                                              "only_ordinary"   </span></span>
+<span><span class="co">#&gt; 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all~</span></span>
+<span><span class="co">#&gt; 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                </span></span>
+<span><span class="co">#&gt; 5 hip_ae_hailer icd10, kva                                                                         ""                </span></span>
+<span><span class="co">#&gt; 6 knee_ae       icd10, kva                                                                         ""                </span></span>
 <span><span class="co">#&gt; 7 rxriskv       atc_pratt, atc_caughey, atc_garland                                                "pratt, sum_all"</span></span></code></pre></div>
 </div>
 </div>
@@ -308,17 +313,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/ropensci/coder/actions" class="external-link"><img src="https://github.com/ropensci/coder/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://app.codecov.io/gh/ropensci/coder" class="external-link"><img src="https://codecov.io/gh/ropensci/coder/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
-<li><a href="https://zenodo.org/badge/latestdoi/65975808" class="external-link"><img src="https://zenodo.org/badge/65975808.svg" alt="DOI"></a></li>
-<li><a href="https://joss.theoj.org/papers/10.21105/joss.02916" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.02916/status.svg" alt="status"></a></li>
-<li><a href="https://CRAN.R-project.org/package=coder" class="external-link"><img src="https://www.r-pkg.org/badges/version/coder" alt="CRAN status"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
@@ -331,7 +326,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

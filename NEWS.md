@@ -1,3 +1,7 @@
+# coder 0.13.9
+
+Small bug fix for CRAN checks
+
 # coder 0.13.1
 
 Release candidate submitted to JOSS.
