@@ -4,7 +4,7 @@
 \alias{visualize.classcodes}
 \title{Visualize classification scheme in web browser}
 \usage{
-\method{visualize}{classcodes}(x, group = NULL, show = TRUE, ...)
+visualize.classcodes(x, group = NULL, show = TRUE, ...)
 }
 \arguments{
 \item{x}{\link{classcodes} object or name of such object included in the package

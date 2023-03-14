@@ -22,7 +22,7 @@ several sheets (one for each codebook)."><meta property="og:image" content="rope
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.10</span>
       </span>
     </div>
 
@@ -158,135 +158,16 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 <span class="r-in"><span><span class="co"># The codebook returns a list with three objects.</span></span></span>
 <span class="r-in"><span><span class="co"># Access a dictionary table with translates of each code to text:</span></span></span>
 <span class="r-in"><span><span class="fu">codebook</span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"icd10cm"</span><span class="op">)</span><span class="op">$</span><span class="va">all_codes</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print.codebook() --------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If argument `file` is unspecified, a preview of each sheet of the codebook is</span></span></span>
 <span class="r-in"><span><span class="co"># printed to the screen</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">cb</span> <span class="op">&lt;-</span> <span class="fu">codebook</span><span class="op">(</span><span class="va">charlson</span>, <span class="st">"icd10cm"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Classification based on: icd10</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of README sheet specifying columns in following sheets:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   tab       column      description                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> summary   group       Group to categorize by                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> summary   n           Number of identified codes contained in this group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> summary   codes       Comma separated list of individual codes in group </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> all_codes code        Individual code                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> all_codes description Description of individual code                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> all_codes group       Group to categorize by                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of summary sheet:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    group                                n codes                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> AIDS/HIV                             1 B20                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cerebrovascular disease            430 G450, G451, G452, G453, G454, G458, G…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> chronic pulmonary disease           69 I2781, I2782, I2783, I2789, I279, J40…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> congestive heart failure            36 I099, I110, I130, I132, I255, I420, I…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> dementia                            11 F0150, F0151, F0280, F0281, F0390, F0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> diabetes complication              204 E1021, E1022, E1029, E10311, E10319, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> diabetes without complication       52 E1010, E1011, E10610, E10618, E10620,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> hemiplegia or paraplegia            45 G041, G114, G801, G802, G8100, G8101,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> malignancy                         961 C000, C001, C002, C003, C004, C005, C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> metastatic solid tumor              47 C770, C771, C772, C773, C774, C775, C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> mild liver disease                  38 B180, B181, B182, B188, B189, K700, K…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> moderate or severe liver disease    14 I8500, I8501, I864, K7040, K7041, K71…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> myocardial infarction               18 I2101, I2102, I2109, I2111, I2119, I2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> peptic ulcer disease                36 K250, K251, K252, K253, K254, K255, K…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> peripheral vascular disease        274 I700, I701, I70201, I70202, I70203, I…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> renal disease                       28 I120, I1310, I1311, N032, N033, N034,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> rheumatic disease                  348 M0500, M05011, M05012, M05019, M05021…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of all_codes:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,612 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code  description                                     group             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> B180  Chronic viral hepatitis B with delta-agent      mild liver disease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> B181  Chronic viral hepatitis B without delta-agent   mild liver disease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> B182  Chronic viral hepatitis C                       mild liver disease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> B188  Other chronic viral hepatitis                   mild liver disease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> B189  Chronic viral hepatitis, unspecified            mild liver disease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> B20   Human immunodeficiency virus [HIV] disease      AIDS/HIV          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C000  Malignant neoplasm of external upper lip        malignancy        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C001  Malignant neoplasm of external lower lip        malignancy        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C002  Malignant neoplasm of external lip, unspecified malignancy        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C003  Malignant neoplasm of upper lip, inner aspect   malignancy        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,602 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># The preview can be modified by arguments to the print-method</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cb</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Coodebooks are prefarably exported to Excel using the `file` argument! Use `summary.classcodes()` or `visualize()` for interactive summaries!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of README sheet specifying columns in following sheets:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   tab       column      description                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> summary   group       Group to categorize by                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> summary   n           Number of identified codes contained in this group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> summary   codes       Comma separated list of individual codes in group </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> all_codes code        Individual code                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> all_codes description Description of individual code                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> all_codes group       Group to categorize by                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of summary sheet:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    group                                n codes                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> AIDS/HIV                             1 B20                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> cerebrovascular disease            430 G450, G451, G452, G453, G454, G458, G…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> chronic pulmonary disease           69 I2781, I2782, I2783, I2789, I279, J40…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> congestive heart failure            36 I099, I110, I130, I132, I255, I420, I…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> dementia                            11 F0150, F0151, F0280, F0281, F0390, F0…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> diabetes complication              204 E1021, E1022, E1029, E10311, E10319, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> diabetes without complication       52 E1010, E1011, E10610, E10618, E10620,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> hemiplegia or paraplegia            45 G041, G114, G801, G802, G8100, G8101,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> malignancy                         961 C000, C001, C002, C003, C004, C005, C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> metastatic solid tumor              47 C770, C771, C772, C773, C774, C775, C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> mild liver disease                  38 B180, B181, B182, B188, B189, K700, K…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> moderate or severe liver disease    14 I8500, I8501, I864, K7040, K7041, K71…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> myocardial infarction               18 I2101, I2102, I2109, I2111, I2119, I2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> peptic ulcer disease                36 K250, K251, K252, K253, K254, K255, K…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> peripheral vascular disease        274 I700, I701, I70201, I70202, I70203, I…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> renal disease                       28 I120, I1310, I1311, N032, N033, N034,…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> rheumatic disease                  348 M0500, M05011, M05012, M05019, M05021…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Preview of all_codes:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2,612 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    code  description                                                       group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> B180  Chronic viral hepatitis B with delta-agent                        mild…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> B181  Chronic viral hepatitis B without delta-agent                     mild…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> B182  Chronic viral hepatitis C                                         mild…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> B188  Other chronic viral hepatitis                                     mild…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> B189  Chronic viral hepatitis, unspecified                              mild…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> B20   Human immunodeficiency virus [HIV] disease                        AIDS…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> C000  Malignant neoplasm of external upper lip                          mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> C001  Malignant neoplasm of external lower lip                          mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> C002  Malignant neoplasm of external lip, unspecified                   mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> C003  Malignant neoplasm of upper lip, inner aspect                     mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> C004  Malignant neoplasm of lower lip, inner aspect                     mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> C005  Malignant neoplasm of lip, unspecified, inner aspect              mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> C006  Malignant neoplasm of commissure of lip, unspecified              mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> C008  Malignant neoplasm of overlapping sites of lip                    mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> C009  Malignant neoplasm of lip, unspecified                            mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> C01   Malignant neoplasm of base of tongue                              mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> C020  Malignant neoplasm of dorsal surface of tongue                    mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> C021  Malignant neoplasm of border of tongue                            mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> C022  Malignant neoplasm of ventral surface of tongue                   mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> C023  Malignant neoplasm of anterior two-thirds of tongue, part unspec… mali…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2,592 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># codebooks() -------------------------------------------------------------</span></span></span>
@@ -294,7 +175,6 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 <span class="r-in"><span><span class="co"># Combine codebooks based on different versions of the regular expressions</span></span></span>
 <span class="r-in"><span><span class="co"># and export to a single (temporary) Excel file</span></span></span>
 <span class="r-in"><span><span class="va">c1</span> <span class="op">&lt;-</span> <span class="fu">codebook</span><span class="op">(</span><span class="va">elixhauser</span>, <span class="st">"icd10cm"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Classification based on: icd10</span>
 <span class="r-in"><span><span class="va">c2</span> <span class="op">&lt;-</span> <span class="fu">codebook</span><span class="op">(</span><span class="va">elixhauser</span>, <span class="st">"icd9cmd"</span>,</span></span>
 <span class="r-in"><span>  cc_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>regex <span class="op">=</span> <span class="st">"icd9cm_enhanced"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
@@ -303,8 +183,7 @@ Only one 'README' object is kept however and renamed as such.</p></li>
 <span class="r-in"><span>  elix_icd10 <span class="op">=</span> <span class="va">c1</span>, elix_icd9cm <span class="op">=</span> <span class="va">c2</span>,</span></span>
 <span class="r-in"><span>  file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="st">"codebooks"</span>, fileext <span class="op">=</span> <span class="st">".xlsx"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> codebooks saved as C:\Users\eribu\AppData\Local\Temp\RtmpmCNgDZ\codebooks29b030de66.xlsx</span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>

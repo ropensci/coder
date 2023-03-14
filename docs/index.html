@@ -54,7 +54,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.10</span>
       </span>
     </div>
 
@@ -151,7 +151,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/coder/" class="external-link">coder</a></span><span class="op">)</span></span>
 <span><span class="va">ex_people</span></span>
-<span><span class="co">#&gt; # A tibble: 100 x 2</span></span>
+<span><span class="co">#&gt; # A tibble: 100 × 2</span></span>
 <span><span class="co">#&gt;    name              surgery   </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;             &lt;date&gt;    </span></span>
 <span><span class="co">#&gt;  1 Chen, Trevor      2023-02-28</span></span>
@@ -164,11 +164,11 @@
 <span><span class="co">#&gt;  8 Shuemaker, Lauren 2022-08-28</span></span>
 <span><span class="co">#&gt;  9 Boucher, Teresa   2023-02-03</span></span>
 <span><span class="co">#&gt; 10 Le, Soraiya       2023-01-08</span></span>
-<span><span class="co">#&gt; # ... with 90 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 90 more rows</span></span></code></pre></div>
 <p>Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex_icd10</span></span>
-<span><span class="co">#&gt; # A tibble: 2,376 x 4</span></span>
+<span><span class="co">#&gt; # A tibble: 2,376 × 4</span></span>
 <span><span class="co">#&gt;    name                 admission  icd10 hdia </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;                &lt;date&gt;     &lt;chr&gt; &lt;lgl&gt;</span></span>
 <span><span class="co">#&gt;  1 Tran, Kenneth        2022-09-11 S134A FALSE</span></span>
@@ -181,7 +181,7 @@
 <span><span class="co">#&gt;  8 Sommerville, Dominic 2022-10-02 A227  FALSE</span></span>
 <span><span class="co">#&gt;  9 Sommerville, Dominic 2023-02-06 H702  FALSE</span></span>
 <span><span class="co">#&gt; 10 Sommerville, Dominic 2022-05-31 X6051 TRUE </span></span>
-<span><span class="co">#&gt; # ... with 2,366 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt; # … with 2,366 more rows</span></span></code></pre></div>
 <p>Using those two data sets, as well as a classification scheme (<code>classcodes</code> object; see below), we can easily identify all Charlson comorbidities for each patient:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ch</span> <span class="op">&lt;-</span> </span>
@@ -191,37 +191,18 @@
 <span>    cc <span class="op">=</span> <span class="st">"charlson"</span>,            <span class="co"># Calculate Charlson comorbidity</span></span>
 <span>    id <span class="op">=</span> <span class="st">"name"</span>, code <span class="op">=</span> <span class="st">"icd10"</span> <span class="co"># Specify column names</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Classification based on: icd10</span></span>
+<span><span class="co">#&gt; Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"</span></span>
 <span></span>
 <span><span class="va">ch</span></span>
-<span><span class="co">#&gt; # A tibble: 100 x 25</span></span>
-<span><span class="co">#&gt;    name    surgery    myoca~1 conge~2 perip~3 cereb~4 demen~5 chron~6 rheum~7 pepti~8 mild.~9 diabe~* hemip~* renal~*</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;   &lt;date&gt;     &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;   &lt;lgl&gt;  </span></span>
-<span><span class="co">#&gt;  1 Chen, ~ 2023-02-28 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  2 Graves~ 2022-11-20 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  3 Trujil~ 2022-11-07 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  4 Simpso~ 2023-02-09 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  5 Chin, ~ 2023-01-23 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  6 Le, Ch~ 2022-08-27 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  7 Kang, ~ 2022-11-29 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  8 Shuema~ 2022-08-28 FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  9 Bouche~ 2023-02-03 FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt; 10 Le, So~ 2023-01-08 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  </span></span>
-<span><span class="co">#&gt; # ... with 90 more rows, 11 more variables: diabetes.complication &lt;lgl&gt;, malignancy &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   moderate.or.severe.liver.disease &lt;lgl&gt;, metastatic.solid.tumor &lt;lgl&gt;, AIDS.HIV &lt;lgl&gt;, charlson &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   deyo_ramano &lt;dbl&gt;, dhoore &lt;dbl&gt;, ghali &lt;dbl&gt;, quan_original &lt;dbl&gt;, quan_updated &lt;dbl&gt;, and abbreviated variable</span></span>
-<span><span class="co">#&gt; #   names 1: myocardial.infarction, 2: congestive.heart.failure, 3: peripheral.vascular.disease,</span></span>
-<span><span class="co">#&gt; #   4: cerebrovascular.disease, 5: dementia, 6: chronic.pulmonary.disease, 7: rheumatic.disease,</span></span>
-<span><span class="co">#&gt; #   8: peptic.ulcer.disease, 9: mild.liver.disease, *: diabetes.without.complication, *: hemiplegia.or.paraplegia,</span></span>
-<span><span class="co">#&gt; #   *: renal.disease</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'ch' not found</span></span></code></pre></div>
 <p>How many patients were diagnosed with malignancy?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">malignancy</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 5</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'ch' not found</span></span></code></pre></div>
 <p>What is the distribution of the combined comorbidity index for each patient?</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">charlson</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/READMEunnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="100%"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">charlson</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in table(ch$charlson): object 'ch' not found</span></span></code></pre></div>
 <p>There are many versions of the Charlson comorbidity index, which might be controlled by the <code>index</code> argument. We might also be interested only in diagnoses from 90 days before surgery as specified with an argument list <code>codify_args</code>as passed to <code><a href="reference/codify.html">codify()</a></code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ch</span> <span class="op">&lt;-</span> </span>
@@ -236,15 +217,15 @@
 <span>      days      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">90</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>   <span class="co"># Time window</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Classification based on: icd10</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"</span></span></code></pre></div>
 <p>Number of malignancies during this period?</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">malignancy</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'ch' not found</span></span></code></pre></div>
 <p>Distribution of the index as proposed by Quan et al 2011 during the 90 day period:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">quan_updated</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/READMEunnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="100%"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">ch</span><span class="op">$</span><span class="va">quan_updated</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in table(ch$quan_updated): object 'ch' not found</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="classification-schemes">Classification schemes<a class="anchor" aria-label="anchor" href="#classification-schemes"></a>
@@ -254,16 +235,7 @@
 <p>Default <code>classcades</code> are listed in the table. Each classification (classcodes column) can be based on several code systems (regex column) and have several alternative weighted indices (indices column). Those might be combined freely.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">coder</span><span class="fu">::</span><span class="fu"><a href="reference/all_classcodes.html">all_classcodes</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 7 x 3</span></span>
-<span><span class="co">#&gt;   classcodes    regex                                                                              indices           </span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;                                                                              &lt;chr&gt;             </span></span>
-<span><span class="co">#&gt; 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_r~</span></span>
-<span><span class="co">#&gt; 2 cps           icd10                                                                              "only_ordinary"   </span></span>
-<span><span class="co">#&gt; 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all~</span></span>
-<span><span class="co">#&gt; 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                </span></span>
-<span><span class="co">#&gt; 5 hip_ae_hailer icd10, kva                                                                         ""                </span></span>
-<span><span class="co">#&gt; 6 knee_ae       icd10, kva                                                                         ""                </span></span>
-<span><span class="co">#&gt; 7 rxriskv       atc_pratt, atc_caughey, atc_garland                                                "pratt, sum_all"</span></span></code></pre></div>
+<span><span class="co">#&gt; Error: 'all_classcodes' is not an exported object from 'namespace:coder'</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level1">

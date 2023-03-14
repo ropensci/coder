@@ -1,3 +1,7 @@
+# For this example, 1 core would suffice:
+old_threads <- data.table::getDTthreads()
+data.table::setDTthreads(1)
+
 # For some patient data (ex_people) and related hospital visit code data
 # with ICD 10-codes (ex_icd10), add the Elixhauser comorbidity
 # conditions based on all registered ICD10-codes
@@ -100,3 +104,6 @@ tech <-
 
 # Compare
 tibble::tibble(names(default), names(original), names(tech))
+
+# Go back to original number of threads
+data.table::setDTthreads(old_threads)

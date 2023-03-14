@@ -26,7 +26,7 @@ codify_args and cc_args."><meta property="og:image" content="ropensci.github.io/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">coder</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.13.10</span>
       </span>
     </div>
 
@@ -202,7 +202,11 @@ Numeric indices are also included if requested by the <code>index</code> argumen
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># For some patient data (ex_people) and related hospital visit code data</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># For this example, 1 core would suffice:</span></span></span>
+<span class="r-in"><span><span class="va">old_threads</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/openmp-utils.html" class="external-link">getDTthreads</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/openmp-utils.html" class="external-link">setDTthreads</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># For some patient data (ex_people) and related hospital visit code data</span></span></span>
 <span class="r-in"><span><span class="co"># with ICD 10-codes (ex_icd10), add the Elixhauser comorbidity</span></span></span>
 <span class="r-in"><span><span class="co"># conditions based on all registered ICD10-codes</span></span></span>
 <span class="r-in"><span><span class="fu">categorize</span><span class="op">(</span></span></span>
@@ -405,6 +409,9 @@ Numeric indices are also included if requested by the <code>index</code> argumen
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> hypertension.complicated       hypertension complicated       elixhauser_icd…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> paralysis                      paralysis                      elixhauser_icd…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 30 more rows</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Go back to original number of threads</span></span></span>
+<span class="r-in"><span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/openmp-utils.html" class="external-link">setDTthreads</a></span><span class="op">(</span><span class="va">old_threads</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>

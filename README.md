@@ -60,7 +60,7 @@ Assume we have some patients with surgery at specified dates:
 ```r
 library(coder)
 ex_people
-#> # A tibble: 100 x 2
+#> # A tibble: 100 × 2
 #>    name              surgery   
 #>    <chr>             <date>    
 #>  1 Chen, Trevor      2023-02-28
@@ -73,7 +73,7 @@ ex_people
 #>  8 Shuemaker, Lauren 2022-08-28
 #>  9 Boucher, Teresa   2023-02-03
 #> 10 Le, Soraiya       2023-01-08
-#> # ... with 90 more rows
+#> # … with 90 more rows
 ```
 
 Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
@@ -81,7 +81,7 @@ Those patients (among others) were also recorded in a national patient register 
 
 ```r
 ex_icd10
-#> # A tibble: 2,376 x 4
+#> # A tibble: 2,376 × 4
 #>    name                 admission  icd10 hdia 
 #>    <chr>                <date>     <chr> <lgl>
 #>  1 Tran, Kenneth        2022-09-11 S134A FALSE
@@ -94,7 +94,7 @@ ex_icd10
 #>  8 Sommerville, Dominic 2022-10-02 A227  FALSE
 #>  9 Sommerville, Dominic 2023-02-06 H702  FALSE
 #> 10 Sommerville, Dominic 2022-05-31 X6051 TRUE 
-#> # ... with 2,366 more rows
+#> # … with 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme (`classcodes` object; see below), we can easily identify all Charlson comorbidities for each patient:
@@ -108,29 +108,10 @@ ch <-
     cc = "charlson",            # Calculate Charlson comorbidity
     id = "name", code = "icd10" # Specify column names
   )
-#> Classification based on: icd10
+#> Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
 
 ch
-#> # A tibble: 100 x 25
-#>    name    surgery    myoca~1 conge~2 perip~3 cereb~4 demen~5 chron~6 rheum~7 pepti~8 mild.~9 diabe~* hemip~* renal~*
-#>    <chr>   <date>     <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
-#>  1 Chen, ~ 2023-02-28 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  2 Graves~ 2022-11-20 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  3 Trujil~ 2022-11-07 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  4 Simpso~ 2023-02-09 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  5 Chin, ~ 2023-01-23 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  6 Le, Ch~ 2022-08-27 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  7 Kang, ~ 2022-11-29 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  8 Shuema~ 2022-08-28 FALSE   FALSE   FALSE   FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#>  9 Bouche~ 2023-02-03 FALSE   FALSE   TRUE    FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#> 10 Le, So~ 2023-01-08 FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE   FALSE  
-#> # ... with 90 more rows, 11 more variables: diabetes.complication <lgl>, malignancy <lgl>,
-#> #   moderate.or.severe.liver.disease <lgl>, metastatic.solid.tumor <lgl>, AIDS.HIV <lgl>, charlson <dbl>,
-#> #   deyo_ramano <dbl>, dhoore <dbl>, ghali <dbl>, quan_original <dbl>, quan_updated <dbl>, and abbreviated variable
-#> #   names 1: myocardial.infarction, 2: congestive.heart.failure, 3: peripheral.vascular.disease,
-#> #   4: cerebrovascular.disease, 5: dementia, 6: chronic.pulmonary.disease, 7: rheumatic.disease,
-#> #   8: peptic.ulcer.disease, 9: mild.liver.disease, *: diabetes.without.complication, *: hemiplegia.or.paraplegia,
-#> #   *: renal.disease
+#> Error in eval(expr, envir, enclos): object 'ch' not found
 ```
 
 How many patients were diagnosed with malignancy?
@@ -138,7 +119,7 @@ How many patients were diagnosed with malignancy?
 
 ```r
 sum(ch$malignancy)
-#> [1] 5
+#> Error in eval(expr, envir, enclos): object 'ch' not found
 ```
 
 What is the distribution of the combined comorbidity index for each patient?
@@ -146,9 +127,8 @@ What is the distribution of the combined comorbidity index for each patient?
 
 ```r
 barplot(table(ch$charlson))
+#> Error in table(ch$charlson): object 'ch' not found
 ```
-
-<img src="man/figures/READMEunnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="100%" />
 
 There are many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery as specified with an argument list `codify_args`as passed to `codify()`:
 
@@ -166,7 +146,7 @@ ch <-
       days      = c(-90, -1)   # Time window
     )
   )
-#> Classification based on: icd10
+#> Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
 ```
 
 Number of malignancies during this period?
@@ -174,7 +154,7 @@ Number of malignancies during this period?
 
 ```r
 sum(ch$malignancy, na.rm = TRUE)
-#> [1] 3
+#> Error in eval(expr, envir, enclos): object 'ch' not found
 ```
 
 Distribution of the index as proposed by Quan et al 2011 during the 90 day period:
@@ -182,9 +162,8 @@ Distribution of the index as proposed by Quan et al 2011 during the 90 day perio
 
 ```r
 barplot(table(ch$quan_updated))
+#> Error in table(ch$quan_updated): object 'ch' not found
 ```
-
-<img src="man/figures/READMEunnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="100%" />
 
 ## Classification schemes
 
@@ -197,16 +176,7 @@ Default `classcades` are listed in the table. Each classification (classcodes co
 
 ```r
 coder::all_classcodes()
-#> # A tibble: 7 x 3
-#>   classcodes    regex                                                                              indices           
-#>   <chr>         <chr>                                                                              <chr>             
-#> 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd8_brusselaers, icd9_brusselaers "charlson, deyo_r~
-#> 2 cps           icd10                                                                              "only_ordinary"   
-#> 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                        "sum_all, sum_all~
-#> 4 hip_ae        icd10, kva, icd10_fracture                                                         ""                
-#> 5 hip_ae_hailer icd10, kva                                                                         ""                
-#> 6 knee_ae       icd10, kva                                                                         ""                
-#> 7 rxriskv       atc_pratt, atc_caughey, atc_garland                                                "pratt, sum_all"
+#> Error: 'all_classcodes' is not an exported object from 'namespace:coder'
 ```
 
 # Relation to other packages

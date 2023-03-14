@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/ropensci/coder",
   "issueTracker": "https://github.com/ropensci/coder/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.13.8",
+  "version": "0.13.10",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -162,7 +162,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "333.488KB",
+  "fileSize": "329.777KB",
   "relatedLink": ["https://docs.ropensci.org/coder/", "https://CRAN.R-project.org/package=coder"],
   "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/coder/blob/master/README.md",
