@@ -91,9 +91,9 @@ print_tibble <- function(x, ..., n = 10) {
              "(or use `n` to specify the number of rows to preview)!\n"
       )
     )
-    print(tibble::as_tibble(utils::head(x, n)))
+    print(tibble::as_tibble(utils::head(x, n)), print = n)
   } else {
     class(x) <- setdiff(class(x), c("tbl_df", "tbl"))
-    print(x, ...)
+    print(x, n = n, ...)
   }
 }
