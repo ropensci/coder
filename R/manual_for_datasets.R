@@ -97,6 +97,10 @@
 #'     All liver diseases (including mild) are included in
 #'     "moderate or severe liver disease".
 #'     All diabetes is included in "diabetes complication"
+#'  - `icd10_swe:` Swedish version using ICD-10 by Ludvigsson et al. (2021).
+#'     Note that chronic pulmonary disease is combined (separated as chronic and other in the article).
+#'     Note that mild kidney disease combined with `R18`should also count as moderate or severe kidney disease 
+#'     (not implemented so must be handled manually). 
 #'   - `icd8_brusselaers:` Back translated version from ICD-10 to
 #'     ICD-8 by Brusselaers et al. (2017).
 #'     "Moderate and severe liver disease" contains all liver disease and
@@ -131,6 +135,10 @@
 #'    administrative databases.
 #'    Journal of Clinical Epidemiology, 45(6), 613–619.
 #'
+#' Ludvigsson, J. F., Appelros, P., Askling, J., Byberg, L., Carrero, J.-J., Ekström, A. M., Ekström, M., Smedby, K. E., Hagström, H., James, S., Järvholm, B., Michaelsson, K., Pedersen, N. L., Sundelin, H., Sundquist, K., Sundström, J. 
+#'   Adaptation of the Charlson Comorbidity Index for Register-Based Research in Sweden. 
+#'   CLEP 2021, 13, 21–41. https://doi.org/10.2147/CLEP.S282475.
+#' 
 #' Quan Hude et al. (2005). Coding algorithms for defining
 #'   comorbidities in ICD-9-CM and ICD-10 administrative data.
 #'   Medical care, 1130-1139.

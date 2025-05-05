@@ -1,117 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>ropensci.github.io/coder/404.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/articles/classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/articles/coder.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/articles/ex_data.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/articles/Interpret_regular_expressions.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/authors.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/index.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/news/index.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/ae.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/all_classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/as.data.frame.classified.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/as.keyvalue.classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/categorize.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/charlson.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/classify.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/clean_text.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/codebook.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/coder-package.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/codify.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/cols.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/copybig.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/cps.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/elixhauser.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/ex_atc.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/ex_icd10.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/ex_people.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/hip_ae_hailer.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/index_fun.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/print.classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/print.classified.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/rxriskv.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/set_classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/summary.classcodes.html</loc>
-  </url>
-  <url>
-    <loc>ropensci.github.io/coder/reference/visualize.classcodes.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://docs.ropensci.org/coder/404.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/articles/Interpret_regular_expressions.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/articles/classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/articles/coder.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/articles/ex_data.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/articles/index.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/authors.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/index.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/news/index.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/ae.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/all_classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/as.data.frame.classified.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/as.keyvalue.classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/categorize.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/charlson.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/classify.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/clean_text.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/codebook.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/coder-package.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/codify.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/cols.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/copybig.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/cps.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/elixhauser.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/ex_atc.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/ex_icd10.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/ex_people.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/hip_ae_hailer.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/index_fun.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/print.classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/print.classified.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/reexports.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/rxriskv.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/set_classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/summary.classcodes.html</loc></url>
+<url><loc>https://docs.ropensci.org/coder/reference/visualize.classcodes.html</loc></url>
 </urlset>
+

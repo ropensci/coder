@@ -1,5 +1,8 @@
 destination: docs
-url: ropensci.github.io/coder
+url: https://docs.ropensci.org/coder/
+
+template:
+  bootstrap: 5
 
 authors:
   Erik Bulow:

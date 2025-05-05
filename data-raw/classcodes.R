@@ -5,13 +5,13 @@ rm(list = ls())
 xl_path <- "data-raw/classcodes.xlsx"
 
 # Read all classcodes from excel-file and give attributes
-tibble::tibble(names = readxl::excel_sheets(xl_path)) %>%
-mutate(
-  data  = map(names, ~ readxl::read_excel(xl_path, .)),
-  classcode = map(data, as.classcodes) %>%
-              set_names(names)
-) %>%
-{attach(.$classcode)} # Must be able to refer to each object by name in use_data
+ccs <- 
+  tibble::tibble(names = readxl::excel_sheets(xl_path)) |> 
+  dplyr::mutate(
+    data      = purrr::map(names, ~ readxl::read_excel(xl_path, .)),
+    classcode = purrr::map(data, as.classcodes) |> setNames(names)
+  )
+attach(ccs$classcode) # Must be able to refer to each object by name in use_data
 
 
 
@@ -23,7 +23,7 @@ mutate(
 # I do not want to make a manual copy of all those codes but simply add a
 # fracture column based on existing codes.
 hip_ae$icd10_fracture <-
-  if_else(
+  dplyr::if_else(
     hip_ae$group == "DM1 other",
     paste0(hip_ae$icd10, "|N3(0[089]|90)"),
     hip_ae$icd10

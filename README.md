@@ -57,50 +57,50 @@ remotes::install_github("eribul/coder")
 Assume we have some patients with surgery at specified dates:
 
 
-```r
+``` r
 library(coder)
 ex_people
 #> # A tibble: 100 × 2
 #>    name              surgery   
 #>    <chr>             <date>    
-#>  1 Chen, Trevor      2023-02-28
-#>  2 Graves, Acineth   2022-11-20
-#>  3 Trujillo, Yanelly 2022-11-07
-#>  4 Simpson, Kenneth  2023-02-09
-#>  5 Chin, Nelson      2023-01-23
-#>  6 Le, Christina     2022-08-27
-#>  7 Kang, Xuan        2022-11-29
-#>  8 Shuemaker, Lauren 2022-08-28
-#>  9 Boucher, Teresa   2023-02-03
-#> 10 Le, Soraiya       2023-01-08
-#> # … with 90 more rows
+#>  1 Chen, Trevor      2025-04-21
+#>  2 Graves, Acineth   2025-01-11
+#>  3 Trujillo, Yanelly 2024-12-29
+#>  4 Simpson, Kenneth  2025-04-02
+#>  5 Chin, Nelson      2025-03-16
+#>  6 Le, Christina     2024-10-18
+#>  7 Kang, Xuan        2025-01-20
+#>  8 Shuemaker, Lauren 2024-10-19
+#>  9 Boucher, Teresa   2025-03-27
+#> 10 Le, Soraiya       2025-03-01
+#> # ℹ 90 more rows
 ```
 
 Those patients (among others) were also recorded in a national patient register with date of hospital admissions and diagnoses codes coded by the International Classification of Diseases (ICD) version 10:
 
 
-```r
+``` r
 ex_icd10
 #> # A tibble: 2,376 × 4
 #>    name                 admission  icd10 hdia 
 #>    <chr>                <date>     <chr> <lgl>
-#>  1 Tran, Kenneth        2022-09-11 S134A FALSE
-#>  2 Tran, Kenneth        2023-02-25 W3319 FALSE
-#>  3 Tran, Kenneth        2023-02-04 Y0262 TRUE 
-#>  4 Tran, Kenneth        2022-12-28 X0488 FALSE
-#>  5 Sommerville, Dominic 2023-02-16 V8104 FALSE
-#>  6 Sommerville, Dominic 2022-09-27 B853  FALSE
-#>  7 Sommerville, Dominic 2023-02-11 Q174  FALSE
-#>  8 Sommerville, Dominic 2022-10-02 A227  FALSE
-#>  9 Sommerville, Dominic 2023-02-06 H702  FALSE
-#> 10 Sommerville, Dominic 2022-05-31 X6051 TRUE 
-#> # … with 2,366 more rows
+#>  1 Tran, Kenneth        2024-11-02 S134A FALSE
+#>  2 Tran, Kenneth        2025-04-18 W3319 FALSE
+#>  3 Tran, Kenneth        2025-03-28 Y0262 TRUE 
+#>  4 Tran, Kenneth        2025-02-18 X0488 FALSE
+#>  5 Sommerville, Dominic 2025-04-09 V8104 FALSE
+#>  6 Sommerville, Dominic 2024-11-18 B853  FALSE
+#>  7 Sommerville, Dominic 2025-04-04 Q174  FALSE
+#>  8 Sommerville, Dominic 2024-11-23 A227  FALSE
+#>  9 Sommerville, Dominic 2025-03-30 H702  FALSE
+#> 10 Sommerville, Dominic 2024-07-22 X6051 TRUE 
+#> # ℹ 2,366 more rows
 ```
 
 Using those two data sets, as well as a classification scheme (`classcodes` object; see below), we can easily identify all Charlson comorbidities for each patient:
 
 
-```r
+``` r
 ch <- 
   categorize(
     ex_people,                  # patients of interest 
@@ -108,32 +108,54 @@ ch <-
     cc = "charlson",            # Calculate Charlson comorbidity
     id = "name", code = "icd10" # Specify column names
   )
-#> Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
+#> Classification based on: icd10
 
 ch
-#> Error in eval(expr, envir, enclos): object 'ch' not found
+#> # A tibble: 100 × 25
+#>    name            surgery    myocardial.infarction congestive.heart.fai…¹ peripheral.vascular.…² cerebrovascular.dise…³ dementia
+#>    <chr>           <date>     <lgl>                 <lgl>                  <lgl>                  <lgl>                  <lgl>   
+#>  1 Chen, Trevor    2025-04-21 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  2 Graves, Acineth 2025-01-11 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  3 Trujillo, Yane… 2024-12-29 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  4 Simpson, Kenne… 2025-04-02 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  5 Chin, Nelson    2025-03-16 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  6 Le, Christina   2024-10-18 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  7 Kang, Xuan      2025-01-20 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  8 Shuemaker, Lau… 2024-10-19 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#>  9 Boucher, Teresa 2025-03-27 FALSE                 FALSE                  TRUE                   FALSE                  FALSE   
+#> 10 Le, Soraiya     2025-03-01 FALSE                 FALSE                  FALSE                  FALSE                  FALSE   
+#> # ℹ 90 more rows
+#> # ℹ abbreviated names: ¹​congestive.heart.failure, ²​peripheral.vascular.disease, ³​cerebrovascular.disease
+#> # ℹ 18 more variables: chronic.pulmonary.disease <lgl>, rheumatic.disease <lgl>, peptic.ulcer.disease <lgl>,
+#> #   mild.liver.disease <lgl>, diabetes.without.complication <lgl>, hemiplegia.or.paraplegia <lgl>, renal.disease <lgl>,
+#> #   diabetes.complication <lgl>, malignancy <lgl>, moderate.or.severe.liver.disease <lgl>, metastatic.solid.tumor <lgl>,
+#> #   AIDS.HIV <lgl>, charlson <dbl>, deyo_ramano <dbl>, dhoore <dbl>, ghali <dbl>, quan_original <dbl>, quan_updated <dbl>
 ```
 
 How many patients were diagnosed with malignancy?
 
 
-```r
+``` r
 sum(ch$malignancy)
-#> Error in eval(expr, envir, enclos): object 'ch' not found
+#> [1] 5
 ```
 
 What is the distribution of the combined comorbidity index for each patient?
 
 
-```r
+``` r
 barplot(table(ch$charlson))
-#> Error in table(ch$charlson): object 'ch' not found
 ```
+
+<div class="figure">
+<img src="man/figures/READMEunnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
 
 There are many versions of the Charlson comorbidity index, which might be controlled by the `index` argument. We might also be interested only in diagnoses from 90 days before surgery as specified with an argument list `codify_args`as passed to `codify()`:
 
 
-```r
+``` r
 ch <- 
   categorize(
     ex_people, codedata = ex_icd10, cc = "charlson", id = "name", code = "icd10",
@@ -146,24 +168,28 @@ ch <-
       days      = c(-90, -1)   # Time window
     )
   )
-#> Error in UseMethod("categorize"): no applicable method for 'categorize' applied to an object of class "c('tbl_df', 'tbl', 'data.frame')"
+#> Classification based on: icd10
 ```
 
 Number of malignancies during this period?
 
 
-```r
+``` r
 sum(ch$malignancy, na.rm = TRUE)
-#> Error in eval(expr, envir, enclos): object 'ch' not found
+#> [1] 3
 ```
 
 Distribution of the index as proposed by Quan et al 2011 during the 90 day period:
 
 
-```r
+``` r
 barplot(table(ch$quan_updated))
-#> Error in table(ch$quan_updated): object 'ch' not found
 ```
+
+<div class="figure">
+<img src="man/figures/READMEunnamed-chunk-8-1.png" alt="plot of chunk unnamed-chunk-8" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-8</p>
+</div>
 
 ## Classification schemes
 
@@ -174,9 +200,18 @@ The package includes default `classcodes` for medical patient data based on the 
 Default `classcades` are listed in the table. Each classification (classcodes column) can be based on several code systems (regex column) and have several alternative weighted indices (indices column). Those might be combined freely.
 
 
-```r
+``` r
 coder::all_classcodes()
-#> Error: 'all_classcodes' is not an exported object from 'namespace:coder'
+#> # A tibble: 7 × 3
+#>   classcodes    regex                                                                                         indices            
+#>   <chr>         <chr>                                                                                         <chr>              
+#> 1 charlson      icd10, icd9cm_deyo, icd9cm_enhanced, icd10_rcs, icd10_swe, icd8_brusselaers, icd9_brusselaers "charlson, deyo_ra…
+#> 2 cps           icd10                                                                                         "only_ordinary"    
+#> 3 elixhauser    icd10, icd10_short, icd9cm, icd9cm_ahrqweb, icd9cm_enhanced                                   "sum_all, sum_all_…
+#> 4 hip_ae        icd10, kva, icd10_fracture                                                                    ""                 
+#> 5 hip_ae_hailer icd10, kva                                                                                    ""                 
+#> 6 knee_ae       icd10, kva                                                                                    ""                 
+#> 7 rxriskv       atc_pratt, atc_caughey, atc_garland                                                           "pratt, sum_all"
 ```
 
 # Relation to other packages

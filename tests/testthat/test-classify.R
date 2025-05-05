@@ -64,3 +64,4 @@ test_that("df/dt", {
 test_that("print.classified", {
   expect_output(print(cl), "The printed data is of class: classified, matrix")
 })
+

@@ -1,3 +1,7 @@
+# coder 1.0
+
+Added Swedish Charlson version (only ICD-10) based on article by Ludvigsson et al. (2021).
+
 # coder 0.13.9
 
 Small bug fix for CRAN checks

@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/ropensci/coder",
   "issueTracker": "https://github.com/ropensci/coder/issues",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "0.13.10",
+  "version": "1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.0 (2022-04-22 ucrt)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -105,7 +105,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.3"
+      "version": ">= 3.5"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -162,7 +162,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "329.777KB",
+  "fileSize": "348.64KB",
   "relatedLink": ["https://docs.ropensci.org/coder/", "https://CRAN.R-project.org/package=coder"],
   "releaseNotes": "https://github.com/ropensci/coder/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/coder/blob/master/README.md",
